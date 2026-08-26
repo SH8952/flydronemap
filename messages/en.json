@@ -305,6 +305,13 @@
     "subtitle": "Practical guides on reading flight weather, understanding the Kp index, and flying safely and legally.",
     "empty": "No guides published in this language yet — check back soon.",
     "readingTime": "{minutes} min read",
-    "backToGuides": "← Back to Guides"
+    "backToGuides": "← Back to Guides",
+    "categories": {
+      "weather-safety": "Weather & Safety",
+      "space-weather-gps": "Space Weather & GPS",
+      "us-airspace-regulations": "U.S. Airspace & Regulations",
+      "gear-flight-tips": "Gear & Flight Tips",
+      "general": "General"
+    }
   }
 }

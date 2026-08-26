@@ -305,6 +305,13 @@
     "subtitle": "Guías prácticas para leer el clima de vuelo, entender el índice Kp y volar de forma segura y legal.",
     "empty": "Todavía no hay guías publicadas en este idioma — vuelve pronto.",
     "readingTime": "{minutes} min de lectura",
-    "backToGuides": "← Volver a Guías"
+    "backToGuides": "← Volver a Guías",
+    "categories": {
+      "weather-safety": "Clima y seguridad",
+      "space-weather-gps": "Clima espacial y GPS",
+      "us-airspace-regulations": "Espacio aéreo y normativa de EE. UU.",
+      "gear-flight-tips": "Equipo y consejos de vuelo",
+      "general": "General"
+    }
   }
 }

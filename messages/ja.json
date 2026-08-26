@@ -305,6 +305,13 @@
     "subtitle": "飛行天気の読み方、Kp指数の理解、安全かつ合法的な飛行のための実践ガイドです。",
     "empty": "この言語で公開されているガイドはまだありません。近日公開予定です。",
     "readingTime": "{minutes}分で読めます",
-    "backToGuides": "← ガイド一覧に戻る"
+    "backToGuides": "← ガイド一覧に戻る",
+    "categories": {
+      "weather-safety": "天気・安全",
+      "space-weather-gps": "宇宙天気・GPS",
+      "us-airspace-regulations": "米国空域・規制",
+      "gear-flight-tips": "機材・飛行のコツ",
+      "general": "その他"
+    }
   }
 }

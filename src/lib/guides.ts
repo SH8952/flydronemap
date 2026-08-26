@@ -17,7 +17,23 @@ export type GuideFrontmatter = {
   publishedAt: string;
   updatedAt?: string;
   tags?: string[];
+  /** Category slug, one of CATEGORY_ORDER below. Falls back to "general". */
+  category?: string;
 };
+
+/**
+ * Fixed category taxonomy for the Guides section, in display order. Keeping
+ * this as a small fixed list (rather than free-form tags) is what lets the
+ * Guides index page group articles instead of rendering one long flat list.
+ */
+export const CATEGORY_ORDER = [
+  "weather-safety",
+  "space-weather-gps",
+  "us-airspace-regulations",
+  "gear-flight-tips",
+] as const;
+
+export type CategorySlug = (typeof CATEGORY_ORDER)[number] | "general";
 
 export type GuideMeta = GuideFrontmatter & {
   slug: string;
@@ -69,6 +85,29 @@ export function getAllGuidesMeta(locale: Locale): GuideMeta[] {
     .map((slug) => getGuideMeta(locale, slug))
     .filter((g): g is GuideMeta => g !== null)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
+}
+
+/**
+ * Guides for a locale grouped by category, in CATEGORY_ORDER (any guide
+ * missing a recognized category falls into "general" at the end). Each
+ * group's guides are newest-first, same as getAllGuidesMeta.
+ */
+export function getGuidesByCategory(
+  locale: Locale,
+): Array<{ category: CategorySlug; guides: GuideMeta[] }> {
+  const all = getAllGuidesMeta(locale);
+  const order: CategorySlug[] = [...CATEGORY_ORDER, "general"];
+
+  return order
+    .map((category) => ({
+      category,
+      guides: all.filter((g) =>
+        category === "general"
+          ? !g.category || !CATEGORY_ORDER.includes(g.category as (typeof CATEGORY_ORDER)[number])
+          : g.category === category,
+      ),
+    }))
+    .filter((group) => group.guides.length > 0);
 }
 
 /**

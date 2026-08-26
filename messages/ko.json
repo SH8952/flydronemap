@@ -305,6 +305,13 @@
     "subtitle": "비행 날씨를 읽는 법, KP 지수 이해하기, 안전하고 합법적으로 비행하는 법에 대한 실전 가이드입니다.",
     "empty": "이 언어로 발행된 가이드가 아직 없습니다 — 곧 추가될 예정입니다.",
     "readingTime": "{minutes}분 읽기",
-    "backToGuides": "← 가이드 목록으로"
+    "backToGuides": "← 가이드 목록으로",
+    "categories": {
+      "weather-safety": "날씨/안전",
+      "space-weather-gps": "우주기상/GPS",
+      "us-airspace-regulations": "미국 공역/규정",
+      "gear-flight-tips": "장비/비행 팁",
+      "general": "일반"
+    }
   }
 }
