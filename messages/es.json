@@ -25,9 +25,12 @@
       "unsettled": "Actividad inestable. Es posible una ligera deriva del GPS — presta atención a la precisión de tu posicionamiento.",
       "storm": "Nivel de tormenta geomagnética. La precisión del GPS y la fiabilidad de la brújula pueden verse afectadas — considera volar en modo ATTI/manual y mantenerte dentro del alcance visual."
     },
-    "airspaceSectionTitle": "Techo de altitud FAA (EE. UU.)",
+    "airspaceSectionTitle": "Información de espacio aéreo (EE. UU. / Corea del Sur)",
     "nearFacility": "Cerca de {facility}",
-    "airspaceDisclaimer": "Solo con fines informativos, basado en los datos públicos del UAS Facility Map de la FAA. Esto no constituye una autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone antes de volar.",
+    "krRestrictedZone": "Zona restringida",
+    "krAltitudeRange": "Altitud: {lower} – {upper}",
+    "krNoRestriction": "No hay zona restringida en esta ubicación",
+    "airspaceDisclaimer": "Solo con fines informativos, basado en los datos públicos del UAS Facility Map de la FAA (EE. UU.) o los datos de zonas de no vuelo del Ministerio de Tierra, Infraestructura y Transporte (Corea del Sur). Esto no constituye una autorización de vuelo. Confirma siempre tu vuelo a través de LAANC/FAADroneZone (EE. UU.) o 드론원스톱 (drone.onestop.go.kr, Corea del Sur) antes de volar.",
     "usageTitle": "Cómo usar FlyDroneMap",
     "usageSteps": [
       "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás.",

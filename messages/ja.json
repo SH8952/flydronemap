@@ -25,9 +25,12 @@
       "unsettled": "地磁気がやや乱れています。GPSの誤差がわずかに生じる可能性があるため、位置精度に注意してください。",
       "storm": "地磁気嵐レベルです。GPS精度とコンパスの信頼性が低下する可能性があります — ATTI/手動モードへの切り替えと目視飛行範囲内での飛行を検討してください。"
     },
-    "airspaceSectionTitle": "FAA空域高度制限（米国）",
+    "airspaceSectionTitle": "空域情報（米国・韓国）",
     "nearFacility": "{facility} 付近",
-    "airspaceDisclaimer": "この情報はFAAの公開UAS Facility Mapデータに基づく参考情報であり、実際の飛行許可ではありません。飛行前には必ずLAANCまたはFAADroneZoneで承認状況を確認してください。",
+    "krRestrictedZone": "飛行制限区域",
+    "krAltitudeRange": "高度: {lower} ～ {upper}",
+    "krNoRestriction": "この地点に飛行禁止区域はありません",
+    "airspaceDisclaimer": "この情報はFAAの公開UAS Facility Mapデータ（米国）または韓国国土交通部の飛行禁止区域データ（韓国）に基づく参考情報であり、実際の飛行許可ではありません。飛行前には必ずLAANC/FAADroneZone（米国）または드론원스톱(drone.onestop.go.kr、韓国)で承認状況を確認してください。",
     "usageTitle": "FlyDroneMapの使い方",
     "usageSteps": [
       "都市、空港、ランドマークを検索するか、「現在地を使う」をタップして現在地の飛行条件を確認します。",

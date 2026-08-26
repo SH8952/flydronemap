@@ -25,9 +25,12 @@
       "unsettled": "지자기 활동이 다소 불안정합니다. GPS 위치 오차가 약간 발생할 수 있으니 위치 정확도를 주의 깊게 확인하세요.",
       "storm": "지자기 폭풍 수준입니다. GPS 정확도와 나침반 신뢰도가 저하될 수 있습니다 — ATTI/수동 모드로 전환하고 육안 가시권 내에서 비행하는 것을 고려하세요."
     },
-    "airspaceSectionTitle": "FAA 공역 고도 제한 (미국)",
+    "airspaceSectionTitle": "공역 정보 (미국 / 대한민국)",
     "nearFacility": "{facility} 인근",
-    "airspaceDisclaimer": "이 정보는 참고용이며, FAA의 공개 UAS Facility Map 데이터를 기반으로 합니다. 실제 비행 허가가 아니므로, 비행 전 반드시 LAANC 또는 FAADroneZone을 통해 승인 여부를 확인하세요.",
+    "krRestrictedZone": "비행제한구역",
+    "krAltitudeRange": "고도: {lower} ~ {upper}",
+    "krNoRestriction": "이 위치에는 비행금지구역이 없습니다",
+    "airspaceDisclaimer": "이 정보는 참고용이며, FAA의 공개 UAS Facility Map 데이터(미국) 또는 국토교통부 비행금지구역 데이터(대한민국)를 기반으로 합니다. 실제 비행 허가가 아니므로, 비행 전 반드시 LAANC/FAADroneZone(미국) 또는 드론원스톱(drone.onestop.go.kr, 대한민국)을 통해 승인 여부를 확인하세요.",
     "usageTitle": "FlyDroneMap 사용법",
     "usageSteps": [
       "도시, 공항, 또는 랜드마크를 검색하거나 \"내 위치 사용\"을 눌러 현재 위치의 비행 조건을 확인하세요.",

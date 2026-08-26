@@ -27,7 +27,18 @@ type DashboardData = {
     time: string;
   } | null;
   kp: { kp: number; time: string } | null;
-  airspace: { ceilingFeet: number; nearestFacility?: string } | null;
+  airspace:
+    | { source: "faa"; ceilingFeet: number; nearestFacility?: string }
+    | {
+        source: "kr";
+        restricted: true;
+        zoneLabel: string;
+        categoryName: string;
+        lowerAltitude: string;
+        upperAltitude: string;
+      }
+    | { source: "kr"; restricted: false }
+    | null;
 };
 
 function windRisk(gustKmh: number): "low" | "moderate" | "high" {
@@ -262,7 +273,7 @@ export function DroneDashboard() {
               <ShieldAlert className="size-4" />
               {t("airspaceSectionTitle")}
             </div>
-            {data.airspace ? (
+            {data.airspace && data.airspace.source === "faa" ? (
               <div className="flex flex-col gap-2">
                 <div className="text-2xl font-bold">
                   {data.airspace.ceilingFeet} ft AGL
@@ -275,11 +286,38 @@ export function DroneDashboard() {
                   </p>
                 ) : null}
               </div>
-            ) : (
+            ) : null}
+
+            {data.airspace &&
+            data.airspace.source === "kr" &&
+            data.airspace.restricted ? (
+              <div className="flex flex-col gap-2">
+                <div className="text-lg font-bold text-red-500">
+                  {data.airspace.categoryName || t("krRestrictedZone")} (
+                  {data.airspace.zoneLabel})
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {t("krAltitudeRange", {
+                    lower: data.airspace.lowerAltitude,
+                    upper: data.airspace.upperAltitude,
+                  })}
+                </p>
+              </div>
+            ) : null}
+
+            {data.airspace &&
+            data.airspace.source === "kr" &&
+            !data.airspace.restricted ? (
+              <div className="text-lg font-bold text-emerald-500">
+                {t("krNoRestriction")}
+              </div>
+            ) : null}
+
+            {!data.airspace ? (
               <p className="text-sm text-muted-foreground">
                 {t("airspaceNoData")}
               </p>
-            )}
+            ) : null}
             <p className="mt-3 text-xs text-muted-foreground">
               {t("airspaceDisclaimer")}
             </p>
