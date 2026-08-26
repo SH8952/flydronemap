@@ -1,12 +1,10 @@
 #!/bin/bash
-# FlyDroneMap 가이드 자동 발행 스크립트 (영구 설치형)
-# 이 파일은 최초 1회만 다운로드해서 실행하면 저장소 안에 스스로 설치됩니다.
-# 이후에는 이 파일을 다시 받을 필요 없이, 저장소의 automation 폴더에 있는
-# 이 스크립트를 계속 재사용하시면 매번 보안 경고 없이 실행됩니다.
+# FlyDroneMap 가이드 자동 발행 스크립트 (영구 설치형, v2 - 진단 강화판)
 
 REPO="$HOME/Desktop/flydronemap"
 SCRIPT_NAME="publish-guide.command"
 SCRIPT_PATH="$REPO/automation/$SCRIPT_NAME"
+CONTENT_DIR="$REPO/automation"
 
 if [ ! -d "$REPO/.git" ]; then
   echo "저장소를 찾을 수 없습니다: $REPO"
@@ -18,13 +16,12 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CURRENT_PATH="$SCRIPT_DIR/$(basename "$0")"
 
-# --- 1. 최초 실행이면 저장소 안에 스스로 설치 (재다운로드가 없어야 보안 경고가 재발하지 않음) ---
+# --- 1. 최초 실행/업데이트: 저장소 안에 스스로 설치 ---
 if [ "$CURRENT_PATH" != "$SCRIPT_PATH" ]; then
-  echo "=== 발행 스크립트를 저장소에 설치합니다 ==="
+  echo "=== 발행 스크립트를 저장소에 설치(갱신)합니다 ==="
   mkdir -p "$REPO/automation"
   cp "$CURRENT_PATH" "$SCRIPT_PATH"
   chmod +x "$SCRIPT_PATH"
-  # 격리(quarantine) 속성 제거: 이후 실행 시 "확인되지 않은 개발자" 경고가 다시 뜨지 않도록 함
   xattr -d com.apple.quarantine "$SCRIPT_PATH" 2>/dev/null
   xattr -cr "$SCRIPT_PATH" 2>/dev/null
 
@@ -32,35 +29,28 @@ if [ "$CURRENT_PATH" != "$SCRIPT_PATH" ]; then
   [ -f .git/index.lock ] && rm -f .git/index.lock
   git add "automation/$SCRIPT_NAME"
   if ! git diff --cached --quiet; then
-    git commit -m "chore: 가이드 자동 발행 스크립트를 저장소에 영구 설치 (매일 재다운로드로 인한 Gatekeeper 경고 문제 해결)"
+    git commit -m "chore: 가이드 자동 발행 스크립트 설치/업데이트 (진단 로그 강화)"
     git push origin main
   fi
-
   echo "설치 완료: $SCRIPT_PATH"
-  echo "내일부터는 새 스크립트 파일 없이 콘텐츠 파일(mdx 4개 + json + txt)만 전달됩니다."
-  echo "전달받은 콘텐츠 파일들을 아래 폴더에 넣고, 그 안의 이 스크립트를 다시 실행하시면 됩니다:"
-  echo "  $REPO/automation/"
   echo ""
 fi
 
-# --- 2. 발행할 콘텐츠가 있는지 확인 (스크립트와 같은 폴더에서 탐색) ---
-cd "$SCRIPT_DIR"
+# --- 2. 콘텐츠 확인 (항상 저장소의 automation 폴더에서 찾음) ---
+cd "$CONTENT_DIR" || { echo "오류: $CONTENT_DIR 폴더를 찾을 수 없습니다."; read -p "Enter..."; exit 1; }
 EN_FILE=$(ls guide-*-en.mdx 2>/dev/null | head -n1)
 
 if [ -z "$EN_FILE" ]; then
-  if [ "$CURRENT_PATH" != "$SCRIPT_PATH" ]; then
-    echo "오늘은 발행할 콘텐츠 파일이 없어 설치만 진행했습니다."
-  else
-    echo "발행할 콘텐츠 파일(guide-*-en.mdx 등)을 찾을 수 없습니다."
-    echo "오늘 전달받은 파일들을 이 폴더에 넣은 뒤 다시 실행해 주세요:"
-    echo "  $SCRIPT_DIR"
-  fi
+  echo "발행할 콘텐츠 파일(guide-*-en.mdx 등)이 없습니다: $CONTENT_DIR"
+  echo "오늘 전달받은 파일들(mdx 4개 + new-queue.json + changelog-snippet.txt)을"
+  echo "이 폴더에 넣은 뒤 이 스크립트를 다시 실행해 주세요."
   read -p "Enter를 누르면 창이 닫힙니다..."
   exit 0
 fi
 
 SLUG="${EN_FILE#guide-}"
 SLUG="${SLUG%-en.mdx}"
+echo "감지된 SLUG: $SLUG"
 
 TITLE=$(python3 -c "
 import json
@@ -70,14 +60,18 @@ try:
         if item.get('slug') == '$SLUG':
             print(item.get('titleKo', ''))
             break
-except Exception:
+except Exception as e:
     pass
 " 2>/dev/null)
 TITLE="${TITLE:-$SLUG}"
 
 echo "=== FlyDroneMap 가이드 자동 발행: $TITLE ==="
+echo ""
+echo "-- 콘텐츠 폴더 파일 목록 --"
+ls -la "$CONTENT_DIR" | grep -E "guide-|new-queue|changelog-snippet"
+echo ""
 
-# --- 3. 작업 전 백업 (always-backup-before-work 규칙) ---
+# --- 3. 작업 전 백업 ---
 BACKUP_DIR="${REPO}_backup_$(date +%Y%m%d_%H%M%S)"
 echo "백업 생성 중: $BACKUP_DIR"
 if command -v rsync >/dev/null 2>&1; then
@@ -85,19 +79,45 @@ if command -v rsync >/dev/null 2>&1; then
 else
   cp -r "$REPO" "$BACKUP_DIR"
 fi
+echo "백업 완료"
+echo ""
 
-# --- 4. 콘텐츠 반영 ---
-cp "guide-${SLUG}-en.mdx" "$REPO/content/guides/en/${SLUG}.mdx"
-cp "guide-${SLUG}-ja.mdx" "$REPO/content/guides/ja/${SLUG}.mdx"
-cp "guide-${SLUG}-ko.mdx" "$REPO/content/guides/ko/${SLUG}.mdx"
-cp "guide-${SLUG}-es.mdx" "$REPO/content/guides/es/${SLUG}.mdx"
-cp "new-queue.json" "$REPO/automation/guide-topics-queue.json"
+# --- 4. 콘텐츠 반영 (각 단계 성공 여부 확인) ---
+COPY_OK=1
+
+echo "-- 파일 복사 시작 --"
+cp -v "guide-${SLUG}-en.mdx" "$REPO/content/guides/en/${SLUG}.mdx" || COPY_OK=0
+cp -v "guide-${SLUG}-ja.mdx" "$REPO/content/guides/ja/${SLUG}.mdx" || COPY_OK=0
+cp -v "guide-${SLUG}-ko.mdx" "$REPO/content/guides/ko/${SLUG}.mdx" || COPY_OK=0
+cp -v "guide-${SLUG}-es.mdx" "$REPO/content/guides/es/${SLUG}.mdx" || COPY_OK=0
+cp -v "new-queue.json" "$REPO/automation/guide-topics-queue.json" || COPY_OK=0
+echo "-- 파일 복사 종료 --"
+echo ""
+
+echo "-- 복사 결과 확인 --"
+for f in "content/guides/en/${SLUG}.mdx" "content/guides/ja/${SLUG}.mdx" "content/guides/ko/${SLUG}.mdx" "content/guides/es/${SLUG}.mdx" "automation/guide-topics-queue.json"; do
+  if [ -f "$REPO/$f" ]; then
+    echo "확인됨: $f"
+  else
+    echo "누락됨: $f"
+    COPY_OK=0
+  fi
+done
+echo ""
+
+if [ "$COPY_OK" != "1" ]; then
+  echo "오류: 콘텐츠 파일 복사에 실패한 항목이 있어 발행을 중단합니다."
+  echo "이 창의 내용을 캡처해서 알려주시면 원인을 확인하겠습니다."
+  echo "콘텐츠 파일은 삭제하지 않았습니다 (다시 시도 가능)."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
 
 python3 -c "
 import pathlib
 repo = pathlib.Path('$REPO')
 changelog = repo / 'CHANGELOG.md'
-snippet_path = pathlib.Path('$SCRIPT_DIR/changelog-snippet.txt')
+snippet_path = pathlib.Path('$CONTENT_DIR/changelog-snippet.txt')
 if snippet_path.exists():
     snippet = snippet_path.read_text(encoding='utf-8')
     content = changelog.read_text(encoding='utf-8')
@@ -105,22 +125,56 @@ if snippet_path.exists():
     if anchor in content and snippet.strip() not in content:
         content = content.replace(anchor, anchor + snippet + '\n', 1)
         changelog.write_text(content, encoding='utf-8')
+        print('CHANGELOG.md 갱신 완료')
+    else:
+        print('CHANGELOG.md 갱신 건너뜀 (앵커 불일치 또는 이미 반영됨)')
+else:
+    print('changelog-snippet.txt 없음 - CHANGELOG 갱신 건너뜀')
 "
 
+# --- 5. git add / commit / push (각 단계 성공 여부 확인, 실패 시 콘텐츠 유지) ---
 cd "$REPO"
 [ -f .git/index.lock ] && rm -f .git/index.lock
-git add "content/guides/en/${SLUG}.mdx" "content/guides/ja/${SLUG}.mdx" "content/guides/ko/${SLUG}.mdx" "content/guides/es/${SLUG}.mdx" automation/guide-topics-queue.json CHANGELOG.md
-git commit -m "feat: 가이드 아티클 추가 - ${TITLE} (자동 발행)"
-git push origin main
-
-# --- 5. 정리 (스크립트 자신은 삭제하지 않음) ---
-rm -f "$SCRIPT_DIR/guide-${SLUG}-en.mdx" "$SCRIPT_DIR/guide-${SLUG}-ja.mdx" "$SCRIPT_DIR/guide-${SLUG}-ko.mdx" "$SCRIPT_DIR/guide-${SLUG}-es.mdx" "$SCRIPT_DIR/new-queue.json" "$SCRIPT_DIR/changelog-snippet.txt"
 
 echo ""
-echo "발행 완료: $TITLE"
+echo "-- git add --"
+git add -v "content/guides/en/${SLUG}.mdx" "content/guides/ja/${SLUG}.mdx" "content/guides/ko/${SLUG}.mdx" "content/guides/es/${SLUG}.mdx" automation/guide-topics-queue.json CHANGELOG.md
+
+if git diff --cached --quiet; then
+  echo ""
+  echo "오류: git에 새로 반영할 변경사항이 없습니다 (이미 커밋되어 있거나, 파일 복사가 저장소 경로에 반영되지 않았을 수 있습니다)."
+  echo "저장소 경로: $REPO"
+  echo "이 창의 내용을 캡처해서 알려주시면 원인을 확인하겠습니다."
+  echo "콘텐츠 파일은 삭제하지 않았습니다 (다시 시도 가능)."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+echo ""
+echo "-- git commit --"
+if ! git commit -m "feat: 가이드 아티클 추가 - ${TITLE} (자동 발행)"; then
+  echo "오류: 커밋 실패. 콘텐츠 파일은 삭제하지 않았습니다."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+echo ""
+echo "-- git push --"
+if ! git push origin main; then
+  echo "오류: push 실패(네트워크 등). 커밋 자체는 로컬에 남아 있습니다."
+  echo "저장소 폴더에서 'git push origin main'을 직접 실행해 재시도해 주세요."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+# --- 6. 성공 시에만 정리 ---
+rm -f "$CONTENT_DIR/guide-${SLUG}-en.mdx" "$CONTENT_DIR/guide-${SLUG}-ja.mdx" "$CONTENT_DIR/guide-${SLUG}-ko.mdx" "$CONTENT_DIR/guide-${SLUG}-es.mdx" "$CONTENT_DIR/new-queue.json" "$CONTENT_DIR/changelog-snippet.txt"
+
+echo ""
+echo "발행 완료 (커밋+push 확인됨): $TITLE"
 echo "백업 위치: $BACKUP_DIR"
-echo "3초 후 이 창이 닫힙니다."
-sleep 3
+echo "5초 후 이 창이 닫힙니다."
+sleep 5
 THIS_TTY=$(tty)
 osascript <<APPLESCRIPT
 tell application "Terminal"
