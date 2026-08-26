@@ -4,7 +4,12 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
-import { compileGuide, getGuideMeta, getGuideSlugs } from "@/lib/guides";
+import {
+  compileGuide,
+  getGuideMeta,
+  getGuideSlugs,
+  getRelatedGuides,
+} from "@/lib/guides";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -58,6 +63,7 @@ export default async function GuidePage({
   const compiled = await compileGuide(locale as Locale, slug);
   if (!compiled) notFound();
   const { Content, meta } = compiled;
+  const relatedGuides = getRelatedGuides(locale as Locale, slug);
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: "numeric",
@@ -111,6 +117,29 @@ export default async function GuidePage({
       <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-primary">
         <Content />
       </article>
+
+      {relatedGuides.length > 0 ? (
+        <nav
+          aria-label={t("relatedGuides")}
+          className="flex flex-col gap-3 border-t border-border pt-6"
+        >
+          <h2 className="text-lg font-semibold tracking-tight">
+            {t("relatedGuides")}
+          </h2>
+          <ul className="flex flex-col gap-2">
+            {relatedGuides.map((guide) => (
+              <li key={guide.slug}>
+                <Link
+                  href={`/guides/${guide.slug}`}
+                  className="text-sm text-primary hover:underline"
+                >
+                  {guide.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
     </div>
   );
 }

@@ -111,6 +111,28 @@ export function getGuidesByCategory(
 }
 
 /**
+ * Up to `limit` other guides for internal linking at the bottom of an
+ * article — same category first (newest-first), then backfilled from other
+ * categories if the current one doesn't have enough siblings. Never
+ * includes the current slug. Works automatically for every guide, including
+ * ones added later (auto-published or manual), since it's derived from the
+ * filesystem rather than a hand-maintained list.
+ */
+export function getRelatedGuides(
+  locale: Locale,
+  currentSlug: string,
+  limit = 3,
+): GuideMeta[] {
+  const all = getAllGuidesMeta(locale).filter((g) => g.slug !== currentSlug);
+  const current = getGuideMeta(locale, currentSlug);
+
+  const sameCategory = all.filter((g) => g.category === current?.category);
+  const rest = all.filter((g) => g.category !== current?.category);
+
+  return [...sameCategory, ...rest].slice(0, limit);
+}
+
+/**
  * Compiles one guide's MDX body into a renderable React component. Called
  * from a server component (RSC) — @mdx-js/mdx's `evaluate` runs the MDX
  * compiler and hands back a ready-to-render `default` export, following the

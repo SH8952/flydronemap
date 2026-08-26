@@ -310,6 +310,7 @@
     "empty": "이 언어로 발행된 가이드가 아직 없습니다 — 곧 추가될 예정입니다.",
     "readingTime": "{minutes}분 읽기",
     "backToGuides": "← 가이드 목록으로",
+    "relatedGuides": "관련 가이드",
     "categories": {
       "weather-safety": "날씨/안전",
       "space-weather-gps": "우주기상/GPS",

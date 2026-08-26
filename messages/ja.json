@@ -310,6 +310,7 @@
     "empty": "この言語で公開されているガイドはまだありません。近日公開予定です。",
     "readingTime": "{minutes}分で読めます",
     "backToGuides": "← ガイド一覧に戻る",
+    "relatedGuides": "関連ガイド",
     "categories": {
       "weather-safety": "天気・安全",
       "space-weather-gps": "宇宙天気・GPS",

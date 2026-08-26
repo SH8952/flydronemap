@@ -310,6 +310,7 @@
     "empty": "No guides published in this language yet — check back soon.",
     "readingTime": "{minutes} min read",
     "backToGuides": "← Back to Guides",
+    "relatedGuides": "Related Guides",
     "categories": {
       "weather-safety": "Weather & Safety",
       "space-weather-gps": "Space Weather & GPS",
