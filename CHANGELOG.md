@@ -1,5 +1,13 @@
 # 개발 이력 (Development History)
 
+## 2026-08-26 — 구글 서치콘솔 등록 준비: sitemap.xml 깨진 링크(/frame) 제거
+
+- 사용자가 구글 서치콘솔 도메인 소유 확인용 TXT 레코드를 등록 완료, 사이트맵 제출 전 최종 점검 중 발견된 문제 수정
+- `src/app/sitemap.ts`가 다른 프로젝트(ExifLens) 코드를 재사용해 만들어지면서, ExifLens에만 존재하는 `/frame` 경로가 그대로 남아있었음. FlyDroneMap에는 `/frame` 페이지가 없어 4개 언어 기준 존재하지 않는 URL(404)이 사이트맵에 포함되어 있었음 → 제거
+- 수정 범위는 `/root/flydronemap`에만 한정되며, ExifLens 프로젝트(`/root/exiflens`, 별도 디렉터리/저장소)에는 영향 없음을 확인
+- `npm run build` 재검증 완료 — 95개 페이지 정상 생성, TypeScript 오류 없음
+- 다음 단계: 구글 서치콘솔에서 소유 확인 완료 후 `sitemap.xml` 제출, 색인 요청 진행 (이후 애드센스 신청은 서치콘솔 등록 이후로 순서 조정)
+
 ## 2026-08-26 — 3단계 완료: 도메인 구매 + GitHub 저장소 연결 + Vercel 배포
 
 - 도메인 `flydronemap.com` 구매 완료 (사용자 직접 진행, Namecheap)

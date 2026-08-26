@@ -8,10 +8,13 @@ import { getAllGuidesMeta } from "@/lib/guides";
  * item 3 ("Google Search Console 인덱싱: sitemap.xml 제출"). `/guides` was
  * added once that route shipped (Phase 3) — individual articles are listed
  * separately below since each locale can have a different set of slugs.
+ *
+ * NOTE: this file started as a copy of ExifLens's sitemap.ts, which also
+ * listed "/frame" (an ExifLens-only route). FlyDroneMap has no such route —
+ * removed here so the sitemap doesn't submit 404s to Search Console.
  */
 const STATIC_PATHS = [
   "",
-  "/frame",
   "/privacy",
   "/terms",
   "/about",
@@ -24,8 +27,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries = STATIC_PATHS.flatMap((path) => {
     const changeFrequency: "weekly" | "monthly" =
-      path === "" || path === "/frame" || path === "/guides" ? "weekly" : "monthly";
-    const priority = path === "" ? 1 : path === "/frame" ? 0.9 : path === "/guides" ? 0.7 : 0.3;
+      path === "" || path === "/guides" ? "weekly" : "monthly";
+    const priority = path === "" ? 1 : path === "/guides" ? 0.7 : 0.3;
 
     return routing.locales.map((locale) => ({
       url: `${SITE_URL}/${locale}${path}`,
