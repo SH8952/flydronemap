@@ -15,7 +15,7 @@ export function SiteHeader() {
           <Wind className="size-6 text-primary" />
           <span className="flex flex-col leading-tight">
             <span className="text-lg font-semibold tracking-tight">
-              DroneWeather
+              FlyDroneMap
             </span>
             <span className="hidden text-xs text-muted-foreground sm:block">
               {t("tagline")}

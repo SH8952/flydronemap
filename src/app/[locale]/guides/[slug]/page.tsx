@@ -31,7 +31,7 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       locale: ogLocale(locale),
-      siteName: "DroneWeather",
+      siteName: "FlyDroneMap",
       title: meta.title,
       description: meta.description,
       url: `${SITE_URL}/${locale}/guides/${slug}`,
@@ -74,11 +74,11 @@ export default async function GuidePage({
     dateModified: meta.updatedAt ?? meta.publishedAt,
     author: {
       "@type": "Organization",
-      name: "DroneWeather",
+      name: "FlyDroneMap",
     },
     publisher: {
       "@type": "Organization",
-      name: "DroneWeather",
+      name: "FlyDroneMap",
     },
     mainEntityOfPage: `${SITE_URL}/${locale}/guides/${slug}`,
     inLanguage: locale,

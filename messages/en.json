@@ -4,7 +4,7 @@
     "guidesNav": "Guides"
   },
   "Home": {
-    "title": "DroneWeather",
+    "title": "FlyDroneMap",
     "subtitle": "Search any location for live wind, gusts, visibility, the latest Kp index, and (US) FAA altitude ceilings — everything you need to plan a safer drone flight.",
     "searchPlaceholder": "Search a city or airport...",
     "useMyLocationButton": "Use my location",
@@ -28,7 +28,7 @@
     "airspaceSectionTitle": "FAA Airspace Ceiling (US)",
     "nearFacility": "Near {facility}",
     "airspaceDisclaimer": "Informational only — based on the FAA's public UAS Facility Map data. This is not a flight authorization. Always confirm your flight through LAANC or FAADroneZone before flying.",
-    "usageTitle": "How to Use DroneWeather",
+    "usageTitle": "How to Use FlyDroneMap",
     "usageSteps": [
       "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are.",
       "Review live wind speed, wind gusts, and visibility — key factors for whether it's safe to fly your specific drone model.",
@@ -38,7 +38,7 @@
     "faqTitle": "Frequently Asked Questions",
     "faq": [
       {
-        "question": "Is DroneWeather a substitute for FAA flight authorization?",
+        "question": "Is FlyDroneMap a substitute for FAA flight authorization?",
         "answer": "No. The airspace ceiling shown here comes from the FAA's public UAS Facility Map data and is for planning reference only. You must still obtain authorization through LAANC or FAADroneZone where required before flying."
       },
       {
@@ -50,15 +50,15 @@
         "answer": "The planetary Kp index measures geomagnetic activity. During elevated Kp levels (geomagnetic storms), GPS positioning accuracy and compass readings can be less reliable, which matters for drones that rely on GPS-hold or return-to-home."
       },
       {
-        "question": "Does DroneWeather work outside the United States?",
+        "question": "Does FlyDroneMap work outside the United States?",
         "answer": "Wind, visibility, and Kp index data work worldwide. The FAA airspace ceiling feature is US-specific, since it's sourced from FAA data — outside the US it will show no data for that card."
       },
       {
         "question": "Do I need to create an account?",
-        "answer": "No. DroneWeather works without sign-up — just search a location and check the conditions."
+        "answer": "No. FlyDroneMap works without sign-up — just search a location and check the conditions."
       },
       {
-        "question": "Is DroneWeather free to use?",
+        "question": "Is FlyDroneMap free to use?",
         "answer": "Yes, completely free. The site is supported by ads and occasional affiliate links, which never affect the accuracy of the data shown."
       }
     ]
@@ -139,7 +139,7 @@
       {
         "heading": "Overview",
         "body": [
-          "DroneWeather (\"we\", \"us\", \"our\") operates this website (the \"Service\"). This Privacy Policy explains what information is collected when you use the Service and how it is used."
+          "FlyDroneMap (\"we\", \"us\", \"our\") operates this website (the \"Service\"). This Privacy Policy explains what information is collected when you use the Service and how it is used."
         ]
       },
       {
@@ -194,13 +194,13 @@
       {
         "heading": "Acceptance of Terms",
         "body": [
-          "By accessing or using DroneWeather (the \"Service\"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service."
+          "By accessing or using FlyDroneMap (the \"Service\"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service."
         ]
       },
       {
         "heading": "Description of Service",
         "body": [
-          "DroneWeather provides free wind, visibility, and planetary Kp index data, plus a US-specific FAA UAS Facility Map altitude reference, to help with drone flight planning. Data is sourced from third-party public APIs and is provided for informational purposes only."
+          "FlyDroneMap provides free wind, visibility, and planetary Kp index data, plus a US-specific FAA UAS Facility Map altitude reference, to help with drone flight planning. Data is sourced from third-party public APIs and is provided for informational purposes only."
         ]
       },
       {
@@ -242,24 +242,24 @@
     ]
   },
   "About": {
-    "title": "About DroneWeather",
+    "title": "About FlyDroneMap",
     "sections": [
       {
-        "heading": "What is DroneWeather",
+        "heading": "What is FlyDroneMap",
         "body": [
-          "DroneWeather is a free, no-signup dashboard for drone pilots. Search any location to see live wind speed, wind gusts, visibility, and the latest planetary Kp index, plus — for US locations — the FAA's public UAS Facility Map altitude ceiling."
+          "FlyDroneMap is a free, no-signup dashboard for drone pilots. Search any location to see live wind speed, wind gusts, visibility, and the latest planetary Kp index, plus — for US locations — the FAA's public UAS Facility Map altitude ceiling."
         ]
       },
       {
         "heading": "Why We Built It",
         "body": [
-          "Checking flight conditions usually means piecing together several different apps and government sites. DroneWeather brings the numbers that actually matter for a go/no-go decision — wind, gusts, visibility, and geomagnetic activity — into one place, in your language."
+          "Checking flight conditions usually means piecing together several different apps and government sites. FlyDroneMap brings the numbers that actually matter for a go/no-go decision — wind, gusts, visibility, and geomagnetic activity — into one place, in your language."
         ]
       },
       {
         "heading": "Not a Substitute for Official Authorization",
         "body": [
-          "DroneWeather is a planning reference, not a flight authorization tool. Always confirm your flight through LAANC or FAADroneZone (in the US) or your local aviation authority before flying."
+          "FlyDroneMap is a planning reference, not a flight authorization tool. Always confirm your flight through LAANC or FAADroneZone (in the US) or your local aviation authority before flying."
         ]
       },
       {
@@ -277,13 +277,13 @@
       {
         "heading": "Our Participation in Affiliate Programs",
         "body": [
-          "DroneWeather participates in affiliate advertising programs, including the Amazon Associates Program and the Coupang Partners Program, designed to provide a means for sites to earn advertising fees by linking to Amazon.com, Coupang.com, and their affiliated sites."
+          "FlyDroneMap participates in affiliate advertising programs, including the Amazon Associates Program and the Coupang Partners Program, designed to provide a means for sites to earn advertising fees by linking to Amazon.com, Coupang.com, and their affiliated sites."
         ]
       },
       {
         "heading": "How This Works",
         "body": [
-          "When you click a product link on DroneWeather (for example, a link to a recommended drone accessory) and go on to make a qualifying purchase, we may earn a small commission. This comes at no additional cost to you."
+          "When you click a product link on FlyDroneMap (for example, a link to a recommended drone accessory) and go on to make a qualifying purchase, we may earn a small commission. This comes at no additional cost to you."
         ]
       },
       {

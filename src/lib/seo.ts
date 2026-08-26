@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
  */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-  "https://droneweather.example.com";
+  "https://flydronemap.com";
 
 const LOCALE_TO_OG: Record<(typeof routing.locales)[number], string> = {
   en: "en_US",
@@ -35,7 +35,7 @@ export function webApplicationJsonLd(locale: string) {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "DroneWeather",
+    name: "FlyDroneMap",
     url: `${SITE_URL}/${locale}`,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any (runs in the browser)",

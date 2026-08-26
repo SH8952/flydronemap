@@ -32,14 +32,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Home" });
-  const title = "DroneWeather — Drone Flight Weather & Kp Index Dashboard";
+  const title = "FlyDroneMap — Drone Flight Weather & Kp Index Dashboard";
   const description = t("subtitle");
 
   return {
     metadataBase: new URL(SITE_URL),
     title: {
       default: title,
-      template: "%s · DroneWeather",
+      template: "%s · FlyDroneMap",
     },
     description,
     alternates: {
@@ -49,7 +49,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: ogLocale(locale),
-      siteName: "DroneWeather",
+      siteName: "FlyDroneMap",
       title,
       description,
       url: `${SITE_URL}/${locale}`,

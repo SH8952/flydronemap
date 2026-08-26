@@ -21,7 +21,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: ogLocale(locale),
-      siteName: "DroneWeather",
+      siteName: "FlyDroneMap",
       title,
       url: `${SITE_URL}/${locale}/terms`,
     },

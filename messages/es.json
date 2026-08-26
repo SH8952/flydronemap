@@ -4,7 +4,7 @@
     "guidesNav": "Guías"
   },
   "Home": {
-    "title": "DroneWeather",
+    "title": "FlyDroneMap",
     "subtitle": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
     "searchPlaceholder": "Busca una ciudad o aeropuerto...",
     "useMyLocationButton": "Usar mi ubicación",
@@ -28,7 +28,7 @@
     "airspaceSectionTitle": "Techo de altitud FAA (EE. UU.)",
     "nearFacility": "Cerca de {facility}",
     "airspaceDisclaimer": "Solo con fines informativos, basado en los datos públicos del UAS Facility Map de la FAA. Esto no constituye una autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone antes de volar.",
-    "usageTitle": "Cómo usar DroneWeather",
+    "usageTitle": "Cómo usar FlyDroneMap",
     "usageSteps": [
       "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás.",
       "Revisa la velocidad del viento, las ráfagas y la visibilidad en vivo — factores clave para decidir si es seguro volar tu modelo de drone concreto.",
@@ -38,7 +38,7 @@
     "faqTitle": "Preguntas frecuentes",
     "faq": [
       {
-        "question": "¿DroneWeather sustituye la autorización de vuelo de la FAA?",
+        "question": "¿FlyDroneMap sustituye la autorización de vuelo de la FAA?",
         "answer": "No. El techo de altitud mostrado proviene de los datos públicos del UAS Facility Map de la FAA y es solo una referencia de planificación. Debes obtener la autorización necesaria a través de LAANC o FAADroneZone donde se requiera antes de volar."
       },
       {
@@ -50,15 +50,15 @@
         "answer": "El índice Kp planetario mide la actividad geomagnética. Durante niveles elevados de Kp (tormentas geomagnéticas), la precisión del GPS y las lecturas de la brújula pueden ser menos fiables, lo cual afecta a drones que dependen del mantenimiento de posición por GPS o el regreso automático."
       },
       {
-        "question": "¿DroneWeather funciona fuera de Estados Unidos?",
+        "question": "¿FlyDroneMap funciona fuera de Estados Unidos?",
         "answer": "Los datos de viento, visibilidad e índice Kp funcionan en todo el mundo. La función de techo de altitud de la FAA es específica de EE. UU., ya que proviene de datos de la FAA — fuera de EE. UU. esa tarjeta mostrará que no hay datos."
       },
       {
         "question": "¿Necesito crear una cuenta?",
-        "answer": "No. DroneWeather funciona sin necesidad de registro — solo busca una ubicación y consulta las condiciones."
+        "answer": "No. FlyDroneMap funciona sin necesidad de registro — solo busca una ubicación y consulta las condiciones."
       },
       {
-        "question": "¿Es gratis usar DroneWeather?",
+        "question": "¿Es gratis usar FlyDroneMap?",
         "answer": "Sí, completamente gratis. El sitio se financia con publicidad y algunos enlaces de afiliados, que nunca afectan la precisión de los datos mostrados."
       }
     ]
@@ -139,7 +139,7 @@
       {
         "heading": "Resumen",
         "body": [
-          "DroneWeather (\"nosotros\") opera este sitio web (el \"Servicio\"). Esta Política de Privacidad explica qué información se recopila cuando usas el Servicio y cómo se utiliza."
+          "FlyDroneMap (\"nosotros\") opera este sitio web (el \"Servicio\"). Esta Política de Privacidad explica qué información se recopila cuando usas el Servicio y cómo se utiliza."
         ]
       },
       {
@@ -194,13 +194,13 @@
       {
         "heading": "Aceptación de los Términos",
         "body": [
-          "Al acceder o usar DroneWeather (el \"Servicio\"), aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo, no uses el Servicio."
+          "Al acceder o usar FlyDroneMap (el \"Servicio\"), aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo, no uses el Servicio."
         ]
       },
       {
         "heading": "Descripción del Servicio",
         "body": [
-          "DroneWeather proporciona datos gratuitos de viento, visibilidad e índice Kp planetario, además de una referencia de altitud del UAS Facility Map de la FAA específica para EE. UU., para ayudar en la planificación de vuelos de drones. Los datos provienen de API públicas de terceros y se proporcionan solo con fines informativos."
+          "FlyDroneMap proporciona datos gratuitos de viento, visibilidad e índice Kp planetario, además de una referencia de altitud del UAS Facility Map de la FAA específica para EE. UU., para ayudar en la planificación de vuelos de drones. Los datos provienen de API públicas de terceros y se proporcionan solo con fines informativos."
         ]
       },
       {
@@ -242,24 +242,24 @@
     ]
   },
   "About": {
-    "title": "Acerca de DroneWeather",
+    "title": "Acerca de FlyDroneMap",
     "sections": [
       {
-        "heading": "Qué es DroneWeather",
+        "heading": "Qué es FlyDroneMap",
         "body": [
-          "DroneWeather es un panel gratuito y sin registro para pilotos de drones. Busca cualquier ubicación para ver la velocidad del viento, las ráfagas y la visibilidad en vivo, además del último índice Kp planetario, y — para ubicaciones en EE. UU. — el techo de altitud público del UAS Facility Map de la FAA."
+          "FlyDroneMap es un panel gratuito y sin registro para pilotos de drones. Busca cualquier ubicación para ver la velocidad del viento, las ráfagas y la visibilidad en vivo, además del último índice Kp planetario, y — para ubicaciones en EE. UU. — el techo de altitud público del UAS Facility Map de la FAA."
         ]
       },
       {
         "heading": "Por qué lo creamos",
         "body": [
-          "Comprobar las condiciones de vuelo normalmente implica combinar varias aplicaciones y sitios gubernamentales distintos. DroneWeather reúne en un solo lugar, en tu idioma, los datos que realmente importan para decidir si volar o no: viento, ráfagas, visibilidad y actividad geomagnética."
+          "Comprobar las condiciones de vuelo normalmente implica combinar varias aplicaciones y sitios gubernamentales distintos. FlyDroneMap reúne en un solo lugar, en tu idioma, los datos que realmente importan para decidir si volar o no: viento, ráfagas, visibilidad y actividad geomagnética."
         ]
       },
       {
         "heading": "No sustituye la autorización oficial",
         "body": [
-          "DroneWeather es una referencia de planificación, no una herramienta de autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone (en EE. UU.) o tu autoridad de aviación local antes de volar."
+          "FlyDroneMap es una referencia de planificación, no una herramienta de autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone (en EE. UU.) o tu autoridad de aviación local antes de volar."
         ]
       },
       {
@@ -277,13 +277,13 @@
       {
         "heading": "Nuestra participación en programas de afiliados",
         "body": [
-          "DroneWeather participa en programas de publicidad de afiliados, incluyendo el Programa de Afiliados de Amazon y el Programa de Coupang Partners, diseñados para que los sitios ganen comisiones publicitarias enlazando a Amazon.com, Coupang.com y sus sitios afiliados."
+          "FlyDroneMap participa en programas de publicidad de afiliados, incluyendo el Programa de Afiliados de Amazon y el Programa de Coupang Partners, diseñados para que los sitios ganen comisiones publicitarias enlazando a Amazon.com, Coupang.com y sus sitios afiliados."
         ]
       },
       {
         "heading": "Cómo funciona",
         "body": [
-          "Cuando haces clic en un enlace de producto en DroneWeather (por ejemplo, un enlace a un accesorio de drone recomendado) y realizas una compra que califica, podemos ganar una pequeña comisión. Esto no supone ningún costo adicional para ti."
+          "Cuando haces clic en un enlace de producto en FlyDroneMap (por ejemplo, un enlace a un accesorio de drone recomendado) y realizas una compra que califica, podemos ganar una pequeña comisión. Esto no supone ningún costo adicional para ti."
         ]
       },
       {
