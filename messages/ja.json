@@ -6,6 +6,8 @@
   "Home": {
     "title": "FlyDroneMap",
     "subtitle": "場所を検索するだけで、リアルタイムの風速・突風・視程、最新のKp指数、そして（米国内なら）FAAの高度制限まで一度に確認でき、より安全なドローン飛行計画に役立ちます。",
+    "metaTitle": "FlyDroneMap — ドローン気象・Kp指数ダッシュボード",
+    "metaDescription": "場所を検索するだけで、リアルタイムの風速・突風・視程、最新のKp指数、そして（米国内なら）FAAの高度制限まで一度に確認でき、より安全なドローン飛行計画に役立ちます。",
     "searchPlaceholder": "都市や空港名を検索...",
     "useMyLocationButton": "現在地を使う",
     "myLocation": "現在地",

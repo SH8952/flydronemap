@@ -6,6 +6,8 @@
   "Home": {
     "title": "FlyDroneMap",
     "subtitle": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
+    "metaTitle": "FlyDroneMap: Clima de Vuelo y Índice Kp",
+    "metaDescription": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
     "searchPlaceholder": "Busca una ciudad o aeropuerto...",
     "useMyLocationButton": "Usar mi ubicación",
     "myLocation": "Mi ubicación",

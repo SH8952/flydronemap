@@ -32,8 +32,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Home" });
-  const title = "FlyDroneMap — Drone Flight Weather & Kp Index Dashboard";
-  const description = t("subtitle");
+  const title = t("metaTitle");
+  const description = t("metaDescription");
 
   return {
     metadataBase: new URL(SITE_URL),
