@@ -31,6 +31,7 @@
     "krAltitudeRange": "Altitud: {lower} – {upper}",
     "krNoRestriction": "No hay zona restringida en esta ubicación",
     "airspaceDisclaimer": "Solo con fines informativos, basado en los datos públicos del UAS Facility Map de la FAA (EE. UU.) o los datos de zonas de no vuelo del Ministerio de Tierra, Infraestructura y Transporte (Corea del Sur). Esto no constituye una autorización de vuelo. Confirma siempre tu vuelo a través de LAANC/FAADroneZone (EE. UU.) o 드론원스톱 (drone.onestop.go.kr, Corea del Sur) antes de volar.",
+    "clickMapHint": "Haz clic en cualquier punto del mapa para consultar esa ubicación",
     "usageTitle": "Cómo usar FlyDroneMap",
     "usageSteps": [
       "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás.",

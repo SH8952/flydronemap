@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Search, MapPin, Wind, Radio, ShieldAlert, Loader2 } from "lucide-react";
@@ -93,21 +93,45 @@ export function DroneDashboard() {
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleSearchInput(value: string) {
+  // Guards against out-of-order responses: if the user keeps typing, an
+  // earlier (slower) request resolving after a later one would otherwise
+  // overwrite the fresh suggestions with stale ones, which looks like the
+  // dropdown "flickering" open and shut.
+  const searchRequestId = useRef(0);
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleSearchInput(value: string) {
     setQuery(value);
+
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+
     if (value.trim().length < 2) {
       setSuggestions([]);
       return;
     }
-    setSearching(true);
-    try {
-      const res = await fetch(`/api/geocode?q=${encodeURIComponent(value)}`);
-      const json = await res.json();
-      setSuggestions(json.results ?? []);
-    } finally {
-      setSearching(false);
-    }
+
+    debounceTimer.current = setTimeout(async () => {
+      const requestId = ++searchRequestId.current;
+      setSearching(true);
+      try {
+        const res = await fetch(
+          `/api/geocode?q=${encodeURIComponent(value)}`,
+        );
+        const json = await res.json();
+        // Ignore this response if a newer keystroke already started another request.
+        if (requestId !== searchRequestId.current) return;
+        setSuggestions(json.results ?? []);
+      } finally {
+        if (requestId === searchRequestId.current) setSearching(false);
+      }
+    }, 300);
   }
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    };
+  }, []);
 
   async function loadDashboard(lat: number, lon: number) {
     setLoading(true);
@@ -129,6 +153,21 @@ export function DroneDashboard() {
     setSuggestions([]);
     setQuery(`${loc.name}${loc.admin1 ? `, ${loc.admin1}` : ""}`);
     loadDashboard(loc.latitude, loc.longitude);
+  }
+
+  /** Called when the user clicks directly on the map instead of searching. */
+  function selectCoordinates(lat: number, lon: number) {
+    const label = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+    const loc: GeocodeResult = {
+      name: label,
+      country: "",
+      latitude: lat,
+      longitude: lon,
+    };
+    setSelected(loc);
+    setSuggestions([]);
+    setQuery(label);
+    loadDashboard(lat, lon);
   }
 
   function useMyLocation() {
@@ -158,7 +197,7 @@ export function DroneDashboard() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="relative flex flex-col gap-2 sm:flex-row">
+      <div className="relative z-[1000] flex flex-col gap-2 sm:flex-row">
         <div className="relative flex-1">
           <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -168,7 +207,7 @@ export function DroneDashboard() {
             className="h-11 pl-9"
           />
           {suggestions.length > 0 ? (
-            <ul className="absolute z-10 mt-1 w-full rounded-md border border-border bg-popover shadow-md">
+            <ul className="absolute z-[1000] mt-1 w-full rounded-md border border-border bg-popover shadow-md">
               {suggestions.map((s, i) => (
                 <li key={i}>
                   <button
@@ -225,6 +264,8 @@ export function DroneDashboard() {
               ? data.airspace.restricted
               : undefined
           }
+          onMapClick={selectCoordinates}
+          clickHintText={t("clickMapHint")}
         />
       ) : null}
 

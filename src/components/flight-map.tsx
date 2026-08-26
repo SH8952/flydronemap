@@ -7,6 +7,7 @@ import {
   Marker,
   Polygon,
   useMap,
+  useMapEvents,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -34,6 +35,11 @@ type FlightMapProps = {
   /** Korea-style: one or more polygons (a MultiPolygon), each its own rings. */
   krBoundary?: LatLngRing[][];
   restricted?: boolean;
+  /** Called with (lat, lon) when the user clicks anywhere on the map — lets
+   * the parent look up conditions for that point without needing a search. */
+  onMapClick?: (lat: number, lon: number) => void;
+  /** Small translated hint shown over the map, e.g. "Click anywhere to check that location". */
+  clickHintText?: string;
 };
 
 function RecenterOnChange({ lat, lon }: { lat: number; lon: number }) {
@@ -45,17 +51,32 @@ function RecenterOnChange({ lat, lon }: { lat: number; lon: number }) {
   return null;
 }
 
+function ClickHandler({
+  onMapClick,
+}: {
+  onMapClick?: (lat: number, lon: number) => void;
+}) {
+  useMapEvents({
+    click(e) {
+      onMapClick?.(e.latlng.lat, e.latlng.lng);
+    },
+  });
+  return null;
+}
+
 export function FlightMap({
   latitude,
   longitude,
   faaBoundary,
   krBoundary,
   restricted,
+  onMapClick,
+  clickHintText,
 }: FlightMapProps) {
   const zoneColor = restricted ? "#ef4444" : "#3b82f6";
 
   return (
-    <div className="h-72 w-full overflow-hidden rounded-lg border border-border sm:h-96">
+    <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border sm:h-96">
       <MapContainer
         center={[latitude, longitude]}
         zoom={12}
@@ -67,6 +88,7 @@ export function FlightMap({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <RecenterOnChange lat={latitude} lon={longitude} />
+        <ClickHandler onMapClick={onMapClick} />
         <Marker position={[latitude, longitude]} icon={markerIcon} />
 
         {faaBoundary ? (
@@ -90,6 +112,12 @@ export function FlightMap({
             ))
           : null}
       </MapContainer>
+
+      {clickHintText ? (
+        <div className="pointer-events-none absolute bottom-2 left-1/2 z-[500] -translate-x-1/2 rounded-full bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow">
+          {clickHintText}
+        </div>
+      ) : null}
     </div>
   );
 }
