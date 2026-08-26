@@ -42,6 +42,11 @@ export async function generateMetadata({
       template: "%s · FlyDroneMap",
     },
     description,
+    verification: {
+      other: {
+        "naver-site-verification": "3902a60f56435f9d59103b6255c02e82769238f7",
+      },
+    },
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
       languages: languageAlternates(),
