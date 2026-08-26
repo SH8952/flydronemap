@@ -1,5 +1,15 @@
 # 개발 이력 (Development History)
 
+## 2026-08-26 — 3단계 완료: 도메인 구매 + GitHub 저장소 연결 + Vercel 배포
+
+- 도메인 `flydronemap.com` 구매 완료 (사용자 직접 진행, Namecheap)
+- GitHub 저장소 `SH8952/flydronemap` (private) 생성 및 전체 코드 푸시 완료
+  - 이 클라우드 세션의 자동 GitHub 연동은 "이미 설정된 저장소"에만 접근 가능해 신규 저장소 생성/푸시가 불가능했음 → 사용자가 Personal Access Token(PAT)을 발급해 전달, 이를 이용해 푸시 진행 (토큰은 대화 기록에 재노출하지 않음)
+- Vercel 프로젝트 `flydronemap` 생성 및 GitHub 저장소 연결, 배포 완료 (`flydronemap.vercel.app` 정상 동작 확인)
+  - 신규 저장소라 Vercel의 GitHub App 저장소 접근 권한에 처음에는 포함되지 않아, GitHub 쪽에서 권한을 추가해 해결
+- 커스텀 도메인 `flydronemap.com` / `www.flydronemap.com`을 Vercel에 연결, Namecheap Advanced DNS에 A/CNAME 레코드 설정 후 정상 연결 확인 (Valid Configuration)
+- 다음 단계: Vercel 환경변수(`VWORLD_API_KEY`, `VWORLD_DOMAIN`)가 실제로 등록되어 있는지 확인 필요, 브이월드 인증키 관리 화면의 서비스URL을 `https://flydronemap.com`으로 갱신 필요, 실 도메인 기준으로 사이트 전체 기능(공역 조회/한글 주소 검색/지도) 재검증 필요
+
 ## 2026-08-26 — Kp 지수 정밀도 개선 + 한글 주소 검색(브이월드) 추가
 
 - 사용자 리포트: 김포공항 등 공항 주변 클릭 시 비행제한(관제권) 정보가 반영되지 않고, 주소 입력창에 한글을 입력해도 검색이 되지 않는 문제
