@@ -1,3 +1,9 @@
+/** A polygon boundary as an array of rings, each ring an array of [lat, lon]
+ * points (first ring is the outer boundary, any further rings are holes) —
+ * ready to pass to a Leaflet <Polygon positions={...}> for a single polygon,
+ * or grouped one level deeper for a multi-polygon. */
+export type LatLngRing = [number, number][];
+
 export type AirspaceCeiling =
   | {
       source: "faa";
@@ -5,6 +11,8 @@ export type AirspaceCeiling =
        * Part 107 operations without additional authorization at this location. */
       ceilingFeet: number;
       nearestFacility?: string;
+      /** Boundary of the grid cell this ceiling applies to, as polygon rings. */
+      boundary?: LatLngRing[];
     }
   | {
       source: "kr";
@@ -17,6 +25,9 @@ export type AirspaceCeiling =
       lowerAltitude: string;
       /** Upper altitude bound, e.g. "UNL" (unlimited). */
       upperAltitude: string;
+      /** Boundary of the restricted zone, as one or more polygons (each an
+       * array of rings) — a MultiPolygon in GeoJSON terms. */
+      boundary?: LatLngRing[][];
     }
   | {
       source: "kr";
@@ -60,7 +71,8 @@ async function fetchFaaAirspaceCeiling(
   url.searchParams.set("inSR", "4326");
   url.searchParams.set("spatialRel", "esriSpatialRelIntersects");
   url.searchParams.set("outFields", "CEILING,APT1_NAME");
-  url.searchParams.set("returnGeometry", "false");
+  url.searchParams.set("returnGeometry", "true");
+  url.searchParams.set("outSR", "4326");
   url.searchParams.set("f", "json");
 
   try {
@@ -68,20 +80,31 @@ async function fetchFaaAirspaceCeiling(
     if (!res.ok) return null;
 
     const data = (await res.json()) as {
-      features?: Array<{ attributes: Record<string, unknown> }>;
+      features?: Array<{
+        attributes: Record<string, unknown>;
+        geometry?: { rings?: number[][][] };
+      }>;
     };
 
-    const first = data.features?.[0]?.attributes;
+    const first = data.features?.[0];
     if (!first) return null;
 
-    const ceiling = Number(first.CEILING);
+    const ceiling = Number(first.attributes.CEILING);
     if (Number.isNaN(ceiling)) return null;
+
+    // Esri rings are [x, y] (lon, lat) — Leaflet wants [lat, lon].
+    const boundary: LatLngRing[] | undefined = first.geometry?.rings?.map(
+      (ring) => ring.map(([x, y]) => [y, x] as [number, number]),
+    );
 
     return {
       source: "faa",
       ceilingFeet: ceiling,
       nearestFacility:
-        typeof first.APT1_NAME === "string" ? first.APT1_NAME : undefined,
+        typeof first.attributes.APT1_NAME === "string"
+          ? first.attributes.APT1_NAME
+          : undefined,
+      boundary,
     };
   } catch {
     return null;
@@ -118,7 +141,7 @@ async function fetchKoreaAirspaceCeiling(
   url.searchParams.set("data", "LT_C_AISPRHC");
   url.searchParams.set("geomFilter", `POINT(${longitude} ${latitude})`);
   url.searchParams.set("crs", "EPSG:4326");
-  url.searchParams.set("geometry", "false");
+  url.searchParams.set("geometry", "true");
   url.searchParams.set("attribute", "true");
   url.searchParams.set(
     "columns",
@@ -136,7 +159,14 @@ async function fetchKoreaAirspaceCeiling(
         status?: string;
         result?: {
           featureCollection?: {
-            features?: Array<{ properties?: Record<string, unknown> }>;
+            features?: Array<{
+              properties?: Record<string, unknown>;
+              geometry?: {
+                type?: string;
+                // Polygon: rings of [lon, lat]. MultiPolygon: polygons of rings of [lon, lat].
+                coordinates?: number[][][] | number[][][][];
+              };
+            }>;
           };
         };
       };
@@ -148,9 +178,24 @@ async function fetchKoreaAirspaceCeiling(
     }
     if (status !== "OK") return null;
 
-    const props =
-      data.response?.result?.featureCollection?.features?.[0]?.properties;
+    const feature = data.response?.result?.featureCollection?.features?.[0];
+    const props = feature?.properties;
     if (!props) return { source: "kr", restricted: false };
+
+    let boundary: LatLngRing[][] | undefined;
+    const geom = feature?.geometry;
+    if (geom?.coordinates) {
+      const toLatLngRing = (ring: number[][]): LatLngRing =>
+        ring.map(([lon, lat]) => [lat, lon] as [number, number]);
+
+      if (geom.type === "MultiPolygon") {
+        boundary = (geom.coordinates as number[][][][]).map((polygon) =>
+          polygon.map(toLatLngRing),
+        );
+      } else if (geom.type === "Polygon") {
+        boundary = [(geom.coordinates as number[][][]).map(toLatLngRing)];
+      }
+    }
 
     return {
       source: "kr",
@@ -162,6 +207,7 @@ async function fetchKoreaAirspaceCeiling(
         typeof props.prh_lbl_3 === "string" ? props.prh_lbl_3 : "",
       upperAltitude:
         typeof props.prh_lbl_2 === "string" ? props.prh_lbl_2 : "",
+      boundary,
     };
   } catch {
     return null;

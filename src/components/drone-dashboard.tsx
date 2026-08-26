@@ -1,11 +1,26 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Search, MapPin, Wind, Radio, ShieldAlert, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+// Leaflet touches `window` at import time, so it can only run client-side —
+// load it with ssr disabled rather than importing it directly.
+const FlightMap = dynamic(
+  () => import("@/components/flight-map").then((m) => m.FlightMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-72 w-full animate-pulse rounded-lg border border-border bg-muted sm:h-96" />
+    ),
+  },
+);
+
+type LatLngRing = [number, number][];
 
 type GeocodeResult = {
   name: string;
@@ -28,7 +43,12 @@ type DashboardData = {
   } | null;
   kp: { kp: number; time: string } | null;
   airspace:
-    | { source: "faa"; ceilingFeet: number; nearestFacility?: string }
+    | {
+        source: "faa";
+        ceilingFeet: number;
+        nearestFacility?: string;
+        boundary?: LatLngRing[];
+      }
     | {
         source: "kr";
         restricted: true;
@@ -36,6 +56,7 @@ type DashboardData = {
         categoryName: string;
         lowerAltitude: string;
         upperAltitude: string;
+        boundary?: LatLngRing[][];
       }
     | { source: "kr"; restricted: false }
     | null;
@@ -183,6 +204,28 @@ export function DroneDashboard() {
 
       {error ? (
         <p className="text-center text-sm text-destructive">{error}</p>
+      ) : null}
+
+      {data && selected && !loading ? (
+        <FlightMap
+          latitude={selected.latitude}
+          longitude={selected.longitude}
+          faaBoundary={
+            data.airspace?.source === "faa"
+              ? data.airspace.boundary
+              : undefined
+          }
+          krBoundary={
+            data.airspace?.source === "kr" && data.airspace.restricted
+              ? data.airspace.boundary
+              : undefined
+          }
+          restricted={
+            data.airspace?.source === "kr"
+              ? data.airspace.restricted
+              : undefined
+          }
+        />
       ) : null}
 
       {data && !loading ? (
