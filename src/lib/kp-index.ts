@@ -7,9 +7,11 @@ export type KpReading = {
  * NOAA Space Weather Prediction Center's free, public planetary K-index feed.
  * No API key required. https://services.swpc.noaa.gov/json/planetary_k_index_1m.json
  *
- * The endpoint returns an array of [time_tag, kp_index, kp, running_average, ...]
- * rows with a header row first; we defensively look up columns by name rather
- * than assuming a fixed position.
+ * The endpoint returns an array of objects, each with `time_tag`,
+ * `kp_index` (rounded to a whole number), `estimated_kp` (decimal
+ * precision), and `kp` (a letter-suffixed code like "2M"). We prefer
+ * `estimated_kp` for display so the value visibly moves rather than sitting
+ * on whole numbers like "0.0" every time.
  */
 export async function fetchLatestKpIndex(): Promise<KpReading | null> {
   const res = await fetch(
@@ -23,7 +25,7 @@ export async function fetchLatestKpIndex(): Promise<KpReading | null> {
 
   const last = rows[rows.length - 1];
   const time = String(last.time_tag ?? "");
-  const kpRaw = last.kp_index ?? last.kp ?? last.Kp;
+  const kpRaw = last.estimated_kp ?? last.kp_index ?? last.kp ?? last.Kp;
   const kp = typeof kpRaw === "number" ? kpRaw : parseFloat(String(kpRaw));
 
   if (!time || Number.isNaN(kp)) return null;
