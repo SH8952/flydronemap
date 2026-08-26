@@ -1,0 +1,310 @@
+{
+  "Header": {
+    "tagline": "Drone Flight Weather & Kp Index",
+    "guidesNav": "Guides"
+  },
+  "Home": {
+    "title": "DroneWeather",
+    "subtitle": "Search any location for live wind, gusts, visibility, the latest Kp index, and (US) FAA altitude ceilings — everything you need to plan a safer drone flight.",
+    "searchPlaceholder": "Search a city or airport...",
+    "useMyLocationButton": "Use my location",
+    "myLocation": "My location",
+    "loadingText": "Loading flight conditions...",
+    "errorText": "Couldn't load data for that location. Please try again.",
+    "emptyState": "Search a location above to see current flight conditions.",
+    "noDataForLocation": "No data available for this location.",
+    "airspaceNoData": "No FAA facility map data at this location (outside the US, or no grid coverage here).",
+    "windSectionTitle": "Wind & Visibility",
+    "windSpeed": "Wind Speed",
+    "windGust": "Wind Gust",
+    "visibility": "Visibility",
+    "temperature": "Temperature",
+    "kpSectionTitle": "Planetary Kp Index",
+    "kpHint": {
+      "quiet": "Quiet geomagnetic conditions. GPS and compass should behave normally.",
+      "unsettled": "Unsettled activity. Minor GPS drift is possible — keep an eye on your positioning accuracy.",
+      "storm": "Geomagnetic storm level. GPS accuracy and compass reliability can degrade — consider flying in ATTI/manual mode and staying within visual line of sight."
+    },
+    "airspaceSectionTitle": "FAA Airspace Ceiling (US)",
+    "nearFacility": "Near {facility}",
+    "airspaceDisclaimer": "Informational only — based on the FAA's public UAS Facility Map data. This is not a flight authorization. Always confirm your flight through LAANC or FAADroneZone before flying.",
+    "usageTitle": "How to Use DroneWeather",
+    "usageSteps": [
+      "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are.",
+      "Review live wind speed, wind gusts, and visibility — key factors for whether it's safe to fly your specific drone model.",
+      "Check the planetary Kp index to see whether geomagnetic activity might affect your GPS lock or compass heading.",
+      "In the US, see the FAA UAS Facility Map altitude ceiling for the area — then confirm authorization through LAANC or FAADroneZone before you fly."
+    ],
+    "faqTitle": "Frequently Asked Questions",
+    "faq": [
+      {
+        "question": "Is DroneWeather a substitute for FAA flight authorization?",
+        "answer": "No. The airspace ceiling shown here comes from the FAA's public UAS Facility Map data and is for planning reference only. You must still obtain authorization through LAANC or FAADroneZone where required before flying."
+      },
+      {
+        "question": "Where does the weather data come from?",
+        "answer": "Wind speed, gusts, visibility, and temperature come from Open-Meteo's public weather API, updated frequently throughout the day."
+      },
+      {
+        "question": "What is the Kp index and why does it matter for drone flights?",
+        "answer": "The planetary Kp index measures geomagnetic activity. During elevated Kp levels (geomagnetic storms), GPS positioning accuracy and compass readings can be less reliable, which matters for drones that rely on GPS-hold or return-to-home."
+      },
+      {
+        "question": "Does DroneWeather work outside the United States?",
+        "answer": "Wind, visibility, and Kp index data work worldwide. The FAA airspace ceiling feature is US-specific, since it's sourced from FAA data — outside the US it will show no data for that card."
+      },
+      {
+        "question": "Do I need to create an account?",
+        "answer": "No. DroneWeather works without sign-up — just search a location and check the conditions."
+      },
+      {
+        "question": "Is DroneWeather free to use?",
+        "answer": "Yes, completely free. The site is supported by ads and occasional affiliate links, which never affect the accuracy of the data shown."
+      }
+    ]
+  },
+  "Frame": {
+    "title": "EXIF Frame Generator",
+    "subtitle": "Add a clean camera-info frame to your photo and download it in full resolution.",
+    "uploadHint": "Drop a photo to start framing it. If you already uploaded one above, it's ready here too.",
+    "privacyNote": "100% client-side. The framed photo is rendered entirely in your browser and never uploaded anywhere.",
+    "downloadButton": "Download Framed Photo",
+    "dropToReplace": "Drop a photo here to replace it",
+    "themeLabel": "Frame Theme",
+    "themes": {
+      "classic-dark": "Classic Dark",
+      "classic-light": "Classic Light",
+      "polaroid": "Polaroid",
+      "strap": "Strap",
+      "minimal-overlay": "Minimal Overlay",
+      "leica": "Leica",
+      "hasselblad": "Hasselblad",
+      "film-strip": "Film Strip",
+      "blurred-background": "Blurred Background",
+      "vintage-amber": "Vintage Amber",
+      "grid-spec": "Grid Spec Sheet",
+      "dark-gradient": "Dark Gradient",
+      "no-frame": "No Frame",
+      "just-frame": "Just Frame",
+      "cinema-scope": "Cinema Scope",
+      "lightroom": "Lightroom",
+      "film": "Film",
+      "monitor": "Monitor",
+      "shot-on": "Shot On",
+      "photo-card": "Photo Card",
+      "tip": "Tip",
+      "poster": "Poster",
+      "custom": "Custom"
+    },
+    "customBackground": "Background Color",
+    "customText": "Text Color",
+    "customFont": "Font",
+    "customShowLogo": "Show Brand Logo",
+    "aspectLabel": "Aspect Ratio",
+    "aspectOriginal": "Original",
+    "paddingLabel": "Padding",
+    "metadataLabel": "Frame Text",
+    "metadataReset": "Reset",
+    "metadataHint": "Edit any field to override what's shown on the frame. This only changes the frame — not the EXIF panel above.",
+    "camera": "Camera",
+    "lens": "Lens",
+    "focalLength": "Focal Length",
+    "aperture": "Aperture",
+    "shutter": "Shutter Speed",
+    "iso": "ISO",
+    "takenAt": "Date Taken",
+    "tipLabel": "Label",
+    "tipHeading": "Heading",
+    "tipBody1": "Body Line 1",
+    "tipBody2": "Body Line 2",
+    "posterDate": "Date",
+    "posterTitle1": "Title Line 1",
+    "posterTitle2": "Title Line 2",
+    "posterLocationName": "Location Name",
+    "posterLocationAddress": "Address",
+    "formatLabel": "Export Format"
+  },
+  "Footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "guides": "Guides",
+    "about": "About",
+    "disclosure": "Affiliate Disclosure"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: August 26, 2026",
+    "sections": [
+      {
+        "heading": "Overview",
+        "body": [
+          "DroneWeather (\"we\", \"us\", \"our\") operates this website (the \"Service\"). This Privacy Policy explains what information is collected when you use the Service and how it is used."
+        ]
+      },
+      {
+        "heading": "Location Data",
+        "body": [
+          "When you search for a location or use the \"Use my location\" button, the coordinates are sent to our server, which queries third-party weather, geomagnetic, and airspace data providers on your behalf and returns the result to your browser. We do not store your searched locations or associate them with any identifier."
+        ]
+      },
+      {
+        "heading": "Cookies and Advertising",
+        "body": [
+          "We use Google AdSense to display advertising on the Service. Google and its partners may use cookies, device identifiers, and similar technologies to serve ads based on your prior visits to this and other websites. You can learn more on Google's Ads Privacy page, and opt out of personalized advertising through Google Ads Settings.",
+          "We may also use cookies or similar technologies through analytics providers to understand, in aggregate and non-identifying form, how visitors use the Service."
+        ]
+      },
+      {
+        "heading": "Affiliate Links",
+        "body": [
+          "Some pages contain affiliate links, including links to Amazon Associates and Coupang Partners. If you click one of these links and make a qualifying purchase, we may earn a commission at no additional cost to you. See our Affiliate Disclosure for details."
+        ]
+      },
+      {
+        "heading": "Data We Do Not Collect",
+        "body": [
+          "We do not require account registration, and we do not collect names, email addresses, or payment information through the Service itself."
+        ]
+      },
+      {
+        "heading": "Children's Privacy",
+        "body": [
+          "The Service is not directed at children under 13, and we do not knowingly collect personal information from children."
+        ]
+      },
+      {
+        "heading": "Changes to This Policy",
+        "body": [
+          "We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated \"Last updated\" date."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "If you have questions about this Privacy Policy, contact us at skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Terms": {
+    "title": "Terms of Service",
+    "updated": "Last updated: August 26, 2026",
+    "sections": [
+      {
+        "heading": "Acceptance of Terms",
+        "body": [
+          "By accessing or using DroneWeather (the \"Service\"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service."
+        ]
+      },
+      {
+        "heading": "Description of Service",
+        "body": [
+          "DroneWeather provides free wind, visibility, and planetary Kp index data, plus a US-specific FAA UAS Facility Map altitude reference, to help with drone flight planning. Data is sourced from third-party public APIs and is provided for informational purposes only."
+        ]
+      },
+      {
+        "heading": "Not a Flight Authorization",
+        "body": [
+          "Nothing on this Service constitutes, replaces, or guarantees any flight authorization required by the FAA or any other aviation authority. Airspace ceiling information is based on the FAA's public UAS Facility Map dataset and is informational only. You are solely responsible for obtaining any required authorization (such as through LAANC or FAADroneZone) and for complying with all applicable aviation regulations before every flight."
+        ]
+      },
+      {
+        "heading": "No Warranty on Data Accuracy",
+        "body": [
+          "Weather, geomagnetic, and airspace data are provided by third-party sources and may be delayed, incomplete, or inaccurate. We make no warranty as to the accuracy, completeness, or timeliness of any data shown, and we are not liable for any decision made in reliance on it."
+        ]
+      },
+      {
+        "heading": "Affiliate Links",
+        "body": [
+          "The Service may contain affiliate links. See our Affiliate Disclosure for details."
+        ]
+      },
+      {
+        "heading": "Limitation of Liability",
+        "body": [
+          "The Service is provided \"as is\" without warranties of any kind. To the fullest extent permitted by law, we are not liable for any damages arising from your use of, or inability to use, the Service, including any damages related to flight decisions made using information shown on the Service."
+        ]
+      },
+      {
+        "heading": "Changes to These Terms",
+        "body": [
+          "We may update these Terms from time to time. Continued use of the Service after changes are posted constitutes acceptance of the revised Terms."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "If you have questions about these Terms, contact us at skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "About": {
+    "title": "About DroneWeather",
+    "sections": [
+      {
+        "heading": "What is DroneWeather",
+        "body": [
+          "DroneWeather is a free, no-signup dashboard for drone pilots. Search any location to see live wind speed, wind gusts, visibility, and the latest planetary Kp index, plus — for US locations — the FAA's public UAS Facility Map altitude ceiling."
+        ]
+      },
+      {
+        "heading": "Why We Built It",
+        "body": [
+          "Checking flight conditions usually means piecing together several different apps and government sites. DroneWeather brings the numbers that actually matter for a go/no-go decision — wind, gusts, visibility, and geomagnetic activity — into one place, in your language."
+        ]
+      },
+      {
+        "heading": "Not a Substitute for Official Authorization",
+        "body": [
+          "DroneWeather is a planning reference, not a flight authorization tool. Always confirm your flight through LAANC or FAADroneZone (in the US) or your local aviation authority before flying."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Questions or feedback? Reach us at skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Disclosure": {
+    "title": "Affiliate Disclosure",
+    "updated": "Last updated: August 26, 2026",
+    "sections": [
+      {
+        "heading": "Our Participation in Affiliate Programs",
+        "body": [
+          "DroneWeather participates in affiliate advertising programs, including the Amazon Associates Program and the Coupang Partners Program, designed to provide a means for sites to earn advertising fees by linking to Amazon.com, Coupang.com, and their affiliated sites."
+        ]
+      },
+      {
+        "heading": "How This Works",
+        "body": [
+          "When you click a product link on DroneWeather (for example, a link to a recommended drone accessory) and go on to make a qualifying purchase, we may earn a small commission. This comes at no additional cost to you."
+        ]
+      },
+      {
+        "heading": "Our Editorial Independence",
+        "body": [
+          "Affiliate relationships never influence the weather, Kp index, or airspace data shown on this Service, which is sourced directly from independent third-party providers."
+        ]
+      },
+      {
+        "heading": "Contact",
+        "body": [
+          "Questions about our affiliate relationships? Contact us at skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Guides": {
+    "title": "Guides",
+    "subtitle": "Practical guides on reading flight weather, understanding the Kp index, and flying safely and legally.",
+    "empty": "No guides published in this language yet — check back soon.",
+    "readingTime": "{minutes} min read",
+    "backToGuides": "← Back to Guides"
+  }
+}

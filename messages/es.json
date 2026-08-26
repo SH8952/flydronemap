@@ -1,0 +1,310 @@
+{
+  "Header": {
+    "tagline": "Clima de vuelo para drones e índice Kp",
+    "guidesNav": "Guías"
+  },
+  "Home": {
+    "title": "DroneWeather",
+    "subtitle": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
+    "searchPlaceholder": "Busca una ciudad o aeropuerto...",
+    "useMyLocationButton": "Usar mi ubicación",
+    "myLocation": "Mi ubicación",
+    "loadingText": "Cargando condiciones de vuelo...",
+    "errorText": "No se pudieron cargar los datos de esa ubicación. Inténtalo de nuevo.",
+    "emptyState": "Busca una ubicación arriba para ver las condiciones de vuelo actuales.",
+    "noDataForLocation": "No hay datos disponibles para esta ubicación.",
+    "airspaceNoData": "No hay datos del mapa de instalaciones de la FAA para esta ubicación (fuera de EE. UU., o sin cobertura de la cuadrícula aquí).",
+    "windSectionTitle": "Viento y visibilidad",
+    "windSpeed": "Velocidad del viento",
+    "windGust": "Ráfaga de viento",
+    "visibility": "Visibilidad",
+    "temperature": "Temperatura",
+    "kpSectionTitle": "Índice Kp planetario",
+    "kpHint": {
+      "quiet": "Condiciones geomagnéticas tranquilas. El GPS y la brújula deberían comportarse con normalidad.",
+      "unsettled": "Actividad inestable. Es posible una ligera deriva del GPS — presta atención a la precisión de tu posicionamiento.",
+      "storm": "Nivel de tormenta geomagnética. La precisión del GPS y la fiabilidad de la brújula pueden verse afectadas — considera volar en modo ATTI/manual y mantenerte dentro del alcance visual."
+    },
+    "airspaceSectionTitle": "Techo de altitud FAA (EE. UU.)",
+    "nearFacility": "Cerca de {facility}",
+    "airspaceDisclaimer": "Solo con fines informativos, basado en los datos públicos del UAS Facility Map de la FAA. Esto no constituye una autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone antes de volar.",
+    "usageTitle": "Cómo usar DroneWeather",
+    "usageSteps": [
+      "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás.",
+      "Revisa la velocidad del viento, las ráfagas y la visibilidad en vivo — factores clave para decidir si es seguro volar tu modelo de drone concreto.",
+      "Consulta el índice Kp planetario para ver si la actividad geomagnética podría afectar tu señal GPS o el rumbo de la brújula.",
+      "En EE. UU., consulta el techo de altitud del FAA UAS Facility Map para la zona — y luego confirma la autorización a través de LAANC o FAADroneZone antes de volar."
+    ],
+    "faqTitle": "Preguntas frecuentes",
+    "faq": [
+      {
+        "question": "¿DroneWeather sustituye la autorización de vuelo de la FAA?",
+        "answer": "No. El techo de altitud mostrado proviene de los datos públicos del UAS Facility Map de la FAA y es solo una referencia de planificación. Debes obtener la autorización necesaria a través de LAANC o FAADroneZone donde se requiera antes de volar."
+      },
+      {
+        "question": "¿De dónde vienen los datos meteorológicos?",
+        "answer": "La velocidad del viento, las ráfagas, la visibilidad y la temperatura provienen de la API meteorológica pública de Open-Meteo, actualizada frecuentemente durante el día."
+      },
+      {
+        "question": "¿Qué es el índice Kp y por qué importa para volar un drone?",
+        "answer": "El índice Kp planetario mide la actividad geomagnética. Durante niveles elevados de Kp (tormentas geomagnéticas), la precisión del GPS y las lecturas de la brújula pueden ser menos fiables, lo cual afecta a drones que dependen del mantenimiento de posición por GPS o el regreso automático."
+      },
+      {
+        "question": "¿DroneWeather funciona fuera de Estados Unidos?",
+        "answer": "Los datos de viento, visibilidad e índice Kp funcionan en todo el mundo. La función de techo de altitud de la FAA es específica de EE. UU., ya que proviene de datos de la FAA — fuera de EE. UU. esa tarjeta mostrará que no hay datos."
+      },
+      {
+        "question": "¿Necesito crear una cuenta?",
+        "answer": "No. DroneWeather funciona sin necesidad de registro — solo busca una ubicación y consulta las condiciones."
+      },
+      {
+        "question": "¿Es gratis usar DroneWeather?",
+        "answer": "Sí, completamente gratis. El sitio se financia con publicidad y algunos enlaces de afiliados, que nunca afectan la precisión de los datos mostrados."
+      }
+    ]
+  },
+  "Frame": {
+    "title": "Generador de Marcos EXIF",
+    "subtitle": "Añade un marco con los datos de tu cámara a la foto y descárgala en resolución completa.",
+    "uploadHint": "Sube una foto para empezar a enmarcarla. Si ya subiste una arriba, también está lista aquí.",
+    "privacyNote": "100% en el navegador. La foto enmarcada se genera por completo en tu navegador y nunca se sube a ningún sitio.",
+    "downloadButton": "Descargar Foto con Marco",
+    "dropToReplace": "Suelta una foto aquí para reemplazarla",
+    "themeLabel": "Tema del Marco",
+    "themes": {
+      "classic-dark": "Clásico Oscuro",
+      "classic-light": "Clásico Claro",
+      "polaroid": "Polaroid",
+      "strap": "Correa",
+      "minimal-overlay": "Superposición Mínima",
+      "leica": "Leica",
+      "hasselblad": "Hasselblad",
+      "film-strip": "Tira de Película",
+      "blurred-background": "Fondo Desenfocado",
+      "vintage-amber": "Ámbar Vintage",
+      "grid-spec": "Ficha Técnica",
+      "dark-gradient": "Degradado Oscuro",
+      "no-frame": "Sin Marco",
+      "just-frame": "Solo Marco",
+      "cinema-scope": "Cinemascope",
+      "lightroom": "Lightroom",
+      "film": "Película",
+      "monitor": "Monitor",
+      "shot-on": "Tomado Con",
+      "photo-card": "Tarjeta Foto",
+      "tip": "Consejo",
+      "poster": "Póster",
+      "custom": "Personalizado"
+    },
+    "customBackground": "Color de Fondo",
+    "customText": "Color de Texto",
+    "customFont": "Fuente",
+    "customShowLogo": "Mostrar Logo de Marca",
+    "aspectLabel": "Relación de Aspecto",
+    "aspectOriginal": "Original",
+    "paddingLabel": "Margen",
+    "metadataLabel": "Texto del Marco",
+    "metadataReset": "Restablecer",
+    "metadataHint": "Edita cualquier campo para cambiar lo que se muestra en el marco. Esto solo afecta al marco, no al panel EXIF de arriba.",
+    "camera": "Cámara",
+    "lens": "Objetivo",
+    "focalLength": "Distancia focal",
+    "aperture": "Apertura",
+    "shutter": "Velocidad de obturación",
+    "iso": "ISO",
+    "takenAt": "Fecha de captura",
+    "tipLabel": "Etiqueta",
+    "tipHeading": "Encabezado",
+    "tipBody1": "Línea de Cuerpo 1",
+    "tipBody2": "Línea de Cuerpo 2",
+    "posterDate": "Fecha",
+    "posterTitle1": "Título Línea 1",
+    "posterTitle2": "Título Línea 2",
+    "posterLocationName": "Nombre del Lugar",
+    "posterLocationAddress": "Dirección",
+    "formatLabel": "Formato de exportación"
+  },
+  "Footer": {
+    "rights": "Todos los derechos reservados.",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio",
+    "guides": "Guías",
+    "about": "Sobre nosotros",
+    "disclosure": "Divulgación de afiliados"
+  },
+  "Privacy": {
+    "title": "Política de Privacidad",
+    "updated": "Última actualización: 26 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "Resumen",
+        "body": [
+          "DroneWeather (\"nosotros\") opera este sitio web (el \"Servicio\"). Esta Política de Privacidad explica qué información se recopila cuando usas el Servicio y cómo se utiliza."
+        ]
+      },
+      {
+        "heading": "Datos de ubicación",
+        "body": [
+          "Cuando buscas una ubicación o usas el botón \"Usar mi ubicación\", las coordenadas se envían a nuestro servidor, que consulta proveedores de datos meteorológicos, geomagnéticos y de espacio aéreo de terceros en tu nombre y devuelve el resultado a tu navegador. No almacenamos las ubicaciones buscadas ni las asociamos con ningún identificador."
+        ]
+      },
+      {
+        "heading": "Cookies y publicidad",
+        "body": [
+          "Usamos Google AdSense para mostrar publicidad en el Servicio. Google y sus socios pueden usar cookies, identificadores de dispositivo y tecnologías similares para mostrar anuncios basados en tus visitas anteriores a este y otros sitios. Puedes obtener más información en la página de privacidad de anuncios de Google, y puedes optar por no recibir publicidad personalizada a través de la configuración de anuncios de Google.",
+          "También podemos usar cookies o tecnologías similares mediante proveedores de análisis para entender, de forma agregada y no identificable, cómo los visitantes usan el Servicio."
+        ]
+      },
+      {
+        "heading": "Enlaces de afiliados",
+        "body": [
+          "Algunas páginas contienen enlaces de afiliados, incluyendo enlaces a Amazon Associates y Coupang Partners. Si haces clic en uno de estos enlaces y realizas una compra que califica, podemos ganar una comisión sin costo adicional para ti. Consulta nuestra Divulgación de Afiliados para más detalles."
+        ]
+      },
+      {
+        "heading": "Datos que no recopilamos",
+        "body": [
+          "No requerimos registro de cuenta, y no recopilamos nombres, direcciones de correo electrónico ni información de pago a través del Servicio en sí."
+        ]
+      },
+      {
+        "heading": "Privacidad de menores",
+        "body": [
+          "El Servicio no está dirigido a menores de 13 años, y no recopilamos conscientemente información personal de menores."
+        ]
+      },
+      {
+        "heading": "Cambios en esta política",
+        "body": [
+          "Podemos actualizar esta Política de Privacidad periódicamente. Los cambios se publicarán en esta página con una fecha de \"Última actualización\" actualizada."
+        ]
+      },
+      {
+        "heading": "Contacto",
+        "body": [
+          "Si tienes preguntas sobre esta Política de Privacidad, contáctanos en skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Terms": {
+    "title": "Términos de Servicio",
+    "updated": "Última actualización: 26 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "Aceptación de los Términos",
+        "body": [
+          "Al acceder o usar DroneWeather (el \"Servicio\"), aceptas quedar vinculado por estos Términos de Servicio. Si no estás de acuerdo, no uses el Servicio."
+        ]
+      },
+      {
+        "heading": "Descripción del Servicio",
+        "body": [
+          "DroneWeather proporciona datos gratuitos de viento, visibilidad e índice Kp planetario, además de una referencia de altitud del UAS Facility Map de la FAA específica para EE. UU., para ayudar en la planificación de vuelos de drones. Los datos provienen de API públicas de terceros y se proporcionan solo con fines informativos."
+        ]
+      },
+      {
+        "heading": "No es una autorización de vuelo",
+        "body": [
+          "Nada en este Servicio constituye, sustituye o garantiza ninguna autorización de vuelo requerida por la FAA u otra autoridad de aviación. La información del techo de espacio aéreo se basa en el conjunto de datos públicos del UAS Facility Map de la FAA y es solo informativa. Eres el único responsable de obtener cualquier autorización requerida (como a través de LAANC o FAADroneZone) y de cumplir con todas las normativas de aviación aplicables antes de cada vuelo."
+        ]
+      },
+      {
+        "heading": "Sin garantía sobre la exactitud de los datos",
+        "body": [
+          "Los datos meteorológicos, geomagnéticos y de espacio aéreo son proporcionados por fuentes de terceros y pueden estar retrasados, incompletos o ser inexactos. No garantizamos la exactitud, integridad o puntualidad de ningún dato mostrado, y no somos responsables de ninguna decisión tomada en base a ellos."
+        ]
+      },
+      {
+        "heading": "Enlaces de afiliados",
+        "body": [
+          "El Servicio puede contener enlaces de afiliados. Consulta nuestra Divulgación de Afiliados para más detalles."
+        ]
+      },
+      {
+        "heading": "Limitación de responsabilidad",
+        "body": [
+          "El Servicio se proporciona \"tal cual\" sin garantías de ningún tipo. En la máxima medida permitida por la ley, no somos responsables de ningún daño derivado del uso o la imposibilidad de uso del Servicio, incluyendo daños relacionados con decisiones de vuelo tomadas usando información mostrada en el Servicio."
+        ]
+      },
+      {
+        "heading": "Cambios en estos Términos",
+        "body": [
+          "Podemos actualizar estos Términos periódicamente. El uso continuado del Servicio después de que se publiquen los cambios constituye la aceptación de los Términos revisados."
+        ]
+      },
+      {
+        "heading": "Contacto",
+        "body": [
+          "Si tienes preguntas sobre estos Términos, contáctanos en skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "About": {
+    "title": "Acerca de DroneWeather",
+    "sections": [
+      {
+        "heading": "Qué es DroneWeather",
+        "body": [
+          "DroneWeather es un panel gratuito y sin registro para pilotos de drones. Busca cualquier ubicación para ver la velocidad del viento, las ráfagas y la visibilidad en vivo, además del último índice Kp planetario, y — para ubicaciones en EE. UU. — el techo de altitud público del UAS Facility Map de la FAA."
+        ]
+      },
+      {
+        "heading": "Por qué lo creamos",
+        "body": [
+          "Comprobar las condiciones de vuelo normalmente implica combinar varias aplicaciones y sitios gubernamentales distintos. DroneWeather reúne en un solo lugar, en tu idioma, los datos que realmente importan para decidir si volar o no: viento, ráfagas, visibilidad y actividad geomagnética."
+        ]
+      },
+      {
+        "heading": "No sustituye la autorización oficial",
+        "body": [
+          "DroneWeather es una referencia de planificación, no una herramienta de autorización de vuelo. Confirma siempre tu vuelo a través de LAANC o FAADroneZone (en EE. UU.) o tu autoridad de aviación local antes de volar."
+        ]
+      },
+      {
+        "heading": "Contacto",
+        "body": [
+          "¿Preguntas o comentarios? Escríbenos a skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Disclosure": {
+    "title": "Divulgación de Afiliados",
+    "updated": "Última actualización: 26 de agosto de 2026",
+    "sections": [
+      {
+        "heading": "Nuestra participación en programas de afiliados",
+        "body": [
+          "DroneWeather participa en programas de publicidad de afiliados, incluyendo el Programa de Afiliados de Amazon y el Programa de Coupang Partners, diseñados para que los sitios ganen comisiones publicitarias enlazando a Amazon.com, Coupang.com y sus sitios afiliados."
+        ]
+      },
+      {
+        "heading": "Cómo funciona",
+        "body": [
+          "Cuando haces clic en un enlace de producto en DroneWeather (por ejemplo, un enlace a un accesorio de drone recomendado) y realizas una compra que califica, podemos ganar una pequeña comisión. Esto no supone ningún costo adicional para ti."
+        ]
+      },
+      {
+        "heading": "Nuestra independencia editorial",
+        "body": [
+          "Las relaciones de afiliados nunca influyen en los datos meteorológicos, de índice Kp o de espacio aéreo mostrados en este Servicio, que provienen directamente de proveedores independientes de terceros."
+        ]
+      },
+      {
+        "heading": "Contacto",
+        "body": [
+          "¿Preguntas sobre nuestras relaciones de afiliados? Contáctanos en skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Guides": {
+    "title": "Guías",
+    "subtitle": "Guías prácticas para leer el clima de vuelo, entender el índice Kp y volar de forma segura y legal.",
+    "empty": "Todavía no hay guías publicadas en este idioma — vuelve pronto.",
+    "readingTime": "{minutes} min de lectura",
+    "backToGuides": "← Volver a Guías"
+  }
+}
