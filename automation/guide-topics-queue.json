@@ -149,8 +149,8 @@
     "category": "weather-safety",
     "titleKo": "안개 속 비행 안전 가이드",
     "titleEn": "Flying in Fog: Safety Guide",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-08-26"
   },
   {
     "order": 18,
