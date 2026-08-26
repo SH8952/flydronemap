@@ -1,46 +1,362 @@
 [
-  {"order": 1, "slug": "temperature-and-drone-battery-performance", "category": "weather-safety", "titleKo": "기온과 드론 배터리 성능", "titleEn": "Temperature and Drone Battery Performance", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 2, "slug": "visibility-and-safe-drone-flight-standards", "category": "weather-safety", "titleKo": "가시거리와 안전 비행 기준", "titleEn": "Visibility and Safe Drone Flight Standards", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 3, "slug": "why-rain-is-dangerous-for-drone-flights", "category": "weather-safety", "titleKo": "비가 드론 비행에 위험한 이유", "titleEn": "Why Rain Is Dangerous for Drone Flights", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 4, "slug": "wind-gust-checklist-before-drone-flight", "category": "weather-safety", "titleKo": "비행 전 돌풍 체크리스트", "titleEn": "Wind Gust Checklist Before Drone Flight", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 5, "slug": "avoid-flying-during-geomagnetic-storms", "category": "space-weather-gps", "titleKo": "지자기 폭풍 시 비행을 피해야 하는 이유", "titleEn": "Avoid Flying During Geomagnetic Storms", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 6, "slug": "kp-index-effect-on-gps-compass-reliability", "category": "space-weather-gps", "titleKo": "Kp지수가 GPS/나침반 신뢰도에 미치는 영향", "titleEn": "Kp Index Effect on GPS/Compass Reliability", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 7, "slug": "solar-wind-and-drone-communication-interference", "category": "space-weather-gps", "titleKo": "태양풍과 드론 통신 간섭", "titleEn": "Solar Wind and Drone Communication Interference", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 8, "slug": "what-is-the-kp-index", "category": "space-weather-gps", "titleKo": "Kp지수란 무엇인가", "titleEn": "What Is the Kp Index", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 9, "slug": "checks-before-flying-near-an-airport", "category": "us-airspace-regulations", "titleKo": "공항 근처 비행 전 확인사항", "titleEn": "Checks Before Flying Near an Airport", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 10, "slug": "faa-part-107-explained", "category": "us-airspace-regulations", "titleKo": "FAA Part 107 완벽 설명", "titleEn": "FAA Part 107 Explained", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 11, "slug": "understanding-us-airspace-classes", "category": "us-airspace-regulations", "titleKo": "미국 공역 등급 이해하기", "titleEn": "Understanding US Airspace Classes", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 12, "slug": "what-is-laanc-and-why-it-matters", "category": "us-airspace-regulations", "titleKo": "LAANC란 무엇이고 왜 중요한가", "titleEn": "What Is LAANC and Why It Matters", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 13, "slug": "beginner-drone-preflight-checklist", "category": "gear-flight-tips", "titleKo": "초보자를 위한 비행 전 점검 체크리스트", "titleEn": "Beginner Drone Preflight Checklist", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 14, "slug": "camera-settings-for-flying-in-strong-wind", "category": "gear-flight-tips", "titleKo": "강풍 비행 시 카메라 설정", "titleEn": "Camera Settings for Flying in Strong Wind", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 15, "slug": "drone-battery-care-and-lifespan-tips", "category": "gear-flight-tips", "titleKo": "드론 배터리 관리와 수명 연장 팁", "titleEn": "Drone Battery Care and Lifespan Tips", "published": true, "publishedDate": "2026-08-26"},
-  {"order": 16, "slug": "what-to-do-when-drone-gps-signal-is-weak", "category": "gear-flight-tips", "titleKo": "드론 GPS 신호가 약할 때 대처법", "titleEn": "What to Do When Drone GPS Signal Is Weak", "published": true, "publishedDate": "2026-08-26"},
-
-  {"order": 17, "slug": "flying-in-fog-safety-guide", "category": "weather-safety", "titleKo": "안개 속 비행 안전 가이드", "titleEn": "Flying in Fog: Safety Guide", "published": false, "publishedDate": null},
-  {"order": 18, "slug": "how-humidity-affects-drone-electronics", "category": "weather-safety", "titleKo": "습도가 드론 전자장비에 미치는 영향", "titleEn": "How Humidity Affects Drone Electronics", "published": false, "publishedDate": null},
-  {"order": 19, "slug": "snow-and-cold-weather-drone-flying-tips", "category": "weather-safety", "titleKo": "눈/한파 속 드론 비행 팁", "titleEn": "Snow and Cold Weather Drone Flying Tips", "published": false, "publishedDate": null},
-  {"order": 20, "slug": "lightning-and-thunderstorm-drone-safety", "category": "weather-safety", "titleKo": "낙뢰와 뇌우 시 드론 안전수칙", "titleEn": "Lightning and Thunderstorm Drone Safety", "published": false, "publishedDate": null},
-  {"order": 21, "slug": "best-time-of-day-to-fly-a-drone", "category": "weather-safety", "titleKo": "드론 비행에 가장 좋은 시간대", "titleEn": "Best Time of Day to Fly a Drone", "published": false, "publishedDate": null},
-  {"order": 22, "slug": "dew-point-and-drone-lens-fogging", "category": "weather-safety", "titleKo": "이슬점과 드론 렌즈 김서림", "titleEn": "Dew Point and Drone Lens Fogging", "published": false, "publishedDate": null},
-
-  {"order": 23, "slug": "understanding-noaa-space-weather-scales", "category": "space-weather-gps", "titleKo": "NOAA 우주기상 등급 이해하기", "titleEn": "Understanding NOAA Space Weather Scales", "published": false, "publishedDate": null},
-  {"order": 24, "slug": "gps-multipath-error-explained-for-drone-pilots", "category": "space-weather-gps", "titleKo": "드론 조종자를 위한 GPS 멀티패스 오차 설명", "titleEn": "GPS Multipath Error Explained for Drone Pilots", "published": false, "publishedDate": null},
-  {"order": 25, "slug": "how-solar-flares-affect-drone-navigation", "category": "space-weather-gps", "titleKo": "태양 플레어가 드론 항법에 미치는 영향", "titleEn": "How Solar Flares Affect Drone Navigation", "published": false, "publishedDate": null},
-  {"order": 26, "slug": "compass-calibration-and-magnetic-interference", "category": "space-weather-gps", "titleKo": "나침반 보정과 자기 간섭", "titleEn": "Compass Calibration and Magnetic Interference", "published": false, "publishedDate": null},
-  {"order": 27, "slug": "best-kp-index-conditions-for-long-range-flights", "category": "space-weather-gps", "titleKo": "장거리 비행에 좋은 Kp지수 조건", "titleEn": "Best Kp Index Conditions for Long-Range Flights", "published": false, "publishedDate": null},
-  {"order": 28, "slug": "ionospheric-scintillation-and-drone-gps", "category": "space-weather-gps", "titleKo": "전리층 섬광과 드론 GPS", "titleEn": "Ionospheric Scintillation and Drone GPS", "published": false, "publishedDate": null},
-
-  {"order": 29, "slug": "how-to-get-a-part-107-waiver", "category": "us-airspace-regulations", "titleKo": "Part 107 예외 승인(Waiver) 받는 법", "titleEn": "How to Get a Part 107 Waiver", "published": false, "publishedDate": null},
-  {"order": 30, "slug": "flying-drones-in-national-parks-rules", "category": "us-airspace-regulations", "titleKo": "국립공원 내 드론 비행 규정", "titleEn": "Flying Drones in National Parks: The Rules", "published": false, "publishedDate": null},
-  {"order": 31, "slug": "temporary-flight-restrictions-tfr-explained", "category": "us-airspace-regulations", "titleKo": "임시비행제한구역(TFR) 완벽 설명", "titleEn": "Temporary Flight Restrictions (TFR) Explained", "published": false, "publishedDate": null},
-  {"order": 32, "slug": "night-flying-rules-for-drone-pilots", "category": "us-airspace-regulations", "titleKo": "드론 야간 비행 규정", "titleEn": "Night Flying Rules for Drone Pilots", "published": false, "publishedDate": null},
-  {"order": 33, "slug": "remote-id-requirements-explained", "category": "us-airspace-regulations", "titleKo": "Remote ID 요구사항 완벽 설명", "titleEn": "Remote ID Requirements Explained", "published": false, "publishedDate": null},
-  {"order": 34, "slug": "flying-near-wildfires-drone-restrictions", "category": "us-airspace-regulations", "titleKo": "산불 인근 드론 비행 제한", "titleEn": "Flying Near Wildfires: Drone Restrictions", "published": false, "publishedDate": null},
-
-  {"order": 35, "slug": "nd-filter-guide-for-drone-cinematography", "category": "gear-flight-tips", "titleKo": "드론 영상 촬영을 위한 ND 필터 가이드", "titleEn": "ND Filter Guide for Drone Cinematography", "published": false, "publishedDate": null},
-  {"order": 36, "slug": "choosing-propeller-guards-for-safety", "category": "gear-flight-tips", "titleKo": "안전을 위한 프로펠러 가드 선택법", "titleEn": "Choosing Propeller Guards for Safety", "published": false, "publishedDate": null},
-  {"order": 37, "slug": "how-to-extend-drone-flight-time", "category": "gear-flight-tips", "titleKo": "드론 비행 시간을 늘리는 방법", "titleEn": "How to Extend Drone Flight Time", "published": false, "publishedDate": null},
-  {"order": 38, "slug": "best-practices-for-drone-firmware-updates", "category": "gear-flight-tips", "titleKo": "드론 펌웨어 업데이트 모범 사례", "titleEn": "Best Practices for Drone Firmware Updates", "published": false, "publishedDate": null},
-  {"order": 39, "slug": "packing-a-drone-travel-bag-checklist", "category": "gear-flight-tips", "titleKo": "드론 여행 가방 패킹 체크리스트", "titleEn": "Packing a Drone Travel Bag: Checklist", "published": false, "publishedDate": null},
-  {"order": 40, "slug": "return-to-home-settings-explained", "category": "gear-flight-tips", "titleKo": "Return-to-Home 설정 완벽 설명", "titleEn": "Return-to-Home Settings Explained", "published": false, "publishedDate": null}
+  {
+    "order": 1,
+    "slug": "temperature-and-drone-battery-performance",
+    "category": "weather-safety",
+    "titleKo": "기온과 드론 배터리 성능",
+    "titleEn": "Temperature and Drone Battery Performance",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 2,
+    "slug": "visibility-and-safe-drone-flight-standards",
+    "category": "weather-safety",
+    "titleKo": "가시거리와 안전 비행 기준",
+    "titleEn": "Visibility and Safe Drone Flight Standards",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 3,
+    "slug": "why-rain-is-dangerous-for-drone-flights",
+    "category": "weather-safety",
+    "titleKo": "비가 드론 비행에 위험한 이유",
+    "titleEn": "Why Rain Is Dangerous for Drone Flights",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 4,
+    "slug": "wind-gust-checklist-before-drone-flight",
+    "category": "weather-safety",
+    "titleKo": "비행 전 돌풍 체크리스트",
+    "titleEn": "Wind Gust Checklist Before Drone Flight",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 5,
+    "slug": "avoid-flying-during-geomagnetic-storms",
+    "category": "space-weather-gps",
+    "titleKo": "지자기 폭풍 시 비행을 피해야 하는 이유",
+    "titleEn": "Avoid Flying During Geomagnetic Storms",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 6,
+    "slug": "kp-index-effect-on-gps-compass-reliability",
+    "category": "space-weather-gps",
+    "titleKo": "Kp지수가 GPS/나침반 신뢰도에 미치는 영향",
+    "titleEn": "Kp Index Effect on GPS/Compass Reliability",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 7,
+    "slug": "solar-wind-and-drone-communication-interference",
+    "category": "space-weather-gps",
+    "titleKo": "태양풍과 드론 통신 간섭",
+    "titleEn": "Solar Wind and Drone Communication Interference",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 8,
+    "slug": "what-is-the-kp-index",
+    "category": "space-weather-gps",
+    "titleKo": "Kp지수란 무엇인가",
+    "titleEn": "What Is the Kp Index",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 9,
+    "slug": "checks-before-flying-near-an-airport",
+    "category": "us-airspace-regulations",
+    "titleKo": "공항 근처 비행 전 확인사항",
+    "titleEn": "Checks Before Flying Near an Airport",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 10,
+    "slug": "faa-part-107-explained",
+    "category": "us-airspace-regulations",
+    "titleKo": "FAA Part 107 완벽 설명",
+    "titleEn": "FAA Part 107 Explained",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 11,
+    "slug": "understanding-us-airspace-classes",
+    "category": "us-airspace-regulations",
+    "titleKo": "미국 공역 등급 이해하기",
+    "titleEn": "Understanding US Airspace Classes",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 12,
+    "slug": "what-is-laanc-and-why-it-matters",
+    "category": "us-airspace-regulations",
+    "titleKo": "LAANC란 무엇이고 왜 중요한가",
+    "titleEn": "What Is LAANC and Why It Matters",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 13,
+    "slug": "beginner-drone-preflight-checklist",
+    "category": "gear-flight-tips",
+    "titleKo": "초보자를 위한 비행 전 점검 체크리스트",
+    "titleEn": "Beginner Drone Preflight Checklist",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 14,
+    "slug": "camera-settings-for-flying-in-strong-wind",
+    "category": "gear-flight-tips",
+    "titleKo": "강풍 비행 시 카메라 설정",
+    "titleEn": "Camera Settings for Flying in Strong Wind",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 15,
+    "slug": "drone-battery-care-and-lifespan-tips",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 배터리 관리와 수명 연장 팁",
+    "titleEn": "Drone Battery Care and Lifespan Tips",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 16,
+    "slug": "what-to-do-when-drone-gps-signal-is-weak",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 GPS 신호가 약할 때 대처법",
+    "titleEn": "What to Do When Drone GPS Signal Is Weak",
+    "published": true,
+    "publishedDate": "2026-08-20"
+  },
+  {
+    "order": 17,
+    "slug": "flying-in-fog-safety-guide",
+    "category": "weather-safety",
+    "titleKo": "안개 속 비행 안전 가이드",
+    "titleEn": "Flying in Fog: Safety Guide",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 18,
+    "slug": "how-humidity-affects-drone-electronics",
+    "category": "weather-safety",
+    "titleKo": "습도가 드론 전자장비에 미치는 영향",
+    "titleEn": "How Humidity Affects Drone Electronics",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 19,
+    "slug": "snow-and-cold-weather-drone-flying-tips",
+    "category": "weather-safety",
+    "titleKo": "눈/한파 속 드론 비행 팁",
+    "titleEn": "Snow and Cold Weather Drone Flying Tips",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 20,
+    "slug": "lightning-and-thunderstorm-drone-safety",
+    "category": "weather-safety",
+    "titleKo": "낙뢰와 뇌우 시 드론 안전수칙",
+    "titleEn": "Lightning and Thunderstorm Drone Safety",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 21,
+    "slug": "best-time-of-day-to-fly-a-drone",
+    "category": "weather-safety",
+    "titleKo": "드론 비행에 가장 좋은 시간대",
+    "titleEn": "Best Time of Day to Fly a Drone",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 22,
+    "slug": "dew-point-and-drone-lens-fogging",
+    "category": "weather-safety",
+    "titleKo": "이슬점과 드론 렌즈 김서림",
+    "titleEn": "Dew Point and Drone Lens Fogging",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 23,
+    "slug": "understanding-noaa-space-weather-scales",
+    "category": "space-weather-gps",
+    "titleKo": "NOAA 우주기상 등급 이해하기",
+    "titleEn": "Understanding NOAA Space Weather Scales",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 24,
+    "slug": "gps-multipath-error-explained-for-drone-pilots",
+    "category": "space-weather-gps",
+    "titleKo": "드론 조종자를 위한 GPS 멀티패스 오차 설명",
+    "titleEn": "GPS Multipath Error Explained for Drone Pilots",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 25,
+    "slug": "how-solar-flares-affect-drone-navigation",
+    "category": "space-weather-gps",
+    "titleKo": "태양 플레어가 드론 항법에 미치는 영향",
+    "titleEn": "How Solar Flares Affect Drone Navigation",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 26,
+    "slug": "compass-calibration-and-magnetic-interference",
+    "category": "space-weather-gps",
+    "titleKo": "나침반 보정과 자기 간섭",
+    "titleEn": "Compass Calibration and Magnetic Interference",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 27,
+    "slug": "best-kp-index-conditions-for-long-range-flights",
+    "category": "space-weather-gps",
+    "titleKo": "장거리 비행에 좋은 Kp지수 조건",
+    "titleEn": "Best Kp Index Conditions for Long-Range Flights",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 28,
+    "slug": "ionospheric-scintillation-and-drone-gps",
+    "category": "space-weather-gps",
+    "titleKo": "전리층 섬광과 드론 GPS",
+    "titleEn": "Ionospheric Scintillation and Drone GPS",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 29,
+    "slug": "how-to-get-a-part-107-waiver",
+    "category": "us-airspace-regulations",
+    "titleKo": "Part 107 예외 승인(Waiver) 받는 법",
+    "titleEn": "How to Get a Part 107 Waiver",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 30,
+    "slug": "flying-drones-in-national-parks-rules",
+    "category": "us-airspace-regulations",
+    "titleKo": "국립공원 내 드론 비행 규정",
+    "titleEn": "Flying Drones in National Parks: The Rules",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 31,
+    "slug": "temporary-flight-restrictions-tfr-explained",
+    "category": "us-airspace-regulations",
+    "titleKo": "임시비행제한구역(TFR) 완벽 설명",
+    "titleEn": "Temporary Flight Restrictions (TFR) Explained",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 32,
+    "slug": "night-flying-rules-for-drone-pilots",
+    "category": "us-airspace-regulations",
+    "titleKo": "드론 야간 비행 규정",
+    "titleEn": "Night Flying Rules for Drone Pilots",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 33,
+    "slug": "remote-id-requirements-explained",
+    "category": "us-airspace-regulations",
+    "titleKo": "Remote ID 요구사항 완벽 설명",
+    "titleEn": "Remote ID Requirements Explained",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 34,
+    "slug": "flying-near-wildfires-drone-restrictions",
+    "category": "us-airspace-regulations",
+    "titleKo": "산불 인근 드론 비행 제한",
+    "titleEn": "Flying Near Wildfires: Drone Restrictions",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 35,
+    "slug": "nd-filter-guide-for-drone-cinematography",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 영상 촬영을 위한 ND 필터 가이드",
+    "titleEn": "ND Filter Guide for Drone Cinematography",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 36,
+    "slug": "choosing-propeller-guards-for-safety",
+    "category": "gear-flight-tips",
+    "titleKo": "안전을 위한 프로펠러 가드 선택법",
+    "titleEn": "Choosing Propeller Guards for Safety",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 37,
+    "slug": "how-to-extend-drone-flight-time",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 비행 시간을 늘리는 방법",
+    "titleEn": "How to Extend Drone Flight Time",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 38,
+    "slug": "best-practices-for-drone-firmware-updates",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 펌웨어 업데이트 모범 사례",
+    "titleEn": "Best Practices for Drone Firmware Updates",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 39,
+    "slug": "packing-a-drone-travel-bag-checklist",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 여행 가방 패킹 체크리스트",
+    "titleEn": "Packing a Drone Travel Bag: Checklist",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 40,
+    "slug": "return-to-home-settings-explained",
+    "category": "gear-flight-tips",
+    "titleKo": "Return-to-Home 설정 완벽 설명",
+    "titleEn": "Return-to-Home Settings Explained",
+    "published": false,
+    "publishedDate": null
+  }
 ]
