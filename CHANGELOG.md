@@ -1,5 +1,12 @@
 # 개발 이력 (Development History)
 
+## 2026-08-30 — 파비콘 교체 (Vercel 기본 로고 → 브랜드 아이콘)
+
+- 크롬 탭 아이콘이 create-next-app 기본 제공 Vercel 삼각형 로고 그대로였던 것을 확인 (ExifLens와 동일 파일, md5 해시 일치)
+- 헤더에서 사용 중인 lucide-react Wind 아이콘을 브랜드 색상(배경 #0a0a0a, 아이콘 #e38d3d)으로 512x512 SVG를 새로 그려 favicon.ico(16/32/48/256 멀티 사이즈), icon.png(512px), apple-icon.png(180px) 3종으로 교체
+- 16px 축소본을 직접 확인해 형태가 뭉개지지 않음을 검증 (아이콘을 캔버스의 약 86%까지 채우고 stroke-width 2.6 적용)
+- 코드 수정 없이 src/app/ 위치의 파일 교체만으로 Next.js가 자동으로 메타 태그 생성
+
 ## 2026-08-30 — 작업 폴더 이동 및 경로 수정
 
 - 바탕화면 정리를 위해 작업 폴더를 ~/Desktop/flydronemap → ~/Desktop/애드센스 제휴 마케팅/flydronemap 으로 이동 (git 이력 영향 없음)
