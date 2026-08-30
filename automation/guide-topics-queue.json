@@ -176,8 +176,8 @@
     "category": "weather-safety",
     "titleKo": "낙뢰와 뇌우 시 드론 안전수칙",
     "titleEn": "Lightning and Thunderstorm Drone Safety",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-08-30"
   },
   {
     "order": 21,
