@@ -94,14 +94,14 @@ export default async function LocaleLayout({
         <Script
           async
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-1P4CBYCR1V"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QFT36DH8YR"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-1P4CBYCR1V');
+            gtag('config', 'G-QFT36DH8YR');
           `}
         </Script>
         {ADSENSE_CLIENT_ID ? (

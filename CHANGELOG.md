@@ -1,5 +1,11 @@
 # 개발 이력 (Development History)
 
+## 2026-08-30 — GA4 측정 ID 오류 수정
+
+- 먼저 반영했던 Google 애널리틱스 측정 ID(G-1P4CBYCR1V)가 실제 flydronemap.com 데이터 스트림의 측정 ID(G-QFT36DH8YR)와 달라 데이터가 수집되지 않던 문제 수정
+- src/app/[locale]/layout.tsx의 gtag.js 로더 src와 gtag('config', ...) 호출을 올바른 측정 ID(G-QFT36DH8YR)로 교체
+- 로딩 방식(next/script, strategy="afterInteractive")은 기존과 동일, 변경 없음
+
 ## 2026-08-30 — Google 애널리틱스(GA4) 태그 설치
 
 - 애널리틱스에서 flydronemap.com용 데이터 스트림을 생성하며 안내받은 Google 태그(gtag.js, 측정 ID G-1P4CBYCR1V)를 설치
