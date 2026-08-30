@@ -1,5 +1,11 @@
 # 개발 이력 (Development History)
 
+## 2026-08-30 — Google 애널리틱스(GA4) 태그 설치
+
+- 애널리틱스에서 flydronemap.com용 데이터 스트림을 생성하며 안내받은 Google 태그(gtag.js, 측정 ID G-1P4CBYCR1V)를 설치
+- 애드센스 심사 대기 상태와는 무관한 별개 제품이라 심사에 영향 없음, `next/script`의 `strategy="afterInteractive"`로 로드해 페이지 렌더링(LCP)을 막지 않도록 구성 — 기존 AdSense 스크립트와 동일한 패턴
+- 측정 ID는 비밀값이 아니라(모든 페이지 HTML에 노출됨) 별도 환경변수 없이 코드에 직접 명시
+
 ## 2026-08-30 — 낙뢰와 뇌우 시 드론 안전수칙 가이드 자동 발행
 
 - 신규 가이드 아티클 "낙뢰와 뇌우 시 드론 안전수칙"(lightning-and-thunderstorm-drone-safety, weather-safety 카테고리)을 4개 언어(en/ja/ko/es)로 작성 — bolt from the blue, 돌풍 전선(gust front), 낙뢰 관련 전파 잡음, 조종자 본인의 노출 위험 등 E-E-A-T 강화 기준(구체적 수치·실전 시나리오·이유 설명·체크리스트) 적용
