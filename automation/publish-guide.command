@@ -1,7 +1,7 @@
 #!/bin/bash
 # FlyDroneMap 가이드 자동 발행 스크립트 (영구 설치형, v2 - 진단 강화판)
 
-REPO="$HOME/Desktop/flydronemap"
+REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
 SCRIPT_NAME="publish-guide.command"
 SCRIPT_PATH="$REPO/automation/$SCRIPT_NAME"
 CONTENT_DIR="$REPO/automation"

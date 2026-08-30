@@ -1,5 +1,11 @@
 # 개발 이력 (Development History)
 
+## 2026-08-30 — 작업 폴더 이동 및 경로 수정
+
+- 바탕화면 정리를 위해 작업 폴더를 ~/Desktop/flydronemap → ~/Desktop/애드센스 제휴 마케팅/flydronemap 으로 이동 (git 이력 영향 없음)
+- automation/publish-guide.command의 REPO 경로를 새 위치로 수정 (이전 경로로는 더 이상 동작하지 않아 필수 수정)
+- 예약 발행 자동화(GitHub clone 기반)는 로컬 경로와 무관하므로 별도 수정 불필요
+
 ## 2026-08-30 — GA4 측정 ID 오류 수정
 
 - 먼저 반영했던 Google 애널리틱스 측정 ID(G-1P4CBYCR1V)가 실제 flydronemap.com 데이터 스트림의 측정 ID(G-QFT36DH8YR)와 달라 데이터가 수집되지 않던 문제 수정
