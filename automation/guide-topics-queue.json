@@ -194,8 +194,8 @@
     "category": "weather-safety",
     "titleKo": "이슬점과 드론 렌즈 김서림",
     "titleEn": "Dew Point and Drone Lens Fogging",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-01"
   },
   {
     "order": 23,
