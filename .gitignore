@@ -4,3 +4,6 @@ node_modules
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# 발행 스크립트 자동 백업 폴더 (2026-08-31~)
+.backups/
