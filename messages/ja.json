@@ -67,7 +67,11 @@
         "question": "FlyDroneMapは無料ですか？",
         "answer": "はい、完全無料です。広告と一部のアフィリエイトリンクによって運営されており、表示されるデータの正確性には一切影響しません。"
       }
-    ]
+    ],
+    "crossLinkTitle": "関連ツール",
+    "crossLinkDescription": "飛行後に長時間露光の撮影を予定しているなら、絞りとISOに合わせたNDフィルターの露光時間を計算しましょう。",
+    "crossLinkCta": "NDフィルター露光計算機",
+    "crossLinkCtaAria": "新しいタブでExifLensを開く — NDフィルター露光計算機"
   },
   "Frame": {
     "title": "EXIFフレーム生成",

@@ -67,7 +67,11 @@
         "question": "FlyDroneMap는 무료인가요?",
         "answer": "네, 완전히 무료입니다. 광고와 일부 제휴 링크로 운영되며, 이는 표시되는 데이터의 정확성에 전혀 영향을 주지 않습니다."
       }
-    ]
+    ],
+    "crossLinkTitle": "관련 도구",
+    "crossLinkDescription": "비행 후 장노출 사진 촬영을 계획하고 있다면, 조리개와 ISO에 맞는 ND필터 노출 시간을 미리 계산해 보세요.",
+    "crossLinkCta": "ND Filter 노출 계산기",
+    "crossLinkCtaAria": "새 탭에서 ExifLens 열기 — ND Filter 노출 계산기"
   },
   "Frame": {
     "title": "EXIF 프레임 생성기",

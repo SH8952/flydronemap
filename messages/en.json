@@ -67,7 +67,11 @@
         "question": "Is FlyDroneMap free to use?",
         "answer": "Yes, completely free. The site is supported by ads and occasional affiliate links, which never affect the accuracy of the data shown."
       }
-    ]
+    ],
+    "crossLinkTitle": "Related tool",
+    "crossLinkDescription": "Planning a long-exposure shot after your flight? Calculate the right ND filter exposure time for your aperture and ISO.",
+    "crossLinkCta": "ND filter exposure calculator",
+    "crossLinkCtaAria": "Opens ExifLens in a new tab — ND filter exposure calculator"
   },
   "Frame": {
     "title": "EXIF Frame Generator",

@@ -7,6 +7,7 @@ import { Search, MapPin, Wind, Radio, ShieldAlert, Loader2 } from "lucide-react"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 
 // Leaflet touches `window` at import time, so it can only run client-side —
 // load it with ssr disabled rather than importing it directly.
@@ -408,6 +409,8 @@ export function DroneDashboard() {
           </div>
         </div>
       ) : null}
+
+      {data && !loading ? <CrossLinkExifLens /> : null}
 
       {!data && !loading ? (
         <p className="text-center text-sm text-muted-foreground">
