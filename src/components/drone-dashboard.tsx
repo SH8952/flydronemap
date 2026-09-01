@@ -100,8 +100,12 @@ export function DroneDashboard() {
   // dropdown "flickering" open and shut.
   const searchRequestId = useRef(0);
   const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // 사용자가 검색/버튼/지도클릭 등 직접 조작을 시작했는지 추적. true가 되면
+  // IP 기반 자동 위치 감지 결과가 늦게 도착해도 사용자의 선택을 덮어쓰지 않음.
+  const userActedRef = useRef(false);
 
   function handleSearchInput(value: string) {
+    userActedRef.current = true;
     setQuery(value);
 
     if (debounceTimer.current) clearTimeout(debounceTimer.current);
@@ -150,6 +154,7 @@ export function DroneDashboard() {
   }
 
   function selectLocation(loc: GeocodeResult) {
+    userActedRef.current = true;
     setSelected(loc);
     setSuggestions([]);
     setQuery(`${loc.name}${loc.admin1 ? `, ${loc.admin1}` : ""}`);
@@ -158,6 +163,7 @@ export function DroneDashboard() {
 
   /** Called when the user clicks directly on the map instead of searching. */
   function selectCoordinates(lat: number, lon: number) {
+    userActedRef.current = true;
     const label = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
     const loc: GeocodeResult = {
       name: label,
@@ -172,6 +178,7 @@ export function DroneDashboard() {
   }
 
   function useMyLocation() {
+    userActedRef.current = true;
     if (!navigator.geolocation) {
       setError(t("errorText"));
       return;
@@ -195,6 +202,42 @@ export function DroneDashboard() {
       },
     );
   }
+
+  // 접속 즉시 IP 기반 대략 위치로 첫 화면을 채운다 (브라우저 위치 권한 팝업 없음).
+  // Vercel 엣지 네트워크가 붙여주는 헤더가 없는 환경(로컬 개발 등)에서는 조용히
+  // 아무 것도 하지 않고 기존처럼 검색창만 있는 기본 화면을 유지한다.
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await fetch("/api/geo");
+        if (!res.ok) return;
+        const json = await res.json();
+        if (cancelled || userActedRef.current || !json.available) return;
+
+        const label = json.city
+          ? `${json.city}${json.country ? `, ${json.country}` : ""}`
+          : t("myLocation");
+        const loc: GeocodeResult = {
+          name: label,
+          country: json.country ?? "",
+          latitude: json.latitude,
+          longitude: json.longitude,
+        };
+        setSelected(loc);
+        setQuery(label);
+        loadDashboard(loc.latitude, loc.longitude);
+      } catch {
+        // 자동 위치 감지 실패 시 조용히 무시하고 기본 화면 유지
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="flex flex-col gap-6">
