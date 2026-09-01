@@ -30,7 +30,7 @@ export function CrossLinkExifLens() {
       </p>
 
       <a
-        href="https://exiflens.com/"
+        href="https://exifnd.com/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t("crossLinkCtaAria")}
