@@ -10,7 +10,6 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
-  const faq = t.raw("faq") as Array<{ question: string; answer: string }>;
   const usageSteps = t.raw("usageSteps") as string[];
 
   return (
@@ -43,20 +42,6 @@ export default async function HomePage({
             </li>
           ))}
         </ol>
-      </section>
-
-      <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">{t("faqTitle")}</h2>
-        <div className="flex flex-col divide-y divide-border rounded-lg border border-border">
-          {faq.map((item, i) => (
-            <div key={i} className="p-4">
-              <p className="font-medium">{item.question}</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                {item.answer}
-              </p>
-            </div>
-          ))}
-        </div>
       </section>
     </div>
   );

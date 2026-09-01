@@ -1,7 +1,11 @@
 {
   "Header": {
     "tagline": "ドローン飛行天気 & Kp指数",
-    "guidesNav": "ガイド"
+    "guidesNav": "ガイド",
+    "aboutNav": "サイトについて",
+    "faqNav": "FAQ",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
   },
   "Home": {
     "title": "FlyDroneMap",
@@ -72,6 +76,10 @@
     "crossLinkDescription": "飛行後に長時間露光の撮影を予定しているなら、絞りとISOに合わせたNDフィルターの露光時間を計算しましょう。",
     "crossLinkCta": "NDフィルター露光計算機",
     "crossLinkCtaAria": "新しいタブでExifLensを開く — NDフィルター露光計算機"
+  },
+  "Faq": {
+    "title": "よくある質問",
+    "subtitle": "FlyDroneMapの使用に関するよくある質問をまとめました。"
   },
   "Frame": {
     "title": "EXIFフレーム生成",

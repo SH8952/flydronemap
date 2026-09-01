@@ -1,7 +1,11 @@
 {
   "Header": {
     "tagline": "드론 비행 날씨 & KP 지수",
-    "guidesNav": "가이드"
+    "guidesNav": "가이드",
+    "aboutNav": "소개",
+    "faqNav": "FAQ",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
   },
   "Home": {
     "title": "FlyDroneMap",
@@ -72,6 +76,10 @@
     "crossLinkDescription": "비행 후 장노출 사진 촬영을 계획하고 있다면, 조리개와 ISO에 맞는 ND필터 노출 시간을 미리 계산해 보세요.",
     "crossLinkCta": "ND Filter 노출 계산기",
     "crossLinkCtaAria": "새 탭에서 ExifLens 열기 — ND Filter 노출 계산기"
+  },
+  "Faq": {
+    "title": "자주 묻는 질문",
+    "subtitle": "FlyDroneMap 이용 중 자주 묻는 질문을 모았습니다."
   },
   "Frame": {
     "title": "EXIF 프레임 생성기",

@@ -7,6 +7,24 @@
 
 # 개발 이력 (Development History)
 
+## 2026-09-01 — 헤더에 소개/가이드/FAQ 내비게이션 추가 + 모바일 햄버거 메뉴 적용
+
+- ExifLens에 먼저 적용했던 헤더 내비게이션 개편(소개/가이드/FAQ 링크 + FAQ 전용 페이지 분리)과
+  모바일 햄버거 메뉴를 FlyDroneMap에도 동일하게 적용
+- src/components/site-header.tsx: 데스크톱은 소개·가이드·FAQ 링크가 한 줄로 표시되고,
+  모바일(sm 미만)에서는 언어 선택 옆 햄버거 버튼으로 축소되어 클릭 시 세로 메뉴 패널이 펼쳐짐
+- 홈페이지(src/app/[locale]/page.tsx)에 인라인되어 있던 FAQ 섹션을 제거하고
+  src/app/[locale]/faq/page.tsx로 분리 (FAQPage JSON-LD 구조화 데이터도 함께 이전)
+- FAQ 표시 방식은 기존 카드형 대신 ExifLens와 동일한 아코디언(펼치기/접기, details/summary) 스타일로 변경
+- src/app/sitemap.ts에 /faq 경로 추가
+- messages/{ko,en,es,ja}.json: Header.aboutNav/faqNav/openMenu/closeMenu 키 추가,
+  Faq.title/subtitle 네임스페이스 신규 추가 (4개 언어 모두)
+- 검증: tsc --noEmit 통과, 변경 파일 대상 eslint 통과(경고 0건), npm run build 전체 빌드 성공
+  (/faq 라우트가 4개 언어 모두 정적(SSG) 생성됨을 확인)
+- 참고: 이번 세션 환경(device_bash)에서는 백그라운드 dev 서버가 호출 간에 유지되지 않아
+  Playwright 뷰포트별(모바일 412×915 / 데스크톱 1280×800) 스크린샷 검증은 수행하지 못함 —
+  코드 자체는 ExifLens에서 이미 검증된 반응형 패턴(sm:flex/sm:hidden)을 그대로 사용
+
 ## 2026-09-01 — 접속 시 자동 위치 표시 (IP 기반)
 
 - 기존에는 사용자가 "내 위치 사용" 버튼을 눌러야만 지도/데이터가 표시되던 것을,

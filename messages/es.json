@@ -1,7 +1,11 @@
 {
   "Header": {
     "tagline": "Clima de vuelo para drones e índice Kp",
-    "guidesNav": "Guías"
+    "guidesNav": "Guías",
+    "aboutNav": "Sobre nosotros",
+    "faqNav": "FAQ",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
   },
   "Home": {
     "title": "FlyDroneMap",
@@ -72,6 +76,10 @@
     "crossLinkDescription": "¿Piensas hacer una exposición larga después del vuelo? Calcula el tiempo de exposición del filtro ND según tu apertura e ISO.",
     "crossLinkCta": "Calculadora de exposición con filtro ND",
     "crossLinkCtaAria": "Abre ExifLens en una pestaña nueva — calculadora de exposición con filtro ND"
+  },
+  "Faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Respuestas a las preguntas más comunes sobre el uso de FlyDroneMap."
   },
   "Frame": {
     "title": "Generador de Marcos EXIF",

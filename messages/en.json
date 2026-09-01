@@ -1,7 +1,11 @@
 {
   "Header": {
     "tagline": "Drone Flight Weather & Kp Index",
-    "guidesNav": "Guides"
+    "guidesNav": "Guides",
+    "aboutNav": "About",
+    "faqNav": "FAQ",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "Home": {
     "title": "FlyDroneMap",
@@ -72,6 +76,10 @@
     "crossLinkDescription": "Planning a long-exposure shot after your flight? Calculate the right ND filter exposure time for your aperture and ISO.",
     "crossLinkCta": "ND filter exposure calculator",
     "crossLinkCtaAria": "Opens ExifLens in a new tab — ND filter exposure calculator"
+  },
+  "Faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to common questions about using FlyDroneMap."
   },
   "Frame": {
     "title": "EXIF Frame Generator",

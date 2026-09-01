@@ -20,6 +20,7 @@ const STATIC_PATHS = [
   "/about",
   "/disclosure",
   "/guides",
+  "/faq",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
