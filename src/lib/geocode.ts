@@ -7,80 +7,78 @@ export type GeocodeResult = {
   longitude: number;
 };
 
-const VWORLD_SEARCH_URL = "https://api.vworld.kr/req/search";
+const GOOGLE_PLACES_SEARCH_URL = "https://places.googleapis.com/v1/places:searchText";
 
 /** Matches Hangul syllables/jamo — used to detect a Korean-language query so
- * we can route it to VWorld's address search instead of Open-Meteo's
- * place-name gazetteer, which doesn't index Korean street addresses. */
+ * we can route it to Google's Korea-scoped address search instead of
+ * Open-Meteo's place-name gazetteer, which doesn't index Korean street
+ * addresses. */
 function containsHangul(text: string): boolean {
   return /[가-힣ᄀ-ᇿ㄰-㆏]/.test(text);
 }
 
 /**
- * Searches South Korea's address/place database via VWorld's Search API
- * (도로명/지번 주소 + 장소명). Requires VWORLD_API_KEY / VWORLD_DOMAIN — falls
- * back silently (empty list) if the key is missing or the request fails, so
+ * Searches South Korea's address/place database via Google's Places API
+ * (Text Search, regionCode=KR). Requires GOOGLE_PLACES_API_KEY — falls back
+ * silently (empty list) if the key is missing or the request fails, so
  * callers can safely fall through to another source.
+ *
+ * Replaced VWorld's address search here on 2026-09-02: VWorld blocks
+ * requests from Vercel's server IP ranges (the same restriction that made
+ * the airspace-layer overlay fail server-side — see
+ * src/lib/airspace-layers.ts's header comment), so this call always failed
+ * silently in production. Google's Places API has no such restriction; it's
+ * a commercial API meant to be called from any server. The field mask below
+ * is kept minimal so requests stay on Google's cheaper "Text Search
+ * Essentials" pricing tier (10,000 free requests/month) rather than
+ * Pro/Enterprise.
  */
 async function searchKoreaAddress(query: string): Promise<GeocodeResult[]> {
-  const apiKey = process.env.VWORLD_API_KEY;
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   if (!apiKey) return [];
-  const domain = process.env.VWORLD_DOMAIN ?? "https://flydronemap.com";
-
-  const url = new URL(VWORLD_SEARCH_URL);
-  url.searchParams.set("service", "search");
-  url.searchParams.set("request", "search");
-  url.searchParams.set("version", "2.0");
-  url.searchParams.set("crs", "EPSG:4326");
-  url.searchParams.set("size", "5");
-  url.searchParams.set("page", "1");
-  url.searchParams.set("query", query);
-  url.searchParams.set("type", "address");
-  url.searchParams.set("category", "road");
-  url.searchParams.set("format", "json");
-  url.searchParams.set("errorFormat", "json");
-  url.searchParams.set("key", apiKey);
-  url.searchParams.set("domain", domain);
 
   try {
-    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
+    const res = await fetch(GOOGLE_PLACES_SEARCH_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask":
+          "places.displayName,places.formattedAddress,places.location",
+      },
+      body: JSON.stringify({
+        textQuery: query,
+        languageCode: "ko",
+        regionCode: "KR",
+      }),
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return [];
 
     const data = (await res.json()) as {
-      response?: {
-        status?: string;
-        result?: {
-          items?: Array<{
-            title?: string;
-            address?: { road?: string; parcel?: string };
-            point?: { x?: string; y?: string };
-          }>;
-        };
-      };
+      places?: Array<{
+        displayName?: { text?: string };
+        formattedAddress?: string;
+        location?: { latitude?: number; longitude?: number };
+      }>;
     };
 
-    if (data.response?.status !== "OK") return [];
-
-    const items = data.response.result?.items ?? [];
+    const places = data.places ?? [];
     const results: GeocodeResult[] = [];
-    for (const item of items) {
-      const lon = Number(item.point?.x);
-      const lat = Number(item.point?.y);
-      if (Number.isNaN(lat) || Number.isNaN(lon)) continue;
+    for (const place of places) {
+      const lat = place.location?.latitude;
+      const lon = place.location?.longitude;
+      if (typeof lat !== "number" || typeof lon !== "number") continue;
       results.push({
-        name:
-          item.title ||
-          item.address?.road ||
-          item.address?.parcel ||
-          query,
-        admin1: item.address?.road || item.address?.parcel,
+        name: place.displayName?.text || place.formattedAddress || query,
+        admin1: place.formattedAddress,
         country: "대한민국",
         countryCode: "KR",
         latitude: lat,
         longitude: lon,
       });
     }
-    return results;
+    return results.slice(0, 5);
   } catch {
     return [];
   }

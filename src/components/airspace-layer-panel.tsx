@@ -39,7 +39,7 @@ export function AirspaceLayerPanel({
       </button>
 
       {open ? (
-        <div className="absolute right-0 top-11 max-h-[60vh] w-64 overflow-y-auto rounded-lg border border-border bg-background/95 p-3 shadow-lg backdrop-blur-sm">
+        <div className="absolute right-0 top-11 max-h-56 w-64 overflow-y-auto rounded-lg border border-border bg-background/95 p-3 shadow-lg backdrop-blur-sm sm:max-h-80">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-sm font-semibold">
               {t("airspaceLayersTitle")}

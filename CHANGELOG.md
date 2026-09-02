@@ -1,3 +1,27 @@
+## 2026-09-02 — 한글 주소 검색을 구글 Places API로 전환 (브이월드 IP 차단 우회) + 저장소 설정 정리
+
+- 사용자가 "한글 주소 검색 시 연관검색어가 더 이상 뜨지 않는다"고 문의 → 원인은 새 버그가 아니라 기존에 알려진 브이월드-Vercel IP 차단 문제였음을 코드로 확인(`searchKoreaAddress`가 브이월드 호출 실패 시 조용히 빈 배열을 반환하고, 한국 도로명 주소를 거의 인식하지 못하는 Open-Meteo 글로벌 지명 검색으로 넘어가던 것이 원인).
+- 사용자가 대안으로 구글 지도 API 사용 가능 여부 문의 → 구글 Places/Geocoding API는 Vercel 등 특정 서버 IP를 차단하지 않는 상용 API라는 점을 확인 후, 구글 지도(Places+Geocoding) 방식으로 진행하기로 결정.
+- `src/lib/geocode.ts`: `searchKoreaAddress()`의 백엔드를 브이월드 `req/search`에서 구글 Places API(New) `places:searchText`(regionCode=KR, languageCode=ko)로 교체. 필드마스크를 최소로 지정해 구글의 더 저렴한 "Text Search Essentials" 요금제(월 10,000건 무료)를 적용받도록 함. 기존과 동일하게 `GOOGLE_PLACES_API_KEY` 미설정/요청 실패 시 조용히 빈 배열을 반환해 Open-Meteo 폴백으로 안전하게 넘어감 — 호출부(`searchLocations`)는 변경 없음.
+- `.env.example` 갱신: 이 파일이 그동안 `.gitignore`의 `.env*` 패턴에 걸려 한 번도 git에 커밋된 적 없었던 것을 발견(`!.env.example` 예외 규칙 추가로 수정) — 겸사겸사 그동안 이 파일에 누락되어 있던 `VWORLD_API_KEY`/`VWORLD_DOMAIN`/`NEXT_PUBLIC_VWORLD_*` 4종과 신규 `GOOGLE_PLACES_API_KEY`를 문서화.
+- `.gitignore`에 `_삭제해도되는파일_*/`(정리용 임시 폴더 패턴) 규칙 추가 — 자동 push 스크립트의 `git add -A`가 정리 대상 파일을 실수로 커밋하지 않도록 사전 방지.
+- **조치 필요(사용자)**: 구글 클라우드 콘솔에서 프로젝트 생성 → "Places API (New)" 활성화 → 결제 계정 등록(월 10,000건 무료) → 해당 API로 제한된 API 키 발급 후, 맥 저장소의 `.env.local`과 Vercel 환경변수(Production+Preview)에 `GOOGLE_PLACES_API_KEY`로 등록해야 실제로 동작함. 키 등록 전까지는 기존과 동일하게 조용히 폴백되어 사이트 동작에 영향 없음.
+- 검증: `tsc --noEmit`/`eslint` 통과(오류 0건), `npm run build` 정적 페이지 151/151 생성 성공(마지막 export-detail.json EPERM만 발생, 기존과 동일한 무해한 현상). 실제 구글 API 키가 없어 런타임 동작(실제 검색 결과 반환)까지는 이 세션에서 검증하지 못함 — 키 등록 후 사용자 확인 필요.
+- **후속 업데이트(같은 날)**: 사용자가 구글 클라우드 콘솔의 "Maps Platform 간편 설정" 온보딩으로 API 키를 발급 — 이 방식이 기본값으로 "HTTP 리퍼러" 애플리케이션 제한 + 구글 지도 관련 API 35개 전체 허용 상태로 키를 생성한다는 것을 확인. 서버사이드(Vercel Next.js API 라우트)에서 호출하는 키라 Referer 헤더가 실리지 않아 그대로 두면 요청이 거부되는 문제라, 애플리케이션 제한을 "없음"으로, API 제한을 "Places API (New)" 단독으로 재설정하도록 안내 후 사용자가 콘솔에서 직접 수정·저장. 발급된 키를 맥 저장소 `.env.local`에 `GOOGLE_PLACES_API_KEY`로 반영(반영 전 `.backups/backup_20260902_144655_env_local/`에 기존 `.env.local` 백업). 클라우드/원격 셸 양쪽 모두 조직 네트워크 정책상 googleapis.com 직접 연결이 막혀 있어 Claude가 직접 응답을 검증하지는 못했고, 대신 사용자가 로컬 `npm run dev`로 직접 테스트 — "마장로 543번길" 검색 시 "마장로543번길, 인천광역시 계양구 마장로543번길 · 대한민국" 결과가 정상적으로 뜨는 것을 스크린샷으로 확인, 구글 Places API 전환이 실제로 정상 동작함이 검증됨. ~~**남은 조치(사용자)**: Vercel 프로젝트 환경변수(Production+Preview)에 동일한 `GOOGLE_PLACES_API_KEY` 등록 필요~~ → **해결됨(같은 날 후속)**: firelic 프로젝트에서 먼저 검증된 방식대로, 새로 로그인하는 게 아니라 사용자가 이미 로그인해 둔 브라우저 세션을 Claude in Chrome 브라우저 자동화로 그대로 이용해 vercel.com/moneypick/flydronemap/settings/environment-variables에서 직접 등록(사용자에게 명시적 진행 확인을 받은 뒤 수행). Production+Preview 두 범위 모두 선택해 저장 완료, "Updated Environment Variable successfully" 토스트로 확인됨. **다만 현재 Vercel main 브랜치에는 이 기능의 코드(구글 Places API 전환)가 아직 반영되어 있지 않아**, `regulations_push.command` 실행으로 코드가 push된 뒤에야 이 환경변수가 실제로 쓰이는 새 배포가 만들어짐 — 그 전까지는 지금 Redeploy를 눌러도 의미가 없어 보류함.
+
+## 2026-09-02 — 공역 레이어 패널 스크롤 잘림 버그 수정
+
+- 사용자가 스크린샷과 함께 "레이어 패널에서 방공식별구역 아래로 스크롤이 안 된다"고 신고. 원인 진단: 패널 자체는 `max-h-[60vh] overflow-y-auto`로 스크롤 가능하게 되어 있었으나, 패널의 위치 기준 조상이 지도 wrapper(`h-72`/`sm:h-96`, `overflow-hidden`)이고 `60vh`가 이 wrapper의 실제 높이(288px/384px)보다 훨씬 커서, 패널이 wrapper 하단에서 스크롤바째로 잘려 보이지 않던 것이 원인.
+- `src/components/airspace-layer-panel.tsx`: 패널 높이를 뷰포트 기준(`60vh`) 대신 지도 wrapper 높이에 맞춘 반응형 고정값(`max-h-56`/`sm:max-h-80`)으로 변경 — 어떤 화면 크기에서도 지도 영역 안에서 잘리지 않고 자체 스크롤이 정상 동작하도록 수정.
+- 검증: `tsc --noEmit`/`eslint` 통과(오류 0건), `npm run build` 정적 페이지 151/151 생성 성공(마지막 export-detail.json 정리 단계의 무해한 EPERM만 발생, 기존과 동일한 이 환경 특유 현상).
+
+## 2026-09-02 — 자동 push 스크립트 방식 복원 + 저장소 정리(.gitignore)
+
+- 사용자 요청: device_bash로 맥 로컬 저장소에 직접 커밋까지는 가능하지만 push는 맥 키체인 인증이 필요해 device_bash로 실행 불가 — 최근 세션에서 "터미널에 git push 직접 입력" 방식으로 안내했던 것을, 이 프로젝트에서 이미 정착되어 있던 방식(GA4/파비콘/폴더이동 배포 때 썼던 더블클릭 `.command` 스크립트, 원클릭 자동 커밋+push+완료 후 3초 내 터미널 종료 및 스크립트 자체 삭제, 작업 폴더에 스크립트 자동 배치)으로 되돌려달라는 피드백을 받고 원복.
+- `regulations_push.command`를 저장소 루트에 직접 생성(device_bash로 맥 폴더에 바로 작성) — 더블클릭 시: 추적 중인 파일에 변경사항 있으면 자동 `git add -A && git commit` → `git push origin main` → 완료/실패 메시지 출력 → 3초 후 Terminal 창 자동 종료(`osascript`) + 스크립트 자체 삭제(`rm`).
+- 스크립트가 `git add -A`를 자동 수행하는 특성상, 저장소에 남아있던 임시 산출물(`.next.stale.*` 빌드 잔재 3개, `tsc_ga4_check.log`, `flydronemap_project_summary.md`, 스크립트 파일 자신)이 다음 실행 때 의도치 않게 커밋될 위험을 사전 점검으로 발견 — 부작용 방지를 위해 `.gitignore`에 `*.command`, `.next.stale.*/`, `*.log`, `flydronemap_project_summary.md` 규칙 추가 후 재확인, 정상적인 소스 변경분(`.gitignore` 자체)만 남는 것을 확인.
+- 향후에도 device_bash가 직접 push할 수 없는 모든 배포 작업은 이 `.command` 자동 스크립트 방식을 기본으로 사용(Claude 메모리에 표준 작업 방식으로 기록).
+
 ## 2026-09-02 — "국가별 드론 규정 안내" 신규 섹션 추가 (/regulations)
 
 - 사용자가 DJI 공식 FlySafe(fly-safe.dji.com)를 참고 모델로 제시하며 "국가별 대략적인 규정 안내 + 공식 기관 링크"를 요청, 협의 끝에 확정된 범위대로 구현: 기존 대시보드는 그대로 유지, 별도 섹션(`/regulations`)으로 신설. 초기 지원국은 사이트가 이미 지원하는 4개 언어(en/ko/ja/es)에 대응하는 미국·한국·일본·스페인. 지도 데이터가 이미 있는 미국(FAA)·한국(VWorld)은 홈 지도에서 공역을 색상으로 확인하도록 안내하고, 아직 데이터가 없는 일본·스페인은 1차로 텍스트 요약 + 공식 링크만 제공.
@@ -57,6 +81,30 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-02 — 한글 주소 검색을 구글 Places API로 전환 (브이월드 IP 차단 우회) + 저장소 설정 정리
+
+- 사용자가 "한글 주소 검색 시 연관검색어가 더 이상 뜨지 않는다"고 문의 → 원인은 새 버그가 아니라 기존에 알려진 브이월드-Vercel IP 차단 문제였음을 코드로 확인(`searchKoreaAddress`가 브이월드 호출 실패 시 조용히 빈 배열을 반환하고, 한국 도로명 주소를 거의 인식하지 못하는 Open-Meteo 글로벌 지명 검색으로 넘어가던 것이 원인).
+- 사용자가 대안으로 구글 지도 API 사용 가능 여부 문의 → 구글 Places/Geocoding API는 Vercel 등 특정 서버 IP를 차단하지 않는 상용 API라는 점을 확인 후, 구글 지도(Places+Geocoding) 방식으로 진행하기로 결정.
+- `src/lib/geocode.ts`: `searchKoreaAddress()`의 백엔드를 브이월드 `req/search`에서 구글 Places API(New) `places:searchText`(regionCode=KR, languageCode=ko)로 교체. 필드마스크를 최소로 지정해 구글의 더 저렴한 "Text Search Essentials" 요금제(월 10,000건 무료)를 적용받도록 함. 기존과 동일하게 `GOOGLE_PLACES_API_KEY` 미설정/요청 실패 시 조용히 빈 배열을 반환해 Open-Meteo 폴백으로 안전하게 넘어감 — 호출부(`searchLocations`)는 변경 없음.
+- `.env.example` 갱신: 이 파일이 그동안 `.gitignore`의 `.env*` 패턴에 걸려 한 번도 git에 커밋된 적 없었던 것을 발견(`!.env.example` 예외 규칙 추가로 수정) — 겸사겸사 그동안 이 파일에 누락되어 있던 `VWORLD_API_KEY`/`VWORLD_DOMAIN`/`NEXT_PUBLIC_VWORLD_*` 4종과 신규 `GOOGLE_PLACES_API_KEY`를 문서화.
+- `.gitignore`에 `_삭제해도되는파일_*/`(정리용 임시 폴더 패턴) 규칙 추가 — 자동 push 스크립트의 `git add -A`가 정리 대상 파일을 실수로 커밋하지 않도록 사전 방지.
+- **조치 필요(사용자)**: 구글 클라우드 콘솔에서 프로젝트 생성 → "Places API (New)" 활성화 → 결제 계정 등록(월 10,000건 무료) → 해당 API로 제한된 API 키 발급 후, 맥 저장소의 `.env.local`과 Vercel 환경변수(Production+Preview)에 `GOOGLE_PLACES_API_KEY`로 등록해야 실제로 동작함. 키 등록 전까지는 기존과 동일하게 조용히 폴백되어 사이트 동작에 영향 없음.
+- 검증: `tsc --noEmit`/`eslint` 통과(오류 0건), `npm run build` 정적 페이지 151/151 생성 성공(마지막 export-detail.json EPERM만 발생, 기존과 동일한 무해한 현상). 실제 구글 API 키가 없어 런타임 동작(실제 검색 결과 반환)까지는 이 세션에서 검증하지 못함 — 키 등록 후 사용자 확인 필요.
+- **후속 업데이트(같은 날)**: 사용자가 구글 클라우드 콘솔의 "Maps Platform 간편 설정" 온보딩으로 API 키를 발급 — 이 방식이 기본값으로 "HTTP 리퍼러" 애플리케이션 제한 + 구글 지도 관련 API 35개 전체 허용 상태로 키를 생성한다는 것을 확인. 서버사이드(Vercel Next.js API 라우트)에서 호출하는 키라 Referer 헤더가 실리지 않아 그대로 두면 요청이 거부되는 문제라, 애플리케이션 제한을 "없음"으로, API 제한을 "Places API (New)" 단독으로 재설정하도록 안내 후 사용자가 콘솔에서 직접 수정·저장. 발급된 키를 맥 저장소 `.env.local`에 `GOOGLE_PLACES_API_KEY`로 반영(반영 전 `.backups/backup_20260902_144655_env_local/`에 기존 `.env.local` 백업). 클라우드/원격 셸 양쪽 모두 조직 네트워크 정책상 googleapis.com 직접 연결이 막혀 있어 Claude가 직접 응답을 검증하지는 못했고, 대신 사용자가 로컬 `npm run dev`로 직접 테스트 — "마장로 543번길" 검색 시 "마장로543번길, 인천광역시 계양구 마장로543번길 · 대한민국" 결과가 정상적으로 뜨는 것을 스크린샷으로 확인, 구글 Places API 전환이 실제로 정상 동작함이 검증됨. ~~**남은 조치(사용자)**: Vercel 프로젝트 환경변수(Production+Preview)에 동일한 `GOOGLE_PLACES_API_KEY` 등록 필요~~ → **해결됨(같은 날 후속)**: firelic 프로젝트에서 먼저 검증된 방식대로, 새로 로그인하는 게 아니라 사용자가 이미 로그인해 둔 브라우저 세션을 Claude in Chrome 브라우저 자동화로 그대로 이용해 vercel.com/moneypick/flydronemap/settings/environment-variables에서 직접 등록(사용자에게 명시적 진행 확인을 받은 뒤 수행). Production+Preview 두 범위 모두 선택해 저장 완료, "Updated Environment Variable successfully" 토스트로 확인됨. **다만 현재 Vercel main 브랜치에는 이 기능의 코드(구글 Places API 전환)가 아직 반영되어 있지 않아**, `regulations_push.command` 실행으로 코드가 push된 뒤에야 이 환경변수가 실제로 쓰이는 새 배포가 만들어짐 — 그 전까지는 지금 Redeploy를 눌러도 의미가 없어 보류함.
+
+## 2026-09-02 — 공역 레이어 패널 스크롤 잘림 버그 수정
+
+- 사용자가 스크린샷과 함께 "레이어 패널에서 방공식별구역 아래로 스크롤이 안 된다"고 신고. 원인 진단: 패널 자체는 `max-h-[60vh] overflow-y-auto`로 스크롤 가능하게 되어 있었으나, 패널의 위치 기준 조상이 지도 wrapper(`h-72`/`sm:h-96`, `overflow-hidden`)이고 `60vh`가 이 wrapper의 실제 높이(288px/384px)보다 훨씬 커서, 패널이 wrapper 하단에서 스크롤바째로 잘려 보이지 않던 것이 원인.
+- `src/components/airspace-layer-panel.tsx`: 패널 높이를 뷰포트 기준(`60vh`) 대신 지도 wrapper 높이에 맞춘 반응형 고정값(`max-h-56`/`sm:max-h-80`)으로 변경 — 어떤 화면 크기에서도 지도 영역 안에서 잘리지 않고 자체 스크롤이 정상 동작하도록 수정.
+- 검증: `tsc --noEmit`/`eslint` 통과(오류 0건), `npm run build` 정적 페이지 151/151 생성 성공(마지막 export-detail.json 정리 단계의 무해한 EPERM만 발생, 기존과 동일한 이 환경 특유 현상).
+
+## 2026-09-02 — 자동 push 스크립트 방식 복원 + 저장소 정리(.gitignore)
+
+- 사용자 요청: device_bash로 맥 로컬 저장소에 직접 커밋까지는 가능하지만 push는 맥 키체인 인증이 필요해 device_bash로 실행 불가 — 최근 세션에서 "터미널에 git push 직접 입력" 방식으로 안내했던 것을, 이 프로젝트에서 이미 정착되어 있던 방식(GA4/파비콘/폴더이동 배포 때 썼던 더블클릭 `.command` 스크립트, 원클릭 자동 커밋+push+완료 후 3초 내 터미널 종료 및 스크립트 자체 삭제, 작업 폴더에 스크립트 자동 배치)으로 되돌려달라는 피드백을 받고 원복.
+- `regulations_push.command`를 저장소 루트에 직접 생성(device_bash로 맥 폴더에 바로 작성) — 더블클릭 시: 추적 중인 파일에 변경사항 있으면 자동 `git add -A && git commit` → `git push origin main` → 완료/실패 메시지 출력 → 3초 후 Terminal 창 자동 종료(`osascript`) + 스크립트 자체 삭제(`rm`).
+- 스크립트가 `git add -A`를 자동 수행하는 특성상, 저장소에 남아있던 임시 산출물(`.next.stale.*` 빌드 잔재 3개, `tsc_ga4_check.log`, `flydronemap_project_summary.md`, 스크립트 파일 자신)이 다음 실행 때 의도치 않게 커밋될 위험을 사전 점검으로 발견 — 부작용 방지를 위해 `.gitignore`에 `*.command`, `.next.stale.*/`, `*.log`, `flydronemap_project_summary.md` 규칙 추가 후 재확인, 정상적인 소스 변경분(`.gitignore` 자체)만 남는 것을 확인.
+- 향후에도 device_bash가 직접 push할 수 없는 모든 배포 작업은 이 `.command` 자동 스크립트 방식을 기본으로 사용(Claude 메모리에 표준 작업 방식으로 기록).
 
 ## 2026-09-02 — "국가별 드론 규정 안내" 신규 섹션 추가 (/regulations)
 
