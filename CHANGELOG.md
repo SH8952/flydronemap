@@ -1,3 +1,10 @@
+## 2026-09-02 — VWorld 서비스URL 수정으로 WMS 503 오류 해결 확인
+
+- 사용자가 브이월드 마이포털 인증키 관리 화면에서 서비스URL을 `https://flydronemap.com`(www 없음) → `https://www.flydronemap.com`으로 수정 완료
+- Claude가 실제 배포 사이트(https://www.flydronemap.com/ko, 인천 지점)에서 Claude in Chrome으로 재검증: 페이지에 로드된 VWorld WMS 타일 72개 전수 조사 결과 전부 정상 로드(complete: true, 256x256, 깨진 이미지 0건) — 지난번 발견된 503 오류가 해결됨을 확인
+- 이전 진단(바로 위 항목)에서 추정한 "서비스URL에 www 버전 도메인이 등록되어 있지 않아 Referer 불일치로 거부되었다"는 가설이 사용자의 실제 등록 정보 확인 및 이번 수정으로 사실로 확인됨
+- 코드 변경 없음(VWorld 대시보드 설정 변경 + 실사이트 재검증만 수행) — 공역 레이어 지도 오버레이 기능 정상 복구
+
 ## 2026-09-02 — push 완료 확인 + 실서버 재검증 중 신규 버그 발견 (VWorld WMS 요청 503, 도메인 등록 불일치 의심)
 
 - 이전 커밋(`94fdae9` WMS 전환, `2f66e57` 이력 기록) GitHub push 완료 확인, Vercel Production 배포(`2f66e57`)에 정상 반영되었고 `NEXT_PUBLIC_VWORLD_API_KEY`/`NEXT_PUBLIC_VWORLD_DOMAIN` 환경변수도 Production/Preview에 정상 등록되어 있음을 확인
@@ -40,6 +47,13 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-02 — VWorld 서비스URL 수정으로 WMS 503 오류 해결 확인
+
+- 사용자가 브이월드 마이포털 인증키 관리 화면에서 서비스URL을 `https://flydronemap.com`(www 없음) → `https://www.flydronemap.com`으로 수정 완료
+- Claude가 실제 배포 사이트(https://www.flydronemap.com/ko, 인천 지점)에서 Claude in Chrome으로 재검증: 페이지에 로드된 VWorld WMS 타일 72개 전수 조사 결과 전부 정상 로드(complete: true, 256x256, 깨진 이미지 0건) — 지난번 발견된 503 오류가 해결됨을 확인
+- 이전 진단(바로 위 항목)에서 추정한 "서비스URL에 www 버전 도메인이 등록되어 있지 않아 Referer 불일치로 거부되었다"는 가설이 사용자의 실제 등록 정보 확인 및 이번 수정으로 사실로 확인됨
+- 코드 변경 없음(VWorld 대시보드 설정 변경 + 실사이트 재검증만 수행) — 공역 레이어 지도 오버레이 기능 정상 복구
 
 ## 2026-09-02 — push 완료 확인 + 실서버 재검증 중 신규 버그 발견 (VWorld WMS 요청 503, 도메인 등록 불일치 의심)
 
