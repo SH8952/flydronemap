@@ -1,3 +1,16 @@
+## 2026-09-02 — 공역 레이어 지도 렌더링 버그 수정 (VWorld 서버 IP 차단 → WMS 타일 방식 전환)
+
+- 버그: 배포 후 공역 레이어 오버레이가 지도에 전혀 렌더링되지 않던 문제 진단 및 수정
+- 원인 진단 과정(진단 로그 추가 → Vercel 런타임 로그 확인 → 리전 변경 테스트 → 클라이언트 fetch 테스트 순으로 검증):
+  1. `/api/airspace-layers` 라우트가 모든 오류를 조용히 삼켜 증상만으로는 원인 파악 불가 → 진단 로그 추가(동작 변경 없음)
+  2. Vercel 서버(iad1 미국 리전)에서 VWorld 호출 시 502/소켓 오류 확인 → 서울(icn1) 리전으로 전환해도 "등록되지 않은 인증키입니다" 오류로 여전히 실패 — 동일 키로 일반 브라우저에서는 정상 응답, VWorld가 Vercel 서버 IP 대역 자체를 차단하고 있음을 확인
+  3. 브라우저 client-side fetch()로 우회 시도 → VWorld의 JSON API(`api.vworld.kr/req/data`)가 CORS를 지원하지 않아 이 방식도 불가함을 직접 테스트로 확인
+  4. VWorld는 WMS 타일(`<img>` 요청)은 CORS 제약을 받지 않는다는 점에 착안해, 공역 레이어 오버레이만 WMS 타일 방식으로 전환하기로 결정(사용자 확인 완료) — 22개 레이어 중 4개 코드를 직접 호출해 "WMS 레이어 ID = 데이터 코드 소문자"임을 검증 후 적용
+- 변경 사항: `src/lib/airspace-layers.ts`(getWmsLayerParam 추가), `src/components/flight-map.tsx`(react-leaflet WMSTileLayer로 교체), `src/components/drone-dashboard.tsx`(레이어별 fetch/캐시 로직 제거 — WMS는 즉시 로드), `src/app/api/airspace-layers/route.ts`(사용처 없음, superseded 주석만 추가)
+- 트레이드오프: VWORLD_API_KEY가 타일 요청 URL에 노출됨(NEXT_PUBLIC_VWORLD_API_KEY/DOMAIN 신규 추가, 사용자 확인 후 진행) — VWorld 발급키는 도메인 제한이 걸려 있어 다른 사이트에서의 도용 위험은 낮음
+- 미해결(범위 밖, 별도 논의 예정): 지도 클릭 시 지점별 공역 상세 조회, 한글 주소 검색 — 둘 다 서버사이드 JSON API를 쓰기 때문에 동일한 VWorld IP 차단으로 여전히 broken 상태. VWorld 고객센터에 Vercel 서버 IP 화이트리스트 등록을 문의하거나, 대안을 찾기 전까지는 복구 보류
+- 검증: tsc --noEmit / eslint 통과, next build 컴파일·타입체크·정적 페이지 131/131 생성 성공(로컬 샌드박스의 파일시스템 권한 제약으로 최종 정리 단계만 실패 — Vercel 자체 빌드로 최종 확인 예정), 브라우저로 VWorld WMS 엔드포인트 직접 호출해 실제 이미지 응답 확인 완료
+
 ## 2026-09-02 — 항공 공역 레이어(관제권/비행제한구역 등) 지도 오버레이 추가
 
 - 한국 드론원스톱(drone.onestop.go.kr)처럼 관제권·비행제한구역(R-zone)·위험구역 등 공역 정보를 지도 위에 색상 오버레이로 직접 표시하는 기능 추가
@@ -15,6 +28,19 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-02 — 공역 레이어 지도 렌더링 버그 수정 (VWorld 서버 IP 차단 → WMS 타일 방식 전환)
+
+- 버그: 배포 후 공역 레이어 오버레이가 지도에 전혀 렌더링되지 않던 문제 진단 및 수정
+- 원인 진단 과정(진단 로그 추가 → Vercel 런타임 로그 확인 → 리전 변경 테스트 → 클라이언트 fetch 테스트 순으로 검증):
+  1. `/api/airspace-layers` 라우트가 모든 오류를 조용히 삼켜 증상만으로는 원인 파악 불가 → 진단 로그 추가(동작 변경 없음)
+  2. Vercel 서버(iad1 미국 리전)에서 VWorld 호출 시 502/소켓 오류 확인 → 서울(icn1) 리전으로 전환해도 "등록되지 않은 인증키입니다" 오류로 여전히 실패 — 동일 키로 일반 브라우저에서는 정상 응답, VWorld가 Vercel 서버 IP 대역 자체를 차단하고 있음을 확인
+  3. 브라우저 client-side fetch()로 우회 시도 → VWorld의 JSON API(`api.vworld.kr/req/data`)가 CORS를 지원하지 않아 이 방식도 불가함을 직접 테스트로 확인
+  4. VWorld는 WMS 타일(`<img>` 요청)은 CORS 제약을 받지 않는다는 점에 착안해, 공역 레이어 오버레이만 WMS 타일 방식으로 전환하기로 결정(사용자 확인 완료) — 22개 레이어 중 4개 코드를 직접 호출해 "WMS 레이어 ID = 데이터 코드 소문자"임을 검증 후 적용
+- 변경 사항: `src/lib/airspace-layers.ts`(getWmsLayerParam 추가), `src/components/flight-map.tsx`(react-leaflet WMSTileLayer로 교체), `src/components/drone-dashboard.tsx`(레이어별 fetch/캐시 로직 제거 — WMS는 즉시 로드), `src/app/api/airspace-layers/route.ts`(사용처 없음, superseded 주석만 추가)
+- 트레이드오프: VWORLD_API_KEY가 타일 요청 URL에 노출됨(NEXT_PUBLIC_VWORLD_API_KEY/DOMAIN 신규 추가, 사용자 확인 후 진행) — VWorld 발급키는 도메인 제한이 걸려 있어 다른 사이트에서의 도용 위험은 낮음
+- 미해결(범위 밖, 별도 논의 예정): 지도 클릭 시 지점별 공역 상세 조회, 한글 주소 검색 — 둘 다 서버사이드 JSON API를 쓰기 때문에 동일한 VWorld IP 차단으로 여전히 broken 상태. VWorld 고객센터에 Vercel 서버 IP 화이트리스트 등록을 문의하거나, 대안을 찾기 전까지는 복구 보류
+- 검증: tsc --noEmit / eslint 통과, next build 컴파일·타입체크·정적 페이지 131/131 생성 성공(로컬 샌드박스의 파일시스템 권한 제약으로 최종 정리 단계만 실패 — Vercel 자체 빌드로 최종 확인 예정), 브라우저로 VWorld WMS 엔드포인트 직접 호출해 실제 이미지 응답 확인 완료
 
 ## 2026-09-02 — NOAA 우주기상 등급 가이드 자동 발행
 
