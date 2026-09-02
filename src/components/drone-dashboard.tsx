@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Search, MapPin, Wind, Radio, ShieldAlert, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,12 @@ import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
 import { AIRSPACE_LAYERS, getWmsLayerParam } from "@/lib/airspace-layers";
 import { isInSouthKorea } from "@/lib/airspace";
+import {
+  getCountryCode,
+  getCountryDisplayName,
+  toPriorityRegulationId,
+} from "@/lib/country-info";
+import { getRegulationCountry } from "@/lib/country-regulations";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -92,6 +98,8 @@ const RISK_COLOR: Record<string, string> = {
 
 export function DroneDashboard() {
   const t = useTranslations("Home");
+  const tReg = useTranslations("Regulations");
+  const locale = useLocale();
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<GeocodeResult[]>([]);
   const [selected, setSelected] = useState<GeocodeResult | null>(null);
@@ -99,6 +107,9 @@ export function DroneDashboard() {
   const [loading, setLoading] = useState(false);
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [countryCode, setCountryCode] = useState<string | undefined>(
+    undefined,
+  );
 
   // 항공 공역 레이어(관제권/비행제한구역 등) — 필수 레이어는 항상 켜진 채 시작하고,
   // 나머지는 사용자가 레이어 패널에서 켠 만큼 지도에 WMS 타일로 추가된다. WMS
@@ -155,6 +166,7 @@ export function DroneDashboard() {
   async function loadDashboard(lat: number, lon: number) {
     setLoading(true);
     setError(null);
+    setCountryCode(getCountryCode(lat, lon));
     try {
       const res = await fetch(`/api/dashboard?lat=${lat}&lon=${lon}`);
       if (!res.ok) throw new Error("failed");
@@ -261,6 +273,30 @@ export function DroneDashboard() {
       return updated;
     });
   }
+
+  // 선택된 위치의 국가에 따라 공역 정보 박스의 제목/설명/링크를 결정한다.
+  // 4개 우선 지원국(미국/한국/일본/스페인)은 country-regulations.ts에
+  // 정리된 국가명·공식 링크를 그대로 재사용하고, 그 외 국가는
+  // Intl.DisplayNames로 국가명만 표시하며(링크 없음), 국가를 아예 판별할
+  // 수 없는 좌표(공해상 등)는 국가 정보 없이 일반적인 문구로 대체한다.
+  const priorityRegulationId = toPriorityRegulationId(countryCode);
+  const countryDisplayName = countryCode
+    ? priorityRegulationId
+      ? tReg(`countries.${priorityRegulationId}.name`)
+      : getCountryDisplayName(countryCode, locale)
+    : undefined;
+  const regulationOfficialUrl = priorityRegulationId
+    ? getRegulationCountry(priorityRegulationId)?.links.find(
+        (l) => l.key === "official",
+      )?.url
+    : undefined;
+  const prioritySummary = priorityRegulationId
+    ? (
+        tReg.raw(`countries.${priorityRegulationId}.summary`) as
+          | string[]
+          | undefined
+      )?.[0]
+    : undefined;
 
   return (
     <div className="flex flex-col gap-6">
@@ -442,7 +478,11 @@ export function DroneDashboard() {
           <div className="rounded-lg border border-border p-5">
             <div className="mb-3 flex items-center gap-2 font-semibold">
               <ShieldAlert className="size-4" />
-              {t("airspaceSectionTitle")}
+              {countryDisplayName
+                ? t("airspaceSectionTitleWithCountry", {
+                    country: countryDisplayName,
+                  })
+                : t("airspaceSectionTitleGeneric")}
             </div>
             {data.airspace && data.airspace.source === "faa" ? (
               <div className="flex flex-col gap-2">
@@ -490,8 +530,27 @@ export function DroneDashboard() {
               </p>
             ) : null}
             <p className="mt-3 text-xs text-muted-foreground">
-              {t("airspaceDisclaimer")}
+              {priorityRegulationId && prioritySummary
+                ? `${prioritySummary} ${t("airspaceDisclaimerPrioritySuffix")}`
+                : countryDisplayName
+                  ? t("airspaceDisclaimerGeneric", {
+                      country: countryDisplayName,
+                    })
+                  : t("airspaceDisclaimerUnknownLocation")}
             </p>
+            {priorityRegulationId && regulationOfficialUrl ? (
+              <Button variant="outline" size="sm" className="mt-3" asChild>
+                <a
+                  href={regulationOfficialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("airspaceRegulationCheckButton", {
+                    country: countryDisplayName ?? "",
+                  })}
+                </a>
+              </Button>
+            ) : null}
           </div>
         </div>
       ) : null}
