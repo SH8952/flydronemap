@@ -17,6 +17,7 @@ import {
   toPriorityRegulationId,
 } from "@/lib/country-info";
 import { getRegulationCountry } from "@/lib/country-regulations";
+import { fetchKoreaRestrictedZoneClientSide } from "@/lib/airspace-wms-lookup";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -168,9 +169,20 @@ export function DroneDashboard() {
     setError(null);
     setCountryCode(getCountryCode(lat, lon));
     try {
-      const res = await fetch(`/api/dashboard?lat=${lat}&lon=${lon}`);
+      // 한국 지점의 비행금지구역 조회는 서버가 아니라 브라우저에서 직접
+      // 브이월드 WMS로 수행한다(src/lib/airspace-wms-lookup.ts 참고) —
+      // /api/dashboard 응답과 병렬로 요청해 추가 지연 없이 병합한다.
+      const [res, krZone] = await Promise.all([
+        fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
+        isInSouthKorea(lat, lon)
+          ? fetchKoreaRestrictedZoneClientSide(lat, lon)
+          : Promise.resolve(null),
+      ]);
       if (!res.ok) throw new Error("failed");
       const json = (await res.json()) as DashboardData;
+      if (krZone) {
+        json.airspace = krZone;
+      }
       setData(json);
     } catch {
       setError(t("errorText"));

@@ -38,8 +38,6 @@ export type AirspaceCeiling =
 const FAA_UASFM_QUERY_URL =
   "https://services6.arcgis.com/ssFJjBXIUyZDrSYZ/arcgis/rest/services/FAA_UAS_FacilityMap_Data/FeatureServer/0/query";
 
-const VWORLD_DATA_URL = "https://api.vworld.kr/req/data";
-
 /** Rough bounding box for South Korea (including Jeju and Ulleungdo). */
 export function isInSouthKorea(latitude: number, longitude: number): boolean {
   return (
@@ -112,107 +110,15 @@ async function fetchFaaAirspaceCeiling(
 }
 
 /**
- * Queries South Korea's national no-fly zone layer (국토교통부_비행금지구역,
- * VWorld data code LT_C_AISPRHC) for the given point. Requires the
- * VWORLD_API_KEY (and matching VWORLD_DOMAIN) environment variables, issued
- * via VWorld's "인증키 발급" flow. Returns `{ restricted: false }` when the
- * point is outside any mapped no-fly zone (a genuine "clear" result, distinct
- * from `null`, which means the lookup itself couldn't be completed).
- *
- * IMPORTANT: this is informational only, same as the FAA data — always
- * confirm via the official 드론원스톱 민원서비스 (drone.onestop.go.kr) or the
- * relevant authority before flying.
+ * 2026-09까지 이 자리에는 fetchKoreaAirspaceCeiling()이 있었다 — 브이월드
+ * 2D데이터 JSON API(api.vworld.kr/req/data)를 서버에서 직접 호출하는
+ * 방식이었으나, 브이월드가 Vercel 서버 IP 대역을 차단하고 있어 production에서
+ * 한 번도 성공한 적이 없다. 지점별 비행금지구역 조회는 이제
+ * src/lib/airspace-wms-lookup.ts의 fetchKoreaRestrictedZoneClientSide()가
+ * 대신한다 — 서버가 아니라 브라우저에서 직접 브이월드 WMS의 GetFeatureInfo를
+ * 호출해 같은 차단을 우회한다(지도 오버레이 WMS 타일과 동일한 원리). 예전
+ * 구현은 git 히스토리에 남아있다.
  */
-async function fetchKoreaAirspaceCeiling(
-  latitude: number,
-  longitude: number,
-): Promise<AirspaceCeiling> {
-  const apiKey = process.env.VWORLD_API_KEY;
-  if (!apiKey) return null;
-  const domain = process.env.VWORLD_DOMAIN ?? "https://flydronemap.com";
-
-  const url = new URL(VWORLD_DATA_URL);
-  url.searchParams.set("service", "data");
-  url.searchParams.set("version", "2.0");
-  url.searchParams.set("request", "GetFeature");
-  url.searchParams.set("format", "json");
-  url.searchParams.set("errorFormat", "json");
-  url.searchParams.set("size", "1");
-  url.searchParams.set("data", "LT_C_AISPRHC");
-  url.searchParams.set("geomFilter", `POINT(${longitude} ${latitude})`);
-  url.searchParams.set("crs", "EPSG:4326");
-  url.searchParams.set("geometry", "true");
-  url.searchParams.set("attribute", "true");
-  url.searchParams.set(
-    "columns",
-    "prh_lbl_1,prh_lbl_2,prh_lbl_3,prh_lbl_4",
-  );
-  url.searchParams.set("key", apiKey);
-  url.searchParams.set("domain", domain);
-
-  try {
-    const res = await fetch(url.toString(), { next: { revalidate: 3600 } });
-    if (!res.ok) return null;
-
-    const data = (await res.json()) as {
-      response?: {
-        status?: string;
-        result?: {
-          featureCollection?: {
-            features?: Array<{
-              properties?: Record<string, unknown>;
-              geometry?: {
-                type?: string;
-                // Polygon: rings of [lon, lat]. MultiPolygon: polygons of rings of [lon, lat].
-                coordinates?: number[][][] | number[][][][];
-              };
-            }>;
-          };
-        };
-      };
-    };
-
-    const status = data.response?.status;
-    if (status === "NOT_FOUND") {
-      return { source: "kr", restricted: false };
-    }
-    if (status !== "OK") return null;
-
-    const feature = data.response?.result?.featureCollection?.features?.[0];
-    const props = feature?.properties;
-    if (!props) return { source: "kr", restricted: false };
-
-    let boundary: LatLngRing[][] | undefined;
-    const geom = feature?.geometry;
-    if (geom?.coordinates) {
-      const toLatLngRing = (ring: number[][]): LatLngRing =>
-        ring.map(([lon, lat]) => [lat, lon] as [number, number]);
-
-      if (geom.type === "MultiPolygon") {
-        boundary = (geom.coordinates as number[][][][]).map((polygon) =>
-          polygon.map(toLatLngRing),
-        );
-      } else if (geom.type === "Polygon") {
-        boundary = [(geom.coordinates as number[][][]).map(toLatLngRing)];
-      }
-    }
-
-    return {
-      source: "kr",
-      restricted: true,
-      zoneLabel: typeof props.prh_lbl_1 === "string" ? props.prh_lbl_1 : "",
-      categoryName:
-        typeof props.prh_lbl_4 === "string" ? props.prh_lbl_4 : "",
-      lowerAltitude:
-        typeof props.prh_lbl_3 === "string" ? props.prh_lbl_3 : "",
-      upperAltitude:
-        typeof props.prh_lbl_2 === "string" ? props.prh_lbl_2 : "",
-      boundary,
-    };
-  } catch {
-    return null;
-  }
-}
 
 /**
  * Dispatches to the appropriate national airspace data source based on the
@@ -226,7 +132,10 @@ export async function fetchAirspaceCeiling(
   longitude: number,
 ): Promise<AirspaceCeiling> {
   if (isInSouthKorea(latitude, longitude)) {
-    return fetchKoreaAirspaceCeiling(latitude, longitude);
+    // 실패가 뻔한 서버사이드 브이월드 호출을 매 요청마다 시도하지 않는다 —
+    // 지점별 조회는 클라이언트(브라우저)에서 별도로 수행된다. 바로 위 주석
+    // 참고.
+    return null;
   }
   return fetchFaaAirspaceCeiling(latitude, longitude);
 }
