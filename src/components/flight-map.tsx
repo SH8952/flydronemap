@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type ReactNode } from "react";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Polygon,
+  Polyline,
+  CircleMarker,
+  Tooltip,
   useMap,
   useMapEvents,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import type { AirspaceLayerFeature } from "@/lib/airspace-layers";
 
 // Leaflet's default marker icon files don't resolve correctly under
 // Next.js's bundler — point them at the CDN copies instead (small, cached).
@@ -27,6 +31,13 @@ const markerIcon = L.icon({
 
 type LatLngRing = [number, number][];
 
+export type AirspaceOverlayLayer = {
+  id: string;
+  label: string;
+  color: string;
+  features: AirspaceLayerFeature[];
+};
+
 type FlightMapProps = {
   latitude: number;
   longitude: number;
@@ -40,6 +51,12 @@ type FlightMapProps = {
   onMapClick?: (lat: number, lon: number) => void;
   /** Small translated hint shown over the map, e.g. "Click anywhere to check that location". */
   clickHintText?: string;
+  /** National airspace layers (관제권, 비행제한구역, etc.) to draw as translucent
+   * overlays — see src/lib/airspace-layers.ts and the /api/airspace-layers route. */
+  airspaceOverlayLayers?: AirspaceOverlayLayer[];
+  /** Arbitrary UI (e.g. the layer toggle panel) absolutely positioned on top
+   * of the map, inside the same relative wrapper. */
+  mapOverlay?: ReactNode;
 };
 
 function RecenterOnChange({ lat, lon }: { lat: number; lon: number }) {
@@ -72,6 +89,8 @@ export function FlightMap({
   restricted,
   onMapClick,
   clickHintText,
+  airspaceOverlayLayers,
+  mapOverlay,
 }: FlightMapProps) {
   const zoneColor = restricted ? "#ef4444" : "#3b82f6";
 
@@ -111,7 +130,55 @@ export function FlightMap({
               />
             ))
           : null}
+
+        {airspaceOverlayLayers?.map((layer) =>
+          layer.features.map((feature, i) => {
+            const key = `${layer.id}-${i}`;
+            if (feature.kind === "polygon") {
+              return (
+                <Polygon
+                  key={key}
+                  positions={feature.rings}
+                  pathOptions={{
+                    color: layer.color,
+                    weight: 1.5,
+                    fillOpacity: 0.12,
+                  }}
+                >
+                  <Tooltip sticky>{layer.label}</Tooltip>
+                </Polygon>
+              );
+            }
+            if (feature.kind === "line") {
+              return (
+                <Polyline
+                  key={key}
+                  positions={feature.positions}
+                  pathOptions={{ color: layer.color, weight: 2.5 }}
+                >
+                  <Tooltip sticky>{layer.label}</Tooltip>
+                </Polyline>
+              );
+            }
+            return (
+              <CircleMarker
+                key={key}
+                center={feature.position}
+                radius={5}
+                pathOptions={{
+                  color: layer.color,
+                  fillColor: layer.color,
+                  fillOpacity: 0.6,
+                }}
+              >
+                <Tooltip sticky>{layer.label}</Tooltip>
+              </CircleMarker>
+            );
+          }),
+        )}
       </MapContainer>
+
+      {mapOverlay}
 
       {clickHintText ? (
         <div className="pointer-events-none absolute bottom-2 left-1/2 z-[500] -translate-x-1/2 rounded-full bg-background/90 px-3 py-1 text-xs text-muted-foreground shadow">

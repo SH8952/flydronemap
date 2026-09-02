@@ -41,7 +41,7 @@ const FAA_UASFM_QUERY_URL =
 const VWORLD_DATA_URL = "https://api.vworld.kr/req/data";
 
 /** Rough bounding box for South Korea (including Jeju and Ulleungdo). */
-function isInSouthKorea(latitude: number, longitude: number): boolean {
+export function isInSouthKorea(latitude: number, longitude: number): boolean {
   return (
     latitude >= 33.0 &&
     latitude <= 38.7 &&
