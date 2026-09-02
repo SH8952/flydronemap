@@ -1,3 +1,15 @@
+## 2026-09-02 — push 완료 확인 + 실서버 재검증 중 신규 버그 발견 (VWorld WMS 요청 503, 도메인 등록 불일치 의심)
+
+- 이전 커밋(`94fdae9` WMS 전환, `2f66e57` 이력 기록) GitHub push 완료 확인, Vercel Production 배포(`2f66e57`)에 정상 반영되었고 `NEXT_PUBLIC_VWORLD_API_KEY`/`NEXT_PUBLIC_VWORLD_DOMAIN` 환경변수도 Production/Preview에 정상 등록되어 있음을 확인
+- 그러나 실제 배포된 사이트(https://www.flydronemap.com)에서 한국 지점(인천)을 선택해 확인한 결과, 필수 공역 레이어 3종의 WMS 타일 요청이 전부 HTTP 503으로 실패하여 지도에 여전히 아무것도 렌더링되지 않는 신규 문제를 발견
+- 진단(Claude in Chrome으로 동일 WMS 요청을 세 가지 방식으로 비교 테스트):
+  1. 실제 페이지 안에서 자동 발생하는 `<img>` 요청(Referer: `https://www.flydronemap.com/...` 자동 포함) → 503 실패
+  2. 새 탭 주소창에 동일 URL을 직접 입력해 접속(Referer 없음) → 정상 이미지 응답
+  3. 페이지 안에서 URL의 `domain` 쿼리 파라미터만 `https://www.flydronemap.com`으로 바꿔 재요청 → 그래도 503 실패
+- 결론(추정): VWorld가 요청을 거부하는 기준은 URL의 `domain` 쿼리 파라미터 값이 아니라 실제 HTTP Referer 헤더로 보임. 사이트가 실제로는 `www.flydronemap.com`으로 서비스되는데(무-www 도메인 접속 시 자동 리다이렉트 확인됨) VWorld 인증키에 등록된 허용 도메인 목록에 `www.flydronemap.com`이 없어 거부되고 있을 가능성이 높음 — 다만 VWorld 마이페이지 로그인이 필요한 화면이라 Claude가 직접 확인/수정할 수 없어(비밀번호 대신 입력 불가) 사용자 확인 필요
+- 조치 필요(사용자): 브이월드 마이페이지 → 인증키 관리 화면에서 현재 등록된 도메인 값을 확인하고, `www.flydronemap.com`이 빠져 있다면 추가/수정
+- 코드 변경 없음(진단만 수행) — 공역 레이어 지도 오버레이 기능은 여전히 broken 상태
+
 ## 2026-09-02 — 공역 레이어 지도 렌더링 버그 수정 (VWorld 서버 IP 차단 → WMS 타일 방식 전환)
 
 - 버그: 배포 후 공역 레이어 오버레이가 지도에 전혀 렌더링되지 않던 문제 진단 및 수정
@@ -28,6 +40,18 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-02 — push 완료 확인 + 실서버 재검증 중 신규 버그 발견 (VWorld WMS 요청 503, 도메인 등록 불일치 의심)
+
+- 이전 커밋(`94fdae9` WMS 전환, `2f66e57` 이력 기록) GitHub push 완료 확인, Vercel Production 배포(`2f66e57`)에 정상 반영되었고 `NEXT_PUBLIC_VWORLD_API_KEY`/`NEXT_PUBLIC_VWORLD_DOMAIN` 환경변수도 Production/Preview에 정상 등록되어 있음을 확인
+- 그러나 실제 배포된 사이트(https://www.flydronemap.com)에서 한국 지점(인천)을 선택해 확인한 결과, 필수 공역 레이어 3종의 WMS 타일 요청이 전부 HTTP 503으로 실패하여 지도에 여전히 아무것도 렌더링되지 않는 신규 문제를 발견
+- 진단(Claude in Chrome으로 동일 WMS 요청을 세 가지 방식으로 비교 테스트):
+  1. 실제 페이지 안에서 자동 발생하는 `<img>` 요청(Referer: `https://www.flydronemap.com/...` 자동 포함) → 503 실패
+  2. 새 탭 주소창에 동일 URL을 직접 입력해 접속(Referer 없음) → 정상 이미지 응답
+  3. 페이지 안에서 URL의 `domain` 쿼리 파라미터만 `https://www.flydronemap.com`으로 바꿔 재요청 → 그래도 503 실패
+- 결론(추정): VWorld가 요청을 거부하는 기준은 URL의 `domain` 쿼리 파라미터 값이 아니라 실제 HTTP Referer 헤더로 보임. 사이트가 실제로는 `www.flydronemap.com`으로 서비스되는데(무-www 도메인 접속 시 자동 리다이렉트 확인됨) VWorld 인증키에 등록된 허용 도메인 목록에 `www.flydronemap.com`이 없어 거부되고 있을 가능성이 높음 — 다만 VWorld 마이페이지 로그인이 필요한 화면이라 Claude가 직접 확인/수정할 수 없어(비밀번호 대신 입력 불가) 사용자 확인 필요
+- 조치 필요(사용자): 브이월드 마이페이지 → 인증키 관리 화면에서 현재 등록된 도메인 값을 확인하고, `www.flydronemap.com`이 빠져 있다면 추가/수정
+- 코드 변경 없음(진단만 수행) — 공역 레이어 지도 오버레이 기능은 여전히 broken 상태
 
 ## 2026-09-02 — 공역 레이어 지도 렌더링 버그 수정 (VWorld 서버 IP 차단 → WMS 타일 방식 전환)
 
