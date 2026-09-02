@@ -563,6 +563,34 @@ export function DroneDashboard() {
                 </a>
               </Button>
             ) : null}
+
+            {/* VWorld의 좌표 클릭 조회(GetFeatureInfo)는 서버 측 Referer 제한으로
+                동작하지 않아, 대신 현재 지도에 표시 중인 공역 레이어를 범례
+                형태의 텍스트로 보여준다 — WMS 타일 자체(GetMap)는 정상 동작하므로
+                이 목록은 항상 지도 상태와 일치한다. */}
+            {selected && isInSouthKorea(selected.latitude, selected.longitude) ? (
+              <div className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
+                <p className="text-xs font-medium text-muted-foreground">
+                  {t("airspaceActiveLayersTitle")}
+                </p>
+                <ul className="flex flex-wrap gap-x-3 gap-y-1">
+                  {AIRSPACE_LAYERS.filter((layer) =>
+                    activeLayerIds.has(layer.id),
+                  ).map((layer) => (
+                    <li
+                      key={layer.id}
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground"
+                    >
+                      <span
+                        className="inline-block size-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: layer.color }}
+                      />
+                      {t(`airspaceLayerNames.${layer.id}`)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
       ) : null}
