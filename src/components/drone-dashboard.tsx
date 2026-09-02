@@ -9,8 +9,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
-import { AIRSPACE_LAYERS, type AirspaceLayerFeature } from "@/lib/airspace-layers";
+import { AIRSPACE_LAYERS, getWmsLayerParam } from "@/lib/airspace-layers";
 import { isInSouthKorea } from "@/lib/airspace";
+
+// WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
+const NO_LOADING_LAYER_IDS: Set<string> = new Set();
 
 // Leaflet touches `window` at import time, so it can only run client-side —
 // load it with ssr disabled rather than importing it directly.
@@ -98,19 +101,12 @@ export function DroneDashboard() {
   const [error, setError] = useState<string | null>(null);
 
   // 항공 공역 레이어(관제권/비행제한구역 등) — 필수 레이어는 항상 켜진 채 시작하고,
-  // 나머지는 사용자가 레이어 패널에서 켠 것만 조회/캐시한다.
+  // 나머지는 사용자가 레이어 패널에서 켠 만큼 지도에 WMS 타일로 추가된다. WMS
+  // 타일은 브라우저에서 직접 <img>로 요청되므로(VWorld API 서버 IP 차단 우회)
+  // 별도의 fetch/캐시/로딩 상태가 필요 없다 — src/lib/airspace-layers.ts 참고.
   const [activeLayerIds, setActiveLayerIds] = useState<Set<string>>(
     () => new Set(AIRSPACE_LAYERS.filter((l) => l.required).map((l) => l.id)),
   );
-  const [layerFeatureCache, setLayerFeatureCache] = useState<
-    Record<string, AirspaceLayerFeature[]>
-  >({});
-  const [layerLoadingIds, setLayerLoadingIds] = useState<Set<string>>(
-    () => new Set(),
-  );
-  // 전국 단위 데이터라 선택 지점이 바뀔 때마다 다시 받을 필요는 없음 — 처음
-  // 한국 내 지점이 선택됐을 때 딱 한 번만 필수 레이어를 가져온다.
-  const koreaLayersFetchStarted = useRef(false);
 
   // Guards against out-of-order responses: if the user keeps typing, an
   // earlier (slower) request resolving after a later one would otherwise
@@ -257,27 +253,6 @@ export function DroneDashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function fetchAirspaceLayer(id: string) {
-    if (layerFeatureCache[id] || layerLoadingIds.has(id)) return;
-    setLayerLoadingIds((prev) => new Set(prev).add(id));
-    try {
-      const res = await fetch(`/api/airspace-layers?layer=${id}`);
-      const json = await res.json();
-      setLayerFeatureCache((prev) => ({
-        ...prev,
-        [id]: (json.features ?? []) as AirspaceLayerFeature[],
-      }));
-    } catch {
-      // 실패해도 조용히 무시 — 지도의 다른 기능에는 영향 없음
-    } finally {
-      setLayerLoadingIds((prev) => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
-    }
-  }
-
   function handleAirspaceLayerToggle(id: string, next: boolean) {
     setActiveLayerIds((prev) => {
       const updated = new Set(prev);
@@ -285,26 +260,7 @@ export function DroneDashboard() {
       else updated.delete(id);
       return updated;
     });
-    if (next) fetchAirspaceLayer(id);
   }
-
-  // 선택된 지점이 한국일 때 딱 한 번, 필수 항공 공역 레이어(비행금지구역/관제권/
-  // 비행제한구역)를 미리 받아온다. 전국 데이터라 지점이 바뀌어도 다시 받지 않는다.
-  useEffect(() => {
-    if (!selected) return;
-    if (!isInSouthKorea(selected.latitude, selected.longitude)) return;
-    if (koreaLayersFetchStarted.current) return;
-    koreaLayersFetchStarted.current = true;
-    // Deferred via setTimeout so the fetch (and its loading-state updates)
-    // starts after this effect's commit, rather than synchronously inside it.
-    const timer = setTimeout(() => {
-      for (const layer of AIRSPACE_LAYERS) {
-        if (layer.required) fetchAirspaceLayer(layer.id);
-      }
-    }, 0);
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -384,8 +340,7 @@ export function DroneDashboard() {
                 ).map((layer) => ({
                   id: layer.id,
                   label: t(`airspaceLayerNames.${layer.id}`),
-                  color: layer.color,
-                  features: layerFeatureCache[layer.id] ?? [],
+                  wmsLayers: getWmsLayerParam(layer),
                 }))
               : undefined
           }
@@ -394,7 +349,7 @@ export function DroneDashboard() {
               <AirspaceLayerPanel
                 activeIds={activeLayerIds}
                 onToggle={handleAirspaceLayerToggle}
-                loadingIds={layerLoadingIds}
+                loadingIds={NO_LOADING_LAYER_IDS}
               />
             ) : undefined
           }

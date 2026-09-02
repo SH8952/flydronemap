@@ -1,8 +1,27 @@
 /**
- * Catalog of Korea's national airspace/no-fly-zone layers, sourced from
- * VWorld's 2D데이터 API (같은 데이터를 WMS/WFS API로도 제공하지만, 이 앱은 서버에서
- * VWORLD_API_KEY로 호출하는 기존 2D데이터 API 패턴을 그대로 재사용한다 — 클라이언트에
- * 인증키를 노출하지 않기 위함).
+ * Catalog of Korea's national airspace/no-fly-zone layers, rendered on the
+ * map as VWorld WMS raster tiles (loaded as <img> tiles via Leaflet's
+ * L.tileLayer.wms, see https://www.vworld.kr/dev/v4dv_wmsguide2_s001.do).
+ *
+ * This used to call VWorld's 2D데이터 API server-side with VWORLD_API_KEY
+ * (see git history), but VWorld's server rejects requests originating from
+ * Vercel's IP ranges — confirmed blocked from both the US (iad1) and Seoul
+ * (icn1) function regions — so that approach cannot work in production.
+ * A client-side fetch() to the same JSON API is also not viable: VWorld's
+ * `api.vworld.kr/req/data` endpoint does not support cross-origin browser
+ * fetch (CORS-blocked, confirmed by direct testing). WMS tiles sidestep
+ * both problems because they're requested as <img> elements directly from
+ * the user's browser, which isn't subject to either restriction — the
+ * tradeoff is that VWORLD_API_KEY is now visible in tile request URLs (see
+ * NEXT_PUBLIC_VWORLD_API_KEY / NEXT_PUBLIC_VWORLD_DOMAIN), and tiles use
+ * VWorld's own default styling rather than this catalog's `color` values.
+ *
+ * Each entry's `dataCodes` double as VWorld WMS layer ids: VWorld's WMS
+ * layer name is simply the lowercase of the matching 2D데이터 API code
+ * (verified empirically against several of these codes) — see
+ * `getWmsLayerParam` below. The point-click zone lookup and the Korean
+ * address search features share the same VWorld-IP-blocking root cause and
+ * remain broken; only this map overlay has been recovered so far.
  *
  * Mirrors the categories shown on Korea's official 드론원스톱
  * (drone.onestop.go.kr) airspace map. Each entry's `dataCodes` are VWorld
@@ -221,4 +240,12 @@ export const AIRSPACE_LAYERS: AirspaceLayerDef[] = [
 
 export function getAirspaceLayer(id: string): AirspaceLayerDef | undefined {
   return AIRSPACE_LAYERS.find((layer) => layer.id === id);
+}
+
+/** Comma-separated VWorld WMS layer ids for a layer's `dataCodes` (max 4,
+ * matching VWorld's per-request WMS layer limit — every entry in this
+ * catalog stays at or under that). Pass directly as WMSTileLayer's
+ * `layers` prop. */
+export function getWmsLayerParam(layer: AirspaceLayerDef): string {
+  return layer.dataCodes.map((code) => code.toLowerCase()).join(",");
 }

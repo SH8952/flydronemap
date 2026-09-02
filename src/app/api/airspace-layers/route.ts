@@ -1,3 +1,13 @@
+/**
+ * SUPERSEDED / UNUSED (2026-09): this route called VWorld's 2D데이터 API
+ * server-side, but VWorld rejects requests from Vercel's IP ranges (both
+ * iad1 and icn1 were tested and blocked) — so it always fails in
+ * production. The airspace-layers map overlay now renders VWorld WMS tiles
+ * directly in the browser instead (see src/lib/airspace-layers.ts's header
+ * comment and src/components/flight-map.tsx). Nothing calls this route
+ * anymore; left in place rather than deleted in case server-IP whitelisting
+ * with VWorld support is resolved later and this becomes usable again.
+ */
 import { NextRequest, NextResponse } from "next/server";
 import { getAirspaceLayer, type AirspaceLayerFeature } from "@/lib/airspace-layers";
 

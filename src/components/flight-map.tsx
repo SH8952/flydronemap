@@ -4,17 +4,27 @@ import { useEffect, type ReactNode } from "react";
 import {
   MapContainer,
   TileLayer,
+  WMSTileLayer,
   Marker,
   Polygon,
-  Polyline,
-  CircleMarker,
-  Tooltip,
   useMap,
   useMapEvents,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import type { AirspaceLayerFeature } from "@/lib/airspace-layers";
+
+// VWorld WMS tiles are requested directly from the browser as <img> tiles —
+// see src/lib/airspace-layers.ts's header comment for why (VWorld blocks
+// server-side requests from Vercel, and CORS blocks a client-side fetch()
+// rewrite of the JSON API). This intentionally exposes the key in tile
+// request URLs; NEXT_PUBLIC_ vars are inlined at build time.
+const VWORLD_KEY = process.env.NEXT_PUBLIC_VWORLD_API_KEY;
+const VWORLD_DOMAIN = process.env.NEXT_PUBLIC_VWORLD_DOMAIN;
+const VWORLD_WMS_URL = VWORLD_KEY
+  ? `https://api.vworld.kr/req/wms?key=${VWORLD_KEY}${
+      VWORLD_DOMAIN ? `&domain=${encodeURIComponent(VWORLD_DOMAIN)}` : ""
+    }`
+  : null;
 
 // Leaflet's default marker icon files don't resolve correctly under
 // Next.js's bundler — point them at the CDN copies instead (small, cached).
@@ -34,8 +44,9 @@ type LatLngRing = [number, number][];
 export type AirspaceOverlayLayer = {
   id: string;
   label: string;
-  color: string;
-  features: AirspaceLayerFeature[];
+  /** Comma-separated VWorld WMS layer ids (lowercase) — see
+   * getWmsLayerParam in src/lib/airspace-layers.ts. */
+  wmsLayers: string;
 };
 
 type FlightMapProps = {
@@ -51,8 +62,8 @@ type FlightMapProps = {
   onMapClick?: (lat: number, lon: number) => void;
   /** Small translated hint shown over the map, e.g. "Click anywhere to check that location". */
   clickHintText?: string;
-  /** National airspace layers (관제권, 비행제한구역, etc.) to draw as translucent
-   * overlays — see src/lib/airspace-layers.ts and the /api/airspace-layers route. */
+  /** National airspace layers (관제권, 비행제한구역, etc.) to draw as VWorld WMS
+   * tile overlays — see src/lib/airspace-layers.ts. */
   airspaceOverlayLayers?: AirspaceOverlayLayer[];
   /** Arbitrary UI (e.g. the layer toggle panel) absolutely positioned on top
    * of the map, inside the same relative wrapper. */
@@ -131,51 +142,19 @@ export function FlightMap({
             ))
           : null}
 
-        {airspaceOverlayLayers?.map((layer) =>
-          layer.features.map((feature, i) => {
-            const key = `${layer.id}-${i}`;
-            if (feature.kind === "polygon") {
-              return (
-                <Polygon
-                  key={key}
-                  positions={feature.rings}
-                  pathOptions={{
-                    color: layer.color,
-                    weight: 1.5,
-                    fillOpacity: 0.12,
-                  }}
-                >
-                  <Tooltip sticky>{layer.label}</Tooltip>
-                </Polygon>
-              );
-            }
-            if (feature.kind === "line") {
-              return (
-                <Polyline
-                  key={key}
-                  positions={feature.positions}
-                  pathOptions={{ color: layer.color, weight: 2.5 }}
-                >
-                  <Tooltip sticky>{layer.label}</Tooltip>
-                </Polyline>
-              );
-            }
-            return (
-              <CircleMarker
-                key={key}
-                center={feature.position}
-                radius={5}
-                pathOptions={{
-                  color: layer.color,
-                  fillColor: layer.color,
-                  fillOpacity: 0.6,
-                }}
-              >
-                <Tooltip sticky>{layer.label}</Tooltip>
-              </CircleMarker>
-            );
-          }),
-        )}
+        {VWORLD_WMS_URL
+          ? airspaceOverlayLayers?.map((layer) => (
+              <WMSTileLayer
+                key={layer.id}
+                url={VWORLD_WMS_URL}
+                layers={layer.wmsLayers}
+                format="image/png"
+                transparent
+                version="1.3.0"
+                uppercase
+              />
+            ))
+          : null}
       </MapContainer>
 
       {mapOverlay}
