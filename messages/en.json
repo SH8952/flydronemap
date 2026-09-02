@@ -2,6 +2,7 @@
   "Header": {
     "tagline": "Drone Flight Weather & Kp Index",
     "guidesNav": "Guides",
+    "regulationsNav": "Regulations",
     "aboutNav": "About",
     "faqNav": "FAQ",
     "openMenu": "Open menu",
@@ -359,6 +360,74 @@
       "us-airspace-regulations": "U.S. Airspace & Regulations",
       "gear-flight-tips": "Gear & Flight Tips",
       "general": "General"
+    }
+  },
+  "Regulations": {
+    "title": "Drone Regulations by Country",
+    "subtitle": "Pick the country you plan to fly in for a quick regulatory summary and links to the official authority.",
+    "disclaimer": "This page is a general reference summary, not legal advice. Always check the relevant country's official authority for the latest rules before flying.",
+    "mapAvailableBadge": "Airspace shown on map",
+    "mapUnavailableBadge": "See official links",
+    "backToList": "Back to countries",
+    "mapAvailableNote": "This site's map can show this country's no-fly zones, control zones, and other airspace layers in color.",
+    "mapUnavailableNote": "This site doesn't yet have map-based airspace data for this country. Please check the official links below.",
+    "viewOnMapLabel": "View on the map from home",
+    "officialLinksTitle": "Official links",
+    "countries": {
+      "us": {
+        "name": "United States",
+        "authority": "Federal Aviation Administration (FAA)",
+        "summary": [
+          "Recreational flyers must pass the online TRUST safety test, while commercial drone operations require an FAA Part 107 Remote Pilot Certificate.",
+          "Most drones must be registered with the FAA, and flying in controlled airspace near airports requires prior approval through LAANC (Low Altitude Authorization and Notification Capability).",
+          "Always check airspace with the B4UFLY app or the FAA's UAS facility map before you fly."
+        ],
+        "links": {
+          "official": "FAA drone guidance",
+          "registration": "FAA drone registration (DroneZone)",
+          "flightApproval": "Airspace authorization (LAANC)"
+        }
+      },
+      "kr": {
+        "name": "South Korea",
+        "authority": "Ministry of Land, Infrastructure and Transport (MOLIT) · Drone OneStop",
+        "summary": [
+          "Depending on weight and purpose, you must register your drone and obtain flight/aerial-photography approval in advance through the Drone OneStop portal.",
+          "Flying without prior approval in no-fly zones, control zones, or restricted zones can result in fines of up to KRW 1.5 million. Most of central Seoul falls under restricted airspace.",
+          "On this site, selecting a location in South Korea also shows no-fly zones, control zones, and other airspace layers in color on the map."
+        ],
+        "links": {
+          "official": "Drone OneStop portal",
+          "registration": "Drone registration",
+          "flightApproval": "Flight approval application"
+        }
+      },
+      "jp": {
+        "name": "Japan",
+        "authority": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT)",
+        "summary": [
+          "Drones weighing 100g or more must be registered with MLIT (including Remote ID); flying an unregistered drone is punishable by law.",
+          "Flying near airports, above 150m, over densely inhabited districts (DID), or in emergency-use airspace requires prior permission from the regional civil aviation bureau, applied for online via DIPS2.0.",
+          "Night flights, beyond-visual-line-of-sight flights and similar also require separate approval (with some exceptions for certified aircraft/pilots). Always check the latest rules on the official site before flying."
+        ],
+        "links": {
+          "official": "MLIT drone guidance",
+          "registration": "Registration & flight application (DIPS2.0)"
+        }
+      },
+      "es": {
+        "name": "Spain",
+        "authority": "AESA (Spanish Aviation Safety Agency)",
+        "summary": [
+          "Spain follows the EU-wide EASA framework, which splits drone operations into three risk-based categories — Open, Specific, and Certified. Most hobby flying falls under the Open category.",
+          "Drone operators must register with AESA and display their registration number on the aircraft.",
+          "Where you can fly is defined by AESA's 'UAS geographical zones' service — always check it for restricted areas before flying."
+        ],
+        "links": {
+          "official": "AESA drone guidance",
+          "registration": "Operator registration (AESA)"
+        }
+      }
     }
   }
 }

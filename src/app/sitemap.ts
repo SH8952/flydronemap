@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL, languageAlternates } from "@/lib/seo";
 import { getAllGuidesMeta } from "@/lib/guides";
+import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
 
 /**
  * Every static route currently in the app, per Google AdSense/SEO checklist
@@ -21,6 +22,7 @@ const STATIC_PATHS = [
   "/disclosure",
   "/guides",
   "/faq",
+  "/regulations",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -54,5 +56,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...staticEntries, ...guideEntries];
+  const regulationEntries = routing.locales.flatMap((locale) =>
+    REGULATION_COUNTRIES.map((country) => ({
+      url: `${SITE_URL}/${locale}/regulations/${country.id}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+      alternates: {
+        languages: languageAlternates(`/regulations/${country.id}`),
+      },
+    })),
+  );
+
+  return [...staticEntries, ...guideEntries, ...regulationEntries];
 }

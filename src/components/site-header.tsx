@@ -36,6 +36,9 @@ export function SiteHeader() {
           <Link href="/guides" className={navLinkClass}>
             {t("guidesNav")}
           </Link>
+          <Link href="/regulations" className={navLinkClass}>
+            {t("regulationsNav")}
+          </Link>
           <Link href="/faq" className={navLinkClass}>
             {t("faqNav")}
           </Link>
@@ -77,6 +80,13 @@ export function SiteHeader() {
             onClick={() => setMenuOpen(false)}
           >
             {t("guidesNav")}
+          </Link>
+          <Link
+            href="/regulations"
+            className={`${navLinkClass} py-2.5`}
+            onClick={() => setMenuOpen(false)}
+          >
+            {t("regulationsNav")}
           </Link>
           <Link
             href="/faq"

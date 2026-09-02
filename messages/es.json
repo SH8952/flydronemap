@@ -2,6 +2,7 @@
   "Header": {
     "tagline": "Clima de vuelo para drones e índice Kp",
     "guidesNav": "Guías",
+    "regulationsNav": "Normativas",
     "aboutNav": "Sobre nosotros",
     "faqNav": "FAQ",
     "openMenu": "Abrir menú",
@@ -359,6 +360,74 @@
       "us-airspace-regulations": "Espacio aéreo y normativa de EE. UU.",
       "gear-flight-tips": "Equipo y consejos de vuelo",
       "general": "General"
+    }
+  },
+  "Regulations": {
+    "title": "Normativa de drones por país",
+    "subtitle": "Elige el país donde vas a volar para ver un resumen orientativo de la normativa y enlaces a la autoridad oficial.",
+    "disclaimer": "Esta página es un resumen orientativo, no asesoramiento legal. Antes de volar, comprueba siempre la normativa vigente en la autoridad oficial del país correspondiente.",
+    "mapAvailableBadge": "Espacio aéreo visible en el mapa",
+    "mapUnavailableBadge": "Ver enlaces oficiales",
+    "backToList": "Volver a la lista de países",
+    "mapAvailableNote": "El mapa de este sitio puede mostrar en color las zonas de exclusión, zonas de control y otras capas de espacio aéreo de este país.",
+    "mapUnavailableNote": "Este sitio aún no dispone de datos de espacio aéreo en el mapa para este país. Consulta los enlaces oficiales a continuación.",
+    "viewOnMapLabel": "Ver en el mapa desde el inicio",
+    "officialLinksTitle": "Enlaces oficiales",
+    "countries": {
+      "us": {
+        "name": "Estados Unidos",
+        "authority": "Administración Federal de Aviación (FAA)",
+        "summary": [
+          "Los pilotos recreativos deben aprobar el examen de seguridad en línea TRUST, y para operaciones comerciales con drones se requiere el certificado de piloto remoto Part 107 de la FAA.",
+          "La mayoría de los drones deben registrarse ante la FAA, y volar en espacio aéreo controlado cerca de aeropuertos requiere autorización previa mediante LAANC.",
+          "Antes de volar, comprueba siempre el espacio aéreo con la app B4UFLY o el mapa de instalaciones UAS de la FAA."
+        ],
+        "links": {
+          "official": "Guía oficial de drones de la FAA",
+          "registration": "Registro de drones (DroneZone)",
+          "flightApproval": "Autorización de espacio aéreo (LAANC)"
+        }
+      },
+      "kr": {
+        "name": "Corea del Sur",
+        "authority": "Ministerio de Tierra, Infraestructura y Transporte · Drone OneStop",
+        "summary": [
+          "Según el peso y el uso, es necesario registrar el dron y obtener autorización de vuelo o de fotografía aérea a través del portal Drone OneStop.",
+          "Volar sin autorización previa en zonas de exclusión, zonas de control o zonas restringidas puede conllevar multas de hasta 1.500.000 KRW. La mayor parte del centro de Seúl es espacio restringido.",
+          "En este sitio, al seleccionar una ubicación en Corea del Sur también se muestran en el mapa, en color, las zonas de exclusión, zonas de control y otras capas de espacio aéreo."
+        ],
+        "links": {
+          "official": "Portal Drone OneStop",
+          "registration": "Registro de la aeronave",
+          "flightApproval": "Solicitud de autorización de vuelo"
+        }
+      },
+      "jp": {
+        "name": "Japón",
+        "authority": "Ministerio de Tierra, Infraestructura, Transporte y Turismo (MLIT)",
+        "summary": [
+          "Los drones de 100 g o más deben registrarse ante el MLIT (incluido Remote ID); volar un dron no registrado es sancionable.",
+          "Volar cerca de aeropuertos, por encima de 150 m, sobre zonas densamente pobladas (DID) o en espacio aéreo de uso de emergencia requiere permiso previo de la oficina regional de aviación civil, solicitado en línea a través de DIPS2.0.",
+          "Los vuelos nocturnos o más allá del alcance visual también requieren autorización aparte (con algunas excepciones para aeronaves/pilotos certificados). Comprueba siempre la normativa más reciente en el sitio oficial antes de volar."
+        ],
+        "links": {
+          "official": "Información oficial de drones del MLIT",
+          "registration": "Registro y solicitud de vuelo (DIPS2.0)"
+        }
+      },
+      "es": {
+        "name": "España",
+        "authority": "AESA (Agencia Estatal de Seguridad Aérea)",
+        "summary": [
+          "España sigue el marco común de la EASA en la UE, que divide las operaciones con drones en tres categorías según el riesgo: abierta, específica y certificada. La mayoría de los vuelos recreativos entran en la categoría abierta.",
+          "Los operadores de drones deben registrarse en AESA y mostrar su número de registro en la aeronave.",
+          "Dónde se puede volar se define en el servicio de 'zonas geográficas de UAS' de AESA — compruébalo siempre antes de volar para evitar zonas restringidas."
+        ],
+        "links": {
+          "official": "Información oficial de drones de AESA",
+          "registration": "Registro de operador (AESA)"
+        }
+      }
     }
   }
 }

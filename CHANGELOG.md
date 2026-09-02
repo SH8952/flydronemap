@@ -1,3 +1,13 @@
+## 2026-09-02 — "국가별 드론 규정 안내" 신규 섹션 추가 (/regulations)
+
+- 사용자가 DJI 공식 FlySafe(fly-safe.dji.com)를 참고 모델로 제시하며 "국가별 대략적인 규정 안내 + 공식 기관 링크"를 요청, 협의 끝에 확정된 범위대로 구현: 기존 대시보드는 그대로 유지, 별도 섹션(`/regulations`)으로 신설. 초기 지원국은 사이트가 이미 지원하는 4개 언어(en/ko/ja/es)에 대응하는 미국·한국·일본·스페인. 지도 데이터가 이미 있는 미국(FAA)·한국(VWorld)은 홈 지도에서 공역을 색상으로 확인하도록 안내하고, 아직 데이터가 없는 일본·스페인은 1차로 텍스트 요약 + 공식 링크만 제공.
+- 신규 파일: `src/lib/country-regulations.ts`(국가별 구조적 데이터 카탈로그), `src/app/[locale]/regulations/page.tsx`(국가 목록), `src/app/[locale]/regulations/[country]/page.tsx`(국가별 상세 — 규정 요약 3문단 + 지도 안내/공식 링크). `src/components/site-header.tsx`에 데스크톱/모바일 내비게이션 링크 추가, `src/app/sitemap.ts`에 `/regulations` 및 국가별 상세 페이지 16개(4언어×4국가) 등록.
+- `messages/{ko,en,ja,es}.json`에 `Header.regulationsNav` 및 `Regulations` 네임스페이스(제목/부제/면책 문구/국가별 명칭·소관기관·규정 요약 3문단·링크 라벨) 전체 신규 번역 추가 — 4개 언어 모두 직접 작성(기계 번역이 아닌 각국 공식 사이트 조사 기반).
+- 각국 규정 요약은 공식 기관 페이지(FAA faa.gov/uas, 대한민국 드론원스톱 drone.onestop.go.kr, 일본 국토交通省 DIPS2.0, 스페인 AESA seguridadaerea.gob.es)를 직접 조사해 작성. 페이지에는 "법적 자문 아님, 공식 기관에서 최신 규정 확인" 면책 문구를 상단에 고정 노출.
+- 이 기능은 사용자가 해외 체류로 맥북 접근이 불가능한 상태에서 클라우드 전용 clone(커밋 `bb9f201`)으로 먼저 구현되었고, 맥이 다시 연결된 뒤 변경 파일 9개(신규 3개 + 수정 6개, CHANGELOG 제외)를 맥 로컬 저장소에 반영·병합함.
+- 검증: `tsc --noEmit` 통과(오류 0건), `eslint` 통과(기존부터 있던 무관한 경고 1건 제외), `npm run build` 정적 페이지 151/151 생성 성공(신규 `/regulations`, `/regulations/[country]` 16개 페이지 포함) — 맥 로컬 저장소에서 재검증 완료.
+- 참고: 미국/한국 상세 페이지의 "홈에서 지도로 확인하기" 링크는 위치를 자동으로 지정해주지는 않음(홈 화면에서 직접 검색 필요) — 지도에 특정 위치를 자동으로 미리 채워주는 딥링크 기능은 이번 범위에서 제외하고 추후 개선 과제로 남겨둠.
+
 ## 2026-09-02 — VWorld 서비스URL 수정으로 WMS 503 오류 해결 확인
 
 - 사용자가 브이월드 마이포털 인증키 관리 화면에서 서비스URL을 `https://flydronemap.com`(www 없음) → `https://www.flydronemap.com`으로 수정 완료
@@ -47,6 +57,16 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-02 — "국가별 드론 규정 안내" 신규 섹션 추가 (/regulations)
+
+- 사용자가 DJI 공식 FlySafe(fly-safe.dji.com)를 참고 모델로 제시하며 "국가별 대략적인 규정 안내 + 공식 기관 링크"를 요청, 협의 끝에 확정된 범위대로 구현: 기존 대시보드는 그대로 유지, 별도 섹션(`/regulations`)으로 신설. 초기 지원국은 사이트가 이미 지원하는 4개 언어(en/ko/ja/es)에 대응하는 미국·한국·일본·스페인. 지도 데이터가 이미 있는 미국(FAA)·한국(VWorld)은 홈 지도에서 공역을 색상으로 확인하도록 안내하고, 아직 데이터가 없는 일본·스페인은 1차로 텍스트 요약 + 공식 링크만 제공.
+- 신규 파일: `src/lib/country-regulations.ts`(국가별 구조적 데이터 카탈로그), `src/app/[locale]/regulations/page.tsx`(국가 목록), `src/app/[locale]/regulations/[country]/page.tsx`(국가별 상세 — 규정 요약 3문단 + 지도 안내/공식 링크). `src/components/site-header.tsx`에 데스크톱/모바일 내비게이션 링크 추가, `src/app/sitemap.ts`에 `/regulations` 및 국가별 상세 페이지 16개(4언어×4국가) 등록.
+- `messages/{ko,en,ja,es}.json`에 `Header.regulationsNav` 및 `Regulations` 네임스페이스(제목/부제/면책 문구/국가별 명칭·소관기관·규정 요약 3문단·링크 라벨) 전체 신규 번역 추가 — 4개 언어 모두 직접 작성(기계 번역이 아닌 각국 공식 사이트 조사 기반).
+- 각국 규정 요약은 공식 기관 페이지(FAA faa.gov/uas, 대한민국 드론원스톱 drone.onestop.go.kr, 일본 국토交通省 DIPS2.0, 스페인 AESA seguridadaerea.gob.es)를 직접 조사해 작성. 페이지에는 "법적 자문 아님, 공식 기관에서 최신 규정 확인" 면책 문구를 상단에 고정 노출.
+- 이 기능은 사용자가 해외 체류로 맥북 접근이 불가능한 상태에서 클라우드 전용 clone(커밋 `bb9f201`)으로 먼저 구현되었고, 맥이 다시 연결된 뒤 변경 파일 9개(신규 3개 + 수정 6개, CHANGELOG 제외)를 맥 로컬 저장소에 반영·병합함.
+- 검증: `tsc --noEmit` 통과(오류 0건), `eslint` 통과(기존부터 있던 무관한 경고 1건 제외), `npm run build` 정적 페이지 151/151 생성 성공(신규 `/regulations`, `/regulations/[country]` 16개 페이지 포함) — 맥 로컬 저장소에서 재검증 완료.
+- 참고: 미국/한국 상세 페이지의 "홈에서 지도로 확인하기" 링크는 위치를 자동으로 지정해주지는 않음(홈 화면에서 직접 검색 필요) — 지도에 특정 위치를 자동으로 미리 채워주는 딥링크 기능은 이번 범위에서 제외하고 추후 개선 과제로 남겨둠.
 
 ## 2026-09-02 — VWorld 서비스URL 수정으로 WMS 503 오류 해결 확인
 
