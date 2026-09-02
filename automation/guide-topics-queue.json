@@ -203,8 +203,8 @@
     "category": "space-weather-gps",
     "titleKo": "NOAA 우주기상 등급 이해하기",
     "titleEn": "Understanding NOAA Space Weather Scales",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-02"
   },
   {
     "order": 24,

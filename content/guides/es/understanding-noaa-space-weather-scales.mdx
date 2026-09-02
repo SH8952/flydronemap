@@ -1,0 +1,29 @@
+---
+title: "Entendiendo las escalas de clima espacial de la NOAA: G, S y R explicadas"
+description: "Por qué las tres escalas de clima espacial de la NOAA abarcan más que el índice Kp por sí solo, y cuál realmente importa para tu próximo vuelo con drone."
+publishedAt: "2026-09-02"
+tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
+category: "space-weather-gps"
+---
+
+Si hasta ahora solo has revisado el índice Kp antes de volar, estás siguiendo apenas un tercio de lo que realmente publica el Centro de Predicción del Clima Espacial de la NOAA. La NOAA mantiene tres escalas independientes de 1 a 5 — G, S y R — y una lectura de Kp tranquila no garantiza que las otras dos también lo estén.
+
+## Las tres escalas miden fenómenos físicos distintos
+
+La escala G (Tormentas Geomagnéticas) es la que la mayoría de las herramientas de clima para drones ya muestra, porque se corresponde directamente con el índice Kp: G1 equivale a Kp 5, G2 a Kp 6, y así sucesivamente hasta G5 en Kp 9. La escala S (Tormentas de Radiación Solar) mide el flujo de protones de alta energía que llega a la Tierra, calificado de S1 a S5, y afecta sobre todo a operadores de satélites y a las comunicaciones de radio HF polares, más que a la precisión del GPS que preocupa a la mayoría de los pilotos. La escala R (Apagones de Radio) es provocada por fulguraciones solares de rayos X y se califica según la clase de la fulguración — una fulguración M1 se registra como R1, una X1 como R3, y así sucesivamente — y es la escala que más suele tomar por sorpresa a quienes solo vigilan el Kp.
+
+## Por qué la escala R sorprende a quienes solo miran el Kp
+
+Una fulguración solar de clase X puede desencadenar un evento de apagón de radio de escala R en cuestión de minutos, mucho antes de que cualquier perturbación geomagnética aparezca en el índice Kp, porque los rayos X de la fulguración llegan casi instantáneamente al lado iluminado de la ionosfera terrestre, mientras que la eyección de masa coronal asociada —la que eventualmente eleva el Kp— puede tardar un día o más en llegar, si es que llega. Durante un evento R2 o superior, los receptores GPS en el hemisferio iluminado pueden experimentar una caída real de precisión por el aumento de la perturbación ionosférica, incluso mientras el índice Kp sigue marcando un tranquilo 2 o 3. Un piloto que solo revisa el Kp antes de despegar puede pasar esto completamente por alto.
+
+## Un error común: creer que "sin pronóstico de aurora" significa "sin riesgo de clima espacial"
+
+Los cazadores de auroras vigilan la escala G porque es el número ligado a la actividad visible de auroras, y muchos pilotos de drones han adoptado el mismo hábito sin darse cuenta — revisan el Kp, lo ven bajo y asumen que no hay ningún efecto de clima espacial. Pero un evento de escala R no necesita un Kp alto para ocurrir, y puede degradar el posicionamiento GPS durante la ventana en que está activo, típicamente desde minutos hasta unas pocas horas según la duración y el decaimiento de la fulguración.
+
+## Lista de verificación práctica
+
+- Trata a G, S y R como tres números independientes, no como una puntuación combinada — un Kp tranquilo no garantiza una escala R igual de tranquila.
+- Antes de un vuelo donde la precisión sea crítica (mapeo, inspección, largo alcance), consulta el pronóstico de clima espacial a 3 días de la NOAA, no solo el índice Kp.
+- Si la precisión del GPS se ve inusualmente mala o tu drone reporta más pérdida de satélites de lo normal en condiciones por lo demás despejadas, considera un evento de escala R activo como posible causa.
+- Recuerda que los efectos de la escala R golpean con más fuerza en el lado iluminado de la Tierra y se desvanecen cuando el flujo de rayos X de la fulguración que los provocó disminuye — esperar suele ser la solución más simple.
+- No esperes a ver una aurora visible o un Kp alto como única señal para revisar el clima espacial antes de un vuelo crítico.

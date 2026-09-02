@@ -1,0 +1,29 @@
+---
+title: "Understanding NOAA Space Weather Scales: G, S, and R Explained"
+description: "Why NOAA's three space weather scales cover more than the Kp index alone, and which one actually matters for your next drone flight."
+publishedAt: "2026-09-02"
+tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
+category: "space-weather-gps"
+---
+
+If you've only ever watched the Kp index before a flight, you're tracking one third of what NOAA's Space Weather Prediction Center actually publishes. NOAA runs three separate 1-to-5 scales — G, S, and R — and a quiet Kp reading doesn't mean all three are quiet too.
+
+## The three scales cover different physics
+
+The G-scale (Geomagnetic Storms) is the one most drone weather tools already surface, because it maps directly onto the Kp index: G1 corresponds to Kp 5, G2 to Kp 6, and so on up through G5 at Kp 9. The S-scale (Solar Radiation Storms) measures the flux of high-energy protons reaching Earth, rated from S1 to S5, and matters most for satellite operators and polar HF radio rather than for the GPS accuracy most pilots care about. The R-scale (Radio Blackouts) is driven by solar X-ray flares and is rated by the flare's X-ray class — an M1 flare registers as R1, an X1 flare as R3, and so on — and it's the scale most likely to catch a pilot off guard.
+
+## Why the R-scale surprises people who only watch Kp
+
+An X-class solar flare can trigger an R-scale radio blackout event within minutes, well before any geomagnetic disturbance shows up in the Kp index, because the flare's X-rays hit the sunlit side of Earth's ionosphere almost instantly while the associated coronal mass ejection — the thing that eventually drives Kp up — can take a day or more to arrive, if it arrives at all. During an R2 or higher event, GPS receivers on the sunlit hemisphere can see a real accuracy dip from increased ionospheric disturbance even while the Kp index still reads a calm 2 or 3. A pilot who only checks Kp before takeoff can walk straight past this.
+
+## A common mistake: treating "no aurora forecast" as "no space weather risk"
+
+Aurora chasers watch the G-scale because that's the number tied to visible aurora activity, and a lot of drone pilots have picked up the same habit by osmosis — checking Kp, seeing it's low, and assuming the sky is clear of any space weather effect. But an R-scale event doesn't need a high Kp to happen, and it can degrade GPS positioning for the specific window it's active, typically minutes to a few hours depending on the flare's duration and decay.
+
+## Practical checklist
+
+- Treat G, S, and R as three independent numbers, not one combined score — a quiet Kp does not guarantee a quiet R-scale.
+- Before a precision-critical flight (mapping, inspection, long-range), check NOAA's current 3-day space weather outlook rather than the Kp index alone.
+- If GPS accuracy looks unusually poor or your drone reports more satellites lost than normal in otherwise clear conditions, check for an active R-scale event as a possible cause.
+- Remember that R-scale effects hit hardest on the sunlit side of Earth and fade once the triggering flare's X-ray flux subsides — waiting it out is often the simplest fix.
+- Don't wait for a visible aurora or a high Kp number as your only trigger to double-check space weather before a critical flight.
