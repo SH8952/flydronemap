@@ -86,11 +86,17 @@ async function fetchLayerFeatures(dataCode: string): Promise<AirspaceLayerFeatur
 
   try {
     const res = await fetch(url.toString(), { next: { revalidate: 21600 } });
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error(
+        `[airspace-layers] VWorld HTTP ${res.status} for ${dataCode}`,
+      );
+      return [];
+    }
 
     const data = (await res.json()) as {
       response?: {
         status?: string;
+        error?: { text?: string };
         result?: {
           featureCollection?: {
             features?: Array<{
@@ -101,11 +107,22 @@ async function fetchLayerFeatures(dataCode: string): Promise<AirspaceLayerFeatur
       };
     };
 
-    if (data.response?.status !== "OK") return [];
+    const status = data.response?.status;
+    // NOT_FOUND is a legitimate "no features in this filter" result (same
+    // convention as fetchKoreaAirspaceCeiling in src/lib/airspace.ts), not
+    // an error — only genuine error statuses should be logged.
+    if (status === "NOT_FOUND") return [];
+    if (status !== "OK") {
+      console.error(
+        `[airspace-layers] VWorld status="${status}" for ${dataCode}: ${data.response?.error?.text ?? "(no error text)"}`,
+      );
+      return [];
+    }
 
     const features = data.response?.result?.featureCollection?.features ?? [];
     return features.flatMap((f) => (f.geometry ? explodeGeometry(f.geometry) : []));
-  } catch {
+  } catch (err) {
+    console.error(`[airspace-layers] fetch threw for ${dataCode}:`, err);
     return [];
   }
 }
