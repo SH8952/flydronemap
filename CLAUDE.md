@@ -6,6 +6,99 @@
 이 프로젝트(`flydronemap`) 작업 전 백업을 생성할 때는 반드시 **이 폴더 내부**에 만든다: `.backups/backup_YYYYMMDD_HHMMSS`
 상위 폴더(`Desktop/애드센스 제휴 마케팅/`)에 직접 백업 폴더를 만들지 않는다 (예: `../flydronemap_backup_...`, `../_backups/flydronemap_backup_...` 전부 금지).
 
+## push용 1회성 `.command` 스크립트 — 표준 템플릿 (2026-09-03 확정, 항상 이 템플릿을 그대로 사용할 것)
+
+새로운 코드/문서 변경을 커밋+push하기 위해 1회성 `push_실행.command`를 만들 때는, 아래 템플릿을
+그대로 복사해서 `<REPO 경로>`·`<git add 대상 파일들>`·`<커밋 메시지>`만 채워 넣는다. 순서를 임의로
+바꾸지 말 것 — 특히 "자체 삭제 → 대기 → 터미널 종료" 순서는 아래 두 항목(2026-09-02, 2026-09-03)의
+실측 이력으로 이미 검증된 것이므로 반드시 이 순서를 지킨다.
+
+```bash
+#!/bin/bash
+# <이 스크립트가 반영하는 변경 내용 한 줄 설명>
+
+REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
+
+if [ ! -d "$REPO/.git" ]; then
+  echo "저장소를 찾을 수 없습니다: $REPO"
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+cd "$REPO" || { echo "오류: 저장소 폴더로 이동할 수 없습니다."; read -p "Enter..."; exit 1; }
+
+[ -f .git/index.lock ] && rm -f .git/index.lock
+[ -f .git/HEAD.lock ] && rm -f .git/HEAD.lock
+
+echo "=== 변경 파일 확인 ==="
+git status --porcelain
+echo ""
+
+echo "-- git add --"
+git add -v <변경된 파일 경로들을 명시적으로 나열 — 절대 -A/. 사용 금지>
+
+if git diff --cached --quiet; then
+  echo ""
+  echo "커밋할 변경사항이 없습니다."
+  rm -f -- "$0" 2>/dev/null || true
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 0
+fi
+
+echo ""
+echo "-- git commit --"
+if ! git commit -m "$(cat <<'COMMIT_EOF'
+<타입: 요약>
+
+<본문(선택)>
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01BpDykGdaGioPM6kX8K1Ht2
+COMMIT_EOF
+)"; then
+  echo "오류: 커밋 실패."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+echo ""
+echo "-- git push --"
+if ! git push origin main; then
+  echo "오류: push 실패(네트워크 등). 커밋 자체는 로컬에 남아 있습니다."
+  echo "저장소 폴더에서 'git push origin main'을 직접 실행해 재시도해 주세요."
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
+echo ""
+echo "완료: <요약> 커밋 + push 완료되었습니다."
+
+# 순서 고정: 자체 삭제를 먼저, 그다음 대기 후 터미널 종료 (2026-09-03 정정 이력 참고)
+rm -f -- "$0" 2>/dev/null || true
+
+echo "3초 후 이 창이 자동으로 닫힙니다."
+sleep 3
+
+THIS_TTY=$(tty)
+osascript <<APPLESCRIPT
+tell application "Terminal"
+    repeat with w in windows
+        try
+            if tty of (selected tab of w) is "$THIS_TTY" then close w
+        end try
+    end repeat
+end tell
+delay 0.3
+try
+    tell application "System Events" to keystroke return
+end try
+APPLESCRIPT
+```
+
+생성 후 반드시 다음 세 가지를 적용한다: `chmod +x`, `xattr -d com.apple.quarantine`(에러 무시),
+`xattr -cr`(에러 무시), 그리고 `bash -n`으로 문법 검증. 왜 이 순서가 맞는지의 배경 설명은 아래
+"자체 삭제 순서를 정정" 항목(2026-09-03)을 참고.
+
 ## push용 .command 스크립트 — 자동 종료(osascript close) 시 확인 팝업 뜨는 문제, 근본 해결됨 (2026-09-02)
 
 `push_실행.command`류 스크립트 끝에서 `osascript -e 'tell application "Terminal" to close (every window ...)'`로
