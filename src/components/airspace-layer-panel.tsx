@@ -6,6 +6,14 @@ import { useTranslations } from "next-intl";
 import { AIRSPACE_LAYERS } from "@/lib/airspace-layers";
 import { cn } from "@/lib/utils";
 
+/** 패널에 "보여지는" 체크박스 순서만 잠긴(필수) 레이어가 항상 맨 위에 오도록 정렬한 배열.
+ * 지도 위 레이어가 그려지는 원본 순서(AIRSPACE_LAYERS, 지도 타일 겹침 순서에도 쓰임)는 건드리지 않음.
+ * Array.sort는 안정 정렬이므로 잠긴 항목끼리·잠기지 않은 항목끼리의 상대 순서는 원본 그대로 유지됨. */
+const orderedLayers = [...AIRSPACE_LAYERS].sort((a, b) => {
+  if (a.required === b.required) return 0;
+  return a.required ? -1 : 1;
+});
+
 type AirspaceLayerPanelProps = {
   activeIds: Set<string>;
   onToggle: (id: string, next: boolean) => void;
@@ -59,7 +67,7 @@ export function AirspaceLayerPanel({
           </p>
 
           <ul className="flex flex-col gap-1.5">
-            {AIRSPACE_LAYERS.map((layer) => {
+            {orderedLayers.map((layer) => {
               const checked = activeIds.has(layer.id);
               const loading = loadingIds.has(layer.id);
               return (
