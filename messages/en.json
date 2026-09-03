@@ -184,7 +184,8 @@
     "terms": "Terms of Service",
     "guides": "Guides",
     "about": "About",
-    "disclosure": "Affiliate Disclosure"
+    "disclosure": "Affiliate Disclosure",
+    "contact": "Contact"
   },
   "Privacy": {
     "title": "Privacy Policy",
@@ -436,5 +437,28 @@
         }
       }
     }
+  },
+  "Contact": {
+    "title": "Contact FlyDroneMap",
+    "sections": [
+      {
+        "heading": "Email Us",
+        "body": [
+          "The fastest way to reach us is by email: skysmoga@gmail.com. We read every message and try to reply within a few business days."
+        ]
+      },
+      {
+        "heading": "Bug Reports & Feature Requests",
+        "body": [
+          "Found something broken, or have an idea for a feature we should add? Send us the details (what happened, your browser/device, and steps to reproduce if it's a bug) and we'll look into it."
+        ]
+      },
+      {
+        "heading": "Business & Partnership Inquiries",
+        "body": [
+          "For advertising, partnership, or press inquiries, please reach out to the same email address above."
+        ]
+      }
+    ]
   }
 }

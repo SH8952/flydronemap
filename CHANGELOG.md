@@ -1,3 +1,12 @@
+## 2026-09-03 — Contact(문의) 페이지 신규 추가 (애드센스 사전 대비)
+
+- 배경: 같은 시리즈의 ExifLens(exifnd.com)가 애드센스 심사에서 "가치가 별로 없는 콘텐츠"로 반려되었고, 실제 원인 점검 과정에서 Contact 페이지 부재가 실질적 개선 여지로 확인됨. FlyDroneMap도 저장소를 점검해보니 Privacy/Terms/About/Disclosure는 있었지만 Contact 페이지가 없어 동일한 문제를 겪기 전에 선제적으로 추가
+- 신규 파일: `src/app/[locale]/contact/page.tsx` — 기존 About/Privacy/Terms와 동일하게 `LegalPage` 공통 컴포넌트 + next-intl 번역 네임스페이스(`Contact`)를 사용하는 4개 언어(en/ko/ja/es) 지원 페이지. 이메일 문의처(skysmoga@gmail.com), 버그 제보/기능 제안, 비즈니스·제휴 문의 3개 섹션으로 구성
+- 수정: `messages/{en,ko,ja,es}.json` — `Contact` 네임스페이스 및 `Footer.contact` 라벨 추가
+- 수정: `src/components/site-footer.tsx` — 푸터 내비게이션에 Contact 링크 추가
+- 수정: `src/app/sitemap.ts` — `STATIC_PATHS`에 `/contact` 추가
+- 검증: 대상 파일 `npx eslint`, `npx tsc --noEmit` 통과. `npm run build` 정상 완료(160 → 164개 정적 페이지로 +4, en/ko/ja/es 4개 언어의 `/contact.html`이 모두 생성된 것을 직접 확인)
+
 ## 2026-09-03 (7) — 미국 공역(FAA) 조회 기능 신규 구현 + 지도 클릭 좌표 정규화 버그 수정
 
 - 대한민국 공역 레이어 패널이 이미 완비된 것을 확인한 뒤, 미국(FAA)에도 동등한 기능을 붙이기로 하고 사전 자료조사부터 진행 — FAA의 공개 ArcGIS Online 조직(services6.arcgis.com/ssFJjBXIUyZDrSYZ)이 Class_Airspace, Special_Use_Airspace, FAA_Recognized_Identification_Areas 등을 키 없이 제공하는 것을 확인. WMS/MapServer(래스터 타일) 서비스는 없고 벡터 FeatureServer만 제공함을 확인해, 사용자 승인 하에 "지도 상시 오버레이" 대신 "클릭 시점 지점 조회" 방식으로 설계.

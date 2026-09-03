@@ -20,3 +20,6 @@ __pycache__/
 *.log
 flydronemap_project_summary.md
 _삭제해도되는파일_*/
+
+# local backups (작업 전 자동 백업 폴더, git에는 포함하지 않음)
+/_backups

@@ -19,6 +19,9 @@ export function SiteFooter() {
           <Link href="/disclosure" className="hover:text-foreground">
             {t("disclosure")}
           </Link>
+          <Link href="/contact" className="hover:text-foreground">
+            {t("contact")}
+          </Link>
         </nav>
       </div>
     </footer>
