@@ -60,7 +60,7 @@ export async function GET(request: NextRequest) {
       ok: res.ok,
       status: res.status,
       elapsedMs: Date.now() - startedAt,
-      bodyPreview: bodyText.slice(0, 800),
+      bodyPreview: bodyText.slice(0, 6000),
     });
   } catch (e) {
     return NextResponse.json(
