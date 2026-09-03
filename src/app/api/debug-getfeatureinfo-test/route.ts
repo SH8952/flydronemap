@@ -1,36 +1,30 @@
 /**
  * TEMPORARY DIAGNOSTIC ROUTE — NOT A REAL FEATURE.
  *
- * Purpose: test whether a SERVER-SIDE (Vercel serverless) call to VWorld's
- * WMS GetFeatureInfo succeeds, as a last check before giving up on
- * per-click airspace zone lookup entirely.
+ * See CHANGELOG.md (2026-09-03 entries) for full context. First test proved
+ * server-side (Vercel) GetFeatureInfo calls to VWorld succeed when using
+ * NEXT_PUBLIC_VWORLD_API_KEY — this route now runs deeper feasibility
+ * checks (multiple layers per request, a zone-free point, repeatability)
+ * before committing to building the real per-click lookup feature.
  *
- * Context: GetFeatureInfo called from the BROWSER (client-side, see
- * src/lib/airspace-wms-lookup.ts) always returns HTTP 503 in production —
- * confirmed again 2026-09-02 with fetch(url, {referrerPolicy:"no-referrer"}),
- * so it isn't simply about the Referer header. Server-side calls to a
- * different VWorld endpoint (api.vworld.kr/req/data, the 2D데이터 API) were
- * separately confirmed blocked by VWorld for Vercel's IP ranges (both iad1
- * and icn1). This route checks whether that same IP block also applies to
- * /req/wms (GetMap/GetFeatureInfo) specifically, since it has never been
- * tested — a server request has no Origin/Referer header at all, unlike a
- * browser fetch, so it is a genuinely different request shape.
+ * Query params: lat, lon (default: 고리원전 근처), layers (comma-separated
+ * VWorld layer ids, lowercase, default: lt_c_aisprhc).
  *
- * Delete this route (and this comment) once the test result is recorded in
- * CHANGELOG.md, regardless of outcome — see that entry for what happened.
+ * Delete this route once the real feature ships or the idea is dropped.
  */
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   const apiKey = process.env.NEXT_PUBLIC_VWORLD_API_KEY;
   const domain = process.env.NEXT_PUBLIC_VWORLD_DOMAIN ?? "https://flydronemap.com";
   if (!apiKey) {
     return NextResponse.json({ error: "NEXT_PUBLIC_VWORLD_API_KEY not set" }, { status: 500 });
   }
 
-  // 고리원전 인근, LT_C_AISPRHC(비행금지구역) 레이어가 실제로 존재하는 지점.
-  const lat = 35.3219;
-  const lon = 129.2939;
+  const params = request.nextUrl.searchParams;
+  const lat = Number(params.get("lat") ?? "35.3219");
+  const lon = Number(params.get("lon") ?? "129.2939");
+  const layers = params.get("layers") ?? "lt_c_aisprhc";
   const delta = 0.01;
   const size = 256;
   const center = 128;
@@ -41,8 +35,8 @@ export async function GET() {
   url.searchParams.set("SERVICE", "WMS");
   url.searchParams.set("VERSION", "1.3.0");
   url.searchParams.set("REQUEST", "GetFeatureInfo");
-  url.searchParams.set("LAYERS", "lt_c_aisprhc");
-  url.searchParams.set("QUERY_LAYERS", "lt_c_aisprhc");
+  url.searchParams.set("LAYERS", layers);
+  url.searchParams.set("QUERY_LAYERS", layers);
   url.searchParams.set("STYLES", "");
   url.searchParams.set("FORMAT", "image/png");
   url.searchParams.set("INFO_FORMAT", "application/json");
@@ -62,14 +56,16 @@ export async function GET() {
     const res = await fetch(url.toString(), { cache: "no-store" });
     const bodyText = await res.text();
     return NextResponse.json({
+      requested: { lat, lon, layers },
       ok: res.ok,
       status: res.status,
       elapsedMs: Date.now() - startedAt,
-      bodyPreview: bodyText.slice(0, 500),
+      bodyPreview: bodyText.slice(0, 800),
     });
   } catch (e) {
     return NextResponse.json(
       {
+        requested: { lat, lon, layers },
         ok: false,
         error: String(e),
         elapsedMs: Date.now() - startedAt,
