@@ -4,6 +4,19 @@
  * or grouped one level deeper for a multi-polygon. */
 export type LatLngRing = [number, number][];
 
+/** One matched Korea airspace zone from /api/airspace-lookup — see that
+ * route for how layerId/labels are derived. `labels` holds whatever
+ * human-readable attribute values VWorld returned for this zone (zone code,
+ * altitude range, etc. — the exact fields differ per layer), already
+ * deduplicated; it may be empty when a layer doesn't expose usable labels,
+ * in which case callers should fall back to the layer's catalog name
+ * (src/lib/airspace-layers.ts) alone. */
+export type KoreaAirspaceMatch = {
+  layerId: string;
+  labels: string[];
+  boundary?: LatLngRing[][];
+};
+
 export type AirspaceCeiling =
   | {
       source: "faa";
@@ -17,17 +30,11 @@ export type AirspaceCeiling =
   | {
       source: "kr";
       restricted: true;
-      /** Zone code, e.g. "P61A". */
-      zoneLabel: string;
-      /** Zone category name, e.g. "비행제한구역" (flight-restricted area). */
-      categoryName: string;
-      /** Lower altitude bound, e.g. "GND" (ground). */
-      lowerAltitude: string;
-      /** Upper altitude bound, e.g. "UNL" (unlimited). */
-      upperAltitude: string;
-      /** Boundary of the restricted zone, as one or more polygons (each an
-       * array of rings) — a MultiPolygon in GeoJSON terms. */
-      boundary?: LatLngRing[][];
+      /** All matched zones at this point, across every layer in the
+       * catalog — sorted by severity (prohibited > restricted > controlZone
+       * first). Usually one entry, but a point can fall inside more than one
+       * zone (e.g. concentric zones around the same facility). */
+      matches: KoreaAirspaceMatch[];
     }
   | {
       source: "kr";
@@ -113,11 +120,11 @@ async function fetchFaaAirspaceCeiling(
  * 2026-09까지 이 자리에는 fetchKoreaAirspaceCeiling()이 있었다 — 브이월드
  * 2D데이터 JSON API(api.vworld.kr/req/data)를 서버에서 직접 호출하는
  * 방식이었으나, 브이월드가 Vercel 서버 IP 대역을 차단하고 있어 production에서
- * 한 번도 성공한 적이 없다. 지점별 비행금지구역 조회는 이제
- * src/lib/airspace-wms-lookup.ts의 fetchKoreaRestrictedZoneClientSide()가
- * 대신한다 — 서버가 아니라 브라우저에서 직접 브이월드 WMS의 GetFeatureInfo를
- * 호출해 같은 차단을 우회한다(지도 오버레이 WMS 타일과 동일한 원리). 예전
- * 구현은 git 히스토리에 남아있다.
+ * 한 번도 성공한 적이 없다. 지점별 공역 조회는 이제 /api/airspace-lookup이
+ * 대신한다 — 같은 서버지만 다른 엔드포인트(req/wms의 GetFeatureInfo)를 써서
+ * 그 차단을 우회한다(2026-09-03 실제 프로덕션에서 검증 완료. 지도 오버레이
+ * WMS 타일과 원리가 비슷하지만 그쪽은 브라우저가 직접 요청하는 것과 달리
+ * 이건 서버가 대신 요청해준다). 예전 구현은 git 히스토리에 남아있다.
  */
 
 /**
@@ -132,9 +139,8 @@ export async function fetchAirspaceCeiling(
   longitude: number,
 ): Promise<AirspaceCeiling> {
   if (isInSouthKorea(latitude, longitude)) {
-    // 실패가 뻔한 서버사이드 브이월드 호출을 매 요청마다 시도하지 않는다 —
-    // 지점별 조회는 클라이언트(브라우저)에서 별도로 수행된다. 바로 위 주석
-    // 참고.
+    // 한국 지점의 지점별 공역 조회는 /api/airspace-lookup이 별도로 수행한다
+    // (src/components/drone-dashboard.tsx 참고) — 여기서는 항상 null.
     return null;
   }
   return fetchFaaAirspaceCeiling(latitude, longitude);

@@ -17,7 +17,7 @@ import {
   toPriorityRegulationId,
 } from "@/lib/country-info";
 import { getRegulationCountry } from "@/lib/country-regulations";
-import { fetchKoreaRestrictedZoneClientSide } from "@/lib/airspace-wms-lookup";
+import { fetchKoreaAirspaceZones } from "@/lib/airspace-lookup-client";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -66,11 +66,11 @@ type DashboardData = {
     | {
         source: "kr";
         restricted: true;
-        zoneLabel: string;
-        categoryName: string;
-        lowerAltitude: string;
-        upperAltitude: string;
-        boundary?: LatLngRing[][];
+        matches: Array<{
+          layerId: string;
+          labels: string[];
+          boundary?: LatLngRing[][];
+        }>;
       }
     | { source: "kr"; restricted: false }
     | null;
@@ -175,7 +175,7 @@ export function DroneDashboard() {
       const [res, krZone] = await Promise.all([
         fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
         isInSouthKorea(lat, lon)
-          ? fetchKoreaRestrictedZoneClientSide(lat, lon)
+          ? fetchKoreaAirspaceZones(lat, lon)
           : Promise.resolve(null),
       ]);
       if (!res.ok) throw new Error("failed");
@@ -371,7 +371,7 @@ export function DroneDashboard() {
           }
           krBoundary={
             data.airspace?.source === "kr" && data.airspace.restricted
-              ? data.airspace.boundary
+              ? data.airspace.matches[0]?.boundary
               : undefined
           }
           restricted={
@@ -515,16 +515,30 @@ export function DroneDashboard() {
             data.airspace.source === "kr" &&
             data.airspace.restricted ? (
               <div className="flex flex-col gap-2">
-                <div className="text-lg font-bold text-red-500">
-                  {data.airspace.categoryName || t("krRestrictedZone")} (
-                  {data.airspace.zoneLabel})
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {t("krAltitudeRange", {
-                    lower: data.airspace.lowerAltitude,
-                    upper: data.airspace.upperAltitude,
-                  })}
-                </p>
+                {data.airspace.matches.map((m) => {
+                  const layer = AIRSPACE_LAYERS.find(
+                    (l) => l.id === m.layerId,
+                  );
+                  return (
+                    <div key={m.layerId} className="flex flex-col gap-0.5">
+                      <div
+                        className="flex items-center gap-1.5 text-base font-bold"
+                        style={{ color: layer?.color }}
+                      >
+                        <span
+                          className="inline-block size-2.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: layer?.color }}
+                        />
+                        {t(`airspaceLayerNames.${m.layerId}`)}
+                      </div>
+                      {m.labels.length > 0 ? (
+                        <p className="pl-4 text-xs text-muted-foreground">
+                          {m.labels.join(" · ")}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
               </div>
             ) : null}
 
