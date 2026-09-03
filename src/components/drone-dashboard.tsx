@@ -18,6 +18,11 @@ import {
 } from "@/lib/country-info";
 import { getRegulationCountry } from "@/lib/country-regulations";
 import { fetchKoreaAirspaceZones } from "@/lib/airspace-lookup-client";
+import { getUsAirspaceLayer } from "@/lib/us-airspace-layers";
+import {
+  fetchUsAirspaceZones,
+  type UsAirspaceZones,
+} from "@/lib/us-airspace-lookup-client";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -74,6 +79,11 @@ type DashboardData = {
       }
     | { source: "kr"; restricted: false }
     | null;
+  // 미국 지점의 Class B/C/D/E, 금지/제한/경고/주의구역, MOA, FRIA 조회 결과 —
+  // 기존 airspace(FAA 고도 상한) 필드와 별개로 병렬 저장한다(서로 다른 정보이며,
+  // 한 지점에 대해 둘 다 동시에 존재할 수 있으므로 airspace.source를 덮어쓰지
+  // 않는다). src/app/api/us-airspace-lookup/route.ts 참고.
+  usAirspaceZones: UsAirspaceZones;
 };
 
 function windRisk(gustKmh: number): "low" | "moderate" | "high" {
@@ -172,17 +182,23 @@ export function DroneDashboard() {
       // 한국 지점의 비행금지구역 조회는 서버가 아니라 브라우저에서 직접
       // 브이월드 WMS로 수행한다(src/lib/airspace-wms-lookup.ts 참고) —
       // /api/dashboard 응답과 병렬로 요청해 추가 지연 없이 병합한다.
-      const [res, krZone] = await Promise.all([
+      const [res, krZone, usZones] = await Promise.all([
         fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
         isInSouthKorea(lat, lon)
           ? fetchKoreaAirspaceZones(lat, lon)
           : Promise.resolve(null),
+        // 미국 지점의 클릭 시점 공역 조회도 같은 방식으로 병렬 요청한다 —
+        // src/app/api/us-airspace-lookup/route.ts 참고.
+        isInSouthKorea(lat, lon)
+          ? Promise.resolve(null)
+          : fetchUsAirspaceZones(lat, lon),
       ]);
       if (!res.ok) throw new Error("failed");
       const json = (await res.json()) as DashboardData;
       if (krZone) {
         json.airspace = krZone;
       }
+      json.usAirspaceZones = usZones;
       setData(json);
     } catch {
       setError(t("errorText"));
@@ -372,12 +388,16 @@ export function DroneDashboard() {
           krBoundary={
             data.airspace?.source === "kr" && data.airspace.restricted
               ? data.airspace.matches[0]?.boundary
-              : undefined
+              : data.usAirspaceZones?.restricted
+                ? data.usAirspaceZones.matches[0]?.boundary
+                : undefined
           }
           restricted={
             data.airspace?.source === "kr"
               ? data.airspace.restricted
-              : undefined
+              : data.usAirspaceZones
+                ? data.usAirspaceZones.restricted
+                : undefined
           }
           onMapClick={selectCoordinates}
           clickHintText={t("clickMapHint")}
@@ -550,10 +570,47 @@ export function DroneDashboard() {
               </div>
             ) : null}
 
-            {!data.airspace ? (
+            {/* usAirspaceZones가 null이 아니라면(restricted:true든 false든)
+                이미 미국 조회가 확정적으로 끝난 것이므로, "상세 데이터 없음"
+                문구와 동시에 보여주면 서로 모순된다 — usAirspaceZones가
+                아예 null(조회 실패/미시도)일 때만 이 문구를 보여준다. */}
+            {!data.airspace && !data.usAirspaceZones ? (
               <p className="text-sm text-muted-foreground">
                 {t("airspaceNoData")}
               </p>
+            ) : null}
+
+            {data.usAirspaceZones && data.usAirspaceZones.restricted ? (
+              <div className="mt-3 flex flex-col gap-2 border-t border-border pt-3">
+                {data.usAirspaceZones.matches.map((m) => {
+                  const layer = getUsAirspaceLayer(m.layerId);
+                  return (
+                    <div key={m.layerId} className="flex flex-col gap-0.5">
+                      <div
+                        className="flex items-center gap-1.5 text-base font-bold"
+                        style={{ color: layer?.color }}
+                      >
+                        <span
+                          className="inline-block size-2.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: layer?.color }}
+                        />
+                        {t(`usAirspaceLayerNames.${m.layerId}`)}
+                      </div>
+                      {m.labels.length > 0 ? (
+                        <p className="pl-4 text-xs text-muted-foreground">
+                          {m.labels.join(" · ")}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
+
+            {data.usAirspaceZones && !data.usAirspaceZones.restricted ? (
+              <div className="mt-3 border-t border-border pt-3 text-sm text-emerald-500">
+                {t("krNoRestriction")}
+              </div>
             ) : null}
             <p className="mt-3 text-xs text-muted-foreground">
               {priorityRegulationId && prioritySummary

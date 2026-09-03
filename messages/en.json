@@ -60,6 +60,18 @@
       "culturalHeritage": "Cultural heritage protection zone",
       "nationalPark": "National park"
     },
+    "usAirspaceLayerNames": {
+      "classB": "Class B Airspace",
+      "classC": "Class C Airspace",
+      "classD": "Class D Airspace",
+      "classE": "Class E Airspace",
+      "prohibited": "Prohibited Area",
+      "restricted": "Restricted Area",
+      "warning": "Warning Area",
+      "alert": "Alert Area",
+      "moa": "Military Operations Area (MOA)",
+      "fria": "FAA-Recognized Identification Area (FRIA)"
+    },
     "airspaceActiveLayersTitle": "Airspace layers shown on the map",
     "clickMapHint": "Click anywhere on the map to check that location",
     "usageTitle": "How to Use FlyDroneMap",

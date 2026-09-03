@@ -1,3 +1,16 @@
+## 2026-09-03 (7) — 미국 공역(FAA) 조회 기능 신규 구현 + 지도 클릭 좌표 정규화 버그 수정
+
+- 대한민국 공역 레이어 패널이 이미 완비된 것을 확인한 뒤, 미국(FAA)에도 동등한 기능을 붙이기로 하고 사전 자료조사부터 진행 — FAA의 공개 ArcGIS Online 조직(services6.arcgis.com/ssFJjBXIUyZDrSYZ)이 Class_Airspace, Special_Use_Airspace, FAA_Recognized_Identification_Areas 등을 키 없이 제공하는 것을 확인. WMS/MapServer(래스터 타일) 서비스는 없고 벡터 FeatureServer만 제공함을 확인해, 사용자 승인 하에 "지도 상시 오버레이" 대신 "클릭 시점 지점 조회" 방식으로 설계.
+- 신규 파일: `src/lib/us-airspace-layers.ts`(레이어 카탈로그), `src/app/api/us-airspace-lookup/route.ts`(서버 프록시 — 클릭 지점을 FAA ArcGIS에 점(point) 좌표로 조회, 기존 `fetchFaaAirspaceCeiling`과 동일한 검증된 조회 방식 재사용), `src/lib/us-airspace-lookup-client.ts`(브라우저 측 호출 래퍼).
+- `src/components/drone-dashboard.tsx` 수정: 한국이 아닌 지점 조회 시 위 API를 기존 대시보드 fetch와 병렬 요청, "공역 정보" 카드에 매칭된 구역(색상 점 + 이름 + 상세 라벨)을 표시하고 지도에는 대표 구역의 경계를 그림(기존 `krBoundary`/`restricted` prop을 국가 무관하게 재사용). 기존 FAA 고도 상한 정보(예: "400 ft AGL")는 그대로 유지.
+- 4개 언어(ko/en/ja/es) `messages/*.json`에 `usAirspaceLayerNames` 네임스페이스(레이어 10종 이름) 추가.
+- **버그 수정(안전 관련)**: FAA 서버 조회가 실패(요청 한도 초과 등)했을 때 이를 "확인 결과 제한 없음"으로 잘못 표시하던 문제를 발견해 수정 — 조회 실패 시 라우트가 명시적 오류 응답(HTTP 502)을 반환하도록 바꿔, 클라이언트가 "제한 없음"이라 확정적으로 표시하지 않고 "상세 데이터 준비 안됨"으로 정직하게 표시하게 함. 실제로 Edwards 공군기지(R-2508/R-2515 비행제한구역)에서 조회 실패가 "제한 없음"으로 표시되는 것을 사용자가 발견해 잡아낸 버그.
+- 상한고도가 "무제한"인 구역(예: R-2508)에서 FAA의 센티널 값(`-9998`)이 그대로 노출되던 것을 "UNL" 표기로 개선.
+- **버그 수정**: 지도를 옆으로 여러 바퀴 드래그한 뒤 클릭하면 Leaflet이 경도를 -180~180 범위 밖(예: 241.89)으로 반환해, 국가 판별(country-coder)이 실패하고 "공역 정보 (국가명)"에 국가명이 안 붙던 문제 발견 → `src/components/flight-map.tsx`의 `ClickHandler`에서 `e.latlng.wrap()`으로 정규화하도록 수정. 미국뿐 아니라 모든 국가 판별 로직에 영향을 미치던 구조적 버그였음.
+- 참고: FAA Class E 공역 중 "E5"(700~1,200ft 상공부터 시작하는 광역 전이구역, 주 단위로 넓게 퍼짐)가 실제 지점 조회에서 주(state) 크기로 광범위하게 매칭되는 것을 확인 — FAA 공식 클래스 E 인가 규정상(Part 107.41) E2(공항 인근 지표면 구역)만 인가 대상이고 E3/E4/E5는 대상이 아님을 확인했으나, 사용자 판단 하에 이번 단계에서는 별도 필터링 없이 현재 동작(CLASS='E'면 모두 표시) 그대로 유지하기로 함 — 오류가 아닌 정상적인 FAA 데이터임.
+- 이번 1단계에서 제외한 범위: 일반 임시비행제한구역(TFR, tfr.faa.gov) — JSON 피드 스키마 미검증으로 다음 단계로 보류.
+- 검증: `tsc --noEmit`, `eslint`, `npm run build` 모두 통과. 실제 FAA 서버 응답은 이 환경 네트워크 제한으로 직접 확인 불가해 사용자가 로컬(`npm run dev`)에서 여러 실제 좌표(워싱턴DC, LA, Edwards 공군기지, 루이지애나)로 직접 검증.
+
 ## 2026-09-03 (6) — 상시 스크립트 2개(`FlyDroneMap 실행.command`, `automation/publish-guide.command`)에도 전용 아이콘 적용
 
 - 사용자가 저장소 내 상시 재사용 `.command` 스크립트 중 아이콘이 없는 것들을 정리 요청 → `FlyDroneMap 실행.command`(개발 서버 실행), `automation/publish-guide.command`(가이드 자동 발행) 두 개가 기본 터미널 아이콘 상태임을 확인해 보고, 각각에 맞는 아이콘 제작·적용을 요청받아 진행.

@@ -60,6 +60,18 @@
       "culturalHeritage": "Zona de protección del patrimonio cultural",
       "nationalPark": "Parque nacional"
     },
+    "usAirspaceLayerNames": {
+      "classB": "Espacio aéreo Clase B",
+      "classC": "Espacio aéreo Clase C",
+      "classD": "Espacio aéreo Clase D",
+      "classE": "Espacio aéreo Clase E",
+      "prohibited": "Área prohibida",
+      "restricted": "Área restringida",
+      "warning": "Área de advertencia",
+      "alert": "Área de alerta",
+      "moa": "Zona de operaciones militares (MOA)",
+      "fria": "Área de Identificación Reconocida por la FAA (FRIA)"
+    },
     "airspaceActiveLayersTitle": "Capas de espacio aéreo mostradas en el mapa",
     "clickMapHint": "Haz clic en cualquier punto del mapa para consultar esa ubicación",
     "usageTitle": "Cómo usar FlyDroneMap",

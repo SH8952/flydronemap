@@ -86,7 +86,13 @@ function ClickHandler({
 }) {
   useMapEvents({
     click(e) {
-      onMapClick?.(e.latlng.lat, e.latlng.lng);
+      // 지도를 옆으로 여러 바퀴 드래그한 뒤 클릭하면 Leaflet이 경도를
+      // -180~180 범위 밖의 값(예: 241.89 = -118.11 + 360)으로 돌려줄 수
+      // 있다 — wrap()으로 정규화하지 않으면 국가 판별(country-coder,
+      // src/lib/country-info.ts)이 좌표를 인식하지 못해 "국가를 확인할 수
+      // 없습니다"로 빠지는 등 이 좌표를 쓰는 모든 로직에 영향을 준다.
+      const wrapped = e.latlng.wrap();
+      onMapClick?.(wrapped.lat, wrapped.lng);
     },
   });
   return null;

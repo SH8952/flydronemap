@@ -60,6 +60,18 @@
       "culturalHeritage": "文化財保護区域",
       "nationalPark": "国立自然公園"
     },
+    "usAirspaceLayerNames": {
+      "classB": "クラスB空域",
+      "classC": "クラスC空域",
+      "classD": "クラスD空域",
+      "classE": "クラスE空域",
+      "prohibited": "飛行禁止区域",
+      "restricted": "飛行制限区域",
+      "warning": "警戒区域",
+      "alert": "注意区域",
+      "moa": "軍事訓練空域 (MOA)",
+      "fria": "FAA認定識別区域 (FRIA)"
+    },
     "airspaceActiveLayersTitle": "地図に表示中の空域レイヤー",
     "clickMapHint": "地図上の任意の場所をクリックすると、その地点の情報を確認できます",
     "usageTitle": "FlyDroneMapの使い方",
