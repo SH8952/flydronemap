@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
   const lat = Number(params.get("lat") ?? "35.3219");
   const lon = Number(params.get("lon") ?? "129.2939");
   const layers = params.get("layers") ?? "lt_c_aisprhc";
-  const delta = 0.01;
+  const delta = Number(params.get("delta") ?? "0.01");
   const size = 256;
   const center = 128;
 
