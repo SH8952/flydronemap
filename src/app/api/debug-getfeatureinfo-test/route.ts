@@ -22,10 +22,10 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const apiKey = process.env.VWORLD_API_KEY;
-  const domain = process.env.VWORLD_DOMAIN ?? "https://flydronemap.com";
+  const apiKey = process.env.NEXT_PUBLIC_VWORLD_API_KEY;
+  const domain = process.env.NEXT_PUBLIC_VWORLD_DOMAIN ?? "https://flydronemap.com";
   if (!apiKey) {
-    return NextResponse.json({ error: "VWORLD_API_KEY not set" }, { status: 500 });
+    return NextResponse.json({ error: "NEXT_PUBLIC_VWORLD_API_KEY not set" }, { status: 500 });
   }
 
   // 고리원전 인근, LT_C_AISPRHC(비행금지구역) 레이어가 실제로 존재하는 지점.
