@@ -1,3 +1,30 @@
+## 2026-09-03 (6) — 상시 스크립트 2개(`FlyDroneMap 실행.command`, `automation/publish-guide.command`)에도 전용 아이콘 적용
+
+- 사용자가 저장소 내 상시 재사용 `.command` 스크립트 중 아이콘이 없는 것들을 정리 요청 → `FlyDroneMap 실행.command`(개발 서버 실행), `automation/publish-guide.command`(가이드 자동 발행) 두 개가 기본 터미널 아이콘 상태임을 확인해 보고, 각각에 맞는 아이콘 제작·적용을 요청받아 진행.
+- `FlyDroneMap 실행.command`: 별도로 새로 그리지 않고, 실제 사이트 로고/파비콘인 `src/app/icon.png`(512×512, 검정 라운드 사각형 배경 + 오렌지 Wind 아이콘)를 그대로 재사용해 적용.
+- `automation/publish-guide.command`: 매일 06:00 자동 발행 스크립트라는 성격에 맞춰 알람시계 모양 아이콘을 신규 제작(`automation/assets/publish-icon.png`) — 기존 카메라(ExifLens)/드론(이미지변경사항_Push.command) 아이콘과 동일한 색상 팔레트(배경 `#111111`, 오렌지/브라운/크림)로 톤을 맞춤.
+- 두 스크립트 모두 `이미지변경사항_Push.command`와 동일한 패턴(osascript `NSWorkspace setIcon:forFile:`)으로, 실행할 때마다 자기 자신에게 아이콘을 자동 재적용하는 코드를 추가.
+- 작업 전 `.backups/backup_20260903_150819_persistent_script_icons/`에 두 스크립트 백업. `bash -n` 문법 검증, 실행권한(+x) 유지 확인.
+- **참고(중요)**: `*.command`는 2026-09-02부터 `.gitignore`에 등록되어 신규 스크립트는 저장소에 커밋되지 않지만, `FlyDroneMap 실행.command`와 `automation/publish-guide.command`는 그 규칙이 생기기 전부터 이미 git에 추적되고 있던 파일이라 이번 수정이 로컬에 커밋되지 않은 변경사항(diff)으로 남아있음 — 커밋/push 여부와 새 아이콘 PNG 2개(`automation/assets/`)를 저장소에 포함시킬지는 사용자 확인 후 별도로 처리 예정.
+
+## 2026-09-03 (5) — 이미지 변경사항 전용 상시 push 도구 신설 (`이미지변경사항_Push.command`), ExifLens에서 이식 + 드론 아이콘 신규 제작
+
+- 배경: 개발자 이미지 관리 도구(브라우저 패널)로 대표 이미지를 재검색/교체/업로드한 뒤 매번 별도 커밋 메시지를 고민할 필요 없이, `content/guides`와 `public/guides/images` 변경사항만 자동으로 찾아 커밋+push하는 상시 도구가 필요함. ExifLens 프로젝트에 이미 동일한 목적의 `이미지변경사항_Push.command`가 있어 그대로 이식.
+- 기존 1회성 push 스크립트(`push_실행.command` 등)와의 차이: 실행 후 스스로 삭제되지 않는 **상시 재사용 도구**임 — 이미지 관리 도구와 마찬가지로 사이트 운영 기간 내내 계속 씀.
+- 신규 파일: 저장소 루트 `이미지변경사항_Push.command` — REPO 경로만 FlyDroneMap 경로로, 커밋 메시지의 Claude-Session URL을 현재 세션으로 조정. 로직(변경 감지 범위, 커밋 메시지 포맷, 3초 후 터미널 자동 종료, git lock 파일 정리)은 ExifLens 원본과 동일.
+- 신규 아이콘: `automation/assets/dev-tool-icon.png`(512×512 PNG, 투명배경). ExifLens 원본은 카메라 모양이라 혼동을 피하기 위해, FlyDroneMap 전용으로 **드론 모양(상단뷰 쿼드콥터, 4개 로터+카메라 짐벌)** 아이콘을 새로 제작 — ExifLens 아이콘과 동일한 색상 팔레트(배경 `#111111` 라운드 사각형, 글리프 오렌지 `#E08D3D`/브라운 `#A8672B`/크림 하이라이트)로 톤을 맞춤. 스크립트 실행 시 `osascript`(NSWorkspace setIcon:forFile:)로 스크립트 파일 자체에 자동 적용됨.
+- 작업 전 `.backups/backup_20260903_145751_image_push_tool/`에 백업. `bash -n`으로 문법 검증, 실행권한(+x) 부여 완료.
+- 백필 스크립트(`이미지_백필_실행.command`)가 이미 실행되어 다수의 가이드 글에 이미지가 반영된 상태(`content/guides`, `public/guides/images`)를 확인 — 이 신규 스크립트로 커밋+push하면 됨(실제 실행은 사용자가 더블클릭으로 직접 진행).
+
+## 2026-09-03 (4) — Unsplash API 키를 FlyDroneMap 전용 키로 교체 (ExifLens와의 요청 한도 공유 문제 해결)
+
+- 배경: 가이드 이미지 자동 첨부/개발자 이미지 관리 도구용 Unsplash 키를 ExifLens와 공유해왔는데, 개발자 이미지 도구에서 검색 시도 시 `Unsplash 검색 실패 (403)` 발생. 사용자가 실제 터미널에서 `curl -i`로 확인한 결과 `x-ratelimit-remaining: 0`, 본문 `Rate Limit Exceeded` — ExifLens와 공유 중인 키가 시간당 요청 한도(Demo 등급 50회/시간)를 소진한 상태였음이 확정됨.
+- 조치: 사용자가 예전에 발급받아 두고 쓰지 않던 별도 Unsplash 앱(Application ID 982954)의 이름/설명을 "FlyDroneMap" 전용으로 갱신하고, 이 앱의 신규 Access Key로 교체.
+- 변경 파일(모두 gitignore 대상, git 이력에 포함되지 않음): `automation/.env`, `.env.local`의 `UNSPLASH_ACCESS_KEY` 값을 새 키로 교체. 코드 변경 없음.
+- 백업: `.backups/backup_20260903_143948_unsplash_key_swap/`에 교체 전 두 파일 백업.
+- 효과: 이제 FlyDroneMap과 ExifLens가 서로 다른 키(별도 시간당 50회 한도)를 사용하므로, 한 사이트의 사용량이 다른 사이트의 이미지 기능에 영향을 주지 않음.
+- 참고: 로컬 개발 서버(`npm run dev`)가 이미 실행 중이었다면 `.env.local` 변경사항을 반영하기 위해 재시작이 필요함.
+
 ## 2026-09-03 — 구글 디스커버 대응(대표 이미지 자동 첨부) + 개발자 전용 가이드 이미지 관리 도구 (ExifLens에서 이식)
 
 - 사용자가 ExifLens(exifnd.com) 프로젝트에서 이미 구현·검증·배포까지 완료한 두 기능(가이드 아티클 구글 디스커버 노출 대비 + 개발자 전용 이미지 관리 도구)의 이식 가이드 문서(`exiflens→flydronemap 이식 가이드.md`)를 전달하며 FlyDroneMap에도 적용 가능한지 검토 요청. `AskUserQuestion`으로 적용 범위(1번+2번 모두), Unsplash API 키 전략(ExifLens 키 재사용), 기존 발행 글 백필 여부(백필함) 3가지를 먼저 확인받은 뒤 진행.

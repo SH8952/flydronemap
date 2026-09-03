@@ -36,6 +36,29 @@ if [ "$CURRENT_PATH" != "$SCRIPT_PATH" ]; then
   echo ""
 fi
 
+# --- 1.5. 다른 스크립트와 헷갈리지 않도록 알람시계 아이콘 적용 (매일 자동 발행 스크립트) ---
+# (매번 실행할 때마다 재적용해도 무해함 - 이미 적용돼 있으면 그대로 유지됨. 2026-09-03 추가)
+ICON_PATH="$REPO/automation/assets/publish-icon.png"
+if [ -f "$ICON_PATH" ]; then
+  ICON_RESULT=$(osascript <<APPLESCRIPT 2>&1
+use framework "Foundation"
+use framework "AppKit"
+set theImage to current application's NSImage's alloc()'s initWithContentsOfFile:"$ICON_PATH"
+if theImage is missing value then
+    return "ERROR: 아이콘 이미지 파일을 읽지 못함 ($ICON_PATH)"
+end if
+set didSet to current application's NSWorkspace's sharedWorkspace()'s setIcon:theImage forFile:"$SCRIPT_PATH" options:0
+if didSet as boolean is false then
+    return "ERROR: setIcon 호출은 됐지만 실패로 반환됨 (didSet=false)"
+end if
+return "OK"
+APPLESCRIPT
+)
+  if [ "$ICON_RESULT" = "OK" ]; then
+    touch "$SCRIPT_PATH"
+  fi
+fi
+
 # --- 2. 콘텐츠 확인 (항상 저장소의 automation 폴더에서 찾음) ---
 cd "$CONTENT_DIR" || { echo "오류: $CONTENT_DIR 폴더를 찾을 수 없습니다."; read -p "Enter..."; exit 1; }
 EN_FILE=$(ls guide-*-en.mdx 2>/dev/null | head -n1)
