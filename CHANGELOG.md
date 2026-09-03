@@ -1,3 +1,16 @@
+## 2026-09-03 — 구글 디스커버 대응(대표 이미지 자동 첨부) + 개발자 전용 가이드 이미지 관리 도구 (ExifLens에서 이식)
+
+- 사용자가 ExifLens(exifnd.com) 프로젝트에서 이미 구현·검증·배포까지 완료한 두 기능(가이드 아티클 구글 디스커버 노출 대비 + 개발자 전용 이미지 관리 도구)의 이식 가이드 문서(`exiflens→flydronemap 이식 가이드.md`)를 전달하며 FlyDroneMap에도 적용 가능한지 검토 요청. `AskUserQuestion`으로 적용 범위(1번+2번 모두), Unsplash API 키 전략(ExifLens 키 재사용), 기존 발행 글 백필 여부(백필함) 3가지를 먼저 확인받은 뒤 진행.
+- 적용 전 FlyDroneMap 실제 저장소를 ExifLens와 대조 확인: `GuideFrontmatter` 타입에 `tags` 필드는 이미 존재(호환), `layout.tsx`의 `robots`/`googleBot` 설정과 `guides/[slug]/page.tsx`의 이미지 렌더링/OG 이미지 연결 로직은 아직 없음(신규 추가 필요), 개발자 도구 관련 디렉터리(`src/lib/dev`, `src/app/api/dev`, `src/components/dev`) 전부 부재(신규 이식 필요) 확인.
+- **작업 전 백업**: `.backups/backup_20260903_135902_exiflens_image_port/`에 수정 대상 파일(layout.tsx, guides.ts, guides/[slug]/page.tsx, publish-guide.command, .env.local, CHANGELOG.md) 백업.
+- **1. 구글 디스커버 대응**: `src/app/[locale]/layout.tsx`의 `generateMetadata`에 `robots.googleBot["max-image-preview"]: "large"` 추가. `automation/attach-guide-image.py`(신규, ExifLens 로직 그대로 이식 — 영문 tags 앞 2개로 Unsplash 검색, 실패해도 예외 없이 조용히 건너뛰어 발행 파이프라인이 막히지 않도록 설계) 이식, `utm_source`만 `ExifLens`→`FlyDroneMap`으로 변경. `automation/publish-guide.command`에 콘텐츠 반영 직후 호출 지점(4.5단계) 및 이미지 파일 존재 시에만 git add하는 조건부 라인 추가. `src/lib/guides.ts`의 `GuideFrontmatter`에 `image`/`imageCredit`/`imageCreditUrl` 필드 추가. `guides/[slug]/page.tsx`에 대표 이미지 렌더링(`next/image`, `aspect-[16/9]`, `priority`)·"Photo by X on Unsplash" 저작자 표기·OG/트위터 이미지 연결 추가.
+- **2. 개발자 전용 가이드 이미지 관리 도구**: `src/lib/dev/guide-image-tool.ts`(검색/적용/업로드 서버 로직), `src/app/api/dev/guide-image-{search,apply,upload}/route.ts`(3개, 전부 `NODE_ENV!=="development"`면 403), `src/components/dev/guide-image-dev-panel.tsx`(가이드 상세 페이지 우측 하단 플로팅 패널) ExifLens에서 그대로 이식, utm_source만 변경. `guides/[slug]/page.tsx`에 `NODE_ENV==="development"` 조건부 렌더링으로 연결.
+- **3. 기존 발행 글 백필**: `automation/backfill-guide-images.py`(신규, ExifLens와 동일 로직) 이식 — 이미지 없는 기존 글(24개, `content/guides/en/*.mdx` 전체) 전체를 순회하며 일괄 첨부하도록 설계. 다만 **이 클라우드 세션(device_bash 포함) 자체는 조직 네트워크 정책상 `api.unsplash.com`으로 나가는 아웃바운드 연결이 막혀 있어(HTTP 403, VWorld/flydronemap.com 도메인과 동일한 종류의 기존 제약)** 이 세션에서 직접 실행하면 24개 전부 실패함을 실측 확인 — 스크립트 자체의 결함이 아니라 이 세션의 네트워크 제약. 사용자의 실제 맥 터미널(정상 네트워크)에서 더블클릭으로 실행하면 정상 동작할 것으로 예상되며, 실제 실행 결과는 사용자 확인이 필요.
+- **환경변수**: `automation/.env`(신규, git 추적 제외)와 `.env.local`(기존 파일에 추가) 양쪽에 `UNSPLASH_ACCESS_KEY` 등록 — ExifLens와 동일한 키 재사용(사용자 확인). Vercel 환경변수에는 등록 불필요(이미지 첨부는 로컬/발행 시점 스크립트에서만 동작, 프로덕션 서버에서는 실행되지 않음). `.env.example`에도 안내 주석 추가.
+- **기타**: `.gitignore`에 `__pycache__/`, `*.pyc` 추가(backfill 스크립트 실행 시 생성되는 파이썬 캐시가 실수로 커밋되지 않도록).
+- 검증: `tsc --noEmit`/`eslint`(변경·신규 파일 전체 대상) 오류 0건, `npm run build` 정적 페이지 159/159 정상 생성(신규 API 라우트 3개 정상 등록 확인). 프로덕션 빌드 결과물(`.next/server/app`)에 개발자 패널 텍스트("이미지 관리 (DEV)")가 전혀 포함되지 않음을 grep으로 직접 확인 — ExifLens에서 이미 검증된 것과 동일하게 프로덕션에 노출되지 않음.
+- **후속 조치 필요(사용자)**: (1) 코드 변경 커밋 push 후 실제 사이트 재배포 확인, (2) 기존 24개 글에 대한 이미지 백필은 별도 스크립트(`이미지_백필_실행.command`)를 맥에서 직접 실행해야 함(네트워크 제약으로 이 세션에서는 실행 불가), (3) 로컬 `npm run dev` 실행 후 가이드 상세 페이지에서 개발자 이미지 관리 패널이 정상 동작하는지 실사용 확인 권장.
+
 ## 2026-09-03 — 공역 레이어 패널: 잠긴(필수) 레이어를 항상 목록 맨 위로 고정
 
 - 사용자가 예약 작업(FlyDroneMap 가이드 자동 발행) 대화방에서 실사이트를 확인하다가, "공역 레이어 표시" 패널에서 잠금 아이콘이 붙은 필수 레이어(관제권/비행금지구역/비행제한구역)가 다른 레이어들 사이에 섞여 나열되고 있는 것을 신고하고, 항상 목록 맨 위에 고정해달라고 요청. 그 대화방은 맥에 연결되지 않은 세션이라 코드 초안(diff)만 만들고 실제 저장소 반영은 하지 못한 채, 사용자에게 수동 백업/교체를 안내한 상태였음.

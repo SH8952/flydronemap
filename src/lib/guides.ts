@@ -19,6 +19,12 @@ export type GuideFrontmatter = {
   tags?: string[];
   /** Category slug, one of CATEGORY_ORDER below. Falls back to "general". */
   category?: string;
+  /** Representative image path (e.g. "/guides/images/{slug}.webp"), auto-attached
+   * from Unsplash on publish or set via the dev-only image tool. Optional — older
+   * guides published before this feature (2026-09-03) may not have one. */
+  image?: string;
+  imageCredit?: string;
+  imageCreditUrl?: string;
 };
 
 /**

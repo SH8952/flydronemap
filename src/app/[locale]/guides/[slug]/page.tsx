@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
@@ -10,6 +11,7 @@ import {
   getGuideSlugs,
   getRelatedGuides,
 } from "@/lib/guides";
+import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -42,11 +44,15 @@ export async function generateMetadata({
       url: `${SITE_URL}/${locale}/guides/${slug}`,
       publishedTime: meta.publishedAt,
       modifiedTime: meta.updatedAt ?? meta.publishedAt,
+      images: meta.image
+        ? [{ url: `${SITE_URL}${meta.image}`, width: 1600, height: 900 }]
+        : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
+      images: meta.image ? [`${SITE_URL}${meta.image}`] : undefined,
     },
   };
 }
@@ -114,6 +120,43 @@ export default async function GuidePage({
         </p>
       </div>
 
+      {meta.image ? (
+        <figure className="flex flex-col gap-1.5">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+            <Image
+              src={meta.image}
+              alt={meta.title}
+              fill
+              sizes="(min-width: 768px) 768px, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+          {meta.imageCredit && meta.imageCreditUrl ? (
+            <figcaption className="text-xs text-muted-foreground">
+              Photo by{" "}
+              <a
+                href={meta.imageCreditUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground"
+              >
+                {meta.imageCredit}
+              </a>{" "}
+              on{" "}
+              <a
+                href="https://unsplash.com/?utm_source=FlyDroneMap&utm_medium=referral"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground"
+              >
+                Unsplash
+              </a>
+            </figcaption>
+          ) : null}
+        </figure>
+      ) : null}
+
       <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-primary">
         <Content />
       </article>
@@ -139,6 +182,15 @@ export default async function GuidePage({
             ))}
           </ul>
         </nav>
+      ) : null}
+
+      {process.env.NODE_ENV === "development" ? (
+        <GuideImageDevPanel
+          slug={slug}
+          currentImage={meta.image}
+          currentImageCredit={meta.imageCredit}
+          tags={meta.tags}
+        />
       ) : null}
     </div>
   );

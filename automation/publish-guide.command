@@ -115,6 +115,10 @@ if [ "$COPY_OK" != "1" ]; then
   exit 1
 fi
 
+# --- 4.5. 디스커버 노출 대비 대표 이미지 자동 첨부 (Unsplash, ExifLens에서 이식 2026-09-03) ---
+# 실패해도(네트워크 오류, API 키 없음 등) 발행 자체는 계속 진행됨 - 스크립트 내부에서 처리
+python3 "$REPO/automation/attach-guide-image.py" "$REPO" "$SLUG"
+
 python3 -c "
 import pathlib
 repo = pathlib.Path('$REPO')
@@ -141,6 +145,8 @@ cd "$REPO"
 echo ""
 echo "-- git add --"
 git add -v "content/guides/en/${SLUG}.mdx" "content/guides/ja/${SLUG}.mdx" "content/guides/ko/${SLUG}.mdx" "content/guides/es/${SLUG}.mdx" automation/guide-topics-queue.json CHANGELOG.md
+IMAGE_PATH="public/guides/images/${SLUG}.webp"
+[ -f "$REPO/$IMAGE_PATH" ] && git add -v "$IMAGE_PATH"
 
 if git diff --cached --quiet; then
   echo ""

@@ -42,6 +42,15 @@ export async function generateMetadata({
       template: "%s · FlyDroneMap",
     },
     description,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+      },
+    },
     verification: {
       other: {
         "naver-site-verification": "3902a60f56435f9d59103b6255c02e82769238f7",

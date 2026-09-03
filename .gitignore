@@ -6,6 +6,10 @@ node_modules
 next-env.d.ts
 .DS_Store
 
+# Python 캐시 (automation/*.py 스크립트 실행 시 생성)
+__pycache__/
+*.pyc
+
 # 발행 스크립트 자동 백업 폴더 (2026-08-31~)
 .backups/
 /.claude-backups
