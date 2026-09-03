@@ -1,0 +1,29 @@
+---
+title: "GPS Multipath Error Explained for Drone Pilots"
+description: "Why your drone's GPS can drift near buildings and water even under a calm Kp index, and how to tell multipath error apart from space weather."
+publishedAt: "2026-09-03"
+tags: ["gps", "multipath", "urban-flight", "accuracy"]
+category: "space-weather-gps"
+---
+
+If your drone has ever drifted sideways while hovering next to a glass office tower or over a calm lake — with a clean satellite lock and a quiet Kp index — the cause probably wasn't space weather at all. It was multipath error, and it's one of the most common GPS problems pilots misdiagnose because the symptoms look identical to ionospheric interference.
+
+## What multipath error actually is
+
+A GPS signal travels in a straight line from satellite to receiver, but reflective surfaces — glass facades, water, wet pavement, metal roofing, even a parked car's windshield — bounce a copy of that same signal along a longer, indirect path. Your drone's receiver can end up averaging the direct signal with one or more delayed reflections, and because the reflected path is longer, the calculated position shifts toward the reflecting surface. A consumer drone with a single-frequency L1 GPS receiver typically holds 3-5 meters of accuracy in open sky, but next to a reflective building face that error can climb to 10-15 meters or more, all while the satellite count on screen still reads "good."
+
+## Why it's easy to mistake for a space weather problem
+
+Both multipath error and ionospheric disturbance from a geomagnetic storm produce the same visible symptom — a drone that won't hold position cleanly — which is why pilots who've read about Kp index effects sometimes blame the wrong cause. The distinguishing clue is location and repeatability: ionospheric-driven drift affects a wide area and correlates with a specific time window during a storm, while multipath error is tied to a fixed spot and happens on clear, geomagnetically quiet days just as easily. If your drone drifts at the exact same corner of a parking structure every time you fly there, regardless of the day's Kp reading, that's multipath, not space weather.
+
+## The mistake most pilots make
+
+The most common error is launching directly beside the reflective surface itself — for example, taking off from a rooftop helipad ringed by glass railings, or from a dock at the edge of open water — because that's exactly where the geometry produces the strongest reflections relative to the direct signal. A second common mistake is trusting position hold in "urban canyon" conditions, flying between two tall buildings, where signals reflect off both facades and can also be partially blocked, degrading the satellite geometry (a wider spread of visible satellites) that GPS accuracy depends on. Pilots who fly mapping or inspection missions near reflective structures without checking for multipath often end up with visibly warped orthomosaics or inspection tracks that don't line up between passes.
+
+## How to reduce multipath error in practice
+
+- Launch and land from open ground at least a few meters away from glass, water, or large metal surfaces whenever the site allows it.
+- If your drone supports RTK or a multi-band (L1/L5) GPS module, use it near reflective environments — the extra frequency and correction data make it far more resistant to multipath than a single-frequency receiver.
+- Treat a sudden position drift that appears only in one specific spot as a strong multipath signal, especially if the satellite count and HDOP/accuracy readout still look normal.
+- For mapping or inspection work near water, glass, or metal-clad buildings, cross-check a few image overlaps manually rather than trusting the stitched result blindly.
+- Don't assume a calm Kp index rules out GPS trouble — multipath is a local, physical effect that space weather has nothing to do with.

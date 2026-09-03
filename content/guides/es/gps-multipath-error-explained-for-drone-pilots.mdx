@@ -1,0 +1,29 @@
+---
+title: "Error de multitrayectoria GPS explicado para pilotos de drones"
+description: "Por qué el GPS de tu drone puede desviarse cerca de edificios y agua incluso con un índice Kp tranquilo, y cómo distinguir el error de multitrayectoria del clima espacial."
+publishedAt: "2026-09-03"
+tags: ["gps", "multipath", "urban-flight", "accuracy"]
+category: "space-weather-gps"
+---
+
+Si tu drone alguna vez se desvió lateralmente mientras estaba en vuelo estacionario junto a una torre de oficinas de vidrio o sobre un lago tranquilo — con buena señal satelital y un índice Kp tranquilo — probablemente la causa no fue el clima espacial. Fue error de multitrayectoria (multipath), uno de los problemas de GPS que más se diagnostica mal porque sus síntomas se ven idénticos a los de la interferencia ionosférica.
+
+## Qué es realmente el error de multitrayectoria
+
+Una señal GPS viaja en línea recta del satélite al receptor, pero las superficies reflectantes — fachadas de vidrio, agua, pavimento mojado, techos metálicos, incluso el parabrisas de un auto estacionado — rebotan una copia de esa misma señal por un trayecto más largo e indirecto. El receptor de tu drone puede terminar promediando la señal directa con una o más reflexiones retrasadas, y como el trayecto reflejado es más largo, la posición calculada se desplaza hacia la superficie reflectante. Un drone de consumo con receptor GPS de frecuencia única (L1) suele mantener una precisión de 3-5 metros a cielo abierto, pero junto a una fachada reflectante ese error puede subir a 10-15 metros o más, mientras el número de satélites en pantalla sigue marcando "bueno".
+
+## Por qué es fácil confundirlo con un problema de clima espacial
+
+Tanto el error de multitrayectoria como la perturbación ionosférica de una tormenta geomagnética producen el mismo síntoma visible — un drone que no mantiene la posición con precisión — por lo que los pilotos que conocen los efectos del índice Kp a veces culpan a la causa equivocada. La pista que los distingue es la ubicación y la repetibilidad: la deriva provocada por la ionosfera afecta un área amplia y coincide con una ventana horaria específica durante una tormenta, mientras que el error de multitrayectoria está atado a un punto fijo y ocurre igual de fácilmente en días despejados y geomagnéticamente tranquilos. Si tu drone se desvía siempre en la misma esquina de un estacionamiento cada vez que vuelas ahí, sin importar el índice Kp del día, eso es multitrayectoria, no clima espacial.
+
+## El error más común entre pilotos
+
+El error más frecuente es despegar justo al lado de la propia superficie reflectante — por ejemplo, desde un helipuerto en azotea rodeado de barandas de vidrio, o desde un muelle al borde de agua abierta — porque es exactamente ahí donde la geometría produce las reflexiones más fuertes respecto a la señal directa. Un segundo error común es confiar en el mantenimiento de posición en condiciones de "cañón urbano", volando entre dos edificios altos, donde las señales se reflejan en ambas fachadas y también pueden bloquearse parcialmente, degradando la geometría satelital (la dispersión de los satélites visibles) de la que depende la precisión del GPS. Los pilotos que realizan misiones de mapeo o inspección cerca de estructuras reflectantes sin verificar la multitrayectoria a menudo terminan con ortomosaicos visiblemente deformados o recorridos de inspección que no coinciden entre pasadas.
+
+## Cómo reducir el error de multitrayectoria en la práctica
+
+- Despega y aterriza en terreno abierto, al menos a unos metros de vidrio, agua o grandes superficies metálicas, siempre que el lugar lo permita.
+- Si tu drone admite RTK o un módulo GPS multibanda (L1/L5), úsalo en entornos reflectantes — la frecuencia y los datos de corrección adicionales lo hacen mucho más resistente a la multitrayectoria que un receptor de frecuencia única.
+- Trata una deriva de posición repentina que solo aparece en un punto específico como una señal fuerte de multitrayectoria, especialmente si el número de satélites y la lectura de HDOP/precisión siguen viéndose normales.
+- Para trabajos de mapeo o inspección cerca de agua, vidrio o edificios con revestimiento metálico, verifica manualmente algunos solapes de imágenes en lugar de confiar ciegamente en el resultado ya unido.
+- No supongas que un índice Kp tranquilo descarta problemas de GPS — la multitrayectoria es un efecto local y físico que no tiene nada que ver con el clima espacial.

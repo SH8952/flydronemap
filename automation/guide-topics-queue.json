@@ -212,8 +212,8 @@
     "category": "space-weather-gps",
     "titleKo": "드론 조종자를 위한 GPS 멀티패스 오차 설명",
     "titleEn": "GPS Multipath Error Explained for Drone Pilots",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-03"
   },
   {
     "order": 25,
