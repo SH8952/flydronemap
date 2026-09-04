@@ -1,0 +1,32 @@
+---
+title: "Cómo afectan las erupciones solares a la navegación de los drones"
+description: "Por qué una erupción solar fuerte puede degradar el GPS de tu drone en minutos aunque el índice Kp se mantenga tranquilo, y cómo distinguirla de una tormenta geomagnética."
+publishedAt: "2026-09-04"
+tags: ["solar-flare", "gps", "space-weather", "navigation"]
+category: "space-weather-gps"
+image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
+imageCredit: "Sandra Tan"
+imageCreditUrl: "https://unsplash.com/@sandratansh?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Imagina que estás en un vuelo de mapeo de precisión y el mantenimiento de posición del GPS se degrada durante unos veinte minutos mientras el índice Kp sigue marcando un tranquilo 2. Si revisas el flujo de rayos X de la NOAA, probablemente encuentres que una erupción solar de clase X alcanzó su pico diez minutos antes. Eso es una perturbación ionosférica súbita provocada directamente por la erupción, no la tormenta geomagnética, más lenta, que la mayoría de las herramientas meteorológicas para drones están pensadas para rastrear.
+
+## Cómo degrada realmente una erupción la precisión del GPS
+
+Una erupción solar es una ráfaga de rayos X y ultravioleta extremo desde la superficie del sol, y como viaja a la velocidad de la luz, llega a la Tierra en unos ocho minutos — compáralo con el día o más que tarda una eyección de masa coronal (CME). Cuando esa radiación golpea el lado iluminado de la ionosfera terrestre, aumenta de golpe la densidad de electrones en las capas D y F, cambiando el índice de refracción que atraviesa la señal GPS y alterando el cálculo de pseudodistancia del que depende tu receptor. Esto se llama perturbación ionosférica súbita (SID), y solo afecta al hemisferio iluminado. Durante una erupción fuerte de clase X, el error de posicionamiento GPS puede saltar de varios metros a más de diez metros en cuestión de minutos, y suele estabilizarse a lo largo de decenas de minutos a un par de horas conforme decae el flujo de rayos X.
+
+## Por qué el momento en que ocurre es completamente distinto al de una tormenta geomagnética
+
+Las tormentas geomagnéticas que elevan el índice Kp necesitan que las partículas cargadas de una eyección de masa coronal lleguen realmente a la magnetosfera terrestre, y como esas partículas viajan a la velocidad del viento solar, eso suele tardar de uno a tres días desde la erupción. Los rayos X de la erupción llegan en ocho minutos. Esa diferencia significa que un índice Kp tranquilo no te dice nada sobre lo que pasó en la última hora — la ventana más vulnerable suele ser las decenas de minutos justo después de una erupción fuerte, mientras el Kp sigue marcando bajo. La NOAA lo registra por separado como la escala R (apagón de radio).
+
+## El error más común entre los pilotos
+
+El error más común es tratar la consulta del índice Kp como si fuera todo el chequeo de clima espacial necesario, lo que pasa por alto por completo la disrupción de GPS causada por erupciones. La cosa empeora en vuelos de mapeo con corrección RTK: la estación base y el drone están bajo la misma ionosfera perturbada al mismo tiempo, así que la propia transmisión de corrección puede retrasarse o cortarse, y los pilotos a menudo pierden tiempo revisando el enlace de radio de la estación base cuando la causa real está arriba, en la ionosfera. Las erupciones tampoco se pueden pronosticar de forma fiable — no existe un aviso confiable de "una erupción clase X llegará en tres horas" — y el efecto aparece a los pocos minutos del evento, así que un chequeo previo al vuelo útil significa mirar el flujo de rayos X en vivo de GOES/NOAA, no un pronóstico.
+
+## Lista de verificación práctica
+
+- Antes de un vuelo de precisión, revisa el flujo de rayos X en vivo de GOES (NOAA SWPC) y el estado actual de la escala R, no solo el índice Kp.
+- Si el GPS o las correcciones RTK se vuelven inestables de repente durante una misión de precisión centimétrica, descarta una erupción de clase X reciente antes de culpar a tu enlace de radio.
+- Pospón el trabajo de precisión durante las decenas de minutos a un par de horas posteriores a un evento R2 o superior — la mayoría de las disrupciones se resuelven solas al decaer el flujo.
+- Ten en cuenta que solo los vuelos en el lado diurno están expuestos, así que el mismo día puede verse muy distinto de una erupción a otra según la hora.
+- No interpretes un índice Kp tranquilo como "el clima espacial está despejado" — las erupciones y las tormentas geomagnéticas funcionan en relojes completamente distintos.

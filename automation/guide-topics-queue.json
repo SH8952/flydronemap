@@ -221,8 +221,8 @@
     "category": "space-weather-gps",
     "titleKo": "태양 플레어가 드론 항법에 미치는 영향",
     "titleEn": "How Solar Flares Affect Drone Navigation",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-04"
   },
   {
     "order": 26,
