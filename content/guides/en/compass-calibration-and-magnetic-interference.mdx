@@ -1,0 +1,36 @@
+---
+title: "Compass Calibration and Magnetic Interference"
+description: "Why your drone's compass drifts near rebar and parked cars, how to tell hard-iron interference apart from a geomagnetic storm, and how to calibrate it correctly."
+publishedAt: "2026-09-05"
+tags: ["compass", "calibration", "magnetic-interference", "gps"]
+category: "space-weather-gps"
+image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
+imageCredit: "Mick Haupt"
+imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+If your drone has ever taken off in a lazy, uncommanded spiral — the so-called "toilet bowl effect" — right after a calibration you thought went fine, the cause is almost always the spot where you calibrated, not the calibration procedure itself. Compass calibration failures and magnetic interference are among the most common flight incidents pilots misattribute to a firmware bug or a bad GPS lock, when the real problem is a magnetic field distorted by something metal a few meters away.
+
+## Why the compass needs calibrating in the first place
+
+A drone's onboard compass (magnetometer) measures the direction and strength of the local magnetic field to determine heading, and its readings drift slightly every time you travel to a new location or fly after months of storage, because the aircraft's own motors, wiring, and battery pack magnetize very slightly over time and shift the sensor's baseline offset. Calibration teaches the flight controller to subtract that aircraft-specific offset back out. This is different from magnetic declination — the several-degree gap between true north and magnetic north that changes by location — which the flight controller corrects for automatically from its GPS position and does not require recalibration to fix.
+
+## Hard-iron interference: the calibration site is usually the problem
+
+Hard-iron interference comes from a fixed, nearby source of magnetism — rebar under a concrete parking lot or sidewalk, steel manhole covers, a parked car's frame, or even large belt buckles and phones in a pilot's pocket while holding the calibration routine. Rebar-reinforced concrete is a frequent offender because it looks like a perfectly open, flat launch site while carrying a dense steel grid roughly 5-10 cm below the surface. A magnetometer calibrated 1-2 meters above rebar or a car bumper bakes that local distortion directly into its stored offset, and the drone then flies with a heading error that can range from a few degrees to over 30 degrees depending on how close and how strong the interfering source was. The safest practice is to calibrate at least 5-6 meters from any vehicle, metal fencing, or manhole cover, and on soil or asphalt rather than directly over a rebar-reinforced slab.
+
+## How to tell interference apart from a geomagnetic storm
+
+Both a badly calibrated compass and a strong geomagnetic storm can produce heading drift and unstable position hold, and pilots who've read about Kp index effects on GPS sometimes blame the wrong one. The distinguishing signal is the flight controller's own compass-vs-GPS heading mismatch warning, which fires for local interference at a specific location regardless of the day's Kp reading, and repeats every time you fly from that exact spot. A geomagnetic storm instead produces a slower, site-independent yaw drift that shows up across a wide area only while the Kp index is actively elevated. If a "compass error, please recalibrate" warning appears at the same launch pad on a calm, Kp-2 day, the cause is local hard-iron interference, not space weather.
+
+## Common mistakes during calibration
+
+The most frequent mistake is performing the figure-eight or rotation calibration sequence while standing on the same spot you plan to launch from, which bakes that location's interference straight into the offset even if the site felt "clean." A second common error is calibrating with a phone, tablet, or metal-cased remote controller held close to the aircraft, since consumer electronics carry small magnets and speakers that add their own local field. Pilots also frequently ignore an on-screen "compass interference" alert and launch anyway, assuming it will resolve itself in the air — it usually does not, and the flight instead ends in an unstable hover or the toilet-bowl spiral.
+
+## Practical checklist
+
+- Calibrate at least 5-6 meters from parked vehicles, metal fencing, manhole covers, and rebar-reinforced concrete or slabs.
+- Keep phones, tablets, and metal objects away from your body and the aircraft during the calibration routine itself.
+- Recalibrate whenever you travel more than roughly 30-50 km from your last calibration site, or after long storage.
+- If a compass error or heading-mismatch warning repeats at the exact same spot, treat it as local interference and move the launch site, not the calibration method.
+- Don't assume a calm Kp index rules out compass trouble — hard-iron interference is a local, physical effect that has nothing to do with space weather.

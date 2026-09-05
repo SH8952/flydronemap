@@ -1,0 +1,36 @@
+---
+title: "Calibración de brújula e interferencia magnética"
+description: "Por qué la brújula de tu dron se desvía cerca de varillas de refuerzo y coches estacionados, cómo distinguir la interferencia de hierro duro de una tormenta geomagnética, y cómo calibrarla correctamente."
+publishedAt: "2026-09-05"
+tags: ["compass", "calibration", "magnetic-interference", "gps"]
+category: "space-weather-gps"
+image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
+imageCredit: "Mick Haupt"
+imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Si alguna vez tu dron despegó trazando una espiral lenta y descontrolada —el llamado "efecto inodoro" (toilet bowl effect)— justo después de una calibración que creías correcta, la causa casi siempre es el lugar donde calibraste, no el procedimiento en sí. Los fallos de calibración de la brújula y la interferencia magnética están entre los incidentes de vuelo que los pilotos atribuyen con más frecuencia a un error de firmware o a una mala señal GPS, cuando el verdadero problema es un campo magnético distorsionado por algo metálico a pocos metros de distancia.
+
+## Por qué la brújula necesita calibrarse
+
+La brújula integrada del dron (magnetómetro) mide la dirección y la intensidad del campo magnético local para determinar el rumbo, y sus lecturas se desvían ligeramente cada vez que viajas a un lugar nuevo o vuelas después de meses de almacenamiento, porque los motores, el cableado y la batería del propio dron se magnetizan muy levemente con el tiempo y desplazan el offset de referencia del sensor. La calibración enseña al controlador de vuelo a restar de nuevo ese offset específico de la aeronave. Esto es distinto de la declinación magnética —la diferencia de varios grados entre el norte verdadero y el norte magnético, que varía según la ubicación— que el controlador de vuelo corrige automáticamente a partir de su posición GPS y no requiere recalibración para solucionarse.
+
+## Interferencia de hierro duro: el lugar de calibración suele ser el problema
+
+La interferencia de hierro duro proviene de una fuente de magnetismo fija y cercana: varillas de refuerzo bajo un estacionamiento o acera de concreto, tapas de alcantarilla de acero, el chasis de un coche estacionado, o incluso hebillas de cinturón grandes y teléfonos en el bolsillo del piloto mientras realiza la rutina de calibración. El concreto reforzado con varillas es un culpable frecuente porque parece un lugar de despegue perfectamente abierto y plano, mientras oculta una densa malla de acero a apenas 5-10 cm bajo la superficie. Un magnetómetro calibrado a 1-2 metros sobre varillas de refuerzo o el parachoques de un coche incorpora esa distorsión local directamente en su offset almacenado, y el dron después vuela con un error de rumbo que puede ir de unos pocos grados a más de 30 grados según la cercanía e intensidad de la fuente interferente. La práctica más segura es calibrar al menos a 5-6 metros de cualquier vehículo, valla metálica o tapa de alcantarilla, y sobre tierra o asfalto en lugar de directamente sobre una losa reforzada con varillas.
+
+## Cómo distinguir la interferencia de una tormenta geomagnética
+
+Tanto una brújula mal calibrada como una tormenta geomagnética fuerte pueden producir desviación de rumbo e inestabilidad en el mantenimiento de posición, y los pilotos que han leído sobre los efectos del índice Kp en el GPS a veces culpan a la causa equivocada. La señal distintiva es la propia advertencia del controlador de vuelo por discrepancia entre el rumbo de la brújula y el del GPS, que se activa por interferencia local en una ubicación específica sin importar la lectura de Kp del día, y se repite cada vez que vuelas desde ese mismo punto. Una tormenta geomagnética, en cambio, produce una deriva de guiñada más lenta e independiente del lugar, que aparece en un área amplia solo mientras el índice Kp está realmente elevado. Si una advertencia de "error de brújula, recalibre" aparece en el mismo punto de despegue en un día tranquilo con Kp 2, la causa es interferencia local de hierro duro, no clima espacial.
+
+## Errores comunes durante la calibración
+
+El error más frecuente es realizar la secuencia de calibración en forma de ocho o de rotación parado exactamente en el mismo punto desde el que planeas despegar, lo que incorpora la interferencia de ese lugar directamente al offset aunque el sitio pareciera "limpio". Un segundo error común es calibrar con un teléfono, una tableta o un control remoto con carcasa metálica cerca de la aeronave, ya que la electrónica de consumo lleva pequeños imanes y altavoces que añaden su propio campo local. Los pilotos también suelen ignorar una alerta en pantalla de "interferencia de brújula" y despegar de todos modos, asumiendo que se resolverá sola en el aire — normalmente no ocurre así, y el vuelo termina en un vuelo estacionario inestable o en el giro en espiral del efecto inodoro.
+
+## Lista de verificación práctica
+
+- Calibra al menos a 5-6 metros de vehículos estacionados, vallas metálicas, tapas de alcantarilla y concreto o losas reforzadas con varillas.
+- Mantén teléfonos, tabletas y objetos metálicos alejados de tu cuerpo y de la aeronave durante la rutina de calibración misma.
+- Vuelve a calibrar cada vez que viajes más de aproximadamente 30-50 km desde tu último lugar de calibración, o después de un almacenamiento prolongado.
+- Si un error de brújula o una advertencia de discrepancia de rumbo se repite exactamente en el mismo lugar, trátalo como interferencia local y cambia el sitio de despegue, no el método de calibración.
+- No asumas que un índice Kp tranquilo descarta problemas de brújula — la interferencia de hierro duro es un efecto local y físico que no tiene nada que ver con el clima espacial.

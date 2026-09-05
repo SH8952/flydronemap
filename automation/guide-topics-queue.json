@@ -230,8 +230,8 @@
     "category": "space-weather-gps",
     "titleKo": "나침반 보정과 자기 간섭",
     "titleEn": "Compass Calibration and Magnetic Interference",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-05"
   },
   {
     "order": 27,
