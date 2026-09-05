@@ -239,8 +239,8 @@
     "category": "space-weather-gps",
     "titleKo": "장거리 비행에 좋은 Kp지수 조건",
     "titleEn": "Best Kp Index Conditions for Long-Range Flights",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-06"
   },
   {
     "order": 28,
