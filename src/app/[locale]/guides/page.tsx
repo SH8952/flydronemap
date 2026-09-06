@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
-import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import {
+  SITE_URL,
+  breadcrumbJsonLd,
+  languageAlternates,
+  ogLocale,
+} from "@/lib/seo";
 import { getGuidesByCategory } from "@/lib/guides";
 
 export async function generateMetadata({
@@ -49,8 +54,17 @@ export default async function GuidesIndexPage({
     day: "numeric",
   });
 
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", url: `${SITE_URL}/${locale}` },
+    { name: t("title"), url: `${SITE_URL}/${locale}/guides` },
+  ]);
+
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("title")}

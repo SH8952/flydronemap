@@ -1,3 +1,13 @@
+## 2026-09-06 — SEO 개선 자동 진행 1일차: BreadcrumbList 구조화 데이터 추가
+
+- 배경: ExifLens에서 먼저 검증된 SEO 자동화(구조화 데이터/메타 개선 등을 하루 하나씩 진행)를 FlyDroneMap에도 확장 적용하기로 석한님이 승인(2026-09-06). 이번엔 실시간 구글 서치 콘솔 데이터 대신 저장소를 직접 점검해 실제로 비어 있는 항목만 골라 작성한 `SEO_TASKS.md` 목록을 사용. 1일차 항목으로, 가이드 상세/목록 페이지 어디에도 BreadcrumbList JSON-LD가 없는 것을 직접 확인해 이를 추가.
+- 수정: `src/lib/seo.ts` — `breadcrumbJsonLd(items)` 헬퍼 함수 신규 추가(ExifLens에서 검증된 동일 패턴 이식).
+- 수정: `src/app/[locale]/guides/[slug]/page.tsx` — 기존 `articleJsonLd` `<script>` 옆에 Home → Guides → 현재 글 3단계 BreadcrumbList `<script>` 추가.
+- 수정: `src/app/[locale]/guides/page.tsx` — Home → Guides 2단계 BreadcrumbList `<script>` 추가.
+- 광고 코드(GA4/AdSense/ads.txt)는 전혀 건드리지 않음.
+- 검증: 대상 파일 `npx tsc --noEmit`, `npx eslint` 통과. `npm run build` 정상 완료(4개 언어 전체 정적 페이지 포함). `npm run start` + `curl`로 실제 렌더링된 HTML에서 `/en/guides`와 `/en/guides/avoid-flying-during-geomagnetic-storms` 양쪽 모두 `@type":"BreadcrumbList"` JSON-LD가 올바른 이름/URL로 포함된 것을 직접 확인.
+- 참고: 이 작업은 클라우드 예약 세션에서 자동 진행되었으며, 최종 커밋·push는 사용자 맥의 `automation/apply-seo-task.command`가 수행.
+
 ## 2026-09-03 — Contact(문의) 페이지 신규 추가 (애드센스 사전 대비)
 
 - 배경: 같은 시리즈의 ExifLens(exifnd.com)가 애드센스 심사에서 "가치가 별로 없는 콘텐츠"로 반려되었고, 실제 원인 점검 과정에서 Contact 페이지 부재가 실질적 개선 여지로 확인됨. FlyDroneMap도 저장소를 점검해보니 Privacy/Terms/About/Disclosure는 있었지만 Contact 페이지가 없어 동일한 문제를 겪기 전에 선제적으로 추가

@@ -58,7 +58,7 @@ Calculator의 "가이드 자동 발행" 예약 작업과 동일한 패턴입니�
 
 ## 1일차 — BreadcrumbList 구조화 데이터 추가
 
-- [ ] 미완료
+- [x] 완료 (2026-09-06)
 
 **배경**: `src/lib/seo.ts`에 `breadcrumbJsonLd` 헬퍼가 없고, 가이드 상세/목록 페이지 어디에도
 BreadcrumbList JSON-LD가 없음(직접 확인, 2026-09-06). ExifLens에서 이미 검증된 패턴을 그대로
