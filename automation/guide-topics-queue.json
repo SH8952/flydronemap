@@ -248,8 +248,8 @@
     "category": "space-weather-gps",
     "titleKo": "전리층 섬광과 드론 GPS",
     "titleEn": "Ionospheric Scintillation and Drone GPS",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-07"
   },
   {
     "order": 29,

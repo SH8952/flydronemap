@@ -1,3 +1,19 @@
+## 2026-09-06 — "장비 추천"(Gear Recommendation) 기능 신규 구현 (ExifLens에서 이식)
+
+- 배경: ExifLens에서 이미 실사용 검증된 "장비 추천" 섹션(한국=쿠팡 파트너스, 그 외=알리익스프레스 어필리에이트)을 FlyDroneMap에도 동일한 구조로 신규 구현. 인수인계 문서(`flydronemapgearrecommendationhandoff.md`)를 검토한 뒤 `AskUserQuestion`으로 (1) 키워드 확정 방식, (2) 쿠팡 계정 재사용 여부, (3) 알리익스프레스 트래킹ID 신규 생성 여부, (4) 홈페이지 배치 위치 4가지를 확인받고, 초안을 다시 제시해 "진행해줘" 최종 승인을 받은 뒤 착수.
+- 작업 전 `.backups/backup_20260906_054939/`(src, messages, .env.example, CHANGELOG.md)에 백업.
+- 신규: `src/lib/coupang.ts`, `src/lib/aliexpress.ts`, `src/lib/affiliate.ts` — ExifLens 원본 그대로 이식(알리익스프레스 TOP/MD5 서명 로직은 임의 수정 금지 원칙 유지).
+- 신규: `src/app/api/coupang/search/route.ts`, `src/app/api/aliexpress/search/route.ts` — FlyDroneMap 전용 드론 장비 키워드(배터리/프로펠러/ND·CPL 필터/조종기 선쉐이드·넥스트랩/드론 가방·하드케이스/고속 microSD/착륙패드)로 채움. 쿠팡은 시간당 10회 호출 제한을 고려해 키워드 총 10개(ROW1 5개+ACCESSORY 5개)로 설계.
+- 신규: `src/components/gear-recommendation.tsx`, `src/components/gear-recommendation-section.tsx`, `src/components/aliexpress-gear-cards.tsx`(개발자 전용 Ads Block 도구 포함, 그대로 이식), `src/components/coupang-gear-cards.tsx`(ExifLens 원본의 ND필터 계산기용 `filterId` 로직 제거, locale 기반으로 단순화).
+- 신규: `src/lib/aliexpress-blocklist.ts` + `src/lib/aliexpress-blocked-products.json`(`[]`) + `src/app/api/dev/aliexpress-block/route.ts` — 개발 모드 전용 상품 차단 도구.
+- 수정: `src/app/[locale]/page.tsx` — `GearRecommendationSection`을 `DroneDashboard`와 `AdZone` 사이에 배치.
+- 수정: `messages/{en,ko,ja,es}.json` — `gearSectionTitle`/`gearSectionHint`/`gearDisclosure` 3개 키 추가(`gearSectionHint`는 ExifLens 원문의 "ND 필터" 표현을 드론 장비 전반을 아우르는 문구로 새로 작성).
+- 수정: `.env.example` — 알리익스프레스 자격증명 항목(`ALIEXPRESS_APP_KEY`/`ALIEXPRESS_APP_SECRET`/`ALIEXPRESS_TRACKING_ID`) 추가.
+- 개선: 쿠팡 검색 라우트의 `randomDistribution`을 ExifLens 원본(균등 분배 — 재고 부족 키워드가 있으면 노출 개수가 목표보다 적게 나오는 기존 버그 있음)이 아니라, 알리익스프레스 라우트에서 이미 수정된 capacity(재고) 기반 버전으로 처음부터 통일 적용.
+- 자격증명: `.env.local` 확인 결과 쿠팡/알리익스프레스 관련 키가 모두 비어 있음 — 보안상 ExifLens `.env.local`의 값을 Claude가 직접 옮기지 않으므로, 사용자가 직접 복사해 채워야 함(쿠팡은 동일 계정 재사용, 알리익스프레스는 앱키/시크릿 재사용+트래킹ID만 "FlyDroneMap"으로 신규 발급).
+- 검증: `npx tsc --noEmit`(에러 0건), `npx eslint`(신규/수정 파일 전체, 경고 0건) 통과. `npm run build` 최초 시도에서 `.next/export-detail.json` unlink 시 `EPERM`(device_bash 삭제 권한 미보유) 발생 → `device_request_delete_permission`으로 사용자 승인 받아 `rm -rf .next` 후 재빌드 → 179/179 정적 페이지 전부 정상 생성(4개 언어 홈페이지 SSG 포함), 신규 API 라우트 3개 모두 정상 등록 확인. `git diff`로 `messages/*.json`이 기존 포맷·들여쓰기 그대로 유지되고 신규 3줄만 추가된 것도 확인.
+- 참고: 자격증명이 아직 없어 로컬 실제 상품 노출 확인은 사용자가 자격증명 입력 후 직접 진행하기로 함(빈 상태에서는 안내 문구만 표시, 빌드/배포에는 영향 없음).
+
 ## 2026-09-06 — SEO 개선 자동 진행 1일차: BreadcrumbList 구조화 데이터 추가
 
 - 배경: ExifLens에서 먼저 검증된 SEO 자동화(구조화 데이터/메타 개선 등을 하루 하나씩 진행)를 FlyDroneMap에도 확장 적용하기로 석한님이 승인(2026-09-06). 이번엔 실시간 구글 서치 콘솔 데이터 대신 저장소를 직접 점검해 실제로 비어 있는 항목만 골라 작성한 `SEO_TASKS.md` 목록을 사용. 1일차 항목으로, 가이드 상세/목록 페이지 어디에도 BreadcrumbList JSON-LD가 없는 것을 직접 확인해 이를 추가.
@@ -201,6 +217,11 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
+
+## 2026-09-07 — 전리층 섬광과 드론 GPS 가이드 자동 발행
+
+- 적도 부근에서는 일몰 직후, 고위도에서는 지자기 폭풍 중에 발생하는 전리층 섬광(GPS 신호 진폭/위상 급변동으로 인한 사이클 슬립·순간 신호 상실)의 메커니즘과, Kp지수만으로는 예측되지 않는 이유, RTK 임무 실전 대응법을 다룬 신규 가이드를 4개 언어(en/ja/ko/es)로 작성
+- 클라우드 자동발행 파이프라인으로 생성, 빌드 검증 완료
 
 ## 2026-09-06 — 장거리 비행에 좋은 Kp지수 조건 가이드 자동 발행
 

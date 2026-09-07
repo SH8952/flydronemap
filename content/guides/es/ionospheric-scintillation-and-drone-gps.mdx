@@ -1,0 +1,30 @@
+---
+title: "Centelleo ionosférico y el GPS de los drones"
+description: "Por qué el GPS puede perder la señal de repente o saltar de posición justo después del atardecer cerca del ecuador, o durante tormentas en latitudes altas, y en qué se diferencia el centelleo de una perturbación geomagnética habitual."
+publishedAt: "2026-09-07"
+tags: ["ionosphere", "scintillation", "gps", "space-weather"]
+category: "space-weather-gps"
+---
+
+Imagina que estás volando una misión de levantamiento en un país de baja latitud, una hora después de la puesta de sol, y el módulo GPS de tu drone empieza a reportar pérdidas de ciclo y cortes momentáneos de señal cada pocos minutos, aunque el índice Kp de ese día nunca haya superado 3. Si revisas un monitor de centelleo ionosférico de la zona, es probable que el índice de centelleo de amplitud (S4) se dispare por encima de 0.6 justo en esa ventana. Eso es centelleo ionosférico: una perturbación rápida y de pequeña escala que se comporta de forma muy distinta a las tormentas geomagnéticas amplias y lentas en las que se basa la mayoría de las guías de clima espacial para drones.
+
+## Qué es realmente el centelleo
+
+El centelleo es una fluctuación rápida en la amplitud y la fase de una señal satelital, causada por pequeñas irregularidades en la densidad de electrones a medida que la señal atraviesa la ionosfera — un concepto parecido a cómo el aire turbulento hace que la luz de las estrellas titile, solo que aquí lo que dispersa la señal es la densidad del plasma, no la del aire. Cerca del ecuador geomagnético, el sol calienta la ionosfera del lado diurno y genera un campo eléctrico fuerte que, tras la puesta de sol, provoca una inestabilidad (la inestabilidad de Rayleigh-Taylor) que genera "burbujas" de plasma — regiones con densidad de electrones reducida que ascienden a través de la ionosfera. Las señales GPS que cruzan los bordes de esas burbujas centellean con fuerza, y el efecto suele ser peor dentro de unos 15-20 grados del ecuador magnético, concentrado entre la puesta de sol local y aproximadamente la medianoche. Existe también una segunda zona de centelleo, separada, en latitudes altas y en el óvalo auroral, donde el fenómeno lo impulsan las tormentas geomagnéticas y las subtormentas, no el ciclo eléctrico día-noche.
+
+## Por qué es fácil pasarlo por alto si solo vigilas el índice Kp
+
+El centelleo ecuatorial es un fenómeno de hora local ligado a la estructura del campo eléctrico de la ionosfera al anochecer, no a la actividad geomagnética global, así que puede ser intenso en una noche en la que el índice Kp marque 1 o 2 — una lectura que la mayoría de los pilotos interpretaría como "el clima espacial está tranquilo". El centelleo en latitudes altas sí sigue más de cerca la actividad geomagnética, pero incluso ahí un receptor puede sufrir desvanecimientos de señal antes de que el efecto se refleje del todo en el valor de Kp de 3 horas, porque el centelleo responde a actividad de subtormenta rápida y localizada que un índice global termina promediando. El resultado práctico es el mismo en ambas zonas: la indicación de confianza del GPS, el número de satélites o el HDOP pueden verse bien un momento y degradarse brevemente o perder el fix al siguiente, sin ninguna causa externa evidente.
+
+## El error más común entre los pilotos
+
+El error más común es tratar el centelleo como un problema de hardware — un módulo GPS defectuoso, una conexión de antena floja o interferencia de un motor cercano — porque el síntoma (pérdida intermitente de señal, saltos de posición) se ve idéntico a una falla del receptor. Un segundo error frecuente es programar vuelos de mapeo de precisión o con corrección RTK justo después de la puesta de sol en regiones ecuatoriales, simplemente porque el calor o el viento del día ya han cedido, sin darse cuenta de que ese es exactamente el momento en que el riesgo de centelleo alcanza su punto máximo. En una configuración RTK, el centelleo puede afectar de forma algo distinta a la estación base y al receptor del drone según su posición exacta respecto a una burbuja de plasma, así que a veces los pilotos intentan resolver un "fix defectuoso" reiniciando el drone una y otra vez, cuando la causa real suele desaparecer por sí sola una vez que la ionosfera local se estabiliza, típicamente después de la medianoche local.
+
+## Lista de verificación práctica
+
+- Si vuelas con frecuencia dentro de unos 20 grados del ecuador magnético, trata las dos o tres horas posteriores a la puesta de sol local como una ventana de mayor riesgo para problemas de pérdida de señal GPS, independientemente del índice Kp del día.
+- En latitudes altas, considera los periodos de tormenta geomagnética activa y la actividad auroral como una ventana de riesgo de centelleo adicional a la guía general basada en Kp para esa región.
+- Antes de descartar el módulo GPS de tu drone como defectuoso tras una pérdida intermitente de señal, comprueba si el síntoma apareció en un horario y lugar coherentes con el centelleo, en vez de asumir directamente una falla de hardware.
+- Para misiones RTK en regiones propensas al centelleo, reserva tiempo extra o una ventana de respaldo, ya que puede producirse un fix solo "float" o reintentos repetidos de adquisición incluso con el hardware en buen estado.
+- Evita programar misiones ecuatoriales de precisión centimétrica en las horas inmediatamente posteriores a la puesta de sol si existe una ventana diurna alternativa disponible.
+- No supongas que un índice Kp bajo descarta problemas ionosféricos — el centelleo ecuatorial sigue el reloj local de la puesta de sol, no el reloj geomagnético global.

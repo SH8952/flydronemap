@@ -1,0 +1,30 @@
+---
+title: "Ionospheric Scintillation and Drone GPS"
+description: "Why GPS can suddenly lose lock or jump around after sunset near the equator or during high-latitude storms, and how scintillation differs from a routine geomagnetic disturbance."
+publishedAt: "2026-09-07"
+tags: ["ionosphere", "scintillation", "gps", "space-weather"]
+category: "space-weather-gps"
+---
+
+Imagine flying a survey mission in a low-latitude country an hour after sunset, and your drone's GPS module starts reporting cycle slips and momentary loss of lock every few minutes, even though the Kp index for the day never rose above 3. Check an ionospheric scintillation monitor for the region and you'd likely see the amplitude scintillation index (S4) spiking well above 0.6 during that exact window. That's ionospheric scintillation — a rapid, small-scale disturbance that behaves nothing like the broad, slow geomagnetic storms most drone weather guidance is built around.
+
+## What scintillation actually is
+
+Scintillation is rapid fluctuation in the amplitude and phase of a satellite signal, caused by small irregularities in electron density as the signal passes through the ionosphere — similar in concept to how turbulent air makes starlight twinkle, except here it's plasma density, not air density, doing the scattering. Near the geomagnetic equator, the sun heats the dayside ionosphere and builds up a strong electric field that, after sunset, drives an instability (the Rayleigh-Taylor instability) that generates plasma "bubbles" — regions of depleted electron density that rise through the ionosphere. GPS signals crossing the edges of those bubbles scintillate strongly, and the effect is usually worst within about 15-20 degrees of the magnetic equator, concentrated in the hours between local sunset and roughly midnight. A second, separate scintillation zone exists at high latitudes and in the auroral oval, where it's driven by geomagnetic storms and substorms rather than by the day-night electric field cycle.
+
+## Why it's easy to miss if you only watch the Kp index
+
+Equatorial scintillation is a local-time phenomenon tied to the electric field structure of the ionosphere at dusk, not to global geomagnetic activity, so it can be severe on a night when the Kp index is sitting at 1 or 2 — a reading most drone pilots would read as "space weather is calm." High-latitude scintillation does track geomagnetic activity more closely, but even there a receiver can experience signal fades before a storm's effect fully shows up in the 3-hour Kp value, because scintillation responds to fast, localized substorm activity that a global index averages away. The practical result is the same in both zones: your GPS confidence display, satellite count, or HDOP can look fine one moment and then briefly degrade or drop a fix the next, without any obvious external cause.
+
+## The mistake pilots make most often
+
+The most common mistake is treating scintillation as a hardware problem — a flaky GPS module, a loose antenna connection, or interference from a nearby motor — because the symptom (intermittent loss of lock, position jumps) looks identical to a receiver fault. A second common mistake is scheduling precision mapping or RTK-corrected flights for the post-sunset window in equatorial regions purely because the daytime heat or wind has died down, without realizing that's exactly when scintillation risk peaks. On an RTK setup, scintillation can affect the base station and the drone's receiver somewhat differently depending on their exact position relative to a plasma bubble, so pilots sometimes chase a "bad fix" by power-cycling the drone repeatedly when the real cause will pass on its own once the local ionosphere settles, typically after local midnight.
+
+## Practical checklist
+
+- If you fly regularly within about 20 degrees of the magnetic equator, treat the two to three hours after local sunset as a higher-risk window for GPS lock issues, independent of the day's Kp index.
+- At high latitudes, treat active geomagnetic storm periods and auroral activity as a scintillation risk window in addition to the general Kp-based guidance for that region.
+- Before ruling out your drone's GPS module as faulty after intermittent lock loss, check whether the symptom appeared at a time and location consistent with scintillation rather than assuming a hardware fault.
+- For RTK missions in scintillation-prone regions, budget extra time or a backup window, since a float-only fix or repeated re-acquisition can happen even with healthy hardware.
+- Avoid scheduling centimeter-accuracy equatorial missions in the immediate post-sunset hours if a backup daytime window is available.
+- Don't assume a low Kp index rules out ionospheric trouble — equatorial scintillation runs on the local sunset clock, not the global geomagnetic clock.
