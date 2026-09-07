@@ -75,6 +75,9 @@
     "airspaceActiveLayersTitle": "Capas de espacio aéreo mostradas en el mapa",
     "clickMapHint": "Haz clic en cualquier punto del mapa para consultar esa ubicación",
     "usageTitle": "Cómo usar FlyDroneMap",
+    "gearSectionTitle": "Equipo recomendado",
+    "gearSectionHint": "Aquí aparecerá el equipo recomendado para pilotos de drones.",
+    "gearDisclosure": "Como afiliados, podemos ganar una comisión por las compras que califiquen realizadas a través de estos enlaces, sin costo adicional para usted.",
     "usageSteps": [
       "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás.",
       "Revisa la velocidad del viento, las ráfagas y la visibilidad en vivo — factores clave para decidir si es seguro volar tu modelo de drone concreto.",

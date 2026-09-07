@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdZone } from "@/components/ad-zone";
 import { DroneDashboard } from "@/components/drone-dashboard";
+import { webApplicationJsonLd } from "@/lib/seo";
 
 export default async function HomePage({
   params,
@@ -14,6 +15,12 @@ export default async function HomePage({
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webApplicationJsonLd(locale)),
+        }}
+      />
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("title")}

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { SITE_URL, languageAlternates, ogLocale, webApplicationJsonLd } from "@/lib/seo";
+import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -94,12 +94,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className="h-full antialiased">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(webApplicationJsonLd(locale)),
-          }}
-        />
         <Script
           async
           strategy="afterInteractive"

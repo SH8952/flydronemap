@@ -75,6 +75,9 @@
     "airspaceActiveLayersTitle": "Airspace layers shown on the map",
     "clickMapHint": "Click anywhere on the map to check that location",
     "usageTitle": "How to Use FlyDroneMap",
+    "gearSectionTitle": "Gear Recommendations",
+    "gearSectionHint": "Recommended drone gear for pilots will appear here.",
+    "gearDisclosure": "As an affiliate, we may earn a commission from qualifying purchases made through these links, at no extra cost to you.",
     "usageSteps": [
       "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are.",
       "Review live wind speed, wind gusts, and visibility — key factors for whether it's safe to fly your specific drone model.",

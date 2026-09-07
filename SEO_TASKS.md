@@ -91,7 +91,7 @@ BreadcrumbList JSON-LD가 없음(직접 확인, 2026-09-06). ExifLens에서 이�
 
 ## 2일차 — WebApplication 스키마 범위를 홈페이지로 한정
 
-- [ ] 미완료
+- [x] 완료 (2026-09-07)
 
 **배경**: 현재 `webApplicationJsonLd`가 `src/app/[locale]/layout.tsx`의 `<head>`에서 전체 페이지
 (약관/개인정보처리방침/가이드 글 등 포함)에 동일하게 삽입되고 있음(직접 확인, 2026-09-06).
