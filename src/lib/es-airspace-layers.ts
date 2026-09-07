@@ -25,6 +25,21 @@
  *
  * 한국(VWorld)과 달리 인증키가 전혀 필요 없어 서버 IP 차단(VWorld-Vercel
  * 이슈, src/lib/airspace-layers.ts 참고) 자체가 발생하지 않는다.
+ *
+ * **지도 상시 오버레이는 사용자가 직접 켜고 끄는 토글 패널
+ * (`AirspaceLayerPanel`, src/components/drone-dashboard.tsx에서
+ * `activeEsLayerIds` state로 관리)로 제어된다 — 한국(AIRSPACE_LAYERS)과
+ * 동일한 방식. 이전에는 이 카탈로그 자체에 `showOnMap` boolean 필드를 두어
+ * urbano만 하드코딩으로 숨겼으나(2026-09-07 최초 대응), 그 직후 항공(Aero)
+ * 레이어의 "TMA MADRID"(마드리드 터미널관제구역, 약 250km×215km)도 넓게
+ * 표시되는 문제가 발견되어, 개별 레이어를 하드코딩으로 켜고 끄는 대신
+ * 사용자가 직접 원하는 레이어만 지도에 표시할 수 있는 패널로 대체함
+ * (2026-09-07, 사용자 요청). 3개 레이어 모두 필수(required)가 아니며,
+ * 사용자의 명시적 요청에 따라 초기 상태는 모두 꺼짐 — 도심(Urbano)의
+ * "NPDRID"(스페인 본토 전체 크기) 구역이나 항공(Aero)의 TMA 같은 큰 구역이
+ * 사전 안내 없이 지도를 뒤덮는 것을 막기 위함이다. 지점 클릭/검색 조회
+ * (`/api/es-airspace-lookup`)는 이 토글 상태와 무관하게 항상 3개 레이어
+ * 전체를 확인한다(사용자 결정, 2026-09-07).
  */
 
 export type EsAirspaceLayerId = "aero" | "urbano" | "infraestructuras";
@@ -37,41 +52,23 @@ export type EsAirspaceLayerDef = {
    * `layers` prop에 사용. */
   wmsName: string;
   color: string;
-  /** 지도 상시 오버레이(WMS)에 포함할지 여부. 지점 클릭/검색 조회
-   * (`/api/es-airspace-lookup`)에는 이 값과 무관하게 항상 포함된다 —
-   * 순수하게 "지도에 항상 그려둘지"만 결정한다.
-   *
-   * urbano(도심)는 false다: 실측 확인(2026-09-07) 결과 이 레이어는 전체
-   * 4건 중 "NPDRID"(인구밀집지역 근처 인가 필요, reasons: POPULATION)
-   * 하나가 스페인 본토 전체와 거의 같은 크기(위도 35.8~45, 경도 -13~-0.07)
-   * 로 등록되어 있어, 지도를 조금만 축소해도 화면 대부분을 분홍색으로
-   * 뒤덮어버린다 — 데이터 자체는 정확하지만("인구밀집지역 근처는 항상
-   * 확인 필요"라는 실제 규정을 그대로 반영한 것) 상시 오버레이로 두면
-   * 지도가 사실상 못 쓰게 됨. 사용자 확인 후 상시 오버레이에서는 제외하고,
-   * 지점 클릭/검색 시 "공역 정보" 텍스트 패널에서는 그대로 계속 보여주기로
-   * 결정함. */
-  showOnMap: boolean;
+  /** Required layers are always shown and can't be turned off by the user —
+   * mirrors AirspaceLayerDef(한국, src/lib/airspace-layers.ts)의 필드라 두
+   * 카탈로그가 같은 AirspaceLayerPanel 컴포넌트를 공유할 수 있다. ENAIRE의
+   * 3개 레이어 중 필수로 고정할 레이어는 없어 항상 false. */
+  required: boolean;
 };
 
 export const ES_AIRSPACE_LAYERS: EsAirspaceLayerDef[] = [
-  { id: "aero", mapServerId: 2, wmsName: "0", color: "#ef4444", showOnMap: true },
-  { id: "urbano", mapServerId: 3, wmsName: "1", color: "#f59e0b", showOnMap: false },
-  { id: "infraestructuras", mapServerId: 0, wmsName: "2", color: "#3b82f6", showOnMap: true },
+  { id: "aero", mapServerId: 2, wmsName: "0", color: "#ef4444", required: false },
+  { id: "urbano", mapServerId: 3, wmsName: "1", color: "#f59e0b", required: false },
+  { id: "infraestructuras", mapServerId: 0, wmsName: "2", color: "#3b82f6", required: false },
 ];
 
 export function getEsAirspaceLayer(
   id: string,
 ): EsAirspaceLayerDef | undefined {
   return ES_AIRSPACE_LAYERS.find((l) => l.id === id);
-}
-
-/** 지도 상시 오버레이에 포함되는 레이어(`showOnMap: true`)만 한 번에 겹쳐
- * 그리기 위한 WMS `layers` 파라미터(콤마 구분, WMS Name 기준). urbano가
- * 제외되는 이유는 위 `showOnMap` 필드 주석 참고. */
-export function getEsWmsLayerParam(): string {
-  return ES_AIRSPACE_LAYERS.filter((l) => l.showOnMap)
-    .map((l) => l.wmsName)
-    .join(",");
 }
 
 export const ES_MAPSERVER_BASE_URL =

@@ -1,3 +1,14 @@
+## 2026-09-08 (추가) — 스페인 공역 레이어 패널 신설: 한국처럼 직접 켜고 끄는 토글 UI, 기본값 모두 꺼짐
+
+- 배경: 사용자가 마드리드 인근 화면에서 "실제 스페인 공역에서 사용하는 레이어가 총 몇개야?"라고 문의 → ENAIRE ZGUAS 레이어는 항공/도심/기반시설 3개이며, 지도 상시 오버레이에는 이전 조치(도심 제외)로 2개만 표시되고 클릭·검색 조회는 3개 전체를 항상 반환한다고 답변. 이어서 "스페인에도 레이어 패널을 만들어줘. 직접 켜고 끌수있게"라는 명시적 기능 추가 요청.
+- `AskUserQuestion`으로 두 가지 설계 결정 확인: (1) 3개 레이어의 기본 on/off 상태 — 사용자가 두 선택지 대신 자유 입력으로 **"모두 꺼짐을 기본값으로 해줘"**라고 답변(항공 레이어의 TMA MADRID처럼 넓은 구역이 사전 안내 없이 지도를 덮는 것을 막기 위함). (2) 지점 클릭/검색 "공역 정보" 조회 결과를 패널의 토글 상태와 연동할지 — **"연동하지 않음(현재 방식, 추천)"** 선택. 조회는 토글 상태와 무관하게 항상 3개 레이어 전체를 확인.
+- 수정: `src/lib/es-airspace-layers.ts` — `showOnMap` 필드와 `getEsWmsLayerParam()`(콤마로 합친 단일 WMS 파라미터 생성 헬퍼)를 제거하고, 한국(`airspace-layers.ts`)과 동일하게 `required: boolean` 필드를 추가(3개 모두 `false`). 가시성은 카탈로그에 고정하지 않고 전부 클라이언트 토글 상태로만 결정하도록 설계 변경.
+- 수정: `src/components/airspace-layer-panel.tsx` — 한국 전용 컴포넌트였던 `AirspaceLayerPanel`을 범용화. `AIRSPACE_LAYERS` 직접 import와 `useTranslations("Home.airspaceLayerNames")`를 제거하고, `layers`/`getLabel`/`requiredNote?`(선택) props를 받도록 변경해 한국(14종)·스페인(3종) 카탈로그를 하나의 컴포넌트로 공유.
+- 수정: `src/components/drone-dashboard.tsx` — `activeEsLayerIds` state(기본값: 빈 Set, 즉 모두 꺼짐)와 `handleEsAirspaceLayerToggle` 핸들러 신설. `<FlightMap>`의 `airspaceOverlayLayers`/`mapOverlay`를 한국과 동일한 "레이어별 개별 엔트리" 패턴으로 스페인에도 적용(기존의 콤마 결합 단일 엔트리 방식 폐기), 스페인 지점에서도 `<AirspaceLayerPanel>`을 렌더링. 지도 하단 범례는 `activeEsLayerIds`에 있는 레이어만 나열하도록 수정하고, 켜진 레이어가 하나도 없을 때는 범례 자체를 숨김(모두 꺼짐 기본값에서 빈 범례가 노출되지 않도록 하는 UX 보완, 별도 요청은 아니었으나 필요하다고 판단해 반영). 지점 클릭/검색 "공역 정보" 조회 로직(`/api/es-airspace-lookup`, `getEsAirspaceLayer`)은 사용자 결정에 따라 전혀 수정하지 않음 — 토글 상태와 완전히 독립적으로 항상 3개 레이어 전체를 확인.
+- 관련 수정(부수적 버그 픽스): `tsconfig.json`의 `exclude`가 `["node_modules"]`뿐이라 `.gitignore`에 이미 등록된 백업 디렉터리(`.backups/`, `_backups/`, `.claude-backups/`) 내부의 과거 스냅샷 파일들까지 `tsc --noEmit`이 타입 검사하고 있었음(경로 별칭 `@/*`이 백업 폴더 기준이 아니라 항상 현재 `src/`를 가리키기 때문에, `AirspaceLayerPanel`처럼 공유 컴포넌트의 prop 타입이 바뀌면 오래된 백업 스냅샷이 타입 오류를 내는 구조적 문제). `exclude`에 세 디렉터리를 추가해 타입 검사 범위에서만 제외(빌드/런타임 동작에는 영향 없음, 기능 자체와는 무관한 사전 존재 버그의 최소 수정).
+- 검증: `npx tsc --noEmit`(전체 통과, 위 tsconfig 수정 반영 후 오류 0건), `npx eslint`(변경 파일 전체 — 기존에 있던 무관 경고 1건 `searching` 미사용 변수 외 신규 경고/오류 없음), `npm run build`(Turbopack, 전체 페이지 정상 생성, `/api/es-airspace-lookup` 등 API 라우트 정상 포함) 모두 통과.
+- 참고: 이번 변경으로 스페인 지도 오버레이는 한국과 완전히 동일한 아키텍처(레이어별 개별 WMS 엔트리 + 사용자 토글 패널)를 갖추게 되어, 향후 다른 국가에 레이어 패널을 추가할 때도 `AirspaceLayerPanel`을 그대로 재사용할 수 있음.
+
 ## 2026-09-08 (추가) — 스페인 공역 정보: 도심(Urbano) 레이어를 지도 상시 오버레이에서 제외 (실제 화면 확인 후)
 
 - 배경: 사용자가 실제 화면 스크린샷("40.4135, -3.7011" 검색 결과)을 보내 "지도가 이렇게 나오는데 정상이야?"라고 문의 — 스페인·포르투갈을 넘어 프랑스·모로코·지중해까지 뒤덮는 커다란 분홍색 영역이 지도에 표시되고 있었음.

@@ -14,7 +14,6 @@ import {
   ES_AIRSPACE_LAYERS,
   ES_WMS_URL,
   getEsAirspaceLayer,
-  getEsWmsLayerParam,
 } from "@/lib/es-airspace-layers";
 import { isInSouthKorea, isInSpain } from "@/lib/airspace";
 import {
@@ -141,6 +140,16 @@ export function DroneDashboard() {
   // 별도의 fetch/캐시/로딩 상태가 필요 없다 — src/lib/airspace-layers.ts 참고.
   const [activeLayerIds, setActiveLayerIds] = useState<Set<string>>(
     () => new Set(AIRSPACE_LAYERS.filter((l) => l.required).map((l) => l.id)),
+  );
+
+  // 스페인(ENAIRE ZGUAS) 공역 레이어 — 3개 모두 필수(required)가 아니며,
+  // 사용자의 명시적 요청(2026-09-07)에 따라 초기 상태는 모두 꺼짐이다:
+  // 도심(Urbano)의 "NPDRID"(스페인 본토 전체 크기) 구역이나 항공(Aero)의
+  // TMA(터미널관제구역, 예: 마드리드 약 250km×215km) 같은 큰 구역이 사전
+  // 안내 없이 지도를 뒤덮는 것을 막기 위함 — 사용자가 레이어 패널에서 직접
+  // 켜야 지도에 그려진다. src/lib/es-airspace-layers.ts 참고.
+  const [activeEsLayerIds, setActiveEsLayerIds] = useState<Set<string>>(
+    () => new Set(),
   );
 
   // Guards against out-of-order responses: if the user keeps typing, an
@@ -317,6 +326,15 @@ export function DroneDashboard() {
     });
   }
 
+  function handleEsAirspaceLayerToggle(id: string, next: boolean) {
+    setActiveEsLayerIds((prev) => {
+      const updated = new Set(prev);
+      if (next) updated.add(id);
+      else updated.delete(id);
+      return updated;
+    });
+  }
+
   // 선택된 위치의 국가에 따라 공역 정보 박스의 제목/설명/링크를 결정한다.
   // 4개 우선 지원국(미국/한국/일본/스페인)은 country-regulations.ts에
   // 정리된 국가명·공식 링크를 그대로 재사용하고, 그 외 국가는
@@ -430,22 +448,33 @@ export function DroneDashboard() {
                   wmsLayers: getWmsLayerParam(layer),
                 }))
               : isInSpain(selected.latitude, selected.longitude)
-                ? [
-                    {
-                      id: "es-zguas",
-                      label: t("esAirspaceOverlayLabel"),
-                      wmsLayers: getEsWmsLayerParam(),
-                      wmsUrl: ES_WMS_URL,
-                    },
-                  ]
+                ? ES_AIRSPACE_LAYERS.filter((layer) =>
+                    activeEsLayerIds.has(layer.id),
+                  ).map((layer) => ({
+                    id: layer.id,
+                    label: t(`esAirspaceLayerNames.${layer.id}`),
+                    wmsLayers: layer.wmsName,
+                    wmsUrl: ES_WMS_URL,
+                  }))
                 : undefined
           }
           mapOverlay={
             isInSouthKorea(selected.latitude, selected.longitude) ? (
               <AirspaceLayerPanel
+                layers={AIRSPACE_LAYERS}
                 activeIds={activeLayerIds}
                 onToggle={handleAirspaceLayerToggle}
                 loadingIds={NO_LOADING_LAYER_IDS}
+                getLabel={(id) => t(`airspaceLayerNames.${id}`)}
+                requiredNote={t("airspaceLayersRequiredNote")}
+              />
+            ) : isInSpain(selected.latitude, selected.longitude) ? (
+              <AirspaceLayerPanel
+                layers={ES_AIRSPACE_LAYERS}
+                activeIds={activeEsLayerIds}
+                onToggle={handleEsAirspaceLayerToggle}
+                loadingIds={NO_LOADING_LAYER_IDS}
+                getLabel={(id) => t(`esAirspaceLayerNames.${id}`)}
               />
             ) : undefined
           }
@@ -724,32 +753,37 @@ export function DroneDashboard() {
               </div>
             ) : null}
 
-            {/* 스페인은 지도에 항상 표시되는 레이어(항공/기반시설)만 이 범례에
-                나열한다 — 도심(urbano) 레이어는 실측 확인 결과 하나의 구역이
-                스페인 본토 전체에 가까운 크기라 지도 오버레이에서는 제외했고
-                (showOnMap:false, src/lib/es-airspace-layers.ts 참고), 대신
-                위의 "공역 정보" 조회 결과에는 계속 포함되므로 지도 범례와
-                조회 결과 목록이 다를 수 있다(의도된 동작). */}
-            {selected && isInSpain(selected.latitude, selected.longitude) ? (
+            {/* 스페인은 한국과 동일하게, 사용자가 우측 상단 레이어 패널에서
+                직접 켠 레이어만 이 범례에 나열한다(2026-09-07, 사용자 요청 —
+                이전에는 showOnMap 필드로 도심(urbano)만 하드코딩으로 숨겼으나,
+                이후 항공(Aero)의 TMA도 같은 문제가 있어 사용자가 직접 켜고
+                끄는 방식으로 전환함). 기본값은 3개 모두 꺼짐이라, 아무것도
+                켜지 않았다면 이 블록 자체를 표시하지 않는다. 지점 클릭/검색
+                "공역 정보" 조회 결과(위)는 이 토글과 무관하게 항상 3개 레이어
+                전체를 확인하므로, 지도 범례와 조회 결과 목록이 다를 수 있다
+                (의도된 동작, 사용자 결정). */}
+            {selected &&
+            isInSpain(selected.latitude, selected.longitude) &&
+            activeEsLayerIds.size > 0 ? (
               <div className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
                 <p className="text-xs font-medium text-muted-foreground">
                   {t("airspaceActiveLayersTitle")}
                 </p>
                 <ul className="flex flex-wrap gap-x-3 gap-y-1">
-                  {ES_AIRSPACE_LAYERS.filter((layer) => layer.showOnMap).map(
-                    (layer) => (
-                      <li
-                        key={layer.id}
-                        className="flex items-center gap-1.5 text-xs text-muted-foreground"
-                      >
-                        <span
-                          className="inline-block size-2.5 shrink-0 rounded-full"
-                          style={{ backgroundColor: layer.color }}
-                        />
-                        {t(`esAirspaceLayerNames.${layer.id}`)}
-                      </li>
-                    ),
-                  )}
+                  {ES_AIRSPACE_LAYERS.filter((layer) =>
+                    activeEsLayerIds.has(layer.id),
+                  ).map((layer) => (
+                    <li
+                      key={layer.id}
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground"
+                    >
+                      <span
+                        className="inline-block size-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: layer.color }}
+                      />
+                      {t(`esAirspaceLayerNames.${layer.id}`)}
+                    </li>
+                  ))}
                 </ul>
               </div>
             ) : null}
