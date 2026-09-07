@@ -3,9 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
-import { Search, MapPin, Wind, Radio, ShieldAlert, Loader2 } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  Globe,
+  Wind,
+  Radio,
+  ShieldAlert,
+  Loader2,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
@@ -21,7 +36,11 @@ import {
   getCountryDisplayName,
   toPriorityRegulationId,
 } from "@/lib/country-info";
-import { getRegulationCountry } from "@/lib/country-regulations";
+import {
+  getRegulationCountry,
+  REGULATION_COUNTRIES,
+  type RegulationCountryId,
+} from "@/lib/country-regulations";
 import { fetchKoreaAirspaceZones } from "@/lib/airspace-lookup-client";
 import { getUsAirspaceLayer } from "@/lib/us-airspace-layers";
 import {
@@ -126,6 +145,7 @@ export function DroneDashboard() {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<GeocodeResult[]>([]);
   const [selected, setSelected] = useState<GeocodeResult | null>(null);
+  const [countryPickerValue, setCountryPickerValue] = useState("");
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(false);
   const [searching, setSearching] = useState(false);
@@ -253,6 +273,29 @@ export function DroneDashboard() {
     setSuggestions([]);
     setQuery(label);
     loadDashboard(lat, lon);
+  }
+
+  /**
+   * 국가 선택 드롭다운(공역 정보가 구현된 국가만 노출)에서 국가를 고르면
+   * 그 국가의 수도로 지도를 이동시키고, 검색/지도클릭/내 위치 사용과 동일하게
+   * 날씨·Kp지수·공역 정보까지 함께 조회한다.
+   */
+  function selectCountryCapital(id: RegulationCountryId) {
+    userActedRef.current = true;
+    const country = getRegulationCountry(id);
+    if (!country) return;
+    const capitalName = tReg(`countries.${id}.capital`);
+    const countryName = tReg(`countries.${id}.name`);
+    const loc: GeocodeResult = {
+      name: capitalName,
+      country: countryName,
+      latitude: country.capital.latitude,
+      longitude: country.capital.longitude,
+    };
+    setSelected(loc);
+    setSuggestions([]);
+    setQuery(`${capitalName}, ${countryName}`);
+    loadDashboard(loc.latitude, loc.longitude);
   }
 
   function useMyLocation() {
@@ -396,6 +439,28 @@ export function DroneDashboard() {
           <MapPin className="size-4" />
           {t("useMyLocationButton")}
         </Button>
+        <Select
+          value={countryPickerValue}
+          onValueChange={(id) => {
+            selectCountryCapital(id as RegulationCountryId);
+            setCountryPickerValue("");
+          }}
+        >
+          <SelectTrigger
+            className="h-11 w-full gap-2 sm:w-auto"
+            aria-label={t("countryJumpPlaceholder")}
+          >
+            <Globe className="size-4 text-muted-foreground" />
+            <SelectValue placeholder={t("countryJumpPlaceholder")} />
+          </SelectTrigger>
+          <SelectContent align="end">
+            {REGULATION_COUNTRIES.filter((c) => c.hasMapData).map((c) => (
+              <SelectItem key={c.id} value={c.id}>
+                {tReg(`countries.${c.id}.name`)}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
       {loading ? (

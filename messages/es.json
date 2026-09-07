@@ -15,6 +15,7 @@
     "metaDescription": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
     "searchPlaceholder": "Busca una ciudad o aeropuerto...",
     "useMyLocationButton": "Usar mi ubicación",
+    "countryJumpPlaceholder": "Seleccionar país",
     "myLocation": "Mi ubicación",
     "loadingText": "Cargando condiciones de vuelo...",
     "errorText": "No se pudieron cargar los datos de esa ubicación. Inténtalo de nuevo.",
@@ -393,6 +394,7 @@
     "countries": {
       "us": {
         "name": "Estados Unidos",
+        "capital": "Washington D. C.",
         "authority": "Administración Federal de Aviación (FAA)",
         "summary": [
           "Los pilotos recreativos deben aprobar el examen de seguridad en línea TRUST, y para operaciones comerciales con drones se requiere el certificado de piloto remoto Part 107 de la FAA.",
@@ -407,6 +409,7 @@
       },
       "kr": {
         "name": "Corea del Sur",
+        "capital": "Seúl",
         "authority": "Ministerio de Tierra, Infraestructura y Transporte · Drone OneStop",
         "summary": [
           "Según el peso y el uso, es necesario registrar el dron y obtener autorización de vuelo o de fotografía aérea a través del portal Drone OneStop.",
@@ -421,6 +424,7 @@
       },
       "jp": {
         "name": "Japón",
+        "capital": "Tokio",
         "authority": "Ministerio de Tierra, Infraestructura, Transporte y Turismo (MLIT)",
         "summary": [
           "Los drones de 100 g o más deben registrarse ante el MLIT (incluido Remote ID); volar un dron no registrado es sancionable.",
@@ -434,6 +438,7 @@
       },
       "es": {
         "name": "España",
+        "capital": "Madrid",
         "authority": "AESA (Agencia Estatal de Seguridad Aérea)",
         "summary": [
           "España sigue el marco común de la EASA en la UE, que divide las operaciones con drones en tres categorías según el riesgo: abierta, específica y certificada. La mayoría de los vuelos recreativos entran en la categoría abierta.",

@@ -15,6 +15,7 @@
     "metaDescription": "Search any location for live wind, gusts, visibility, the latest Kp index, and (US) FAA altitude ceilings — everything you need to plan a safer drone flight.",
     "searchPlaceholder": "Search a city or airport...",
     "useMyLocationButton": "Use my location",
+    "countryJumpPlaceholder": "Select a country",
     "myLocation": "My location",
     "loadingText": "Loading flight conditions...",
     "errorText": "Couldn't load data for that location. Please try again.",
@@ -393,6 +394,7 @@
     "countries": {
       "us": {
         "name": "United States",
+        "capital": "Washington, D.C.",
         "authority": "Federal Aviation Administration (FAA)",
         "summary": [
           "Recreational flyers must pass the online TRUST safety test, while commercial drone operations require an FAA Part 107 Remote Pilot Certificate.",
@@ -407,6 +409,7 @@
       },
       "kr": {
         "name": "South Korea",
+        "capital": "Seoul",
         "authority": "Ministry of Land, Infrastructure and Transport (MOLIT) · Drone OneStop",
         "summary": [
           "Depending on weight and purpose, you must register your drone and obtain flight/aerial-photography approval in advance through the Drone OneStop portal.",
@@ -421,6 +424,7 @@
       },
       "jp": {
         "name": "Japan",
+        "capital": "Tokyo",
         "authority": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT)",
         "summary": [
           "Drones weighing 100g or more must be registered with MLIT (including Remote ID); flying an unregistered drone is punishable by law.",
@@ -434,6 +438,7 @@
       },
       "es": {
         "name": "Spain",
+        "capital": "Madrid",
         "authority": "AESA (Spanish Aviation Safety Agency)",
         "summary": [
           "Spain follows the EU-wide EASA framework, which splits drone operations into three risk-based categories — Open, Specific, and Certified. Most hobby flying falls under the Open category.",

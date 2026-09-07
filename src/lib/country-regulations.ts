@@ -33,6 +33,8 @@ export type RegulationCountryDef = {
    * 한국 VWorld WMS, 스페인 ENAIRE ZGUAS). false: 아직 지도 데이터 없음 —
    * 공식 링크만 안내. */
   hasMapData: boolean;
+  /** 국가 선택 드롭다운에서 이 국가를 고르면 지도를 이동시킬 기준 좌표(수도). */
+  capital: { latitude: number; longitude: number };
   links: { key: RegulationLinkKey; url: string }[];
 };
 
@@ -40,6 +42,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   {
     id: "us",
     hasMapData: true,
+    capital: { latitude: 38.9072, longitude: -77.0369 },
     links: [
       { key: "official", url: "https://www.faa.gov/uas" },
       {
@@ -55,6 +58,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   {
     id: "kr",
     hasMapData: true,
+    capital: { latitude: 37.5665, longitude: 126.978 },
     links: [
       { key: "official", url: "https://drone.onestop.go.kr" },
       {
@@ -70,6 +74,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   {
     id: "jp",
     hasMapData: false,
+    capital: { latitude: 35.6762, longitude: 139.6503 },
     links: [
       {
         key: "official",
@@ -84,6 +89,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   {
     id: "es",
     hasMapData: true,
+    capital: { latitude: 40.4168, longitude: -3.7038 },
     links: [
       {
         key: "official",
