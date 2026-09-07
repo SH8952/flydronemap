@@ -1,5 +1,7 @@
 #!/bin/bash
 # FlyDroneMap 가이드 자동 발행 스크립트 (영구 설치형, v2 - 진단 강화판)
+# 2026-09-08: 예약 작업이 결과물 6개 파일을 zip 1개로 묶어 전달하도록 변경됨에 따라,
+# 이 폴더에 zip 파일이 있으면 먼저 자동으로 압축을 풀고 진행하도록 수정.
 
 REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
 SCRIPT_NAME="publish-guide.command"
@@ -61,11 +63,29 @@ fi
 
 # --- 2. 콘텐츠 확인 (항상 저장소의 automation 폴더에서 찾음) ---
 cd "$CONTENT_DIR" || { echo "오류: $CONTENT_DIR 폴더를 찾을 수 없습니다."; read -p "Enter..."; exit 1; }
+
+# --- 2.5. 발행 패키지가 zip으로 전달된 경우 자동 압축 해제 ---
+ZIP_COUNT=$(ls -1 *.zip 2>/dev/null | wc -l | tr -d ' ')
+if [ "$ZIP_COUNT" -gt 0 ]; then
+  echo "=== 발행 패키지 zip 파일을 발견해 압축을 해제합니다 ==="
+  for ZIP_FILE in *.zip; do
+    echo "압축 해제 중: $ZIP_FILE"
+    if unzip -o "$ZIP_FILE" -d . >/dev/null; then
+      rm -f "$ZIP_FILE"
+    else
+      echo "오류: $ZIP_FILE 압축 해제 실패."
+      read -p "Enter를 누르면 창이 닫힙니다..."
+      exit 1
+    fi
+  done
+  echo ""
+fi
+
 EN_FILE=$(ls guide-*-en.mdx 2>/dev/null | head -n1)
 
 if [ -z "$EN_FILE" ]; then
   echo "발행할 콘텐츠 파일(guide-*-en.mdx 등)이 없습니다: $CONTENT_DIR"
-  echo "오늘 전달받은 파일들(mdx 4개 + new-queue.json + changelog-snippet.txt)을"
+  echo "오늘 전달받은 zip(또는 mdx 4개 + new-queue.json + changelog-snippet.txt 개별 파일)을"
   echo "이 폴더에 넣은 뒤 이 스크립트를 다시 실행해 주세요."
   read -p "Enter를 누르면 창이 닫힙니다..."
   exit 0

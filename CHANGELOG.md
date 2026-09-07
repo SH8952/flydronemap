@@ -1,3 +1,10 @@
+## 2026-09-08 — 가이드 자동 발행 zip 패키지 필수화 + publish-guide.command 자동 압축 해제 지원
+
+- 배경: FlyDroneMap의 "가이드 자동 발행" 예약 작업(`trig_013iD7AWPzXBPQ1isZGAZsji`) 프롬프트가 zip 묶음을 "권장"으로만 명시하고 있어(ExifLens/firelic은 이미 필수), 실행마다 6개 개별 파일로 전달될 가능성이 있었음. 또한 `automation/publish-guide.command` 자체도 zip을 인식하지 못해 항상 수동으로 압축을 풀어야 했음.
+- 예약 작업 프롬프트 수정: 5단계 발행 패키지 첨부 지침을 "zip으로 묶는 것을 권장"에서 "반드시 zip 파일 하나로 묶어서... 첨부"로 변경(ExifLens/firelic과 동일한 필수 문구), 6단계 마무리 보고 안내 문구도 "첨부된 zip 파일의 압축을 해제해서..."로 함께 수정.
+- 수정: `automation/publish-guide.command` — 스크립트가 `automation/` 폴더에서 zip 파일을 발견하면 콘텐츠 파일 탐색 전에 자동으로 압축을 해제(unzip 후 원본 zip 삭제)하도록 단계 추가. firelic에 이미 적용된 동일 로직(2026-09-07)을 이식.
+- 검증: `bash -n`으로 문법 검사 통과. 실제 예약 작업 zip을 이용한 전체 흐름은 다음 자동 발행(익일 오전 6시) 결과로 확인 필요.
+
 ## 2026-09-07 — 장비 추천(Gear Recommendation) 섹션 추가
 
 - 배경: ExifLens에서 이미 검증된 "장비 추천" 기능(쿠팡파트너스 + 알리익스프레스 어필리에이트, 지역 기반 자동 provider 분기)을 FlyDroneMap에도 동일한 방식으로 이식.
