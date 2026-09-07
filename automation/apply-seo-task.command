@@ -6,6 +6,14 @@
 #
 # publish-guide.command(가이드 자동 발행용)와 별개로 동작하며, SEO_TASKS.md의
 # 각 일차 작업(임의 파일 여러 개를 건드리는 변경)을 zip 하나로 받아 적용합니다.
+#
+# [2026-09-07 안전장치 추가] 예전 버전은 git add -A(전체 스테이징)를 사용해,
+# 이 스크립트 실행 시점에 저장소에 다른 미커밋 변경사항(예: 진행 중인 별도 기능
+# 개발)이 남아있으면 그 변경사항까지 함께 커밋/push되거나, 겹치는 파일이 있으면
+# 조용히 덮어써져 유실되는 문제가 실제로 발생한 적이 있습니다. 이를 방지하기 위해
+# 두 가지 안전장치를 추가했습니다: (A) 실행 전 워킹트리가 깨끗하지 않으면 즉시
+# 중단, (B) git add -A 대신 이번 SEO 작업 payload에 실제 포함된 파일만 정확히
+# 골라서 add.
 
 REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
 SCRIPT_NAME="apply-seo-task.command"
@@ -89,6 +97,24 @@ fi
 
 echo "=== FlyDroneMap SEO 작업 적용: $PAYLOAD_ZIP ==="
 
+# --- 2.5. [안전장치 A] 워킹트리에 이미 다른 미커밋 변경사항이 있으면 즉시 중단 ---
+# (다른 기능 개발이 진행 중인 상태에서 이 스크립트가 끼어들어 그 변경사항을
+#  함께 커밋하거나, 겹치는 파일을 조용히 덮어써 유실시키는 것을 방지)
+cd "$REPO"
+DIRTY_STATUS="$(git status --porcelain)"
+if [ -n "$DIRTY_STATUS" ]; then
+  echo ""
+  echo "⚠️  저장소에 이미 커밋되지 않은 다른 변경사항이 있어, 안전을 위해 SEO 작업 적용을 중단합니다."
+  echo "    (다른 기능 개발이 진행 중이거나, 아직 커밋하지 않은 코드가 있을 수 있습니다.)"
+  echo ""
+  echo "$DIRTY_STATUS"
+  echo ""
+  echo "위 변경사항을 먼저 커밋(또는 별도로 백업 후 정리)한 뒤, 이 스크립트를 다시 실행해 주세요."
+  echo "(오늘 전달받은 $PAYLOAD_ZIP 파일은 그대로 이 폴더에 남아있으니, 다시 실행하면 이어서 적용됩니다.)"
+  read -p "Enter를 누르면 창이 닫힙니다..."
+  exit 1
+fi
+
 # --- 3. 작업 전 백업 ---
 BACKUP_DIR="$REPO/_backups/flydronemap_backup_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$REPO/_backups"
@@ -110,17 +136,29 @@ if [ ! -f "$WORK_DIR/commit-message.txt" ]; then
   exit 1
 fi
 
+# payload에 실제 포함된 파일 목록(commit-message.txt 제외)을 별도 파일로 기록
+# — 아래 복사 단계와 [안전장치 B] git add 단계에서 동일한 목록을 재사용
+FILELIST="$WORK_DIR/__filelist.txt"
+(cd "$WORK_DIR" && find . -type f ! -name "commit-message.txt" -print) | sed 's|^\./||' > "$FILELIST"
+
 # commit-message.txt를 제외한 나머지 파일/폴더를 저장소 루트로 복사(상대경로 유지)
-(cd "$WORK_DIR" && find . -type f ! -name "commit-message.txt" -print0) | while IFS= read -r -d '' f; do
-  rel="${f#./}"
+while IFS= read -r rel; do
+  [ -z "$rel" ] && continue
   mkdir -p "$REPO/$(dirname "$rel")"
   cp "$WORK_DIR/$rel" "$REPO/$rel"
-done
+done < "$FILELIST"
 
 cd "$REPO"
 [ -f .git/index.lock ] && rm -f .git/index.lock
 [ -f .git/HEAD.lock ] && rm -f .git/HEAD.lock
-git add -A
+
+# --- [안전장치 B] git add -A(전체 스테이징) 대신, 이번 payload에 실제 포함된
+#     파일만 정확히 골라서 add — 다른 무관한 변경사항이 섞여 들어갈 수 없음 ---
+while IFS= read -r rel; do
+  [ -z "$rel" ] && continue
+  git add -- "$rel"
+done < "$FILELIST"
+
 if git diff --cached --quiet; then
   echo "변경된 내용이 없습니다(이미 적용된 패키지일 수 있음)."
 else
