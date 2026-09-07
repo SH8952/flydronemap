@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AdZone } from "@/components/ad-zone";
-import { DroneDashboard } from "@/components/drone-dashboard";
 import { GearRecommendationSection } from "@/components/gear-recommendation-section";
+import { HomeDashboardSection } from "@/components/home-dashboard-section";
 import { webApplicationJsonLd } from "@/lib/seo";
 
 export default async function HomePage({
@@ -31,9 +31,9 @@ export default async function HomePage({
         </p>
       </div>
 
-      <DroneDashboard />
-
-      <GearRecommendationSection locale={locale} />
+      <HomeDashboardSection
+        gearSection={<GearRecommendationSection locale={locale} />}
+      />
 
       <AdZone
         id="mid-content"

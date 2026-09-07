@@ -1,3 +1,14 @@
+## 2026-09-08 — 홈페이지 "관련 도구"(ExifLens 크로스링크) 순서를 "장비 추천" 아래로 이동
+
+- 배경: 사용자가 스크린샷과 함께 "관련 도구" 항목이 "장비 추천" 항목 위에 있는데, 자매 사이트 exifnd.com과 동일한 배치(장비 추천이 먼저, 관련 도구가 나중)로 맞춰달라고 요청.
+- 조사: 이 두 섹션은 가이드/아티클 페이지가 아니라 홈페이지(`src/app/[locale]/page.tsx`)에 있음을 확인. "관련 도구"(`CrossLinkExifLens`, ND Filter 노출 계산기 → exifnd.com 링크)는 대시보드 컴포넌트 `DroneDashboard` 내부 맨 끝에서 `data && !loading`일 때만 조건부로 렌더링되고 있었고, "장비 추천"(`GearRecommendationSection`)은 `page.tsx`에서 `DroneDashboard` 바로 다음에 오는 독립된 형제 컴포넌트였음. 즉 단순 JSX 순서 교체가 아니라, `CrossLinkExifLens`를 `DroneDashboard` 내부에서 분리해 `GearRecommendationSection` 뒤로 옮기는 리팩토링이 필요했음(대시보드 자체를 장비 추천 아래로 통째로 내리는 방식은 지도/날씨 등 핵심 UI가 완전히 뒤로 밀려 원치 않는 큰 변화이므로 배제).
+- 수정:
+  - `src/components/drone-dashboard.tsx` — `DroneDashboard`가 `onResultVisibilityChange?: (visible: boolean) => void` 콜백 prop을 받도록 변경. `data`/`loading` 상태가 바뀔 때마다 `useEffect`로 `onResultVisibilityChange(Boolean(data) && !loading)`를 호출해 결과 표시 여부를 부모에게 알리고, 컴포넌트 내부에서 직접 렌더링하던 `<CrossLinkExifLens />`와 그 import는 제거.
+  - `src/components/home-dashboard-section.tsx`(신규) — `DroneDashboard`(콜백으로 `hasResult` state 갱신) → `gearSection` prop(서버에서 미리 렌더링해 전달받은 `<GearRecommendationSection />`) → `hasResult`일 때만 `<CrossLinkExifLens />` 순서로 렌더링하는 클라이언트 래퍼. `GearRecommendationSection`이 async 서버 컴포넌트라 클라이언트 컴포넌트 안에서 직접 import할 수 없어, 서버 컴포넌트인 `HomePage`에서 미리 렌더링한 결과를 prop으로 전달받는 방식을 사용.
+  - `src/app/[locale]/page.tsx` — `<DroneDashboard />` + `<GearRecommendationSection locale={locale} />` 두 줄을 `<HomeDashboardSection gearSection={<GearRecommendationSection locale={locale} />} />` 한 줄로 교체.
+  - `src/components/cross-link/cross-link-exiflens.tsx` — 새 배치를 설명하도록 컴포넌트 상단 주석만 갱신(로직 변경 없음).
+- 검증: `npx tsc --noEmit`(오류 0건), `npx eslint`(변경 파일 전체 — 기존에 있던 무관 경고 1건 `searching` 미사용 변수 외 신규 경고/오류 없음), `npm run build`(Turbopack, 전체 188페이지 정상 생성, "Finalizing page optimization" 단계에서 이 브릿지 환경 고유의 `.next` 파일 unlink 권한 오류로 빌드 완료 표시는 못 봤으나 컴파일·타입체크·전체 페이지 생성은 모두 성공 — 이 환경에서 반복적으로 나타나는 FUSE 마운트 특유의 현상으로, `.git/index.lock` 등에서도 동일 증상이 이미 여러 차례 있었음) 확인. 이 브릿지 환경에서는 로컬 dev 서버 화면을 직접 캡처해 재확인할 수 없어(Playwright 브라우저 설치가 네트워크 정책으로 차단됨), 코드 로직 검토와 빌드 검증으로 안전성을 확인함 — 최종 화면 순서는 사용자가 직접 확인 필요.
+
 ## 2026-09-07 — SEO 자동화 3일차 패키지가 automation 폴더에 잘못 압축 해제되어 반영 안 되던 문제 복구
 
 - 배경: `apply-seo-task.command`를 실행했으나 "저장소에 이미 커밋되지 않은 다른 변경사항이 있어 SEO 작업 적용을 중단합니다"라는 안전장치(2026-09-07 도입) 메시지가 계속 뜨며 push가 되지 않는다는 문의를 받음.

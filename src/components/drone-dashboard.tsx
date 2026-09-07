@@ -22,7 +22,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
 import { AIRSPACE_LAYERS, getWmsLayerParam } from "@/lib/airspace-layers";
 import {
@@ -138,7 +137,11 @@ const RISK_COLOR: Record<string, string> = {
   storm: "text-red-500",
 };
 
-export function DroneDashboard() {
+export function DroneDashboard({
+  onResultVisibilityChange,
+}: {
+  onResultVisibilityChange?: (visible: boolean) => void;
+} = {}) {
   const t = useTranslations("Home");
   const tReg = useTranslations("Regulations");
   const locale = useLocale();
@@ -148,6 +151,16 @@ export function DroneDashboard() {
   const [countryPickerValue, setCountryPickerValue] = useState("");
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // 대시보드 결과(data)가 있고 로딩이 끝났을 때만 관련 도구(ExifLens ND
+  // 필터 계산기) 링크를 노출한다. 이 컴포넌트는 더 이상 그 링크를 직접
+  // 렌더링하지 않고, 부모(HomeDashboardSection)가 장비 추천 섹션 아래에
+  // 배치할 수 있도록 가시 여부만 콜백으로 알려준다
+  // (2026-09-07, 사용자 요청 — 관련 도구/장비 추천 순서를 exifnd.com과
+  // 동일하게 맞추기 위함).
+  useEffect(() => {
+    onResultVisibilityChange?.(Boolean(data) && !loading);
+  }, [data, loading, onResultVisibilityChange]);
   const [searching, setSearching] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [countryCode, setCountryCode] = useState<string | undefined>(
@@ -855,8 +868,6 @@ export function DroneDashboard() {
           </div>
         </div>
       ) : null}
-
-      {data && !loading ? <CrossLinkExifLens /> : null}
 
       {!data && !loading ? (
         <p className="text-center text-sm text-muted-foreground">
