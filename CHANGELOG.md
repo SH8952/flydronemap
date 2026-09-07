@@ -1,3 +1,10 @@
+## 2026-09-07 — SEO 자동화 3일차 패키지가 automation 폴더에 잘못 압축 해제되어 반영 안 되던 문제 복구
+
+- 배경: `apply-seo-task.command`를 실행했으나 "저장소에 이미 커밋되지 않은 다른 변경사항이 있어 SEO 작업 적용을 중단합니다"라는 안전장치(2026-09-07 도입) 메시지가 계속 뜨며 push가 되지 않는다는 문의를 받음.
+- 원인: SEO 3일차 패키지(`seo-task-payload.zip`)가 스크립트를 거치지 않고 `automation/` 폴더 안에서 직접 압축 해제된 것으로 확인됨 — `automation/CHANGELOG.md`, `automation/SEO_TASKS.md`, `automation/commit-message.txt`, `automation/content/guides/en/*.mdx` 4개 항목이 저장소 루트가 아닌 `automation/` 폴더 안에 orphan 상태로 남아 있었음(zip 파일 자체는 이미 삭제된 상태). 이 orphan 파일들이 매번 "커밋 안 된 변경사항"으로 잡혀 안전장치 A에 걸려 중단되고 있었음. 실제 저장소 루트의 파일들(`CHANGELOG.md`/`SEO_TASKS.md`/가이드 mdx 2개)은 3일차 개선 내용이 전혀 반영되지 않은 예전 상태로 남아있었음.
+- 복구: 작업 전 `_backups/flydronemap_backup_20260907_230317_seo_leftover_fix/`에 백업(루트 4개 파일 + automation 폴더 전체). automation 폴더 안의 최신 반영본 4개를 저장소 루트의 올바른 위치로 복사(`CHANGELOG.md`, `SEO_TASKS.md`, `content/guides/en/flying-in-fog-safety-guide.mdx`, `content/guides/en/temperature-and-drone-battery-performance.mdx`). `npx tsc --noEmit`(오류 0건), `npx eslint`, `npm run build`(전체 페이지 정상 생성) 모두 통과 확인 후 이 4개 파일만 명시적으로 `git add`하여 원래 준비돼 있던 커밋 메시지(SEO 자동화 3일차)로 로컬 커밋(`d20633b`) 완료. 이후 `automation/` 폴더 안의 orphan 파일(automation/CHANGELOG.md, automation/SEO_TASKS.md, automation/commit-message.txt, automation/content/)을 정리해 삭제 — 저장소 워킹트리가 다시 깨끗한 상태로 복구되어, 다음 예약 SEO 작업부터는 안전장치 A에 막히지 않고 정상 동작할 것으로 예상됨.
+- 재발 방지 참고: 앞으로 SEO 작업 payload zip은 반드시 `automation/apply-seo-task.command`를 더블클릭해 실행하는 방식으로만 적용해야 하며, Finder에서 zip을 직접 더블클릭해 수동으로 압축 해제하지 않아야 함(수동 압축 해제 시 zip이 있던 위치, 즉 automation 폴더 안에 그대로 풀리기 때문에 이번과 같은 문제가 재발함).
+
 ## 2026-09-08 — SEO 자동화 3일차: 영어 가이드 2편 타이틀/메타 디스크립션 개선
 
 - 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). 이 클라우드 세션은 구글 서치 콘솔에 접근할 수 없어, `SEO_TASKS.md` 3일차에 명시된 객관적 대체 기준(게시글 수가 가장 많은 카테고리 안에서 발행일이 가장 오래된 글 2개, 영어만 우선)을 그대로 따랐다.
