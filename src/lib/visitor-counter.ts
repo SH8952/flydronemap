@@ -4,11 +4,24 @@ const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 // Redis key prefix — this project's slice of the shared Vercel KV
 // (Upstash Redis) instance connected to all three sibling sites
 // (ExifLens/FlyDroneMap/firelic), so one free-tier database can be reused
-// instead of provisioning one per project. See src/app/api/visitor-count/
-// route.ts for how the developer-exclusion cookie skips incrementing this.
-const COUNT_KEY = "flydronemap:visitor_count";
+// instead of provisioning one per project.
+const PROJECT = "flydronemap";
+const TOTAL_KEY = `${PROJECT}:visitor_count`;
+const DAILY_KEY_PREFIX = `${PROJECT}:visitor_count:daily:`;
+// Old daily buckets clean themselves up via TTL instead of manual deletion.
+const DAILY_TTL_SECONDS = 60 * 60 * 24 * 2;
 
-async function upstashCommand(...parts: (string | number)[]): Promise<number> {
+// "Today" is defined by a single fixed time zone (KST, the site owner's
+// own time zone), not each visitor's local time zone — this matches how
+// GA4's "reporting time zone" and most visitor-counter tools work, so
+// every visitor sees the same "today" number regardless of where they are
+// (researched/confirmed with the user before implementing this way).
+function todayKstDateString(): string {
+  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  return kst.toISOString().slice(0, 10); // YYYY-MM-DD
+}
+
+async function upstash(...parts: (string | number)[]): Promise<number> {
   if (!KV_URL || !KV_TOKEN) return 0;
   try {
     const path = parts.map((p) => encodeURIComponent(String(p))).join("/");
@@ -25,12 +38,29 @@ async function upstashCommand(...parts: (string | number)[]): Promise<number> {
   }
 }
 
-/** Reads the current visitor count without incrementing it. */
-export async function getVisitorCount(): Promise<number> {
-  return upstashCommand("get", COUNT_KEY);
+export interface VisitorCounts {
+  daily: number;
+  total: number;
 }
 
-/** Atomically increments and returns the new visitor count. */
-export async function incrementVisitorCount(): Promise<number> {
-  return upstashCommand("incr", COUNT_KEY);
+/** Reads today's (KST) and cumulative visitor counts without incrementing. */
+export async function getVisitorCounts(): Promise<VisitorCounts> {
+  const dailyKey = DAILY_KEY_PREFIX + todayKstDateString();
+  const [daily, total] = await Promise.all([
+    upstash("get", dailyKey),
+    upstash("get", TOTAL_KEY),
+  ]);
+  return { daily, total };
+}
+
+/** Atomically increments both counters and returns the new values. */
+export async function incrementVisitorCounts(): Promise<VisitorCounts> {
+  const dailyKey = DAILY_KEY_PREFIX + todayKstDateString();
+  const [daily, total] = await Promise.all([
+    upstash("incr", dailyKey),
+    upstash("incr", TOTAL_KEY),
+  ]);
+  // Keep the daily bucket's TTL refreshed so old dates expire on their own.
+  await upstash("expire", dailyKey, DAILY_TTL_SECONDS);
+  return { daily, total };
 }

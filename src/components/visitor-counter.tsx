@@ -2,21 +2,31 @@
 
 import { useEffect, useState } from "react";
 
+interface VisitorCounts {
+  daily: number;
+  total: number;
+}
+
 /**
- * Small footer badge showing the site's total visitor count. Fetches
- * /api/visitor-count on mount; renders nothing until the count arrives
- * (and stays hidden if the request fails, e.g. KV not yet connected).
+ * Small footer badge showing today's (KST) and cumulative visitor counts.
+ * Fetches /api/visitor-count on mount; renders nothing until the counts
+ * arrive (and stays hidden if the request fails, e.g. KV not connected).
  */
 export function VisitorCounter() {
-  const [count, setCount] = useState<number | null>(null);
+  const [counts, setCounts] = useState<VisitorCounts | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     fetch("/api/visitor-count")
       .then((res) => (res.ok ? res.json() : null))
-      .then((data: { count?: number } | null) => {
-        if (!cancelled && data && typeof data.count === "number") {
-          setCount(data.count);
+      .then((data: Partial<VisitorCounts> | null) => {
+        if (
+          !cancelled &&
+          data &&
+          typeof data.daily === "number" &&
+          typeof data.total === "number"
+        ) {
+          setCounts({ daily: data.daily, total: data.total });
         }
       })
       .catch(() => {});
@@ -25,7 +35,12 @@ export function VisitorCounter() {
     };
   }, []);
 
-  if (count === null) return null;
+  if (!counts) return null;
 
-  return <span>Visitors: {count.toLocaleString()}</span>;
+  return (
+    <span>
+      Today {counts.daily.toLocaleString()} · Total {counts.total.toLocaleString()}
+    </span>
+  );
 }
+
