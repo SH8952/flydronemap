@@ -104,7 +104,9 @@ export default async function LocaleLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-QFT36DH8YR');
+            if (!/(?:^|; )dev_exclude=1(?:;|$)/.test(document.cookie)) {
+              gtag('config', 'G-QFT36DH8YR');
+            }
           `}
         </Script>
         {ADSENSE_CLIENT_ID ? (
