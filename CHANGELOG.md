@@ -1,3 +1,11 @@
+## 2026-09-07 (추가) — 쿠팡파트너스 subId 트래킹 파라미터 실제 연동
+
+- 배경: 사용자가 ExifLens 프로젝트에서 동일한 문제(`.env.local`에 `COUPANG_PARTNER_SUBID` 값을 입력해도 코드 어디에서도 이를 읽어 쓰지 않아 실제로는 아무 효과가 없던 미배선 상태)를 발견·수정 완료(ExifLens 커밋 `79dc8db`)한 뒤, FlyDroneMap에도 동일한 방식으로 적용해달라고 요청.
+- 확인: FlyDroneMap도 `src/lib/coupang.ts`가 ExifLens 원본을 그대로 이식한 코드였기 때문에, `.env.example`/`.env.local`에 `COUPANG_PARTNER_SUBID`가 선언·입력만 되어 있고 코드에서는 전혀 사용되지 않고 있음을 grep으로 재확인.
+- 수정: `src/lib/coupang.ts`의 `searchCoupangProducts()` — `COUPANG_PARTNER_SUBID`가 설정되어 있으면 쿠팡 상품 검색 API 요청에 `subId` 파라미터로 함께 전달하도록 추가(ExifLens와 동일한 diff). 이렇게 하면 응답으로 받는 `productUrl`에 subId가 자동으로 포함되어, 쿠팡 파트너스 대시보드에서 클릭/매출 성과를 subId 기준으로 구분해서 확인할 수 있음. 값이 없으면 기존과 동일하게 파라미터 자체를 생략(빈 값으로 보내지 않음).
+- 검증: `npx tsc --noEmit`, `npx eslint src/lib/coupang.ts` 모두 통과.
+- 작업 전 `.backups/backup_20260907_084134_coupang_subid/`(coupang.ts, CHANGELOG.md)에 백업.
+
 ## 2026-09-07 — SEO 자동화 스크립트(automation/apply-seo-task.command) 안전장치 추가
 
 - 배경: "장비 추천" 기능 구현 직후, 이 스크립트가 `git add -A`(전체 스테이징)를 사용하는 탓에 당시 워킹트리에 남아있던 미커밋 변경사항이 SEO 작업 커밋에 함께 딸려 들어가고, 겹치는 파일(`page.tsx`)은 조용히 덮어써져 일부 유실되는 문제가 실제로 발생함(같은 날 앞선 항목에서 복구 완료).

@@ -73,17 +73,27 @@ function getCredentials() {
  * strict 10 requests/hour per account, so callers MUST cache results
  * (the /api/coupang/search route does this via Next.js's fetch cache) —
  * never call this directly from a per-request/per-user code path.
+ *
+ * When COUPANG_PARTNER_SUBID is set, it is sent as the `subId` request
+ * parameter so Coupang tags every returned productUrl with it — this is
+ * what lets clicks/sales be broken out by subId in the Partners dashboard.
+ * Optional: omitted entirely (not sent as an empty param) when unset.
  */
 export async function searchCoupangProducts(
   keyword: string,
   limit = 5,
 ): Promise<CoupangProduct[]> {
   const { accessKey, secretKey } = getCredentials();
+  const subId = process.env.COUPANG_PARTNER_SUBID;
 
-  const query = new URLSearchParams({
+  const params: Record<string, string> = {
     keyword,
     limit: String(Math.min(Math.max(limit, 1), 10)),
-  }).toString();
+  };
+  if (subId) {
+    params.subId = subId;
+  }
+  const query = new URLSearchParams(params).toString();
   const pathWithQuery = `${SEARCH_PATH}?${query}`;
 
   const authorization = buildAuthorizationHeader(
