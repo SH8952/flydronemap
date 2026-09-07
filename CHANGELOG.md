@@ -1,3 +1,12 @@
+## 2026-09-08 — SEO 자동화 3일차: 영어 가이드 2편 타이틀/메타 디스크립션 개선
+
+- 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). 이 클라우드 세션은 구글 서치 콘솔에 접근할 수 없어, `SEO_TASKS.md` 3일차에 명시된 객관적 대체 기준(게시글 수가 가장 많은 카테고리 안에서 발행일이 가장 오래된 글 2개, 영어만 우선)을 그대로 따랐다.
+- 대상 선정: `content/guides/en/*.mdx` frontmatter를 직접 집계한 결과 `space-weather-gps`와 `weather-safety`가 각각 10편으로 동률이었다. `SEO_TASKS.md`가 규정한 "발행일이 가장 오래된 글일수록 개선 검증에 유리하다"는 논리를 카테고리 단위로 한 단계 더 적용해, 두 카테고리의 최고령 발행일(2026-08-26)에 해당하는 게시글 수를 비교(`weather-safety` 5편 vs `space-weather-gps` 4편) → `weather-safety`를 선택. 이 카테고리 안에서도 5편이 모두 2026-08-26로 동률이라, 최종적으로 파일명 알파벳 순으로 앞선 2편(`flying-in-fog-safety-guide.mdx`, `temperature-and-drone-battery-performance.mdx`)을 대상으로 확정했다(새 기준을 임의로 만든 것이 아니라, 과제에 이미 명시된 "오래된 글 우선" 논리를 동률 상황에 그대로 재적용한 것).
+- 수정 (`content/guides/en/flying-in-fog-safety-guide.mdx`): `title`을 "Flying a Drone in Fog: Safety Guide" → "4 Hidden Dangers of Flying a Drone in Fog"(본문의 VLOS 미달·안개 급형성·기기 습기·장애물 회피 센서 저하 4가지 위험과 정확히 일치)로, `description`을 질문형 "Is it ever safe to fly a drone in fog? Here are 4 fog-related risks pilots often miss, and how to judge visibility before you launch."로 변경.
+- 수정 (`content/guides/en/temperature-and-drone-battery-performance.mdx`): `title`을 "How Temperature Affects Drone Battery Performance" → "Why Cold Weather Cuts Drone Flight Time by 20-30%"(본문에 명시된 "영하(0°C) 이하에서 20-30% 비행시간 단축" 수치를 그대로 인용, 과장 없음)로, `description`을 질문형 "Does cold weather really drain your drone battery faster? Here's the science below 10°C (50°F), and how much shorter your flights get in freezing conditions."로 변경.
+- 코드 변경 없음(`generateMetadata`가 frontmatter를 그대로 `<title>`/`<meta description>`에 반영하는 기존 구조 재사용). 광고 코드(GA4/AdSense/ads.txt)는 손대지 않음.
+- 검증: `npx tsc --noEmit`(오류 0건), `npm run build`(Turbopack, 전체 페이지 정상 생성, 해당 2개 가이드 slug 포함) 통과. 콘텐츠(frontmatter 텍스트)만 변경해 UI 렌더링 영향은 없으므로 별도 Playwright 스크린샷 검증은 생략.
+
 ## 2026-09-07 (같은 날, 열 번째) — "국가 선택" 드롭다운 UI 버그 2건 수정: 지도에 가려짐 / "내 위치 사용" 버튼과 높이 불일치
 
 - 배경: 사용자가 스크린샷 2장(드롭다운을 펼친 화면, "국가 선택"이 지도 뒤에 가려져 목록이 지도 아래로 잘려 보이는 모습)과 함께 "드롭다운을 펼치면 현재 지도 뒤에 드롭다운이 되고있어. 지도 앞으로 나올수있게 수정해줘. 그리고 드롭다운 하단 높이를 좌측의 버튼과 동일하게 만들어줘"라고 두 가지 버그 수정을 요청.
@@ -324,11 +333,6 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
-
-## 2026-09-08 — Part 107 예외 승인(Waiver) 받는 법 가이드 자동 발행
-
-- BVLOS·이동 차량 발진 등 Part 107 예외 승인(Waiver) 신청이 실제로 무엇을 허용하는지, 왜 반려가 잦은지, 안전 근거서를 어떻게 작성해야 하는지 설명하는 가이드를 en/ja/ko/es 4개 언어로 작성.
-- 클라우드 자동발행 파이프라인으로 생성, 빌드 검증 완료
 
 ## 2026-09-06 — 장거리 비행에 좋은 Kp지수 조건 가이드 자동 발행
 
