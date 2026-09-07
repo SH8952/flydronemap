@@ -2,6 +2,8 @@
  * points (first ring is the outer boundary, any further rings are holes) —
  * ready to pass to a Leaflet <Polygon positions={...}> for a single polygon,
  * or grouped one level deeper for a multi-polygon. */
+import { getCountryCode } from "./country-info";
+
 export type LatLngRing = [number, number][];
 
 /** One matched Korea airspace zone from /api/airspace-lookup — see that
@@ -53,6 +55,19 @@ export function isInSouthKorea(latitude: number, longitude: number): boolean {
     longitude >= 124.5 &&
     longitude <= 131.0
   );
+}
+
+/**
+ * 스페인(본토 + 발레아레스 제도 + 카나리아 제도 + 세우타/멜리야 등) 여부 판정.
+ * 남한처럼 단순 bounding box를 쓰면 포르투갈/프랑스/안도라/모로코/알제리 등
+ * 인접국과 경계가 겹쳐 오판정될 위험이 커서(특히 카나리아 제도는 본토와 멀리
+ * 떨어져 있어 bbox 하나로는 아예 표현이 안 됨), 이미 이 프로젝트에 있는
+ * 국경 폴리곤 기반 country-coder 라이브러리(getCountryCode,
+ * src/lib/country-info.ts — "국가별 드론 규정" 섹션에서 이미 실사용 중)를
+ * 그대로 재사용한다.
+ */
+export function isInSpain(latitude: number, longitude: number): boolean {
+  return getCountryCode(latitude, longitude) === "ES";
 }
 
 /**
@@ -130,9 +145,10 @@ async function fetchFaaAirspaceCeiling(
 /**
  * Dispatches to the appropriate national airspace data source based on the
  * point's location. Currently covers the United States (FAA UAS Facility
- * Map) and South Korea (국토교통부 비행금지구역). Returns null for any other
- * location — callers should treat that as "no data available here," not "no
- * restrictions."
+ * Map), South Korea (국토교통부 비행금지구역), and Spain (ENAIRE ZGUAS — see
+ * isInSpain above, handled by /api/es-airspace-lookup instead of this
+ * function). Returns null for any other location — callers should treat
+ * that as "no data available here," not "no restrictions."
  */
 export async function fetchAirspaceCeiling(
   latitude: number,
@@ -141,6 +157,12 @@ export async function fetchAirspaceCeiling(
   if (isInSouthKorea(latitude, longitude)) {
     // 한국 지점의 지점별 공역 조회는 /api/airspace-lookup이 별도로 수행한다
     // (src/components/drone-dashboard.tsx 참고) — 여기서는 항상 null.
+    return null;
+  }
+  if (isInSpain(latitude, longitude)) {
+    // 스페인 지점도 마찬가지로 /api/es-airspace-lookup(ENAIRE ZGUAS)이 별도로
+    // 수행한다 — 여기서 FAA 조회를 계속 시도하면 지리적으로 무관한 미국
+    // 데이터에 대해 매번 불필요한 외부 호출만 발생시킨다.
     return null;
   }
   return fetchFaaAirspaceCeiling(latitude, longitude);

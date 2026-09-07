@@ -72,6 +72,12 @@
       "moa": "Military Operations Area (MOA)",
       "fria": "FAA-Recognized Identification Area (FRIA)"
     },
+    "esAirspaceOverlayLabel": "Spain UAS Geographical Zones (ZGUAS)",
+    "esAirspaceLayerNames": {
+      "aero": "Aeronautical Zone",
+      "urbano": "Urban Population Zone",
+      "infraestructuras": "Infrastructure Protection Zone"
+    },
     "airspaceActiveLayersTitle": "Airspace layers shown on the map",
     "clickMapHint": "Click anywhere on the map to check that location",
     "usageTitle": "How to Use FlyDroneMap",

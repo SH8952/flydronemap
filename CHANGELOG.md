@@ -1,3 +1,18 @@
+## 2026-09-08 (추가) — 스페인(ENAIRE ZGUAS) 공역 정보 신설: 상시 지도 오버레이 + 클릭 조회, 한국과 동일한 방식으로 구현
+
+- 배경: 일본 DIPS2.0 API는 MLIT 회신에서 요구한 "고정 IP" 조건 충족 방법을 사용자가 아직 결정하지 못해(비용 지출 여부 고민 중) 잠시 뒤로 미루고, "이미 언어가 준비된 국가부터"라는 기존 원칙에 따라 남아있는 스페인(es)을 먼저 준비하기로 사용자와 합의. 지도 오버레이(상시 표시) + 지점 클릭 조회를 모두 지원하는 "한국과 동일한 방식"으로 구현하기로 결정.
+- 조사: 스페인은 항행서비스제공기관 ENAIRE가 UAS 지리적 구역(ZGUAS: 항공/도심/기반시설 3개 레이어) ArcGIS 서비스(`NSF_SRV/SRV_UAS_ZG_V0`)를 인증키·등록·도메인 신청 없이 완전히 공개로 제공하고 있음을 실제 호출로 확인 — 브이월드(한국)처럼 서버 IP 차단 이슈 자체가 없음. 다만 이 서비스는 FeatureServer 확장이 없어(500 오류로 확인) 반드시 MapServer 경로로 조회해야 하고, **MapServer REST 조회 id(항공=2, 도심=3, 기반시설=0)와 WMS GetCapabilities가 광고하는 레이어 Name("0"/"1"/"2")이 서로 다르다**는 것을 실제 GetCapabilities XML까지 직접 확인해 알아냄 — 이 둘을 뒤섞으면 클릭 조회는 되는데 지도 타일은 엉뚱하게 나오는 조용한 버그가 될 뻔했음.
+- 추가: `src/lib/es-airspace-layers.ts` — ZGUAS 3개 레이어(항공/도심/기반시설) 카탈로그. 위에서 확인한 MapServer id ↔ WMS Name 매핑을 한 곳에서만 관리.
+- 추가: `src/app/api/es-airspace-lookup/route.ts` — 좌표를 받아 ENAIRE MapServer 3개 레이어를 병렬 조회하는 신규 서버 라우트(미국 `/api/us-airspace-lookup`과 동일한 구조: 개별 `.catch()` 없이 하나라도 실패하면 502로 명확히 실패 처리, 절대 "제한 없음"으로 오인 표시되지 않도록 함). ENAIRE 속성 스키마(EU/EASA UAS 공통 GeoZone 형식으로 보임: `type`/`name`/`reasons`/`lower`·`upper`/`provider` 등)에서 라벨을 추출하고, 인가 요건 강도(`PROHIBITED` > `REQ_AUTHORIZATION` > `CONDITIONAL`)로 정렬.
+- 추가: `src/lib/es-airspace-lookup-client.ts` — 클라이언트 fetch 래퍼(기존 미국 클라이언트와 동일한 패턴, 국가별 독립 타입 유지).
+- 수정: `src/lib/airspace.ts` — `isInSpain()` 신설. 남한과 달리 단순 bounding box를 쓰면 포르투갈·프랑스·안도라·모로코 등과 겹쳐 오판정 위험이 크고 카나리아 제도는 bbox 하나로 표현이 안 되므로, 이미 "국가별 규정" 섹션에 있던 국경 폴리곤 기반 country-coder 라이브러리(`getCountryCode`)를 재사용. `fetchAirspaceCeiling()` 디스패처도 한국과 동일하게 스페인 지점에서는 무의미한 FAA 조회를 건너뛰도록 수정.
+- 수정: `src/components/flight-map.tsx` — `AirspaceOverlayLayer`에 `wmsUrl`(선택) 필드 추가, WMS 타일 렌더링이 레이어마다 다른 WMS 서버(브이월드/ENAIRE)를 가리킬 수 있도록 일반화(기존 한국 동작은 그대로, 값이 없으면 브이월드 기본값 유지).
+- 수정: `src/components/drone-dashboard.tsx` — 스페인 지점에서 ENAIRE WMS 3개 레이어를 하나로 합쳐 상시 오버레이로 표시(레이어가 3개뿐이라 켜고 끄는 패널 없이 항상 전부 표시 — 한국의 14종 토글 패널과 달리 단순화한 부분), 클릭/검색 조회 결과를 "공역 정보" 박스에 미국과 동일한 형태로 표시, 지도 하단 범례도 추가. "상세 데이터 없음" 폴백 문구가 스페인 조회 결과와 동시에 뜨지 않도록 조건 수정.
+- 수정: `src/lib/country-regulations.ts` — 스페인 `hasMapData`를 `false`→`true`로 변경(`/regulations/es` 페이지가 자동으로 "지도 보유 국가" 배지·"지도에서 확인하기" 링크를 보여주게 됨, 페이지 자체는 수정 불필요).
+- 수정: `messages/{ko,en,ja,es}.json` — 4개 언어 모두에 `esAirspaceOverlayLabel`/`esAirspaceLayerNames.{aero,urbano,infraestructuras}` 키 추가.
+- 검증: `npx tsc --noEmit`, `npx eslint`(변경/신규 파일 전체) 모두 통과. `npm run build`(Turbopack, 184페이지) 전체 통과, `/api/es-airspace-lookup`이 동적 라우트로 정상 포함됨을 확인. ENAIRE 실제 서비스에는 클라우드 세션의 WebFetch로 여러 차례 직접 질의해 응답 스키마·WMS 레이어 이름을 실측 확인(마드리드 바라하스/토레혼 공항, 마드리드 도심, 철도 기반시설 보호구역 등 서로 다른 지점·레이어에서 실제 데이터 반환 확인). 다만 `device_bash` 브릿지 네트워크에서는 브이월드/FAA/쿠팡/Unsplash와 동일하게 ENAIRE 도메인도 차단되어 있어(curl 타임아웃으로 확인) 로컬 스모크 테스트는 불가능했음 — 실서버(Vercel) 배포 후 프로덕션 엔드포인트를 클라우드 세션의 WebFetch로 재검증하는 것을 다음 단계로 남김.
+- 참고(범위 조정): "한국과 동일" 방식으로 합의했으나, 스페인은 레이어가 3개뿐이고 모두 인가/신고 필요 구역 카테고리라 한국의 "필수 3종 고정 + 선택 11종 토글" 같은 세분화가 의미가 없다고 판단해, 별도 토글 패널 없이 3개를 항상 함께 표시하는 방식으로 단순화함(상시 오버레이 + 클릭 조회라는 핵심 기능은 동일하게 구현됨).
+
 ## 2026-09-08 (추가) — 방문자 카운터를 "당일 방문 / 누적 방문"으로 분리
 
 - 배경: 방문자 카운터를 누적 숫자 하나만이 아니라 "당일 방문"과 "누적 방문"으로 나눠서 보고 싶다는 요청. 처음에는 방문자 각자의 국가(로컬 시간대) 자정 기준으로 "당일"을 리셋하는 방식을 요청받았으나, 이 경우 같은 순간에도 보는 사람마다 "오늘" 숫자가 달라지는 문제가 있어 조사 후 재확인: GA4의 "보고 시간대" 및 대부분의 방문자 카운터 도구가 방문자별 로컬 시간이 아니라 사이트 운영자가 지정한 시간대 하나로 통일해서 "하루" 경계를 정한다는 점을 사용자에게 공유하고, 동일한 방식(한국시간 KST 자정 기준)으로 진행하기로 합의.

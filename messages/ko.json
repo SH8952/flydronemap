@@ -72,6 +72,12 @@
       "moa": "군사훈련구역 (MOA)",
       "fria": "FAA 인증 식별구역 (FRIA)"
     },
+    "esAirspaceOverlayLabel": "스페인 UAS 지리적 구역 (ZGUAS)",
+    "esAirspaceLayerNames": {
+      "aero": "항공 관련 구역",
+      "urbano": "도심(인구밀집) 구역",
+      "infraestructuras": "기반시설 보호구역"
+    },
     "airspaceActiveLayersTitle": "지도에 표시된 공역 레이어",
     "clickMapHint": "지도 아무 곳이나 클릭하면 해당 위치를 조회합니다",
     "usageTitle": "FlyDroneMap 사용법",

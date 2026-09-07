@@ -44,9 +44,16 @@ type LatLngRing = [number, number][];
 export type AirspaceOverlayLayer = {
   id: string;
   label: string;
-  /** Comma-separated VWorld WMS layer ids (lowercase) — see
-   * getWmsLayerParam in src/lib/airspace-layers.ts. */
+  /** Comma-separated WMS layer ids/names — for Korea, VWorld's lowercase
+   * dataCodes (see getWmsLayerParam in src/lib/airspace-layers.ts); for
+   * Spain, ENAIRE's WMS Name values (see getEsWmsLayerParam in
+   * src/lib/es-airspace-layers.ts). */
   wmsLayers: string;
+  /** WMS GetMap base URL to request these tiles from. Defaults to VWorld's
+   * (Korea) when omitted, so existing callers don't need to change — pass
+   * this to point at a different country's WMS service (e.g. ENAIRE's,
+   * which needs no API key at all). */
+  wmsUrl?: string;
 };
 
 type FlightMapProps = {
@@ -148,19 +155,21 @@ export function FlightMap({
             ))
           : null}
 
-        {VWORLD_WMS_URL
-          ? airspaceOverlayLayers?.map((layer) => (
-              <WMSTileLayer
-                key={layer.id}
-                url={VWORLD_WMS_URL}
-                layers={layer.wmsLayers}
-                format="image/png"
-                transparent
-                version="1.3.0"
-                uppercase
-              />
-            ))
-          : null}
+        {airspaceOverlayLayers?.map((layer) => {
+          const url = layer.wmsUrl ?? VWORLD_WMS_URL;
+          if (!url) return null;
+          return (
+            <WMSTileLayer
+              key={layer.id}
+              url={url}
+              layers={layer.wmsLayers}
+              format="image/png"
+              transparent
+              version="1.3.0"
+              uppercase
+            />
+          );
+        })}
       </MapContainer>
 
       {mapOverlay}

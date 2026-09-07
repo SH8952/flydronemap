@@ -72,6 +72,12 @@
       "moa": "軍事訓練空域 (MOA)",
       "fria": "FAA認定識別区域 (FRIA)"
     },
+    "esAirspaceOverlayLabel": "スペイン UAS地理的区域 (ZGUAS)",
+    "esAirspaceLayerNames": {
+      "aero": "航空関連区域",
+      "urbano": "都市部（人口密集地）区域",
+      "infraestructuras": "インフラ保護区域"
+    },
     "airspaceActiveLayersTitle": "地図に表示中の空域レイヤー",
     "clickMapHint": "地図上の任意の場所をクリックすると、その地点の情報を確認できます",
     "usageTitle": "FlyDroneMapの使い方",
