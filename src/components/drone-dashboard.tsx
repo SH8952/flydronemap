@@ -447,13 +447,13 @@ export function DroneDashboard() {
           }}
         >
           <SelectTrigger
-            className="h-11 w-full gap-2 sm:w-auto"
+            className="h-11! w-full gap-2 sm:w-auto"
             aria-label={t("countryJumpPlaceholder")}
           >
             <Globe className="size-4 text-muted-foreground" />
             <SelectValue placeholder={t("countryJumpPlaceholder")} />
           </SelectTrigger>
-          <SelectContent align="end">
+          <SelectContent align="end" className="z-[1100]">
             {REGULATION_COUNTRIES.filter((c) => c.hasMapData).map((c) => (
               <SelectItem key={c.id} value={c.id}>
                 {tReg(`countries.${c.id}.name`)}
