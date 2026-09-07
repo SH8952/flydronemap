@@ -1,3 +1,19 @@
+## 2026-09-07 — 장비 추천(Gear Recommendation) 섹션 추가
+
+- 배경: ExifLens에서 이미 검증된 "장비 추천" 기능(쿠팡파트너스 + 알리익스프레스 어필리에이트, 지역 기반 자동 provider 분기)을 FlyDroneMap에도 동일한 방식으로 이식.
+- 신규: `src/lib/coupang.ts` — 쿠팡 파트너스 Open API 클라이언트(CEA HMAC-SHA256 서명).
+- 신규: `src/lib/aliexpress.ts` — 알리익스프레스 Affiliate Open Platform API 클라이언트(TOP/MD5 서명).
+- 신규: `src/lib/affiliate.ts` — 로케일/geo 쿠키 기반 provider(coupang/aliexpress) 결정 로직.
+- 신규: `src/lib/aliexpress-blocklist.ts`, `src/lib/aliexpress-blocked-products.json` — 관련성 낮은 알리익스프레스 상품 차단 목록.
+- 신규: `src/app/api/coupang/search/route.ts`, `src/app/api/aliexpress/search/route.ts` — 키워드 풀 기반 상품 검색 API(용량 기반 랜덤 분배 알고리즘 적용).
+- 신규: `src/app/api/dev/aliexpress-block/route.ts` — 개발 환경 전용 상품 차단 도구 API.
+- 신규: `src/components/gear-recommendation.tsx`, `gear-recommendation-section.tsx`, `coupang-gear-cards.tsx`, `aliexpress-gear-cards.tsx`.
+- 수정: `src/app/[locale]/page.tsx` — DroneDashboard와 AdZone 사이에 `GearRecommendationSection` 배치.
+- 수정: `messages/{en,ko,ja,es}.json` — `gearSectionTitle`, `gearSectionHint`, `gearDisclosure` 번역 키 추가.
+- 수정: `.env.example` — 쿠팡/알리익스프레스 크리덴셜 항목 추가.
+- 참고: 최초 구현 직후 사용자 맥에서 실행된 SEO 자동화 스크립트(`automation/apply-seo-task.command`)의 `git add -A` 커밋 과정에서 `page.tsx`의 배치 코드와 이 CHANGELOG 항목만 유실되어(다른 파일들은 이미 커밋됨) 이번에 복원함.
+- 검증: `npx tsc --noEmit`, `npx eslint`, `npm run build` 통과 예정(아래 진행).
+
 ## 2026-09-07 — SEO 개선 자동 진행 2일차: WebApplication 스키마 범위를 홈페이지로 한정
 
 - 배경: `webApplicationJsonLd`가 `src/app/[locale]/layout.tsx`의 `<head>`에서 전체 페이지(약관/개인정보처리방침/가이드 글 등 포함)에 동일하게 삽입되고 있는 것을 직접 확인. FlyDroneMap은 도구 기능이 홈(`/`) 한 곳에 집중되어 있으므로(ExifLens처럼 별도 도구 페이지가 없음), 홈페이지에만 적용되도록 정리.
