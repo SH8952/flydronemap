@@ -37,12 +37,26 @@ export type EsAirspaceLayerDef = {
    * `layers` prop에 사용. */
   wmsName: string;
   color: string;
+  /** 지도 상시 오버레이(WMS)에 포함할지 여부. 지점 클릭/검색 조회
+   * (`/api/es-airspace-lookup`)에는 이 값과 무관하게 항상 포함된다 —
+   * 순수하게 "지도에 항상 그려둘지"만 결정한다.
+   *
+   * urbano(도심)는 false다: 실측 확인(2026-09-07) 결과 이 레이어는 전체
+   * 4건 중 "NPDRID"(인구밀집지역 근처 인가 필요, reasons: POPULATION)
+   * 하나가 스페인 본토 전체와 거의 같은 크기(위도 35.8~45, 경도 -13~-0.07)
+   * 로 등록되어 있어, 지도를 조금만 축소해도 화면 대부분을 분홍색으로
+   * 뒤덮어버린다 — 데이터 자체는 정확하지만("인구밀집지역 근처는 항상
+   * 확인 필요"라는 실제 규정을 그대로 반영한 것) 상시 오버레이로 두면
+   * 지도가 사실상 못 쓰게 됨. 사용자 확인 후 상시 오버레이에서는 제외하고,
+   * 지점 클릭/검색 시 "공역 정보" 텍스트 패널에서는 그대로 계속 보여주기로
+   * 결정함. */
+  showOnMap: boolean;
 };
 
 export const ES_AIRSPACE_LAYERS: EsAirspaceLayerDef[] = [
-  { id: "aero", mapServerId: 2, wmsName: "0", color: "#ef4444" },
-  { id: "urbano", mapServerId: 3, wmsName: "1", color: "#f59e0b" },
-  { id: "infraestructuras", mapServerId: 0, wmsName: "2", color: "#3b82f6" },
+  { id: "aero", mapServerId: 2, wmsName: "0", color: "#ef4444", showOnMap: true },
+  { id: "urbano", mapServerId: 3, wmsName: "1", color: "#f59e0b", showOnMap: false },
+  { id: "infraestructuras", mapServerId: 0, wmsName: "2", color: "#3b82f6", showOnMap: true },
 ];
 
 export function getEsAirspaceLayer(
@@ -51,11 +65,13 @@ export function getEsAirspaceLayer(
   return ES_AIRSPACE_LAYERS.find((l) => l.id === id);
 }
 
-/** 세 레이어를 한 번에 겹쳐 그리기 위한 WMS `layers` 파라미터(콤마 구분,
- * WMS Name 기준) — 스페인은 레이어가 3개뿐이고 사용자가 켜고 끌 "선택 사항"의
- * 성격이 아니라(모두 인가/신고 필요 구역 카테고리) 항상 전부 함께 표시한다. */
+/** 지도 상시 오버레이에 포함되는 레이어(`showOnMap: true`)만 한 번에 겹쳐
+ * 그리기 위한 WMS `layers` 파라미터(콤마 구분, WMS Name 기준). urbano가
+ * 제외되는 이유는 위 `showOnMap` 필드 주석 참고. */
 export function getEsWmsLayerParam(): string {
-  return ES_AIRSPACE_LAYERS.map((l) => l.wmsName).join(",");
+  return ES_AIRSPACE_LAYERS.filter((l) => l.showOnMap)
+    .map((l) => l.wmsName)
+    .join(",");
 }
 
 export const ES_MAPSERVER_BASE_URL =

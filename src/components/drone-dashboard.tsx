@@ -724,26 +724,32 @@ export function DroneDashboard() {
               </div>
             ) : null}
 
-            {/* 스페인은 레이어가 3개뿐이고 항상 전부 함께 표시되므로(켜고 끄는
-                토글이 없음) 지도 상태와 항상 일치하는 고정 범례만 보여준다. */}
+            {/* 스페인은 지도에 항상 표시되는 레이어(항공/기반시설)만 이 범례에
+                나열한다 — 도심(urbano) 레이어는 실측 확인 결과 하나의 구역이
+                스페인 본토 전체에 가까운 크기라 지도 오버레이에서는 제외했고
+                (showOnMap:false, src/lib/es-airspace-layers.ts 참고), 대신
+                위의 "공역 정보" 조회 결과에는 계속 포함되므로 지도 범례와
+                조회 결과 목록이 다를 수 있다(의도된 동작). */}
             {selected && isInSpain(selected.latitude, selected.longitude) ? (
               <div className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
                 <p className="text-xs font-medium text-muted-foreground">
                   {t("airspaceActiveLayersTitle")}
                 </p>
                 <ul className="flex flex-wrap gap-x-3 gap-y-1">
-                  {ES_AIRSPACE_LAYERS.map((layer) => (
-                    <li
-                      key={layer.id}
-                      className="flex items-center gap-1.5 text-xs text-muted-foreground"
-                    >
-                      <span
-                        className="inline-block size-2.5 shrink-0 rounded-full"
-                        style={{ backgroundColor: layer.color }}
-                      />
-                      {t(`esAirspaceLayerNames.${layer.id}`)}
-                    </li>
-                  ))}
+                  {ES_AIRSPACE_LAYERS.filter((layer) => layer.showOnMap).map(
+                    (layer) => (
+                      <li
+                        key={layer.id}
+                        className="flex items-center gap-1.5 text-xs text-muted-foreground"
+                      >
+                        <span
+                          className="inline-block size-2.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: layer.color }}
+                        />
+                        {t(`esAirspaceLayerNames.${layer.id}`)}
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             ) : null}
