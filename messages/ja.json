@@ -378,7 +378,9 @@
       "us-airspace-regulations": "米国空域・規制",
       "gear-flight-tips": "機材・飛行のコツ",
       "general": "その他"
-    }
+    },
+    "ctaBannerText": "今すぐあなたの場所の風速・視程・Kp指数を確認しましょう。",
+    "ctaBannerButton": "今すぐ飛行条件を確認する"
   },
   "Regulations": {
     "title": "国別ドローン規制ガイド",

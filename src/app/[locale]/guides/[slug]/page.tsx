@@ -17,6 +17,7 @@ import {
   getRelatedGuides,
 } from "@/lib/guides";
 import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
+import { GuideToolCta } from "@/components/guide-tool-cta";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -172,9 +173,13 @@ export default async function GuidePage({
         </figure>
       ) : null}
 
+      <GuideToolCta />
+
       <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-primary">
         <Content />
       </article>
+
+      <GuideToolCta />
 
       {relatedGuides.length > 0 ? (
         <nav

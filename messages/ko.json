@@ -378,7 +378,9 @@
       "us-airspace-regulations": "미국 공역/규정",
       "gear-flight-tips": "장비/비행 팁",
       "general": "일반"
-    }
+    },
+    "ctaBannerText": "지금 바로 내 위치의 바람, 시정, Kp 지수를 확인해보세요.",
+    "ctaBannerButton": "지금 비행 조건 확인하기"
   },
   "Regulations": {
     "title": "국가별 드론 규정 안내",

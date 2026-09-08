@@ -1,0 +1,9 @@
+messages/ja.json
+messages/en.json
+messages/ko.json
+messages/es.json
+SEO_TASKS.md
+CHANGELOG.md
+__filelist.txt
+src/app/[locale]/guides/[slug]/page.tsx
+src/components/guide-tool-cta.tsx

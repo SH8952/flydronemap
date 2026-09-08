@@ -1,18 +1,11 @@
-## 2026-09-09 — apply-seo-task.command가 zip 압축 해제 시 엉뚱한 경로를 참조하던 버그 수정
+## 2026-09-09 — SEO 자동화 4일차: 가이드 글에 메인 도구(홈) CTA 배너 추가
 
-- 증상: 위 항목(안전장치 A 자체 모순 버그)을 고친 뒤 다시 실행하니, "커밋되지 않은 변경사항" 중단 메시지는 사라지고 백업 생성까지는 정상 진행됐지만 이어서 "unzip: cannot find or open seo-task-payload.zip" 및 "패키지 안에 commit-message.txt가 없습니다 — 손상된 패키지일 수 있습니다"라는 새 오류로 중단됨.
-- 원인: 스크립트가 payload zip 파일명을 처음 찾을 때는 `automation/` 폴더(스크립트 위치)에서 상대경로(`seo-task-payload.zip`)로 찾아두고, 이후 안전장치 A 검사와 백업 단계에서 작업 위치를 저장소 최상위(`cd "$REPO"`)로 옮긴 뒤에도 그 상대경로를 그대로 들고 있다가 `unzip`에 넘기는 버그. 실제 압축 해제 시점의 작업 위치가 automation 폴더가 아니라 저장소 최상위였기 때문에 파일을 찾지 못한 것으로, zip 파일 자체는 손상되지 않았음(직접 `unzip -l`로 내용물이 모두 정상임을 확인). 이 버그는 원래부터 있었지만 어제까지는 안전장치 A가 먼저 걸려 그 이전 단계에서 항상 중단됐기 때문에 지금까지 드러나지 않았음.
-- 수정: payload zip을 처음 찾은 직후 절대경로(`$SCRIPT_DIR/$PAYLOAD_ZIP`)로 고정해, 이후 작업 위치가 바뀌어도 항상 같은 파일을 정확히 가리키도록 함. 마지막 정리 단계의 `rm -f "$SCRIPT_DIR/$PAYLOAD_ZIP"`도 이미 절대경로가 된 변수에 맞춰 `rm -f "$PAYLOAD_ZIP"`로 정리. 안전장치 A/B나 커밋·push 로직은 전혀 건드리지 않은 경로 처리만의 최소 수정.
-- 검증: `bash -n`으로 문법 확인, 동일한 순서(automation에서 zip 탐색 → 절대경로 변환 → 저장소 최상위로 cd → unzip)를 별도 스크립트로 재현해 수정 전에는 실패, 수정 후에는 commit-message.txt를 정상적으로 찾아내는 것을 확인.
-- 참고: 작업 전 `.backups/backup_20260909_073656/`에 백업 생성.
-
-## 2026-09-09 — apply-seo-task.command가 자기 자신이 요구하는 payload zip 때문에 항상 중단되던 버그 수정
-
-- 증상: 안내대로 `seo-task-payload.zip`을 `automation/` 폴더에 넣고 `apply-seo-task.command`를 실행했지만 "저장소에 이미 커밋되지 않은 다른 변경사항이 있어 SEO 작업 적용을 중단합니다"라는 안전장치 A 메시지가 뜨며 매번 중단된다는 문의를 받음.
-- 원인: 2026-09-07에 추가된 안전장치 A(`git status --porcelain`으로 워킹트리가 깨끗한지 확인 후 아니면 중단)가, 스크립트 자신이 요구하는 `automation/seo-task-payload.zip` 파일 자체를 untracked 변경사항(`?? automation/seo-task-payload.zip`)으로 잘못 인식해 항상 걸리는 자체 모순적인 버그였음. 이 zip 파일은 `.gitignore`에 등록돼 있지 않아 git이 계속 "커밋 안 된 변경사항"으로 잡아냈던 것 — 즉 스크립트 안내를 그대로 따라도 절대 성공할 수 없는 구조였음(사용자 조작 실수가 아님).
-- 수정: `.gitignore`에 `automation/seo-task-payload*.zip` 패턴 추가. 이 zip은 스크립트의 임시 입력 파일일 뿐 저장소에 포함될 필요가 없으므로, 애초에 git 추적 대상에서 제외해 안전장치 A의 오탐을 원천 차단. 안전장치 A/B의 원래 로직(진짜 커밋 안 된 코드 변경사항 감지, payload에 포함된 파일만 정확히 git add)은 전혀 건드리지 않음 — 최소 수정.
-- 검증: 수정 후 `git status --porcelain`이 완전히 깨끗해짐(zip 파일이 더 이상 dirty 상태로 잡히지 않음)을 확인. `.gitignore` 변경사항만 별도로 커밋(`413862c`) — 코드/런타임 로직 변경이 없어 별도 빌드 검증은 불필요.
-- 참고: 작업 전 `.backups/backup_20260908_222249/`에 전체 스냅샷 백업 생성.
+- 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). `SEO_TASKS.md` 4일차 항목 — 가이드 상세 페이지(`src/app/[locale]/guides/[slug]/page.tsx`)에 자매 사이트 ExifLens로 보내는 크로스링크(`cross-link-exiflens.tsx`)는 있었지만, 정작 자기 사이트 메인 도구(홈)로 되돌아가는 CTA는 없었음(직접 확인, 2026-09-06 기준 과제 정의).
+- 신규: `src/components/guide-tool-cta.tsx` — 현재 위치의 바람/시정/Kp 지수 확인을 유도하는 문구 + 홈(`/`)으로 가는 버튼으로 구성된 CTA 배너 컴포넌트. `@/i18n/navigation`의 `Link`와 기존 shadcn `Button`(`@/components/ui/button`) 컴포넌트를 그대로 재사용했고, 새 npm 의존성은 추가하지 않음. `lucide-react`의 `Wind` 아이콘 사용(사이트 헤더 `site-header.tsx`에서 이미 쓰던 아이콘과 동일).
+- 번역: `messages/{ko,en,ja,es}.json`의 `Guides` 네임스페이스에 `ctaBannerText`, `ctaBannerButton` 키 2개를 각 언어에 맞게 자연스럽게 번역해 추가(직역이 아닌 톤에 맞춘 의역).
+- 배치: `src/app/[locale]/guides/[slug]/page.tsx`에서 글 본문(`<article>`) 바로 위(제목/이미지 아래)와 본문 하단(관련 가이드 섹션 위) 두 군데에 `<GuideToolCta />`를 배치.
+- 광고 코드(GA4/AdSense/ads.txt)는 손대지 않음.
+- 검증: `npx tsc --noEmit`(오류 0건), `npx eslint`(변경 파일 대상, 오류/경고 0건), `npm run build`(전체 페이지 정상 생성) 통과. UI 영향이 있는 항목이라 `npm run start`로 프로덕션 서버를 띄운 뒤 Playwright(헤드리스 크로미움)로 가이드 상세 페이지를 한국어/영어/일본어/스페인어 4개 언어 모두 스크린샷 확인 — CTA 배너가 본문 상/하단에 정상 렌더링되고, 한국어/일본어를 포함해 줄바꿈이나 레이아웃 깨짐 없음을 확인함.
 
 ## 2026-09-08 — 홈페이지 "관련 도구"(ExifLens 크로스링크) 순서를 "장비 추천" 아래로 이동
 
@@ -367,11 +360,6 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
-
-## 2026-09-09 — 국립공원 내 드론 비행 규정 가이드 자동 발행
-
-- 4개 언어(en/ja/ko/es)로 신규 가이드 "flying-drones-in-national-parks-rules" 작성 (카테고리: us-airspace-regulations). NPS 정책메모 14-05(36 CFR 1.5) 기반 드론 금지 규정이 FAA 공역 규정과 별개라는 점, "공원 내 운용"의 실제 의미, 처벌 수위, 실제 단속 사례, 대안 촬영 장소를 다룸.
-- 클라우드 자동발행 파이프라인으로 생성, 빌드 검증 완료.
 
 ## 2026-09-06 — 장거리 비행에 좋은 Kp지수 조건 가이드 자동 발행
 

@@ -378,7 +378,9 @@
       "us-airspace-regulations": "Espacio aéreo y normativa de EE. UU.",
       "gear-flight-tips": "Equipo y consejos de vuelo",
       "general": "General"
-    }
+    },
+    "ctaBannerText": "Consulta ahora el viento, la visibilidad y el índice Kp de tu ubicación.",
+    "ctaBannerButton": "Comprobar condiciones de vuelo"
   },
   "Regulations": {
     "title": "Normativa de drones por país",

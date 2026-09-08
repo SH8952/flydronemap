@@ -378,7 +378,9 @@
       "us-airspace-regulations": "U.S. Airspace & Regulations",
       "gear-flight-tips": "Gear & Flight Tips",
       "general": "General"
-    }
+    },
+    "ctaBannerText": "Check the current wind, visibility, and Kp index for your location.",
+    "ctaBannerButton": "Check Flight Conditions Now"
   },
   "Regulations": {
     "title": "Drone Regulations by Country",
