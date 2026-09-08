@@ -18,6 +18,12 @@ __pycache__/
 *.command
 !automation/apply-seo-task.command
 !automation/publish-guide.command
+
+# SEO 작업 payload zip - 스크립트가 요구하는 임시 입력 파일이라 저장소에
+# 포함하지 않음. gitignore에 없으면 apply-seo-task.command의 "커밋 안 된
+# 변경사항이 있으면 중단" 안전장치가 이 zip 파일 자체를 untracked 변경사항으로
+# 오인해 매번 스스로 걸리는 자체 모순적인 버그가 발생함 (2026-09-08 발견/수정).
+automation/seo-task-payload*.zip
 .next.stale.*/
 *.log
 flydronemap_project_summary.md
