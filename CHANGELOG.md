@@ -1,3 +1,11 @@
+## 2026-09-09 — apply-seo-task.command가 zip 압축 해제 시 엉뚱한 경로를 참조하던 버그 수정
+
+- 증상: 위 항목(안전장치 A 자체 모순 버그)을 고친 뒤 다시 실행하니, "커밋되지 않은 변경사항" 중단 메시지는 사라지고 백업 생성까지는 정상 진행됐지만 이어서 "unzip: cannot find or open seo-task-payload.zip" 및 "패키지 안에 commit-message.txt가 없습니다 — 손상된 패키지일 수 있습니다"라는 새 오류로 중단됨.
+- 원인: 스크립트가 payload zip 파일명을 처음 찾을 때는 `automation/` 폴더(스크립트 위치)에서 상대경로(`seo-task-payload.zip`)로 찾아두고, 이후 안전장치 A 검사와 백업 단계에서 작업 위치를 저장소 최상위(`cd "$REPO"`)로 옮긴 뒤에도 그 상대경로를 그대로 들고 있다가 `unzip`에 넘기는 버그. 실제 압축 해제 시점의 작업 위치가 automation 폴더가 아니라 저장소 최상위였기 때문에 파일을 찾지 못한 것으로, zip 파일 자체는 손상되지 않았음(직접 `unzip -l`로 내용물이 모두 정상임을 확인). 이 버그는 원래부터 있었지만 어제까지는 안전장치 A가 먼저 걸려 그 이전 단계에서 항상 중단됐기 때문에 지금까지 드러나지 않았음.
+- 수정: payload zip을 처음 찾은 직후 절대경로(`$SCRIPT_DIR/$PAYLOAD_ZIP`)로 고정해, 이후 작업 위치가 바뀌어도 항상 같은 파일을 정확히 가리키도록 함. 마지막 정리 단계의 `rm -f "$SCRIPT_DIR/$PAYLOAD_ZIP"`도 이미 절대경로가 된 변수에 맞춰 `rm -f "$PAYLOAD_ZIP"`로 정리. 안전장치 A/B나 커밋·push 로직은 전혀 건드리지 않은 경로 처리만의 최소 수정.
+- 검증: `bash -n`으로 문법 확인, 동일한 순서(automation에서 zip 탐색 → 절대경로 변환 → 저장소 최상위로 cd → unzip)를 별도 스크립트로 재현해 수정 전에는 실패, 수정 후에는 commit-message.txt를 정상적으로 찾아내는 것을 확인.
+- 참고: 작업 전 `.backups/backup_20260909_073656/`에 백업 생성.
+
 ## 2026-09-09 — apply-seo-task.command가 자기 자신이 요구하는 payload zip 때문에 항상 중단되던 버그 수정
 
 - 증상: 안내대로 `seo-task-payload.zip`을 `automation/` 폴더에 넣고 `apply-seo-task.command`를 실행했지만 "저장소에 이미 커밋되지 않은 다른 변경사항이 있어 SEO 작업 적용을 중단합니다"라는 안전장치 A 메시지가 뜨며 매번 중단된다는 문의를 받음.
