@@ -95,7 +95,14 @@ if [ -z "$PAYLOAD_ZIP" ]; then
   exit 0
 fi
 
-echo "=== FlyDroneMap SEO 작업 적용: $PAYLOAD_ZIP ==="
+# [2026-09-09 버그 수정] 이 시점 이후 스크립트가 cd "$REPO"로 작업 위치를
+# 저장소 최상위로 옮기기 때문에, 파일명만 담긴 상대경로를 그대로 들고 있으면
+# 나중에 unzip이 엉뚱한 위치(저장소 최상위)에서 파일을 찾아
+# "cannot find or open ..." 오류가 발생함. 지금 절대경로로 고정해 이후
+# 어떤 위치로 이동해도 항상 같은 파일을 정확히 가리키도록 함.
+PAYLOAD_ZIP="$SCRIPT_DIR/$PAYLOAD_ZIP"
+
+echo "=== FlyDroneMap SEO 작업 적용: $(basename "$PAYLOAD_ZIP") ==="
 
 # --- 2.5. [안전장치 A] 워킹트리에 이미 다른 미커밋 변경사항이 있으면 즉시 중단 ---
 # (다른 기능 개발이 진행 중인 상태에서 이 스크립트가 끼어들어 그 변경사항을
@@ -168,7 +175,7 @@ else
 fi
 
 rm -rf "$WORK_DIR"
-rm -f "$SCRIPT_DIR/$PAYLOAD_ZIP"
+rm -f "$PAYLOAD_ZIP"
 
 echo ""
 echo "SEO 작업 적용 완료"
