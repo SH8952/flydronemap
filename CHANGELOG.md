@@ -1,3 +1,15 @@
+## 2026-09-10 — SEO 자동화 5일차: 홈페이지 H1 타겟 키워드 보강
+
+- 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). `SEO_TASKS.md` 5일차 항목 — 홈 H1이 브랜드명("FlyDroneMap")만 표시하고 있었고(직접 확인, 2026-09-06), 부제(subtitle)와 `metaTitle`에는 이미 wind/gusts/visibility/Kp index/FAA altitude ceiling 등 핵심 키워드가 들어있는 반면 H1 자체에는 없어 보강 여지가 있었음.
+- 수정: `messages/{ko,en,ja,es}.json`의 `Home.title`을 브랜드명은 유지한 채 핵심 키워드를 자연스럽게 결합한 형태로 변경(직역이 아닌 각 언어 톤에 맞춘 의역, 키워드 스터핑 없음):
+  - ko: "FlyDroneMap" → "FlyDroneMap — 실시간 드론 비행 날씨·Kp지수"
+  - en: "FlyDroneMap" → "FlyDroneMap — Live Drone Weather & Kp Index"
+  - ja: "FlyDroneMap" → "FlyDroneMap — リアルタイム ドローン気象・Kp指数"
+  - es: "FlyDroneMap" → "FlyDroneMap: Clima de Vuelo en Vivo y Índice Kp"
+  - `subtitle`은 지침대로 이미 충분히 좋아 손대지 않음(오탈자·어색한 표현 없음을 확인).
+- `src/app/[locale]/page.tsx`의 H1 JSX 구조(`{t("title")}`)는 그대로 두고 문구만 변경(코드 수정 없음). 광고 코드(GA4/AdSense/ads.txt)는 손대지 않음.
+- 검증: `npx tsc --noEmit`(오류 0건), `npx eslint`(오류/경고 0건), `npm run build`(전체 페이지 정상 생성) 통과. UI에 영향이 있는 항목이라 `npm run start`로 프로덕션 서버를 띄운 뒤 Playwright(헤드리스 크로미움)로 홈페이지를 한국어/영어/일본어/스페인어 4개 언어 모두 데스크톱·모바일(390px) 뷰포트로 스크린샷 확인 — 길어진 H1 문구가 여러 줄로 자연스럽게 줄바꿈될 뿐 레이아웃이 깨지거나 다른 요소와 겹치는 현상 없음을 확인함(한국어/일본어 줄바꿈 포함).
+
 ## 2026-09-09 — SEO 자동화 4일차: 가이드 글에 메인 도구(홈) CTA 배너 추가
 
 - 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). `SEO_TASKS.md` 4일차 항목 — 가이드 상세 페이지(`src/app/[locale]/guides/[slug]/page.tsx`)에 자매 사이트 ExifLens로 보내는 크로스링크(`cross-link-exiflens.tsx`)는 있었지만, 정작 자기 사이트 메인 도구(홈)로 되돌아가는 CTA는 없었음(직접 확인, 2026-09-06 기준 과제 정의).
@@ -360,11 +372,6 @@
 - ko/en/es/ja 4개 언어 번역 텍스트 추가
 
 # 개발 이력 (Development History)
-
-## 2026-09-10 — 임시비행제한구역(TFR) 완벽 설명 가이드 자동 발행
-
-- TFR의 법적 근거(14 CFR 91.137/91.138/91.141/91.145)와 산불·경기장·VIP 이동 TFR 각각의 구체적 규정(경기장 3해리/3,000ft/전후 1시간, VIP 이동 이중 원 구조 등)을 다룬 실전 가이드를 en/ja/ko/es 4개 언어로 작성
-- 클라우드 자동발행 파이프라인으로 생성, 빌드 검증 완료
 
 ## 2026-09-06 — 장거리 비행에 좋은 Kp지수 조건 가이드 자동 발행
 

@@ -154,7 +154,7 @@ FlyDroneMap은 도구 기능이 홈(`/`) 한 곳에 집중되어 있으므로(Ex
 
 ## 5일차 — 홈페이지 H1 타겟 키워드 보강
 
-- [ ] 미완료
+- [x] 완료 (2026-09-10)
 
 **배경**: 현재 홈 H1이 브랜드명("FlyDroneMap")만 표시하고, 부제(subtitle)에는 이미 좋은 키워드
 (wind, gusts, visibility, Kp index, FAA altitude ceiling)가 들어있음(직접 확인, 2026-09-06).

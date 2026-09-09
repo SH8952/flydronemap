@@ -5,5 +5,3 @@ messages/es.json
 SEO_TASKS.md
 CHANGELOG.md
 __filelist.txt
-src/app/[locale]/guides/[slug]/page.tsx
-src/components/guide-tool-cta.tsx
