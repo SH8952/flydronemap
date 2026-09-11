@@ -284,8 +284,8 @@
     "category": "us-airspace-regulations",
     "titleKo": "드론 야간 비행 규정",
     "titleEn": "Night Flying Rules for Drone Pilots",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-11"
   },
   {
     "order": 33,
