@@ -1,0 +1,37 @@
+---
+title: "Remote ID Requirements Explained"
+description: "What a drone actually broadcasts under Remote ID, the trap hidden in each of the three ways to comply, and why the 250-gram exemption is narrower than most pilots assume."
+publishedAt: "2026-09-12"
+tags: ["remote-id", "part-107", "faa", "regulations"]
+category: "us-airspace-regulations"
+image: "/guides/images/remote-id-requirements-explained.webp"
+imageCredit: "Erik Mclean"
+imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+A pilot digs out a drone bought secondhand back in 2021 and takes it to the local park for the first time in years. It's registered, the battery is new, and the flight itself looks routine — until a park ranger walks over and points out that the aircraft isn't broadcasting a Remote ID signal. It feels unfair from the pilot's side; this requirement didn't exist when they bought the drone. But Remote ID applies based on the rule in force at the moment you fly, not the moment you purchased, and most pilots only learn this the hard way, mid-encounter.
+
+## What Remote ID actually broadcasts
+
+Remote ID gets described as a "digital license plate," but the data being sent is more detailed than that phrase suggests: an aircraft identifier (serial number or session ID), the drone's real-time location and altitude, its velocity, the control station's location (or takeoff location, depending on the compliance method), an emergency status flag, and a timestamp. None of this travels over the internet or cellular data — it's broadcast locally over Wi-Fi or Bluetooth, meaning it isn't uploaded to a cloud server so much as picked up directly by anyone nearby running a compatible receiver app. Range varies by aircraft and environment, but is generally understood to run from a few hundred meters up to roughly a mile, which is plenty for another park visitor or an enforcement officer to catch it in most everyday flying locations.
+
+## Three ways to comply, and a trap in each
+
+There are three paths. The first is a Standard Remote ID drone with the capability built in — true of most current-generation aircraft. The second is attaching a broadcast module to an older drone, and this is where a frequently missed detail lives: a module reports the drone's live position continuously, but broadcasts the pilot's location as a fixed takeoff point rather than a moving control-station location. If the pilot walks or drives somewhere else mid-flight, that broadcast value doesn't update — worth knowing before assuming the module tells the full story about where the operator actually is. The third path is flying only inside a FAA-Recognized Identification Area (FRIA); this is the sole legal option for any aircraft with no Remote ID capability at all, including most homebuilt drones, which generally cannot use the broadcast-module path and are restricted to FRIA operations specifically.
+
+## Why the 250-gram exemption gets misunderstood
+
+Drones under 0.55 pounds (about 250 grams) are exempt from registration when flown purely for recreation, and because Remote ID is tied to the registration requirement rather than to weight itself, an unregistered sub-250-gram aircraft doesn't need it either. The part that trips people up is that the exemption depends on the purpose of the flight, not the aircraft's weight alone — the same sub-250-gram drone loses that exemption the moment it's used for anything beyond pure recreation, such as a paid real estate shoot or other Part 107 operation, which triggers both registration and Remote ID at once. Pilots who remember "light enough, so exempt" as a blanket rule are the ones most likely to get caught out when the same aircraft's use case quietly shifts.
+
+## The common misconception: it isn't real-time tracking
+
+A lot of pilots picture Remote ID as the FAA tracking every drone by satellite in real time, but the actual mechanism is local broadcast only. Whether it's a member of the public or a law enforcement officer, someone has to be nearby with a receiver app to see anything — there's no default pipeline feeding a running location history into an FAA server. Missing this distinction also makes it easy to overlook a very practical consequence: a broadcast module's battery is separate from the drone's flight battery, and when it dies, the aircraft keeps flying normally while the Remote ID signal silently drops out — often unnoticed until well into the flight.
+
+## Practical checklist
+
+- Confirm whether your aircraft is Standard Remote ID, module-equipped, or FRIA-only before you fly it somewhere new.
+- If you use a broadcast module, check its battery separately from the flight battery — they are not the same power source.
+- If your drone is homebuilt, remember FRIA operation is generally your only legal option outside of it.
+- Don't assume a sub-250-gram drone is exempt once the flight has any commercial or work purpose — registration and Remote ID both apply at that point.
+- FRIA boundaries are often smaller than the park or field they sit inside — check the exact mapped boundary, not just the general location.
+- This site's information is for planning reference only; verify current Remote ID rules and your aircraft's registration status directly with the FAA before flying.
