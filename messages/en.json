@@ -91,6 +91,9 @@
       "Check the planetary Kp index to see whether geomagnetic activity might affect your GPS lock or compass heading.",
       "In the US, see the FAA UAS Facility Map altitude ceiling for the area — then confirm authorization through LAANC or FAADroneZone before you fly."
     ],
+    "guideHighlightsTitle": "Explore the Guides",
+    "guideHighlightsSubtitle": "Practical guides on flight safety, weather judgment, and drone regulations.",
+    "guideHighlightsCta": "Browse all guides →",
     "faqTitle": "Frequently Asked Questions",
     "faq": [
       {

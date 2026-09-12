@@ -3,6 +3,7 @@ import { AdZone } from "@/components/ad-zone";
 import { GearRecommendationSection } from "@/components/gear-recommendation-section";
 import { HomeDashboardSection } from "@/components/home-dashboard-section";
 import { webApplicationJsonLd } from "@/lib/seo";
+import { HomeGuideHighlights } from "@/components/home-guide-highlights";
 
 export default async function HomePage({
   params,
@@ -53,6 +54,9 @@ export default async function HomePage({
           ))}
         </ol>
       </section>
+
+      {/* 가이드 아티클 하이라이트 — 홈페이지 텍스트/링크 풍부화 (AdSense 재심사 대응) */}
+      <HomeGuideHighlights locale={locale} />
     </div>
   );
 }

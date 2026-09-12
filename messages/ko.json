@@ -91,6 +91,9 @@
       "행성 KP 지수를 확인해 지자기 활동이 GPS 고정이나 나침반 방위에 영향을 줄 수 있는지 살펴보세요.",
       "미국 지역이라면 FAA UAS Facility Map 고도 제한을 확인한 뒤, 비행 전 LAANC 또는 FAADroneZone을 통해 승인을 받으세요."
     ],
+    "guideHighlightsTitle": "가이드 살펴보기",
+    "guideHighlightsSubtitle": "드론 비행 안전, 날씨 판단, 규정 이해에 도움이 되는 실전 가이드를 확인해보세요.",
+    "guideHighlightsCta": "가이드 전체 보기 →",
     "faqTitle": "자주 묻는 질문",
     "faq": [
       {

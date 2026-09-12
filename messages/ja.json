@@ -91,6 +91,9 @@
       "惑星間Kp指数を確認し、地磁気活動がGPSロックやコンパスの方位に影響しないかチェックします。",
       "米国内であればFAA UAS Facility Mapの高度制限を確認し、飛行前にLAANCまたはFAADroneZoneで承認を得てください。"
     ],
+    "guideHighlightsTitle": "ガイドを見る",
+    "guideHighlightsSubtitle": "飛行の安全性、天候判断、ドローン規制に関する実践ガイドをご覧ください。",
+    "guideHighlightsCta": "すべてのガイドを見る →",
     "faqTitle": "よくある質問",
     "faq": [
       {

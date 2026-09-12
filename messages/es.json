@@ -91,6 +91,9 @@
       "Consulta el índice Kp planetario para ver si la actividad geomagnética podría afectar tu señal GPS o el rumbo de la brújula.",
       "En EE. UU., consulta el techo de altitud del FAA UAS Facility Map para la zona — y luego confirma la autorización a través de LAANC o FAADroneZone antes de volar."
     ],
+    "guideHighlightsTitle": "Explora las guías",
+    "guideHighlightsSubtitle": "Guías prácticas sobre seguridad de vuelo, condiciones climáticas y normativas de drones.",
+    "guideHighlightsCta": "Ver todas las guías →",
     "faqTitle": "Preguntas frecuentes",
     "faq": [
       {
