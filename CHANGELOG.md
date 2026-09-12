@@ -1,3 +1,14 @@
+## 2026-09-13 — 홈페이지에 가이드 하이라이트 섹션 추가 (AdSense 재심사 대응)
+
+- 배경: flydronemap.com 애드센스 승인 거절(사유: Low Value Content, exifnd.com에 이어 두 번째). 제미나이 진단 문서 2건을 실제 코드와 대조 검증.
+- 검증 결과: 헤더 `/guides`, `/regulations` 링크, 푸터 법적 페이지 링크, 가이드 상세 페이지의 alt 태그 커버 이미지 및 "툴로 돌아가기" CTA는 모두 이미 구현되어 있었음. 반면 홈페이지 자체의 텍스트/링크 부족(usage 안내 문구 약 247자, 가이드 카드 섹션 없음)은 실제로 미해결 상태였음.
+- 수정: 신규 `src/components/home-guide-highlights.tsx` — 최신 가이드 3개를 제목+요약+커버 이미지+링크 카드로 홈페이지 하단(usage 섹션 아래)에 노출. `/guides` 전체 목록 링크 포함.
+- 수정: `src/app/[locale]/page.tsx`에 위 섹션 연결.
+- 수정: `messages/{ko,en,ja,es}.json`의 `Home` 네임스페이스에 `guideHighlightsTitle`/`guideHighlightsSubtitle`/`guideHighlightsCta` 3개 키 추가.
+- 검증: `npx tsc --noEmit`, `npx eslint`(변경 파일), `npm run build`(전체 빌드, 홈페이지 정적 HTML에 신규 문구 실제 렌더링 확인) 모두 통과.
+- 작업 전 `_backup_20260912_*` 폴더로 저장소 전체 백업 완료(node_modules/.next/.git/백업폴더 제외). 참고로 기존에 누적되어 있던 대용량 `.backups`/`.next.stale.*` 캐시 폴더는 백업 대상에서 제외함(실제 소스코드가 아닌 빌드/이전 백업 캐시).
+
+
 ## 2026-09-10 — SEO 자동화 5일차: 홈페이지 H1 타겟 키워드 보강
 
 - 배경: ExifLens에서 검증된 SEO 자동화(하루 하나씩 진행)를 FlyDroneMap에 확장 적용(석한님 승인, 2026-09-06). `SEO_TASKS.md` 5일차 항목 — 홈 H1이 브랜드명("FlyDroneMap")만 표시하고 있었고(직접 확인, 2026-09-06), 부제(subtitle)와 `metaTitle`에는 이미 wind/gusts/visibility/Kp index/FAA altitude ceiling 등 핵심 키워드가 들어있는 반면 H1 자체에는 없어 보강 여지가 있었음.
