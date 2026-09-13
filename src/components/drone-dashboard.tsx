@@ -150,7 +150,12 @@ export function DroneDashboard({
   const [selected, setSelected] = useState<GeocodeResult | null>(null);
   const [countryPickerValue, setCountryPickerValue] = useState("");
   const [data, setData] = useState<DashboardData | null>(null);
-  const [loading, setLoading] = useState(false);
+  // 접속 직후 IP 기반 자동 위치 감지가 거의 항상 실행되므로(아래 useEffect),
+  // 기본값을 true로 두어 첫 렌더부터 로딩 스켈레톤(최종 대시보드와 비슷한 높이)이
+  // 보이게 한다 — false로 시작하면 "검색해주세요" 문구(매우 작음) → 로딩 스피너
+  // → 전체 대시보드(지도+카드) 순으로 화면 높이가 두 번 크게 뛰어 레이아웃 밀림
+  // (CLS)이 발생했다 (2026-09-14, PageSpeed Insights 진단: CLS 0.226).
+  const [loading, setLoading] = useState(true);
 
   // 대시보드 결과(data)가 있고 로딩이 끝났을 때만 관련 도구(ExifLens ND
   // 필터 계산기) 링크를 노출한다. 이 컴포넌트는 더 이상 그 링크를 직접
@@ -346,9 +351,21 @@ export function DroneDashboard({
     (async () => {
       try {
         const res = await fetch("/api/geo");
-        if (!res.ok) return;
+        if (!res.ok) {
+          // 자동 위치 감지를 사용할 수 없음 — 기본 화면(검색창만)으로 전환.
+          if (!cancelled && !userActedRef.current) setLoading(false);
+          return;
+        }
         const json = await res.json();
-        if (cancelled || userActedRef.current || !json.available) return;
+        if (cancelled) return;
+        // 사용자가 이미 검색/버튼/지도클릭으로 직접 조작을 시작한 뒤라면, 그
+        // 조작이 스스로 loadDashboard()를 통해 loading 상태를 관리하고 있으므로
+        // 여기서 건드리지 않는다.
+        if (userActedRef.current) return;
+        if (!json.available) {
+          setLoading(false);
+          return;
+        }
 
         const label = json.city
           ? `${json.city}${json.country ? `, ${json.country}` : ""}`
@@ -363,7 +380,8 @@ export function DroneDashboard({
         setQuery(label);
         loadDashboard(loc.latitude, loc.longitude);
       } catch {
-        // 자동 위치 감지 실패 시 조용히 무시하고 기본 화면 유지
+        // 자동 위치 감지 실패 시 조용히 무시하고 기본 화면으로 전환
+        if (!cancelled && !userActedRef.current) setLoading(false);
       }
     })();
 
@@ -477,9 +495,19 @@ export function DroneDashboard({
       </div>
 
       {loading ? (
-        <div className="flex items-center justify-center gap-2 py-10 text-muted-foreground">
-          <Loader2 className="size-5 animate-spin" />
-          {t("loadingText")}
+        // 최종 대시보드(지도 + 3열 카드)와 높이를 맞춘 스켈레톤 — 로딩이 끝나고
+        // 실제 콘텐츠로 바뀔 때 아래 콘텐츠(장비 추천 등)가 밀리지 않도록 함
+        // (2026-09-14, PageSpeed Insights CLS 0.226 진단 반영).
+        <div className="flex flex-col gap-4">
+          <div className="flex h-72 w-full animate-pulse items-center justify-center gap-2 rounded-lg border border-border bg-muted text-muted-foreground sm:h-96">
+            <Loader2 className="size-5 animate-spin" />
+            {t("loadingText")}
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          </div>
         </div>
       ) : null}
 
