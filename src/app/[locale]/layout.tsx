@@ -53,7 +53,7 @@ export async function generateMetadata({
     },
     verification: {
       other: {
-        "naver-site-verification": "3902a60f56435f9d59103b6255c02e82769238f7",
+        "naver-site-verification": "d3380088001ece9ca7b1a6363ae25824dd3ee7d5",
       },
     },
     alternates: {

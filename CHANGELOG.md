@@ -1,3 +1,13 @@
+## 2026-09-13 (추가) — 네이버 소유확인 코드 갱신 (www 없는 도메인으로 통일)
+
+- 배경: RSS 제출 시도 중 www.flydronemap.com(등록된 사이트)과 실제 서비스 도메인(www 없는 flydronemap.com)이 달라 "형식이 올바르지 않습니다" 오류 발생. 원인 조사 결과 3개 사이트(exifnd/flydronemap/firelic) 모두 도메인 구매 시 www 없이 구매되었음을 확인, exifnd.com 기준으로 나머지 두 사이트도 www 없는 도메인으로 통일하기로 결정.
+- flydronemap.com은 이미 www 없이 서비스되고 있어 도메인 자체는 변경 불필요. 다만 www.flydronemap.com 사이트를 삭제하고 flydronemap.com(www 없이)으로 새로 등록하면서 네이버가 새 소유확인 코드를 발급 — 코드에 하드코딩되어 있던 예전 코드(www.flydronemap.com용)를 새 코드로 교체.
+- 수정: `src/app/[locale]/layout.tsx`의 `verification.other["naver-site-verification"]` 값을 `3902a60f56435f9d59103b6255c02e82769238f7` → `d3380088001ece9ca7b1a6363ae25824dd3ee7d5`로 교체.
+- 검증: `npx tsc --noEmit`, `npx eslint`, `npm run build` 통과. `next start` 로컬 서버로 실제 렌더링된 `<head>`에 새 소유확인 메타 태그가 정상 출력되는 것 확인.
+- 작업 전 `_backups/flydronemap_backup_*_네이버인증코드변경전`으로 백업 완료.
+
+
+
 ## 2026-09-13 (추가) — RSS 피드 + 메타 태그 + 푸터 아이콘 추가 (네이버 크롤링 유도)
 
 - 배경: exifnd.com 네이버 색인 정체 문제 원인 파악 과정에서, RSS 피드가 신규/갱신 콘텐츠를 크롤러에게 더 빠르게 알리는 수단으로 확인되어 ExifLens에 먼저 적용, 검증 후 flydronemap.com에도 동일 패턴 적용.
