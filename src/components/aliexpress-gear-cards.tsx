@@ -140,13 +140,16 @@ export function AliexpressGearCards() {
               }`}
             >
               <div className="relative aspect-square overflow-hidden rounded-md bg-muted">
+                {/* unoptimized 제거 — next.config.ts의 remotePatterns에
+                    aliexpress-media.com을 등록해 Next.js 이미지 최적화(리사이징)가
+                    적용되도록 함 (2026-09-14, PageSpeed Insights 이미지 전송 개선
+                    진단 반영). */}
                 <Image
                   src={product.productImage}
                   alt={product.productName}
                   fill
                   sizes="(min-width: 640px) 20vw, 45vw"
                   className="object-cover transition-transform group-hover:scale-105"
-                  unoptimized
                 />
               </div>
               <p className="line-clamp-2 text-xs text-foreground">
