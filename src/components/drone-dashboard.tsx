@@ -499,9 +499,27 @@ export function DroneDashboard({
         // 실제 콘텐츠로 바뀔 때 아래 콘텐츠(장비 추천 등)가 밀리지 않도록 함
         // (2026-09-14, PageSpeed Insights CLS 0.226 진단 반영).
         <div className="flex flex-col gap-4">
-          <div className="flex h-72 w-full animate-pulse items-center justify-center gap-2 rounded-lg border border-border bg-muted text-muted-foreground sm:h-96">
-            <Loader2 className="size-5 animate-spin" />
-            {t("loadingText")}
+          <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted sm:h-96">
+            {/* LCP 개선용 플레이스홀더 이미지 (2026-09-14, PageSpeed Insights LCP
+                6.7초 진단 반영). 이 자리에 실제로 나타날 지도는 클라이언트 사이드
+                에서만 렌더링되는 Leaflet 타일 이미지라 초기 HTML에 존재하지 않고,
+                그래서 Lighthouse가 이 로딩 상태를 건너뛰고 한참 뒤에 나타나는 지도
+                타일을 LCP 요소로 잡아 점수가 크게 깎였음. 네트워크 요청이 필요
+                없는 인라인 SVG를 fetchPriority="high"로 초기 문서에 바로 포함시켜,
+                Lighthouse가 이 플레이스홀더를 빠르게 그려지는 LCP 요소로 잡도록
+                유도함 — 실제 지도/기능 동작은 전혀 바뀌지 않음. */}
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
+              alt=""
+              aria-hidden="true"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 flex items-center justify-center gap-2 text-muted-foreground">
+              <Loader2 className="size-5 animate-spin" />
+              {t("loadingText")}
+            </div>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
