@@ -1,3 +1,14 @@
+## 2026-09-13 (추가) — RSS 피드 + 메타 태그 + 푸터 아이콘 추가 (네이버 크롤링 유도)
+
+- 배경: exifnd.com 네이버 색인 정체 문제 원인 파악 과정에서, RSS 피드가 신규/갱신 콘텐츠를 크롤러에게 더 빠르게 알리는 수단으로 확인되어 ExifLens에 먼저 적용, 검증 후 flydronemap.com에도 동일 패턴 적용.
+- 수정1: 신규 `src/app/rss.xml/route.ts` — `getAllGuidesMeta()` 재사용, 4개 언어(en/es/ja/ko) 가이드를 최신순으로 모아 RSS 2.0 XML 직접 생성(최근 50건 제한, 별도 패키지 의존성 없음).
+- 수정2(SEO용, 비노출): `src/app/[locale]/layout.tsx`의 alternates에 `types: { "application/rss+xml": ... }` 추가 → `<head>`에 `<link rel="alternate">` 자동 생성.
+- 수정3(시각적 확인용): `src/components/site-footer.tsx`의 "문의하기" 링크 오른쪽에 `lucide-react`의 `Rss` 아이콘 링크 추가.
+- 검증: `npx tsc --noEmit`, `npx eslint`(변경 파일), `npm run build` 통과. `next start` 로컬 서버 구동 후 `curl`로 `<head>` RSS 링크 태그·푸터 아이콘·`/rss.xml` 응답 모두 확인, `xmllint --noout`으로 XML 유효성 검증 완료(아이템 50개, 정상).
+- 작업 전 `_backups/flydronemap_backup_*_RSS추가전`으로 백업 완료.
+
+
+
 ## 2026-09-13 (추가) — AdSense 승인 전까지 광고 placeholder 박스 임시 숨김
 
 - 배경: 애드센스 재신청 전 정밀 진단 요청 결과, "Ad · 728×90" 같은 빈 광고 자리표시자 박스가 그대로 노출되면 "준비되지 않은 사이트"로 판단되어 승인 거절 위험이 있다는 지적을 받음(exifnd.com/flydronemap.com/firelic.com 3개 사이트 공통 요청).

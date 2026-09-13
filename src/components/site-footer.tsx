@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Rss } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { VisitorCounter } from "@/components/visitor-counter";
 
@@ -24,6 +25,14 @@ export function SiteFooter() {
           <Link href="/contact" className="hover:text-foreground">
             {t("contact")}
           </Link>
+          <a
+            href="/rss.xml"
+            aria-label="RSS feed"
+            title="RSS feed"
+            className="hover:text-foreground"
+          >
+            <Rss className="size-4" />
+          </a>
         </nav>
       </div>
     </footer>
