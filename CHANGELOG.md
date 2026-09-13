@@ -1,3 +1,11 @@
+## 2026-09-13 (추가) — AdSense 승인 전까지 광고 placeholder 박스 임시 숨김
+
+- 배경: 애드센스 재신청 전 정밀 진단 요청 결과, "Ad · 728×90" 같은 빈 광고 자리표시자 박스가 그대로 노출되면 "준비되지 않은 사이트"로 판단되어 승인 거절 위험이 있다는 지적을 받음(exifnd.com/flydronemap.com/firelic.com 3개 사이트 공통 요청).
+- 수정: `src/components/ad-zone.tsx`에 `ADSENSE_APPROVED`(현재 false) 상수 추가, false일 때 아무것도 렌더링하지 않도록 처리. 승인 후 상수만 true로 되돌리면 복원됨(호출부 변경 불필요).
+- 검증: `npx tsc --noEmit`, `npx eslint`, `npm run build` 통과. 빌드된 정적 HTML에서 광고 박스(`data-ad-slot`) 마크업이 완전히 제거되고 가이드 섹션 등 다른 콘텐츠는 그대로 유지되는 것 확인.
+- 작업 전 `_backups/flydronemap_backup_*_광고박스숨김전`으로 백업 완료.
+
+
 ## 2026-09-13 — 홈페이지에 가이드 하이라이트 섹션 추가 (AdSense 재심사 대응)
 
 - 배경: flydronemap.com 애드센스 승인 거절(사유: Low Value Content, exifnd.com에 이어 두 번째). 제미나이 진단 문서 2건을 실제 코드와 대조 검증.
