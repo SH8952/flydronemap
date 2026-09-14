@@ -542,19 +542,6 @@ export function DroneDashboard({
         </div>
       ) : null}
 
-      {loading ? (
-        // 날씨/Kp/공역 카드 3개의 스켈레톤 — 위 지도 스켈레톤과 분리해서, 위치는
-        // 이미 정해졌지만(selected) 데이터는 아직 로딩 중인 경우(새 검색 등)에도
-        // 지도는 그대로 두고 이 카드들만 스켈레톤으로 보이도록 함
-        // (2026-09-14 2차, LCP 7.8초 재측정 진단 반영 — 지도를 데이터 로딩과
-        // 분리해 더 일찍 그리기 위한 구조 변경의 일부).
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-        </div>
-      ) : null}
-
       {error ? (
         <p className="text-center text-sm text-destructive">{error}</p>
       ) : null}
@@ -649,6 +636,24 @@ export function DroneDashboard({
             </>
           }
         />
+      ) : null}
+
+      {loading ? (
+        // 날씨/Kp/공역 카드 3개의 스켈레톤 — 실제 카드가 나오는 자리(바로 아래
+        // {data && !loading} 블록)와 정확히 같은 위치에 둔다. 이전에는 이
+        // 스켈레톤이 지도보다 위에 있어서, 위치는 빨리 정해지고(selected) 데이터만
+        // 늦게 도착하는 구간에 "카드 스켈레톤(지도 위) → 실제 카드(지도 아래)"로
+        // 자리가 바뀌면서 그 사이에 있던 지도가 위로 밀리는 CLS 0.173 버그가
+        // 있었음(2026-09-14 3차, PageSpeed 재측정 CLS 회귀 진단 반영) — 스켈레톤을
+        // 실제 카드와 같은 자리로 옮겨 이 문제를 해결함. 지도 스켈레톤과 분리해서,
+        // 위치는 이미 정해졌지만(selected) 데이터는 아직 로딩 중인 경우(새 검색
+        // 등)에도 지도는 그대로 두고 이 카드들만 스켈레톤으로 보이도록 하는 목적
+        // 자체는 2026-09-14 2차와 동일.
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+        </div>
       ) : null}
 
       {data && !loading ? (
