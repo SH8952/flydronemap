@@ -18,6 +18,7 @@
     "countryJumpPlaceholder": "Select a country",
     "myLocation": "My location",
     "loadingText": "Loading flight conditions...",
+    "airspaceCheckingText": "Checking airspace restrictions\u2026",
     "errorText": "Couldn't load data for that location. Please try again.",
     "emptyState": "Search a location above to see current flight conditions.",
     "noDataForLocation": "No data available for this location.",

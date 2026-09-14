@@ -56,12 +56,27 @@ const NO_LOADING_LAYER_IDS: Set<string> = new Set();
 
 // Leaflet touches `window` at import time, so it can only run client-side —
 // load it with ssr disabled rather than importing it directly.
+// 아래 두 로딩 스켈레톤(이 dynamic() loading 폴백 + 결과 영역의 초기 스켈레톤)에
+// 동일한 인라인 SVG 플레이스홀더를 쓰는 이유: 2026-09-14(2차) 구조 변경으로 지도는
+// 이제 날씨/공역 데이터(loading)가 아니라 위치(selected)만 있으면 곧바로 마운트되므로,
+// 이 dynamic() 폴백(지도 컴포넌트 자체의 JS 청크가 아직 로드되지 않은 아주 짧은
+// 순간에 보임)이 이전보다 훨씬 자주 화면에 나타나게 됨 — 그래서 여기도 이미지가
+//없는 빈 배경색 대신 LCP 플레이스홀더를 넣어 일관되게 처리함.
 const FlightMap = dynamic(
   () => import("@/components/flight-map").then((m) => m.FlightMap),
   {
     ssr: false,
     loading: () => (
-      <div className="h-72 w-full animate-pulse rounded-lg border border-border bg-muted sm:h-96" />
+      <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted sm:h-96">
+        <img
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
     ),
   },
 );
@@ -494,38 +509,49 @@ export function DroneDashboard({
         </Select>
       </div>
 
-      {loading ? (
-        // 최종 대시보드(지도 + 3열 카드)와 높이를 맞춘 스켈레톤 — 로딩이 끝나고
-        // 실제 콘텐츠로 바뀔 때 아래 콘텐츠(장비 추천 등)가 밀리지 않도록 함
+      {!selected ? (
+        // 아직 위치(selected) 자체가 없는 최초 진입 시점(/api/geo 응답 대기 중)
+        // 에만 보여주는 지도 스켈레톤 — 최종 지도와 높이를 맞춰 CLS를 막는다
         // (2026-09-14, PageSpeed Insights CLS 0.226 진단 반영).
-        <div className="flex flex-col gap-4">
-          <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted sm:h-96">
-            {/* LCP 개선용 플레이스홀더 이미지 (2026-09-14, PageSpeed Insights LCP
-                6.7초 진단 반영). 이 자리에 실제로 나타날 지도는 클라이언트 사이드
-                에서만 렌더링되는 Leaflet 타일 이미지라 초기 HTML에 존재하지 않고,
-                그래서 Lighthouse가 이 로딩 상태를 건너뛰고 한참 뒤에 나타나는 지도
-                타일을 LCP 요소로 잡아 점수가 크게 깎였음. 네트워크 요청이 필요
-                없는 인라인 SVG를 fetchPriority="high"로 초기 문서에 바로 포함시켜,
-                Lighthouse가 이 플레이스홀더를 빠르게 그려지는 LCP 요소로 잡도록
-                유도함 — 실제 지도/기능 동작은 전혀 바뀌지 않음. */}
-            <img
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
-              alt=""
-              aria-hidden="true"
-              fetchPriority="high"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 flex items-center justify-center gap-2 text-muted-foreground">
-              <Loader2 className="size-5 animate-spin" />
-              {t("loadingText")}
-            </div>
+        // 2026-09-14(2차) 구조 변경: 위치가 정해진 뒤에는(날씨/공역 데이터를
+        // 기다리지 않고) 곧바로 실제 지도를 보여주도록 바꿔서, 이 스켈레톤은
+        // 검색/내 위치 등으로 이미 한 번 위치가 잡힌 뒤에는 다시 나타나지
+        // 않는다(이전에는 새로 검색할 때마다 지도 전체가 스켈레톤으로
+        // 리셋되었는데, 그 문제도 같이 해소됨).
+        <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted sm:h-96">
+          {/* LCP 개선용 플레이스홀더 이미지 (2026-09-14, PageSpeed Insights LCP
+              6.7초 진단 반영). 이 자리에 실제로 나타날 지도는 클라이언트 사이드
+              에서만 렌더링되는 Leaflet 타일 이미지라 초기 HTML에 존재하지 않고,
+              그래서 Lighthouse가 이 로딩 상태를 건너뛰고 한참 뒤에 나타나는 지도
+              타일을 LCP 요소로 잡아 점수가 크게 깎였음. 네트워크 요청이 필요
+              없는 인라인 SVG를 fetchPriority="high"로 초기 문서에 바로 포함시켜,
+              Lighthouse가 이 플레이스홀더를 빠르게 그려지는 LCP 요소로 잡도록
+              유도함 — 실제 지도/기능 동작은 전혀 바뀌지 않음. */}
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center gap-2 text-muted-foreground">
+            <Loader2 className="size-5 animate-spin" />
+            {t("loadingText")}
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-            <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
-          </div>
+        </div>
+      ) : null}
+
+      {loading ? (
+        // 날씨/Kp/공역 카드 3개의 스켈레톤 — 위 지도 스켈레톤과 분리해서, 위치는
+        // 이미 정해졌지만(selected) 데이터는 아직 로딩 중인 경우(새 검색 등)에도
+        // 지도는 그대로 두고 이 카드들만 스켈레톤으로 보이도록 함
+        // (2026-09-14 2차, LCP 7.8초 재측정 진단 반영 — 지도를 데이터 로딩과
+        // 분리해 더 일찍 그리기 위한 구조 변경의 일부).
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
         </div>
       ) : null}
 
@@ -533,30 +559,42 @@ export function DroneDashboard({
         <p className="text-center text-sm text-destructive">{error}</p>
       ) : null}
 
-      {data && selected && !loading ? (
+      {selected ? (
+        // 2026-09-14(2차) 구조 변경: 이전에는 날씨/공역 데이터(data)까지 전부
+        // 도착해야만 지도를 그렸는데, 실제 배포 사이트 재측정에서 Lighthouse가
+        // LCP 요소로 지목한 것이 위 스켈레톤이 아니라 "지도 자체의 첫 타일
+        // 이미지"였고, 그 타일 요청이 시작되는 시점 자체가 데이터 로딩 대기
+        // 때문에 4.7초나 늦어지는 것이 원인으로 확인됨. 지도의 기본 타일은
+        // 위치(selected)만 있으면 그릴 수 있고, data가 필요한 것은 비행제한
+        // 구역 등 안전 오버레이뿐이므로, 지도는 위치가 정해지는 즉시 그리고
+        // data는 오버레이용으로 나중에 반영되도록 분리함.
+        // ⚠️ 안전 관련 주의: data가 아직 없는 짧은 동안에는 비행제한구역
+        // 오버레이가 보이지 않는데, 이를 "안전 확인됨"으로 오해하지 않도록
+        // 아래 mapOverlay에 "공역 정보 확인 중" 배너를 반드시 함께 표시한다
+        // (data가 도착하면 자동으로 사라지고 실제 오버레이로 교체됨).
         <FlightMap
           latitude={selected.latitude}
           longitude={selected.longitude}
           faaBoundary={
-            data.airspace?.source === "faa"
+            data?.airspace?.source === "faa"
               ? data.airspace.boundary
               : undefined
           }
           krBoundary={
-            data.airspace?.source === "kr" && data.airspace.restricted
+            data?.airspace?.source === "kr" && data.airspace.restricted
               ? data.airspace.matches[0]?.boundary
-              : data.usAirspaceZones?.restricted
+              : data?.usAirspaceZones?.restricted
                 ? data.usAirspaceZones.matches[0]?.boundary
-                : data.esAirspaceZones?.restricted
+                : data?.esAirspaceZones?.restricted
                   ? data.esAirspaceZones.matches[0]?.boundary
                   : undefined
           }
           restricted={
-            data.airspace?.source === "kr"
+            data?.airspace?.source === "kr"
               ? data.airspace.restricted
-              : data.usAirspaceZones
+              : data?.usAirspaceZones
                 ? data.usAirspaceZones.restricted
-                : data.esAirspaceZones
+                : data?.esAirspaceZones
                   ? data.esAirspaceZones.restricted
                   : undefined
           }
@@ -583,24 +621,32 @@ export function DroneDashboard({
                 : undefined
           }
           mapOverlay={
-            isInSouthKorea(selected.latitude, selected.longitude) ? (
-              <AirspaceLayerPanel
-                layers={AIRSPACE_LAYERS}
-                activeIds={activeLayerIds}
-                onToggle={handleAirspaceLayerToggle}
-                loadingIds={NO_LOADING_LAYER_IDS}
-                getLabel={(id) => t(`airspaceLayerNames.${id}`)}
-                requiredNote={t("airspaceLayersRequiredNote")}
-              />
-            ) : isInSpain(selected.latitude, selected.longitude) ? (
-              <AirspaceLayerPanel
-                layers={ES_AIRSPACE_LAYERS}
-                activeIds={activeEsLayerIds}
-                onToggle={handleEsAirspaceLayerToggle}
-                loadingIds={NO_LOADING_LAYER_IDS}
-                getLabel={(id) => t(`esAirspaceLayerNames.${id}`)}
-              />
-            ) : undefined
+            <>
+              {!data || loading ? (
+                <div className="pointer-events-none absolute left-1/2 top-2 z-[500] flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-background/90 px-3 py-1 text-xs font-medium text-muted-foreground shadow">
+                  <Loader2 className="size-3.5 animate-spin" />
+                  {t("airspaceCheckingText")}
+                </div>
+              ) : null}
+              {isInSouthKorea(selected.latitude, selected.longitude) ? (
+                <AirspaceLayerPanel
+                  layers={AIRSPACE_LAYERS}
+                  activeIds={activeLayerIds}
+                  onToggle={handleAirspaceLayerToggle}
+                  loadingIds={NO_LOADING_LAYER_IDS}
+                  getLabel={(id) => t(`airspaceLayerNames.${id}`)}
+                  requiredNote={t("airspaceLayersRequiredNote")}
+                />
+              ) : isInSpain(selected.latitude, selected.longitude) ? (
+                <AirspaceLayerPanel
+                  layers={ES_AIRSPACE_LAYERS}
+                  activeIds={activeEsLayerIds}
+                  onToggle={handleEsAirspaceLayerToggle}
+                  loadingIds={NO_LOADING_LAYER_IDS}
+                  getLabel={(id) => t(`esAirspaceLayerNames.${id}`)}
+                />
+              ) : null}
+            </>
           }
         />
       ) : null}

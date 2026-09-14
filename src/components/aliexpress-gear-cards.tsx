@@ -143,12 +143,16 @@ export function AliexpressGearCards() {
                 {/* unoptimized 제거 — next.config.ts의 remotePatterns에
                     aliexpress-media.com을 등록해 Next.js 이미지 최적화(리사이징)가
                     적용되도록 함 (2026-09-14, PageSpeed Insights 이미지 전송 개선
-                    진단 반영). */}
+                    진단 반영).
+                    sizes의 모바일 값(45vw)이 실제 표시 폭보다 커서 필요 이상 큰
+                    이미지가 내려오고 있었음 — PageSpeed 재측정에서 모바일
+                    412px 뷰포트 기준 실제 표시 크기가 145px(≈35vw)로 측정된
+                    것을 반영해 보정함 (2026-09-14, 2차). */}
                 <Image
                   src={product.productImage}
                   alt={product.productName}
                   fill
-                  sizes="(min-width: 640px) 20vw, 45vw"
+                  sizes="(min-width: 640px) 20vw, 35vw"
                   className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>

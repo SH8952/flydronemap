@@ -18,6 +18,7 @@
     "countryJumpPlaceholder": "국가 선택",
     "myLocation": "내 위치",
     "loadingText": "비행 조건을 불러오는 중...",
+    "airspaceCheckingText": "공역 정보 확인 중\u2026",
     "errorText": "해당 위치의 데이터를 불러오지 못했습니다. 다시 시도해주세요.",
     "emptyState": "위 검색창에서 위치를 검색하면 현재 비행 조건을 확인할 수 있습니다.",
     "noDataForLocation": "이 위치에 대한 데이터가 없습니다.",

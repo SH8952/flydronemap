@@ -18,6 +18,7 @@
     "countryJumpPlaceholder": "国を選択",
     "myLocation": "現在地",
     "loadingText": "飛行条件を読み込み中...",
+    "airspaceCheckingText": "空域制限を確認中\u2026",
     "errorText": "その場所のデータを取得できませんでした。もう一度お試しください。",
     "emptyState": "上の検索欄で場所を検索すると、現在の飛行条件が表示されます。",
     "noDataForLocation": "この場所のデータはありません。",
