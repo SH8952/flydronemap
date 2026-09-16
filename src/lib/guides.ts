@@ -37,6 +37,11 @@ export const CATEGORY_ORDER = [
   "space-weather-gps",
   "us-airspace-regulations",
   "gear-flight-tips",
+  // 2026-09-16 신규 추가 — 사이트가 실제로 대시보드를 갖춘 한국/일본/스페인/EU
+  // 규정을 다루는 가이드 카테고리(그동안 규정 카테고리가 미국(us-airspace-regulations)에만
+  // 한정돼 있던 공백을 메움). messages/{en,ko,ja,es}.json의 Guides.categories에도
+  // 라벨을 함께 추가해야 함(guides 목록 페이지가 t(`categories.${category}`)로 참조).
+  "international-regulations",
 ] as const;
 
 export type CategorySlug = (typeof CATEGORY_ORDER)[number] | "general";

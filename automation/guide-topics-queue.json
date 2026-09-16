@@ -358,5 +358,149 @@
     "titleEn": "Return-to-Home Settings Explained",
     "published": false,
     "publishedDate": null
+  },
+  {
+    "order": 41,
+    "slug": "extreme-heat-drone-battery-electronics-precautions",
+    "category": "weather-safety",
+    "titleKo": "폭염 속 드론 비행 시 배터리·전자장비 주의사항",
+    "titleEn": "Extreme Heat: Drone Battery and Electronics Precautions",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 42,
+    "slug": "wind-shear-by-altitude-and-drone-flight",
+    "category": "weather-safety",
+    "titleKo": "고도별 바람 변화(윈드시어)와 드론 비행",
+    "titleEn": "Wind Shear by Altitude and Drone Flight",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 43,
+    "slug": "what-weather-data-to-check-before-flying-a-drone",
+    "category": "weather-safety",
+    "titleKo": "드론 비행 전 날씨 확인, 어떤 지표를 봐야 할까",
+    "titleEn": "What Weather Data to Check Before Flying a Drone",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 44,
+    "slug": "gps-jamming-and-spoofing-explained-for-drone-pilots",
+    "category": "space-weather-gps",
+    "titleKo": "GPS 재밍/스푸핑이란? 드론 비행에 미치는 영향",
+    "titleEn": "GPS Jamming and Spoofing Explained for Drone Pilots",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 45,
+    "slug": "aurora-season-and-high-latitude-drone-navigation-anomalies",
+    "category": "space-weather-gps",
+    "titleKo": "오로라 시즌, 고위도 지역 드론 항법 이상 현상",
+    "titleEn": "Aurora Season and High-Latitude Drone Navigation Anomalies",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 46,
+    "slug": "do-you-need-drone-insurance-checklist",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 보험, 꼭 필요할까? 가입 전 체크리스트",
+    "titleEn": "Do You Need Drone Insurance? A Checklist Before You Buy",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 47,
+    "slug": "fpv-drone-vs-camera-drone-differences",
+    "category": "gear-flight-tips",
+    "titleKo": "FPV 드론과 일반 카메라 드론의 차이",
+    "titleEn": "FPV Drone vs Camera Drone: Key Differences",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 48,
+    "slug": "drone-gimbal-maintenance-and-cleaning-guide",
+    "category": "gear-flight-tips",
+    "titleKo": "드론 짐벌 관리와 청소 방법",
+    "titleEn": "Drone Gimbal Maintenance and Cleaning Guide",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 49,
+    "slug": "beginner-drone-flying-practice-step-by-step",
+    "category": "gear-flight-tips",
+    "titleKo": "초보자를 위한 드론 조종 연습 단계별 가이드",
+    "titleEn": "Beginner Drone Flying Practice: A Step-by-Step Guide",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 50,
+    "slug": "korea-drone-license-and-registration-guide",
+    "category": "international-regulations",
+    "titleKo": "한국 드론 비행 자격·신고 절차 완벽 가이드",
+    "titleEn": "Korea Drone License and Registration: Complete Guide",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 51,
+    "slug": "japan-mlit-drone-regulations-overview",
+    "category": "international-regulations",
+    "titleKo": "일본 드론 비행 규정(MLIT) 총정리",
+    "titleEn": "Japan MLIT Drone Regulations Overview",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 52,
+    "slug": "spain-drone-regulations-and-enaire-zguas-explained",
+    "category": "international-regulations",
+    "titleKo": "스페인 드론 비행 규정과 ENAIRE ZGUAS 이해하기",
+    "titleEn": "Spain Drone Regulations and ENAIRE ZGUAS Explained",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 53,
+    "slug": "eu-easa-drone-regulations-basics",
+    "category": "international-regulations",
+    "titleKo": "EU/EASA 드론 규정 기초",
+    "titleEn": "EU EASA Drone Regulations: The Basics",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 54,
+    "slug": "traveling-internationally-with-a-drone-customs-checklist",
+    "category": "international-regulations",
+    "titleKo": "해외여행 시 드론 반입·통관 체크리스트(국가별 비교)",
+    "titleEn": "Traveling Internationally With a Drone: Customs Checklist by Country",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 55,
+    "slug": "how-drone-registration-differs-by-country",
+    "category": "international-regulations",
+    "titleKo": "드론 등록(Registration), 국가마다 어떻게 다를까",
+    "titleEn": "How Drone Registration Requirements Differ by Country",
+    "published": false,
+    "publishedDate": null
+  },
+  {
+    "order": 56,
+    "slug": "comparing-drone-license-requirements-by-country",
+    "category": "international-regulations",
+    "titleKo": "국가별 드론 자격증 취득 방법 비교",
+    "titleEn": "Comparing Drone License Requirements by Country",
+    "published": false,
+    "publishedDate": null
   }
 ]

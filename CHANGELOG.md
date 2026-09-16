@@ -1,3 +1,14 @@
+## 2026-09-16 — 예약 발행 주제 큐 보강: 신규 16개 주제 추가 + "국가별 규정" 카테고리 신설
+
+- 배경: 매일 06:00 KST 자동 발행 파이프라인(`automation/guide-topics-queue.json`, 40개 주제)이 소진 임박(미발행 2건만 남음)함을 사용자가 확인, 이어서 발행이 끊기지 않도록 구글 검색 트렌드 기반 추가 주제 추천 요청 → 추천안(날씨/안전 3, 우주기상·GPS 2, 장비·비행팁 4, 신규 "국가별 규정" 7) 제시 후 "제시해준 추천 주제로 이어서 발행되도록 추가해줘" 승인받아 진행.
+- **작업 전 백업**: `.backups/backup_20260916_230926_guide_topics_queue_expand/`에 `automation/guide-topics-queue.json`, `src/lib/guides.ts`, `messages/{en,ko,ja,es}.json`, `CHANGELOG.md` 백업.
+- **큐 추가**: `automation/guide-topics-queue.json`에 order 41~56, 총 16개 주제를 `published: false`로 추가(기존 40개는 전혀 손대지 않음). 카테고리 배분: weather-safety +3, space-weather-gps +2, gear-flight-tips +4, 신규 international-regulations +7(한국/일본/스페인/EU 규정, 해외여행 반입·통관, 국가별 등록/자격증 비교).
+- **신규 카테고리 코드 반영**: 큐에만 새 카테고리 값을 넣으면 `/guides` 목록 페이지가 `t(\`categories.${category}\`)`로 라벨을 찾다 실패하므로, `src/lib/guides.ts`의 `CATEGORY_ORDER`에 `"international-regulations"` 추가 + `messages/en.json`("International Regulations")·`ko.json`("국가별 규정")·`ja.json`("国別の規制")·`es.json`("Normativa por país") 4개 언어 라벨을 함께 추가.
+- **신규 카테고리 도입 이유**: 사이트가 이미 한국/일본/스페인 공역·규정 데이터를 실제로 보여주는데(대시보드 기능), 가이드 카테고리는 그동안 미국(`us-airspace-regulations`, 10개로 이미 가득 참)에만 한정돼 있어 공백이 있었음. 다국어(ko/en/ja/es) 발행 구조와도 맞고 대시보드 유입과도 자연스럽게 연결됨.
+- **자동 발행 Routine 확인**: `trig_013iD7AWPzXBPQ1isZGAZsji`(FlyDroneMap 가이드 자동 발행) 프롬프트를 확인한 결과 카테고리를 큐에 지정된 값 그대로 쓰도록만 안내하고 있어(firelic Routine과 달리 "새 카테고리 금지" 문구 없음), 이번 신규 카테고리 추가에 별도 프롬프트 수정은 필요하지 않음을 확인.
+- **검증**: `npx tsc --noEmit`(오류 0건), `npx eslint src/lib/guides.ts`(경고/오류 0건), `automation/guide-topics-queue.json` 및 4개 messages 파일 모두 `json.load` 파싱 정상 확인.
+- **다음 단계**: 이제 order 39(패킹 체크리스트)부터 순서대로 매일 1건씩 자동 발행되며, order 50(첫 international-regulations 주제, 한국 자격·신고 절차)까지 도달하는 시점(대략 열흘 뒤)에 실제 `/guides` 페이지에서 새 카테고리 섹션이 의도대로 노출되는지 한 번 확인 권장.
+
 ## 2026-09-14 (추가4) — 배포 재측정 결과 반영: LCP 1.5초 확인 + CLS 0.173 회귀 수정 (커밋 `77dd230`)
 
 - 배경: 직전 항목(추가3, 커밋 `a5823cb`/`80ae45b`) 배포 후 사용자가 PageSpeed로 재측정. **LCP 7.8초 → 1.5초로 대폭 개선**, **레거시 JavaScript 경고 완전히 해소**됨을 확인(진단/인사이트 목록 어디에도 더 이상 나타나지 않음). 다만 **CLS가 0 → 0.173으로 새로 회귀**한 것을 발견 — PageSpeed의 "레이아웃 변경 원인" 패널을 직접 열어 확인한 결과 밀림이 발생한 요소가 지도(`FlightMap`) 영역 하나였음.
