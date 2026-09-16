@@ -18,7 +18,7 @@
     "countryJumpPlaceholder": "Select a country",
     "myLocation": "My location",
     "loadingText": "Loading flight conditions...",
-    "airspaceCheckingText": "Checking airspace restrictions\u2026",
+    "airspaceCheckingText": "Checking airspace restrictions…",
     "errorText": "Couldn't load data for that location. Please try again.",
     "emptyState": "Search a location above to see current flight conditions.",
     "noDataForLocation": "No data available for this location.",
@@ -374,6 +374,8 @@
     "subtitle": "Practical guides on reading flight weather, understanding the Kp index, and flying safely and legally.",
     "empty": "No guides published in this language yet — check back soon.",
     "readingTime": "{minutes} min read",
+    "showMore": "Show more",
+    "showLess": "Show less",
     "backToGuides": "← Back to Guides",
     "relatedGuides": "Related Guides",
     "categories": {

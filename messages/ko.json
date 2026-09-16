@@ -18,7 +18,7 @@
     "countryJumpPlaceholder": "국가 선택",
     "myLocation": "내 위치",
     "loadingText": "비행 조건을 불러오는 중...",
-    "airspaceCheckingText": "공역 정보 확인 중\u2026",
+    "airspaceCheckingText": "공역 정보 확인 중…",
     "errorText": "해당 위치의 데이터를 불러오지 못했습니다. 다시 시도해주세요.",
     "emptyState": "위 검색창에서 위치를 검색하면 현재 비행 조건을 확인할 수 있습니다.",
     "noDataForLocation": "이 위치에 대한 데이터가 없습니다.",
@@ -374,6 +374,8 @@
     "subtitle": "비행 날씨를 읽는 법, KP 지수 이해하기, 안전하고 합법적으로 비행하는 법에 대한 실전 가이드입니다.",
     "empty": "이 언어로 발행된 가이드가 아직 없습니다 — 곧 추가될 예정입니다.",
     "readingTime": "{minutes}분 읽기",
+    "showMore": "더보기",
+    "showLess": "접기",
     "backToGuides": "← 가이드 목록으로",
     "relatedGuides": "관련 가이드",
     "categories": {

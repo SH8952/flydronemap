@@ -18,7 +18,7 @@
     "countryJumpPlaceholder": "Seleccionar país",
     "myLocation": "Mi ubicación",
     "loadingText": "Cargando condiciones de vuelo...",
-    "airspaceCheckingText": "Comprobando restricciones del espacio a\u00e9reo\u2026",
+    "airspaceCheckingText": "Comprobando restricciones del espacio aéreo…",
     "errorText": "No se pudieron cargar los datos de esa ubicación. Inténtalo de nuevo.",
     "emptyState": "Busca una ubicación arriba para ver las condiciones de vuelo actuales.",
     "noDataForLocation": "No hay datos disponibles para esta ubicación.",
@@ -374,6 +374,8 @@
     "subtitle": "Guías prácticas para leer el clima de vuelo, entender el índice Kp y volar de forma segura y legal.",
     "empty": "Todavía no hay guías publicadas en este idioma — vuelve pronto.",
     "readingTime": "{minutes} min de lectura",
+    "showMore": "Ver más",
+    "showLess": "Ver menos",
     "backToGuides": "← Volver a Guías",
     "relatedGuides": "Guías relacionadas",
     "categories": {

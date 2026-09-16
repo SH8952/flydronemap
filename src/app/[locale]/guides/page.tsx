@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import {
   SITE_URL,
@@ -9,6 +8,7 @@ import {
   ogLocale,
 } from "@/lib/seo";
 import { getGuidesByCategory } from "@/lib/guides";
+import { GuideCategorySection } from "@/components/guides/guide-category-section";
 
 export async function generateMetadata({
   params,
@@ -81,31 +81,18 @@ export default async function GuidesIndexPage({
       ) : (
         <div className="flex flex-col gap-10">
           {groups.map(({ category, guides }) => (
-            <section key={category} className="flex flex-col gap-4">
-              <h2 className="text-xl font-semibold tracking-tight">
-                {t(`categories.${category}`)}
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {guides.map((guide) => (
-                  <Link
-                    key={guide.slug}
-                    href={`/guides/${guide.slug}`}
-                    className="flex flex-col gap-1 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
-                  >
-                    <h3 className="text-lg font-semibold tracking-tight">
-                      {guide.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {guide.description}
-                    </p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {dateFormatter.format(new Date(guide.publishedAt))} ·{" "}
-                      {t("readingTime", { minutes: guide.readingMinutes })}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            </section>
+            <GuideCategorySection
+              key={category}
+              categoryLabel={t(`categories.${category}`)}
+              expandLabel={t("showMore")}
+              collapseLabel={t("showLess")}
+              items={guides.map((guide) => ({
+                slug: guide.slug,
+                title: guide.title,
+                description: guide.description,
+                dateLabel: `${dateFormatter.format(new Date(guide.publishedAt))} · ${t("readingTime", { minutes: guide.readingMinutes })}`,
+              }))}
+            />
           ))}
         </div>
       )}

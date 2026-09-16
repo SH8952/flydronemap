@@ -1,3 +1,12 @@
+## 2026-09-17 — 가이드 목록 페이지: 카테고리별 "더보기" 펼치기 기능 추가 (애드센스 제휴 마케팅 공통 대화방에서 진행)
+
+- 배경: 가이드 게시글이 계속 늘어나면서 `/guides` 목록 페이지가 카테고리마다 전체 글을 다 나열해 세로 스크롤이 과도하게 길어짐. ExifLens/FlyDroneMap/firelic 3개 프로젝트에 동일하게 적용하기 위해 신설된 공통 대화방에서 작업 진행.
+- **작업 전 백업**: `.backups/backup_20260916_233701_guides_showmore/`에 `src/app/[locale]/guides/page.tsx`, `messages/{en,ko,ja,es}.json` 백업.
+- **수정**: 카테고리별 카드 그리드를 신규 클라이언트 컴포넌트 `src/components/guides/guide-category-section.tsx`로 분리, 카테고리당 기본 4개(2행)만 노출하고 그 이상은 "더보기" 버튼(shadcn `Button`, outline/sm)으로 펼치도록 구현. 버튼은 카테고리별로 독립적으로 동작(한 카테고리를 펼쳐도 다른 카테고리는 그대로 4개만 노출). `src/app/[locale]/guides/page.tsx`는 이 컴포넌트를 사용하도록 수정, 더 이상 쓰이지 않는 `Link` import 제거.
+- **i18n**: `messages/{en,ko,ja,es}.json`의 `Guides` 네임스페이스에 `showMore`/`showLess` 키 추가(ko: 더보기/접기, en: Show more/Show less, ja: もっと見る/閉じる, es: Ver más/Ver menos).
+- **검증**: `npx tsc --noEmit`(오류 0건), `npx eslint src`(기존 무관 경고 3건 외 신규 없음), `npm run build`(Turbopack — 컴파일 성공, TypeScript 통과, 225개 페이지 전부 정상 생성. 마지막 "Finalizing" 단계의 `.next/export-detail.json` unlink EPERM은 이 브릿지 환경 고유의 무해한 현상으로 기존에도 반복 확인됨).
+- **다음 단계**: 로컬 커밋 완료 후 사용자가 저장소 루트의 push용 `.command` 스크립트를 실행해 push, 실사이트에서 카테고리별 더보기 동작 최종 확인 필요. 동일 작업을 ExifLens·firelic에도 이어서 적용 예정.
+
 ## 2026-09-16 — 예약 발행 주제 큐 보강: 신규 16개 주제 추가 + "국가별 규정" 카테고리 신설
 
 - 배경: 매일 06:00 KST 자동 발행 파이프라인(`automation/guide-topics-queue.json`, 40개 주제)이 소진 임박(미발행 2건만 남음)함을 사용자가 확인, 이어서 발행이 끊기지 않도록 구글 검색 트렌드 기반 추가 주제 추천 요청 → 추천안(날씨/안전 3, 우주기상·GPS 2, 장비·비행팁 4, 신규 "국가별 규정" 7) 제시 후 "제시해준 추천 주제로 이어서 발행되도록 추가해줘" 승인받아 진행.
