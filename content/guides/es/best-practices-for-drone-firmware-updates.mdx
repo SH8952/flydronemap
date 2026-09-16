@@ -1,0 +1,49 @@
+---
+title: "Buenas prácticas para actualizar el firmware de tu dron"
+description: "Cuándo es realmente seguro actualizar, por qué el nivel de batería y la estabilidad del cable deciden si dejas inservible el controlador de vuelo, y qué revisar después para que un ajuste reseteado no te sorprenda en pleno vuelo."
+publishedAt: "2026-09-17"
+tags: ["firmware", "maintenance", "updates"]
+category: "gear-flight-tips"
+image: "/guides/images/best-practices-for-drone-firmware-updates.webp"
+imageCredit: "Brecht Corbeel"
+imageCreditUrl: "https://unsplash.com/@brechtcorbeel?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Muchos pilotos pulsan "actualizar" en cuanto aparece el aviso de firmware, con el mismo reflejo que usan para las apps del móvil. Pero una actualización de firmware reescribe el propio código de arranque del controlador de vuelo — a diferencia de una app, si falla a mitad de camino puede dejar el dron completamente inservible. No es raro escuchar de alguien que actualizó la noche antes de un trabajo pagado y a la mañana siguiente el dron simplemente no encendía. Basta con seguir unos pocos criterios para evitar casi todo ese riesgo.
+
+## El momento importa: no actualices justo antes de un vuelo importante
+
+El firmware publicado el primer día tiene, comparativamente, más probabilidad de traer fallos que la comunidad aún no ha detectado. Si tienes un trabajo comercial o una sesión importante por delante, conviene esperar al menos unos días tras el lanzamiento y revisar el foro del fabricante o los hilos de la comunidad en busca de reportes de consumo de batería disparado, vibración en el gimbal o pérdidas de conexión antes de instalarla. Por el contrario, si tienes un dron de repaldo o una semana tranquila, actualizarlo primero es una buena forma de detectar problemas antes de que afecten a tu equipo principal.
+
+## El nivel de batería y la estabilidad eléctrica son lo que realmente decide si lo dejas inservible
+
+Instalar el firmware suele tardar entre 3 y 10 minutos en transferir el archivo y otros 5-15 minutos en escribirlo realmente en la memoria flash — y perder la alimentación a mitad de esa escritura puede dejar la partición de arranque escrita solo a medias, lo que puede volver el dron permanentemente inservible. Por eso muchos fabricantes directamente desactivan el botón de actualizar en la app por debajo de aproximadamente el 50% de batería. Incluso con carga de sobra, un cable USB viejo o flojo, o un hub en medio, puede provocar una desconexión momentánea durante la transferencia, así que la norma a seguir es: usa un cable corto y de calidad similar al original conectado directamente, y no toques el cable ni el botón de encendido mientras la pantalla muestre "instalando".
+
+## Un desajuste entre las versiones del dron, el mando y la app causa más que funciones ausentes
+
+Actualizar solo el firmware del dron y dejar el mando o la app en una versión anterior no solo oculta funciones nuevas: puede provocar que el emparejamiento se corte repetidamente o que la telemetría llegue con retraso respecto a lo que realmente ocurre, porque ambos firmwares dejan de coincidir en la versión del protocolo de comunicación que hablan. Si aparece más de un aviso de actualización, la solución real es poner al día dron, mando y app juntos a la vez, no solo el dron.
+
+## Comprueba si tus ajustes se reiniciaron a los valores de fábrica
+
+Las actualizaciones de versión mayor suelen resetear ajustes relevantes para la seguridad — especialmente la altitud de retorno automático (RTH) y la sensibilidad de evasión de obstáculos — a los valores por defecto del fabricante. Un piloto que había bajado la altitud de RTH a 30m para librar un dosel de árboles de más de 20m, por ejemplo, podría no notar que se reinició silenciosamente a un valor de fábrica (a menudo entre 20 y 40m) y descubrirlo solo en el siguiente vuelo, cuando la ruta de regreso roza una rama. Asumir que tus ajustes anteriores se mantuvieron es el error más común aquí — después de cualquier actualización, revisa uno por uno la altitud de RTH, los límites de distancia/altitud y la intensidad de evasión de obstáculos antes de volar.
+
+## Por qué importa recalibrar el IMU y la brújula después de una actualización
+
+Cuando una actualización de firmware cambia el algoritmo que procesa los datos de los sensores, los valores de calibración guardados bajo el algoritmo anterior pueden quedar ligeramente desalineados con el nuevo. En la práctica eso puede notarse como una deriva sutil hacia un lado justo tras el despegue, o una altitud que se desplaza poco a poco durante un vuelo estacionario que debería mantenerse firme. Aunque el fabricante no indique explícitamente que la recalibración es necesaria, es buena práctica calibrar el IMU y la brújula en un espacio abierto sin gente cerca después de cualquier actualización mayor, y hacer una breve prueba de vuelo estacionario antes de comprometerte a un vuelo completo.
+
+## Error común: actualizar toda la flota de golpe
+
+Un error frecuente en equipos que operan varios drones es actualizar todas las unidades en cuanto sale un firmware nuevo. Si esa versión resulta tener un fallo inesperado, toda la flota hereda el mismo problema al mismo tiempo. Actualizar primero una unidad de repuesto, probarla a fondo en tierra y confirmar que no hay nada mal antes de aplicar la actualización al resto reduce ese riesgo de forma considerable.
+
+## Si una actualización deja el dron sin respuesta
+
+Si el progreso parece atascado en la pantalla de instalación, forzar el apagado o reiniciar repetidamente puede empeorar las cosas en lugar de mejorarlas. La mayoría de los fabricantes ofrecen un modo de recuperación o descarga forzada dedicado exactamente para esta situación — primero consulta la página de soporte del fabricante para el procedimiento de recuperación de tu modelo concreto, y si sigue sin responder después de seguirlo, contacta con soporte en vez de seguir intentándolo por tu cuenta; los intentos repetidos a ciegas son lo que realmente convierte un fallo recuperable en uno permanente.
+
+## Lista de verificación práctica
+
+- Antes de una sesión importante, no instales el firmware del primer día — espera unos días y revisa los reportes de la comunidad primero.
+- Empieza la actualización solo con 50% o más de batería y una conexión de cable corta y estable de calidad similar al original.
+- Mantén sincronizadas las versiones de firmware del dron, el mando y la app.
+- Después de actualizar, verifica que la altitud de RTH, los límites de distancia/altitud y los ajustes de evasión de obstáculos no se hayan reseteado en silencio.
+- Tras una actualización mayor, recalibra el IMU y la brújula en un espacio abierto y haz una breve prueba de vuelo estacionario antes de un vuelo real.
+- Si operas varios drones, valida primero en una unidad de repuesto y luego aplica la actualización al resto en secuencia.
