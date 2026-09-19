@@ -1,3 +1,17 @@
+## 2026-09-19 — 홈 콘텐츠(빈 콘텐츠) 및 쿠키 동의 배너 공통 작업 — 항목 1: 장비 추천 섹션 SSR 시드 적용 (애드센스 제휴 마케팅 공통 대화방에서 진행)
+
+- 배경: 공통 작업 계획서(`claude/common-room-content-consent-task-plan.md`)에서 확인된 문제 — 홈 화면의 "장비 추천"(GearRecommendation, 제휴 상품 위젯) 섹션이 서버 렌더링 시점에는 로딩 스켈레톤만 그려지고 실제 상품 데이터는 클라이언트에서만 fetch됨. 애드센스/구글봇의 비-JS 크롤링 패스에서는 이 섹션이 완전히 빈 콘텐츠로 보이는 문제. 사용자에게 "고정 큐레이션 상품 몇 개를 서버에 기본 노출(권장)" 방식으로 처리 확인받음.
+- **작업 전 백업**: `.backups/backup_20260919_085702_gear_ssr_content/`에 수정 대상 4개 파일 백업.
+- **수정**:
+  - 신규 `src/lib/gear-recommendation-ssr.ts` — 서버 전용 헬퍼. 기존에 검증된 캐시(6시간 revalidate) 적용 `searchCoupangProducts`/`searchAliexpressProducts` 함수를 이미 승인된 ROW1 키워드("드론 배터리" / "DJI drone battery")로 호출해 2개 상품을 미리 조회. 실패 시 `null` 반환(기존 동작 대비 절대 퇴행 없음).
+  - `src/components/gear-recommendation-section.tsx` → `fetchInitialGearProducts(locale)` 호출 후 `initialData`를 `GearRecommendation`에 전달.
+  - `src/components/gear-recommendation.tsx` → `useSyncExternalStore`의 `getServerSnapshot`이 하드코딩된 `"pending"` 대신 `initialData?.provider ?? "pending"`을 반환하도록 수정. `initialProducts`를 하위 카드 컴포넌트로 전달.
+  - `src/components/coupang-gear-cards.tsx`, `src/components/aliexpress-gear-cards.tsx` → `initialProducts` prop 추가, `useState` 초기값으로 시드 반영. 마운트 후 기존 방식대로 `/api/{coupang,aliexpress}/search`를 호출해 더 풍부한 개인화 결과로 자연스럽게 교체하되, 실패/빈 응답이어도 이미 시드된 정상 콘텐츠는 절대 지우지 않음.
+- **참고(설계 조정)**: 계획서의 "고정 큐레이션(하드코딩)" 표현과 달리, 실제 구현은 위 기존 서버 라이브러리 함수를 그대로 재사용하는 "캐시된 실시간 조회" 방식으로 처리함(브라우저 도구가 실제 트래킹 URL이 포함된 상품 데이터 직접 추출을 안전상 차단하여, 수동 하드코딩이 불가능했음). 사용자 승인 의도(요청당 실시간 아님, 안전한 실제 콘텐츠)는 동일하게 충족.
+- **검증**: `npx tsc --noEmit`(오류 0건), `npx eslint src`(기존 무관 경고 3건 외 신규 없음), `npm run build`(Turbopack — 컴파일 성공, TypeScript 통과, 233/233 페이지 전부 정상 생성. 샌드박스 네트워크 제한으로 Coupang/AliExpress API 호출이 `EAI_AGAIN`으로 실패했으나 새 catch 로직이 정상적으로 `null`을 반환해 빌드 자체는 문제없이 완료 — 이는 설계된 안전 폴백이 정상 동작함을 확인한 것. 단, 이 환경에서는 네트워크 차단으로 실제 상품 시드가 채워지는지까지는 검증 불가 — 실제 배포(Vercel) 환경에서 최종 확인 필요. 마지막 "Finalizing" 단계의 `.next/export-detail.json` unlink EPERM은 브릿지 환경 고유의 무해한 현상).
+- **커밋**: `ae8e650` "fix: SSR seed real gear-recommendation products to avoid empty homepage content"
+- **다음 단계**: push, 실배포 환경에서 장비 추천 섹션 초기 렌더에 실제 상품이 노출되는지 최종 확인. 이어서 항목 2(쿠키 동의 배너, CMP)를 3개 프로젝트 공통으로 진행 예정.
+
 ## 2026-09-17 — 가이드 목록 페이지: 카테고리별 "더보기" 펼치기 기능 추가 (애드센스 제휴 마케팅 공통 대화방에서 진행)
 
 - 배경: 가이드 게시글이 계속 늘어나면서 `/guides` 목록 페이지가 카테고리마다 전체 글을 다 나열해 세로 스크롤이 과도하게 길어짐. ExifLens/FlyDroneMap/firelic 3개 프로젝트에 동일하게 적용하기 위해 신설된 공통 대화방에서 작업 진행.
