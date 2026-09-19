@@ -1,0 +1,41 @@
+---
+title: "Configuración de Return-to-Home (RTH) explicada"
+description: "Cómo funcionan realmente la altitud de RTH, el registro del punto de origen y el comportamiento ante batería baja o pérdida de señal, y los ajustes por defecto que convierten una red de seguridad en un accidente."
+publishedAt: "2026-09-19"
+tags: ["return-to-home", "rth", "safety", "gps"]
+category: "gear-flight-tips"
+image: "/guides/images/return-to-home-settings-explained.webp"
+imageCredit: "Erik Mclean"
+imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Un piloto vuela a baja altura sobre un río para pasar por debajo de un puente y conseguir una toma, y la señal se pierde durante unos segundos. El dron activa automáticamente el Return-to-Home (RTH) y empieza a ascender hasta su altitud de RTH configurada, que resulta estar por debajo del tablero del puente que tiene justo encima. El RTH no es "la función que trae de vuelta tu dron"; es "la función que trae de vuelta tu dron exactamente como tú la configuraste". Esa diferencia está detrás de uno de los incidentes relacionados con RTH que los pilotos reportan con más frecuencia, normalmente porque la altitud se dejó en el valor de fábrica.
+
+## Las tres formas en que se activa el RTH
+
+El RTH normalmente se activa de una de tres maneras: un disparo manual que el piloto pulsa en la app o en el mando, un disparo automático cuando el nivel de batería llega a un umbral configurado (habitualmente ajustable en algún punto entre el 20% y el 30%), y un disparo automático cuando el enlace entre el mando y la aeronave se pierde durante un periodo determinado. Las tres se ven idénticas una vez que empiezan, pero no siempre se pueden cancelar por igual: en muchas aeronaves, el RTH por batería crítica está diseñado deliberadamente para ignorar la entrada de los sticks, de modo que el piloto no pueda anularlo. Es una medida de seguridad pensada para evitar un accidente por agotamiento de batería, pero el momento en que el piloto se da cuenta de que los sticks no responden es también el más desconcertante del vuelo.
+
+## Por qué la altitud de RTH importa más de lo que los pilotos suponen
+
+La mayoría de los drones de consumo permiten configurar la altitud de RTH aproximadamente entre 20 m y 150 m (unos 66-492 ft), y el valor de fábrica suele rondar los 30 m (unos 98 ft). El problema es que ese valor por defecto de 30 m puede quedar por debajo de obstáculos habituales con los que realmente te vas a cruzar —edificios de altura media, árboles maduros, torres de transmisión, tableros de puentes—. La regla básica es identificar el obstáculo más alto de tu zona de vuelo y fijar la altitud de RTH al menos 10-20 m por encima de él, no solo por encima del suelo. Además, muchas aeronaves ascienden primero hasta la altitud de RTH configurada antes de volar horizontalmente hacia el punto de origen si su altitud actual es más baja, lo que significa que un vuelo a poca altura interrumpido por una pérdida repentina de señal puede provocar un ascenso mucho más brusco y rápido de lo que el piloto espera.
+
+## El registro del punto de origen depende de tener suficientes satélites bloqueados
+
+La coordenada a la que vuelve el RTH —el punto de origen (home point)— normalmente se registra de forma automática justo antes o justo después del despegue, una vez que la aeronave ha bloqueado suficientes satélites GPS (habitualmente seis o más). Despegar con prisa mientras el indicador de GPS de la app todavía está inestable o parpadeando puede hacer que el punto de origen quede registrado con un desfase de varios metros hasta decenas de metros respecto al lugar real de despegue. Esperar a que la señal esté estable y confirmar el aviso de "punto de origen registrado" antes de despegar puede parecer un paso extra menor, pero es lo más básico que determina cuán preciso será realmente el RTH cuando se active de verdad.
+
+## El error común: despegar desde una plataforma en movimiento
+
+Despegar desde un barco, un vehículo en movimiento o la cubierta de una embarcación es una situación especialmente arriesgada. Como el RTH solo vuela hacia las coordenadas GPS registradas en el despegue, si el barco se ha desplazado para cuando se activa el RTH, el dron volará hacia un punto que ahora es solo mar abierto, y se quedará suspendido ahí hasta agotar la batería o intentará posarse sobre el agua. En estas situaciones es más seguro evitar depender del RTH automático y planificar en su lugar un regreso y aterrizaje manual, o comprobar de antemano si tu aeronave permite volver a registrar el punto de origen durante el vuelo si la plataforma queda luego estacionaria.
+
+## La relación entre la precisión del GPS y el clima espacial
+
+El RTH depende por completo de la señal GPS. Durante periodos de actividad geomagnética elevada —el tipo de fenómeno en torno al cual este sitio construye el seguimiento del índice Kp—, la precisión de posicionamiento GPS puede degradarse, lo que afecta tanto a la precisión con la que se registró el punto de origen como a la precisión con la que aterriza el RTH cuando se activa. En días con el índice Kp elevado o con la fiabilidad del GPS mostrada como reducida, es más seguro tratar el RTH como último recurso en lugar de como red de seguridad principal, y priorizar el vuelo con línea de visión directa (VLOS) junto con un plan de regreso manual.
+
+## Lista de verificación práctica
+
+- Identifica el obstáculo más alto de tu zona de vuelo y fija la altitud de RTH al menos 10-20 m por encima de él, no solo por encima del suelo.
+- Espera a tener un bloqueo GPS estable y confirma el aviso de punto de origen registrado antes de despegar.
+- Si despegaste desde un barco u otra plataforma en movimiento, no confíes en el RTH automático: planifica en su lugar un regreso y aterrizaje manual.
+- Ten en cuenta de antemano que un RTH por batería crítica puede no ser cancelable, y empieza a regresar mucho antes de llegar a ese umbral.
+- En días con Kp alto o fiabilidad GPS baja, trata el RTH como un respaldo, no como plan principal: mantén línea de visión directa y un plan de regreso manual preparado.
+- La información de este sitio es solo una referencia para la planificación de vuelos y no sustituye una autorización de vuelo real: consulta siempre el manual de tu aeronave y la normativa local.

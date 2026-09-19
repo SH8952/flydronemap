@@ -1,0 +1,41 @@
+---
+title: "Return-to-Home Settings Explained"
+description: "How RTH altitude, home point recording, and low-battery or lost-signal behavior actually work — and the default settings that turn a safety net into a crash."
+publishedAt: "2026-09-19"
+tags: ["return-to-home", "rth", "safety", "gps"]
+category: "gear-flight-tips"
+image: "/guides/images/return-to-home-settings-explained.webp"
+imageCredit: "Erik Mclean"
+imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+A pilot flies low over a river to pass under a bridge for a shot, and the signal drops for a few seconds. The drone automatically triggers Return-to-Home and starts climbing to its configured RTH altitude — which happens to be lower than the bridge deck above it. RTH isn't "the feature that brings your drone back"; it's "the feature that brings your drone back exactly the way you configured it." That gap is behind one of the most common RTH-related incidents pilots report, usually because the altitude was left at its factory default.
+
+## Three ways RTH actually triggers
+
+RTH normally starts in one of three ways: a manual trigger the pilot presses in the app or on the controller, an automatic trigger when battery level drops to a configured threshold (commonly adjustable somewhere in the 20-30% range), and an automatic trigger after the controller-to-aircraft link has been lost for a set period. All three look identical once they start, but they aren't always equally cancellable — on many aircraft, a critical-battery RTH is deliberately designed to ignore stick input, so the pilot can't override it. That's a safety measure meant to prevent a battery-depletion crash, but the moment a pilot realizes the sticks aren't responding is also the most disorienting moment of the flight.
+
+## Why the RTH altitude setting matters more than pilots assume
+
+Most consumer drones let you set RTH altitude somewhere between roughly 20m and 150m (about 66-492 ft), and the factory default usually sits around 30m (about 98 ft). The problem is that a 30m default can be lower than ordinary obstacles you'll actually fly near — mid-rise buildings, mature trees, transmission towers, bridge decks. The basic rule is to identify the tallest obstacle in your flight area and set RTH altitude at least 10-20m above it, not just above the ground. Many aircraft also climb to the configured RTH altitude first before flying horizontally home if their current altitude is lower, which means a low-altitude flight interrupted by a sudden signal loss can trigger a much steeper, faster climb than a pilot expects.
+
+## Home point recording depends on having enough satellites locked
+
+The coordinate RTH flies back to — the home point — is normally recorded automatically right before or right after takeoff, once the aircraft has locked onto enough GPS satellites (commonly six or more). Launching in a hurry while the app's GPS indicator is still unstable or blinking can record a home point that's off from the actual takeoff spot by anywhere from a few meters to tens of meters. Waiting for a stable signal and confirming the home-point-recorded notification before launch feels like a minor extra step, but it's the single most basic thing that determines how accurate RTH actually is when it fires for real.
+
+## The common mistake: taking off from a moving platform
+
+Launching from a boat, a moving vehicle, or a boat deck is a particularly risky setup. Because RTH only flies back to the GPS coordinates recorded at takeoff, if the boat has moved by the time RTH triggers, the drone will fly to a spot that's now open water and either hover there until the battery runs out or attempt to land on the sea. In these situations it's safer to avoid relying on automatic RTH altogether and plan a manual return and landing instead, or check ahead of time whether your aircraft lets you re-record the home point mid-flight if the platform later becomes stationary.
+
+## The GPS accuracy connection to space weather
+
+RTH is entirely dependent on GPS. During elevated geomagnetic activity — the kind this site's Kp index tracking is built around — GPS positioning accuracy can degrade, which affects both how precisely the home point was recorded and how precisely RTH lands when it fires. On days when the Kp index is elevated or GPS reliability is showing as reduced, it's safer to treat RTH as a last resort rather than a primary safety net, and to prioritize visual line of sight and a manual return plan instead.
+
+## Practical checklist
+
+- Identify the tallest obstacle in your flight area and set RTH altitude at least 10-20m above it, not just above the ground.
+- Wait for a stable GPS lock and confirm the home-point-recorded notification before you launch.
+- If you took off from a boat or another moving platform, don't rely on automatic RTH — plan a manual return and landing instead.
+- Know in advance that a critical-battery RTH may not be cancellable, and start heading back well before you hit that threshold.
+- On high-Kp or low-GPS-reliability days, treat RTH as a backup, not a primary plan — keep visual line of sight and a manual return plan ready.
+- Information on this site is for flight-planning reference only and doesn't replace an actual flight authorization — always check your aircraft's manual and local regulations.
