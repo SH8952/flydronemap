@@ -1,3 +1,17 @@
+## 2026-09-19 — 홈 콘텐츠(빈 콘텐츠) 및 쿠키 동의 배너 공통 작업 — 항목 2: Google Consent Mode v2 쿠키 동의 배너 추가 (애드센스 제휴 마케팅 공통 대화방에서 진행)
+
+- 배경: 공통 작업 계획서(`claude/common-room-content-consent-task-plan.md`) 항목 2 — GA4와 애드센스가 모두 실제로 동작 중인데도 사이트에 쿠키 동의 관리(CMP)가 전혀 없던 문제. 애드센스 대시보드 설정이 필요한 Google Funding Choices 대신, 코드만으로 구현 가능한 Google Consent Mode v2(기본 거부 → 동의 시 업데이트) 방식으로 진행.
+- **작업 전 백업**: `.backups/backup_20260919_114658_consent_banner/`에 수정 대상 파일 백업.
+- **수정**:
+  - 신규 `src/lib/consent.ts` — EEA 27개국 + 비-EU EEA 3개국(아이슬란드·리히텐슈타인·노르웨이) + 영국·스위스 국가 코드 목록과 `needsConsentBanner(country)` 헬퍼(국가를 알 수 없으면 안전하게 "필요함"으로 처리).
+  - `src/app/[locale]/layout.tsx`의 GA4 inline script에 `gtag('consent', 'default', {...전부 denied, region: [...]})`를 `gtag('config'/'js')` 호출보다 먼저 추가. `region`으로 범위를 한정했기 때문에 목록 밖 방문자는 기존 동작(구글의 기본값 = "허용")이 그대로 유지됨 — 실질적으로 EEA/영국/스위스 방문자에게만 영향. AdSense는 같은 페이지에서 gtag.js와 adsbygoogle.js가 동일한 동의 신호를 공유하므로 별도 수정 불필요.
+  - 레이아웃에서 Vercel의 `x-vercel-ip-country` 요청 헤더를 직접 읽어(쿠키 왕복 불필요, 모든 요청에 항상 존재) `needsConsent`를 계산해 배너에 전달.
+  - 신규 `src/components/consent-banner.tsx` — `needsConsent`가 true인 방문자에게만 노출되는 클라이언트 컴포넌트. 선택 상태는 `useSyncExternalStore`로 로컬스토리지를 읽어 관리(gear-recommendation.tsx의 `document.cookie` 읽기와 동일한 패턴) — 이펙트 안에서 직접 `setState`를 호출하지 않아 eslint `react-hooks/set-state-in-effect` 규칙과 하이드레이션 불일치를 모두 피함. "동의"를 누르면 gtag consent를 전부 granted로 업데이트, "거부"를 누르면 기본값(denied)을 유지한 채 배너만 닫음. 선택은 로컬스토리지에 저장해 재방문 시 다시 묻지 않음.
+  - `messages/{en,es,ja,ko}.json`에 `Consent` 네임스페이스(`message`/`accept`/`reject`) 추가.
+- **검증**: `npx tsc --noEmit`(오류 0건), `npx eslint src`(기존 무관 경고 3건 외 신규 없음 — 처음 구현에서 `set-state-in-effect` 오류가 잡혀 `useSyncExternalStore` 방식으로 재작성해 해결), `npm run build`(Turbopack — 컴파일 성공, TypeScript 통과, 233/233 페이지 전부 정상 생성. 마지막 `.next/export-detail.json` unlink EPERM은 브릿지 환경 고유의 무해한 현상).
+- **커밋**: `fdece87`
+- **다음 단계**: push, 실사이트(EEA/영국/스위스 외 지역에서는 배너 노출 여부 확인 어려움 — VPN 등으로 EEA IP를 사용한 확인 필요)에서 배너 노출/미노출 조건과 동의 후 GA4 실시간 리포트에 이벤트가 정상 반영되는지 최종 확인.
+
 ## 2026-09-19 — 홈 콘텐츠(빈 콘텐츠) 및 쿠키 동의 배너 공통 작업 — 항목 1: 장비 추천 섹션 SSR 시드 적용 (애드센스 제휴 마케팅 공통 대화방에서 진행)
 
 - 배경: 공통 작업 계획서(`claude/common-room-content-consent-task-plan.md`)에서 확인된 문제 — 홈 화면의 "장비 추천"(GearRecommendation, 제휴 상품 위젯) 섹션이 서버 렌더링 시점에는 로딩 스켈레톤만 그려지고 실제 상품 데이터는 클라이언트에서만 fetch됨. 애드센스/구글봇의 비-JS 크롤링 패스에서는 이 섹션이 완전히 빈 콘텐츠로 보이는 문제. 사용자에게 "고정 큐레이션 상품 몇 개를 서버에 기본 노출(권장)" 방식으로 처리 확인받음.
