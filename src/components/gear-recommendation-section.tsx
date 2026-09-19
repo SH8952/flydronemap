@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { GearRecommendation } from "@/components/gear-recommendation";
+import { fetchInitialGearProducts } from "@/lib/gear-recommendation-ssr";
 
 export async function GearRecommendationSection({
   locale,
@@ -7,6 +8,7 @@ export async function GearRecommendationSection({
   locale: string;
 }) {
   const t = await getTranslations({ locale, namespace: "Home" });
+  const initialData = await fetchInitialGearProducts(locale);
 
   return (
     <section className="rounded-xl border border-border bg-card p-5">
@@ -14,7 +16,7 @@ export async function GearRecommendationSection({
         {t("gearSectionTitle")}
       </h2>
 
-      <GearRecommendation locale={locale} />
+      <GearRecommendation locale={locale} initialData={initialData} />
     </section>
   );
 }
