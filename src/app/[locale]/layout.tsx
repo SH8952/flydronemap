@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { headers } from "next/headers";
+import { CONSENT_REGION_CODES, needsConsentBanner } from "@/lib/consent";
+import { ConsentBanner } from "@/components/consent-banner";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
@@ -94,6 +97,10 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
+  const headersList = await headers();
+  const geoCountry = headersList.get("x-vercel-ip-country");
+  const needsConsent = needsConsentBanner(geoCountry);
+
   return (
     <html lang={locale} suppressHydrationWarning className="h-full antialiased">
       <head>
@@ -106,6 +113,14 @@ export default async function LocaleLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              region: ${JSON.stringify(CONSENT_REGION_CODES)},
+              wait_for_update: 500
+            });
             gtag('js', new Date());
             if (!/(?:^|; )dev_exclude=1(?:;|$)/.test(document.cookie)) {
               gtag('config', 'G-QFT36DH8YR');
@@ -148,6 +163,7 @@ export default async function LocaleLayout({
               />
             </div>
             <SiteFooter />
+            <ConsentBanner needsConsent={needsConsent} />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

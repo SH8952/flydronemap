@@ -483,5 +483,10 @@
         ]
       }
     ]
+  },
+  "Consent": {
+    "message": "Utilizamos cookies para analizar el tráfico y personalizar los anuncios. Puede aceptar o rechazar las cookies no esenciales.",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
   }
 }
