@@ -374,8 +374,8 @@
     "category": "weather-safety",
     "titleKo": "고도별 바람 변화(윈드시어)와 드론 비행",
     "titleEn": "Wind Shear by Altitude and Drone Flight",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-21"
   },
   {
     "order": 43,
