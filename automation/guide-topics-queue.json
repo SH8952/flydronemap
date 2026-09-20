@@ -365,8 +365,8 @@
     "category": "weather-safety",
     "titleKo": "폭염 속 드론 비행 시 배터리·전자장비 주의사항",
     "titleEn": "Extreme Heat: Drone Battery and Electronics Precautions",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-20"
   },
   {
     "order": 42,
