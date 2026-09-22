@@ -1,0 +1,50 @@
+---
+title: "What Weather Data to Check Before Flying a Drone"
+description: "Behind a weather app's single word — 'clear' — sit half a dozen separate numbers that actually decide whether a flight is safe: wind and gusts, precipitation, visibility, temperature, dew point, cloud ceiling, and space weather. A practical checklist for what to check, against which thresholds, and in what order."
+publishedAt: "2026-09-22"
+tags: ["preflight-checklist", "weather-data", "wind"]
+category: "weather-safety"
+image: "/guides/images/what-weather-data-to-check-before-flying-a-drone.webp"
+imageCredit: "Jerry Zhang"
+imageCreditUrl: "https://unsplash.com/@z734923105?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Most weather apps compress the whole day into a single word — "clear," "cloudy," "rain" — but the number that actually matters to a drone pilot is hiding behind that summary. "Clear" at 5 m/s and "clear" at 15 m/s are two completely different flights, and "partly cloudy" with a 300m ceiling is a different legal envelope than the same label with a 100m ceiling. Here's a practical rundown of what to check, and in what order.
+
+## Check the gust number, not the average wind speed
+
+A lot of pilots glance at the average wind speed, see it's under their aircraft's rated max wind resistance (typically 8-10.7 m/s for consumer drones), and call it safe — but it's the gust, not the average, that actually breaks stability. A forecast can show a calm 6 m/s average and still carry brief windows where gusts spike to 12-14 m/s, and those are exactly the moments an aircraft can run out of authority even at full power and get pushed off position. When the gap between average and gust — the gust factor — runs 5 m/s or more, don't treat the average as the safe number; make the go/no-go call based on the gust window instead.
+
+## Look at precipitation type and intensity, not just probability
+
+Seeing "30% chance of rain" and deciding that's low enough to fly is a common shortcut, but probability tells you how likely rain is, not how hard it will fall if it does. A steady drizzle under 1mm/hr and a low-probability but sharp shower dumping 10mm/hr or more call for completely different decisions. Most consumer aircraft without an IP rating can shrug off a brief drizzle, but if the forecast window includes any shower activity, it's worth standing down regardless of what the probability number says.
+
+## Visibility ties directly into the legal minimum
+
+Visibility isn't just "how far can I see" — in most countries it's tied directly to the legal minimum for visual line-of-sight (VLOS) flight. FAA Part 107, for example, requires at least 3 statute miles (about 4.8 km) of visibility for the observer, and fog or haze that drops below that threshold makes the flight illegal outright, not just risky. On a day when visibility is sitting right at the margin, check the forecast separately for takeoff time and for your planned landing time — fog is notorious for cutting visibility in half within a short window around dusk.
+
+## Read temperature against the battery's performance curve
+
+What matters isn't the temperature number itself but where it falls on the battery's discharge performance curve. Most lithium-polymer batteries perform most consistently between 15-25°C; move toward 0°C or past 35°C and usable flight time drops noticeably below the rated figure. On a below-freezing forecast, keeping the battery close to body temperature until just before it goes into the aircraft measurably cuts into that flight-time loss.
+
+## Humidity and dew point spread signal fogging and condensation
+
+The number to watch isn't humidity on its own but the spread between temperature and dew point — once that gap narrows to within about 3 degrees, condensation on cold airframe surfaces or the lens becomes far more likely. A common mistake is pulling a cold aircraft straight from indoor storage into humid outdoor air; if the lens fogs from the inside, that can mean an unplanned landing mid-flight just to clear it.
+
+## Cloud ceiling limits how high you're legally allowed to go
+
+Ceiling — the height of the cloud base — matters most near controlled airspace, since many countries' rules require keeping a set horizontal and vertical distance from cloud. If the ceiling is forecast at 150m and the plan is to climb to a legal cap of 120m, the required cloud clearance eats into that gap and leaves far less real margin than the two numbers suggest on their own. Ceiling can also shift fast on a foggy or low-stratus morning, so it's worth rechecking the latest forecast right before takeoff rather than trusting an hours-old number.
+
+## Space weather (the Kp index) is a separate check, not an afterthought
+
+Separate from ground-level weather, the Kp index and the space weather it summarizes can affect GPS accuracy and compass reliability — a factor that's easy to overlook entirely. Even on a perfectly calm, clear day at ground level, a Kp index of 5 or higher is a reasonable trigger to postpone a long-range flight or anything that leans heavily on automatic return-to-home, and it's worth building the habit of checking it on its own dashboard rather than assuming a good ground forecast covers it.
+
+## Preflight checklist
+
+- Judge by the gust number, not the average, and compare it against your aircraft's rated max wind resistance.
+- Check precipitation intensity (mm/hr) and type, not just the probability percentage.
+- Confirm visibility meets your local VLOS legal minimum, checked separately for takeoff time and expected landing time.
+- If temperature falls outside the battery's stable range (roughly 15-25°C), plan for preheating or insulation.
+- Watch for a dew point spread narrowing to within 3 degrees — that's your cue to expect condensation or lens fogging.
+- Near controlled airspace, factor cloud ceiling and required clearance into your real usable altitude, not just the legal cap.
+- Check space weather (Kp index) separately from ground weather — a calm sky doesn't rule it out.

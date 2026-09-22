@@ -383,8 +383,8 @@
     "category": "weather-safety",
     "titleKo": "드론 비행 전 날씨 확인, 어떤 지표를 봐야 할까",
     "titleEn": "What Weather Data to Check Before Flying a Drone",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-22"
   },
   {
     "order": 44,
