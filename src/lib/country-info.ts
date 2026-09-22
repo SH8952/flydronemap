@@ -24,18 +24,18 @@ export function getCountryCode(
   }
 }
 
-/** 이 사이트가 국가별 규정 카탈로그(country-regulations.ts)를 갖춘 4개국. */
-const PRIORITY_COUNTRY_CODES = new Set(["US", "KR", "JP", "ES"]);
+/** 이 사이트가 국가별 규정 카탈로그(country-regulations.ts)를 갖춘 5개국. */
+const PRIORITY_COUNTRY_CODES = new Set(["US", "KR", "JP", "ES", "DE"]);
 
-/** ISO 국가 코드가 규정 카탈로그를 갖춘 4개국(미국/한국/일본/스페인) 중
+/** ISO 국가 코드가 규정 카탈로그를 갖춘 5개국(미국/한국/일본/스페인/독일) 중
  * 하나인지 확인하고, 맞다면 country-regulations.ts의 소문자 id로 변환한다. */
 export function toPriorityRegulationId(
   countryCode: string | undefined,
-): "us" | "kr" | "jp" | "es" | undefined {
+): "us" | "kr" | "jp" | "es" | "de" | undefined {
   if (!countryCode) return undefined;
   const upper = countryCode.toUpperCase();
   if (!PRIORITY_COUNTRY_CODES.has(upper)) return undefined;
-  return upper.toLowerCase() as "us" | "kr" | "jp" | "es";
+  return upper.toLowerCase() as "us" | "kr" | "jp" | "es" | "de";
 }
 
 /**

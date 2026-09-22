@@ -80,6 +80,40 @@
       "urbano": "Urban Population Zone",
       "infraestructuras": "Infrastructure Protection Zone"
     },
+    "deAirspaceLayerNames": {
+      "flugbeschraenkungsgebiete": "Flight Restriction Area",
+      "kontrollzonen": "Control Zone",
+      "flugplaetze": "Airfield",
+      "flughaefen": "Airport",
+      "naturschutzgebiete": "Nature Reserve",
+      "nationalparks": "National Park",
+      "vogelschutzgebiete": "Bird Sanctuary",
+      "ffhGebiete": "FFH Habitat Area",
+      "bundesautobahnen": "Federal Motorway",
+      "bundesstrassen": "Federal Highway",
+      "bahnanlagen": "Railway Facility",
+      "binnenwasserstrassen": "Inland Waterway",
+      "seewasserstrassen": "Sea Waterway",
+      "schifffahrtsanlagen": "Shipping Facility",
+      "stromleitungen": "Power Line",
+      "windkraftanlagen": "Wind Turbine",
+      "kraftwerke": "Power Plant",
+      "umspannwerke": "Substation",
+      "wohngrundstuecke": "Residential Property",
+      "freibaeder": "Outdoor Pool",
+      "industrieanlagen": "Industrial Facility",
+      "justizvollzugsanstalten": "Prison",
+      "militaerischeAnlagen": "Military Installation",
+      "labore": "Laboratory",
+      "verfassungsorgane": "Constitutional Body",
+      "obersteBehoerden": "Supreme Federal Authority",
+      "diplomatischeVertretungen": "Diplomatic Mission",
+      "internationaleOrganisationen": "International Organization",
+      "polizei": "Police Facility",
+      "sicherheitsbehoerden": "Security Authority",
+      "krankenhaeuser": "Hospital"
+    },
+    "deAirspaceLayersRequiredNote": "Flight restriction and control zones are always shown",
     "airspaceActiveLayersTitle": "Airspace layers shown on the map",
     "clickMapHint": "Click anywhere on the map to check that location",
     "usageTitle": "How to Use FlyDroneMap",
@@ -457,6 +491,21 @@
         "links": {
           "official": "AESA drone guidance",
           "registration": "Operator registration (AESA)"
+        }
+      },
+      "de": {
+        "name": "Germany",
+        "capital": "Berlin",
+        "authority": "LBA (German Federal Aviation Office)",
+        "summary": [
+          "Germany follows the EU-wide EASA framework, which splits drone operations into three risk-based categories — Open, Specific, and Certified. Most hobby flying falls under the Open category.",
+          "Drone operators must register with the LBA (Luftfahrt-Bundesamt) and display their registration number on the aircraft.",
+          "Where you can fly is defined by DIPUL (Digital Platform for Unmanned Aviation) — always check it for flight restriction and control zones before flying."
+        ],
+        "links": {
+          "official": "LBA drone guidance",
+          "registration": "Operator registration (LBA)",
+          "airspaceMap": "DIPUL geographical zones map"
         }
       }
     }

@@ -71,6 +71,15 @@ export function isInSpain(latitude: number, longitude: number): boolean {
 }
 
 /**
+ * 독일 여부 판정. 스페인과 동일한 이유로(인접국이 많아 단순 bbox는 위험,
+ * 프랑스/네덜란드/벨기에/룩셈부르크/스위스/오스트리아/체코/폴란드/덴마크와
+ * 국경을 맞대고 있음) 국경 폴리곤 기반 country-coder를 그대로 재사용한다.
+ */
+export function isInGermany(latitude: number, longitude: number): boolean {
+  return getCountryCode(latitude, longitude) === "DE";
+}
+
+/**
  * Queries the FAA's public UAS Facility Map polygon layer for the grid cell
  * containing the given point, returning its ceiling altitude if one exists.
  * Returns null outside the US (or wherever this layer has no coverage) —
@@ -163,6 +172,10 @@ export async function fetchAirspaceCeiling(
     // 스페인 지점도 마찬가지로 /api/es-airspace-lookup(ENAIRE ZGUAS)이 별도로
     // 수행한다 — 여기서 FAA 조회를 계속 시도하면 지리적으로 무관한 미국
     // 데이터에 대해 매번 불필요한 외부 호출만 발생시킨다.
+    return null;
+  }
+  if (isInGermany(latitude, longitude)) {
+    // 독일 지점도 마찬가지로 /api/de-airspace-lookup(DIPUL)이 별도로 수행한다.
     return null;
   }
   return fetchFaaAirspaceCeiling(latitude, longitude);

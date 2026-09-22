@@ -80,6 +80,40 @@
       "urbano": "도심(인구밀집) 구역",
       "infraestructuras": "기반시설 보호구역"
     },
+    "deAirspaceLayerNames": {
+      "flugbeschraenkungsgebiete": "비행제한구역",
+      "kontrollzonen": "관제구역",
+      "flugplaetze": "비행장",
+      "flughaefen": "공항",
+      "naturschutzgebiete": "자연보호구역",
+      "nationalparks": "국립공원",
+      "vogelschutzgebiete": "조류보호구역",
+      "ffhGebiete": "동식물서식지보호구역(FFH)",
+      "bundesautobahnen": "연방고속도로",
+      "bundesstrassen": "연방도로",
+      "bahnanlagen": "철도시설",
+      "binnenwasserstrassen": "내륙수로",
+      "seewasserstrassen": "해상수로",
+      "schifffahrtsanlagen": "항만시설",
+      "stromleitungen": "송전선",
+      "windkraftanlagen": "풍력발전시설",
+      "kraftwerke": "발전소",
+      "umspannwerke": "변전소",
+      "wohngrundstuecke": "주거지역",
+      "freibaeder": "야외수영장",
+      "industrieanlagen": "산업시설",
+      "justizvollzugsanstalten": "교정시설",
+      "militaerischeAnlagen": "군사시설",
+      "labore": "연구소(실험실)",
+      "verfassungsorgane": "헌법기관",
+      "obersteBehoerden": "최고연방관청",
+      "diplomatischeVertretungen": "외교공관",
+      "internationaleOrganisationen": "국제기구",
+      "polizei": "경찰시설",
+      "sicherheitsbehoerden": "보안기관",
+      "krankenhaeuser": "병원"
+    },
+    "deAirspaceLayersRequiredNote": "비행제한구역·관제구역은 항상 표시됩니다",
     "airspaceActiveLayersTitle": "지도에 표시된 공역 레이어",
     "clickMapHint": "지도 아무 곳이나 클릭하면 해당 위치를 조회합니다",
     "usageTitle": "FlyDroneMap 사용법",
@@ -457,6 +491,21 @@
         "links": {
           "official": "AESA 드론 공식 안내",
           "registration": "운영자 등록(AESA)"
+        }
+      },
+      "de": {
+        "name": "독일",
+        "capital": "베를린",
+        "authority": "LBA (독일 연방항공청)",
+        "summary": [
+          "독일은 EU 공통 EASA 규정을 따르며, 드론 비행은 위험도에 따라 오픈(Open)·특정(Specific)·인증(Certified) 3개 카테고리로 구분됩니다. 대부분의 취미 비행은 오픈 카테고리에 해당합니다.",
+          "드론 운용자는 LBA(연방항공청)에 등록해야 하며, 등록번호를 기체에 표시해야 합니다.",
+          "비행 가능 구역은 DIPUL(디지털 무인항공 플랫폼)에서 확인할 수 있습니다. 비행 전 반드시 비행제한구역·관제구역 여부를 확인하세요."
+        ],
+        "links": {
+          "official": "LBA 드론 공식 안내",
+          "registration": "운영자 등록(LBA)",
+          "airspaceMap": "DIPUL 지리적 구역 지도"
         }
       }
     }

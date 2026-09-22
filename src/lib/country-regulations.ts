@@ -4,10 +4,12 @@
  * 합의한 범위:
  *   1) 기존 대시보드는 그대로 두고 별도 섹션/페이지로 신설
  *   2) 초기 지원국은 사이트가 이미 지원하는 4개 언어(en/ko/ja/es)에 대응하는
- *      미국·한국·일본·스페인
+ *      미국·한국·일본·스페인 (2026-09-22: 지도 데이터가 있는 국가를 언어
+ *      대응과 무관하게 넓히기로 하고 독일을 추가)
  *   3) 지도 데이터가 있는 미국(FAA)·한국(VWorld WMS)·스페인(ENAIRE ZGUAS,
- *      2026-09-07 추가)은 지도 색상 구역 확인 방법을 안내하고, 아직 데이터가
- *      없는 일본은 1차로 텍스트 요약 + 공식 링크만 제공
+ *      2026-09-07 추가)·독일(DIPUL WMS, 2026-09-22 추가)은 지도 색상 구역
+ *      확인 방법을 안내하고, 아직 데이터가 없는 일본은 1차로 텍스트 요약 +
+ *      공식 링크만 제공
  *
  * 이 파일은 번역되지 않는 구조적 데이터(국가 id, 지도 데이터 보유 여부, 공식
  * 링크 URL)만 담는다. 화면에 보이는 텍스트(국가명/규정 요약/링크 라벨)는 모두
@@ -18,7 +20,7 @@
  * 반드시 각국 공식 기관에서 최신 규정을 확인하도록 화면에 안내 문구를 둔다.
  */
 
-export type RegulationCountryId = "us" | "kr" | "jp" | "es";
+export type RegulationCountryId = "us" | "kr" | "jp" | "es" | "de";
 
 export type RegulationLinkKey =
   | "official"
@@ -98,6 +100,25 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
       {
         key: "registration",
         url: "https://www.seguridadaerea.gob.es/en/ambitos/drones/registro-de-operador-de-drones-uas",
+      },
+    ],
+  },
+  {
+    id: "de",
+    hasMapData: true,
+    capital: { latitude: 52.52, longitude: 13.405 },
+    links: [
+      {
+        key: "official",
+        url: "https://www.lba.de/DE/Drohnen/Drohnen_node.html",
+      },
+      {
+        key: "registration",
+        url: "https://www.lba.de/DE/Drohnen/Betreiberregistrierung/Betreiberregistrierung_node.html",
+      },
+      {
+        key: "airspaceMap",
+        url: "https://www.dipul.de",
       },
     ],
   },

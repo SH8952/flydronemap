@@ -29,7 +29,13 @@ import {
   ES_WMS_URL,
   getEsAirspaceLayer,
 } from "@/lib/es-airspace-layers";
-import { isInSouthKorea, isInSpain } from "@/lib/airspace";
+import {
+  DE_AIRSPACE_LAYERS,
+  DE_WMS_URL,
+  getDeAirspaceLayer,
+  getDeQualifiedLayerName,
+} from "@/lib/de-airspace-layers";
+import { isInSouthKorea, isInSpain, isInGermany } from "@/lib/airspace";
 import {
   getCountryCode,
   getCountryDisplayName,
@@ -50,6 +56,10 @@ import {
   fetchEsAirspaceZones,
   type EsAirspaceZones,
 } from "@/lib/es-airspace-lookup-client";
+import {
+  fetchDeAirspaceZones,
+  type DeAirspaceZones,
+} from "@/lib/de-airspace-lookup-client";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -129,6 +139,9 @@ type DashboardData = {
   // 스페인 지점의 ENAIRE ZGUAS(항공/도심/기반시설) 조회 결과 — 위 usAirspaceZones와
   // 동일한 이유로 별개 필드로 병렬 저장한다. src/app/api/es-airspace-lookup/route.ts 참고.
   esAirspaceZones: EsAirspaceZones;
+  // 독일 지점의 DIPUL(비행제한구역/관제구역 등) 조회 결과 — 위와 동일한 이유로
+  // 별개 필드로 병렬 저장한다. src/app/api/de-airspace-lookup/route.ts 참고.
+  deAirspaceZones: DeAirspaceZones;
 };
 
 function windRisk(gustKmh: number): "low" | "moderate" | "high" {
@@ -205,6 +218,16 @@ export function DroneDashboard({
     () => new Set(),
   );
 
+  // 독일(DIPUL) 공역 레이어 — 비행제한구역/관제구역 2개는 실제 비행 제한과
+  // 직결되는 핵심 규제 정보라 한국의 "필수 3종"과 동일하게 항상 켜진 채
+  // 시작한다(끌 수 없음). 나머지 29개(자연보호구역·주요 시설 등 참고용
+  // 근접 정보)는 스페인의 교훈(큰 면적 레이어가 사전 안내 없이 지도를
+  // 뒤덮는 문제)에 따라 기본값을 꺼짐으로 두고 사용자가 직접 선택하도록
+  // 한다. src/lib/de-airspace-layers.ts 참고.
+  const [activeDeLayerIds, setActiveDeLayerIds] = useState<Set<string>>(
+    () => new Set(DE_AIRSPACE_LAYERS.filter((l) => l.required).map((l) => l.id)),
+  );
+
   // Guards against out-of-order responses: if the user keeps typing, an
   // earlier (slower) request resolving after a later one would otherwise
   // overwrite the fresh suggestions with stale ones, which looks like the
@@ -259,15 +282,21 @@ export function DroneDashboard({
       // /api/dashboard 응답과 병렬로 요청해 추가 지연 없이 병합한다.
       const inKorea = isInSouthKorea(lat, lon);
       const inSpain = isInSpain(lat, lon);
-      const [res, krZone, usZones, esZones] = await Promise.all([
+      const inGermany = isInGermany(lat, lon);
+      const [res, krZone, usZones, esZones, deZones] = await Promise.all([
         fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
         inKorea ? fetchKoreaAirspaceZones(lat, lon) : Promise.resolve(null),
         // 미국 지점의 클릭 시점 공역 조회도 같은 방식으로 병렬 요청한다 —
-        // src/app/api/us-airspace-lookup/route.ts 참고. 한국·스페인은 각자
-        // 전용 데이터 소스가 있으므로 여기서 제외한다(무의미한 외부 호출 방지).
-        inKorea || inSpain ? Promise.resolve(null) : fetchUsAirspaceZones(lat, lon),
+        // src/app/api/us-airspace-lookup/route.ts 참고. 한국·스페인·독일은
+        // 각자 전용 데이터 소스가 있으므로 여기서 제외한다(무의미한 외부
+        // 호출 방지).
+        inKorea || inSpain || inGermany
+          ? Promise.resolve(null)
+          : fetchUsAirspaceZones(lat, lon),
         // 스페인 지점의 ENAIRE ZGUAS 조회 — src/app/api/es-airspace-lookup/route.ts 참고.
         inSpain ? fetchEsAirspaceZones(lat, lon) : Promise.resolve(null),
+        // 독일 지점의 DIPUL 조회 — src/app/api/de-airspace-lookup/route.ts 참고.
+        inGermany ? fetchDeAirspaceZones(lat, lon) : Promise.resolve(null),
       ]);
       if (!res.ok) throw new Error("failed");
       const json = (await res.json()) as DashboardData;
@@ -276,6 +305,7 @@ export function DroneDashboard({
       }
       json.usAirspaceZones = usZones;
       json.esAirspaceZones = esZones;
+      json.deAirspaceZones = deZones;
       setData(json);
     } catch {
       setError(t("errorText"));
@@ -417,6 +447,15 @@ export function DroneDashboard({
 
   function handleEsAirspaceLayerToggle(id: string, next: boolean) {
     setActiveEsLayerIds((prev) => {
+      const updated = new Set(prev);
+      if (next) updated.add(id);
+      else updated.delete(id);
+      return updated;
+    });
+  }
+
+  function handleDeAirspaceLayerToggle(id: string, next: boolean) {
+    setActiveDeLayerIds((prev) => {
       const updated = new Set(prev);
       if (next) updated.add(id);
       else updated.delete(id);
@@ -574,7 +613,9 @@ export function DroneDashboard({
                 ? data.usAirspaceZones.matches[0]?.boundary
                 : data?.esAirspaceZones?.restricted
                   ? data.esAirspaceZones.matches[0]?.boundary
-                  : undefined
+                  : data?.deAirspaceZones?.restricted
+                    ? data.deAirspaceZones.matches[0]?.boundary
+                    : undefined
           }
           restricted={
             data?.airspace?.source === "kr"
@@ -583,7 +624,9 @@ export function DroneDashboard({
                 ? data.usAirspaceZones.restricted
                 : data?.esAirspaceZones
                   ? data.esAirspaceZones.restricted
-                  : undefined
+                  : data?.deAirspaceZones
+                    ? data.deAirspaceZones.restricted
+                    : undefined
           }
           onMapClick={selectCoordinates}
           clickHintText={t("clickMapHint")}
@@ -605,7 +648,16 @@ export function DroneDashboard({
                     wmsLayers: layer.wmsName,
                     wmsUrl: ES_WMS_URL,
                   }))
-                : undefined
+                : isInGermany(selected.latitude, selected.longitude)
+                  ? DE_AIRSPACE_LAYERS.filter((layer) =>
+                      activeDeLayerIds.has(layer.id),
+                    ).map((layer) => ({
+                      id: layer.id,
+                      label: t(`deAirspaceLayerNames.${layer.id}`),
+                      wmsLayers: getDeQualifiedLayerName(layer),
+                      wmsUrl: DE_WMS_URL,
+                    }))
+                  : undefined
           }
           mapOverlay={
             <>
@@ -631,6 +683,15 @@ export function DroneDashboard({
                   onToggle={handleEsAirspaceLayerToggle}
                   loadingIds={NO_LOADING_LAYER_IDS}
                   getLabel={(id) => t(`esAirspaceLayerNames.${id}`)}
+                />
+              ) : isInGermany(selected.latitude, selected.longitude) ? (
+                <AirspaceLayerPanel
+                  layers={DE_AIRSPACE_LAYERS}
+                  activeIds={activeDeLayerIds}
+                  onToggle={handleDeAirspaceLayerToggle}
+                  loadingIds={NO_LOADING_LAYER_IDS}
+                  getLabel={(id) => t(`deAirspaceLayerNames.${id}`)}
+                  requiredNote={t("deAirspaceLayersRequiredNote")}
                 />
               ) : null}
             </>
@@ -806,7 +867,10 @@ export function DroneDashboard({
                 false든) 이미 해당 국가 조회가 확정적으로 끝난 것이므로, "상세
                 데이터 없음" 문구와 동시에 보여주면 서로 모순된다 — 셋 다 아예
                 null(조회 실패/미시도)일 때만 이 문구를 보여준다. */}
-            {!data.airspace && !data.usAirspaceZones && !data.esAirspaceZones ? (
+            {!data.airspace &&
+            !data.usAirspaceZones &&
+            !data.esAirspaceZones &&
+            !data.deAirspaceZones ? (
               <p className="text-sm text-muted-foreground">
                 {t("airspaceNoData")}
               </p>
@@ -873,6 +937,39 @@ export function DroneDashboard({
             ) : null}
 
             {data.esAirspaceZones && !data.esAirspaceZones.restricted ? (
+              <div className="mt-3 border-t border-border pt-3 text-sm text-emerald-500">
+                {t("krNoRestriction")}
+              </div>
+            ) : null}
+
+            {data.deAirspaceZones && data.deAirspaceZones.restricted ? (
+              <div className="mt-3 flex flex-col gap-2 border-t border-border pt-3">
+                {data.deAirspaceZones.matches.map((m) => {
+                  const layer = getDeAirspaceLayer(m.layerId);
+                  return (
+                    <div key={m.layerId} className="flex flex-col gap-0.5">
+                      <div
+                        className="flex items-center gap-1.5 text-base font-bold"
+                        style={{ color: layer?.color }}
+                      >
+                        <span
+                          className="inline-block size-2.5 shrink-0 rounded-full"
+                          style={{ backgroundColor: layer?.color }}
+                        />
+                        {t(`deAirspaceLayerNames.${m.layerId}`)}
+                      </div>
+                      {m.labels.length > 0 ? (
+                        <p className="pl-4 text-xs text-muted-foreground">
+                          {m.labels.join(" · ")}
+                        </p>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
+
+            {data.deAirspaceZones && !data.deAirspaceZones.restricted ? (
               <div className="mt-3 border-t border-border pt-3 text-sm text-emerald-500">
                 {t("krNoRestriction")}
               </div>
@@ -957,6 +1054,34 @@ export function DroneDashboard({
                         style={{ backgroundColor: layer.color }}
                       />
                       {t(`esAirspaceLayerNames.${layer.id}`)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {/* 독일은 한국과 동일하게 필수 2종(비행제한구역/관제구역)이 항상
+                켜져 있어, 사용자가 아무것도 추가로 켜지 않았어도 이 범례가
+                항상 표시된다(activeDeLayerIds가 빈 채로 시작하지 않으므로
+                스페인처럼 size>0 조건으로 감출 필요가 없음). */}
+            {selected && isInGermany(selected.latitude, selected.longitude) ? (
+              <div className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
+                <p className="text-xs font-medium text-muted-foreground">
+                  {t("airspaceActiveLayersTitle")}
+                </p>
+                <ul className="flex flex-wrap gap-x-3 gap-y-1">
+                  {DE_AIRSPACE_LAYERS.filter((layer) =>
+                    activeDeLayerIds.has(layer.id),
+                  ).map((layer) => (
+                    <li
+                      key={layer.id}
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground"
+                    >
+                      <span
+                        className="inline-block size-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: layer.color }}
+                      />
+                      {t(`deAirspaceLayerNames.${layer.id}`)}
                     </li>
                   ))}
                 </ul>

@@ -80,6 +80,40 @@
       "urbano": "都市部（人口密集地）区域",
       "infraestructuras": "インフラ保護区域"
     },
+    "deAirspaceLayerNames": {
+      "flugbeschraenkungsgebiete": "飛行制限区域",
+      "kontrollzonen": "管制区域",
+      "flugplaetze": "飛行場",
+      "flughaefen": "空港",
+      "naturschutzgebiete": "自然保護区域",
+      "nationalparks": "国立公園",
+      "vogelschutzgebiete": "鳥類保護区域",
+      "ffhGebiete": "FFH生息地保護区域",
+      "bundesautobahnen": "連邦高速道路",
+      "bundesstrassen": "連邦道路",
+      "bahnanlagen": "鉄道施設",
+      "binnenwasserstrassen": "内陸水路",
+      "seewasserstrassen": "海上水路",
+      "schifffahrtsanlagen": "船舶施設",
+      "stromleitungen": "送電線",
+      "windkraftanlagen": "風力発電施設",
+      "kraftwerke": "発電所",
+      "umspannwerke": "変電所",
+      "wohngrundstuecke": "住宅地",
+      "freibaeder": "屋外プール",
+      "industrieanlagen": "産業施設",
+      "justizvollzugsanstalten": "刑務所",
+      "militaerischeAnlagen": "軍事施設",
+      "labore": "研究所",
+      "verfassungsorgane": "憲法機関",
+      "obersteBehoerden": "連邦最高官庁",
+      "diplomatischeVertretungen": "外交公館",
+      "internationaleOrganisationen": "国際機関",
+      "polizei": "警察施設",
+      "sicherheitsbehoerden": "治安機関",
+      "krankenhaeuser": "病院"
+    },
+    "deAirspaceLayersRequiredNote": "飛行制限区域・管制区域は常に表示されます",
     "airspaceActiveLayersTitle": "地図に表示中の空域レイヤー",
     "clickMapHint": "地図上の任意の場所をクリックすると、その地点の情報を確認できます",
     "usageTitle": "FlyDroneMapの使い方",
@@ -457,6 +491,21 @@
         "links": {
           "official": "AESAドローイン公式情報",
           "registration": "運用者登録(AESA)"
+        }
+      },
+      "de": {
+        "name": "ドイツ",
+        "capital": "ベルリン",
+        "authority": "LBA（ドイツ連邦航空局）",
+        "summary": [
+          "ドイツはEU共通のEASA規則に従い、ドローン運用はリスクに応じてオープン・特定・認証の3カテゴリーに分かれます。趣味の飛行のほとんどはオープンカテゴリーに該当します。",
+          "ドローン運用者はLBA(連邦航空局)への登録が必須で、登録番号を機体に表示する必要があります。",
+          "飛行可能な区域はDIPUL(無人航空機デジタルプラットフォーム)で確認できます。飛行前には必ず飛行制限区域・管制区域かどうかを確認してください。"
+        ],
+        "links": {
+          "official": "LBAドローン公式情報",
+          "registration": "運用者登録(LBA)",
+          "airspaceMap": "DIPUL地理的ゾーン地図"
         }
       }
     }

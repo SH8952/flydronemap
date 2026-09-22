@@ -80,6 +80,40 @@
       "urbano": "Zona Urbana",
       "infraestructuras": "Zona de Infraestructuras"
     },
+    "deAirspaceLayerNames": {
+      "flugbeschraenkungsgebiete": "Zona de Restricción de Vuelo",
+      "kontrollzonen": "Zona de Control",
+      "flugplaetze": "Aeródromo",
+      "flughaefen": "Aeropuerto",
+      "naturschutzgebiete": "Reserva Natural",
+      "nationalparks": "Parque Nacional",
+      "vogelschutzgebiete": "Zona de Protección de Aves",
+      "ffhGebiete": "Zona de Hábitats FFH",
+      "bundesautobahnen": "Autopista Federal",
+      "bundesstrassen": "Carretera Federal",
+      "bahnanlagen": "Instalación Ferroviaria",
+      "binnenwasserstrassen": "Vía Navegable Interior",
+      "seewasserstrassen": "Vía Navegable Marítima",
+      "schifffahrtsanlagen": "Instalación Portuaria",
+      "stromleitungen": "Línea Eléctrica",
+      "windkraftanlagen": "Aerogenerador",
+      "kraftwerke": "Central Eléctrica",
+      "umspannwerke": "Subestación Eléctrica",
+      "wohngrundstuecke": "Zona Residencial",
+      "freibaeder": "Piscina al Aire Libre",
+      "industrieanlagen": "Instalación Industrial",
+      "justizvollzugsanstalten": "Centro Penitenciario",
+      "militaerischeAnlagen": "Instalación Militar",
+      "labore": "Laboratorio",
+      "verfassungsorgane": "Órgano Constitucional",
+      "obersteBehoerden": "Autoridad Federal Suprema",
+      "diplomatischeVertretungen": "Misión Diplomática",
+      "internationaleOrganisationen": "Organización Internacional",
+      "polizei": "Instalación Policial",
+      "sicherheitsbehoerden": "Autoridad de Seguridad",
+      "krankenhaeuser": "Hospital"
+    },
+    "deAirspaceLayersRequiredNote": "Las zonas de restricción de vuelo y de control siempre se muestran",
     "airspaceActiveLayersTitle": "Capas de espacio aéreo mostradas en el mapa",
     "clickMapHint": "Haz clic en cualquier punto del mapa para consultar esa ubicación",
     "usageTitle": "Cómo usar FlyDroneMap",
@@ -457,6 +491,21 @@
         "links": {
           "official": "Información oficial de drones de AESA",
           "registration": "Registro de operador (AESA)"
+        }
+      },
+      "de": {
+        "name": "Alemania",
+        "capital": "Berlín",
+        "authority": "LBA (Oficina Federal de Aviación de Alemania)",
+        "summary": [
+          "Alemania sigue el marco común de la EASA en la UE, que divide las operaciones con drones en tres categorías según el riesgo: abierta, específica y certificada. La mayoría de los vuelos recreativos entran en la categoría abierta.",
+          "Los operadores de drones deben registrarse en la LBA (Luftfahrt-Bundesamt) y mostrar su número de registro en la aeronave.",
+          "Dónde se puede volar se define en DIPUL (Plataforma Digital de Aviación No Tripulada) — compruébalo siempre antes de volar para ver las zonas de restricción de vuelo y de control."
+        ],
+        "links": {
+          "official": "Información oficial de drones de la LBA",
+          "registration": "Registro de operador (LBA)",
+          "airspaceMap": "Mapa de zonas geográficas de DIPUL"
         }
       }
     }
