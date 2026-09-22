@@ -1,0 +1,32 @@
+---
+title: "GPS Jamming and Spoofing Explained for Drone Pilots"
+description: "The difference between a GPS signal that's blocked and one that's being faked, and why treating them the same way can send your drone somewhere you never told it to go."
+publishedAt: "2026-09-23"
+tags: ["gps", "jamming", "spoofing", "security"]
+category: "space-weather-gps"
+image: "/guides/images/gps-jamming-and-spoofing-explained-for-drone-pilots.webp"
+imageCredit: "Chris Cordes"
+imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+If your drone suddenly loses GPS lock near an airport, a military installation, or a stadium hosting a high-security event, most pilots assume it's a satellite or software glitch. Increasingly, it isn't. GPS jamming and spoofing are deliberate interference, and unlike a Kp-index spike or a multipath reflection off a nearby building, they're aimed at your receiver on purpose — which means the failure mode is different, and so is the right response.
+
+## Jamming denies the signal, spoofing fakes it
+
+Jamming floods the GPS frequency band (around 1575.42 MHz for civilian L1 signals) with noise strong enough to drown out the real satellite signal, so the receiver simply loses lock — the drone typically knows it has lost GPS and switches to whatever fallback it has (attitude/manual mode, or vision positioning if equipped). Spoofing is more dangerous precisely because it doesn't announce itself: a spoofing transmitter broadcasts counterfeit satellite signals that look valid and gradually walk the receiver's calculated position away from reality, often while the drone's display still shows a strong, healthy GPS lock. A drone can be spoofed 200-300 meters off its true position with the pilot seeing nothing but a normal-looking signal indicator, which is why spoofing has been used to divert commercial ships and civilian aircraft off course in documented incidents near conflict zones.
+
+## Why this looks like — but isn't — a Kp index or multipath problem
+
+Pilots who've learned to check the Kp index or watch for multipath near glass buildings sometimes assume any GPS irregularity traces back to one of those two causes, but jamming and spoofing behave differently in ways worth knowing. Space-weather-driven GPS degradation is broad and gradual, correlating with a specific storm window and affecting a wide geographic area; multipath is fixed to a specific physical location tied to a reflective surface. Jamming and spoofing, by contrast, are usually localized to a specific transmitter's range (from a few hundred meters to several kilometers depending on power), can appear or vanish abruptly with no correlation to space weather data at all, and cluster near locations with an obvious motive to deny GPS — international borders, military bases, prisons, and VIP security perimeters are the most commonly reported sites.
+
+## The mistake pilots make: trusting instruments over behavior
+
+The most common and costly mistake is trusting the flight controller's displayed GPS status rather than watching how the drone actually behaves. If a drone reports full GPS lock but drifts inconsistently with the stick inputs, gains altitude on its own in position-hold mode, or its displayed position doesn't match what you can see with your own eyes, that mismatch is a stronger signal than the on-screen satellite count. A second common mistake is relying on Return-to-Home as a safety net in a suspected spoofing environment — RTH calculates its path from the same spoofed position data, so it can fly the drone toward a fake "home" location rather than the real one, sometimes making the situation worse rather than better.
+
+## What to do if you suspect jamming or spoofing
+
+- If GPS lock drops suddenly with no gradual signal degradation beforehand, switch to manual/attitude mode immediately rather than waiting for the flight controller to recover lock on its own.
+- Watch for a mismatch between visual line of sight and displayed position — if what you see doesn't match what the telemetry claims, trust your eyes and land manually rather than trusting Return-to-Home.
+- Before flying near airports, military facilities, prisons, or major public events, check for published GPS interference notices (NOTAMs in the US often flag known jamming test areas or active security-related interference).
+- If your drone supports it, keep visual/optical positioning or a secondary navigation source enabled as a cross-check against GPS-only position data.
+- Don't assume a strong, stable-looking GPS signal rules out spoofing — a fake signal can look more stable than a real one degraded by ordinary noise.

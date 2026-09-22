@@ -1,0 +1,32 @@
+---
+title: "Interferencia y suplantación GPS explicadas para pilotos de drones"
+description: "La diferencia entre una señal GPS bloqueada y una falsificada, y por qué tratarlas igual puede llevar tu dron a un lugar que nunca le indicaste."
+publishedAt: "2026-09-23"
+tags: ["gps", "jamming", "spoofing", "security"]
+category: "space-weather-gps"
+image: "/guides/images/gps-jamming-and-spoofing-explained-for-drone-pilots.webp"
+imageCredit: "Chris Cordes"
+imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Si tu dron pierde de repente la señal GPS cerca de un aeropuerto, una instalación militar o un estadio con seguridad reforzada, la mayoría de los pilotos asume que es un fallo del satélite o del software. Cada vez más, no lo es. La interferencia GPS (jamming) y la suplantación de señal (spoofing) son interferencias deliberadas, y a diferencia de un pico en el índice Kp o un reflejo multitrayecto cerca de un edificio, están dirigidas intencionadamente a tu receptor, lo que significa que el modo de fallo es distinto, y también lo es la respuesta correcta.
+
+## El jamming niega la señal, el spoofing la falsifica
+
+El jamming inunda la banda de frecuencia GPS (alrededor de 1575.42 MHz para señales civiles L1) con ruido lo bastante fuerte como para ahogar la señal real del satélite, de modo que el receptor simplemente pierde el bloqueo — el dron normalmente detecta que ha perdido el GPS y cambia al respaldo que tenga disponible (modo manual/de actitud, o posicionamiento visual si lo incorpora). El spoofing es más peligroso precisamente porque no se anuncia: un transmisor de spoofing emite señales satelitales falsificadas que parecen válidas y desplazan gradualmente la posición calculada por el receptor hacia una ubicación irreal, a menudo mientras la pantalla del dron sigue mostrando un bloqueo GPS fuerte y aparentemente saludable. Un dron puede ser desviado 200-300 metros de su posición real mientras el piloto solo ve un indicador de señal con aspecto normal, y por eso el spoofing se ha usado para desviar de su rumbo a buques comerciales y aeronaves civiles en incidentes documentados cerca de zonas de conflicto.
+
+## Por qué esto parece —pero no es— un problema de índice Kp o de multitrayecto
+
+Los pilotos que han aprendido a revisar el índice Kp o a vigilar el multitrayecto cerca de edificios de vidrio a veces asumen que cualquier irregularidad GPS se debe a una de esas dos causas, pero el jamming y el spoofing se comportan de forma distinta y vale la pena conocer esas diferencias. La degradación GPS causada por el clima espacial es amplia y gradual, correlacionada con una ventana de tormenta específica y afecta un área geográfica extensa; el multitrayecto está fijado a una ubicación física concreta ligada a una superficie reflectante. El jamming y el spoofing, en cambio, suelen estar localizados dentro del alcance de un transmisor específico (de unos cientos de metros a varios kilómetros según la potencia), pueden aparecer o desaparecer de forma abrupta sin ninguna correlación con los datos del clima espacial, y se concentran cerca de lugares con un motivo evidente para bloquear el GPS: fronteras internacionales, bases militares, prisiones y perímetros de seguridad de personalidades son los sitios reportados con más frecuencia.
+
+## El error que cometen los pilotos: confiar en los instrumentos más que en el comportamiento
+
+El error más común y costoso es confiar en el estado GPS que muestra el controlador de vuelo en lugar de observar cómo se comporta realmente el dron. Si un dron indica bloqueo GPS completo pero se desvía de forma inconsistente con las entradas del mando, gana altitud por su cuenta en modo de mantenimiento de posición, o su posición mostrada no coincide con lo que ves a simple vista, esa discrepancia es una señal mucho más fiable que el número de satélites en pantalla. Un segundo error habitual es confiar en el Retorno a Casa (RTH) como red de seguridad en un entorno donde se sospecha spoofing — el RTH calcula su ruta a partir de esos mismos datos de posición falsificados, por lo que puede llevar al dron hacia una ubicación de "casa" falsa en lugar de la real, empeorando la situación en vez de resolverla.
+
+## Qué hacer si sospechas de jamming o spoofing
+
+- Si el bloqueo GPS se pierde de golpe sin una degradación gradual previa de la señal, cambia de inmediato a modo manual/de actitud en lugar de esperar a que el controlador de vuelo recupere el bloqueo por sí solo.
+- Presta atención a cualquier discrepancia entre lo que ves a simple vista y la posición mostrada — si lo que observas no coincide con lo que afirma la telemetría, confía en tus ojos y aterriza manualmente en lugar de confiar en el Retorno a Casa.
+- Antes de volar cerca de aeropuertos, instalaciones militares, prisiones o grandes eventos públicos, revisa los avisos publicados de interferencia GPS (en EE. UU., los NOTAM a menudo señalan zonas conocidas de pruebas de jamming o interferencia activa relacionada con seguridad).
+- Si tu dron lo permite, mantén activado el posicionamiento visual/óptico u otra fuente de navegación secundaria como verificación cruzada frente a los datos de posición basados solo en GPS.
+- No asumas que una señal GPS fuerte y aparentemente estable descarta el spoofing — una señal falsificada puede parecer incluso más estable que una señal real degradada por ruido ordinario.
