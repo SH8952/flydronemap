@@ -1,3 +1,24 @@
+## 2026-09-22 — 독일(DIPUL) 공역 정보 신규 구현 — 4번째 지원국(미국/한국/스페인 다음)
+
+- 배경: 사용자가 미국/한국/스페인 외 추가 지원 국가 조사를 요청 → 공역 데이터가 인증키 없이 공개된 국가(독일/스위스/오스트리아 등)를 조사해 보고, 그중 독일(DIPUL)을 우선 착수하기로 승인받아 진행.
+- **작업 전 백업**: `.backups/backup_20260922_231230_germany_airspace/`에 수정 대상 파일 백업.
+- **조사**: 독일 항행청(DFS)이 운영하는 공식 드론 지리정보 플랫폼 DIPUL(dipul.de)의 GeoServer WMS(`https://uas-betrieb.de/geoservices/dipul/wms`)가 인증키·등록 없이 완전 공개로 동작하며 `GetFeatureInfo`(지점 조회)도 공식 문서상 지원됨을 확인. 실제 동작 중인 예시 GetMap 요청 URL(커뮤니티 자료)로 `dipul:` 네임스페이스와 31개 레이어명을 교차 확인.
+- **미검증 사항(중요)**: 클라우드 세션의 아웃바운드 네트워크 정책(독일 정부 도메인 전체 차단) + WebFetch의 robots.txt 준수 정책 두 가지 모두에 막혀, 한국(VWorld)·스페인(ENAIRE) 때와 달리 실제 좌표로 `GetFeatureInfo` 응답을 사전 실측하지 못함. 공식 문서 + GeoServer 표준 동작(INFO_FORMAT=application/json의 GeoJSON FeatureCollection 응답 — 한국 라우트가 실측 검증한 VWorld 응답과 구조적으로 동일할 것으로 판단)에 근거해 구현. **배포 후 Vercel 실서버에서 실제 좌표로 최종 검증 필요.**
+- **구현**: 스페인(ENAIRE) 구현과 동일한 패턴 — 상시 지도 오버레이(WMSTileLayer) + 지점 클릭/검색 조회(서버 경유 GetFeatureInfo) 모두 지원.
+  - 신규 `src/lib/de-airspace-layers.ts`: 31개 레이어 카탈로그. 비행제한구역(`flugbeschraenkungsgebiete`)·관제구역(`kontrollzonen`) 2종은 한국의 "필수 3종"과 동일한 취지로 항상 켜진 채 시작(끌 수 없음), 나머지 29개(자연보호구역·주요 시설·기반시설 등 참고용 근접 정보)는 스페인 구현의 교훈(큰 면적 레이어가 사전 안내 없이 지도를 뒤덮는 문제)에 따라 기본값 꺼짐으로 사용자가 직접 선택.
+  - 신규 `src/app/api/de-airspace-lookup/route.ts`: 서버(Vercel 함수)에서 DIPUL WMS GetFeatureInfo 호출, 31개 레이어를 한 번에 조회. 조회 실패 시 절대 "제한 없음"으로 표시하지 않고 502를 반환하는 안전 원칙은 기존 미국/한국/스페인 라우트와 동일하게 적용. 속성 필드명(독일어 키)을 사전에 확인하지 못해 한국 라우트와 동일한 "usable string 값 범용 추출" 폴백을 사용 — 추출에 실패해도 카탈로그의 고정 레이어명은 항상 정확히 표시됨.
+  - 신규 `src/lib/de-airspace-lookup-client.ts`: 클라이언트 래퍼.
+  - 수정: `src/lib/airspace.ts`(`isInGermany()` 추가, country-coder 기반 — 인접국 다수라 단순 bbox 대신 스페인과 동일한 방식 재사용), `src/lib/country-info.ts`/`src/lib/country-regulations.ts`(5번째 우선 지원국으로 등록 — 국가별 규정 목록/상세 페이지(`/regulations`, `/regulations/de`)와 홈 화면 "국가로 이동" 드롭다운에 데이터 기반으로 자동 반영, 별도 페이지 코드 수정 불필요), `src/components/drone-dashboard.tsx`(독일 분기 추가, 기존 범용 `AirspaceLayerPanel`/`AirspaceOverlayLayer(wmsUrl)` 재사용 — 지도 컴포넌트 자체는 이미 스페인 때 일반화되어 있어 수정 불필요), `messages/{ko,en,ja,es}.json`(레이어명 31개 + `Regulations.countries.de` 4개 언어 전부 추가).
+- **검증**: `npx tsc --noEmit`(오류 0건), `npx eslint`(신규 오류 0건, 기존 경고 3건만 존재), `npm run build`(정상 통과, `/api/de-airspace-lookup` 동적 라우트 등록 확인, 254개 페이지 정상 생성).
+- **커밋**: `76744e1`
+- **다음 단계**: push, 실배포(Vercel) 환경에서 실제 좌표(예: 프랑크푸르트 공항 인근)로 `/api/de-airspace-lookup` 최종 검증 — 특히 `GetFeatureInfo` 응답의 실제 속성 스키마와 feature id 형식이 가정과 일치하는지 확인 필요.
+
+## 2026-09-22 — 데스크탑 폴더명 영문 변경에 따른 경로 참조 수정 (커밋 정리)
+
+- 배경: 다른 "💼 프로젝트 공통 작업" 세션이 한글 폴더명(`애드센스 제휴 마케팅`) 문제로 맥 바탕화면 폴더를 영문명(`AdSense Affiliate Marketing`)으로 변경하며 이 저장소의 관련 파일들도 수정했으나 커밋되지 않은 채 남아있던 것을, 이번 세션에서 발견해 별도 커밋으로 정리.
+- **수정**: `CLAUDE.md`, `SEO_TASKS.md`, `automation/apply-seo-task.command`, `automation/publish-guide.command`의 `REPO` 경로를 새 영문 경로로 수정. `__filelist.txt`(이전 SEO 자동화 작업의 잔여 추적 파일) 삭제.
+- **커밋**: `cbb6bfc`
+
 ## 2026-09-19 — 홈 콘텐츠(빈 콘텐츠) 및 쿠키 동의 배너 공통 작업 — 항목 2: Google Consent Mode v2 쿠키 동의 배너 추가 (애드센스 제휴 마케팅 공통 대화방에서 진행)
 
 - 배경: 공통 작업 계획서(`claude/common-room-content-consent-task-plan.md`) 항목 2 — GA4와 애드센스가 모두 실제로 동작 중인데도 사이트에 쿠키 동의 관리(CMP)가 전혀 없던 문제. 애드센스 대시보드 설정이 필요한 Google Funding Choices 대신, 코드만으로 구현 가능한 Google Consent Mode v2(기본 거부 → 동의 시 업데이트) 방식으로 진행.
