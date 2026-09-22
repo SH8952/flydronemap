@@ -4,7 +4,7 @@
 ## 백업 위치 규칙 (절대 준수)
 
 이 프로젝트(`flydronemap`) 작업 전 백업을 생성할 때는 반드시 **이 폴더 내부**에 만든다: `.backups/backup_YYYYMMDD_HHMMSS`
-상위 폴더(`Desktop/애드센스 제휴 마케팅/`)에 직접 백업 폴더를 만들지 않는다 (예: `../flydronemap_backup_...`, `../_backups/flydronemap_backup_...` 전부 금지).
+상위 폴더(`Desktop/AdSense Affiliate Marketing/`)에 직접 백업 폴더를 만들지 않는다 (예: `../flydronemap_backup_...`, `../_backups/flydronemap_backup_...` 전부 금지).
 
 ## push용 1회성 `.command` 스크립트 — 표준 템플릿 (2026-09-03 확정, 항상 이 템플릿을 그대로 사용할 것)
 
@@ -17,7 +17,7 @@
 #!/bin/bash
 # <이 스크립트가 반영하는 변경 내용 한 줄 설명>
 
-REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
+REPO="$HOME/Desktop/AdSense Affiliate Marketing/flydronemap"
 
 if [ ! -d "$REPO/.git" ]; then
   echo "저장소를 찾을 수 없습니다: $REPO"

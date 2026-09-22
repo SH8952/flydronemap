@@ -33,7 +33,7 @@ Calculator의 "가이드 자동 발행" 예약 작업과 동일한 패턴입니�
    함께 포함한다.
 7. 이 zip 파일 하나만 `SendUserFile`로 채팅에 첨부한다. 그리고 반드시 다음 안내를 최종 보고에
    포함한다: "첨부된 seo-task-payload.zip을 저장소의 automation 폴더
-   (`~/Desktop/애드센스 제휴 마케팅/flydronemap/automation/`)에 넣으신 뒤, 그 안에 이미 설치되어
+   (`~/Desktop/AdSense Affiliate Marketing/flydronemap/automation/`)에 넣으신 뒤, 그 안에 이미 설치되어
    있는 `apply-seo-task.command`를 더블클릭하시면 백업 → 적용 → 커밋 → push까지 맥에서 자동으로
    완료됩니다."
 8. **git push는 이 클라우드 세션에서 절대 시도하지 않는다.** push는 항상 사용자 맥의

@@ -15,7 +15,7 @@
 # 중단, (B) git add -A 대신 이번 SEO 작업 payload에 실제 포함된 파일만 정확히
 # 골라서 add.
 
-REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
+REPO="$HOME/Desktop/AdSense Affiliate Marketing/flydronemap"
 SCRIPT_NAME="apply-seo-task.command"
 SCRIPT_PATH="$REPO/automation/$SCRIPT_NAME"
 

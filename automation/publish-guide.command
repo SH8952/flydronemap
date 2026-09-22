@@ -3,7 +3,7 @@
 # 2026-09-08: 예약 작업이 결과물 6개 파일을 zip 1개로 묶어 전달하도록 변경됨에 따라,
 # 이 폴더에 zip 파일이 있으면 먼저 자동으로 압축을 풀고 진행하도록 수정.
 
-REPO="$HOME/Desktop/애드센스 제휴 마케팅/flydronemap"
+REPO="$HOME/Desktop/AdSense Affiliate Marketing/flydronemap"
 SCRIPT_NAME="publish-guide.command"
 SCRIPT_PATH="$REPO/automation/$SCRIPT_NAME"
 CONTENT_DIR="$REPO/automation"
