@@ -58,6 +58,20 @@ function buildAuthorizationHeader(
 }
 
 function getCredentials() {
+  // 2026-09-24: 로컬 개발 중 쿠팡 파트너스 Open API 시간당 호출 한도(10회)를
+  // 반복 초과해(dev 서버 재시작마다 캐시가 초기화되며 /api/coupang/search 1회
+  // 호출이 키워드 10개를 한 번에 조회하는 구조라 재시작 몇 번 만에 한도 소진)
+  // "3회 초과 시 파트너스 이용 제한" 경고가 발생, 계정 제재 위험을 피하기
+  // 위해 임시로 COUPANG_API_DISABLED 환경변수로 호출 자체를 차단할 수 있게
+  // 함. CoupangConfigError를 던지면 기존 호출부(gear-recommendation-ssr.ts,
+  // /api/coupang/search/route.ts)가 이미 "자격 증명 미설정" 상황과 동일하게
+  // 조용히 빈 배열/폴백으로 처리하도록 되어 있어 다른 코드 변경이 전혀
+  // 필요 없음. .env.local에만 설정(git에 커밋되지 않음, 배포 서버에는
+  // 영향 없음) — 해제하려면 .env.local에서 이 줄을 지우고 dev 서버 재시작.
+  if (process.env.COUPANG_API_DISABLED === "true") {
+    throw new CoupangConfigError("COUPANG_API_DISABLED=true (temporarily disabled)");
+  }
+
   const accessKey = process.env.COUPANG_ACCESS_KEY;
   const secretKey = process.env.COUPANG_SECRET_KEY;
   if (!accessKey || !secretKey) {
