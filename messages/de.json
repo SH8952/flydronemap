@@ -1,0 +1,539 @@
+{
+  "Header": {
+    "tagline": "Wetter für Drohnenflüge & Kp-Index",
+    "guidesNav": "Ratgeber",
+    "regulationsNav": "Vorschriften",
+    "aboutNav": "Über uns",
+    "faqNav": "FAQ",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "Home": {
+    "title": "FlyDroneMap — Live-Wetter für Drohnenflüge & Kp-Index",
+    "subtitle": "Suchen Sie einen beliebigen Ort für aktuellen Wind, Böen, Sichtweite, den neuesten Kp-Index und (in den USA) FAA-Höhenbeschränkungen — alles, was Sie für einen sichereren Drohnenflug brauchen.",
+    "metaTitle": "FlyDroneMap — Wetter für Drohnenflüge & Kp-Index",
+    "metaDescription": "Suchen Sie einen beliebigen Ort für aktuellen Wind, Böen, Sichtweite, den neuesten Kp-Index und (in den USA) FAA-Höhenbeschränkungen — alles, was Sie für einen sichereren Drohnenflug brauchen.",
+    "searchPlaceholder": "Stadt oder Flughafen suchen …",
+    "useMyLocationButton": "Meinen Standort verwenden",
+    "countryJumpPlaceholder": "Land auswählen",
+    "myLocation": "Mein Standort",
+    "loadingText": "Flugbedingungen werden geladen …",
+    "airspaceCheckingText": "Luftraumbeschränkungen werden geprüft …",
+    "errorText": "Daten für diesen Ort konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "emptyState": "Suchen Sie oben einen Ort, um die aktuellen Flugbedingungen zu sehen.",
+    "noDataForLocation": "Für diesen Ort sind keine Daten verfügbar.",
+    "airspaceNoData": "Für diesen Ort sind noch keine detaillierten Luftraumkartendaten verfügbar.",
+    "windSectionTitle": "Wind & Sicht",
+    "windSpeed": "Windgeschwindigkeit",
+    "windGust": "Windböen",
+    "visibility": "Sichtweite",
+    "temperature": "Temperatur",
+    "kpSectionTitle": "Planetarischer Kp-Index",
+    "kpHint": {
+      "quiet": "Ruhige geomagnetische Bedingungen. GPS und Kompass sollten normal funktionieren.",
+      "unsettled": "Unruhige Aktivität. Leichte GPS-Abweichungen sind möglich — behalten Sie die Positionsgenauigkeit im Auge.",
+      "storm": "Geomagnetischer Sturm. Die GPS-Genauigkeit und Kompasszuverlässigkeit können sich verschlechtern — fliegen Sie nach Möglichkeit im ATTI-/manuellen Modus und bleiben Sie in Sichtweite."
+    },
+    "airspaceSectionTitleWithCountry": "Luftraum-Info ({country})",
+    "airspaceSectionTitleGeneric": "Luftraum-Info",
+    "nearFacility": "In der Nähe von {facility}",
+    "krNoRestriction": "An diesem Ort wurden keine Luftraumbeschränkungen gefunden",
+    "airspaceDisclaimerPrioritySuffix": "Dies ist eine allgemeine Übersicht und keine Rechtsberatung. Die genauen Regeln finden Sie über die Schaltfläche unten bei der zuständigen Behörde.",
+    "airspaceDisclaimerGeneric": "Für diesen Ort werden noch keine detaillierten Luftraumdaten unterstützt. Prüfen Sie vor jedem Flug die aktuellen Regeln bei der Luftfahrtbehörde von {country}.",
+    "airspaceDisclaimerUnknownLocation": "Wir konnten das Land für diesen Ort nicht bestimmen. Prüfen Sie vor jedem Flug immer die aktuellen Regeln bei der örtlichen Luftfahrtbehörde.",
+    "airspaceRegulationCheckButton": "Vorschriften für {country} prüfen",
+    "airspaceLayersButton": "Luftraum-Ebenen",
+    "airspaceLayersTitle": "Luftraum-Ebenen",
+    "airspaceLayersRequiredNote": "Flugverbots-, Kontroll- und Sperrzonen werden immer angezeigt",
+    "airspaceLayersClose": "Schließen",
+    "airspaceLayerNames": {
+      "uas": "Luftraum für Ultraleichtfahrzeuge",
+      "controlZone": "Kontrollzone",
+      "boundary": "Grenzzone",
+      "prohibited": "Flugverbotszone",
+      "restricted": "Sperrzone",
+      "airportTraffic": "Flughafenverkehrszone",
+      "lightAircraftAirfield": "Leichtflugzeug-Flugplatz",
+      "danger": "Gefahrenzone",
+      "droneZone": "Drohnenpilotenzone",
+      "obstacle": "Hindernisluftraum",
+      "priorConsultation": "Vorabklärungsgebiet",
+      "tempProhibited": "Vorübergehende Flugverbotszone",
+      "culturalHeritage": "Kulturerbe-Schutzzone",
+      "nationalPark": "Nationalpark"
+    },
+    "usAirspaceLayerNames": {
+      "classB": "Luftraum Klasse B",
+      "classC": "Luftraum Klasse C",
+      "classD": "Luftraum Klasse D",
+      "classE": "Luftraum Klasse E",
+      "prohibited": "Sperrgebiet",
+      "restricted": "Beschränkungsgebiet",
+      "warning": "Warngebiet",
+      "alert": "Alarmgebiet",
+      "moa": "Militärisches Übungsgebiet (MOA)",
+      "fria": "FAA-anerkanntes Identifikationsgebiet (FRIA)"
+    },
+    "esAirspaceOverlayLabel": "Spanische UAS-Geografiezonen (ZGUAS)",
+    "esAirspaceLayerNames": {
+      "aero": "Luftfahrtzone",
+      "urbano": "Städtische Bevölkerungszone",
+      "infraestructuras": "Infrastruktur-Schutzzone"
+    },
+    "deAirspaceLayerNames": {
+      "flugbeschraenkungsgebiete": "Flugbeschränkungsgebiet",
+      "kontrollzonen": "Kontrollzone",
+      "flugplaetze": "Flugplatz",
+      "flughaefen": "Flughafen",
+      "naturschutzgebiete": "Naturschutzgebiet",
+      "nationalparks": "Nationalpark",
+      "vogelschutzgebiete": "Vogelschutzgebiet",
+      "ffhGebiete": "FFH-Gebiet",
+      "bundesautobahnen": "Bundesautobahn",
+      "bundesstrassen": "Bundesstraße",
+      "bahnanlagen": "Bahnanlage",
+      "binnenwasserstrassen": "Binnenwasserstraße",
+      "seewasserstrassen": "Seewasserstraße",
+      "schifffahrtsanlagen": "Schifffahrtsanlage",
+      "stromleitungen": "Stromleitung",
+      "windkraftanlagen": "Windkraftanlage",
+      "kraftwerke": "Kraftwerk",
+      "umspannwerke": "Umspannwerk",
+      "wohngrundstuecke": "Wohngrundstück",
+      "freibaeder": "Freibad",
+      "industrieanlagen": "Industrieanlage",
+      "justizvollzugsanstalten": "Justizvollzugsanstalt",
+      "militaerischeAnlagen": "Militärische Anlage",
+      "labore": "Labor",
+      "diplomatischeVertretungen": "Diplomatische Vertretung",
+      "internationaleOrganisationen": "Internationale Organisation",
+      "polizei": "Polizeieinrichtung",
+      "sicherheitsbehoerden": "Sicherheitsbehörde",
+      "krankenhaeuser": "Krankenhaus"
+    },
+    "deAirspaceLayersRequiredNote": "Flugbeschränkungs- und Kontrollzonen werden immer angezeigt",
+    "airspaceActiveLayersTitle": "Auf der Karte angezeigte Luftraum-Ebenen",
+    "clickMapHint": "Klicken Sie auf eine beliebige Stelle der Karte, um diesen Ort zu prüfen",
+    "usageTitle": "So nutzen Sie FlyDroneMap",
+    "gearSectionTitle": "Ausrüstungsempfehlungen",
+    "gearSectionHint": "Hier erscheinen empfohlene Drohnenausrüstung für Piloten.",
+    "gearDisclosure": "Als Partner erhalten wir möglicherweise eine Provision für qualifizierte Käufe über diese Links — ohne zusätzliche Kosten für Sie.",
+    "usageSteps": [
+      "Suchen Sie eine Stadt, einen Flughafen oder eine Sehenswürdigkeit, oder tippen Sie auf „Meinen Standort verwenden“, um die Bedingungen genau dort zu prüfen, wo Sie sich befinden.",
+      "Prüfen Sie aktuelle Windgeschwindigkeit, Windböen und Sichtweite — entscheidende Faktoren dafür, ob ein Flug mit Ihrem Drohnenmodell sicher ist.",
+      "Prüfen Sie den planetarischen Kp-Index, um zu sehen, ob geomagnetische Aktivität Ihre GPS-Verbindung oder Kompassausrichtung beeinträchtigen könnte.",
+      "In den USA sehen Sie die Höhenbeschränkung aus der FAA UAS Facility Map für das Gebiet — bestätigen Sie die Freigabe anschließend über LAANC oder FAADroneZone, bevor Sie fliegen."
+    ],
+    "guideHighlightsTitle": "Ratgeber entdecken",
+    "guideHighlightsSubtitle": "Praktische Ratgeber zu Flugsicherheit, Wettereinschätzung und Drohnenvorschriften.",
+    "guideHighlightsCta": "Alle Ratgeber ansehen →",
+    "faqTitle": "Häufig gestellte Fragen",
+    "faq": [
+      {
+        "question": "Ersetzt FlyDroneMap die Flugfreigabe der FAA?",
+        "answer": "Nein. Die hier angezeigte Höhenbeschränkung stammt aus den öffentlichen Daten der FAA UAS Facility Map und dient nur zur Planung. Sie müssen weiterhin die erforderliche Freigabe über LAANC oder FAADroneZone einholen, bevor Sie fliegen."
+      },
+      {
+        "question": "Woher stammen die Wetterdaten?",
+        "answer": "Windgeschwindigkeit, Böen, Sichtweite und Temperatur stammen von der öffentlichen Wetter-API von Open-Meteo und werden mehrmals täglich aktualisiert."
+      },
+      {
+        "question": "Was ist der Kp-Index und warum ist er für Drohnenflüge wichtig?",
+        "answer": "Der planetarische Kp-Index misst die geomagnetische Aktivität. Bei erhöhten Kp-Werten (geomagnetischen Stürmen) können GPS-Positionsgenauigkeit und Kompassanzeigen unzuverlässiger werden — wichtig für Drohnen, die auf GPS-Halten oder Return-to-Home angewiesen sind."
+      },
+      {
+        "question": "Funktioniert FlyDroneMap auch außerhalb der USA?",
+        "answer": "Wind-, Sicht- und Kp-Index-Daten funktionieren weltweit. Die FAA-Höhenbeschränkung ist US-spezifisch, da sie aus FAA-Daten stammt — außerhalb der USA zeigt diese Karte keine Daten an."
+      },
+      {
+        "question": "Muss ich ein Konto erstellen?",
+        "answer": "Nein. FlyDroneMap funktioniert ohne Anmeldung — suchen Sie einfach einen Ort und prüfen Sie die Bedingungen."
+      },
+      {
+        "question": "Ist die Nutzung von FlyDroneMap kostenlos?",
+        "answer": "Ja, vollständig kostenlos. Die Seite finanziert sich über Werbung und gelegentliche Affiliate-Links, die die Genauigkeit der angezeigten Daten in keiner Weise beeinflussen."
+      }
+    ],
+    "crossLinkTitle": "Verwandtes Tool",
+    "crossLinkDescription": "Planen Sie nach dem Flug eine Langzeitbelichtung? Berechnen Sie die passende ND-Filter-Belichtungszeit für Blende und ISO.",
+    "crossLinkCta": "ND-Filter-Belichtungsrechner",
+    "crossLinkCtaAria": "Öffnet ExifLens in einem neuen Tab — ND-Filter-Belichtungsrechner"
+  },
+  "Faq": {
+    "title": "Häufig gestellte Fragen",
+    "subtitle": "Antworten auf häufige Fragen zur Nutzung von FlyDroneMap."
+  },
+  "Frame": {
+    "title": "EXIF-Rahmengenerator",
+    "subtitle": "Fügen Sie Ihrem Foto einen übersichtlichen Kamera-Info-Rahmen hinzu und laden Sie es in voller Auflösung herunter.",
+    "uploadHint": "Legen Sie ein Foto ab, um mit dem Rahmen zu beginnen. Falls Sie oben bereits eines hochgeladen haben, steht es auch hier bereit.",
+    "privacyNote": "100 % clientseitig. Das gerahmte Foto wird vollständig in Ihrem Browser erstellt und niemals hochgeladen.",
+    "downloadButton": "Gerahmtes Foto herunterladen",
+    "dropToReplace": "Foto hier ablegen, um es zu ersetzen",
+    "themeLabel": "Rahmenstil",
+    "themes": {
+      "classic-dark": "Klassisch Dunkel",
+      "classic-light": "Klassisch Hell",
+      "polaroid": "Polaroid",
+      "strap": "Trageriemen",
+      "minimal-overlay": "Minimales Overlay",
+      "leica": "Leica",
+      "hasselblad": "Hasselblad",
+      "film-strip": "Filmstreifen",
+      "blurred-background": "Unscharfer Hintergrund",
+      "vintage-amber": "Vintage Bernstein",
+      "grid-spec": "Raster-Datenblatt",
+      "dark-gradient": "Dunkler Verlauf",
+      "no-frame": "Kein Rahmen",
+      "just-frame": "Nur Rahmen",
+      "cinema-scope": "Kinoformat",
+      "lightroom": "Lightroom",
+      "film": "Film",
+      "monitor": "Monitor",
+      "shot-on": "Aufgenommen mit",
+      "photo-card": "Fotokarte",
+      "tip": "Tipp",
+      "poster": "Poster",
+      "custom": "Benutzerdefiniert"
+    },
+    "customBackground": "Hintergrundfarbe",
+    "customText": "Textfarbe",
+    "customFont": "Schriftart",
+    "customShowLogo": "Marken-Logo anzeigen",
+    "aspectLabel": "Seitenverhältnis",
+    "aspectOriginal": "Original",
+    "paddingLabel": "Abstand",
+    "metadataLabel": "Rahmentext",
+    "metadataReset": "Zurücksetzen",
+    "metadataHint": "Bearbeiten Sie ein Feld, um die Anzeige im Rahmen zu überschreiben. Dies ändert nur den Rahmen — nicht das EXIF-Panel oben.",
+    "camera": "Kamera",
+    "lens": "Objektiv",
+    "focalLength": "Brennweite",
+    "aperture": "Blende",
+    "shutter": "Verschlusszeit",
+    "iso": "ISO",
+    "takenAt": "Aufnahmedatum",
+    "tipLabel": "Beschriftung",
+    "tipHeading": "Überschrift",
+    "tipBody1": "Textzeile 1",
+    "tipBody2": "Textzeile 2",
+    "posterDate": "Datum",
+    "posterTitle1": "Titelzeile 1",
+    "posterTitle2": "Titelzeile 2",
+    "posterLocationName": "Ortsname",
+    "posterLocationAddress": "Adresse",
+    "formatLabel": "Exportformat"
+  },
+  "Footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "guides": "Ratgeber",
+    "about": "Über uns",
+    "disclosure": "Affiliate-Offenlegung",
+    "contact": "Kontakt"
+  },
+  "Privacy": {
+    "title": "Datenschutzerklärung",
+    "updated": "Zuletzt aktualisiert: 26. August 2026",
+    "sections": [
+      {
+        "heading": "Überblick",
+        "body": [
+          "FlyDroneMap („wir“, „uns“, „unser“) betreibt diese Website (den „Dienst“). Diese Datenschutzerklärung erläutert, welche Informationen bei der Nutzung des Dienstes erfasst werden und wie sie verwendet werden."
+        ]
+      },
+      {
+        "heading": "Standortdaten",
+        "body": [
+          "Wenn Sie einen Ort suchen oder die Schaltfläche „Meinen Standort verwenden“ nutzen, werden die Koordinaten an unseren Server gesendet, der in Ihrem Namen Wetter-, geomagnetische und Luftraumdaten von Drittanbietern abfragt und das Ergebnis an Ihren Browser zurückgibt. Wir speichern die von Ihnen gesuchten Orte nicht und verknüpfen sie nicht mit einer Kennung."
+        ]
+      },
+      {
+        "heading": "Cookies und Werbung",
+        "body": [
+          "Wir verwenden Google AdSense, um Werbung im Dienst anzuzeigen. Google und seine Partner können Cookies, Geräte-Kennungen und ähnliche Technologien verwenden, um Anzeigen basierend auf Ihren früheren Besuchen dieser und anderer Websites auszuliefern. Weitere Informationen finden Sie auf der Datenschutzseite von Google Ads, und Sie können personalisierte Werbung über die Google-Anzeigeneinstellungen deaktivieren.",
+          "Wir können außerdem über Analyseanbieter Cookies oder ähnliche Technologien verwenden, um in aggregierter, nicht identifizierender Form zu verstehen, wie Besucher den Dienst nutzen."
+        ]
+      },
+      {
+        "heading": "Affiliate-Links",
+        "body": [
+          "Einige Seiten enthalten Affiliate-Links, unter anderem zu Amazon Associates und Coupang Partners. Wenn Sie auf einen dieser Links klicken und einen qualifizierten Kauf tätigen, erhalten wir möglicherweise eine Provision — ohne zusätzliche Kosten für Sie. Einzelheiten finden Sie in unserer Affiliate-Offenlegung."
+        ]
+      },
+      {
+        "heading": "Daten, die wir nicht erfassen",
+        "body": [
+          "Eine Kontoregistrierung ist nicht erforderlich, und wir erfassen über den Dienst selbst keine Namen, E-Mail-Adressen oder Zahlungsinformationen."
+        ]
+      },
+      {
+        "heading": "Datenschutz für Kinder",
+        "body": [
+          "Der Dienst richtet sich nicht an Kinder unter 13 Jahren, und wir erfassen wissentlich keine personenbezogenen Daten von Kindern."
+        ]
+      },
+      {
+        "heading": "Änderungen dieser Richtlinie",
+        "body": [
+          "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite mit einem aktualisierten Datum „Zuletzt aktualisiert“ veröffentlicht."
+        ]
+      },
+      {
+        "heading": "Kontakt",
+        "body": [
+          "Wenn Sie Fragen zu dieser Datenschutzerklärung haben, kontaktieren Sie uns unter skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Terms": {
+    "title": "Nutzungsbedingungen",
+    "updated": "Zuletzt aktualisiert: 26. August 2026",
+    "sections": [
+      {
+        "heading": "Annahme der Bedingungen",
+        "body": [
+          "Durch den Zugriff auf oder die Nutzung von FlyDroneMap (den „Dienst“) erklären Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht einverstanden sind, nutzen Sie den Dienst bitte nicht."
+        ]
+      },
+      {
+        "heading": "Beschreibung des Dienstes",
+        "body": [
+          "FlyDroneMap stellt kostenlose Daten zu Wind, Sichtweite und planetarischem Kp-Index sowie eine US-spezifische Höhenreferenz aus der FAA UAS Facility Map bereit, um die Drohnenflugplanung zu unterstützen. Die Daten stammen aus öffentlichen APIs von Drittanbietern und dienen ausschließlich Informationszwecken."
+        ]
+      },
+      {
+        "heading": "Keine Flugfreigabe",
+        "body": [
+          "Nichts in diesem Dienst stellt eine von der FAA oder einer anderen Luftfahrtbehörde geforderte Flugfreigabe dar, ersetzt sie oder garantiert sie. Die Angaben zur Höhenbeschränkung basieren auf dem öffentlichen Datensatz der FAA UAS Facility Map und dienen nur zur Information. Sie sind allein dafür verantwortlich, jede erforderliche Freigabe (z. B. über LAANC oder FAADroneZone) einzuholen und vor jedem Flug alle geltenden Luftfahrtvorschriften einzuhalten."
+        ]
+      },
+      {
+        "heading": "Keine Gewähr für die Datengenauigkeit",
+        "body": [
+          "Wetter-, geomagnetische und Luftraumdaten stammen von Drittanbietern und können verzögert, unvollständig oder ungenau sein. Wir übernehmen keine Gewähr für die Genauigkeit, Vollständigkeit oder Aktualität der angezeigten Daten und haften nicht für Entscheidungen, die auf deren Grundlage getroffen werden."
+        ]
+      },
+      {
+        "heading": "Affiliate-Links",
+        "body": [
+          "Der Dienst kann Affiliate-Links enthalten. Einzelheiten finden Sie in unserer Affiliate-Offenlegung."
+        ]
+      },
+      {
+        "heading": "Haftungsbeschränkung",
+        "body": [
+          "Der Dienst wird „wie besehen“ ohne jegliche Gewährleistung bereitgestellt. Im gesetzlich zulässigen Umfang haften wir nicht für Schäden, die sich aus der Nutzung oder Nichtnutzbarkeit des Dienstes ergeben, einschließlich Schäden im Zusammenhang mit Flugentscheidungen, die auf Basis der im Dienst angezeigten Informationen getroffen wurden."
+        ]
+      },
+      {
+        "heading": "Änderungen dieser Bedingungen",
+        "body": [
+          "Wir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung des Dienstes nach Veröffentlichung von Änderungen gilt als Zustimmung zu den überarbeiteten Bedingungen."
+        ]
+      },
+      {
+        "heading": "Kontakt",
+        "body": [
+          "Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns unter skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "About": {
+    "title": "Über FlyDroneMap",
+    "sections": [
+      {
+        "heading": "Was ist FlyDroneMap",
+        "body": [
+          "FlyDroneMap ist ein kostenloses Dashboard für Drohnenpiloten, das keine Anmeldung erfordert. Suchen Sie einen beliebigen Ort, um aktuelle Windgeschwindigkeit, Windböen, Sichtweite und den neuesten planetarischen Kp-Index zu sehen — für Orte in den USA zusätzlich die Höhenbeschränkung aus der öffentlichen FAA UAS Facility Map."
+        ]
+      },
+      {
+        "heading": "Warum wir es gebaut haben",
+        "body": [
+          "Die Prüfung der Flugbedingungen bedeutet normalerweise, Informationen aus mehreren Apps und Behördenseiten zusammenzusuchen. FlyDroneMap bringt die Werte, die für eine Go/No-Go-Entscheidung wirklich zählen — Wind, Böen, Sichtweite und geomagnetische Aktivität — an einem Ort zusammen, in Ihrer Sprache."
+        ]
+      },
+      {
+        "heading": "Kein Ersatz für die offizielle Freigabe",
+        "body": [
+          "FlyDroneMap dient der Planung und ist kein Freigabe-Tool für Flüge. Bestätigen Sie Ihren Flug vor dem Start immer über LAANC oder FAADroneZone (in den USA) oder Ihre örtliche Luftfahrtbehörde."
+        ]
+      },
+      {
+        "heading": "Kontakt",
+        "body": [
+          "Fragen oder Feedback? Erreichen Sie uns unter skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Disclosure": {
+    "title": "Affiliate-Offenlegung",
+    "updated": "Zuletzt aktualisiert: 26. August 2026",
+    "sections": [
+      {
+        "heading": "Unsere Teilnahme an Affiliate-Programmen",
+        "body": [
+          "FlyDroneMap nimmt an Affiliate-Werbeprogrammen teil, unter anderem am Amazon-Partnerprogramm und am Coupang-Partnerprogramm, die es Websites ermöglichen, durch Links zu Amazon.com, Coupang.com und deren verbundenen Seiten Werbekostenerstattungen zu verdienen."
+        ]
+      },
+      {
+        "heading": "So funktioniert es",
+        "body": [
+          "Wenn Sie auf FlyDroneMap auf einen Produktlink klicken (zum Beispiel zu einem empfohlenen Drohnenzubehör) und anschließend einen qualifizierten Kauf tätigen, erhalten wir möglicherweise eine kleine Provision. Dies ist für Sie mit keinen zusätzlichen Kosten verbunden."
+        ]
+      },
+      {
+        "heading": "Unsere redaktionelle Unabhängigkeit",
+        "body": [
+          "Affiliate-Beziehungen haben keinerlei Einfluss auf die in diesem Dienst angezeigten Wetter-, Kp-Index- oder Luftraumdaten, die direkt von unabhängigen Drittanbietern stammen."
+        ]
+      },
+      {
+        "heading": "Kontakt",
+        "body": [
+          "Fragen zu unseren Affiliate-Beziehungen? Kontaktieren Sie uns unter skysmoga@gmail.com."
+        ]
+      }
+    ]
+  },
+  "Guides": {
+    "title": "Ratgeber",
+    "subtitle": "Praktische Ratgeber zum Lesen von Flugwetter, zum Verständnis des Kp-Index und zum sicheren und rechtskonformen Fliegen.",
+    "empty": "In dieser Sprache sind noch keine Ratgeber veröffentlicht — schauen Sie bald wieder vorbei.",
+    "readingTime": "{minutes} Min. Lesezeit",
+    "showMore": "Mehr anzeigen",
+    "showLess": "Weniger anzeigen",
+    "backToGuides": "← Zurück zu den Ratgebern",
+    "relatedGuides": "Ähnliche Ratgeber",
+    "categories": {
+      "weather-safety": "Wetter & Sicherheit",
+      "space-weather-gps": "Weltraumwetter & GPS",
+      "us-airspace-regulations": "US-Luftraum & Vorschriften",
+      "gear-flight-tips": "Ausrüstung & Flugtipps",
+      "international-regulations": "Internationale Vorschriften",
+      "general": "Allgemein"
+    },
+    "ctaBannerText": "Prüfen Sie den aktuellen Wind, die Sichtweite und den Kp-Index für Ihren Standort.",
+    "ctaBannerButton": "Jetzt Flugbedingungen prüfen"
+  },
+  "Regulations": {
+    "title": "Drohnenvorschriften nach Land",
+    "subtitle": "Wählen Sie das Land, in dem Sie fliegen möchten, für eine kurze Zusammenfassung der Vorschriften und Links zur zuständigen Behörde.",
+    "disclaimer": "Diese Seite ist eine allgemeine Übersicht und keine Rechtsberatung. Prüfen Sie vor jedem Flug immer die aktuellen Regeln bei der zuständigen Behörde des jeweiligen Landes.",
+    "mapAvailableBadge": "Luftraum auf Karte verfügbar",
+    "mapUnavailableBadge": "Siehe offizielle Links",
+    "backToList": "Zurück zur Länderliste",
+    "mapAvailableNote": "Die Karte dieser Website kann die Flugverbotszonen, Kontrollzonen und weitere Luftraum-Ebenen dieses Landes farbig anzeigen.",
+    "mapUnavailableNote": "Für dieses Land liegen noch keine kartenbasierten Luftraumdaten vor. Bitte nutzen Sie die offiziellen Links unten.",
+    "viewOnMapLabel": "Auf der Startseiten-Karte ansehen",
+    "officialLinksTitle": "Offizielle Links",
+    "countries": {
+      "us": {
+        "name": "Vereinigte Staaten",
+        "capital": "Washington, D.C.",
+        "authority": "Federal Aviation Administration (FAA)",
+        "summary": [
+          "Hobbypiloten müssen den kostenlosen Online-Sicherheitstest TRUST bestehen, während für kommerzielle Drohnenflüge ein FAA Part 107 Remote Pilot Certificate erforderlich ist.",
+          "Die meisten Drohnen müssen bei der FAA registriert werden, und für Flüge im kontrollierten Luftraum in Flughafennähe ist eine vorherige Freigabe über LAANC (Low Altitude Authorization and Notification Capability) erforderlich.",
+          "Prüfen Sie den Luftraum vor jedem Flug immer mit der App B4UFLY oder der UAS Facility Map der FAA."
+        ],
+        "links": {
+          "official": "FAA-Drohnenleitfaden",
+          "registration": "FAA-Drohnenregistrierung (DroneZone)",
+          "flightApproval": "Luftraumfreigabe (LAANC)"
+        }
+      },
+      "kr": {
+        "name": "Südkorea",
+        "capital": "Seoul",
+        "authority": "Ministerium für Land, Infrastruktur und Verkehr (MOLIT) · Drone OneStop",
+        "summary": [
+          "Je nach Gewicht und Verwendungszweck müssen Sie Ihre Drohne registrieren und über das Portal Drone OneStop vorab eine Flug-/Luftaufnahmegenehmigung einholen.",
+          "Fliegen ohne vorherige Genehmigung in Flugverbotszonen, Kontrollzonen oder Sperrzonen kann Bußgelder von bis zu 1,5 Millionen KRW nach sich ziehen. Der Großteil der Innenstadt von Seoul liegt in eingeschränktem Luftraum.",
+          "Auf dieser Website werden bei der Auswahl eines Standorts in Südkorea auch Flugverbotszonen, Kontrollzonen und weitere Luftraum-Ebenen farbig auf der Karte angezeigt."
+        ],
+        "links": {
+          "official": "Drone-OneStop-Portal",
+          "registration": "Drohnenregistrierung",
+          "flightApproval": "Antrag auf Flugfreigabe"
+        }
+      },
+      "jp": {
+        "name": "Japan",
+        "capital": "Tokio",
+        "authority": "Ministerium für Land, Infrastruktur, Verkehr und Tourismus (MLIT)",
+        "summary": [
+          "Drohnen ab 100 g Gewicht müssen beim MLIT registriert werden (einschließlich Remote-ID); der Flug mit einer nicht registrierten Drohne ist strafbar.",
+          "Flüge in der Nähe von Flughäfen, über 150 m Höhe, über dicht besiedelten Gebieten (DID) oder in für Notfälle reservierten Lufträumen erfordern eine vorherige Genehmigung des regionalen Luftfahrtamts, die online über DIPS2.0 beantragt wird.",
+          "Nachtflüge, Flüge außerhalb der Sichtweite und Ähnliches erfordern ebenfalls eine gesonderte Genehmigung (mit einigen Ausnahmen für zertifizierte Fluggeräte/Piloten). Prüfen Sie vor jedem Flug die aktuellen Regeln auf der offiziellen Website."
+        ],
+        "links": {
+          "official": "MLIT-Drohnenleitfaden",
+          "registration": "Registrierung & Flugantrag (DIPS2.0)"
+        }
+      },
+      "es": {
+        "name": "Spanien",
+        "capital": "Madrid",
+        "authority": "AESA (Spanische Luftfahrtsicherheitsbehörde)",
+        "summary": [
+          "Spanien folgt dem EU-weiten EASA-Rahmenwerk, das den Drohnenbetrieb in drei risikobasierte Kategorien unterteilt — Open, Specific und Certified. Die meisten Hobbyflüge fallen unter die Kategorie Open.",
+          "Drohnenbetreiber müssen sich bei der AESA registrieren und ihre Registrierungsnummer am Fluggerät anbringen.",
+          "Wo Sie fliegen dürfen, wird durch den Dienst „UAS-Geografiezonen“ der AESA festgelegt — prüfen Sie ihn vor jedem Flug auf Sperrgebiete."
+        ],
+        "links": {
+          "official": "AESA-Drohnenleitfaden",
+          "registration": "Betreiberregistrierung (AESA)"
+        }
+      },
+      "de": {
+        "name": "Deutschland",
+        "capital": "Berlin",
+        "authority": "LBA (Luftfahrt-Bundesamt)",
+        "summary": [
+          "Deutschland folgt dem EU-weiten EASA-Rahmenwerk, das den Drohnenbetrieb in drei risikobasierte Kategorien unterteilt — Open, Specific und Certified. Die meisten Hobbyflüge fallen unter die Kategorie Open.",
+          "Drohnenbetreiber müssen sich beim LBA (Luftfahrt-Bundesamt) registrieren und ihre Registrierungsnummer am Fluggerät anbringen.",
+          "Wo Sie fliegen dürfen, wird durch DIPUL (Digitale Plattform Unbemannte Luftfahrt) festgelegt — prüfen Sie dort vor jedem Flug auf Flugbeschränkungs- und Kontrollzonen."
+        ],
+        "links": {
+          "official": "LBA-Drohnenleitfaden",
+          "registration": "Betreiberregistrierung (LBA)",
+          "airspaceMap": "DIPUL-Geografiezonenkarte"
+        }
+      }
+    }
+  },
+  "Contact": {
+    "title": "Kontakt zu FlyDroneMap",
+    "sections": [
+      {
+        "heading": "E-Mail an uns",
+        "body": [
+          "Am schnellsten erreichen Sie uns per E-Mail: skysmoga@gmail.com. Wir lesen jede Nachricht und versuchen, innerhalb weniger Werktage zu antworten."
+        ]
+      },
+      {
+        "heading": "Fehlerberichte & Funktionswünsche",
+        "body": [
+          "Haben Sie etwas Kaputtes gefunden oder eine Idee für eine neue Funktion? Senden Sie uns die Details (was passiert ist, Ihr Browser/Gerät und bei einem Fehler die Schritte zur Reproduktion) — wir schauen uns das an."
+        ]
+      },
+      {
+        "heading": "Geschäfts- & Partnerschaftsanfragen",
+        "body": [
+          "Für Werbe-, Partnerschafts- oder Presseanfragen wenden Sie sich bitte an dieselbe E-Mail-Adresse wie oben."
+        ]
+      }
+    ]
+  },
+  "Consent": {
+    "message": "Wir verwenden Cookies, um den Traffic zu analysieren und Anzeigen zu personalisieren. Sie können nicht notwendige Cookies akzeptieren oder ablehnen.",
+    "accept": "Akzeptieren",
+    "reject": "Ablehnen"
+  }
+}

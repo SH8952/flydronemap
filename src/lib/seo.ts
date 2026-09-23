@@ -14,6 +14,7 @@ const LOCALE_TO_OG: Record<(typeof routing.locales)[number], string> = {
   ko: "ko_KR",
   es: "es_ES",
   ja: "ja_JP",
+  de: "de_DE",
 };
 
 export function ogLocale(locale: string) {
