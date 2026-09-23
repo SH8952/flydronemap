@@ -1,3 +1,14 @@
+## 2026-09-23 — 독일(DIPUL) 공역 지점 조회 버그 수정 — 클릭 시 상세정보 미표시 문제
+
+- 배경: 사용자가 로컬(localhost)에서 실제 지도의 비행제한구역을 클릭했지만 "공역 정보(독일)" 카드에 사유/법적 근거 등 상세 내용이 전혀 표시되지 않는다고 보고. 아직 push 전이라 로컬에서 원인 파악 및 수정 후 재확인을 거쳐 진행.
+- **원인 1(구현 당시 미검증 항목이 실제로 문제였음)**: Claude in Chrome(사용자 실제 크롬)으로 DIPUL GeoServer에 직접 조회한 결과, 이 서버는 `INFO_FORMAT=application/json`과 `application/vnd.ogc.gml`을 관리자 설정으로 명시적으로 금지하고 있었음(`ServiceException code="ForbiddenFormat"`) — 허용되는 것은 `text/plain`뿐. 한국(VWorld)·스페인(ENAIRE)과 다른 서버 정책. `/api/de-airspace-lookup/route.ts`를 text/plain 블록 파싱 방식으로 전면 재작성.
+- **원인 2(진짜 근본 원인)**: text/plain으로 바꾼 뒤에도 API가 여전히 "lookup failed"(502)를 반환. GetCapabilities를 직접 조회해 서버의 실제 레이어 목록 전체와 카탈로그(`de-airspace-layers.ts`)를 대조한 결과, `verfassungsorgane`·`oberste_behoerden` 2개 레이어명이 서버에 존재하지 않음을 확인(`ServiceException code="LayerNotDefined"`). GetFeatureInfo는 `LAYERS` 파라미터의 모든 레이어를 한 번에 검증하므로, 존재하지 않는 레이어 하나 때문에 비행제한구역·관제구역을 포함한 요청 전체가 실패하고 있었음 — 클릭해도 아무 정보가 안 뜬 진짜 이유.
+- **수정**: 두 레이어를 카탈로그와 4개 언어 메시지 파일에서 제거(애초에 지도 타일로도 동작하지 않았을 죽은 항목이라 기능 축소 아님).
+- **검증**: `npx tsc --noEmit`/`npx eslint` 오류 0건. 로컬 dev 서버에서 API 직접 호출(베를린 브란덴부르크 공항 인근 좌표 2곳)과 실제 UI 클릭 양쪽 모두 관제구역("Berlin Brandenburg (EDDB) zone 1", 고도 0.0m AGL - 2500.0ft MSL, 법적 근거 `NfL 2026-1-3960`) 및 공항 정보(`§ 21h, Abs. 3 (2.) LuftVO`)가 정상 표시되는 것을 확인 후 사용자에게 보고.
+- **작업 전 백업**: `.backups/backup_20260923_000506_germany_getfeatureinfo_fix/`(수정 전 커밋 상태의 6개 파일).
+- **커밋**: `8ac7055`
+- **다음 단계**: 사용자가 로컬에서 최종 육안 확인 후 push.
+
 ## 2026-09-22 — 독일(DIPUL) 공역 정보 신규 구현 — 4번째 지원국(미국/한국/스페인 다음)
 
 - 배경: 사용자가 미국/한국/스페인 외 추가 지원 국가 조사를 요청 → 공역 데이터가 인증키 없이 공개된 국가(독일/스위스/오스트리아 등)를 조사해 보고, 그중 독일(DIPUL)을 우선 착수하기로 승인받아 진행.
