@@ -1,0 +1,32 @@
+---
+title: "GPS-Jamming und -Spoofing für Drohnenpiloten erklärt"
+description: "Der Unterschied zwischen einem blockierten und einem gefälschten GPS-Signal — und warum beide gleich zu behandeln Ihre Drohne dorthin schicken kann, wo Sie es nie beabsichtigt haben."
+publishedAt: "2026-09-23"
+tags: ["gps", "jamming", "spoofing", "security"]
+category: "space-weather-gps"
+image: "/guides/images/gps-jamming-and-spoofing-explained-for-drone-pilots.webp"
+imageCredit: "Chris Cordes"
+imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Wenn Ihre Drohne in der Nähe eines Flughafens, einer Militäreinrichtung oder eines Stadions bei einer hochsicheren Veranstaltung plötzlich die GPS-Fixierung verliert, vermuten die meisten Piloten einen Satelliten- oder Software-Fehler. Zunehmend ist das nicht der Fall. GPS-Jamming und -Spoofing sind gezielte Störungen, und anders als ein Kp-Index-Ausschlag oder eine Multipath-Reflexion an einem nahen Gebäude richten sie sich absichtlich gegen Ihren Empfänger — das Fehlerbild unterscheidet sich also, und ebenso die richtige Reaktion.
+
+## Jamming verweigert das Signal, Spoofing täuscht es vor
+
+Jamming überflutet das GPS-Frequenzband (rund 1575,42 MHz für zivile L1-Signale) mit Rauschen, das stark genug ist, um das echte Satellitensignal zu übertönen, sodass der Empfänger die Fixierung schlicht verliert — die Drohne erkennt in der Regel, dass sie GPS verloren hat, und wechselt in ihren jeweiligen Rückfallmodus (Attitude-/manueller Modus, oder visuelle Positionierung, falls vorhanden). Spoofing ist gerade deshalb gefährlicher, weil es sich nicht bemerkbar macht: Ein Spoofing-Sender strahlt gefälschte Satellitensignale aus, die gültig aussehen und die berechnete Position des Empfängers schrittweise von der Realität wegführen — oft während die Anzeige der Drohne weiterhin eine starke, gesunde GPS-Fixierung zeigt. Eine Drohne kann um 200-300 Meter von ihrer tatsächlichen Position weg gespooft werden, während der Pilot nichts als eine normal aussehende Signalanzeige sieht — weshalb Spoofing in dokumentierten Fällen in der Nähe von Konfliktgebieten bereits genutzt wurde, um Handelsschiffe und zivile Luftfahrzeuge vom Kurs abzubringen.
+
+## Warum das wie — aber nicht dasselbe wie — ein Kp-Index- oder Multipath-Problem aussieht
+
+Piloten, die gelernt haben, den Kp-Index zu prüfen oder auf Multipath in der Nähe von Glasgebäuden zu achten, führen jede GPS-Unregelmäßigkeit manchmal auf eine dieser beiden Ursachen zurück, doch Jamming und Spoofing verhalten sich auf eine Weise anders, die zu kennen sich lohnt. Weltraumwetterbedingte GPS-Verschlechterung ist breit angelegt und allmählich, korreliert mit einem bestimmten Sturmfenster und betrifft ein weites geografisches Gebiet; Multipath ist an einen bestimmten physischen Ort gebunden, der mit einer reflektierenden Oberfläche verknüpft ist. Jamming und Spoofing hingegen sind meist auf die Reichweite eines bestimmten Senders begrenzt (von wenigen hundert Metern bis zu mehreren Kilometern, je nach Sendeleistung), können abrupt auftreten oder verschwinden, ganz ohne Zusammenhang mit Weltraumwetterdaten, und häufen sich in der Nähe von Orten mit einem offensichtlichen Motiv, GPS zu verweigern — internationale Grenzen, Militärbasen, Gefängnisse und VIP-Sicherheitsbereiche sind die am häufigsten gemeldeten Standorte.
+
+## Der Fehler, den Piloten machen: Instrumenten mehr vertrauen als dem Verhalten
+
+Der häufigste und teuerste Fehler ist, dem angezeigten GPS-Status des Flugcontrollers mehr zu vertrauen, als zu beobachten, wie sich die Drohne tatsächlich verhält. Meldet eine Drohne eine vollständige GPS-Fixierung, driftet aber inkonsistent zu den Steuereingaben, gewinnt im Positionshaltemodus von selbst an Höhe, oder stimmt die angezeigte Position nicht mit dem überein, was Sie mit eigenen Augen sehen, ist diese Diskrepanz ein stärkeres Signal als die Satellitenanzahl auf dem Bildschirm. Ein zweiter häufiger Fehler ist, sich bei vermutetem Spoofing auf die automatische Rückkehr (RTH) als Sicherheitsnetz zu verlassen — RTH berechnet ihren Pfad aus denselben gespooften Positionsdaten und kann die Drohne daher zu einem falschen „Zuhause" statt zum echten Ort fliegen, was die Situation mitunter eher verschlimmert als verbessert.
+
+## Was Sie bei Verdacht auf Jamming oder Spoofing tun sollten
+
+- Fällt die GPS-Fixierung plötzlich aus, ohne dass sich das Signal zuvor allmählich verschlechtert hat, wechseln Sie sofort in den manuellen/Attitude-Modus, statt darauf zu warten, dass der Flugcontroller die Fixierung von selbst wiederherstellt.
+- Achten Sie auf eine Diskrepanz zwischen Sichtverbindung und angezeigter Position — stimmt das, was Sie sehen, nicht mit der Telemetrie überein, vertrauen Sie Ihren Augen und landen Sie manuell, statt sich auf die automatische Rückkehr zu verlassen.
+- Prüfen Sie vor Flügen in der Nähe von Flughäfen, militärischen Einrichtungen, Gefängnissen oder größeren öffentlichen Veranstaltungen auf veröffentlichte Hinweise zu GPS-Störungen (NOTAMs kennzeichnen in den USA häufig bekannte Jamming-Testgebiete oder aktive sicherheitsbezogene Störungen).
+- Falls Ihre Drohne es unterstützt, halten Sie visuelle/optische Positionierung oder eine sekundäre Navigationsquelle als Gegenprobe zu reinen GPS-Positionsdaten aktiviert.
+- Nehmen Sie nicht an, dass ein starkes, stabil wirkendes GPS-Signal Spoofing ausschließt — ein gefälschtes Signal kann stabiler wirken als ein echtes, durch gewöhnliches Rauschen beeinträchtigtes.

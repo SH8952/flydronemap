@@ -1,0 +1,41 @@
+---
+title: "Return-to-Home-Einstellungen erklärt"
+description: "Wie RTH-Höhe, Aufzeichnung des Heimatpunkts und das Verhalten bei niedrigem Akkustand oder Signalverlust tatsächlich funktionieren — und die Standardeinstellungen, die aus einem Sicherheitsnetz einen Absturz machen."
+publishedAt: "2026-09-19"
+tags: ["return-to-home", "rth", "safety", "gps"]
+category: "gear-flight-tips"
+image: "/guides/images/return-to-home-settings-explained.webp"
+imageCredit: "Erik Mclean"
+imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Ein Pilot fliegt niedrig über einen Fluss, um für eine Aufnahme unter einer Brücke hindurchzufliegen, und das Signal fällt für ein paar Sekunden aus. Die Drohne löst automatisch Return-to-Home (RTH) aus und beginnt, auf ihre konfigurierte RTH-Höhe zu steigen — die zufällig niedriger liegt als die Brücke über ihr. RTH ist nicht „die Funktion, die Ihre Drohne zurückbringt"; es ist „die Funktion, die Ihre Drohne genau so zurückbringt, wie Sie sie konfiguriert haben". Diese Lücke steckt hinter einem der häufigsten RTH-bezogenen Zwischenfälle, die Piloten melden, meist weil die Höhe auf der Werkseinstellung belassen wurde.
+
+## Drei Arten, wie RTH tatsächlich auslöst
+
+RTH startet normalerweise auf eine von drei Arten: ein manueller Auslöser, den der Pilot in der App oder an der Fernsteuerung betätigt, ein automatischer Auslöser, wenn der Akkustand einen konfigurierten Schwellenwert erreicht (üblicherweise im Bereich von 20-30 % einstellbar), und ein automatischer Auslöser, nachdem die Verbindung zwischen Fernsteuerung und Fluggerät für eine festgelegte Zeit unterbrochen war. Alle drei sehen nach dem Start identisch aus, sind aber nicht immer gleichermaßen abbrechbar — bei vielen Fluggeräten ist eine durch kritischen Akkustand ausgelöste RTH absichtlich so konzipiert, dass sie Steuereingaben ignoriert, sodass der Pilot sie nicht überschreiben kann. Das ist eine Sicherheitsmaßnahme, die einen Absturz durch Akkuerschöpfung verhindern soll, doch der Moment, in dem ein Pilot merkt, dass die Sticks nicht reagieren, ist zugleich der verwirrendste Moment des Flugs.
+
+## Warum die RTH-Höheneinstellung wichtiger ist, als Piloten annehmen
+
+Die meisten Consumer-Drohnen erlauben eine RTH-Höhe zwischen etwa 20 m und 150 m, und die Werkseinstellung liegt meist bei etwa 30 m. Das Problem: Eine Standardhöhe von 30 m kann niedriger sein als gewöhnliche Hindernisse, in deren Nähe Sie tatsächlich fliegen werden — mittelhohe Gebäude, ausgewachsene Bäume, Hochspannungsmasten, Brückenüberbauten. Die Grundregel lautet, das höchste Hindernis in Ihrem Fluggebiet zu identifizieren und die RTH-Höhe mindestens 10-20 m darüber zu setzen, nicht nur über dem Boden. Viele Fluggeräte steigen zudem zunächst auf die konfigurierte RTH-Höhe, bevor sie horizontal nach Hause fliegen, falls ihre aktuelle Höhe niedriger ist — was bedeutet, dass ein durch plötzlichen Signalverlust unterbrochener Flug in niedriger Höhe einen deutlich steileren, schnelleren Steigflug auslösen kann, als ein Pilot erwartet.
+
+## Die Aufzeichnung des Heimatpunkts hängt von ausreichend erfassten Satelliten ab
+
+Die Koordinate, zu der RTH zurückfliegt — der Heimatpunkt —, wird normalerweise automatisch kurz vor oder nach dem Start aufgezeichnet, sobald das Fluggerät genügend GPS-Satelliten erfasst hat (üblicherweise sechs oder mehr). Ein hastiger Start, während die GPS-Anzeige der App noch instabil ist oder blinkt, kann einen Heimatpunkt aufzeichnen, der vom tatsächlichen Startort um wenige bis zu mehreren Dutzend Metern abweicht. Auf ein stabiles Signal zu warten und die Benachrichtigung „Heimatpunkt aufgezeichnet" vor dem Start zu bestätigen, wirkt wie ein kleiner zusätzlicher Schritt, ist aber das grundlegendste Element, das bestimmt, wie genau RTH tatsächlich ist, wenn sie wirklich auslöst.
+
+## Der häufige Fehler: Start von einer beweglichen Plattform
+
+Der Start von einem Boot, einem fahrenden Fahrzeug oder einem Bootsdeck ist ein besonders riskantes Szenario. Da RTH nur zu den beim Start aufgezeichneten GPS-Koordinaten zurückfliegt, fliegt die Drohne, falls sich das Boot bis zur Auslösung von RTH bewegt hat, zu einer Stelle, die inzwischen offenes Wasser ist, und schwebt dort entweder, bis der Akku leer ist, oder versucht, auf dem Meer zu landen. In solchen Situationen ist es sicherer, sich gar nicht erst auf automatisches RTH zu verlassen und stattdessen eine manuelle Rückkehr und Landung zu planen, oder im Voraus zu prüfen, ob Ihr Fluggerät erlaubt, den Heimatpunkt mitten im Flug neu aufzuzeichnen, falls die Plattform später stillsteht.
+
+## Der Zusammenhang zwischen GPS-Genauigkeit und Weltraumwetter
+
+RTH hängt vollständig von GPS ab. Bei erhöhter geomagnetischer Aktivität — der Art, auf die die Kp-Index-Anzeige dieser Website ausgelegt ist — kann sich die GPS-Positionsgenauigkeit verschlechtern, was sowohl beeinflusst, wie präzise der Heimatpunkt aufgezeichnet wurde, als auch, wie präzise RTH landet, wenn sie auslöst. An Tagen mit erhöhtem Kp-Index oder angezeigter reduzierter GPS-Zuverlässigkeit ist es sicherer, RTH als letztes Mittel statt als primäres Sicherheitsnetz zu behandeln und stattdessen Sichtverbindung sowie einen manuellen Rückkehrplan zu priorisieren.
+
+## Praktische Checkliste
+
+- Identifizieren Sie das höchste Hindernis in Ihrem Fluggebiet und setzen Sie die RTH-Höhe mindestens 10-20 m darüber, nicht nur über dem Boden.
+- Warten Sie vor dem Start auf eine stabile GPS-Fixierung und bestätigen Sie die Benachrichtigung „Heimatpunkt aufgezeichnet".
+- Sind Sie von einem Boot oder einer anderen beweglichen Plattform gestartet, verlassen Sie sich nicht auf automatisches RTH — planen Sie stattdessen eine manuelle Rückkehr und Landung.
+- Wissen Sie im Voraus, dass eine durch kritischen Akkustand ausgelöste RTH möglicherweise nicht abbrechbar ist, und treten Sie den Rückweg deutlich vor Erreichen dieser Schwelle an.
+- Behandeln Sie RTH an Tagen mit hohem Kp-Wert oder geringer GPS-Zuverlässigkeit als Rückfalloption, nicht als Hauptplan — halten Sie Sichtverbindung und einen manuellen Rückkehrplan bereit.
+- Die Informationen dieser Website dienen nur als Referenz zur Flugplanung und ersetzen keine tatsächliche Flugfreigabe — prüfen Sie stets das Handbuch Ihres Fluggeräts und die örtlichen Vorschriften.

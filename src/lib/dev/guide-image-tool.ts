@@ -17,7 +17,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export const GUIDE_LOCALES = ["en", "ja", "ko", "es"] as const;
+export const GUIDE_LOCALES = ["en", "ja", "ko", "es", "de"] as const;
 
 /** 업로드로 직접 첨부하는 것을 허용하는 이미지 확장자 (Unsplash 결과는 항상 webp로 저장됨). */
 export const ALLOWED_UPLOAD_EXTENSIONS = ["webp", "jpg", "jpeg", "png"] as const;

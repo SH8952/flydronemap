@@ -1,0 +1,32 @@
+---
+title: "Die NOAA-Weltraumwetterskalen verstehen: G, S und R erklärt"
+description: "Warum die drei Weltraumwetterskalen der NOAA mehr abdecken als den Kp-Index allein, und welche davon für Ihren nächsten Drohnenflug tatsächlich zählt."
+publishedAt: "2026-09-02"
+tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
+category: "space-weather-gps"
+image: "/guides/images/understanding-noaa-space-weather-scales.webp"
+imageCredit: "NASA"
+imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Wenn Sie vor einem Flug bisher nur den Kp-Index beobachtet haben, verfolgen Sie nur ein Drittel dessen, was das Space Weather Prediction Center der NOAA tatsächlich veröffentlicht. Die NOAA führt drei separate Skalen von 1 bis 5 — G, S und R —, und ein ruhiger Kp-Wert bedeutet nicht, dass auch alle drei ruhig sind.
+
+## Die drei Skalen decken unterschiedliche Physik ab
+
+Die G-Skala (geomagnetische Stürme) ist diejenige, die die meisten Drohnen-Wetter-Tools bereits anzeigen, weil sie direkt auf den Kp-Index abbildet: G1 entspricht Kp 5, G2 entspricht Kp 6, und so weiter bis G5 bei Kp 9. Die S-Skala (Sonnenstrahlungsstürme) misst den Fluss hochenergetischer Protonen, die die Erde erreichen, bewertet von S1 bis S5, und ist vor allem für Satellitenbetreiber und Polar-Kurzwellenfunk relevant, weniger für die GPS-Genauigkeit, die den meisten Piloten wichtig ist. Die R-Skala (Funkausfälle) wird von solaren Röntgeneruptionen angetrieben und nach der Röntgenklasse der Eruption bewertet — eine M1-Eruption entspricht R1, eine X1-Eruption entspricht R3, und so weiter —, und ist die Skala, die Piloten am ehesten überrascht.
+
+## Warum die R-Skala Piloten überrascht, die nur Kp beobachten
+
+Eine X-Klasse-Sonneneruption kann innerhalb von Minuten ein R-Skala-Funkausfallereignis auslösen, lange bevor irgendeine geomagnetische Störung im Kp-Index sichtbar wird, weil die Röntgenstrahlen der Eruption die sonnenbeschienene Seite der Ionosphäre nahezu augenblicklich treffen, während der zugehörige koronale Massenauswurf — der letztlich den Kp-Wert steigen lässt — einen Tag oder länger brauchen kann, um überhaupt anzukommen, sofern er das tut. Während eines Ereignisses der Stärke R2 oder höher können GPS-Empfänger auf der Taghalbkugel einen echten Genauigkeitseinbruch durch erhöhte ionosphärische Störung erleben, während der Kp-Index weiterhin einen ruhigen Wert von 2 oder 3 anzeigt. Ein Pilot, der vor dem Start nur Kp prüft, kann direkt daran vorbeigehen.
+
+## Ein häufiger Fehler: „keine Polarlicht-Vorhersage" mit „kein Weltraumwetterrisiko" gleichzusetzen
+
+Polarlicht-Jäger beobachten die G-Skala, weil das die Zahl ist, die mit sichtbarer Polarlicht-Aktivität verknüpft ist, und viele Drohnenpiloten haben dieselbe Gewohnheit gewissermaßen übernommen — Kp prüfen, sehen, dass er niedrig ist, und annehmen, der Himmel sei frei von jedem Weltraumwettereffekt. Doch ein R-Skala-Ereignis braucht keinen hohen Kp-Wert, um aufzutreten, und kann die GPS-Positionierung für das konkrete Zeitfenster, in dem es aktiv ist, verschlechtern — typischerweise Minuten bis wenige Stunden, je nach Dauer und Abklingen der Eruption.
+
+## Praktische Checkliste
+
+- Behandeln Sie G, S und R als drei unabhängige Zahlen, nicht als einen kombinierten Wert — ein ruhiger Kp-Wert garantiert keine ruhige R-Skala.
+- Prüfen Sie vor einem präzisionskritischen Flug (Vermessung, Inspektion, Langstrecke) den aktuellen 3-Tage-Weltraumwetter-Ausblick der NOAA, nicht nur den Kp-Index allein.
+- Wirkt die GPS-Genauigkeit ungewöhnlich schlecht oder meldet Ihre Drohne mehr verlorene Satelliten als üblich bei ansonsten klaren Bedingungen, prüfen Sie ein aktives R-Skala-Ereignis als mögliche Ursache.
+- Denken Sie daran, dass R-Skala-Effekte auf der sonnenbeschienenen Seite der Erde am stärksten wirken und abklingen, sobald der Röntgenfluss der auslösenden Eruption nachlässt — abzuwarten ist oft die einfachste Lösung.
+- Warten Sie nicht auf ein sichtbares Polarlicht oder einen hohen Kp-Wert als einzigen Auslöser, um vor einem kritischen Flug das Weltraumwetter erneut zu prüfen.

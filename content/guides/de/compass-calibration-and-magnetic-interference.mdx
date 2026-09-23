@@ -1,0 +1,36 @@
+---
+title: "Kompasskalibrierung und magnetische Störungen"
+description: "Warum der Kompass Ihrer Drohne in der Nähe von Baustahl und geparkten Autos abdriftet, wie Sie hart-magnetische Störungen von einem geomagnetischen Sturm unterscheiden, und wie Sie korrekt kalibrieren."
+publishedAt: "2026-09-05"
+tags: ["compass", "calibration", "magnetic-interference", "gps"]
+category: "space-weather-gps"
+image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
+imageCredit: "Mick Haupt"
+imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Wenn Ihre Drohne direkt nach einer scheinbar problemlosen Kalibrierung schon einmal in einer trägen, unbefohlenen Spirale gestartet ist — dem sogenannten „Toilettenschüssel-Effekt" —, liegt die Ursache fast immer am Ort der Kalibrierung, nicht am Kalibrierverfahren selbst. Fehlgeschlagene Kompasskalibrierungen und magnetische Störungen gehören zu den häufigsten Flugzwischenfällen, die Piloten fälschlich einem Firmware-Fehler oder einer schlechten GPS-Fixierung zuschreiben, obwohl das eigentliche Problem ein durch etwas Metallisches wenige Meter entfernt verzerrtes Magnetfeld ist.
+
+## Warum der Kompass überhaupt kalibriert werden muss
+
+Der eingebaute Kompass (Magnetometer) einer Drohne misst Richtung und Stärke des lokalen Magnetfelds, um die Ausrichtung zu bestimmen, und seine Messwerte driften bei jedem Ortswechsel oder nach monatelanger Lagerung leicht ab, weil sich die eigenen Motoren, Kabel und der Akku des Fluggeräts im Laufe der Zeit sehr leicht magnetisieren und den Nullpunkt des Sensors verschieben. Die Kalibrierung bringt dem Flugcontroller bei, genau diesen fluggerätspezifischen Versatz wieder herauszurechnen. Das unterscheidet sich von der magnetischen Deklination — der je nach Ort unterschiedlichen Abweichung von mehreren Grad zwischen geografisch Nord und magnetisch Nord —, die der Flugcontroller automatisch anhand seiner GPS-Position korrigiert und die keine Neukalibrierung erfordert.
+
+## Hart-magnetische Störungen: meist ist der Kalibrierort das Problem
+
+Hart-magnetische Störungen stammen von einer festen, nahegelegenen Magnetquelle — Baustahl unter einem Betonparkplatz oder Gehweg, Stahl-Kanaldeckel, das Chassis eines geparkten Autos oder sogar große Gürtelschnallen und Handys in der Tasche des Piloten während der Kalibrierroutine. Stahlbetonflächen sind ein häufiger Übeltäter, da sie wie ein perfekt offener, flacher Startplatz aussehen, während sie etwa 5-10 cm unter der Oberfläche ein dichtes Stahlgitter tragen. Ein Magnetometer, das 1-2 Meter über Baustahl oder einer Autostoßstange kalibriert wird, backt diese lokale Verzerrung direkt in seinen gespeicherten Versatz ein, und die Drohne fliegt anschließend mit einem Ausrichtungsfehler, der je nach Nähe und Stärke der Störquelle von wenigen Grad bis über 30 Grad reichen kann. Die sicherste Praxis ist es, mindestens 5-6 Meter von jedem Fahrzeug, Metallzaun oder Kanaldeckel entfernt zu kalibrieren, und auf Erde oder Asphalt statt direkt über einer stahlbewehrten Platte.
+
+## Wie Sie Störungen von einem geomagnetischen Sturm unterscheiden
+
+Sowohl ein schlecht kalibrierter Kompass als auch ein starker geomagnetischer Sturm können Ausrichtungsdrift und instabile Positionshaltung verursachen, und Piloten, die über Kp-Index-Effekte auf GPS gelesen haben, schreiben das Problem manchmal der falschen Ursache zu. Das unterscheidende Signal ist die eigene Kompass-vs-GPS-Abweichungswarnung des Flugcontrollers, die bei lokaler Störung an einem bestimmten Ort unabhängig vom aktuellen Kp-Wert auslöst und sich bei jedem Flug von genau diesem Ort wiederholt. Ein geomagnetischer Sturm erzeugt dagegen eine langsamere, ortsunabhängige Gierdrift, die in einem weiten Gebiet nur auftritt, während der Kp-Index tatsächlich erhöht ist. Erscheint eine Warnung „Kompassfehler, bitte neu kalibrieren" an derselben Startstelle an einem ruhigen Tag mit Kp 2, liegt die Ursache in lokaler hart-magnetischer Störung, nicht im Weltraumwetter.
+
+## Häufige Fehler bei der Kalibrierung
+
+Der häufigste Fehler ist, die Achter- oder Rotationskalibrierung genau an dem Ort durchzuführen, an dem Sie später starten wollen — das backt die Störung dieses Ortes direkt in den Versatz ein, selbst wenn sich der Ort „sauber" anfühlte. Ein zweiter häufiger Fehler ist die Kalibrierung mit einem Handy, Tablet oder einer Fernsteuerung mit Metallgehäuse nahe am Fluggerät, da Unterhaltungselektronik kleine Magnete und Lautsprecher mit eigenem lokalen Feld mitbringt. Piloten ignorieren zudem häufig eine Bildschirmwarnung „Kompassstörung" und starten trotzdem, in der Annahme, sie werde sich in der Luft von selbst lösen — meist tut sie das nicht, und der Flug endet stattdessen in instabilem Schweben oder der Toilettenschüssel-Spirale.
+
+## Praktische Checkliste
+
+- Kalibrieren Sie mindestens 5-6 Meter von geparkten Fahrzeugen, Metallzäunen, Kanaldeckeln und stahlbewehrtem Beton oder Platten entfernt.
+- Halten Sie Handys, Tablets und Metallgegenstände während der Kalibrierroutine selbst von Körper und Fluggerät fern.
+- Kalibrieren Sie neu, wenn Sie mehr als etwa 30-50 km vom letzten Kalibrierort entfernt sind oder nach langer Lagerung.
+- Wiederholt sich eine Kompassfehler- oder Ausrichtungs-Abweichungswarnung genau am selben Ort, behandeln Sie das als lokale Störung und verlegen Sie den Startplatz, nicht die Kalibriermethode.
+- Gehen Sie nicht davon aus, dass ein ruhiger Kp-Index Kompassprobleme ausschließt — hart-magnetische Störung ist ein lokaler, physischer Effekt, der nichts mit Weltraumwetter zu tun hat.

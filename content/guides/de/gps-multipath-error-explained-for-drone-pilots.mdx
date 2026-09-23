@@ -1,0 +1,32 @@
+---
+title: "GPS-Multipath-Fehler für Drohnenpiloten erklärt"
+description: "Warum das GPS Ihrer Drohne in der Nähe von Gebäuden und Wasser auch bei ruhigem Kp-Index driften kann, und wie Sie Multipath-Fehler von Weltraumwetter unterscheiden."
+publishedAt: "2026-09-03"
+tags: ["gps", "multipath", "urban-flight", "accuracy"]
+category: "space-weather-gps"
+image: "/guides/images/gps-multipath-error-explained-for-drone-pilots.webp"
+imageCredit: "david henrichs"
+imageCreditUrl: "https://unsplash.com/@davidhenrichs?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Wenn Ihre Drohne beim Schweben neben einem gläsernen Bürohochhaus oder über einem ruhigen See schon einmal seitlich abgedriftet ist — bei sauberer Satellitenfixierung und ruhigem Kp-Index —, lag die Ursache wahrscheinlich gar nicht beim Weltraumwetter. Es war ein Multipath-Fehler, eines der häufigsten GPS-Probleme, die Piloten falsch diagnostizieren, weil die Symptome identisch zu ionosphärischer Störung aussehen.
+
+## Was ein Multipath-Fehler tatsächlich ist
+
+Ein GPS-Signal legt seinen Weg vom Satelliten zum Empfänger normalerweise geradlinig zurück, doch reflektierende Oberflächen — Glasfassaden, Wasser, nasser Belag, Metalldächer, sogar die Windschutzscheibe eines geparkten Autos — werfen eine Kopie desselben Signals auf einem längeren, indirekten Weg zurück. Der Empfänger Ihrer Drohne kann das direkte Signal am Ende mit einer oder mehreren verzögerten Reflexionen mitteln, und weil der reflektierte Weg länger ist, verschiebt sich die berechnete Position in Richtung der reflektierenden Fläche. Eine Consumer-Drohne mit Einzelfrequenz-L1-GPS-Empfänger hält im offenen Himmel typischerweise eine Genauigkeit von 3-5 Metern, doch neben einer reflektierenden Gebäudefassade kann dieser Fehler auf 10-15 Meter oder mehr steigen — während die Satellitenanzahl auf dem Bildschirm weiterhin „gut" anzeigt.
+
+## Warum es leicht mit einem Weltraumwetterproblem verwechselt wird
+
+Sowohl ein Multipath-Fehler als auch ionosphärische Störung durch einen geomagnetischen Sturm erzeugen dasselbe sichtbare Symptom — eine Drohne, die die Position nicht sauber hält —, weshalb Piloten, die über Kp-Index-Effekte gelesen haben, manchmal die falsche Ursache verantwortlich machen. Das unterscheidende Merkmal ist Ort und Wiederholbarkeit: ionosphärisch bedingte Drift betrifft ein weites Gebiet und korreliert mit einem bestimmten Zeitfenster während eines Sturms, während ein Multipath-Fehler an einen festen Ort gebunden ist und ebenso leicht an klaren, geomagnetisch ruhigen Tagen auftritt. Driftet Ihre Drohne bei jedem Flug an genau derselben Ecke eines Parkhauses, unabhängig vom Kp-Wert des Tages, ist das Multipath, kein Weltraumwetter.
+
+## Der Fehler, den die meisten Piloten machen
+
+Der häufigste Fehler ist, direkt neben der reflektierenden Fläche selbst zu starten — etwa von einem Dach-Hubschrauberlandeplatz mit Glasgeländer oder von einem Steg am Rand offenen Wassers —, denn genau dort erzeugt die Geometrie die stärksten Reflexionen im Verhältnis zum direkten Signal. Ein zweiter häufiger Fehler ist, der Positionshaltung in „Häuserschlucht"-Bedingungen zu vertrauen, also beim Fliegen zwischen zwei hohen Gebäuden, wo Signale von beiden Fassaden reflektiert und teilweise auch blockiert werden können, was die Satellitengeometrie verschlechtert (eine breitere Streuung sichtbarer Satelliten), auf die die GPS-Genauigkeit angewiesen ist. Piloten, die Vermessungs- oder Inspektionsmissionen in der Nähe reflektierender Strukturen fliegen, ohne auf Multipath zu prüfen, enden häufig mit sichtbar verzerrten Orthomosaiken oder Inspektionsspuren, die zwischen den Durchgängen nicht zueinander passen.
+
+## Wie Sie Multipath-Fehler in der Praxis reduzieren
+
+- Starten und landen Sie, wo es der Ort erlaubt, auf offenem Grund mindestens einige Meter von Glas, Wasser oder großen Metallflächen entfernt.
+- Unterstützt Ihre Drohne RTK oder ein Mehrband-GPS-Modul (L1/L5), nutzen Sie es in reflektierender Umgebung — die zusätzliche Frequenz und Korrekturdaten machen es deutlich widerstandsfähiger gegen Multipath als ein Einzelfrequenz-Empfänger.
+- Behandeln Sie eine plötzliche Positionsdrift, die nur an einer bestimmten Stelle auftritt, als starkes Multipath-Signal, besonders wenn Satellitenanzahl und HDOP-/Genauigkeitsanzeige weiterhin normal aussehen.
+- Prüfen Sie bei Vermessungs- oder Inspektionsarbeiten in der Nähe von Wasser, Glas oder metallverkleideten Gebäuden einige Bildüberlappungen manuell nach, statt dem zusammengesetzten Ergebnis blind zu vertrauen.
+- Gehen Sie nicht davon aus, dass ein ruhiger Kp-Index GPS-Probleme ausschließt — Multipath ist ein lokaler, physischer Effekt, der nichts mit Weltraumwetter zu tun hat.

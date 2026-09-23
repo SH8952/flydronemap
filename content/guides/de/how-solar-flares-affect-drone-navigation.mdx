@@ -1,0 +1,32 @@
+---
+title: "Wie Sonneneruptionen die Drohnennavigation beeinflussen"
+description: "Warum eine starke Sonneneruption das GPS Ihrer Drohne innerhalb von Minuten verschlechtern kann, selbst wenn der Kp-Index ruhig bleibt, und wie Sie sie von einem geomagnetischen Sturm unterscheiden."
+publishedAt: "2026-09-04"
+tags: ["solar-flare", "gps", "space-weather", "navigation"]
+category: "space-weather-gps"
+image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
+imageCredit: "Ivana Cajina"
+imageCreditUrl: "https://unsplash.com/@von_co?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Stellen Sie sich einen Präzisions-Vermessungsflug vor, bei dem die GPS-Positionshaltung für etwa zwanzig Minuten nachlässt, während die Kp-Index-Anzeige weiterhin einen ruhigen Wert von 2 zeigt. Prüfen Sie den Röntgenfluss der NOAA, finden Sie wahrscheinlich eine X-Klasse-Sonneneruption, die zehn Minuten zuvor ihren Höhepunkt erreichte. Das ist eine plötzliche ionosphärische Störung, die direkt durch die Eruption ausgelöst wird — nicht der langsamere geomagnetische Sturm, auf den die meisten Drohnen-Wetter-Tools ausgelegt sind.
+
+## Wie eine Eruption die GPS-Genauigkeit tatsächlich verschlechtert
+
+Eine Sonneneruption ist ein Ausbruch von Röntgen- und extremer UV-Strahlung von der Sonnenoberfläche, und weil sie sich mit Lichtgeschwindigkeit ausbreitet, erreicht sie die Erde in etwa acht Minuten — verglichen mit dem Tag oder mehr, den ein koronaler Massenauswurf (CME) benötigt. Trifft diese Strahlung auf die sonnenbeschienene Seite der Ionosphäre der Erde, erhöht sie plötzlich die Elektronendichte in der D- und F-Schicht, verändert den Brechungsindex, den das GPS-Signal durchqueren muss, und wirft die Pseudorange-Berechnung durcheinander, auf die Ihr Empfänger angewiesen ist. Das nennt sich Sudden Ionospheric Disturbance (SID) und betrifft nur die Taghalbkugel. Während einer starken X-Klasse-Eruption kann der GPS-Entfernungsfehler innerhalb von Minuten von wenigen Metern auf über zehn Meter springen und sich typischerweise über Dutzende von Minuten bis wenige Stunden wieder beruhigen, während der Röntgenfluss abklingt.
+
+## Warum das Timing völlig anders ist als bei einem geomagnetischen Sturm
+
+Die geomagnetischen Stürme, die den Kp-Index steigen lassen, benötigen geladene Teilchen eines koronalen Massenauswurfs, die tatsächlich die Magnetosphäre der Erde erreichen müssen, und weil diese Teilchen mit Sonnenwindgeschwindigkeit unterwegs sind, dauert das meist ein bis drei Tage nach der Eruption. Die Röntgenstrahlen der Eruption treffen in acht Minuten ein. Diese Lücke bedeutet, dass ein ruhiger Kp-Index nichts darüber aussagt, was in der letzten Stunde passiert ist — das verletzlichste Zeitfenster liegt oft in den Dutzenden Minuten direkt nach einer starken Eruption, während der Kp-Wert noch niedrig anzeigt. Die NOAA erfasst dies separat als R-Skala (Radio Blackout).
+
+## Der Fehler, den Piloten am häufigsten machen
+
+Der häufigste Fehler ist, eine Kp-Prüfung als vollständiges Weltraumwetter-Briefing zu behandeln, was eruptionsbedingte GPS-Störungen vollständig übersieht. Bei RTK-korrigierten Vermessungsflügen wird es noch schlimmer: Basisstation und Drohne befinden sich gleichzeitig unter derselben gestörten Ionosphäre, sodass der Korrekturdatenstrom selbst verzögert eintreffen oder ausfallen kann — Piloten verbringen dann häufig Zeit mit der Fehlersuche an der Funkverbindung der Basisstation, während die eigentliche Ursache weiter oben in der Ionosphäre liegt. Eruptionen sind zudem praktisch nicht vorhersagbar — es gibt keine verlässliche Warnung wie „eine X-Klasse-Eruption trifft in drei Stunden ein" —, und der Effekt zeigt sich innerhalb von Minuten nach dem Ereignis, weshalb eine sinnvolle Vorflugprüfung bedeutet, den Live-Röntgenfluss der GOES-Satelliten der NOAA zu beobachten, nicht eine Vorhersage.
+
+## Praktische Checkliste
+
+- Prüfen Sie vor einem Präzisionsflug den Live-GOES-Röntgenfluss und den aktuellen R-Skala-Status des NOAA SWPC, nicht nur den Kp-Index.
+- Werden GPS- oder RTK-Korrekturen während einer Zentimeter-genauen Mission plötzlich instabil, schließen Sie zuerst eine kürzliche X-Klasse-Eruption aus, bevor Sie die Funkverbindung verantwortlich machen.
+- Halten Sie sich für die Dutzenden Minuten bis wenigen Stunden nach Meldung eines Ereignisses der Stärke R2 oder höher mit Präzisionsarbeiten zurück — die meisten Störungen klingen von selbst ab, sobald der Fluss nachlässt.
+- Denken Sie daran, dass nur Flüge auf der Tagseite betroffen sind, sodass sich derselbe Tag je nach Uhrzeit von Eruption zu Eruption sehr unterschiedlich darstellen kann.
+- Lesen Sie einen ruhigen Kp-Index nicht als „Weltraumwetter ist klar" — Eruptionen und geomagnetische Stürme laufen nach völlig unterschiedlichen Zeitplänen ab.
