@@ -401,8 +401,8 @@
     "category": "space-weather-gps",
     "titleKo": "오로라 시즌, 고위도 지역 드론 항법 이상 현상",
     "titleEn": "Aurora Season and High-Latitude Drone Navigation Anomalies",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-24"
   },
   {
     "order": 46,

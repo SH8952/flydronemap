@@ -1,0 +1,34 @@
+---
+title: "Aurora Season and High-Latitude Drone Navigation Anomalies"
+description: "Why GPS and compass behavior gets shakier the further north (or south) you fly, and what changes once the aurora is actually overhead."
+publishedAt: "2026-09-24"
+tags: ["aurora", "high-latitude", "gps", "compass"]
+category: "space-weather-gps"
+image: "/guides/images/aurora-season-and-high-latitude-drone-navigation-anomalies.webp"
+imageCredit: "Christian Cueni"
+imageCreditUrl: "https://unsplash.com/@chrigu?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+A clear aurora night is a rare chance to shoot something most pilots never get on camera — but it's also exactly when GPS and compass behavior are least trustworthy. The mid-latitude habit of "check the Kp index once before takeoff" only covers half the problem once you're flying at high latitude.
+
+## Why navigation errors cluster at high latitude
+
+The auroral oval is drawn around geomagnetic latitude, not geographic latitude, and it expands toward the equator as a storm intensifies. But the ionosphere under that oval is already structurally messier than the mid-latitude ionosphere on a quiet day — polar cap patches, localized pockets of sharply different electron density, show up there even with no storm running, so scintillation (rapid signal fading) is inherently more common at the same Kp value than it would be further south. Once Kp actually climbs, the storm's disturbance layers on top of that baseline instability instead of simply adding to it, so GPS error tends to compound rather than sum.
+
+## The compass is unsteady up there even without a storm
+
+A drone's magnetometer reads heading off the horizontal component of Earth's magnetic field, and that horizontal component physically weakens the closer you get to the magnetic pole. Around geomagnetic latitude 70°, compass error margins run wider than at mid-latitude even on a magnetically quiet day, and a storm on top of that compounds the problem. Pilots shooting aurora above roughly 65°N during a Kp 6+ night, for instance, report GPS-mode position slowly drifting with no stick input, or a Return-to-Home path that plots toward somewhere other than the actual takeoff point.
+
+## Mistakes pilots commonly make
+
+- Getting absorbed in the shot and trusting a Kp reading checked earlier in the day without rechecking overnight — the same geomagnetic storm that lights up the sky can swing Kp from 3 to 6 or 7 within a few hours.
+- Not knowing high latitude means the compass is relatively unstable even on an ordinary day, and mistaking that baseline drift for a hardware fault or firmware bug.
+- Treating RTH as an unconditional safety net even while GPS and compass data are already off — RTH's path is calculated from that same drifted position and heading data, so it can underperform exactly when you need it most.
+
+## Pre-flight checklist
+
+- If aurora activity is expected overnight, recheck the Kp index right before you fly — a reading from a few hours earlier may already be stale.
+- Above roughly geomagnetic latitude 60°, plan for lower altitude and a tighter radius than you would at mid-latitude.
+- If the on-screen GPS position and what you're actually seeing don't match, be ready to switch to manual/attitude mode immediately.
+- Don't rely on RTH alone — keep the aircraft within visual line of sight and have a manual landing path worked out in advance.
+- If your aircraft supports it, enable vision-based or other non-GPS positioning aids before takeoff.
