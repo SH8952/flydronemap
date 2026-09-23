@@ -2,26 +2,32 @@
  * 독일 좌표에 대한 DIPUL 지리적 구역(비행제한구역/관제구역 등) 지점별 조회 —
  * 서버(Vercel 함수)에서 DIPUL 공식 GeoServer WMS의 GetFeatureInfo를 호출한다.
  *
- * 대한민국(/api/airspace-lookup, VWorld WMS 경유) 라우트와 동일한 "WMS
- * GetFeatureInfo로 지점 조회" 구조를 그대로 따른다 — DIPUL도 표준 OGC WMS이고
- * (VWorld와 달리) 공식 문서상 인증키/등록이 전혀 필요 없다고 명시돼 있어
- * 한국처럼 서버 IP 차단을 우회할 필요 자체가 없을 것으로 예상된다.
+ * **2026-09-22 실측으로 확정된 사양**: 처음에는 한국(VWorld)과 동일하게
+ * `INFO_FORMAT=application/json`으로 구현했으나, 실제 사용자 테스트(로컬
+ * 개발 서버, 베를린 브란덴부르크 공항 인근 클릭)에서 상세 정보가 전혀
+ * 표시되지 않는 문제가 보고됨. Claude in Chrome으로 이 GeoServer에 직접
+ * 여러 INFO_FORMAT 값을 실측 조회한 결과, 이 서버는 관리자가
+ * `application/json`과 `application/vnd.ogc.gml`(GML) 둘 다 명시적으로
+ * 금지해 두었음을 확인(`ServiceException code="ForbiddenFormat"`) —
+ * **`text/plain`만 허용**된다. text/plain 응답은 GML/JSON과 달리 실제
+ * 폴리곤 좌표(geometry)는 포함하지 않고 "geom = [GEOMETRY (Polygon) with
+ * N points]" 같은 요약 문자열만 주지만, 대신 라벨 정보는 한국/스페인보다
+ * 오히려 더 풍부하고 구조화되어 있다(`name`/`generated_name_EN`/
+ * `legal_ref`/`type_code_detail`/`lower_limit_altitude` 등 고정 키=값
+ * 형식, 실측 확인). 이런 이유로 이 라우트는 지도에 그릴 경계(boundary)는
+ * 제공하지 못하지만(다른 나라와 다른 부분 — 지도 위 WMS 타일 자체에는
+ * 이미 구역이 시각적으로 표시되므로 실사용에 지장은 없음), 클릭 시
+ * "공역 정보" 카드에 표시되는 텍스트 상세는 오히려 가장 정확하다.
  *
- * **중요(2026-09-22, 미검증 부분)**: 클라우드 세션의 아웃바운드 네트워크
- * 정책(독일 정부 도메인 차단) + WebFetch의 robots.txt 준수 정책 두 가지
- * 모두에 막혀, 이 라우트를 작성하는 시점에는 실제 좌표로 GetFeatureInfo
- * 응답을 사전 실측하지 못했다. 아래 구현은 (1) 공식 문서가 명시한 OGC WMS
- * 1.3.0 표준 동작, (2) GeoServer(DIPUL의 실제 서버 소프트웨어로 확인됨)의
- * 표준 GetFeatureInfo `INFO_FORMAT=application/json` 응답이 대한민국
- * 라우트가 실측 검증한 VWorld 응답과 구조적으로 동일한 GeoJSON
- * FeatureCollection(feature.id="레이어명.번호", properties, geometry)이라는
- * 점에 근거해 작성했다. 실제 속성 필드명(독일어 키)은 알 수 없어 한국
- * 라우트의 "usable string 값을 범용으로 추출" 폴백 로직을 그대로 사용한다.
- * **배포 후 반드시 Vercel 실서버에서 실제 좌표(예: 프랑크푸르트 공항 인근)로
- * 최종 검증이 필요하다** — 카테고리명(레이어 nameKo/라벨)은 카탈로그
- * (de-airspace-layers.ts)의 고정값을 쓰므로 속성 추출이 실패해도 "이 위치는
- * XX구역입니다"라는 최소한의 정확한 정보는 항상 보장된다(한국/스페인과
- * 동일한 안전 원칙).
+ * 응답 형식(text/plain, 실측 확인):
+ *   "Results for FeatureType 'de.dfs.dipul:kontrollzonen':\n"
+ *   "--------------------------------------------\n"
+ *   "key = value\n" (여러 줄)
+ *   "--------------------------------------------\n"
+ *   (매칭된 레이어마다 반복, 매칭이 없으면 전체가 "no features were found")
+ * FeatureType 식별자는 "de.dfs.dipul:<레이어명>" 형태(네임스페이스가
+ * "dipul"이 아니라 "de.dfs.dipul") — 마지막 콜론 뒤 부분만 취해 카탈로그의
+ * wmsName과 대조한다.
  */
 import { NextRequest, NextResponse } from "next/server";
 import {
@@ -36,9 +42,7 @@ const LOOKUP_SIZE_PX = 256;
 const MAX_LABELS_PER_ZONE = 4;
 const FEATURE_COUNT = 50;
 
-// wmsName(소문자, 네임스페이스 제외) → 카탈로그 항목. GeoServer GetFeatureInfo
-// JSON 응답의 feature.id는 보통 "레이어명.번호"(네임스페이스 접두사 없음)
-// 형태이므로, 한국 라우트와 동일하게 이 값으로 되돌린다.
+// wmsName(소문자, 네임스페이스 제외) → 카탈로그 항목.
 const LAYER_BY_WMS_NAME = new Map(
   DE_AIRSPACE_LAYERS.map((layer) => [layer.wmsName.toLowerCase(), layer] as const),
 );
@@ -53,58 +57,72 @@ function layerPriority(layerId: string): number {
   return PRIORITY_ORDER.length + (catalogIdx === -1 ? 999 : catalogIdx);
 }
 
-type GeoJsonFeature = {
-  id?: string;
-  properties?: Record<string, unknown>;
-  geometry?: {
-    type?: string;
-    coordinates?: number[][][] | number[][][][];
-  };
+/** "Results for FeatureType '...':" 블록 하나. */
+type DeFeatureBlock = {
+  /** "de.dfs.dipul:kontrollzonen" 전체 문자열. */
+  featureType: string;
+  properties: Record<string, string>;
 };
 
-function toBoundary(geom?: GeoJsonFeature["geometry"]): LatLngRing[][] | undefined {
-  if (!geom?.coordinates) return undefined;
-  // 표준 GeoJSON은 CRS와 무관하게 항상 [lon, lat] 순서를 쓴다 — Leaflet은
-  // [lat, lon]을 기대하므로 여기서 뒤집는다(한국 라우트와 동일).
-  const toLatLngRing = (ring: number[][]): LatLngRing =>
-    ring.map(([lon, lat]) => [lat, lon] as [number, number]);
+/** GeoServer text/plain GetFeatureInfo 응답을 블록 단위로 파싱한다. 실측
+ * 확인된 구분자("Results for FeatureType '<id>':" + 대시 구분선 + key = value
+ * 줄들)를 그대로 따른다. 매칭이 없으면(정확히 "no features were found")
+ * 빈 배열을 반환한다. */
+function parseTextPlain(body: string): DeFeatureBlock[] {
+  const blocks: DeFeatureBlock[] = [];
+  const parts = body.split(/Results for FeatureType '([^']+)':/g);
+  // split with a capturing group returns [preamble, id1, body1, id2, body2, ...]
+  for (let i = 1; i < parts.length; i += 2) {
+    const featureType = parts[i]?.trim();
+    const blockBody = parts[i + 1] ?? "";
+    if (!featureType) continue;
 
-  if (geom.type === "MultiPolygon") {
-    return (geom.coordinates as number[][][][]).map((polygon) =>
-      polygon.map(toLatLngRing),
-    );
+    const properties: Record<string, string> = {};
+    for (const line of blockBody.split("\n")) {
+      const trimmed = line.trim();
+      if (!trimmed || /^-+$/.test(trimmed)) continue;
+      const eq = trimmed.indexOf(" = ");
+      if (eq === -1) continue;
+      const key = trimmed.slice(0, eq).trim();
+      const value = trimmed.slice(eq + 3).trim();
+      if (key === "geom") continue; // 좌표 없이 요약 문자열만 있어 쓸모없음
+      properties[key] = value;
+    }
+    blocks.push({ featureType, properties });
   }
-  if (geom.type === "Polygon") {
-    return [(geom.coordinates as number[][][]).map(toLatLngRing)];
-  }
-  return undefined;
+  return blocks;
 }
 
-/** 속성 객체에서 "사람이 읽을 만한 라벨"로 보이는 값을 범용으로 뽑아낸다.
- * 독일 레이어의 실제 필드명을 사전에 확인하지 못했으므로(위 파일 상단 주석
- * 참고), 한국 라우트와 동일하게 이름/라벨류 필드를 우선하고, 없으면
- * 숫자가 아닌 문자열 값을 대신 채택한다. 어느 쪽도 못 찾아도 호출부는
- * 카탈로그의 고정 레이어명만으로 정상 표시된다. */
-function extractLabels(properties: Record<string, unknown>): string[] {
-  const isUsableString = (v: unknown): v is string =>
-    typeof v === "string" && v.trim().length >= 2 && !/^\d+$/.test(v.trim());
+function isUsable(v: string | undefined): v is string {
+  return typeof v === "string" && v.trim().length > 0;
+}
 
-  const LABEL_KEY_HINTS = ["name", "bezeichnung", "bez", "art", "beschreibung", "lbl"];
-  const entries = Object.entries(properties);
-  const labeled = entries
-    .filter(
-      ([key, v]) =>
-        LABEL_KEY_HINTS.some((hint) => key.toLowerCase().includes(hint)) &&
-        isUsableString(v),
-    )
-    .map(([, v]) => (v as string).trim());
+/** 고도 범위를 "0m AGL - 2500ft MSL" 형태로 합성한다(실측된 필드명 기준). */
+function altitudeLabel(p: Record<string, string>): string | undefined {
+  const lower = p.lower_limit_altitude;
+  const upper = p.upper_limit_altitude;
+  if (!isUsable(lower) && !isUsable(upper)) return undefined;
+  const lowerStr = isUsable(lower)
+    ? `${lower}${p.lower_limit_unit ?? ""} ${p.lower_limit_alt_ref ?? ""}`.trim()
+    : "?";
+  const upperStr = isUsable(upper)
+    ? `${upper}${p.upper_limit_unit ?? ""} ${p.upper_limit_alt_ref ?? ""}`.trim()
+    : "?";
+  return `${lowerStr} - ${upperStr}`;
+}
 
-  const source =
-    labeled.length > 0
-      ? labeled
-      : entries.filter(([, v]) => isUsableString(v)).map(([, v]) => (v as string).trim());
-
-  return Array.from(new Set(source)).slice(0, MAX_LABELS_PER_ZONE);
+/** 실측으로 확인된 필드명(generated_name_EN/name/legal_ref/type_code_detail)
+ * 우선순위로 최대 4개의 라벨을 뽑는다. 못 찾아도 호출부는 카탈로그의
+ * 고정 레이어명만으로 정상 표시된다(한국/스페인과 동일한 안전 원칙). */
+function extractLabels(p: Record<string, string>): string[] {
+  const labels: string[] = [];
+  const name = p.generated_name_EN ?? p.name ?? p.generated_name_DE;
+  if (isUsable(name)) labels.push(name);
+  const altitude = altitudeLabel(p);
+  if (altitude) labels.push(altitude);
+  if (isUsable(p.legal_ref)) labels.push(p.legal_ref);
+  if (isUsable(p.type_code_detail)) labels.push(p.type_code_detail);
+  return Array.from(new Set(labels)).slice(0, MAX_LABELS_PER_ZONE);
 }
 
 export type DeAirspaceLookupMatch = {
@@ -139,7 +157,9 @@ export async function GET(request: NextRequest) {
   url.searchParams.set("QUERY_LAYERS", qualifiedLayers);
   url.searchParams.set("STYLES", "");
   url.searchParams.set("FORMAT", "image/png");
-  url.searchParams.set("INFO_FORMAT", "application/json");
+  // 2026-09-22 실측 확정: 이 서버는 application/json·GML을 명시적으로
+  // 금지하고 text/plain만 허용한다(위 파일 상단 주석 참고).
+  url.searchParams.set("INFO_FORMAT", "text/plain");
   url.searchParams.set("TRANSPARENT", "true");
   url.searchParams.set("CRS", "EPSG:4326");
   url.searchParams.set("FEATURE_COUNT", String(FEATURE_COUNT));
@@ -159,16 +179,24 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "lookup failed" }, { status: 502 });
     }
 
-    const data = (await res.json()) as { features?: GeoJsonFeature[] };
-    const features = data.features ?? [];
+    const body = await res.text();
+    // 서버가 오류를 HTTP 200 + ServiceExceptionReport(XML) 본문으로 내려줄
+    // 때가 있다(실측 확인, 예: 잘못된 INFO_FORMAT) — 이 경우도 "빈 결과"가
+    // 아니라 명백한 실패로 취급한다(한국/스페인 라우트와 동일 원칙).
+    if (body.includes("ServiceExceptionReport")) {
+      console.error("de-airspace-lookup failed: ServiceExceptionReport", body.slice(0, 500));
+      return NextResponse.json({ error: "lookup failed" }, { status: 502 });
+    }
+
+    const blocks = parseTextPlain(body);
 
     const byLayer = new Map<string, DeAirspaceLookupMatch>();
-    for (const feature of features) {
-      const prefix = feature.id?.split(".")[0]?.toLowerCase();
-      const layer = prefix ? LAYER_BY_WMS_NAME.get(prefix) : undefined;
+    for (const block of blocks) {
+      const wmsName = block.featureType.split(":").pop()?.toLowerCase();
+      const layer = wmsName ? LAYER_BY_WMS_NAME.get(wmsName) : undefined;
       if (!layer) continue;
 
-      const labels = extractLabels(feature.properties ?? {});
+      const labels = extractLabels(block.properties);
       const existing = byLayer.get(layer.id);
       if (existing) {
         existing.labels = Array.from(new Set([...existing.labels, ...labels])).slice(
@@ -176,11 +204,7 @@ export async function GET(request: NextRequest) {
           MAX_LABELS_PER_ZONE,
         );
       } else {
-        byLayer.set(layer.id, {
-          layerId: layer.id,
-          labels,
-          boundary: toBoundary(feature.geometry),
-        });
+        byLayer.set(layer.id, { layerId: layer.id, labels });
       }
     }
 

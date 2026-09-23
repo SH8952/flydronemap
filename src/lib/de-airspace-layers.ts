@@ -18,6 +18,19 @@
  * 응답 스키마(속성 필드명 등)는 배포 후 실서버(Vercel)에서 최종 검증이
  * 필요하다 — /api/de-airspace-lookup/route.ts 상단 주석 참고.
  *
+ * **수정(2026-09-23, 실사용 버그 수정)**: 사용자가 로컬에서 지도의 비행제한
+ * 구역을 클릭했을 때 "공역 정보" 카드에 상세 내용이 전혀 뜨지 않는 문제를
+ * 보고. Claude in Chrome으로 이 GeoServer의 GetCapabilities를 직접 조회해
+ * 실제 존재하는 레이어명 전체와 이 카탈로그를 대조한 결과, `verfassungsorgane`
+ * 와 `oberste_behoerden`(변수명 `obersteBehoerden`) 두 레이어가 서버에
+ * 존재하지 않는 것으로 확인됨(`ServiceException code="LayerNotDefined"`).
+ * GetFeatureInfo는 LAYERS 파라미터에 포함된 모든 레이어를 한 번에 검증하므로,
+ * 존재하지 않는 레이어 하나만 있어도 요청 전체가 실패해 필수 레이어
+ * (flugbeschraenkungsgebiete/kontrollzonen 포함)까지 응답을 받지 못했음 —
+ * 이것이 실제 버그의 원인이었다. 두 항목은 지도 타일 오버레이(GetMap)로도
+ * 애초에 동작하지 않았을 것이므로(같은 레이어명을 재사용) 카탈로그에서
+ * 제거했다 — 기능 축소가 아니라 원래도 죽어 있던 항목 제거.
+ *
  * 레이어 네임스페이스는 `dipul:<레이어명>`이며, 이 카탈로그의 `wmsName`
  * 필드에는 네임스페이스 없이 레이어명만 저장한다(호출부에서 필요 시
  * `dipul:` 접두사를 붙인다) — 한국(AIRSPACE_LAYERS)·스페인
@@ -61,8 +74,6 @@ export type DeAirspaceLayerId =
   | "justizvollzugsanstalten"
   | "militaerischeAnlagen"
   | "labore"
-  | "verfassungsorgane"
-  | "obersteBehoerden"
   | "diplomatischeVertretungen"
   | "internationaleOrganisationen"
   | "polizei"
@@ -106,8 +117,6 @@ export const DE_AIRSPACE_LAYERS: DeAirspaceLayerDef[] = [
   { id: "justizvollzugsanstalten", wmsName: "justizvollzugsanstalten", color: "#7c3aed", required: false },
   { id: "militaerischeAnlagen", wmsName: "militaerische_anlagen", color: "#6d28d9", required: false },
   { id: "labore", wmsName: "labore", color: "#9333ea", required: false },
-  { id: "verfassungsorgane", wmsName: "verfassungsorgane", color: "#a855f7", required: false },
-  { id: "obersteBehoerden", wmsName: "oberste_behoerden", color: "#c026d3", required: false },
   { id: "diplomatischeVertretungen", wmsName: "diplomatische_vertretungen", color: "#db2777", required: false },
   { id: "internationaleOrganisationen", wmsName: "internationale_organisationen", color: "#e11d48", required: false },
   { id: "polizei", wmsName: "polizei", color: "#4338ca", required: false },
