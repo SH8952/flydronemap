@@ -56,10 +56,18 @@ function isRelevantProduct(product: AliexpressProduct, blockedIds: Set<string>):
 }
 
 // UI locale -> AliExpress target_currency / target_language.
+// 2026-09-27: added `ko` so this route can also serve as a temporary
+// fallback for the Korean-locale page when Coupang is unavailable (rate
+// limit hard cap, outage, etc.) — see src/components/coupang-gear-cards.tsx.
+// AliExpress's Open API genuinely supports target_language=KO /
+// target_currency=KRW; there was never an API-level restriction here, only
+// a missing mapping entry (Korean visitors always resolved to "coupang" in
+// src/lib/affiliate.ts, so this route was never called for ko before).
 const LOCALE_TO_ALIEXPRESS: Record<string, { currency: string; language: string }> = {
   en: { currency: "USD", language: "EN" },
   ja: { currency: "JPY", language: "JA" },
   es: { currency: "EUR", language: "ES" },
+  ko: { currency: "KRW", language: "KO" },
 };
 const DEFAULT_ALIEXPRESS_LOCALE = { currency: "USD", language: "EN" };
 

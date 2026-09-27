@@ -42,6 +42,71 @@ export type AliexpressProduct = {
 export class AliexpressConfigError extends Error {}
 export class AliexpressApiError extends Error {}
 
+// ---------------------------------------------------------------------------
+// Real (Redis-backed) result cache.
+//
+// 2026-09-27: added alongside the ExifLens<->FlyDroneMap AliExpress-as-
+// Coupang-fallback feature (see /api/coupang/search route's caller,
+// src/components/coupang-gear-cards.tsx). Before this change,
+// searchAliexpressProducts() relied only on Next.js's
+// `fetch(..., { next: { revalidate: 21600 } })` cache — the exact same
+// "cached for 6 hours" assumption that turned out to be false in
+// production for src/lib/coupang.ts (see that file's history and
+// CHANGELOG 2026-09-27) and nearly got the Coupang Partners account
+// suspended. AliExpress does not publish as tight a per-account limit as
+// Coupang's 10/hour, but adding a new call path (the Korean-locale
+// fallback) that leans on the same unverified caching assumption would be
+// repeating a known mistake rather than learning from it. This module now
+// caches successful results in the shared Upstash Redis instance (same one
+// src/lib/visitor-counter.ts and src/lib/coupang.ts use) with an explicit
+// TTL, and short-circuits with a cached empty result for a cooldown period
+// after any API error, exactly mirroring src/lib/coupang.ts's approach.
+// ---------------------------------------------------------------------------
+
+const KV_URL = process.env.KV_REST_API_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+
+const PROJECT = "flydronemap";
+const CACHE_PREFIX = `${PROJECT}:aliexpress:search:v1:`;
+const CACHE_TTL_SECONDS = 60 * 60 * 6; // 6 hours
+const ERROR_COOLDOWN_SECONDS = 60 * 15; // 15 minutes — circuit breaker after any API error
+
+async function getCachedProducts(cacheKey: string): Promise<AliexpressProduct[] | null> {
+  if (!KV_URL || !KV_TOKEN) return null;
+  try {
+    const res = await fetch(`${KV_URL}/get/${encodeURIComponent(cacheKey)}`, {
+      headers: { Authorization: `Bearer ${KV_TOKEN}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { result: string | null };
+    if (!data.result) return null;
+    return JSON.parse(data.result) as AliexpressProduct[];
+  } catch {
+    return null;
+  }
+}
+
+async function setCachedProducts(
+  cacheKey: string,
+  products: AliexpressProduct[],
+  ttlSeconds: number,
+): Promise<void> {
+  if (!KV_URL || !KV_TOKEN) return;
+  try {
+    const value = encodeURIComponent(JSON.stringify(products));
+    await fetch(
+      `${KV_URL}/set/${encodeURIComponent(cacheKey)}/${value}/EX/${ttlSeconds}`,
+      {
+        headers: { Authorization: `Bearer ${KV_TOKEN}` },
+        cache: "no-store",
+      },
+    );
+  } catch {
+    // Best-effort — a cache-write failure shouldn't break the response.
+  }
+}
+
 /**
  * "yyyy-MM-dd HH:mm:ss" in Shanghai time (UTC+8), computed by shifting the
  * clock rather than relying on Intl/timeZone (matches the confirmed-working
@@ -88,15 +153,22 @@ type ProductQueryOptions = {
 
 /**
  * Searches AliExpress products by keyword via aliexpress.affiliate.product.query.
- * No documented per-account rate limit as tight as Coupang's, but callers
- * should still rely on the /api/aliexpress/search route's caching rather
- * than calling this per-request/per-user.
+ * No documented per-account rate limit as tight as Coupang's, but results
+ * are still cached in Redis (see above) for CACHE_TTL_SECONDS so this isn't
+ * called per-request/per-user, and any API error is cached as an empty
+ * result for ERROR_COOLDOWN_SECONDS as a circuit breaker.
  */
 export async function searchAliexpressProducts(
   keyword: string,
   limit: number,
   { targetCurrency, targetLanguage }: ProductQueryOptions,
 ): Promise<AliexpressProduct[]> {
+  const clampedLimit = Math.min(Math.max(limit, 1), 50);
+  const cacheKey = `${CACHE_PREFIX}${keyword}:${clampedLimit}:${targetCurrency}:${targetLanguage}`;
+
+  const cached = await getCachedProducts(cacheKey);
+  if (cached) return cached;
+
   const { appKey, appSecret, trackingId } = getCredentials();
 
   // Deliberately the same param set (names, order of construction, and
@@ -111,7 +183,7 @@ export async function searchAliexpressProducts(
     format: "json",
     v: "2.0",
     keywords: keyword,
-    page_size: String(Math.min(Math.max(limit, 1), 50)),
+    page_size: String(clampedLimit),
     target_currency: targetCurrency,
     target_language: targetLanguage,
   };
@@ -126,18 +198,28 @@ export async function searchAliexpressProducts(
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded;charset=utf-8" },
     body,
-    next: { revalidate: 21600 },
+    cache: "no-store",
   });
 
   if (!response.ok) {
     const text = await response.text().catch(() => "");
+    await setCachedProducts(cacheKey, [], ERROR_COOLDOWN_SECONDS);
     throw new AliexpressApiError(
       `AliExpress API responded with ${response.status}: ${text.slice(0, 300)}`,
     );
   }
 
   const json = (await response.json()) as Record<string, unknown>;
-  return parseProductQueryResponse(json);
+  let products: AliexpressProduct[];
+  try {
+    products = parseProductQueryResponse(json);
+  } catch (e) {
+    await setCachedProducts(cacheKey, [], ERROR_COOLDOWN_SECONDS);
+    throw e;
+  }
+
+  await setCachedProducts(cacheKey, products, CACHE_TTL_SECONDS);
+  return products;
 }
 
 function parseProductQueryResponse(json: Record<string, unknown>): AliexpressProduct[] {

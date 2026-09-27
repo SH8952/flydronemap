@@ -4,6 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import type { CoupangProduct } from "@/lib/coupang";
+import { AliexpressGearCards } from "@/components/aliexpress-gear-cards";
 
 // ExifLens 원본은 ND 필터 계산기의 filterId 값을 검색어 대신 사용했지만
 // FlyDroneMap에는 대응되는 상태가 없어 그 로직을 제거하고 단순히 마운트
@@ -74,8 +75,15 @@ export function CoupangGearCards({
     );
   }
 
+  // 2026-09-27: 쿠팡 결과가 비어있거나(일시적 API 오류 등) 실패하면,
+  // 빈 화면 대신 알리익스프레스 상품으로 임시 대체 표시한다(사용자
+  // 요청, ExifLens와 동시 적용). 쿠팡이 정상화되면 다음 새로고침부터
+  // 자연스럽게 다시 쿠팡으로 돌아간다 — 이 컴포넌트는 쿠팡 provider일
+  // 때만 렌더링되므로(GearRecommendation 참고) 항상 한국어 로케일
+  // 컨텍스트이고, AliexpressGearCards는 useLocale()로 스스로 "ko"를
+  // 감지해 KRW/한국어 상품을 보여준다.
   if (state.status === "empty" || state.status === "error") {
-    return <p className="text-sm text-muted-foreground">{t("gearSectionHint")}</p>;
+    return <AliexpressGearCards />;
   }
 
   return (
