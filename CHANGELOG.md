@@ -1,3 +1,26 @@
+## 2026-09-27 — 쿠팡 검색 API 시간당 호출한도 초과 문제 수정 (긴급, ExifLens와 동시 적용)
+
+**배경**
+- ExifLens(exifnd.com)에서 "쿠팡광고가 안 보인다"는 문의를 계기로 Vercel 운영 로그를 확인한 결과, 쿠팡 파트너스 Open API의 시간당 10회 호출 한도를 이미 2회 초과했고, 3회째 초과 시 파트너스 이용이 제한되는 상황임을 발견.
+- 원인 조사 중 `.env.local`을 비교해보니 flydronemap이 exiflens와 동일한 `COUPANG_ACCESS_KEY`를 쓰고 있음을 확인 — 즉 시간당 10회 한도가 두 사이트가 나눠 쓰는 공동 한도였고, flydronemap의 트래픽도 이 한도 초과에 함께 기여하고 있었음. 계정 자체가 제한될 위험이 있는 긴급 사안으로 판단해 exiflens와 동일한 수정을 flydronemap에도 함께 적용함(사용자 승인 받음, 두 프로젝트 동시 진행).
+- flydronemap 쪽 코드에는 이미 2026-09-24에 로컬 개발 중 같은 문제를 겪고 `COUPANG_API_DISABLED` 환경변수로 임시 차단해둔 이력이 있었으나(주석 참고), 이는 로컬 전용 임시방편이었고 운영 환경의 근본 원인(캐싱이 실제로 동작하지 않음)은 해결되지 않은 상태였음.
+
+**변경 내용**
+- `src/lib/coupang.ts`의 `searchCoupangProducts()`에 Upstash Redis(방문자 카운터가 이미 쓰고 있는 것과 동일한 공유 KV 인스턴스) 기반의 실제 캐시를 추가. 키워드+limit 조합마다 캐시 키(`flydronemap:coupang:search:v1:...`)를 만들어 성공한 결과를 6시간 TTL로 저장.
+- 캐시 키에 `flydronemap:` 접두사를 붙여 exiflens의 캐시와 절대 겹치지 않도록 분리 — `productUrl`에 사이트별 `subId`가 태그되어 있어, 캐시를 공유하면 제휴 커미션 귀속이 틀어질 수 있기 때문.
+- API 에러(한도 초과 포함) 시 빈 결과를 15분 TTL로 캐시하는 회로차단기 추가 — 한도 초과 중에도 같은 키워드가 반복 호출되지 않도록 함.
+- 기존 Next.js fetch 레벨 캐싱(next.revalidate 옵션)을 신뢰할 수 없다고 보고 제거, cache: "no-store"로 명시. `getCredentials()` 안에 있던 `COUPANG_API_DISABLED` 체크는 exiflens와 동일하게 `isCoupangApiTemporarilyDisabled()` 별도 함수로 분리해 두 프로젝트의 구조를 통일함.
+
+**검증**
+- `npx tsc --noEmit`, `npx eslint src/lib/coupang.ts`, `npm run build` 통과.
+- 캐시 read/write 로직 자체는 exiflens와 동일한 코드 패턴이며, 실제 네트워크 라운드트립은 이 세션의 샌드박스에서 Upstash 호스트 접속이 방화벽에 막혀 직접 검증하지 못함 — exiflens 쪽 CHANGELOG(같은 날짜)에 상세 기록. 프로덕션에서 이미 검증된 `src/lib/visitor-counter.ts`와 동일한 Upstash REST 호출 패턴을 따름.
+- 계정이 이미 한도 초과 상태라 실제 쿠팡 API를 이 검증 과정에서 추가로 호출하지 않음.
+
+**다음 단계**
+- 배포 후 Vercel 운영 로그에서 한도 초과 에러 재발 여부, Upstash에 `flydronemap:coupang:search:v1:*` 캐시 키 적재 여부, 사이트에서 쿠팡 상품 카드 정상 노출 여부를 확인.
+
+---
+
 ## 2026-09-23 — 로컬 dev 서버 포트 3020으로 고정 (3개 프로젝트 공통 포트 충돌 방지)
 
 - 배경: 바로 위 "사이트 전체 점검" 항목에서 실제로 겪은 것처럼, exiflens/flydronemap/firelic 3개 형제 프로젝트가 모두 `next dev` 기본 포트(3000)를 그대로 사용해 동시에 여러 프로젝트의 dev 서버를 띄우면 나중에 실행한 쪽이 자동으로 3001/3002 등으로 밀려나 "어느 터미널이 어느 프로젝트인지" 혼동되는 문제가 반복됨. "💼 프로젝트 공통 작업" 대화방에서 3개 프로젝트에 동일 패턴으로 일괄 적용.
