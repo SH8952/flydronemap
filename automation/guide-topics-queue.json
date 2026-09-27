@@ -410,8 +410,8 @@
     "category": "gear-flight-tips",
     "titleKo": "드론 보험, 꼭 필요할까? 가입 전 체크리스트",
     "titleEn": "Do You Need Drone Insurance? A Checklist Before You Buy",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-25"
   },
   {
     "order": 47,
@@ -419,8 +419,8 @@
     "category": "gear-flight-tips",
     "titleKo": "FPV 드론과 일반 카메라 드론의 차이",
     "titleEn": "FPV Drone vs Camera Drone: Key Differences",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-26"
   },
   {
     "order": 48,
@@ -428,8 +428,8 @@
     "category": "gear-flight-tips",
     "titleKo": "드론 짐벌 관리와 청소 방법",
     "titleEn": "Drone Gimbal Maintenance and Cleaning Guide",
-    "published": false,
-    "publishedDate": null
+    "published": true,
+    "publishedDate": "2026-09-27"
   },
   {
     "order": 49,
