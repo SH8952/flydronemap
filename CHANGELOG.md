@@ -1,3 +1,25 @@
+## 2026-09-27 — 쿠팡 검색 API 시간당 호출 하드캡 추가 (ExifLens와 동시 적용, 2회 초과 재발 방지 강화)
+
+**배경**
+- 앞선 항목("쿠팡 검색 API 시간당 호출한도 초과 문제 수정, ExifLens와 동시 적용")에서 Redis 기반 결과 캐싱을 도입했으나, 사용자가 "이미 2회 초과된 상황이라 절대 재발해서는 안 된다"고 강하게 요청. 결과 캐싱만으로는 Upstash 응답 실패/지연 시 안전하게 `null`을 반환하고 실제 API로 폴백하도록 되어 있어(정상 상황에서는 합리적인 폴백이지만), 이론상 "캐시 미스처럼 보이는 예외 상황"에서는 여전히 실제 호출이 발생할 수 있는 구조였음.
+- 이 계정(ExifLens와 `COUPANG_ACCESS_KEY` 공유)은 이미 시간당 10회 한도를 2회 초과한 상태였고, 3회째 초과 시 파트너스 이용 자체가 제한되므로, "정상 상황을 가정한 완화책" 수준을 넘어 "물리적으로 호출 자체를 막는" 하드캡이 필요하다고 판단.
+
+**변경 사항**
+- `src/lib/coupang.ts`에 시간당 호출 횟수를 세는 공유 카운터(Upstash Redis `INCR`, 키: `coupang-shared:calls:v1:<UTC 시간버킷>`)를 추가.
+- 결과 캐시가 미스인 경우, 실제 쿠팡 API를 호출하기 직전에 이 카운터를 증가시키고, 값이 안전 마진(`HOURLY_SAFETY_LIMIT = 7`, 실제 한도 10 대비 여유분 확보)을 넘으면 실제 API를 호출하지 않고 즉시 빈 결과를 반환 + 15분간 캐싱(circuit breaker와 동일한 쿨다운 재사용).
+- 이 카운터 키는 프로젝트 접두사 없이(`PROJECT` 접두사 미적용) ExifLens/FlyDroneMap이 완전히 동일한 키를 공유하도록 설계 — 두 사이트가 같은 `COUPANG_ACCESS_KEY`를 쓰기 때문에, 쿠팡 쪽에서 보는 실제 시간당 호출 총량 기준으로 하드캡이 작동해야 의미가 있음.
+- 동일한 수정을 ExifLens의 `src/lib/coupang.ts`에도 함께 적용(사용자 승인 하에 두 프로젝트 동시 진행).
+
+**검증**
+- `npx tsc --noEmit`, `npx eslint src/lib/coupang.ts` 모두 통과.
+- `npm run build` 정상 완료.
+- 로컬 `npm run dev` + `curl http://localhost:3020/api/coupang/search` 확인 — `.env.local`의 `COUPANG_API_DISABLED=true`로 인해 이번에도 하드캡 로직 이전 단계에서 단락(short-circuit)되어 `{"products":[]}` 응답, 런타임 에러 없이 정상 동작 확인.
+- 정직하게 밝히는 한계: 이 세션(클라우드 샌드박스)은 조직 네트워크 정책상 Upstash(`*.upstash.io`) 직접 접속이 차단되어 있어, `INCR`/`EXPIRE` 호출이 실제 Upstash 인스턴스에서 정상 동작하는지는 이 환경에서 직접 검증하지 못함. 다만 이미 프로덕션에서 검증된 `visitor-counter.ts`와 동일한 Upstash REST 호출 패턴(`GET`, `SET .../EX/`)을 그대로 따르고 있고, 이번에 추가한 `INCR`/`EXPIRE` 역시 Upstash REST API의 표준 명령 경로 형식(`{KV_URL}/incr/{key}`, `{KV_URL}/expire/{key}/{seconds}`)을 사용함.
+
+**다음 단계**
+- 배포 후 Vercel 런타임 로그(`get_runtime_errors`/`get_runtime_logs`)에서 "hourly call safety limit reached" 관련 로그가 나타나는지, 그리고 기존의 쿠팡 자체 rate-limit 초과 에러가 더 이상 발생하지 않는지 1~2주 모니터링.
+- Upstash 대시보드에서 `coupang-shared:calls:v1:*` 키가 매 시간 새로 생성/만료되는지 확인.
+
 ## 2026-09-27 — 쿠팡 검색 API 시간당 호출한도 초과 문제 수정 (긴급, ExifLens와 동시 적용)
 
 **배경**
