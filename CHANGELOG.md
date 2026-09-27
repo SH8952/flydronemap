@@ -1,3 +1,24 @@
+## 2026-09-27 — 홈페이지 "가이드 살펴보기" 확장(3→6, 무작위) + "자주 묻는 질문" 하이라이트 섹션 신설 (ExifLens 적용분 축소 이식)
+
+**배경**
+- ExifLens(exifnd.com)에서 같은 날 먼저 적용된 두 가지 홈페이지 개선(가이드 하이라이트 확장, FAQ 하이라이트 신설)을 프로젝트 문서 `claude/guide-highlights-and-faq-highlights-rollout-guide.md`로 인수인계받아, FlyDroneMap 구조에 맞게 축소 이식.
+- 목적은 동일: 애드센스 재심사 대응 과정에서 확인된 "홈페이지 자체의 크롤링 가능한 텍스트/링크 풍부화" — 이미 존재하는 가이드/FAQ 콘텐츠를 홈페이지에서 더 잘 보이게 만드는 것.
+
+**가이드 살펴보기 확장 (`src/components/home-guide-highlights.tsx`)**
+- 기존에는 `getAllGuidesMeta(locale).slice(0, 3)`로 항상 고정된 첫 3개만 노출 — ExifLens와 달리 무작위 셔플 로직 자체가 없었음.
+- Fisher-Yates 기반 `pickRandomGuides<T>()` 헬퍼를 신규 추가하고 `pickRandomGuides(getAllGuidesMeta(locale as Locale), 6)`로 교체 — 방문할 때마다 다른 가이드 6개가 무작위로 노출됨(사용자 선택: 고정 6개가 아닌 무작위 6개).
+
+**FAQ 하이라이트 섹션 신설 (`src/components/home-faq-highlights.tsx`, 신규 파일)**
+- ExifLens는 홈 공통 FAQ + 도구별 FAQ(`tools-roster.ts`)를 합쳐서 5개를 뽑지만, FlyDroneMap에는 도구별 FAQ 개념 자체가 없어(`tools-roster.ts` 미존재) `collectToolFaqs()` 부분은 이식하지 않고, 단일 소스인 `Home.faq`(5개 언어 모두 정확히 6개 항목 확인됨)에서 무작위 4개만 뽑는 축소 버전으로 구현(사용자 선택).
+- 화면에 실제로 보이는 4개에 대해서만 `FAQPage` JSON-LD를 별도 생성(전체 6개 풀이 아님 — 실제 렌더링된 내용만 구조화 데이터로 표시해야 한다는 원칙 준수).
+- `src/app/[locale]/page.tsx`의 `<HomeGuideHighlights />` 바로 아래에 `<HomeFaqHighlights />` 배치.
+- 번역 키 `faqHighlightsTitle`/`faqHighlightsSubtitle`/`faqHighlightsCta`를 5개 언어(en/es/ja/ko/de) `messages/*.json`에 `guideHighlightsCta` 바로 뒤에 추가(기존 `faqTitle`과는 별도 키, 충돌 없음).
+
+**검증**
+- `npx tsc --noEmit` 오류 0건, `npx eslint`(변경/신규 파일) 경고·오류 0건.
+- `npm run build`(Turbopack) 328/328 라우트 정상 생성 확인(알리익스프레스 SSR fetch 실패 로그는 이 브릿지 환경의 기존 네트워크 제약으로 인한 것이며 빌드 자체는 실패하지 않음 — 기존에도 알려진 무해한 현상).
+- 이 브릿지 환경에서는 `next dev` 같은 상시 리스닝 프로세스를 백그라운드로 띄우는 시도가 반복적으로 즉시 종료되어(exit 143, 출력 없음) 로컬 실행 화면 검증은 이번에도 불가능 — 대신 `.next/server` 빌드 결과물에 신규 컴포넌트(`pickRandomFaqs`)와 신규 번역 키(`faqHighlightsTitle`)가 정상적으로 포함되어 있음을 확인해 빌드 누락이 없음을 교차검증. 실제 화면 확인은 사용자가 로컬 `npm run dev`로 직접 확인 필요.
+
 ## 2026-09-27 — 쿠팡 API 장애 시 알리익스프레스 임시 대체 노출 기능 추가 (ExifLens와 동시 적용)
 
 **배경**

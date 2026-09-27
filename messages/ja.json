@@ -127,6 +127,9 @@
     "guideHighlightsTitle": "ガイドを見る",
     "guideHighlightsSubtitle": "飛行の安全性、天候判断、ドローン規制に関する実践ガイドをご覧ください。",
     "guideHighlightsCta": "すべてのガイドを見る →",
+    "faqHighlightsTitle": "よくある質問",
+    "faqHighlightsSubtitle": "データの出典やKP指数、使い方についてよくある質問にお答えします。",
+    "faqHighlightsCta": "すべての質問を見る →",
     "faqTitle": "よくある質問",
     "faq": [
       {

@@ -127,6 +127,9 @@
     "guideHighlightsTitle": "Explore the Guides",
     "guideHighlightsSubtitle": "Practical guides on flight safety, weather judgment, and drone regulations.",
     "guideHighlightsCta": "Browse all guides →",
+    "faqHighlightsTitle": "Frequently Asked Questions",
+    "faqHighlightsSubtitle": "Quick answers about our data sources, the Kp index, and how to use FlyDroneMap.",
+    "faqHighlightsCta": "See all FAQs →",
     "faqTitle": "Frequently Asked Questions",
     "faq": [
       {

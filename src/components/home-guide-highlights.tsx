@@ -4,19 +4,32 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getAllGuidesMeta } from "@/lib/guides";
 
+function pickRandomGuides<T>(items: T[], count: number): T[] {
+  const pool = [...items];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, count);
+}
+
 /**
- * Homepage "가이드 하이라이트" card section — surfaces a few guide articles
- * (title + excerpt + cover image) directly on the homepage with a deep link
- * into `/guides/[slug]`, and a link to the full `/guides` index.
+ * Homepage "가이드 하이라이트" card section — surfaces a random selection of
+ * guide articles (title + excerpt + cover image) directly on the homepage
+ * with a deep link into `/guides/[slug]`, and a link to the full `/guides`
+ * index. The 6 guides shown are reshuffled on every request (Fisher-Yates),
+ * so repeat visitors see a different subset over time.
  *
  * Added for AdSense re-review: the review bot evaluates the homepage's own
  * crawlable text/link richness, and previously nothing on the homepage
- * pointed at the long-form guide content that already exists.
+ * pointed at the long-form guide content that already exists. Expanded
+ * from a fixed 3 to a random 6 on 2026-09-27, matching the same change
+ * shipped on ExifLens.
  */
 export async function HomeGuideHighlights({ locale }: { locale: string }) {
   const t = await getTranslations("Home");
   const tGuides = await getTranslations("Guides");
-  const guides = getAllGuidesMeta(locale as Locale).slice(0, 3);
+  const guides = pickRandomGuides(getAllGuidesMeta(locale as Locale), 6);
 
   if (guides.length === 0) return null;
 
