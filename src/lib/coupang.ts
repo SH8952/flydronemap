@@ -8,8 +8,9 @@ import crypto from "node:crypto";
  * from a Client Component — it is only ever called from the
  * /api/coupang/search route handler, which runs on the server.
  *
- * Ported as-is from ExifLens's already-verified implementation
- * (2026-09-06 FlyDroneMap gear recommendation handoff, section 4.3).
+ * Ported as-is from ExifLens's implementation (2026-09-06 FlyDroneMap gear
+ * recommendation handoff, section 4.3), then updated together with it on
+ * 2026-09-27 to add the Redis-backed cache described below.
  */
 
 const API_BASE = "https://api-gateway.coupang.com";
@@ -27,6 +28,101 @@ export type CoupangProduct = {
 
 export class CoupangConfigError extends Error {}
 export class CoupangApiError extends Error {}
+
+/**
+ * Temporary kill-switch for outbound Coupang API calls, independent of
+ * whether credentials are configured. When COUPANG_API_DISABLED="true",
+ * searchCoupangProducts() short-circuits before making any network
+ * request, the same way a missing-credentials config error does (the
+ * route handler already treats CoupangConfigError as "hide the section
+ * quietly", so no extra handling is needed at the call site).
+ *
+ * Use this to pause calls while the account's hourly rate limit
+ * (10 requests/hour) is being shared across multiple dev sites being
+ * tested at the same time. Remove the env var (or set it to anything
+ * other than "true") in .env.local to resume.
+ */
+function isCoupangApiTemporarilyDisabled(): boolean {
+  return process.env.COUPANG_API_DISABLED === "true";
+}
+
+// ---------------------------------------------------------------------------
+// Real (Redis-backed) result cache.
+//
+// 2026-09-27: the comment that used to live here claimed Next.js's
+// `fetch(..., { next: { revalidate } })` cache made every keyword "cached
+// for 6 hours, so repeat visits cost no extra API calls" — that turned out
+// to be false in production (confirmed on ExifLens's Vercel runtime logs:
+// the same rate-limit error was recurring on nearly every single request
+// within a 15-minute window). Every page view was making 10 fresh outbound
+// calls to Coupang (5 row-1 keywords + 5 accessory keywords), which blows
+// through the 10-requests/hour account limit almost immediately — and this
+// account's 10 req/hour limit is *shared* with ExifLens (same
+// COUPANG_ACCESS_KEY), so the real combined budget is even tighter. Coupang
+// had already flagged the account for exceeding the limit twice; a third
+// strike gets Partners access restricted, so this needed a real fix, not
+// just a bigger `revalidate` number or the local-only COUPANG_API_DISABLED
+// workaround this file used to rely on for dev-time testing.
+//
+// This now caches successful results in the shared Upstash Redis instance
+// (same one src/lib/visitor-counter.ts uses) with an explicit TTL, keyed
+// per project (so ExifLens and FlyDroneMap never share or overwrite each
+// other's cached productUrl — those URLs are tagged with a project-specific
+// subId, so mixing them would misattribute affiliate credit). This works
+// regardless of serverless cold starts or however Next.js's own fetch cache
+// behaves, because it's a real read/write to a persistent store instead of
+// an in-process/framework-level cache.
+//
+// On any API error (including a rate-limit rejection), a short-lived empty
+// result is cached too, so a failing keyword doesn't get hit again on every
+// subsequent request for the next 15 minutes — this is the circuit breaker
+// that actually stops the hammering once the account is already over
+// budget for the hour, instead of retrying forever.
+// ---------------------------------------------------------------------------
+
+const KV_URL = process.env.KV_REST_API_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+
+const PROJECT = "flydronemap";
+const CACHE_PREFIX = `${PROJECT}:coupang:search:v1:`;
+const CACHE_TTL_SECONDS = 60 * 60 * 6; // 6 hours — matches the old (broken) fetch-cache intent
+const ERROR_COOLDOWN_SECONDS = 60 * 15; // 15 minutes — circuit breaker after any API error
+
+async function getCachedProducts(cacheKey: string): Promise<CoupangProduct[] | null> {
+  if (!KV_URL || !KV_TOKEN) return null;
+  try {
+    const res = await fetch(`${KV_URL}/get/${encodeURIComponent(cacheKey)}`, {
+      headers: { Authorization: `Bearer ${KV_TOKEN}` },
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { result: string | null };
+    if (!data.result) return null;
+    return JSON.parse(data.result) as CoupangProduct[];
+  } catch {
+    return null;
+  }
+}
+
+async function setCachedProducts(
+  cacheKey: string,
+  products: CoupangProduct[],
+  ttlSeconds: number,
+): Promise<void> {
+  if (!KV_URL || !KV_TOKEN) return;
+  try {
+    const value = encodeURIComponent(JSON.stringify(products));
+    await fetch(
+      `${KV_URL}/set/${encodeURIComponent(cacheKey)}/${value}/EX/${ttlSeconds}`,
+      {
+        headers: { Authorization: `Bearer ${KV_TOKEN}` },
+        cache: "no-store",
+      },
+    );
+  } catch {
+    // Best-effort — a cache-write failure shouldn't break the response.
+  }
+}
 
 /** yyMMdd'T'HHmmss'Z' in UTC, as required by Coupang's CEA signature scheme. */
 function signedDate(now: Date): string {
@@ -58,20 +154,6 @@ function buildAuthorizationHeader(
 }
 
 function getCredentials() {
-  // 2026-09-24: 로컬 개발 중 쿠팡 파트너스 Open API 시간당 호출 한도(10회)를
-  // 반복 초과해(dev 서버 재시작마다 캐시가 초기화되며 /api/coupang/search 1회
-  // 호출이 키워드 10개를 한 번에 조회하는 구조라 재시작 몇 번 만에 한도 소진)
-  // "3회 초과 시 파트너스 이용 제한" 경고가 발생, 계정 제재 위험을 피하기
-  // 위해 임시로 COUPANG_API_DISABLED 환경변수로 호출 자체를 차단할 수 있게
-  // 함. CoupangConfigError를 던지면 기존 호출부(gear-recommendation-ssr.ts,
-  // /api/coupang/search/route.ts)가 이미 "자격 증명 미설정" 상황과 동일하게
-  // 조용히 빈 배열/폴백으로 처리하도록 되어 있어 다른 코드 변경이 전혀
-  // 필요 없음. .env.local에만 설정(git에 커밋되지 않음, 배포 서버에는
-  // 영향 없음) — 해제하려면 .env.local에서 이 줄을 지우고 dev 서버 재시작.
-  if (process.env.COUPANG_API_DISABLED === "true") {
-    throw new CoupangConfigError("COUPANG_API_DISABLED=true (temporarily disabled)");
-  }
-
   const accessKey = process.env.COUPANG_ACCESS_KEY;
   const secretKey = process.env.COUPANG_SECRET_KEY;
   if (!accessKey || !secretKey) {
@@ -84,9 +166,10 @@ function getCredentials() {
 
 /**
  * Searches Coupang products by keyword. The Open API's rate limit is a
- * strict 10 requests/hour per account, so callers MUST cache results
- * (the /api/coupang/search route does this via Next.js's fetch cache) —
- * never call this directly from a per-request/per-user code path.
+ * strict 10 requests/hour per account — shared with ExifLens, which uses
+ * the same COUPANG_ACCESS_KEY — so real results are cached in Redis (see
+ * above) for CACHE_TTL_SECONDS, and callers must never rely on this being
+ * cheap to call repeatedly without that cache in front of it.
  *
  * When COUPANG_PARTNER_SUBID is set, it is sent as the `subId` request
  * parameter so Coupang tags every returned productUrl with it — this is
@@ -97,12 +180,24 @@ export async function searchCoupangProducts(
   keyword: string,
   limit = 5,
 ): Promise<CoupangProduct[]> {
+  if (isCoupangApiTemporarilyDisabled()) {
+    throw new CoupangConfigError(
+      "Coupang API calls are temporarily disabled (COUPANG_API_DISABLED=true)",
+    );
+  }
+
+  const clampedLimit = Math.min(Math.max(limit, 1), 10);
+  const cacheKey = `${CACHE_PREFIX}${keyword}:${clampedLimit}`;
+
+  const cached = await getCachedProducts(cacheKey);
+  if (cached) return cached;
+
   const { accessKey, secretKey } = getCredentials();
   const subId = process.env.COUPANG_PARTNER_SUBID;
 
   const params: Record<string, string> = {
     keyword,
-    limit: String(Math.min(Math.max(limit, 1), 10)),
+    limit: String(clampedLimit),
   };
   if (subId) {
     params.subId = subId;
@@ -123,13 +218,12 @@ export async function searchCoupangProducts(
       Authorization: authorization,
       "Content-Type": "application/json;charset=UTF-8",
     },
-    // Cache for 6 hours at the fetch layer too, as a second safety net
-    // alongside the route handler's own cache.
-    next: { revalidate: 21600 },
+    cache: "no-store",
   });
 
   if (!response.ok) {
     const body = await response.text().catch(() => "");
+    await setCachedProducts(cacheKey, [], ERROR_COOLDOWN_SECONDS);
     throw new CoupangApiError(
       `Coupang API responded with ${response.status}: ${body.slice(0, 300)}`,
     );
@@ -142,8 +236,11 @@ export async function searchCoupangProducts(
   };
 
   if (json.rCode && json.rCode !== "0") {
+    await setCachedProducts(cacheKey, [], ERROR_COOLDOWN_SECONDS);
     throw new CoupangApiError(json.rMessage || `Coupang API error ${json.rCode}`);
   }
 
-  return json.data?.productData ?? [];
+  const products = json.data?.productData ?? [];
+  await setCachedProducts(cacheKey, products, CACHE_TTL_SECONDS);
+  return products;
 }
