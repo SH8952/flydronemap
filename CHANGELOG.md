@@ -1,3 +1,24 @@
+## 2026-09-27 — 쿠팡 API 장애 시 알리익스프레스 임시 대체 노출 기능 추가 (ExifLens와 동시 적용)
+
+**배경**
+- ExifLens와 동일한 사용자 요청 및 배경으로 동시 적용. 쿠팡 API 호출이 일시 중단되어 한국어 페이지에 상품이 표시되지 않는 시간 동안, 빈 화면 대신 알리익스프레스 상품을 임시로 보여주는 기능.
+- FlyDroneMap의 ko 제휴 고지 문구(`gearDisclosure`)는 이미 특정 업체명을 명시하지 않는 일반적인 문구("이 사이트는 제휴 마케팅에 참여하고 있으며...")라, ExifLens와 달리 표시광고 고지 관련 별도 문구 추가는 필요하지 않았음.
+
+**변경 사항**
+- `src/app/api/aliexpress/search/route.ts`의 `LOCALE_TO_ALIEXPRESS`에 `ko: { currency: "KRW", language: "KO" }` 추가.
+- `src/components/coupang-gear-cards.tsx`: 쿠팡 결과가 "empty"/"error" 상태가 되면 기존의 단순 안내 문구 대신 `<AliexpressGearCards />`를 렌더링하도록 변경.
+- `src/lib/aliexpress.ts`: 쿠팡(`src/lib/coupang.ts`)과 동일한 패턴의 Redis 기반 실제 결과 캐싱(6시간 TTL) + API 에러 시 15분 쿨다운 캐싱을 추가 — 새로 늘어나는 호출 경로가 기존 Next.js fetch 캐시의 불확실한 동작에 의존하지 않도록 선제적 안전조치.
+
+**검증**
+- `npx tsc --noEmit`, `npx eslint <변경 파일>` 모두 통과.
+- `npm run build` 정상 완료(첫 시도는 콜드 컴파일로 시간이 오래 걸려 타임아웃, 재시도 후 정상 완료 확인).
+- 로컬 `npm run dev` + `curl`로 `/api/coupang/search`, `/api/aliexpress/search?locale=ko` 모두 정상 응답(런타임 크래시 없음) 확인.
+- 정직하게 밝히는 한계: 이 세션(클라우드 샌드박스)은 조직 네트워크 정책상 알리익스프레스 API 호스트(`api-sg.aliexpress.com`)에도 직접 접속이 차단되어 있어, 로컬 검증 시 실제 API 호출은 `getaddrinfo EAI_AGAIN` 에러로 실패했음 — 각 키워드별로 정상적으로 캐치되어 빈 배열로 우아하게 폴백되는 것은 확인했고(크래시 없음), 실제 알리익스프레스 응답/캐싱 동작 자체는 배포 후 실제 사이트에서 확인이 필요함.
+
+**다음 단계**
+- 배포 후 한국어 페이지에서 쿠팡 API가 일시적으로 막힌 상황(혹은 자연 발생 시)에 알리익스프레스 상품이 정상적으로 대체 노출되는지 확인.
+- Upstash 대시보드에서 `flydronemap:aliexpress:search:v1:*` 캐시 키가 생성되는지 확인.
+
 ## 2026-09-27 — 쿠팡 검색 API 시간당 호출 하드캡 추가 (ExifLens와 동시 적용, 2회 초과 재발 방지 강화)
 
 **배경**
