@@ -11,6 +11,9 @@ import {
   Radio,
   ShieldAlert,
   Loader2,
+  CircleCheck,
+  TriangleAlert,
+  CircleX,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -22,6 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { flightVerdict, type FlightVerdict } from "@/lib/weather";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
 import { AIRSPACE_LAYERS, getWmsLayerParam } from "@/lib/airspace-layers";
 import {
@@ -170,6 +174,26 @@ const RISK_COLOR: Record<string, string> = {
   unsettled: "text-amber-500",
   high: "text-red-500",
   storm: "text-red-500",
+};
+
+// Good-to-Fly 판정 배지 — 2026-09-28 신규(바람+Kp만 종합, 사용자 선택).
+// 기존 windRisk()/kpRisk()/RISK_COLOR는 그대로 두고 별도로 추가한다.
+const VERDICT_ICON: Record<FlightVerdict, typeof CircleCheck> = {
+  good: CircleCheck,
+  caution: TriangleAlert,
+  "no-fly": CircleX,
+};
+
+const VERDICT_TEXT_COLOR: Record<FlightVerdict, string> = {
+  good: "text-emerald-500",
+  caution: "text-amber-500",
+  "no-fly": "text-red-500",
+};
+
+const VERDICT_BORDER_COLOR: Record<FlightVerdict, string> = {
+  good: "border-emerald-500/30",
+  caution: "border-amber-500/30",
+  "no-fly": "border-red-500/30",
 };
 
 export function DroneDashboard({
@@ -707,6 +731,12 @@ export function DroneDashboard({
       ) : null}
 
       {loading ? (
+        // Good-to-Fly 판정 배지 스켈레톤 — 2026-09-28 신규. 아래 3카드 스켈레톤과
+        // 마찬가지로 실제 배지와 높이를 맞춰(min-h-[76px]) CLS를 방지한다.
+        <div className="mb-4 h-[76px] min-h-[76px] animate-pulse rounded-lg border border-border bg-muted" />
+      ) : null}
+
+      {loading ? (
         // 날씨/Kp/공역 카드 3개의 스켈레톤 — 실제 카드가 나오는 자리(바로 아래
         // {data && !loading} 블록)와 정확히 같은 위치에 둔다. 이전에는 이
         // 스켈레톤이 지도보다 위에 있어서, 위치는 빨리 정해지고(selected) 데이터만
@@ -724,6 +754,33 @@ export function DroneDashboard({
           <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
           <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
         </div>
+      ) : null}
+
+      {data && !loading && data.weather && data.kp ? (
+        (() => {
+          const verdict = flightVerdict(data.weather.windGustKmh, data.kp.kp);
+          const VerdictIcon = VERDICT_ICON[verdict];
+          return (
+            <div
+              className={cn(
+                "mb-4 flex min-h-[76px] items-center gap-3 rounded-lg border p-4",
+                VERDICT_BORDER_COLOR[verdict],
+              )}
+            >
+              <VerdictIcon
+                className={cn("size-6 shrink-0", VERDICT_TEXT_COLOR[verdict])}
+              />
+              <div>
+                <div className={cn("font-semibold", VERDICT_TEXT_COLOR[verdict])}>
+                  {t(`flightVerdictLabel.${verdict}`)}
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {t(`flightVerdictHint.${verdict}`)}
+                </p>
+              </div>
+            </div>
+          );
+        })()
       ) : null}
 
       {data && !loading ? (

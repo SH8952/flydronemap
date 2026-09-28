@@ -35,6 +35,16 @@
       "unsettled": "Unsettled activity. Minor GPS drift is possible — keep an eye on your positioning accuracy.",
       "storm": "Geomagnetic storm level. GPS accuracy and compass reliability can degrade — consider flying in ATTI/manual mode and staying within visual line of sight."
     },
+    "flightVerdictLabel": {
+      "good": "Good to Fly",
+      "caution": "Fly with Caution",
+      "no-fly": "Not Recommended"
+    },
+    "flightVerdictHint": {
+      "good": "Wind and geomagnetic conditions both look favorable.",
+      "caution": "Wind or geomagnetic activity is a bit unsettled. Double-check your aircraft before flying.",
+      "no-fly": "Wind is strong or geomagnetic activity is at storm level. Consider postponing your flight."
+    },
     "airspaceSectionTitleWithCountry": "Airspace Info ({country})",
     "airspaceSectionTitleGeneric": "Airspace Info",
     "nearFacility": "Near {facility}",

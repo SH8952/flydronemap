@@ -1,3 +1,5 @@
+import { kpRiskLevel } from "@/lib/kp-index";
+
 export type FlightWeather = {
   time: string;
   temperatureC: number;
@@ -171,4 +173,22 @@ export async function fetchAltitudeWindProfile(
       windDirectionDeg: directions[i] as number,
     })),
   };
+}
+
+export type FlightVerdict = "good" | "caution" | "no-fly";
+
+/**
+ * 바람(돌풍)과 Kp 지수, 두 지표만 종합한 "오늘 비행 가능?" 판정. 2026-09-28
+ * 신규 추가 — SEO 콘텐츠 갭 분석 1군 ②(Good-to-Fly 배지, 사용자 선택: 바람+Kp만
+ * 반영, 공역 제한 여부는 이번 범위에서 제외). 기존 windRiskLevel()/kpRiskLevel()
+ * 은 그동안 각 카드의 개별 색상 표시에만 쓰이던 로직을 그대로 재사용하고, 이
+ * 함수는 그 둘을 조합하기만 한다 — 기존 로직은 변경하지 않음.
+ */
+export function flightVerdict(windGustKmh: number, kp: number): FlightVerdict {
+  const wind = windRiskLevel(windGustKmh);
+  const kpLevel = kpRiskLevel(kp);
+
+  if (wind === "high" || kpLevel === "storm") return "no-fly";
+  if (wind === "moderate" || kpLevel === "unsettled") return "caution";
+  return "good";
 }

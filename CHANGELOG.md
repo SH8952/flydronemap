@@ -1,3 +1,19 @@
+## 2026-09-28 — 대시보드 "Good to Fly" 판정 배지 추가 (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ②)
+
+**배경**
+- 1군 두 번째 항목. 사전조사 결과 `windRiskLevel()`(`src/lib/weather.ts`)과 `kpRiskLevel()`(`src/lib/kp-index.ts`)이 이미 존재하지만 둘 다 어디서도 쓰이지 않는 죽은 코드였고, 대신 `drone-dashboard.tsx` 안에 동일한 로직이 로컬로 중복 정의되어 개별 카드 색상 표시에만 쓰이고 있었음이 확인됨.
+- 사용자 선택: 바람(돌풍)+Kp 지수만 종합 반영(공역 제한 여부는 이번 범위에서 제외).
+
+**변경 사항**
+- `src/lib/weather.ts`: `flightVerdict(windGustKmh, kp)` 신규 함수 추가 — 기존 `windRiskLevel()`과 `kp-index.ts`의 `kpRiskLevel()`을 그대로 재사용해 "good"/"caution"/"no-fly" 세 단계로 종합. 기존 두 함수와 `drone-dashboard.tsx`의 로컬 중복 로직(`windRisk`/`kpRisk`)은 리팩터링하지 않고 그대로 둠(최소 변경 원칙 — 기존 카드 색상 표시가 깨질 위험 제거).
+- `src/components/drone-dashboard.tsx`: 바람/Kp/공역 3카드 그리드 바로 위에 판정 배지 신규 추가(아이콘: `CircleCheck`/`TriangleAlert`/`CircleX`, 색상: 기존 RISK_COLOR와 동일한 emerald/amber/red 팔레트). `data.weather`와 `data.kp`가 모두 있을 때만 표시. 로딩 스켈레톤도 `min-h-[76px]`로 실제 배지와 높이를 맞춰 CLS 방지.
+- 번역 키 `flightVerdictLabel`/`flightVerdictHint`(각각 good/caution/no-fly) 5개 언어(en/es/ja/ko/de) `messages/*.json`에 `kpHint` 바로 뒤 추가.
+
+**검증**
+- `npx tsc --noEmit` 오류 0건, `npx eslint`(변경 파일) 신규 오류·경고 0건(기존 무관 경고 3건만 존재).
+- `npm run build`(Turbopack) 332/332 라우트 정상 생성. `.next/server` 산출물에 `flightVerdict`/`flightVerdictLabel` 정상 포함 확인.
+- 이번에도 이 브릿지 환경에서 `next dev` 실행이 불가해 실제 화면 렌더링(배지 색상·문구·레이아웃)은 확인하지 못함 — **사용자가 로컬 `npm run dev`로 직접 확인 필요.**
+
 ## 2026-09-28 — 대시보드 고도별(10m/80m/120m) 바람 프로파일 추가 (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ①)
 
 **배경**

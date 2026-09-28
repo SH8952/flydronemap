@@ -35,6 +35,16 @@
       "unsettled": "地磁気がやや乱れています。GPSの誤差がわずかに生じる可能性があるため、位置精度に注意してください。",
       "storm": "地磁気嵐レベルです。GPS精度とコンパスの信頼性が低下する可能性があります — ATTI/手動モードへの切り替えと目視飛行範囲内での飛行を検討してください。"
     },
+    "flightVerdictLabel": {
+      "good": "飛行に適しています",
+      "caution": "注意が必要です",
+      "no-fly": "飛行非推奨"
+    },
+    "flightVerdictHint": {
+      "good": "風況・地磁気活動ともに良好です。",
+      "caution": "風または地磁気活動がやや不安定です。飛行前に機体状態を再確認してください。",
+      "no-fly": "風が強いか、地磁気嵐レベルです。飛行の延期を検討してください。"
+    },
     "airspaceSectionTitleWithCountry": "空域情報 ({country})",
     "airspaceSectionTitleGeneric": "空域情報",
     "nearFacility": "{facility} 付近",

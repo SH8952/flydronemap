@@ -35,6 +35,16 @@
       "unsettled": "지자기 활동이 다소 불안정합니다. GPS 위치 오차가 약간 발생할 수 있으니 위치 정확도를 주의 깊게 확인하세요.",
       "storm": "지자기 폭풍 수준입니다. GPS 정확도와 나침반 신뢰도가 저하될 수 있습니다 — ATTI/수동 모드로 전환하고 육안 가시권 내에서 비행하는 것을 고려하세요."
     },
+    "flightVerdictLabel": {
+      "good": "비행하기 좋음",
+      "caution": "주의 필요",
+      "no-fly": "비행 비권장"
+    },
+    "flightVerdictHint": {
+      "good": "현재 바람과 지자기 활동 모두 양호합니다.",
+      "caution": "바람 또는 지자기 활동 중 하나가 다소 불안정합니다. 비행 전 기체 상태를 한 번 더 확인하세요.",
+      "no-fly": "바람이 강하거나 지자기 폭풍 수준입니다. 비행을 미루는 것을 권장합니다."
+    },
     "airspaceSectionTitleWithCountry": "공역 정보 ({country})",
     "airspaceSectionTitleGeneric": "공역 정보",
     "nearFacility": "{facility} 인근",

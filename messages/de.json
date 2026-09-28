@@ -35,6 +35,16 @@
       "unsettled": "Unruhige Aktivität. Leichte GPS-Abweichungen sind möglich — behalten Sie die Positionsgenauigkeit im Auge.",
       "storm": "Geomagnetischer Sturm. Die GPS-Genauigkeit und Kompasszuverlässigkeit können sich verschlechtern — fliegen Sie nach Möglichkeit im ATTI-/manuellen Modus und bleiben Sie in Sichtweite."
     },
+    "flightVerdictLabel": {
+      "good": "Gut zum Fliegen",
+      "caution": "Vorsicht geboten",
+      "no-fly": "Nicht empfohlen"
+    },
+    "flightVerdictHint": {
+      "good": "Wind- und geomagnetische Bedingungen sind günstig.",
+      "caution": "Wind oder geomagnetische Aktivität sind etwas unruhig. Überprüfen Sie Ihr Fluggerät vor dem Flug.",
+      "no-fly": "Der Wind ist stark oder die geomagnetische Aktivität liegt auf Sturmniveau. Erwägen Sie, den Flug zu verschieben."
+    },
     "airspaceSectionTitleWithCountry": "Luftraum-Info ({country})",
     "airspaceSectionTitleGeneric": "Luftraum-Info",
     "nearFacility": "In der Nähe von {facility}",
