@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchCurrentWeather } from "@/lib/weather";
+import { fetchCurrentWeather, fetchAltitudeWindProfile } from "@/lib/weather";
 import { fetchLatestKpIndex } from "@/lib/kp-index";
 import { fetchAirspaceCeiling } from "@/lib/airspace";
 
@@ -14,11 +14,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const [weather, kp, airspace] = await Promise.all([
+  const [weather, kp, airspace, altitudeWind] = await Promise.all([
     fetchCurrentWeather(lat, lon),
     fetchLatestKpIndex(),
     fetchAirspaceCeiling(lat, lon),
+    fetchAltitudeWindProfile(lat, lon),
   ]);
 
-  return NextResponse.json({ weather, kp, airspace });
+  return NextResponse.json({ weather, kp, airspace, altitudeWind });
 }

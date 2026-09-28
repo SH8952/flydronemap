@@ -112,6 +112,13 @@ type DashboardData = {
     precipitationMm: number;
     time: string;
   } | null;
+  // 10m/80m/120m 고도별 바람 — 2026-09-28 신규 추가(SEO 콘텐츠 갭 분석 1군).
+  // fetchCurrentWeather()의 10m 단일 값과 별개로 hourly 엔드포인트에서 받아오는
+  // 값이라 weather 필드와 분리된 최상위 필드로 둔다.
+  altitudeWind: {
+    time: string;
+    levels: { altitudeM: number; windSpeedKmh: number; windDirectionDeg: number }[];
+  } | null;
   kp: { kp: number; time: string } | null;
   airspace:
     | {
@@ -711,7 +718,9 @@ export function DroneDashboard({
         // 등)에도 지도는 그대로 두고 이 카드들만 스켈레톤으로 보이도록 하는 목적
         // 자체는 2026-09-14 2차와 동일.
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
+          {/* 바람 카드 — 2026-09-28: 고도별 바람 3줄이 추가되며 실제 카드가
+              길어져 h-44로 확대(다른 두 카드는 기존 h-32 유지) */}
+          <div className="h-44 animate-pulse rounded-lg border border-border bg-muted" />
           <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
           <div className="h-32 animate-pulse rounded-lg border border-border bg-muted" />
         </div>
@@ -764,6 +773,30 @@ export function DroneDashboard({
                     {Math.round(data.weather.temperatureC)}°C
                   </span>
                 </div>
+                {data.altitudeWind ? (
+                  <>
+                    {/* 고도별 바람 — 2026-09-28 신규. 기존 카드 grid 구조를
+                        건드리지 않고 같은 카드 안에 줄만 추가하는 방식으로,
+                        새 카드를 만들 때 생길 수 있는 레이아웃 변경(및 과거
+                        CLS 회귀와 같은 류의 버그)을 피한다. */}
+                    <div className="mt-1 border-t border-border pt-1.5 text-xs font-semibold text-muted-foreground">
+                      {t("altitudeWindTitle")}
+                    </div>
+                    {data.altitudeWind.levels.map((level) => (
+                      <div
+                        key={level.altitudeM}
+                        className="flex justify-between"
+                      >
+                        <span className="text-muted-foreground">
+                          {level.altitudeM}m
+                        </span>
+                        <span className="font-medium">
+                          {Math.round(level.windSpeedKmh)} km/h
+                        </span>
+                      </div>
+                    ))}
+                  </>
+                ) : null}
               </div>
             ) : (
               <p className="text-sm text-muted-foreground">

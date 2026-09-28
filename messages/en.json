@@ -28,6 +28,7 @@
     "windGust": "Wind Gust",
     "visibility": "Visibility",
     "temperature": "Temperature",
+    "altitudeWindTitle": "Wind by Altitude (10m/80m/120m)",
     "kpSectionTitle": "Planetary Kp Index",
     "kpHint": {
       "quiet": "Quiet geomagnetic conditions. GPS and compass should behave normally.",

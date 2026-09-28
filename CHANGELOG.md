@@ -1,3 +1,20 @@
+## 2026-09-28 — 대시보드 고도별(10m/80m/120m) 바람 프로파일 추가 (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ①)
+
+**배경**
+- `claude/flydronemap-seo-gap-analysis.md`(경쟁사 역산 분석)에서 도출한 액션 아이템 중, 외부 아웃리치를 제외한 코드 변경 항목을 구현 난이도 기준으로 재정렬해 가장 가벼운 3개(1군)부터 순차 진행하기로 함. 그중 첫 번째.
+- 사전조사 결과 원 보고서의 "기존 대시보드에 레이어 하나만 추가하면 됨"이라는 설명은 부정확함을 확인 — 기존 `fetchCurrentWeather()`는 Open-Meteo의 `current` 엔드포인트만 쓰고 있어 10m 풍속만 얻을 수 있고, 80m/120m은 `hourly` 엔드포인트에서만 제공되므로 신규 API 호출이 필요했음.
+
+**변경 사항**
+- `src/lib/weather.ts`: `fetchAltitudeWindProfile(lat, lon)` 신규 함수 추가 — Open-Meteo `hourly` 파라미터로 10m/80m/120m 풍속·풍향을 조회하고 현재 시각과 가장 가까운 시간대 값을 추출. 기존 `fetchCurrentWeather()`는 변경 없음(완전히 별도 호출).
+- `src/app/api/dashboard/route.ts`: 기존 3개 병렬 호출(weather/kp/airspace)에 `fetchAltitudeWindProfile` 추가, 응답에 `altitudeWind` 필드 추가.
+- `src/components/drone-dashboard.tsx`: `DashboardData` 타입에 `altitudeWind` 필드 추가. UI는 새 카드를 만들지 않고 기존 "바람 & 가시거리" 카드 안에 구분선 + 3줄(10m/80m/120m)을 추가하는 방식으로 구현 — grid 구조 자체를 건드리지 않아 2026-09-14에 수정된 이력이 있는 CLS(레이아웃 밀림) 버그가 재발할 여지를 없앰. 다만 카드 실제 높이가 늘어나므로 로딩 스켈레톤 중 바람 카드 것만 `h-32` → `h-44`로 확대(다른 두 카드는 기존 유지).
+- 번역 키 `altitudeWindTitle` 5개 언어(en/es/ja/ko/de) `messages/*.json`에 `temperature` 바로 뒤 추가.
+
+**검증**
+- `npx tsc --noEmit` 오류 0건, `npx eslint`(변경 파일) 신규 오류·경고 0건(기존에도 있던 무관한 img/unused-var 경고 3건만 존재).
+- `npm run build`(Turbopack) 332/332 라우트 정상 생성. `.next/server` 빌드 산출물에 `fetchAltitudeWindProfile`, `altitudeWindTitle` 문자열이 정상 포함됨을 grep으로 교차검증.
+- 이 브릿지 환경에서는 이번에도 `next dev` 상시 리스닝 프로세스를 device_bash로 띄울 수 없어(즉시 exit 143) 실제 화면 렌더링 확인은 불가 — Open-Meteo의 `hourly` 엔드포인트가 80m/120m 풍속을 실제로 반환하는지도 네트워크 제약(사내 프록시가 api.open-meteo.com에 대한 직접 호출·WebFetch를 모두 차단)으로 이번 세션에서는 라이브 검증하지 못함(공식 문서 기준으로는 지원되는 표준 파라미터). **사용자가 로컬 `npm run dev`로 실제 값이 정상적으로 채워지는지 반드시 확인 필요.**
+
 ## 2026-09-27 — 홈페이지 "가이드 살펴보기" 확장(3→6, 무작위) + "자주 묻는 질문" 하이라이트 섹션 신설 (ExifLens 적용분 축소 이식)
 
 **배경**

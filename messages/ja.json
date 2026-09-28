@@ -28,6 +28,7 @@
     "windGust": "突風",
     "visibility": "視程",
     "temperature": "気温",
+    "altitudeWindTitle": "高度別風速（10m/80m/120m）",
     "kpSectionTitle": "惑星間Kp指数",
     "kpHint": {
       "quiet": "地磁気activityは静穏です。GPSとコンパスは通常どおり機能すると見込まれます。",

@@ -28,6 +28,7 @@
     "windGust": "Ráfaga de viento",
     "visibility": "Visibilidad",
     "temperature": "Temperatura",
+    "altitudeWindTitle": "Viento por altitud (10m/80m/120m)",
     "kpSectionTitle": "Índice Kp planetario",
     "kpHint": {
       "quiet": "Condiciones geomagnéticas tranquilas. El GPS y la brújula deberían comportarse con normalidad.",

@@ -28,6 +28,7 @@
     "windGust": "돌풍",
     "visibility": "가시거리",
     "temperature": "기온",
+    "altitudeWindTitle": "고도별 바람 (10m/80m/120m)",
     "kpSectionTitle": "행성 KP 지수",
     "kpHint": {
       "quiet": "지자기 활동이 안정적입니다. GPS와 나침반이 정상적으로 작동할 것으로 예상됩니다.",

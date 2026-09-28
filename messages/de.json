@@ -28,6 +28,7 @@
     "windGust": "Windböen",
     "visibility": "Sichtweite",
     "temperature": "Temperatur",
+    "altitudeWindTitle": "Wind nach Höhe (10m/80m/120m)",
     "kpSectionTitle": "Planetarischer Kp-Index",
     "kpHint": {
       "quiet": "Ruhige geomagnetische Bedingungen. GPS und Kompass sollten normal funktionieren.",
