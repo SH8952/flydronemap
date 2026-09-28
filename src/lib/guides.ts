@@ -167,7 +167,11 @@ export async function compileGuide(
 
   const { default: Content } = await evaluate(content, {
     ...runtime,
-    remarkPlugins: [remarkGfm],
+    // singleTilde: false — 콘텐츠 본문에서 "~"를 범위 표기(예: "23~27km/h")로
+    // 자주 사용하는데, remark-gfm 기본값(singleTilde: true)은 단일 "~" 하나만
+    // 있어도 취소선으로 해석해 문장이 잘못 표시되는 버그가 있었음(2026-09-28 발견).
+    // "~~"(더블 틸드)로만 취소선을 인식하도록 명시적으로 제한.
+    remarkPlugins: [[remarkGfm, { singleTilde: false }]],
     rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
   });
 
