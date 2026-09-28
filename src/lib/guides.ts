@@ -42,6 +42,11 @@ export const CATEGORY_ORDER = [
   // 한정돼 있던 공백을 메움). messages/{en,ko,ja,es}.json의 Guides.categories에도
   // 라벨을 함께 추가해야 함(guides 목록 페이지가 t(`categories.${category}`)로 참조).
   "international-regulations",
+  // 2026-09-28 신규 추가 — SEO 콘텐츠 갭 분석 1군 ③(용어집). 새 라우트를 만들지
+  // 않고 기존 가이드 인프라(카테고리/라우팅/sitemap/hreflang)를 그대로 재사용하기
+  // 위해 카테고리 하나만 추가하는 방식을 택함. messages/*.json의
+  // Guides.categories.glossary에도 라벨을 함께 추가해야 함(5개 언어 모두).
+  "glossary",
 ] as const;
 
 export type CategorySlug = (typeof CATEGORY_ORDER)[number] | "general";

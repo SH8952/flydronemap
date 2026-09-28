@@ -1,3 +1,20 @@
+## 2026-09-28 — 용어집(Glossary) 신설: NOTAM/VLOS·BVLOS/MOA/FRIA (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ③)
+
+**배경**
+- 1군 세 번째이자 마지막 항목. 사용자 선택대로 기존 가이드 인프라(`src/lib/guides.ts`의 카테고리·라우팅·sitemap·hreflang 파이프라인)를 그대로 재사용해 새 라우트 없이 구현.
+- 원래 후보로 잡았던 Remote ID/TFR/Kp Index 3개 용어는 콘텐츠 작성 도중 이미 각각 `remote-id-requirements-explained.mdx`, `temporary-flight-restrictions-tfr-explained.mdx`, `what-is-the-kp-index.mdx`(+`kp-index-effect-on-gps-compass-reliability.mdx`)로 기존에 다뤄지고 있음을 뒤늦게 발견 — 초기 사전조사에서 슬러그(파일명) 중복만 확인하고 주제 중복까지는 확인하지 않았던 것이 원인. 작성했던 5개 언어 × 3용어(15개 파일)를 커밋 전에 전량 삭제하고, 기존 49개 가이드 제목·태그를 전수 확인해 실제로 다뤄지지 않은 용어로 교체함.
+- 최종 선정: **NOTAM**(기존 TFR 글에 메커니즘으로만 언급되고 독립 정의는 없었음), **VLOS/BVLOS**, **MOA(군사훈련구역)**, **FRIA(Remote ID 예외구역, 미국 한정)** — 4개 모두 기존 가이드에 독립된 정의 페이지가 없음을 재확인 후 작성.
+
+**변경 사항**
+- `src/lib/guides.ts`: `CATEGORY_ORDER`에 `"glossary"` 카테고리 추가.
+- `Guides.categories.glossary` 라벨 5개 언어(en/es/ja/ko/de) `messages/*.json`에 추가.
+- `content/guides/{ko,en,es,ja,de}/{notam-explained,vlos-bvlos-explained,moa-explained,fria-explained}.mdx` 신규 작성 — 총 20개 파일. 이미지(image 필드)는 붙이지 않음(가이드 목록 카드/상세 페이지 모두 image 필드가 선택 사항으로 처리되도록 이미 구현돼 있어 문제 없음 — 필요 시 추후 `src/lib/dev/guide-image-tool.ts`로 이미지 추가 가능).
+
+**검증**
+- `npx tsc --noEmit` 오류 0건, `npx eslint src/lib/guides.ts` 오류·경고 0건.
+- `npm run build`(Turbopack) 352/352 라우트 정상 생성(기존 332개에서 신규 콘텐츠 20개만큼 증가). `.next/server`의 route trace(`page.js.nft.json`)에 신규 4개 슬러그가 `/guides`, `/guides/[slug]`, `/`, `/rss.xml` 각 라우트의 의존 파일로 정상 포함됨을 확인 — sitemap/가이드 목록/RSS 파이프라인이 필터시스템 기반으로 신규 콘텐츠를 자동 인식함을 교차검증.
+- 이번에도 `next dev` 실행 자체가 이 브릿지 환경에서 불가능해 실제 목록 페이지에서 "용어집" 카테고리 그룹이 올바르게 보이는지는 화면으로 확인하지 못함 — **사용자가 로컬 `npm run dev`로 `/guides` 페이지에 "용어집" 카테고리와 4개 글이 정상 노출되는지 확인 필요.**
+
 ## 2026-09-28 — 대시보드 "Good to Fly" 판정 배지 추가 (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ②)
 
 **배경**
