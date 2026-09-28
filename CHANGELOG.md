@@ -1,3 +1,19 @@
+## 2026-09-28 — 기체 모델별 바람 한계 비교 가이드 추가 (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 2군" ⑤)
+
+**배경**
+- 2군 항목 중 사용자가 진행을 승인한 유일한 항목(④ 국가별 규정 비교 테이블, ⑥ "Can I Fly Here?" 체커는 사전조사 결과 각각 신규 법률 조사 필요/기존 "공역 정보" 카드와 기능 중복으로 이번엔 보류 결정).
+- 원래 SEO 문서는 "DB 신규 구축"을 전제했으나, 사전조사 결과 신규 컴포넌트나 데이터 구조 없이 기존 가이드(MDX) 인프라만으로 비교표를 제공할 수 있다고 판단해 범위를 새 가이드 글 1편(GFM 표 포함)으로 축소.
+- 제조사 공식 스펙을 WebSearch/WebFetch로 직접 조사(출처: heliguy.com, goodtodrone.com 비교 아티클). 수치가 명확히 확인되지 않은 항목(Autel EVO Lite 시리즈의 "Level 7" 등급 — 정확한 m/s·km/h 환산 및 DJI와 동일한 Beaufort 기준 사용 여부 불명, Skydio 2+의 구체 수치 미확인)은 안전 관련 정보인 점을 고려해 **의도적으로 표에서 제외** — 정확성을 완전성보다 우선.
+
+**변경 사항**
+- `content/guides/{ko,en,es,ja,de}/drone-wind-resistance-by-model.mdx` 신규 작성 — 총 5개 파일. 카테고리는 기존 `gear-flight-tips`(신규 카테고리 추가 없음). DJI 주요 소비자·프로슈머 기체(Mini/Air/Mavic/Avata/Inspire 시리즈, 공통 약 38km/h·10.7m/s·Beaufort 5급), Autel EVO II 시리즈(약 35km/h), Skydio X10(약 40km/h) 비교표와, 제조사 표기 한계치를 그대로 비행 한계로 쓰면 안 되는 이유, 실무에서 흔히 쓰는 60~70% 안전 여유 가이드라인을 포함.
+- 코드 변경 없음(콘텐츠 전용 추가) — `src/` 내 수정 파일 없음.
+
+**검증**
+- `npx tsc --noEmit` 오류 0건(코드 변경이 없어 eslint는 스킵).
+- `npm run build`(Turbopack) 첫 시도 타임아웃(이 환경에서 반복적으로 관찰된 콜드 빌드 패턴) 후 재시도 시 357/357 라우트 정상 생성(기존 352개에서 신규 콘텐츠 5개만큼 증가). `.next/server`에서 `drone-wind-resistance-by-model` 문자열이 `/guides`, `/guides/[slug]`, `/`, `/rss.xml`, `sitemap.xml` 등 관련 라우트의 의존 파일에 정상 포함됨을 확인.
+- 이번에도 `next dev`가 이 브릿지 환경에서 실행 불가능해 실제 페이지에서 표 렌더링(GFM 마크다운 테이블)이 의도대로 보이는지는 화면으로 확인하지 못함 — **사용자가 로컬 `npm run dev`로 `/guides` 목록 및 해당 글 상세 페이지에서 비교표가 정상적으로 표 형태로 렌더링되는지 확인 필요.**
+
 ## 2026-09-28 — 용어집(Glossary) 신설: NOTAM/VLOS·BVLOS/MOA/FRIA (SEO 콘텐츠 갭 분석 "가벼운 코드 변경 1군" ③)
 
 **배경**
