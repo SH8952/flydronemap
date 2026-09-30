@@ -1,3 +1,18 @@
+## 2026-09-30 — 로컬(개발 환경) 접속은 방문자 수·GA4에서 항상 제외
+
+**배경**
+- 운영자 본인의 접속이 방문자 수·GA4에 잡히면 실제 사용자 유입을 정확히 볼 수 없다는 요청. 3개 사이트의 로컬 `.env.local`이 실서버와 같은 Upstash Redis(방문자 수 저장소)를 가리키고, GA4 측정 ID도 로컬에서 그대로 쓰이므로 로컬 접속(`?dev=` 없이 여는 `npm run dev`)도 실제 집계에 반영될 수 있었음.
+- 기존에는 `?dev=<DEV_EXCLUDE_TOKEN>`으로 받은 `dev_exclude` 쿠키가 있을 때만 제외했음. 로컬 개발 서버 실행 스크립트(`scripts/dev-open.mjs`)는 `?dev=` 없이 여는 구조였음.
+
+**변경 사항**
+- `src/app/api/visitor-count/route.ts`: `NODE_ENV === "development"`이거나 요청 호스트가 `localhost`/`127.0.0.1`/`[::1]`이면 쿠키와 관계없이 증가 없이 읽기만 수행. 기존 `dev_exclude` 쿠키 제외는 그대로 유지.
+- `src/app/[locale]/layout.tsx`: GA4 `gtag('config')`를 `dev_exclude` 쿠키가 없고 호스트가 로컬이 아닐 때만 실행.
+- 실서버 동작은 변경 없음(운영 환경은 개발 모드·로컬 호스트가 아님). 실서버 제외는 기존대로 각 도메인에서 `?dev=토큰` 접속으로 쿠키 발급(브라우저·기기별 1회, 유효 1년).
+- Vercel 확인(읽기 전용, 값 미열람): 3개 프로젝트 모두 `DEV_EXCLUDE_TOKEN`이 Production·Preview에 등록되어 있음.
+
+**검증**
+- `npx tsc --noEmit`, `npx eslint` 통과. 이 환경에서는 flydronemap 개발 서버가 컴파일 단계에서 멈춰(기존부터 있던 환경 문제) 런타임 확인은 하지 못함. exiflens·firelic에서 동일한 route.ts 로직을 가짜 KV 서버로 검증했고 flydronemap은 파일이 동일함. 로컬(3020)에서 확인 필요.
+
 ## 2026-09-30 — 공유하기 기능 추가 (exifnd.com 파일럿을 이식)
 
 **배경**
