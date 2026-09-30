@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { ShareButton } from "@/components/share-button";
 import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
 
 export async function generateMetadata({
@@ -43,6 +44,14 @@ export default async function RegulationsIndexPage({
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-10">
+      <div className="flex justify-end">
+        <ShareButton
+          title={t("title")}
+          text={t("subtitle")}
+          url={`${SITE_URL}/${locale}/regulations`}
+        />
+      </div>
+
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t("title")}

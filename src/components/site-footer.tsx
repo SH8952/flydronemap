@@ -1,11 +1,19 @@
-import { useTranslations } from "next-intl";
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
 import { Rss } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { VisitorCounter } from "@/components/visitor-counter";
+import { ShareButton } from "@/components/share-button";
+import { SITE_URL } from "@/lib/seo";
 
 export function SiteFooter() {
   const t = useTranslations("Footer");
+  const homeT = useTranslations("Home");
+  const locale = useLocale();
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+  const isHomePage = pathname === "/";
 
   return (
     <footer className="border-t border-border">
@@ -25,6 +33,15 @@ export function SiteFooter() {
           <Link href="/contact" className="hover:text-foreground">
             {t("contact")}
           </Link>
+          {isHomePage ? (
+            <ShareButton
+              title={homeT("title")}
+              text={homeT("subtitle")}
+              url={`${SITE_URL}/${locale}`}
+              variant="ghost"
+              size="sm"
+            />
+          ) : null}
           <a
             href="/rss.xml"
             aria-label="RSS feed"

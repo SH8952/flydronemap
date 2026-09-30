@@ -550,5 +550,12 @@
     "message": "Wir verwenden Cookies, um den Traffic zu analysieren und Anzeigen zu personalisieren. Sie können nicht notwendige Cookies akzeptieren oder ablehnen.",
     "accept": "Akzeptieren",
     "reject": "Ablehnen"
+  },
+  "Share": {
+    "deviceShare": "Über das Gerät teilen",
+    "button": "Teilen",
+    "copyLink": "Link kopieren",
+    "copied": "Kopiert",
+    "viewOnWeb": "Im Web ansehen"
   }
 }

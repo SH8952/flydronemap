@@ -18,6 +18,7 @@ import {
 } from "@/lib/guides";
 import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
 import { GuideToolCta } from "@/components/guide-tool-cta";
+import { ShareButton } from "@/components/share-button";
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
@@ -130,10 +131,18 @@ export default async function GuidePage({
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {meta.title}
         </h1>
-        <p className="text-sm text-muted-foreground">
-          {dateFormatter.format(new Date(meta.publishedAt))} ·{" "}
-          {t("readingTime", { minutes: meta.readingMinutes })}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-muted-foreground">
+            {dateFormatter.format(new Date(meta.publishedAt))} ·{" "}
+            {t("readingTime", { minutes: meta.readingMinutes })}
+          </p>
+          <ShareButton
+            title={meta.title}
+            text={meta.description}
+            url={`${SITE_URL}/${locale}/guides/${slug}`}
+            image={meta.image ? `${SITE_URL}${meta.image}` : undefined}
+          />
+        </div>
       </div>
 
       {meta.image ? (

@@ -550,5 +550,12 @@
     "message": "Utilizamos cookies para analizar el tráfico y personalizar los anuncios. Puede aceptar o rechazar las cookies no esenciales.",
     "accept": "Aceptar",
     "reject": "Rechazar"
+  },
+  "Share": {
+    "deviceShare": "Compartir con el dispositivo",
+    "button": "Compartir",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado",
+    "viewOnWeb": "Ver en la web"
   }
 }

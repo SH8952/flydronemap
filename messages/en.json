@@ -550,5 +550,12 @@
     "message": "We use cookies to analyze traffic and personalize ads. You can accept or decline non-essential cookies.",
     "accept": "Accept",
     "reject": "Decline"
+  },
+  "Share": {
+    "deviceShare": "Share via device",
+    "button": "Share",
+    "copyLink": "Copy link",
+    "copied": "Copied",
+    "viewOnWeb": "View on web"
   }
 }

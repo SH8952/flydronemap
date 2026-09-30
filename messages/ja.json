@@ -550,5 +550,12 @@
     "message": "トラフィック分析と広告のパーソナライズのためにCookieを使用しています。任意のCookieの使用可否を選択できます。",
     "accept": "同意する",
     "reject": "拒否する"
+  },
+  "Share": {
+    "deviceShare": "デバイスで共有",
+    "button": "共有",
+    "copyLink": "リンクをコピー",
+    "copied": "コピーしました",
+    "viewOnWeb": "ウェブで見る"
   }
 }

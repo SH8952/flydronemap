@@ -1,3 +1,25 @@
+## 2026-09-30 — 공유하기 기능 추가 (exifnd.com 파일럿을 이식)
+
+**배경**
+- 3개 사이트 공통 "공유하기" 기능(계획서 `claude/social-share-feature-plan.md`)을 exifnd.com에서 먼저 적용·검증·배포한 뒤 이 사이트에 이식. 사용자가 이식 범위(가이드·홈·규정 페이지)를 확인해 승인.
+
+**변경 사항**
+- `src/components/share-button.tsx` 신설(exifnd.com과 동일한 공용 컴포넌트): 기기 공유(지원 시)·링크 복사·X·Facebook·카카오톡. 카카오 SDK는 방문자가 공유 메뉴를 열 때만 지연 로드하며, 이미지가 없는 페이지는 카카오 텍스트형 메시지로 자동 대체.
+- 가이드 상세 페이지: 날짜·읽는 시간 줄 오른쪽에 공유 버튼(대표 이미지가 있으면 카카오 미리보기 이미지로 사용).
+- 국가별 드론 규정 페이지(`/regulations/[country]`)와 규정 목록 페이지(`/regulations`): 상단 오른쪽에 공유 버튼.
+- 홈페이지: `site-footer.tsx`를 클라이언트 컴포넌트로 전환해 홈(`/`)에서만 "문의하기"와 RSS 아이콘 사이에 공유 버튼(ghost 스타일) 노출. 다른 페이지 푸터는 기존과 동일.
+- 5개 언어(en/ko/ja/es/de) 메시지에 `Share` 네임스페이스 신규 추가.
+- `.env.example`에 `NEXT_PUBLIC_KAKAO_JS_KEY` 안내 추가. 실제 키와 로컬 `NEXT_PUBLIC_SITE_URL=http://localhost:3020`은 git에 올라가지 않는 `.env.local`에만 설정.
+
+**검증**
+- `npx tsc --noEmit`, `npx eslint` 통과.
+- 이 작업 환경(device_bash 브릿지)에서는 dev 서버가 페이지 컴파일 단계에서 멈추고(Turbopack/webpack 모두 `.next` 파일 잠금 EPERM 계열) `next build`도 3분 제한 안에 끝나지 않아 SSR 스모크 테스트는 하지 못함. 사용자의 실제 맥 로컬 서버에서 확인 필요.
+- 컴포넌트는 exifnd.com에서 실제 브라우저로 5개 채널 모두 정상 동작이 확인된 것과 동일한 파일.
+
+**남은 과제**
+- 로컬(localhost:3020)에서 홈 푸터/가이드/규정 페이지의 버튼 표시와 카카오톡 공유 동작 확인 후 push.
+- 홈·규정 페이지에는 기본 og:image가 없어 카카오/페이스북 링크 미리보기에 썸네일이 뜨지 않음(동작에는 문제 없음, 추후 결정).
+
 ## 2026-09-28 — 가이드 콘텐츠 취소선(strikethrough) 오표시 버그 수정
 
 **배경**

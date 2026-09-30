@@ -5,6 +5,7 @@ import { ExternalLink, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { ShareButton } from "@/components/share-button";
 import {
   REGULATION_COUNTRIES,
   getRegulationCountry,
@@ -63,12 +64,19 @@ export default async function RegulationCountryPage({
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10">
       <div className="flex flex-col gap-2">
-        <Link
-          href="/regulations"
-          className="text-sm text-muted-foreground hover:text-foreground"
-        >
-          ← {t("backToList")}
-        </Link>
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="/regulations"
+            className="text-sm text-muted-foreground hover:text-foreground"
+          >
+            ← {t("backToList")}
+          </Link>
+          <ShareButton
+            title={`${t(`countries.${country.id}.name`)} — ${t("title")}`}
+            text={summary[0]}
+            url={`${SITE_URL}/${locale}/regulations/${country.id}`}
+          />
+        </div>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           {t(`countries.${country.id}.name`)}
         </h1>
