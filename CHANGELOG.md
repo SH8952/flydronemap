@@ -830,6 +830,11 @@
 
 # 개발 이력 (Development History)
 
+## 2026-10-02 — EU/EASA 드론 규정 기초 가이드 자동 발행
+
+- "EU/EASA 드론 규정 기초"(EU EASA Drone Regulations: The Basics) 가이드를 en/ja/ko/es 4개 언어로 신규 작성. EASA 공통 규정과 각국 항공당국(AESA/DGAC/LBA 등)의 역할 구분, Open/Specific/Certified 3단계 범주, C0~C6 클래스 마크가 서브카테고리에 미치는 영향, EU 전역 통용 등록번호의 한계, STS 표준 시나리오와 SORA의 차이, U-space 적용 현황을 다룸.
+- 기존 스페인(AESA/ENAIRE) 가이드와 중복되지 않도록 EU 공통 기초 체계에 초점을 맞춰 작성. 클라우드 자동발행 파이프라인으로 생성, 빌드 검증(`npm run build`) 완료.
+
 ## 2026-10-01 — 스페인 드론 비행 규정과 ENAIRE ZGUAS 가이드 자동 발행
 
 - 신규 가이드 추가 (`spain-drone-regulations-and-enaire-zguas-explained`, 카테고리: international-regulations) — AESA(누가·어떻게 비행하는가)와 ENAIRE ZGUAS 지도(어디서 비행하는가)가 서로 다른 기관·절차라는 점, 250g·카메라 탑재 기준 기체등록, 개방범주 A1/A2/A3 거리 규정(A2 30m·저속모드 5m, A3 150m 이격), ZGUAS 지도 확인이 법적 의무라는 점, 드론 자체 지오펜싱과 법적 제한이 별개라는 점을 다룸. 4개 언어(en/ja/ko/es) 전량 작성.
