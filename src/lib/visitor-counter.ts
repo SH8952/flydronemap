@@ -8,6 +8,11 @@ const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 const PROJECT = "flydronemap";
 const TOTAL_KEY = `${PROJECT}:visitor_count`;
 const DAILY_KEY_PREFIX = `${PROJECT}:visitor_count:daily:`;
+// Separate counter for known-bot/crawler hits (Googlebot, AI crawlers, etc.)
+// — kept apart from the real visitor numbers above so the public-facing
+// count stays clean. Same daily/total + TTL shape as the visitor counter.
+const BOT_TOTAL_KEY = `${PROJECT}:bot_count`;
+const BOT_DAILY_KEY_PREFIX = `${PROJECT}:bot_count:daily:`;
 // Old daily buckets clean themselves up via TTL instead of manual deletion.
 const DAILY_TTL_SECONDS = 60 * 60 * 24 * 2;
 
@@ -61,6 +66,27 @@ export async function incrementVisitorCounts(): Promise<VisitorCounts> {
     upstash("incr", TOTAL_KEY),
   ]);
   // Keep the daily bucket's TTL refreshed so old dates expire on their own.
+  await upstash("expire", dailyKey, DAILY_TTL_SECONDS);
+  return { daily, total };
+}
+
+/** Reads today's (KST) and cumulative BOT counts without incrementing. */
+export async function getBotCounts(): Promise<VisitorCounts> {
+  const dailyKey = BOT_DAILY_KEY_PREFIX + todayKstDateString();
+  const [daily, total] = await Promise.all([
+    upstash("get", dailyKey),
+    upstash("get", BOT_TOTAL_KEY),
+  ]);
+  return { daily, total };
+}
+
+/** Atomically increments the bot-only counters and returns the new values. */
+export async function incrementBotCounts(): Promise<VisitorCounts> {
+  const dailyKey = BOT_DAILY_KEY_PREFIX + todayKstDateString();
+  const [daily, total] = await Promise.all([
+    upstash("incr", dailyKey),
+    upstash("incr", BOT_TOTAL_KEY),
+  ]);
   await upstash("expire", dailyKey, DAILY_TTL_SECONDS);
   return { daily, total };
 }
