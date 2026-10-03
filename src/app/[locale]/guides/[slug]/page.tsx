@@ -12,6 +12,7 @@ import {
 } from "@/lib/seo";
 import {
   compileGuide,
+  getGuideLocales,
   getGuideMeta,
   getGuideSlugs,
   getRelatedGuides,
@@ -40,7 +41,7 @@ export async function generateMetadata({
     description: meta.description,
     alternates: {
       canonical: `${SITE_URL}/${locale}/guides/${slug}`,
-      languages: languageAlternates(`/guides/${slug}`),
+      languages: languageAlternates(`/guides/${slug}`, getGuideLocales(slug)),
     },
     openGraph: {
       type: "article",
@@ -136,6 +137,17 @@ export default async function GuidePage({
           <p className="text-sm text-muted-foreground">
             {dateFormatter.format(new Date(meta.publishedAt))} ·{" "}
             {t("readingTime", { minutes: meta.readingMinutes })}
+            {meta.updatedAt && meta.updatedAt !== meta.publishedAt ? (
+              // 최종 수정일 표시 — 2026-10-03 신규. JSON-LD의 dateModified와 같은
+              // 값을 화면에도 보여 준다(updatedAt이 있는 글만).
+              <>
+                {" "}
+                ·{" "}
+                {t("updatedOn", {
+                  date: dateFormatter.format(new Date(meta.updatedAt)),
+                })}
+              </>
+            ) : null}
           </p>
           <ShareButton
             title={meta.title}

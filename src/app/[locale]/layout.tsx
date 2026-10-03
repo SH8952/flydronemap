@@ -8,6 +8,7 @@ import { headers } from "next/headers";
 import { CONSENT_REGION_CODES, needsConsentBanner } from "@/lib/consent";
 import { ConsentBanner } from "@/components/consent-banner";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { getPartialGuideLocales } from "@/lib/guides";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -145,7 +146,7 @@ export default async function LocaleLayout({
           disableTransitionOnChange
         >
           <NextIntlClientProvider>
-            <SiteHeader />
+            <SiteHeader guideLocales={getPartialGuideLocales()} />
             <div className="w-full px-4 py-3">
               <AdZone
                 id="top-leaderboard"

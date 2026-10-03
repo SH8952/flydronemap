@@ -468,6 +468,7 @@
     "subtitle": "Guías prácticas para leer el clima de vuelo, entender el índice Kp y volar de forma segura y legal.",
     "empty": "Todavía no hay guías publicadas en este idioma — vuelve pronto.",
     "readingTime": "{minutes} min de lectura",
+    "updatedOn": "Actualizado el {date}",
     "showMore": "Ver más",
     "showLess": "Ver menos",
     "backToGuides": "← Volver a Guías",

@@ -11,7 +11,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function LanguageSwitcher() {
+/**
+ * `guideLocales`: 일부 언어에만 번역본이 있는 가이드의 {slug: 사용 가능한 언어들}.
+ * 번역본이 없는 언어로 전환하면 404가 되므로, 그 경우 가이드 목록으로 보낸다
+ * (2026-10-03).
+ */
+export function LanguageSwitcher({
+  guideLocales = {},
+}: {
+  guideLocales?: Record<string, Locale[]>;
+} = {}) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -20,7 +29,13 @@ export function LanguageSwitcher() {
     <Select
       value={locale}
       onValueChange={(next) => {
-        router.replace(pathname, { locale: next as Locale });
+        const guideSlug = pathname.match(/^\/guides\/([^/]+)$/)?.[1];
+        const available = guideSlug ? guideLocales[guideSlug] : undefined;
+        const target =
+          available && !available.includes(next as Locale)
+            ? "/guides"
+            : pathname;
+        router.replace(target, { locale: next as Locale });
       }}
     >
       <SelectTrigger size="sm" className="w-[84px]" aria-label="Language">

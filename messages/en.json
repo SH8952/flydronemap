@@ -468,6 +468,7 @@
     "subtitle": "Practical guides on reading flight weather, understanding the Kp index, and flying safely and legally.",
     "empty": "No guides published in this language yet — check back soon.",
     "readingTime": "{minutes} min read",
+    "updatedOn": "Updated {date}",
     "showMore": "Show more",
     "showLess": "Show less",
     "backToGuides": "← Back to Guides",

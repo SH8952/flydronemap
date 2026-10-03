@@ -5,11 +5,17 @@ import { Wind, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import type { Locale } from "@/i18n/routing";
 
 const navLinkClass =
   "text-sm font-medium text-muted-foreground transition-colors hover:text-foreground";
 
-export function SiteHeader() {
+export function SiteHeader({
+  guideLocales = {},
+}: {
+  /** 일부 언어에만 번역본이 있는 가이드의 {slug: 사용 가능한 언어들}. */
+  guideLocales?: Record<string, Locale[]>;
+} = {}) {
   const t = useTranslations("Header");
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -42,13 +48,13 @@ export function SiteHeader() {
           <Link href="/faq" className={navLinkClass}>
             {t("faqNav")}
           </Link>
-          <LanguageSwitcher />
+          <LanguageSwitcher guideLocales={guideLocales} />
         </nav>
 
         {/* Mobile: not enough width for 3 text links + language select without
             wrapping onto two lines, so they collapse into a hamburger menu */}
         <div className="flex items-center gap-2 sm:hidden">
-          <LanguageSwitcher />
+          <LanguageSwitcher guideLocales={guideLocales} />
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}

@@ -468,6 +468,7 @@
     "subtitle": "飛行天気の読み方、Kp指数の理解、安全かつ合法的な飛行のための実践ガイドです。",
     "empty": "この言語で公開されているガイドはまだありません。近日公開予定です。",
     "readingTime": "{minutes}分で読めます",
+    "updatedOn": "{date} 更新",
     "showMore": "もっと見る",
     "showLess": "閉じる",
     "backToGuides": "← ガイド一覧に戻る",

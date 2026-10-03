@@ -468,6 +468,7 @@
     "subtitle": "비행 날씨를 읽는 법, KP 지수 이해하기, 안전하고 합법적으로 비행하는 법에 대한 실전 가이드입니다.",
     "empty": "이 언어로 발행된 가이드가 아직 없습니다 — 곧 추가될 예정입니다.",
     "readingTime": "{minutes}분 읽기",
+    "updatedOn": "{date} 업데이트",
     "showMore": "더보기",
     "showLess": "접기",
     "backToGuides": "← 가이드 목록으로",

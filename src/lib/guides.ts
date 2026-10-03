@@ -7,7 +7,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import * as runtime from "react/jsx-runtime";
 import type { ComponentType } from "react";
-import type { Locale } from "@/i18n/routing";
+import { routing, type Locale } from "@/i18n/routing";
 
 const GUIDES_DIR = path.join(process.cwd(), "content", "guides");
 
@@ -59,6 +59,27 @@ export type GuideMeta = GuideFrontmatter & {
 
 function guideDir(locale: Locale) {
   return path.join(GUIDES_DIR, locale);
+}
+
+/** 해당 가이드(slug)의 번역본이 실제로 있는 언어 목록. */
+export function getGuideLocales(slug: string): Locale[] {
+  return routing.locales.filter((locale) =>
+    fs.existsSync(path.join(guideDir(locale), `${slug}.mdx`)),
+  );
+}
+
+/**
+ * 일부 언어에만 번역본이 있는 가이드의 {slug: 사용 가능한 언어들}. 모든
+ * 언어에 있는 가이드는 포함하지 않는다. 언어 전환 시 404를 피하는 데 쓴다.
+ */
+export function getPartialGuideLocales(): Record<string, Locale[]> {
+  const result: Record<string, Locale[]> = {};
+  const slugs = new Set(routing.locales.flatMap((l) => getGuideSlugs(l)));
+  for (const slug of slugs) {
+    const available = getGuideLocales(slug);
+    if (available.length < routing.locales.length) result[slug] = available;
+  }
+  return result;
 }
 
 /** All published guide slugs for a locale, derived from the .mdx filenames present. */

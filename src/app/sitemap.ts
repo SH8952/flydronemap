@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL, languageAlternates } from "@/lib/seo";
-import { getAllGuidesMeta } from "@/lib/guides";
+import { getAllGuidesMeta, getGuideLocales } from "@/lib/guides";
 import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
 
 /**
@@ -27,8 +27,10 @@ const STATIC_PATHS = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
+  // 정적 페이지·국가 규정 페이지에는 lastModified를 넣지 않는다. 예전에는 빌드할
+  // 때마다 "지금"을 넣었는데, 실제 수정과 무관하게 항상 바뀌는 lastmod는 구글이
+  // 신뢰하지 않게 되는 원인이 된다(2026-10-03). 가이드는 아래에서 실제
+  // updatedAt/publishedAt을 그대로 쓴다.
   const staticEntries = STATIC_PATHS.flatMap((path) => {
     const changeFrequency: "weekly" | "monthly" =
       path === "" || path === "/guides" ? "weekly" : "monthly";
@@ -36,7 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return routing.locales.map((locale) => ({
       url: `${SITE_URL}/${locale}${path}`,
-      lastModified,
       changeFrequency,
       priority,
       alternates: {
@@ -52,7 +53,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
-        languages: languageAlternates(`/guides/${guide.slug}`),
+        languages: languageAlternates(
+          `/guides/${guide.slug}`,
+          getGuideLocales(guide.slug),
+        ),
       },
     })),
   );
@@ -60,7 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const regulationEntries = routing.locales.flatMap((locale) =>
     REGULATION_COUNTRIES.map((country) => ({
       url: `${SITE_URL}/${locale}/regulations/${country.id}`,
-      lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.5,
       alternates: {

@@ -468,6 +468,7 @@
     "subtitle": "Praktische Ratgeber zum Lesen von Flugwetter, zum Verständnis des Kp-Index und zum sicheren und rechtskonformen Fliegen.",
     "empty": "In dieser Sprache sind noch keine Ratgeber veröffentlicht — schauen Sie bald wieder vorbei.",
     "readingTime": "{minutes} Min. Lesezeit",
+    "updatedOn": "Aktualisiert am {date}",
     "showMore": "Mehr anzeigen",
     "showLess": "Weniger anzeigen",
     "backToGuides": "← Zurück zu den Ratgebern",

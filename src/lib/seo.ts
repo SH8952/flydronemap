@@ -21,14 +21,29 @@ export function ogLocale(locale: string) {
   return LOCALE_TO_OG[locale as (typeof routing.locales)[number]] ?? "en_US";
 }
 
-/** hreflang alternates for every supported locale, plus x-default. */
-export function languageAlternates(path = "") {
-  const entries = routing.locales.map(
+/**
+ * hreflang alternates plus x-default. 기본값은 지원하는 모든 언어이고,
+ * `availableLocales`를 주면 그 언어만 표기한다. 일부 언어에만 번역본이 있는
+ * 가이드는 번역본이 없는 언어 주소(404)를 hreflang/사이트맵에 넣지 않도록
+ * 반드시 사용 가능한 언어만 넘길 것(2026-10-03: 독일어에 없는 가이드 9편 수정).
+ * x-default는 기본 언어가 있으면 기본 언어, 없으면 사용 가능한 첫 언어.
+ */
+export function languageAlternates(
+  path = "",
+  availableLocales?: readonly string[],
+) {
+  const locales = availableLocales
+    ? routing.locales.filter((l) => availableLocales.includes(l))
+    : routing.locales;
+  const entries = locales.map(
     (locale) => [locale, `${SITE_URL}/${locale}${path}`] as const,
   );
+  const defaultLocale = locales.includes(routing.defaultLocale)
+    ? routing.defaultLocale
+    : locales[0];
   return {
     ...Object.fromEntries(entries),
-    "x-default": `${SITE_URL}/${routing.defaultLocale}${path}`,
+    "x-default": `${SITE_URL}/${defaultLocale}${path}`,
   };
 }
 
