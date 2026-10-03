@@ -11,9 +11,6 @@ import {
   Radio,
   ShieldAlert,
   Loader2,
-  CircleCheck,
-  TriangleAlert,
-  CircleX,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -25,7 +22,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { flightVerdict, type FlightVerdict } from "@/lib/weather";
+import { flightVerdict } from "@/lib/weather";
+import { getDroneModel } from "@/lib/drone-models";
+import type { HourlyCondition } from "@/lib/hourly-conditions";
+import {
+  VERDICT_BORDER_COLOR,
+  VERDICT_ICON,
+  VERDICT_TEXT_COLOR,
+} from "@/lib/verdict-style";
+import { HourlyFlightTimeline } from "@/components/hourly-flight-timeline";
+import { DroneModelVerdict } from "@/components/drone-model-verdict";
 import { AirspaceLayerPanel } from "@/components/airspace-layer-panel";
 import { AIRSPACE_LAYERS, getWmsLayerParam } from "@/lib/airspace-layers";
 import {
@@ -124,6 +130,9 @@ type DashboardData = {
     levels: { altitudeM: number; windSpeedKmh: number; windDirectionDeg: number }[];
   } | null;
   kp: { kp: number; time: string } | null;
+  // 지금부터 24시간 시간별 비행 조건 — 2026-10-03 신규(타임라인·기종 판정).
+  // 호출이 실패하거나 데이터가 부족하면 null이고, 그 경우 타임라인은 숨긴다.
+  hourly: HourlyCondition[] | null;
   airspace:
     | {
         source: "faa";
@@ -178,24 +187,6 @@ const RISK_COLOR: Record<string, string> = {
 
 // Good-to-Fly 판정 배지 — 2026-09-28 신규(바람+Kp만 종합, 사용자 선택).
 // 기존 windRisk()/kpRisk()/RISK_COLOR는 그대로 두고 별도로 추가한다.
-const VERDICT_ICON: Record<FlightVerdict, typeof CircleCheck> = {
-  good: CircleCheck,
-  caution: TriangleAlert,
-  "no-fly": CircleX,
-};
-
-const VERDICT_TEXT_COLOR: Record<FlightVerdict, string> = {
-  good: "text-emerald-500",
-  caution: "text-amber-500",
-  "no-fly": "text-red-500",
-};
-
-const VERDICT_BORDER_COLOR: Record<FlightVerdict, string> = {
-  good: "border-emerald-500/30",
-  caution: "border-amber-500/30",
-  "no-fly": "border-red-500/30",
-};
-
 export function DroneDashboard({
   onResultVisibilityChange,
 }: {
@@ -215,6 +206,28 @@ export function DroneDashboard({
   // → 전체 대시보드(지도+카드) 순으로 화면 높이가 두 번 크게 뛰어 레이아웃 밀림
   // (CLS)이 발생했다 (2026-09-14, PageSpeed Insights 진단: CLS 0.226).
   const [loading, setLoading] = useState(true);
+
+  // "내 기종" 선택 — 2026-10-03 신규. 서버 렌더와 맞추기 위해 빈 값으로 시작하고
+  // 마운트 후 localStorage에서 복원한다(저장소를 못 쓰는 환경에서도 동작).
+  const [droneModelId, setDroneModelId] = useState("");
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("fdm:droneModel");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 하이드레이션 불일치를 피하려고 마운트 후에만 저장값을 복원한다(share-button.tsx와 같은 방식)
+      if (saved && getDroneModel(saved)) setDroneModelId(saved);
+    } catch {
+      // 저장소 접근 불가 — 기본값(선택 안 함) 유지
+    }
+  }, []);
+  const handleDroneModelChange = (id: string) => {
+    setDroneModelId(id);
+    try {
+      if (id) window.localStorage.setItem("fdm:droneModel", id);
+      else window.localStorage.removeItem("fdm:droneModel");
+    } catch {
+      // 저장 실패는 무시 — 이번 방문에서만 유지됨
+    }
+  };
 
   // 대시보드 결과(data)가 있고 로딩이 끝났을 때만 관련 도구(ExifLens ND
   // 필터 계산기) 링크를 노출한다. 이 컴포넌트는 더 이상 그 링크를 직접
@@ -756,6 +769,15 @@ export function DroneDashboard({
         </div>
       ) : null}
 
+      {loading ? (
+        // 24시간 타임라인 + 기종 판정 카드 스켈레톤 — 2026-10-03 신규. 실제 카드가
+        // 나오는 자리(카드 3개 grid 바로 아래)와 같은 위치에 두어 CLS를 막는다.
+        <div className="mt-4 flex flex-col gap-4">
+          <div className="h-[300px] animate-pulse rounded-lg border border-border bg-muted" />
+          <div className="h-[200px] animate-pulse rounded-lg border border-border bg-muted" />
+        </div>
+      ) : null}
+
       {data && !loading && data.weather && data.kp ? (
         (() => {
           const verdict = flightVerdict(data.weather.windGustKmh, data.kp.kp);
@@ -1178,6 +1200,24 @@ export function DroneDashboard({
               </div>
             ) : null}
           </div>
+        </div>
+      ) : null}
+
+      {data && !loading && data.weather ? (
+        // 24시간 타임라인 + 내 기종 판정 — 2026-10-03 신규.
+        <div className="mt-4 flex flex-col gap-4">
+          {data.hourly ? (
+            <HourlyFlightTimeline
+              hours={data.hourly}
+              model={getDroneModel(droneModelId)}
+            />
+          ) : null}
+          <DroneModelVerdict
+            modelId={droneModelId}
+            onModelChange={handleDroneModelChange}
+            windGustKmh={data.weather.windGustKmh}
+            altitudeLevels={data.altitudeWind?.levels}
+          />
         </div>
       ) : null}
 

@@ -45,6 +45,40 @@
       "caution": "風または地磁気活動がやや不安定です。飛行前に機体状態を再確認してください。",
       "no-fly": "風が強いか、地磁気嵐レベルです。飛行の延期を検討してください。"
     },
+    "hourlyTitle": "24時間の飛行コンディション",
+    "hourlyNow": "現在",
+    "hourlyListLabel": "時間別の飛行コンディション",
+    "hourlyBestGood": "最適な時間帯：{start}–{end}（突風 {min}–{max} km/h、現地時間）",
+    "hourlyBestCaution": "良好な時間帯はありません。比較的ましな時間帯：{start}–{end}（突風 {min}–{max} km/h、現地時間）— 注意が必要です。",
+    "hourlyNoWindow": "今後24時間は飛行に適した時間帯がありません。フライトの延期をおすすめします。",
+    "hourlyModelBasis": "{model} 基準の突風判定も反映しています。",
+    "hourlyRain": "降水",
+    "hourlyNight": "夜間",
+    "hourlyLegend": {
+      "good": "良好",
+      "caution": "注意",
+      "no-fly": "非推奨"
+    },
+    "hourlyHint": "突風・降水・視程のみで判定した予測値であり、実際とは異なる場合があります。Kp指数は時間別の予報がなく現在値のみのため反映していません。空域・法規・夜間飛行の規則も判定には含まれません。",
+    "modelPanelTitle": "お持ちの機種の風判定",
+    "modelSelectLabel": "ドローンの機種を選択",
+    "modelSelectPlaceholder": "機種を選択",
+    "modelSelectNone": "選択しない",
+    "modelPanelEmpty": "機種を選ぶと、メーカー公式の最大耐風速度と現在の突風を比較して判定します。",
+    "modelVerdict": {
+      "good": "この機種で飛行しやすい状態",
+      "caution": "この機種は注意が必要",
+      "no-fly": "この機種は飛行非推奨"
+    },
+    "modelVerdictHint": {
+      "good": "現在の突風は公式最大耐風速度の50%未満で、余裕があります。",
+      "caution": "現在の突風は公式最大耐風速度の50%以上です。機体が煽られたり、帰還時のバッテリー消費が増えたりする可能性があります。",
+      "no-fly": "現在の突風は公式最大耐風速度の70%以上です。フライトの延期をおすすめします。"
+    },
+    "modelRatio": "現在の突風 {gust} km/h ・ 公式最大耐風速度 {max} km/h（約 {pct}%）",
+    "modelAltitudeNote": "高度 {altitude}m の風は {speed} km/h で、地上の突風より強くなっています。上昇するとより強い風に遭う可能性があります。",
+    "modelConservativeNote": "この機種は離着陸時と飛行中で最大風速が異なるため、低い方の値を基準にしています。",
+    "modelDisclaimer": "最大風速はメーカー公式スペック（2026年10月確認）です。機体の状態・バッテリー・搭載物により実際の限界はこれより低い場合があります。判定は参考情報であり、最終的な飛行判断と責任は操縦者にあります。",
     "airspaceSectionTitleWithCountry": "空域情報 ({country})",
     "airspaceSectionTitleGeneric": "空域情報",
     "nearFacility": "{facility} 付近",

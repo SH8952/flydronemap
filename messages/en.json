@@ -45,6 +45,40 @@
       "caution": "Wind or geomagnetic activity is a bit unsettled. Double-check your aircraft before flying.",
       "no-fly": "Wind is strong or geomagnetic activity is at storm level. Consider postponing your flight."
     },
+    "hourlyTitle": "24-Hour Flight Conditions",
+    "hourlyNow": "Now",
+    "hourlyListLabel": "Hourly flight conditions",
+    "hourlyBestGood": "Best window: {start}–{end} (gusts {min}–{max} km/h, local time)",
+    "hourlyBestCaution": "No fully favorable window. Best available: {start}–{end} (gusts {min}–{max} km/h, local time) — fly with caution.",
+    "hourlyNoWindow": "No suitable flying window in the next 24 hours. Consider postponing your flight.",
+    "hourlyModelBasis": "Gust verdicts also account for the {model}.",
+    "hourlyRain": "Precipitation",
+    "hourlyNight": "Night",
+    "hourlyLegend": {
+      "good": "Good",
+      "caution": "Caution",
+      "no-fly": "Not recommended"
+    },
+    "hourlyHint": "A forecast based only on wind gusts, precipitation and visibility, so it may differ from actual conditions. The Kp index is available only as a current value, not an hourly forecast, so it is not included, and airspace, regulations and night-flight rules are not part of this verdict.",
+    "modelPanelTitle": "Wind Check for Your Drone",
+    "modelSelectLabel": "Select your drone model",
+    "modelSelectPlaceholder": "Select a model",
+    "modelSelectNone": "None",
+    "modelPanelEmpty": "Select your drone to compare the current gusts with the manufacturer's official maximum wind resistance.",
+    "modelVerdict": {
+      "good": "Good to fly with this model",
+      "caution": "Caution with this model",
+      "no-fly": "Not recommended for this model"
+    },
+    "modelVerdictHint": {
+      "good": "Current gusts are below 50% of the official maximum wind resistance, leaving a comfortable margin.",
+      "caution": "Current gusts are at least 50% of the official maximum. The aircraft may be pushed around and the return flight can drain the battery faster.",
+      "no-fly": "Current gusts are at least 70% of the official maximum. Consider postponing your flight."
+    },
+    "modelRatio": "Current gusts {gust} km/h · official max wind resistance {max} km/h (about {pct}%)",
+    "modelAltitudeNote": "Wind at {altitude} m is {speed} km/h, stronger than the gusts at ground level. You may meet stronger wind as you climb.",
+    "modelConservativeNote": "This model lists different maximum wind speeds for takeoff/landing and in flight, so the lower value is used.",
+    "modelDisclaimer": "Maximum wind speeds come from official manufacturer specs (checked October 2026); real-world limits can be lower depending on aircraft condition, battery and payload. Verdicts are for reference only and the pilot is responsible for the final decision.",
     "airspaceSectionTitleWithCountry": "Airspace Info ({country})",
     "airspaceSectionTitleGeneric": "Airspace Info",
     "nearFacility": "Near {facility}",

@@ -45,6 +45,40 @@
       "caution": "El viento o la actividad geomagnética están algo inestables. Revisa tu aeronave antes de volar.",
       "no-fly": "El viento es fuerte o la actividad geomagnética está en nivel de tormenta. Considera posponer el vuelo."
     },
+    "hourlyTitle": "Condiciones de vuelo en 24 horas",
+    "hourlyNow": "Ahora",
+    "hourlyListLabel": "Condiciones de vuelo por hora",
+    "hourlyBestGood": "Mejor franja: {start}–{end} (rachas de {min}–{max} km/h, hora local)",
+    "hourlyBestCaution": "No hay una franja totalmente favorable. La mejor disponible: {start}–{end} (rachas de {min}–{max} km/h, hora local); vuele con precaución.",
+    "hourlyNoWindow": "No hay ninguna franja adecuada para volar en las próximas 24 horas. Considere posponer el vuelo.",
+    "hourlyModelBasis": "La valoración de rachas también tiene en cuenta el {model}.",
+    "hourlyRain": "Precipitación",
+    "hourlyNight": "Noche",
+    "hourlyLegend": {
+      "good": "Bueno",
+      "caution": "Precaución",
+      "no-fly": "No recomendado"
+    },
+    "hourlyHint": "Previsión basada solo en rachas de viento, precipitación y visibilidad, por lo que puede diferir de las condiciones reales. El índice Kp solo está disponible como valor actual y no como previsión horaria, por lo que no se incluye; el espacio aéreo, la normativa y las reglas de vuelo nocturno tampoco forman parte de esta valoración.",
+    "modelPanelTitle": "Viento para su dron",
+    "modelSelectLabel": "Seleccione el modelo de su dron",
+    "modelSelectPlaceholder": "Seleccionar modelo",
+    "modelSelectNone": "Ninguno",
+    "modelPanelEmpty": "Seleccione su dron para comparar las rachas actuales con la resistencia máxima al viento indicada oficialmente por el fabricante.",
+    "modelVerdict": {
+      "good": "Buen momento para volar con este modelo",
+      "caution": "Precaución con este modelo",
+      "no-fly": "No recomendado para este modelo"
+    },
+    "modelVerdictHint": {
+      "good": "Las rachas actuales están por debajo del 50 % de la resistencia máxima oficial al viento, con un margen cómodo.",
+      "caution": "Las rachas actuales alcanzan al menos el 50 % del máximo oficial. El dron puede ser zarandeado y el regreso puede consumir más batería.",
+      "no-fly": "Las rachas actuales alcanzan al menos el 70 % del máximo oficial. Considere posponer el vuelo."
+    },
+    "modelRatio": "Rachas actuales {gust} km/h · resistencia máxima oficial al viento {max} km/h (aprox. {pct} %)",
+    "modelAltitudeNote": "El viento a {altitude} m es de {speed} km/h, más fuerte que las rachas a nivel del suelo. Puede encontrar viento más intenso al ascender.",
+    "modelConservativeNote": "Este modelo indica velocidades máximas de viento distintas para despegue/aterrizaje y en vuelo, por lo que se usa el valor más bajo.",
+    "modelDisclaimer": "Las velocidades máximas de viento proceden de las especificaciones oficiales del fabricante (comprobadas en octubre de 2026); el límite real puede ser menor según el estado del dron, la batería y la carga. La valoración es solo orientativa y la decisión final y la responsabilidad corresponden al piloto.",
     "airspaceSectionTitleWithCountry": "Información de espacio aéreo ({country})",
     "airspaceSectionTitleGeneric": "Información de espacio aéreo",
     "nearFacility": "Cerca de {facility}",

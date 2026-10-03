@@ -1,3 +1,28 @@
+## 2026-10-03 — 24시간 비행 조건 타임라인 + 내 기종 바람 판정 신규, 기종별 풍속 가이드 정정
+
+**배경**
+- 경쟁 사이트 3곳(UAV Coach·Aloft·Droneblog) 분석에서, FlyDroneMap에는 "언제 날면 좋은지(시간대)"와 "내 기종 기준 판정"이 없다는 점이 가장 큰 기능 격차로 확인됨. 사용자가 두 기능(1·2번)을 모두 진행하도록 승인했고, 선택 사항은 다음과 같이 확정함: 2번 범위 = 대시보드 선택기 + 기존 가이드 표 확장(새 URL 없음), 기종 = DJI 12종 + Autel·Skydio 각 소수(공식 확인분만), 판정 = 공식 최대 풍속의 50% 이상 주의 / 70% 이상 비권장, 1번 = 24시간 가로 스크롤 카드 + 최적 시간대 요약(Kp는 현재값 유지).
+
+**변경 사항**
+- `src/lib/weather.ts`: `fetchHourlyForecast()` 신규(Open-Meteo 시간별 돌풍·풍속·강수·가시거리·낮/밤, 지금 시각부터 최대 24시간, 5분 캐시). 데이터가 12시간 미만이면 null을 돌려 타임라인을 숨김.
+- `src/app/api/dashboard/route.ts`: 응답에 `hourly` 필드 추가(기존 필드·호출은 그대로, 요청 1건만 추가).
+- `src/lib/hourly-conditions.ts`(신규): 시간별 판정(돌풍 + 강수 0.1/0.5mm + 가시거리 5km/1km, 기종 선택 시 기종 판정과 중 더 나쁜 쪽)과 "가장 좋은 연속 시간대" 계산(양호 구간이 없으면 주의 구간으로 대체, 그것도 없으면 비행 불가 안내).
+- `src/lib/drone-models.ts`(신규): 제조사 공식 최대 풍속 스펙 16종 + 판정 함수. 이륙·착륙/비행 중 값이 다른 기종(Inspire 3, Autel EVO II Pro V3)은 낮은 값을 쓰고 화면에 안내.
+- `src/lib/verdict-style.ts`(신규): 양호/주의/비권장 아이콘·색상을 공용화(`drone-dashboard.tsx`의 중복 정의 제거).
+- `src/components/hourly-flight-timeline.tsx` · `drone-model-verdict.tsx`(신규), `drone-dashboard.tsx`: 카드 3개 아래에 타임라인 + 기종 판정 카드 배치, 로딩 스켈레톤 추가(CLS 방지), 선택한 기종은 `localStorage`(`fdm:droneModel`, 접근 불가 시 무시)에 저장. 지도 위에서도 목록이 보이도록 `SelectContent`에 `z-[1100]`.
+- `messages/{en,ko,ja,es,de}.json` · `Home`: 타임라인·기종 판정 문구 신규(5개 언어, 안전 면책 문구 포함).
+- `content/guides/*/drone-wind-resistance-by-model.mdx`(5개 언어): 기종 표를 공식 스펙으로 정정·확장하고 대시보드 판정 기준 설명을 추가, `updatedAt` 2026-10-03.
+
+**버그 수정 (공지)**
+- `fetchAltitudeWindProfile`의 "현재 시각" 선택이 Open-Meteo가 돌려주는 현지 시각 문자열을 UTC로 해석해, 한국(UTC+9) 등에서 약 9시간 어긋난 고도별 바람(80m/120m)을 보여 주던 문제를 `utc_offset_seconds`를 반영하도록 수정함. 같은 방식으로 시간별 예보도 현지 시각 기준으로 정렬.
+- 가이드 표의 오류 정정: Air 3·Mavic 3 계열·Inspire 3을 38km/h(10.7m/s)로 적었으나 공식 값은 12m/s(약 43km/h)(Inspire 3은 비행 중 14m/s), Skydio X10은 40km/h가 아니라 12.8m/s(약 46km/h), Autel은 EVO II Pro V3 기준으로 수정하고 EVO III 추가.
+
+**검증 / 참고**
+- 작업 전 `.backups/backup_20261003_174404_시간별타임라인_기종판정작업전/`에 `src`·`messages`·`content`·`CHANGELOG.md`·`package.json` 백업.
+- `npx tsc --noEmit` 통과, 변경 파일 `eslint` 오류 0(기존 경고 3건은 이번 변경과 무관). 판정 경계값(50%/70%)·최적 시간대 계산(동률 시 이른 시간대, 대체 구간, 없음)을 스크립트로 확인.
+- 공식 스펙 확인일 2026-10-03(dji.com, autelrobotics.com, skydio.com). 기종 추가·스펙 변경 시 반드시 공식 페이지를 다시 확인할 것.
+- 새 URL을 만들지 않았으므로 사이트맵·색인 대상은 늘지 않음. 배포 전 로컬 `npm run dev`에서 타임라인 가로 스크롤, 기종 선택 드롭다운(지도 위 표시), 5개 언어 문구를 확인 권장. 이전에 푸시하지 못한 커밋(`249e36d`)과 이번 작업을 `노출개선_Push.command` 한 번으로 함께 푸시.
+
 ## 2026-10-03 — 서치 콘솔 데이터 기반 노출·클릭 개선 1차 (신뢰도 신호 보강 + 국가 페이지 검색 문구 최적화 + 내부 링크)
 
 **배경**

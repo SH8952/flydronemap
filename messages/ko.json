@@ -45,6 +45,40 @@
       "caution": "바람 또는 지자기 활동 중 하나가 다소 불안정합니다. 비행 전 기체 상태를 한 번 더 확인하세요.",
       "no-fly": "바람이 강하거나 지자기 폭풍 수준입니다. 비행을 미루는 것을 권장합니다."
     },
+    "hourlyTitle": "24시간 비행 조건 예보",
+    "hourlyNow": "지금",
+    "hourlyListLabel": "시간별 비행 조건",
+    "hourlyBestGood": "가장 좋은 시간대: {start}–{end} (돌풍 {min}–{max} km/h, 현지 시간)",
+    "hourlyBestCaution": "양호한 시간대가 없습니다. 상대적으로 나은 시간대: {start}–{end} (돌풍 {min}–{max} km/h, 현지 시간) — 주의가 필요합니다.",
+    "hourlyNoWindow": "앞으로 24시간 동안 비행에 적합한 시간대가 없습니다. 비행을 미루는 것을 권장합니다.",
+    "hourlyModelBasis": "{model} 기준 돌풍 판정이 반영되었습니다.",
+    "hourlyRain": "강수",
+    "hourlyNight": "야간",
+    "hourlyLegend": {
+      "good": "양호",
+      "caution": "주의",
+      "no-fly": "비권장"
+    },
+    "hourlyHint": "돌풍·강수·가시거리만으로 판정한 예측값이며 실제와 다를 수 있습니다. 지자기(Kp) 지수는 시간별 예보가 아니라 현재 값만 제공되므로 반영되지 않았고, 공역·법규·야간 비행 규정도 판정에 포함되지 않습니다.",
+    "modelPanelTitle": "내 기종 바람 판정",
+    "modelSelectLabel": "내 드론 기종 선택",
+    "modelSelectPlaceholder": "기종 선택",
+    "modelSelectNone": "선택 안 함",
+    "modelPanelEmpty": "기종을 선택하면 제조사 공식 최대 풍속과 현재 돌풍을 비교해 내 드론 기준으로 판정해 드립니다.",
+    "modelVerdict": {
+      "good": "이 기종으로 비행하기 좋음",
+      "caution": "이 기종은 주의 필요",
+      "no-fly": "이 기종은 비행 비권장"
+    },
+    "modelVerdictHint": {
+      "good": "현재 돌풍이 공식 최대 풍속의 50% 미만으로 여유가 있습니다.",
+      "caution": "현재 돌풍이 공식 최대 풍속의 50% 이상입니다. 기체가 흔들리거나 복귀 시 배터리 소모가 커질 수 있어 주의하세요.",
+      "no-fly": "현재 돌풍이 공식 최대 풍속의 70% 이상입니다. 비행을 미루는 것을 권장합니다."
+    },
+    "modelRatio": "현재 돌풍 {gust} km/h · 공식 최대 풍속 {max} km/h (약 {pct}%)",
+    "modelAltitudeNote": "{altitude}m 고도의 바람은 {speed} km/h로 지표 돌풍보다 강합니다. 고도를 올리면 더 센 바람을 만날 수 있습니다.",
+    "modelConservativeNote": "이 기종은 이륙·착륙과 비행 중 최대 풍속이 다르게 공지되어 더 낮은 값을 기준으로 삼았습니다.",
+    "modelDisclaimer": "최대 풍속은 제조사 공식 스펙(2026-10 확인)이며 기체 상태·배터리·적재에 따라 실제 한계는 더 낮을 수 있습니다. 판정은 참고용이며 최종 비행 판단과 책임은 조종자에게 있습니다.",
     "airspaceSectionTitleWithCountry": "공역 정보 ({country})",
     "airspaceSectionTitleGeneric": "공역 정보",
     "nearFacility": "{facility} 인근",

@@ -2,6 +2,7 @@
 title: "드론 기종별 최대 풍속 저항 비교표 (DJI · Autel · Skydio)"
 description: "DJI, Autel, Skydio 주요 드론 기종의 제조사 공식 최대 풍속 저항 스펙을 한눈에 비교하고, 실제 비행에는 왜 여유를 둬야 하는지 정리합니다."
 publishedAt: "2026-09-28"
+updatedAt: "2026-10-03"
 tags: ["wind", "gear", "dji", "autel", "skydio"]
 category: "gear-flight-tips"
 ---
@@ -12,15 +13,19 @@ category: "gear-flight-tips"
 
 | 제조사 | 기종 | 최대 풍속 저항 |
 |---|---|---|
-| DJI | Mini 3 / Mini 3 Pro / Mini 4 Pro | 약 38km/h (10.7m/s, Beaufort 5급) |
-| DJI | Air 2S / Air 3 | 약 38km/h (10.7m/s, Beaufort 5급) |
-| DJI | Mavic 3 / Mavic 3 Pro / Mavic 3 Classic | 약 38km/h (10.7m/s, Beaufort 5급) |
+| DJI | Neo | 약 29km/h (8m/s) |
+| DJI | Mini 4K / Mini 3 / Mini 3 Pro / Mini 4 Pro | 약 38km/h (10.7m/s, Beaufort 5급) |
+| DJI | Mini 5 Pro | 약 43km/h (12m/s) |
+| DJI | Air 2S | 약 38km/h (10.7m/s, Beaufort 5급) |
+| DJI | Air 3 / Air 3S | 약 43km/h (12m/s) |
+| DJI | Mavic 3 Classic / Mavic 3 Pro | 약 43km/h (12m/s) |
 | DJI | Avata 2 | 약 38km/h (10.7m/s, Beaufort 5급) |
-| DJI | Inspire 3 | 약 38km/h (10.7m/s, Beaufort 5급) |
-| Autel | EVO II 시리즈 | 약 35km/h (22mph) |
-| Skydio | X10 | 약 40km/h (25mph) |
+| DJI | Inspire 3 | 이륙·착륙 약 43km/h (12m/s), 비행 중 약 50km/h (14m/s) |
+| Autel | EVO II Pro V3 | 이륙·착륙 약 38km/h (10.7m/s), 순항 약 43km/h (12m/s) |
+| Autel | EVO III 시리즈 | 약 43km/h (12m/s) |
+| Skydio | X10 | 최대 돌풍 대응 약 46km/h (12.8m/s) |
 
-*DJI 소비자·프로슈머 기체 대부분이 동일한 "Beaufort 5급(10.7m/s)" 등급을 사용합니다. 정확한 수치는 모델 개정에 따라 달라질 수 있으니 구매·비행 전 제조사 공식 스펙 페이지에서 재확인하세요.*
+*위 수치는 2026년 10월 3일 제조사 공식 스펙 페이지에서 확인한 값이며, 이전에 이 표에 적혀 있던 Air 3·Mavic 3 계열·Inspire 3의 38km/h(10.7m/s) 표기와 Autel·Skydio 수치를 바로잡았습니다. 이륙·착륙과 비행 중 값이 다르게 공지된 기종(Inspire 3, Autel EVO II Pro V3)은 두 값을 모두 적었습니다. 정확한 수치는 모델 개정에 따라 달라질 수 있으니 구매·비행 전 제조사 공식 스펙 페이지에서 재확인하세요.*
 
 ## 표기된 수치를 그대로 비행 한계로 믿으면 안 되는 이유
 
@@ -29,6 +34,10 @@ category: "gear-flight-tips"
 ## 실무에서 흔히 쓰는 안전 여유
 
 숙련된 조종자들 사이에서는 제조사 표기치의 **60~70% 수준**을 실질적인 비행 상한선으로 삼는 경우가 많습니다. 예를 들어 DJI 기체(38km/h 등급)라면 실질적으로는 23~27km/h 정도를 넘어서면 비행을 재고하는 식입니다. 초보자라면 이보다 더 보수적으로, 15~20km/h 이하에서 연습하는 것을 권장합니다.
+
+## 대시보드의 "내 기종 바람 판정"은 어떻게 계산할까
+
+FlyDroneMap 메인 대시보드에서 위 기종 중 하나를 고르면, 현재 돌풍을 제조사 공식 최대 풍속과 비교해 판정합니다. 돌풍이 공식 최대 풍속의 **50% 미만이면 양호, 50% 이상이면 주의, 70% 이상이면 비권장**으로 표시합니다. 예를 들어 최대 풍속이 약 43km/h(12m/s)인 기종은 돌풍이 약 22km/h부터 주의, 약 30km/h부터 비권장이 됩니다. 이륙·착륙과 비행 중 값이 다른 기종은 더 낮은 값을 기준으로 삼습니다. 이 판정은 지표면 돌풍 기준의 참고용 안내이며, 공역·법규는 반영하지 않습니다.
 
 ## 비행 전 확인할 것
 

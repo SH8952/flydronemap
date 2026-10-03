@@ -45,6 +45,40 @@
       "caution": "Wind oder geomagnetische Aktivität sind etwas unruhig. Überprüfen Sie Ihr Fluggerät vor dem Flug.",
       "no-fly": "Der Wind ist stark oder die geomagnetische Aktivität liegt auf Sturmniveau. Erwägen Sie, den Flug zu verschieben."
     },
+    "hourlyTitle": "Flugbedingungen der nächsten 24 Stunden",
+    "hourlyNow": "Jetzt",
+    "hourlyListLabel": "Stündliche Flugbedingungen",
+    "hourlyBestGood": "Bestes Zeitfenster: {start}–{end} (Böen {min}–{max} km/h, Ortszeit)",
+    "hourlyBestCaution": "Kein durchgehend günstiges Zeitfenster. Bestes verfügbares: {start}–{end} (Böen {min}–{max} km/h, Ortszeit) – mit Vorsicht fliegen.",
+    "hourlyNoWindow": "In den nächsten 24 Stunden gibt es kein geeignetes Flugfenster. Erwägen Sie, den Flug zu verschieben.",
+    "hourlyModelBasis": "Die Böenbewertung berücksichtigt zusätzlich die {model}.",
+    "hourlyRain": "Niederschlag",
+    "hourlyNight": "Nacht",
+    "hourlyLegend": {
+      "good": "Gut",
+      "caution": "Vorsicht",
+      "no-fly": "Nicht empfohlen"
+    },
+    "hourlyHint": "Prognose nur auf Basis von Windböen, Niederschlag und Sichtweite; sie kann von den tatsächlichen Bedingungen abweichen. Der Kp-Index liegt nur als aktueller Wert und nicht als Stundenprognose vor und ist daher nicht berücksichtigt; Luftraum, Vorschriften und Regeln für Nachtflüge sind ebenfalls nicht Teil dieser Bewertung.",
+    "modelPanelTitle": "Windcheck für Ihre Drohne",
+    "modelSelectLabel": "Drohnenmodell auswählen",
+    "modelSelectPlaceholder": "Modell auswählen",
+    "modelSelectNone": "Keine Auswahl",
+    "modelPanelEmpty": "Wählen Sie Ihre Drohne aus, um die aktuellen Böen mit der offiziellen maximalen Windgeschwindigkeit des Herstellers zu vergleichen.",
+    "modelVerdict": {
+      "good": "Gute Bedingungen für dieses Modell",
+      "caution": "Vorsicht bei diesem Modell",
+      "no-fly": "Für dieses Modell nicht empfohlen"
+    },
+    "modelVerdictHint": {
+      "good": "Die aktuellen Böen liegen unter 50 % der offiziellen maximalen Windgeschwindigkeit – ausreichend Spielraum.",
+      "caution": "Die aktuellen Böen erreichen mindestens 50 % des offiziellen Maximums. Die Drohne kann stark versetzt werden, und der Rückflug kann mehr Akku verbrauchen.",
+      "no-fly": "Die aktuellen Böen erreichen mindestens 70 % des offiziellen Maximums. Erwägen Sie, den Flug zu verschieben."
+    },
+    "modelRatio": "Aktuelle Böen {gust} km/h · offizielle maximale Windgeschwindigkeit {max} km/h (ca. {pct} %)",
+    "modelAltitudeNote": "Der Wind in {altitude} m Höhe beträgt {speed} km/h und ist damit stärker als die Böen am Boden. Beim Steigen kann stärkerer Wind auftreten.",
+    "modelConservativeNote": "Für dieses Modell gibt der Hersteller unterschiedliche Höchstwerte für Start/Landung und Flug an; es wird der niedrigere Wert verwendet.",
+    "modelDisclaimer": "Die maximalen Windgeschwindigkeiten stammen aus den offiziellen Herstellerangaben (geprüft im Oktober 2026); die tatsächliche Grenze kann je nach Zustand der Drohne, Akku und Nutzlast niedriger liegen. Die Bewertung dient nur zur Orientierung; die endgültige Entscheidung und Verantwortung liegt beim Piloten.",
     "airspaceSectionTitleWithCountry": "Luftraum-Info ({country})",
     "airspaceSectionTitleGeneric": "Luftraum-Info",
     "nearFacility": "In der Nähe von {facility}",

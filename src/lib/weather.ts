@@ -1,4 +1,5 @@
 import { kpRiskLevel } from "@/lib/kp-index";
+import type { HourlyCondition } from "@/lib/hourly-conditions";
 
 export type FlightWeather = {
   time: string;
@@ -127,6 +128,7 @@ export async function fetchAltitudeWindProfile(
   if (!res.ok) return null;
 
   const data = (await res.json()) as {
+    utc_offset_seconds?: number;
     hourly?: {
       time: string[];
       wind_speed_10m: number[];
@@ -143,8 +145,15 @@ export async function fetchAltitudeWindProfile(
 
   // 현재 시각 이후(또는 같은) 첫 시간대를 찾는다. 전부 과거면(엣지 케이스)
   // 마지막 인덱스로 대체.
+  // Open-Meteo는 timezone=auto일 때 "현지 시각" 문자열(타임존 표기 없음)을
+  // 돌려준다. 서버(UTC)에서 그대로 Date로 파싱하면 현지 시각이 UTC로 해석돼
+  // 한국·일본처럼 UTC가 아닌 지역에서는 몇 시간 어긋난 시각이 선택되므로,
+  // 응답의 utc_offset_seconds로 보정해 실제 현재 시각과 비교한다(2026-10-03).
+  const offsetMs = (data.utc_offset_seconds ?? 0) * 1000;
   const now = Date.now();
-  let index = hourly.time.findIndex((t) => new Date(t).getTime() >= now);
+  let index = hourly.time.findIndex(
+    (t) => Date.parse(`${t}:00Z`) - offsetMs >= now,
+  );
   if (index === -1) index = hourly.time.length - 1;
 
   const speeds = [
@@ -191,4 +200,76 @@ export function flightVerdict(windGustKmh: number, kp: number): FlightVerdict {
   if (wind === "high" || kpLevel === "storm") return "no-fly";
   if (wind === "moderate" || kpLevel === "unsettled") return "caution";
   return "good";
+}
+
+/**
+ * 지금 시각(현지 기준 현재 시간대)부터 24시간의 시간별 조건. 24시간 비행 조건
+ * 타임라인용(2026-10-03 신규). 돌풍·평균 풍속·강수·가시거리·낮밤 여부만 받아오며,
+ * 판정은 hourly-conditions.ts의 순수 함수가 한다. 일부 시간대의 값이 비어 있으면
+ * 그 시간대는 건너뛰고, 사용할 수 있는 시간대가 12개 미만이면 null을 돌려준다.
+ */
+export async function fetchHourlyForecast(
+  latitude: number,
+  longitude: number,
+): Promise<HourlyCondition[] | null> {
+  const url = new URL("https://api.open-meteo.com/v1/forecast");
+  url.searchParams.set("latitude", String(latitude));
+  url.searchParams.set("longitude", String(longitude));
+  url.searchParams.set(
+    "hourly",
+    [
+      "wind_gusts_10m",
+      "wind_speed_10m",
+      "precipitation",
+      "visibility",
+      "is_day",
+    ].join(","),
+  );
+  url.searchParams.set("wind_speed_unit", "kmh");
+  url.searchParams.set("timezone", "auto");
+  url.searchParams.set("forecast_days", "2");
+
+  const res = await fetch(url.toString(), { next: { revalidate: 300 } });
+  if (!res.ok) return null;
+
+  const data = (await res.json()) as {
+    utc_offset_seconds?: number;
+    hourly?: {
+      time: string[];
+      wind_gusts_10m: (number | null)[];
+      wind_speed_10m: (number | null)[];
+      precipitation: (number | null)[];
+      visibility: (number | null)[];
+      is_day: (number | null)[];
+    };
+  };
+
+  const hourly = data.hourly;
+  if (!hourly || hourly.time.length === 0) return null;
+
+  const offsetMs = (data.utc_offset_seconds ?? 0) * 1000;
+  const hourStart = Math.floor(Date.now() / 3_600_000) * 3_600_000;
+  const startIndex = hourly.time.findIndex(
+    (t) => Date.parse(`${t}:00Z`) - offsetMs >= hourStart,
+  );
+  if (startIndex === -1) return null;
+
+  const hours: HourlyCondition[] = [];
+  for (let i = startIndex; i < hourly.time.length && hours.length < 24; i++) {
+    const gust = hourly.wind_gusts_10m[i];
+    const speed = hourly.wind_speed_10m[i];
+    if (typeof gust !== "number" || typeof speed !== "number") continue;
+    const visibility = hourly.visibility[i];
+    hours.push({
+      time: hourly.time[i],
+      windGustKmh: gust,
+      windSpeedKmh: speed,
+      precipitationMm: hourly.precipitation[i] ?? 0,
+      // 가시거리 값이 비어 있으면(일부 모델) "문제 없음"으로 간주한다.
+      visibilityM: typeof visibility === "number" ? visibility : 20000,
+      isDay: hourly.is_day[i] !== 0,
+    });
+  }
+
+  return hours.length >= 12 ? hours : null;
 }
