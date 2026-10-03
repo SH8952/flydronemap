@@ -11,8 +11,8 @@
   "Home": {
     "title": "FlyDroneMap: Clima de Vuelo en Vivo y Índice Kp",
     "subtitle": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
-    "metaTitle": "FlyDroneMap: Clima de Vuelo y Índice Kp",
-    "metaDescription": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el último índice Kp y (en EE. UU.) el techo de altitud de la FAA — todo lo necesario para planear un vuelo de drone más seguro.",
+    "metaTitle": "FlyDroneMap: Clima de Vuelo, Índice Kp y Mapa de Zonas",
+    "metaDescription": "Busca cualquier ubicación para ver viento, ráfagas y visibilidad en vivo, el índice Kp y las zonas de vuelo de drones de España (ENAIRE), además del techo de altitud de la FAA en EE. UU.",
     "searchPlaceholder": "Busca una ciudad o aeropuerto...",
     "useMyLocationButton": "Usar mi ubicación",
     "countryJumpPlaceholder": "Seleccionar país",
@@ -378,6 +378,20 @@
         ]
       },
       {
+        "heading": "De dónde salen los datos",
+        "body": [
+          "El tiempo (viento, ráfagas, visibilidad y temperatura) procede de Open-Meteo. El índice Kp planetario procede del Centro de Predicción del Clima Espacial de la NOAA (SWPC).",
+          "Las capas de espacio aéreo proceden de servicios públicos oficiales: el FAA UAS Facility Map y los datos de espacio aéreo de EE. UU., VWorld para Corea del Sur, las zonas geográficas UAS de ENAIRE para España y DIPUL para Alemania. Para Japón, de momento solo enlazamos las páginas oficiales del MLIT."
+        ]
+      },
+      {
+        "heading": "Exactitud, actualizaciones y correcciones",
+        "body": [
+          "Los resúmenes de normativa son referencias breves y en lenguaje sencillo, no asesoramiento jurídico, y cada página de país enlaza con la autoridad oficial. Las normas cambian: confirma siempre con la autoridad antes de volar.",
+          "Cada guía muestra su fecha de publicación y procuramos revisarla cuando cambian las normas o los datos en los que se basa. Si detectas un error o una norma desactualizada, escríbenos y lo comprobaremos con la fuente oficial."
+        ]
+      },
+      {
         "heading": "Contacto",
         "body": [
           "¿Preguntas o comentarios? Escríbenos a skysmoga@gmail.com."
@@ -461,7 +475,9 @@
           "official": "Guía oficial de drones de la FAA",
           "registration": "Registro de drones (DroneZone)",
           "flightApproval": "Autorización de espacio aéreo (LAANC)"
-        }
+        },
+        "metaTitle": "Leyes de drones en EE. UU.: FAA y LAANC",
+        "metaDescription": "Leyes de drones en EE. UU.: examen TRUST para vuelo recreativo, Part 107 para uso comercial, registro ante la FAA y autorización LAANC en espacio aéreo controlado."
       },
       "kr": {
         "name": "Corea del Sur",
@@ -476,7 +492,9 @@
           "official": "Portal Drone OneStop",
           "registration": "Registro de la aeronave",
           "flightApproval": "Solicitud de autorización de vuelo"
-        }
+        },
+        "metaTitle": "Drones en Corea del Sur: normativa y zonas",
+        "metaDescription": "Normativa de drones en Corea del Sur: registro y autorización de vuelo en Drone OneStop, zonas de exclusión, zonas de control, multas y mapa del espacio aéreo."
       },
       "jp": {
         "name": "Japón",
@@ -490,7 +508,9 @@
         "links": {
           "official": "Información oficial de drones del MLIT",
           "registration": "Registro y solicitud de vuelo (DIPS2.0)"
-        }
+        },
+        "metaTitle": "Drones en Japón: normativa y Remote ID",
+        "metaDescription": "Normativa de drones en Japón: los drones de 100 g o más deben registrarse ante el MLIT (incluido Remote ID). Resumen y enlaces oficiales."
       },
       "es": {
         "name": "España",
@@ -504,7 +524,9 @@
         "links": {
           "official": "Información oficial de drones de AESA",
           "registration": "Registro de operador (AESA)"
-        }
+        },
+        "metaTitle": "Mapa de drones en España: zonas de vuelo",
+        "metaDescription": "Dónde volar un dron en España: marco EASA (categorías abierta, específica y certificada), registro en AESA y cómo consultar las zonas geográficas UAS."
       },
       "de": {
         "name": "Alemania",
@@ -519,9 +541,12 @@
           "official": "Información oficial de drones de la LBA",
           "registration": "Registro de operador (LBA)",
           "airspaceMap": "Mapa de zonas geográficas de DIPUL"
-        }
+        },
+        "metaTitle": "Drones en Alemania: normativa y DIPUL",
+        "metaDescription": "Normativa de drones en Alemania: marco EASA de la UE, registro ante el LBA y cómo consultar las zonas de restricción de vuelo en DIPUL antes de volar."
       }
-    }
+    },
+    "relatedGuidesTitle": "Guías relacionadas"
   },
   "Contact": {
     "title": "Contacta con FlyDroneMap",

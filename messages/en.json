@@ -378,6 +378,20 @@
         ]
       },
       {
+        "heading": "Where the data comes from",
+        "body": [
+          "Weather data — wind, gusts, visibility and temperature — comes from Open-Meteo. The planetary Kp index comes from NOAA's Space Weather Prediction Center (SWPC).",
+          "Airspace layers come from official public services: the FAA UAS Facility Map and airspace data for the United States, VWorld for South Korea, ENAIRE's UAS geographical zones for Spain, and DIPUL for Germany. For Japan we currently link to the official MLIT pages only."
+        ]
+      },
+      {
+        "heading": "Accuracy, updates and corrections",
+        "body": [
+          "Regulation summaries are short, plain-language references, not legal advice, and each country page links to the official authority. Rules change, so always confirm with the authority before you fly.",
+          "Every guide shows its publication date, and we aim to revise a guide when the rules or data it is based on change. If you spot an error or an outdated rule, email us and we will check it against the official source."
+        ]
+      },
+      {
         "heading": "Contact",
         "body": [
           "Questions or feedback? Reach us at skysmoga@gmail.com."
@@ -461,7 +475,9 @@
           "official": "FAA drone guidance",
           "registration": "FAA drone registration (DroneZone)",
           "flightApproval": "Airspace authorization (LAANC)"
-        }
+        },
+        "metaTitle": "US Drone Laws: FAA, LAANC & Part 107 Basics",
+        "metaDescription": "US drone laws in brief: TRUST test for recreational flyers, Part 107 for commercial flights, FAA registration, and LAANC approval in controlled airspace."
       },
       "kr": {
         "name": "South Korea",
@@ -476,7 +492,9 @@
           "official": "Drone OneStop portal",
           "registration": "Drone registration",
           "flightApproval": "Flight approval application"
-        }
+        },
+        "metaTitle": "South Korea Drone Rules & No-Fly Zone Map",
+        "metaDescription": "South Korea drone rules: register your drone and get flight or aerial-photography approval via Drone OneStop. See no-fly zones, control zones and fines."
       },
       "jp": {
         "name": "Japan",
@@ -490,7 +508,9 @@
         "links": {
           "official": "MLIT drone guidance",
           "registration": "Registration & flight application (DIPS2.0)"
-        }
+        },
+        "metaTitle": "Japan Drone Rules: Registration & Remote ID",
+        "metaDescription": "Japan drone rules: drones of 100 g or more must be registered with MLIT (incl. Remote ID). Learn when permission is needed near airports and for night flights."
       },
       "es": {
         "name": "Spain",
@@ -504,7 +524,9 @@
         "links": {
           "official": "AESA drone guidance",
           "registration": "Operator registration (AESA)"
-        }
+        },
+        "metaTitle": "Spain Drone Rules & AESA Airspace Map",
+        "metaDescription": "Spain drone rules under the EU EASA framework: Open, Specific and Certified categories, AESA registration, and how to check UAS geographical zones."
       },
       "de": {
         "name": "Germany",
@@ -519,9 +541,12 @@
           "official": "LBA drone guidance",
           "registration": "Operator registration (LBA)",
           "airspaceMap": "DIPUL geographical zones map"
-        }
+        },
+        "metaTitle": "Germany Drone Rules: EU Categories & DIPUL",
+        "metaDescription": "Germany drone rules under the EU EASA framework: Open, Specific and Certified categories, LBA registration, and how to check DIPUL flight restriction zones."
       }
-    }
+    },
+    "relatedGuidesTitle": "Related guides"
   },
   "Contact": {
     "title": "Contact FlyDroneMap",

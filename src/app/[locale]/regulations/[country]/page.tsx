@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
 import { ShareButton } from "@/components/share-button";
+import { RegulationRelatedGuides } from "@/components/regulation-related-guides";
 import {
   REGULATION_COUNTRIES,
   getRegulationCountry,
@@ -27,8 +28,14 @@ export async function generateMetadata({
   if (!country) return {};
 
   const t = await getTranslations({ locale, namespace: "Regulations" });
-  const title = `${t(`countries.${country.id}.name`)} — ${t("title")}`;
-  const description = t(`countries.${country.id}.summary.0`);
+  // 검색어 의도(예: "korea drone map", "mapa drones españa")에 맞춘 전용
+  // 메타 문구. 없으면 기존 방식(국가명 — 제목 / 요약 첫 줄)으로 대체.
+  const title = t.has(`countries.${country.id}.metaTitle`)
+    ? t(`countries.${country.id}.metaTitle`)
+    : `${t(`countries.${country.id}.name`)} — ${t("title")}`;
+  const description = t.has(`countries.${country.id}.metaDescription`)
+    ? t(`countries.${country.id}.metaDescription`)
+    : t(`countries.${country.id}.summary.0`);
 
   return {
     title,
@@ -138,6 +145,11 @@ export default async function RegulationCountryPage({
           ))}
         </ul>
       </div>
+
+      <RegulationRelatedGuides
+        locale={locale}
+        slugs={country.relatedGuideSlugs}
+      />
     </div>
   );
 }

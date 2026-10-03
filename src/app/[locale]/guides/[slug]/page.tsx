@@ -101,6 +101,7 @@ export default async function GuidePage({
     },
     mainEntityOfPage: `${SITE_URL}/${locale}/guides/${slug}`,
     inLanguage: locale,
+    ...(meta.image ? { image: [`${SITE_URL}${meta.image}`] } : {}),
   };
 
   const breadcrumbs = breadcrumbJsonLd([

@@ -38,11 +38,15 @@ export type RegulationCountryDef = {
   /** 국가 선택 드롭다운에서 이 국가를 고르면 지도를 이동시킬 기준 좌표(수도). */
   capital: { latitude: number; longitude: number };
   links: { key: RegulationLinkKey; url: string }[];
+  /** 이 국가 페이지 하단에 "관련 가이드"로 연결할 가이드 slug 목록(내부 링크 강화용).
+   * 해당 언어에 없는 slug는 화면에서 자동으로 건너뜀. */
+  relatedGuideSlugs: string[];
 };
 
 export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   {
     id: "us",
+    relatedGuideSlugs: ["faa-part-107-explained", "what-is-laanc-and-why-it-matters", "understanding-us-airspace-classes"],
     hasMapData: true,
     capital: { latitude: 38.9072, longitude: -77.0369 },
     links: [
@@ -59,6 +63,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   },
   {
     id: "kr",
+    relatedGuideSlugs: ["korea-drone-license-and-registration-guide"],
     hasMapData: true,
     capital: { latitude: 37.5665, longitude: 126.978 },
     links: [
@@ -75,6 +80,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   },
   {
     id: "jp",
+    relatedGuideSlugs: ["japan-mlit-drone-regulations-overview"],
     hasMapData: false,
     capital: { latitude: 35.6762, longitude: 139.6503 },
     links: [
@@ -90,6 +96,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   },
   {
     id: "es",
+    relatedGuideSlugs: ["spain-drone-regulations-and-enaire-zguas-explained", "eu-easa-drone-regulations-basics"],
     hasMapData: true,
     capital: { latitude: 40.4168, longitude: -3.7038 },
     links: [
@@ -105,6 +112,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
   },
   {
     id: "de",
+    relatedGuideSlugs: ["eu-easa-drone-regulations-basics"],
     hasMapData: true,
     capital: { latitude: 52.52, longitude: 13.405 },
     links: [

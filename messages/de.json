@@ -378,6 +378,20 @@
         ]
       },
       {
+        "heading": "Woher die Daten stammen",
+        "body": [
+          "Wetterdaten (Wind, Böen, Sichtweite, Temperatur) stammen von Open-Meteo, der planetare Kp-Index vom Space Weather Prediction Center (SWPC) der NOAA.",
+          "Die Luftraumebenen stammen aus öffentlichen amtlichen Diensten: FAA UAS Facility Map und Luftraumdaten für die USA, VWorld für Südkorea, die UAS-Geozonen von ENAIRE für Spanien und DIPUL für Deutschland. Für Japan verlinken wir derzeit nur die offiziellen Seiten des MLIT."
+        ]
+      },
+      {
+        "heading": "Genauigkeit, Aktualisierung und Korrekturen",
+        "body": [
+          "Die Zusammenfassungen der Vorschriften sind kurze, leicht verständliche Orientierungshilfen und keine Rechtsberatung; jede Länderseite verlinkt auf die zuständige Behörde. Vorschriften ändern sich – prüfen Sie vor dem Flug immer die offizielle Quelle.",
+          "Jeder Ratgeber zeigt sein Veröffentlichungsdatum, und wir bemühen uns, ihn zu überarbeiten, wenn sich die zugrunde liegenden Regeln oder Daten ändern. Wenn Ihnen ein Fehler oder eine veraltete Vorschrift auffällt, schreiben Sie uns – wir prüfen es anhand der offiziellen Quelle."
+        ]
+      },
+      {
         "heading": "Kontakt",
         "body": [
           "Fragen oder Feedback? Erreichen Sie uns unter skysmoga@gmail.com."
@@ -461,7 +475,9 @@
           "official": "FAA-Drohnenleitfaden",
           "registration": "FAA-Drohnenregistrierung (DroneZone)",
           "flightApproval": "Luftraumfreigabe (LAANC)"
-        }
+        },
+        "metaTitle": "USA: Drohnengesetze, FAA, LAANC & Part 107",
+        "metaDescription": "Drohnengesetze der USA im Überblick: TRUST-Test für Hobbypiloten, Part 107 für kommerzielle Flüge, FAA-Registrierung und LAANC-Freigabe im kontrollierten Luftraum."
       },
       "kr": {
         "name": "Südkorea",
@@ -476,7 +492,9 @@
           "official": "Drone-OneStop-Portal",
           "registration": "Drohnenregistrierung",
           "flightApproval": "Antrag auf Flugfreigabe"
-        }
+        },
+        "metaTitle": "Südkorea: Drohnenregeln & Flugverbotszonen",
+        "metaDescription": "Drohnenregeln in Südkorea: Registrierung und Genehmigung über Drone OneStop, Flugverbots- und Kontrollzonen, Bußgelder bis 1,5 Mio. KRW und Luftraumkarte."
       },
       "jp": {
         "name": "Japan",
@@ -490,7 +508,9 @@
         "links": {
           "official": "MLIT-Drohnenleitfaden",
           "registration": "Registrierung & Flugantrag (DIPS2.0)"
-        }
+        },
+        "metaTitle": "Japan: Drohnenregeln & Remote-ID",
+        "metaDescription": "Drohnenregeln in Japan: Drohnen ab 100 g müssen beim MLIT registriert werden (inkl. Remote-ID). Wann Genehmigungen nahe Flughäfen und bei Nachtflügen nötig sind."
       },
       "es": {
         "name": "Spanien",
@@ -504,7 +524,9 @@
         "links": {
           "official": "AESA-Drohnenleitfaden",
           "registration": "Betreiberregistrierung (AESA)"
-        }
+        },
+        "metaTitle": "Spanien: Drohnenregeln & AESA-Luftraumkarte",
+        "metaDescription": "Drohnenregeln in Spanien: EU-EASA-Rahmen mit Open-, Specific- und Certified-Kategorie, Registrierung bei der AESA und Prüfung der UAS-Geozonen vor dem Flug."
       },
       "de": {
         "name": "Deutschland",
@@ -519,9 +541,12 @@
           "official": "LBA-Drohnenleitfaden",
           "registration": "Betreiberregistrierung (LBA)",
           "airspaceMap": "DIPUL-Geografiezonenkarte"
-        }
+        },
+        "metaTitle": "Deutschland: Drohnenregeln & DIPUL-Karte",
+        "metaDescription": "Drohnenregeln in Deutschland: EU-EASA-Rahmen mit drei Kategorien, Registrierung beim LBA und Prüfung von Flugbeschränkungs- und Kontrollzonen über DIPUL."
       }
-    }
+    },
+    "relatedGuidesTitle": "Ähnliche Ratgeber"
   },
   "Contact": {
     "title": "Kontakt zu FlyDroneMap",

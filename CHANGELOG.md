@@ -1,3 +1,29 @@
+## 2026-10-03 — 서치 콘솔 데이터 기반 노출·클릭 개선 1차 (신뢰도 신호 보강 + 국가 페이지 검색 문구 최적화 + 내부 링크)
+
+**배경**
+- 노출·클릭이 매우 저조(최근 28일 클릭 10 / 노출 648 / 평균 순위 33.8)해 서치 콘솔을 직접 열람해 원인과 기회를 확인함.
+- 확인 결과: 한국 노출 80·클릭 4, 미국 230·3, 일본 56·2, 스페인 73·1. 클릭은 전부 es/ja/ko 페이지에서 발생. 페이지 1 순위(3~9위)에 올라 있으면서 노출이 큰 페이지는 대부분 **국가 규정 페이지**(`/en/regulations/kr` 노출 34·평균 8.5위, `/es/regulations/kr` 노출 13·클릭 3 등)였고, `korea drone map`·`drone one stop korea`·`드론 비행 가능 구역`·`mapa drones españa` 같은 "지도/비행 가능 구역" 검색어가 반복적으로 잡힘.
+- 색인: 색인됨 217 / 미색인 233 중 리디렉션 121·표준 태그가 있는 대체 페이지 62(http→https, www→apex, 언어 없는 경로)가 대부분이라 정상 동작이며, 실제 "발견됨-미색인"은 46건.
+- 사용자 승인("2,3,4번 진행해줘")에 따라 아래 ②(신뢰도 신호)·③(검색 문구 개선)을 코드로 반영하고 ④(한국어 홍보 자료)는 별도 문서로 전달함.
+
+**변경 사항**
+- `messages/{en,ko,es,ja,de}.json` · `Regulations.countries.{us,kr,jp,es,de}`: 검색어에 맞춘 `metaTitle`/`metaDescription` 신규(5개국 × 5개 언어). 제목은 템플릿(" · FlyDroneMap") 포함 약 60자 이내, 설명은 약 160자 이내. 내용은 기존 규정 요약 문구에 있는 사실만 사용(새 법률 주장 없음).
+- `src/app/[locale]/regulations/[country]/page.tsx`: `generateMetadata`가 `metaTitle`/`metaDescription`이 있으면 사용하고 없으면 기존 방식으로 대체(`t.has`). 페이지 하단에 "관련 가이드" 섹션 추가.
+- `src/lib/country-regulations.ts`: 국가별 `relatedGuideSlugs` 필드 추가(미국 3개, 한국 1개, 일본 1개, 스페인 2개, 독일 1개).
+- `src/components/regulation-related-guides.tsx`(신규): 위 slug의 가이드를 카드형 링크로 표시. 해당 언어에 없는 가이드(독일어는 최신 가이드 일부 미번역)는 조용히 건너뜀.
+- `messages/*.json` · `Regulations.relatedGuidesTitle` 신규, `About.sections`에 "데이터 출처", "정확성·갱신·정정 안내" 2개 섹션 추가(5개 언어, 사이트가 실제로 쓰는 출처만 기재). 운영자 실명 노출은 사용자 결정이 필요해 이번에는 하지 않음.
+- `messages/{ko,es}.json` · `Home.metaTitle`/`metaDescription`: 한국어는 "비행 가능 구역", 스페인어는 "Mapa de Zonas"·ENAIRE를 반영.
+- `src/app/[locale]/guides/[slug]/page.tsx`: 가이드 Article JSON-LD에 `image` 추가(대표 이미지가 있는 경우).
+- 부수 수정: 한국어 일본 규정 요약의 "국토交通省" 오기를 "국토교통성"으로, 일본어 스페인 링크 라벨의 "ドローイン"을 "ドローン"으로 정정.
+- `.gitignore`: 브릿지 환경에서 `.next`를 옮겨 둘 때 생기는 `.next_old_*/` 임시 폴더 제외 패턴 추가.
+
+**검증 / 참고**
+- 작업 전 `.backups/backup_20261003_165654_E-E-A-T_CTR작업전/`에 `src`·`messages`·`content`·`CHANGELOG.md`·`package.json` 백업.
+- `npx tsc --noEmit`, `npx eslint`(변경 파일) 통과. 5개 언어 × 5개국의 메타 키·관련 가이드 파일 존재 여부를 스크립트로 확인(독일어 5건은 파일이 없어 의도대로 건너뜀).
+- `npm run build`는 이 환경의 `.next` 파일 잠금(EPERM)과 컴파일 시간 제한(약 3분)으로 끝까지 확인하지 못함 → 로컬에서 `npm run dev`로 `/en/regulations/kr`, `/ko/regulations/kr`, `/es/regulations/es`, About 페이지를 확인한 뒤 배포 권장.
+- 서치 콘솔 반영에는 며칠~몇 주가 걸리므로 2~3주 후 `korea drone map`·`드론 비행 가능 구역`·`mapa drones españa` 순위와 노출 변화를 비교.
+- 미반영(권장만 함): `www.flydronemap.com` → `flydronemap.com` 리디렉션이 Vercel에서 307(임시)로 설정돼 있어 서치 콘솔에 www 주소가 계속 잡힘. 영구(308) 리디렉션으로 바꾸는 것은 Vercel 도메인 설정 변경이라 사용자 승인 후 진행해야 함.
+
 ## 2026-10-02 — 방문자 카운터에 봇 전용 집계 추가 (exiflens 이식) + 누락 봇 보강
 
 **배경**
