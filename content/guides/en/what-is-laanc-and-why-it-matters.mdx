@@ -2,6 +2,7 @@
 title: "What Is LAANC and Why It Matters for Drone Pilots"
 description: "How the FAA's automated LAANC airspace authorization system works, when a request is not automatic, and why it matters for drone pilots."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["laanc", "faa", "authorization"]
 category: "us-airspace-regulations"
 image: "/guides/images/what-is-laanc-and-why-it-matters.webp"
@@ -11,22 +12,80 @@ imageCreditUrl: "https://unsplash.com/@lukassouza?utm_source=FlyDroneMap&utm_med
 
 LAANC (Low Altitude Authorization and Notification Capability) is the FAA's system for granting drone pilots near-real-time authorization to fly in controlled airspace.
 
+## Key takeaways
+
+- LAANC is a collaboration between the FAA and industry. Pilots request authorization through FAA-approved UAS Service Suppliers, using apps or desktop tools.
+- It covers controlled airspace at or below 400 feet, and requests within the UAS Facility Map ceiling can be approved in near real time.
+- Both Part 107 pilots and recreational flyers can use it, but only Part 107 pilots can request further coordination above a map ceiling.
+- Airports that are not LAANC-enabled use the slower, manual FAA DroneZone process.
+- LAANC grants airspace authorization only. NOTAMs, TFRs, weather, and all other rules remain your responsibility.
+
 ## The problem it solves
 
-Before LAANC, flying in controlled airspace near an airport meant submitting a manual application and waiting — sometimes days — for a human reviewer at the FAA to respond. LAANC automates that process for pre-approved altitudes and locations, typically returning an authorization within seconds to minutes through an FAA-approved app.
+Flying in controlled airspace near an airport requires prior ATC authorization. Before automation, that meant a manual application reviewed by people. The FAA's page for Part 107 pilots says that manual requests submitted through FAA DroneZone are processed by hand at FAA Air Traffic Service Centers, and that historically processing has taken up to eight weeks. LAANC automates the common case: a request for an altitude that the airport and ATC have already agreed to can be answered in near real time through an FAA-approved app.
 
 ## How it works in practice
 
-LAANC uses UAS Facility Maps — grids overlaid on controlled airspace near airports that specify the maximum altitude a drone can be authorized to fly at each grid cell, based on coordination with the airport and air traffic control. A pilot requests authorization for a specific location and altitude through an approved app; if the request falls within the pre-approved grid ceiling, it's granted automatically.
+LAANC relies on UAS Facility Maps. These are grids over controlled airspace around towered airports that give the maximum altitude, in 50-foot steps from 0 to 400 feet AGL, at which small drones can be authorized without separate facility coordination. The FAA's air traffic order states that operations requested at or below the altitude listed for a grid segment will be approved without facility coordination, and that a value of zero means no UA flights are authorized without facility coordination. The responsible air traffic manager reviews the maps at least annually or whenever changes are needed.
 
-## When a request isn't automatic
+A pilot requests authorization for a specific location, time, and altitude through an approved UAS Service Supplier. If the request falls within the pre-approved ceiling, it is granted automatically. Requests can be made up to 90 days ahead, and the FAA notes that drone pilots do not need to notify the tower before flying unless the authorization specifically requests it.
 
-If you need to fly higher than a grid cell's authorized ceiling, LAANC can still submit a further coordination request, but approval isn't instant and isn't guaranteed. Some sensitive airspace is excluded from LAANC entirely and requires a different application process.
+## Who can use it
+
+| Pilot type | Requirements | Near real-time LAANC | Further coordination |
+|---|---|---|---|
+| Part 107 | Register the drone and hold a Remote Pilot Certificate | Yes | Yes |
+| Recreational (Section 44809) | Register the drone and pass the TRUST test | Yes | No |
+
+The FAA lists a set of approved UAS Service Suppliers on its LAANC page. They differ in platform support and in which authorization types they offer, so choose one that suits your device and use case. The companies that deliver the FAA's B4UFLY service are also FAA-approved UAS Service Suppliers for LAANC.
+
+## When a request is not automatic
+
+If you need to fly higher than a grid cell's ceiling, Part 107 pilots can submit a further coordination request, up to 400 feet. The FAA's Part 107 page says these requests must be submitted at least 72 hours before the requested start time, and the facility may approve, add mitigations such as timing or altitude limits, or decline. Approval is not instant and is not guaranteed. Recreational flyers must stay at or below the Facility Map altitude.
+
+If the nearest airport is not LAANC-enabled, the manual route through FAA DroneZone is used instead. The FAA's LAANC page stated that LAANC was available at 726 airports when this article was updated; that number can change, so check the current page and your provider's coverage map.
+
+## What LAANC does not do
+
+The FAA is explicit that LAANC provides airspace authorizations only. Pilots must still check NOTAMs and weather conditions and follow all airspace restrictions. A LAANC approval does not override a TFR, and it does not replace visual line of sight or the other operating rules. See our guides on [TFRs](/en/guides/temporary-flight-restrictions-tfr-explained) and [Part 107 basics](/en/guides/faa-part-107-explained).
 
 ## Why this matters even if you rarely fly near airports
 
-Airspace boundaries extend further than many pilots expect, and a location that looks like open countryside can still fall within a Class D or E surface area tied to a nearby small airport. Checking whether you need LAANC authorization — not just assuming you don't — is a standard part of responsible pre-flight planning.
+Airspace boundaries extend further than many pilots expect, and a location that looks like open countryside can still fall within a Class D or surface-level Class E area tied to a nearby small airport. Checking whether you need LAANC authorization, rather than assuming you do not, is a standard part of responsible pre-flight planning. For the classes themselves, read [U.S. airspace classes](/en/guides/understanding-us-airspace-classes), and for the full routine see [checks before flying near an airport](/en/guides/checks-before-flying-near-an-airport).
 
 ## This dashboard's role
 
-The airspace ceiling data shown on this site's dashboard reflects the same FAA UAS Facility Map data LAANC relies on, for informational reference — always confirm actual authorization through an approved LAANC provider or FAADroneZone before flying in controlled airspace.
+The airspace ceiling data on the FlyDroneMap [dashboard](/en) reflects FAA UAS Facility Map data of the kind LAANC relies on, for informational reference. See also the [U.S. regulations page](/en/regulations/us). Always confirm actual authorization through an approved LAANC provider or FAA DroneZone before flying in controlled airspace.
+
+## Common mistakes
+
+- Treating the dashboard ceiling as an authorization. It is a reference, not a permit.
+- Requesting a higher altitude than needed and then being surprised by a further coordination delay.
+- Forgetting that maps change. Facility Map values are reviewed and revised, so use a fresh request each time.
+- Assuming approval means no other checks are required.
+
+## FAQ
+
+### How far ahead can I ask for authorization?
+
+The FAA says requests can be submitted up to 90 days before the flight. Near real-time approval is possible for requests within the Facility Map ceiling.
+
+### Can recreational flyers use LAANC?
+
+Yes, after registering the drone and passing TRUST. They must fly at or below the Facility Map altitude and cannot request further coordination.
+
+### What does a zero ceiling mean?
+
+It means no flights are authorized without facility coordination for that grid cell. Part 107 pilots may request further coordination; recreational flyers should not fly there without authorization.
+
+### Do I need to call the tower after LAANC approval?
+
+Not unless the authorization specifically requests it, according to the FAA.
+
+## Sources and further reading
+
+- [FAA — UAS Data Exchange (LAANC)](https://www.faa.gov/uas/getting_started/laanc)
+- [FAA — Airspace Authorizations for Recreational Flyers](https://www.faa.gov/uas/recreational_flyers/authorization)
+- [FAA — Part 107 Airspace Authorizations](https://www.faa.gov/uas/commercial_operators/part_107_airspace_authorizations)
+- [FAA — Order JO 7210.3, Section 10: UAS Facility Maps](https://www.faa.gov/air_traffic/publications/atpubs/foa_html/chap12_section_10.html)
+- [FAA — B4UFLY](https://www.faa.gov/uas/getting_started/b4ufly)

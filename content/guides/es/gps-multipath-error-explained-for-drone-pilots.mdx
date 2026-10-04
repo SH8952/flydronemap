@@ -2,6 +2,7 @@
 title: "Error de multitrayectoria GPS explicado para pilotos de drones"
 description: "Por qué el GPS de tu dron puede desviarse cerca de edificios y agua incluso con un Kp tranquilo, y cómo distinguir la multitrayectoria del clima espacial."
 publishedAt: "2026-09-03"
+updatedAt: "2026-10-04"
 tags: ["gps", "multipath", "urban-flight", "accuracy"]
 category: "space-weather-gps"
 image: "/guides/images/gps-multipath-error-explained-for-drone-pilots.webp"
@@ -9,24 +10,86 @@ imageCredit: "david henrichs"
 imageCreditUrl: "https://unsplash.com/@davidhenrichs?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Si tu drone alguna vez se desvió lateralmente mientras estaba en vuelo estacionario junto a una torre de oficinas de vidrio o sobre un lago tranquilo — con buena señal satelital y un índice Kp tranquilo — probablemente la causa no fue el clima espacial. Fue error de multitrayectoria (multipath), uno de los problemas de GPS que más se diagnostica mal porque sus síntomas se ven idénticos a los de la interferencia ionosférica.
+Si tu dron alguna vez se desvió lateralmente mientras estaba en vuelo estacionario junto a una torre de oficinas de vidrio o sobre un lago tranquilo, con buena señal satelital y un índice Kp tranquilo, probablemente la causa no fue el clima espacial. Fue error de multitrayectoria (multipath), un problema de GPS fácil de diagnosticar mal porque sus síntomas pueden parecerse a los de la interferencia ionosférica.
+
+## Puntos clave
+
+- La multitrayectoria ocurre cuando copias reflejadas de la señal de un satélite llegan a la antena junto con la señal directa. Es un efecto local y físico, sin relación con el índice Kp.
+- La huella típica es la repetición: la misma deriva en el mismo lugar, tanto en días tranquilos como en días de tormenta, a menudo con un recuento de satélites que sigue pareciendo sano.
+- Navipedia (ESA) describe los errores típicos de multitrayectoria en el código como inferiores a 2 o 3 metros, y señala que los valores superiores a 15 metros son difíciles de observar. Es una fuente de oscilación de la posición, no un error grande garantizado.
+- La solución práctica es de geometría: despegar lejos de superficies reflectantes, mantener una vista amplia del cielo y cambiar el punto de despegue en lugar de culpar al módulo GPS.
+- Multitrayectoria, bloqueo del cielo y perturbación ionosférica pueden parecer iguales desde los mandos; el patrón en lugar y tiempo permite distinguirlos.
 
 ## Qué es realmente el error de multitrayectoria
 
-Una señal GPS viaja en línea recta del satélite al receptor, pero las superficies reflectantes — fachadas de vidrio, agua, pavimento mojado, techos metálicos, incluso el parabrisas de un auto estacionado — rebotan una copia de esa misma señal por un trayecto más largo e indirecto. El receptor de tu drone puede terminar promediando la señal directa con una o más reflexiones retrasadas, y como el trayecto reflejado es más largo, la posición calculada se desplaza hacia la superficie reflectante. Un drone de consumo con receptor GPS de frecuencia única (L1) suele mantener una precisión de 3-5 metros a cielo abierto, pero junto a una fachada reflectante ese error puede subir a 10-15 metros o más, mientras el número de satélites en pantalla sigue marcando "bueno".
+Una señal GPS viaja en línea recta del satélite al receptor, pero superficies reflectantes como fachadas de vidrio, agua, pavimento mojado, techos metálicos o un coche aparcado pueden devolver una copia de la misma señal por un trayecto más largo e indirecto. Navipedia, de la ESA, define la multitrayectoria como la interferencia que se genera cuando una señal llega a la antena por diferentes caminos. El receptor puede acabar mezclando la señal directa con una o varias reflexiones retrasadas, y como el camino reflejado es más largo, la distancia medida a ese satélite es errónea. Si varios satélites están afectados, la posición calculada se desplaza.
 
-## Por qué es fácil confundirlo con un problema de clima espacial
+## ¿Qué tamaño puede alcanzar el error?
 
-Tanto el error de multitrayectoria como la perturbación ionosférica de una tormenta geomagnética producen el mismo síntoma visible — un drone que no mantiene la posición con precisión — por lo que los pilotos que conocen los efectos del índice Kp a veces culpan a la causa equivocada. La pista que los distingue es la ubicación y la repetibilidad: la deriva provocada por la ionosfera afecta un área amplia y coincide con una ventana horaria específica durante una tormenta, mientras que el error de multitrayectoria está atado a un punto fijo y ocurre igual de fácilmente en días despejados y geomagnéticamente tranquilos. Si tu drone se desvía siempre en la misma esquina de un estacionamiento cada vez que vuelas ahí, sin importar el índice Kp del día, eso es multitrayectoria, no clima espacial.
+Muchas guías citan cifras llamativas, así que conviene tener presentes las fuentes. Navipedia explica que el máximo teórico de la multitrayectoria en el código de la señal civil GPS es muy grande (cientos de metros), pero que en la práctica los valores superiores a 15 metros son difíciles de observar y el error típico es inferior a 2 o 3 metros. También señala que la multitrayectoria en el código suele ser peor cuando el satélite está bajo sobre el horizonte, porque las señales de los satélites de baja elevación son las más expuestas a las estructuras reflectantes cercanas.
 
-## El error más común entre pilotos
+Como referencia, GPS.gov indica que los receptores de una sola frecuencia de alta calidad alcanzan una precisión horizontal de unos 2,2 metros o mejor el 95 % del tiempo, y nombra tres factores principales que degradan lo que los usuarios ven en realidad: los efectos atmosféricos, el bloqueo del cielo y la calidad del receptor. La antena y el receptor de un dron de consumo pequeño no son los de un equipo topográfico, así que tus cifras serán distintas. La lección útil es que unos pocos metros de oscilación cerca de un reflector son plausibles, mientras que un dron que salta de golpe decenas de metros merece que revises otras causas.
 
-El error más frecuente es despegar justo al lado de la propia superficie reflectante — por ejemplo, desde un helipuerto en azotea rodeado de barandas de vidrio, o desde un muelle al borde de agua abierta — porque es exactamente ahí donde la geometría produce las reflexiones más fuertes respecto a la señal directa. Un segundo error común es confiar en el mantenimiento de posición en condiciones de "cañón urbano", volando entre dos edificios altos, donde las señales se reflejan en ambas fachadas y también pueden bloquearse parcialmente, degradando la geometría satelital (la dispersión de los satélites visibles) de la que depende la precisión del GPS. Los pilotos que realizan misiones de mapeo o inspección cerca de estructuras reflectantes sin verificar la multitrayectoria a menudo terminan con ortomosaicos visiblemente deformados o recorridos de inspección que no coinciden entre pasadas.
+## Dónde es más probable
 
-## Cómo reducir el error de multitrayectoria en la práctica
+| Entorno | Por qué perjudica | Qué hacer |
+|---|---|---|
+| Fachadas de vidrio o revestidas de metal | Grandes superficies planas devuelven copias retrasadas hacia la antena | Despega a varios metros del muro y no mantengas el vuelo estacionario pegado a él |
+| Agua tranquila, muelles, embarcaderos | Las superficies de agua pueden reflejar la señal hacia la antena | Despega desde suelo firme, retirado del borde, si es posible |
+| Calles estrechas entre edificios altos | Reflexiones por ambos lados y cielo bloqueado | Cuenta con un mantenimiento de posición más débil y vuela con margen extra |
+| Aparcamientos, tejados metálicos, vehículos | Reflectores junto a la antena | Muévete a terreno abierto antes de despegar |
 
-- Despega y aterriza en terreno abierto, al menos a unos metros de vidrio, agua o grandes superficies metálicas, siempre que el lugar lo permita.
-- Si tu drone admite RTK o un módulo GPS multibanda (L1/L5), úsalo en entornos reflectantes — la frecuencia y los datos de corrección adicionales lo hacen mucho más resistente a la multitrayectoria que un receptor de frecuencia única.
-- Trata una deriva de posición repentina que solo aparece en un punto específico como una señal fuerte de multitrayectoria, especialmente si el número de satélites y la lectura de HDOP/precisión siguen viéndose normales.
-- Para trabajos de mapeo o inspección cerca de agua, vidrio o edificios con revestimiento metálico, verifica manualmente algunos solapes de imágenes en lugar de confiar ciegamente en el resultado ya unido.
-- No supongas que un índice Kp tranquilo descarta problemas de GPS — la multitrayectoria es un efecto local y físico que no tiene nada que ver con el clima espacial.
+## La multitrayectoria frente a otros problemas de GPS
+
+| Causa | Dónde aparece | Cuándo | Pista típica |
+|---|---|---|---|
+| Multitrayectoria | Un punto concreto cerca de reflectores | Cualquier día, con cualquier Kp | Se repite siempre en la misma esquina |
+| Bloqueo del cielo | Bajo árboles, puentes, entre edificios | Cualquier día | Menos satélites, avisos antes de despegar |
+| Perturbación ionosférica | Zona amplia | Durante una tormenta o, cerca del ecuador, tras la puesta de sol | Afecta a muchos pilotos de la región a la vez |
+| Interferencia deliberada o suplantación | Alrededor de un transmisor | Puede empezar y cesar de forma brusca | Consulta la guía sobre [interferencia y suplantación del GPS](/es/guides/gps-jamming-and-spoofing-explained-for-drone-pilots) |
+
+La pista que distingue la multitrayectoria del clima espacial es el lugar y la repetición. Los problemas de origen ionosférico afectan a un área amplia y siguen una ventana de tiempo; la multitrayectoria está ligada a un punto fijo. Si tu dron se desvía en la misma esquina de un aparcamiento cada vez que vuelas allí, sea cual sea el Kp del día, la multitrayectoria es la causa más probable. Para ver qué hace el clima espacial, consulta el [panel en vivo](/es) y la guía sobre [cómo afecta el índice Kp a la fiabilidad del GPS y la brújula](/es/guides/kp-index-effect-on-gps-compass-reliability).
+
+## Errores comunes
+
+- Despegar justo al lado de la propia superficie reflectante, por ejemplo desde una azotea rodeada de barandillas de vidrio o desde un muelle al borde del agua, porque ahí las reflexiones son más fuertes en relación con la señal directa.
+- Confiar en el mantenimiento de posición entre dos edificios altos. Las reflexiones de ambas fachadas se combinan con un cielo parcialmente bloqueado, y empeora la dispersión de satélites visibles de la que depende la precisión del GPS.
+- Tomar un recuento de satélites sano como prueba de una posición sana. Puede haber error de multitrayectoria mientras el recuento y las barras de señal parecen normales.
+- Culpar al clima espacial sin comprobar si el problema se repite en el mismo sitio. La repetición apunta al lugar.
+- Tratar un mal vuelo en un lugar reflectante como un fallo de hardware y cambiar piezas, cuando mover el punto de despegue lo habría resuelto.
+
+## Cómo reducir la multitrayectoria en la práctica
+
+- Despega y aterriza desde terreno abierto, a unos metros de vidrio, agua o grandes superficies metálicas, siempre que el lugar lo permita.
+- Navipedia cita la mejor calidad de la antena y el alejamiento de objetos reflectantes como las vías principales para reducir la multitrayectoria. En un dron pequeño no puedes cambiar la antena, así que la segunda opción es tu herramienta: elige el punto de despegue y la línea de vuelo en consecuencia.
+- Espera uno o dos minutos tras encender en una zona reflectante y observa si la deriva en la posición se estabiliza antes de despegar.
+- Si la deriva aparece solo en un punto concreto, tómalo como un fuerte indicio de multitrayectoria; sube o aléjate de la superficie y comprueba si desaparece.
+- En trabajos de cartografía o inspección cerca de agua, vidrio o estructuras revestidas de metal, revisa a mano algunos solapes de imagen en lugar de fiarte ciegamente del resultado, porque las posiciones registradas pueden ser algo imprecisas en esas zonas.
+
+## Relación con otros temas de GPS
+
+La multitrayectoria es una de varias razones por las que un dron puede perder precisión sin ningún clima espacial de por medio. Si el recuento de satélites es bajo o la señal se pierde por completo, lee [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak). Si el problema aparece solo cerca del ecuador geomagnético después de anochecer, consulta la guía aparte sobre el centelleo ionosférico y el GPS del dron. Una revisión previa al vuelo debería incluir siempre una mirada al propio lugar de despegue.
+
+## Preguntas frecuentes
+
+### ¿Puede haber error de multitrayectoria con un índice Kp bajo?
+
+Sí. La multitrayectoria la causan reflexiones cerca de la aeronave, no la ionosfera, así que ocurre igual de fácilmente en días geomagnéticamente tranquilos.
+
+### ¿Me avisará mi dron de la multitrayectoria?
+
+No necesariamente. El recuento de satélites y el indicador de señal pueden parecer normales porque los satélites siguen rastreándose. El comportamiento, como una deriva inesperada en un punto, suele ser mejor pista.
+
+### ¿Más satélites curan la multitrayectoria?
+
+No. Más satélites pueden mejorar la geometría, pero las reflexiones de un muro cercano o de una superficie de agua pueden seguir desplazando la solución hacia el reflector.
+
+### ¿Afecta la multitrayectoria solo a drones pequeños?
+
+No. Afecta a cualquier receptor GNSS. Navipedia indica que mejores antenas y alejarse de objetos reflectantes son los remedios habituales, y por eso los equipos topográficos también cuidan la ubicación de la antena.
+
+## Fuentes y lecturas recomendadas
+
+- [ESA Navipedia — Multipath](https://gssc.esa.int/navipedia/index.php/Multipath)
+- [GPS.gov — GPS Accuracy](https://www.gps.gov/systems/gps/performance/accuracy/)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)

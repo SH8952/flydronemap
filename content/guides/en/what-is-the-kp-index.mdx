@@ -2,6 +2,7 @@
 title: "What Is the Kp Index? A Beginner's Guide to Geomagnetic Storms"
 description: "A plain-language explanation of the planetary Kp index: where it comes from, what its 0 to 9 scale measures, and why it is published in real time."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["kp-index", "space-weather", "basics"]
 category: "space-weather-gps"
 image: "/guides/images/what-is-the-kp-index.webp"
@@ -11,21 +12,100 @@ imageCreditUrl: "https://unsplash.com/@mwas_0254?utm_source=FlyDroneMap&utm_medi
 
 The Kp index is a number from 0 to 9 that measures how disturbed Earth's magnetic field is at a given time, published by space weather agencies including NOAA's Space Weather Prediction Center.
 
+## Key takeaways
+
+- Kp summarises magnetic disturbance measured by ground-based magnetometers over 3-hour intervals; it is a planetary value, not a local one.
+- NOAA treats Kp 5 or more as a geomagnetic storm, and its G1–G5 storm scale maps directly onto Kp 5–9.
+- Kp measures disturbance of the magnetic field at the ground. It is not a direct measurement of GPS signal quality or of your drone's compass error.
+- NOAA's estimated Kp is refreshed every minute, while the final, definitive values are produced separately by GFZ Potsdam.
+- For flight planning, read the current value together with the forecast and the trend, not as a single number.
+
 ## Where it comes from
 
 Kp is derived from measurements at a global network of ground-based magnetometers. Every 3 hours, those readings are combined into a single planetary value — hence "planetary Kp index" — that reflects geomagnetic activity worldwide rather than at one specific location.
 
+The index was introduced by Julius Bartels in 1949. Today the official Kp is produced by GFZ Potsdam (Germany) from 13 observatories, mostly in the northern hemisphere and located at sub-auroral latitudes. Each station first yields a local K value for the 3-hour interval, based on the largest fluctuation of the horizontal magnetic field components, and Kp is the average of the standardised station values. The scale is quasi-logarithmic and is expressed in thirds, which is why you sometimes see values such as 4- or 5+ rather than whole numbers.
+
+NOAA runs its own quick estimate using a smaller set of magnetometers (eight sites listed on its page, including Sitka, Ottawa, Hartland, Niemegk and Canberra). That is the value most dashboards show in near real time. The two products are separate, so a live estimate and the later definitive value can differ slightly.
+
 ## What the scale means
 
-- Kp 0-3: Quiet to unsettled. Normal background geomagnetic activity.
-- Kp 4: Active. Minor disturbance, generally no operational impact for most users.
+- Kp 0-3: Quiet to unsettled. Normal background geomagnetic activity (GFZ describes 0–3 as low activity).
+- Kp 4: Active. Minor disturbance, below the level NOAA calls a storm and generally without operational impact for most users.
 - Kp 5-6: Minor to moderate geomagnetic storm (G1-G2 on NOAA's storm scale).
 - Kp 7-9: Strong to extreme geomagnetic storm (G3-G5), associated with major solar events.
 
+NOAA's scale also lists what each level can mean for technology. Only the rows that matter for navigation are shown here:
+
+| Kp | NOAA level | Other-systems effects relevant to pilots, as listed by NOAA |
+|---|---|---|
+| 5 | G1 (minor) | Aurora commonly visible at high latitudes; no satellite navigation effect listed |
+| 6 | G2 (moderate) | HF radio can fade at higher latitudes; no satellite navigation effect listed |
+| 7 | G3 (strong) | Intermittent satellite navigation and low-frequency radio navigation problems may occur |
+| 8 (including 9-) | G4 (severe) | Satellite navigation degraded for hours |
+| 9 | G5 (extreme) | Satellite navigation may be degraded for days |
+
 ## Why it's published in real time
 
-Kp is driven by solar activity — coronal mass ejections and high-speed solar wind streams interacting with Earth's magnetosphere — which can spike within hours. NOAA updates the planetary Kp index roughly every few minutes to an hour depending on the product, giving anyone affected by geomagnetic conditions a near-current picture rather than yesterday's forecast.
+Kp is driven by solar activity — coronal mass ejections and high-speed solar wind streams interacting with Earth's magnetosphere — which can spike within hours. NOAA updates the planetary Kp index roughly every few minutes to an hour depending on the product, giving anyone affected by geomagnetic conditions a near-current picture rather than yesterday's forecast. On NOAA's Kp chart page, the estimated 3-hour Kp chart updates every minute.
+
+Timing matters because the warning time varies a lot. NOAA states that the fastest Earth-directed coronal mass ejections can arrive in as little as 15–18 hours, slower ones take several days, and spacecraft at the L1 point can often provide only 15 to 60 minutes of advance warning of a shock arriving at Earth.
 
 ## Who tracks it and why
 
 Beyond aurora chasers, Kp is monitored by satellite operators, power grid operators, HF radio users, and — relevant here — drone pilots, because elevated geomagnetic activity can degrade GPS positioning accuracy exactly when precise navigation matters most.
+
+## What Kp does and does not tell a drone pilot
+
+Kp is a measure of magnetic disturbance observed at the ground. GPS problems, in contrast, come mainly from the ionosphere, the charged layer of the upper atmosphere that satellite signals cross. Geomagnetic storms can enhance electron density there, which changes the signal delay; NOAA notes this happens mainly at high latitudes, although major storms can produce large enhancements at mid-latitudes too. The two are related, but Kp is an indirect indicator.
+
+Two practical consequences follow:
+
+- A high Kp is a reason for caution, not a prediction of a specific GPS error. The size of any error depends on your latitude, the time of day, your receiver and the strength of the ionospheric disturbance.
+- A low Kp does not guarantee clean GPS. Ionospheric scintillation, a rapid fluctuation of the signal, is strongest around the geomagnetic equator after local sunset, largely independent of the storm level, so the Kp number alone cannot clear a flight there.
+
+For the compass, GFZ states that during strong geomagnetic storms deviations of a compass needle of the order of a few degrees can be observed at high latitudes. That is a small effect compared with the other causes of compass trouble covered in the [compass calibration and magnetic interference guide](/en/guides/compass-calibration-and-magnetic-interference).
+
+## How to read Kp in practice
+
+1. Check the live Kp value and whether it is rising or falling.
+2. Look at NOAA's 3-day forecast, a plain-language product issued every 12 hours at 0030 and 1230 UTC, to see whether conditions are expected to change during your flight.
+3. Remember that Kp windows are defined in UTC, so convert them to your local time.
+4. Compare the number with the G-scale level, which tells you what NOAA expects for technology at that level.
+5. Check the [dashboard](/en) for the current reading alongside wind and other weather data.
+
+## Common mistakes
+
+- Treating Kp 4 as a storm. NOAA's own description starts the storm range at Kp 5.
+- Reading Kp as a GPS accuracy meter. Use it as a warning flag and still watch the satellite count and fix quality in your flight app.
+- Using one reading for a long flight. The index changes by 3-hour period, so a morning value says little about the afternoon.
+- Assuming the aurora must be visible for a storm to matter. Aurora is a night-side phenomenon and may be hidden by daylight or cloud.
+
+For how each level affects flight decisions, see the guide on [understanding NOAA space weather scales](/en/guides/understanding-noaa-space-weather-scales) and the article on [how Kp affects GPS and compass reliability](/en/guides/kp-index-effect-on-gps-compass-reliability).
+
+## FAQ
+
+### What Kp value is considered normal?
+
+GFZ describes Kp 0–3 as low activity, and NOAA's storm scale begins at Kp 5. Most days sit below the storm range.
+
+### Is the Kp index the same everywhere on Earth?
+
+It is a planetary value built from a set of observatories, so it describes global activity rather than conditions above your launch site. Local effects can differ, especially between equatorial and polar regions.
+
+### Does a high Kp mean my drone will lose GPS?
+
+Not necessarily. NOAA lists no satellite navigation effects at G1 or G2 and describes intermittent problems from G3 (Kp 7) upward, so treat higher values as a reason for extra caution and check your satellite count and fix.
+
+### Why does Kp come in 3-hour steps?
+
+The index is defined for 3-hour UT intervals, and each value reflects the largest magnetic fluctuation observed in that window. NOAA's estimated version is refreshed more often, but it still estimates the 3-hour value.
+
+## Sources and further reading
+
+- [NOAA SWPC — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [GFZ Helmholtz Centre Potsdam — Geomagnetic Kp index](https://www.gfz.de/en/section/geomagnetism/data-products-services/geomagnetic-kp-index)
+- [GFZ Helmholtz Centre Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [NOAA SWPC — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)

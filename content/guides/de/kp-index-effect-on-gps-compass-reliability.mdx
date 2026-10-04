@@ -2,6 +2,7 @@
 title: "Kp-Index: Auswirkungen auf GPS- und Kompasszuverlässigkeit"
 description: "Die physikalische Verbindung zwischen geomagnetischer Aktivität und verringerter GPS-/Kompassgenauigkeit bei Drohnen."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["kp-index", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/kp-index-effect-on-gps-compass-reliability.webp"
@@ -11,18 +12,91 @@ imageCreditUrl: "https://unsplash.com/@wbayreuther?utm_source=FlyDroneMap&utm_me
 
 Drohnen sind für die Positionshaltung auf GPS und für die Ausrichtung auf ein Magnetometer (elektronischer Kompass) angewiesen. Beide können beeinträchtigt werden, wenn die geomagnetische Aktivität steigt.
 
+## Das Wichtigste in Kürze
+
+- Der Kp-Index misst die magnetische Störung am Boden. GPS-Fehler entstehen vor allem in der Ionosphäre, daher ist Kp ein nützliches, aber indirektes Warnsignal.
+- Die Sturmskala der NOAA führt bei Kp 5–6 keine Wirkung auf die Satellitennavigation auf, bei Kp 7 zeitweilige Probleme, bei Kp 8 stundenlange Beeinträchtigung und bei Kp 9 möglicherweise tagelange.
+- Laut NOAA können GPS-Fehler von Einfrequenzempfängern, die normalerweise etwa einen Meter betragen, in einem schweren Sturm auf zehn Meter oder mehr anwachsen.
+- Der Kompass ist auf anderem Weg betroffen: Das GFZ nennt bei starken Stürmen in hohen Breiten Abweichungen der Kompassnadel von einigen Grad.
+- Drift, Kreisen oder Kompasswarnungen haben viele alltägliche Ursachen. Schließen Sie diese aus, bevor Sie das Weltraumwetter verantwortlich machen.
+
 ## Warum sich GPS während geomagnetischer Stürme verschlechtert
 
 Geomagnetische Stürme stören die Ionosphäre, die geladene Schicht der oberen Atmosphäre, die GPS-Signale auf ihrem Weg von den Satelliten zu Ihrer Drohne durchqueren. Erhöhte ionosphärische Störung führt zu zusätzlicher Signalverzögerung und Szintillation (schneller Signalschwankung), was die Genauigkeit der Positionsbestimmung verringert und in schwereren Fällen zu vorübergehendem Verlust der GPS-Fixierung führen kann.
+
+Die NOAA beschreibt den Mechanismus so: Die Ionosphäre lenkt den Weg des GPS-Funksignals ab, ähnlich wie eine Linse Licht bricht. Bei ruhigen Bedingungen gleichen die Modelle im Empfänger den mittleren Effekt aus, doch Weltraumwetterereignisse machen diese Modelle ungenau. Stürme können die Elektronendichte erhöhen, was sich als Anstieg des Gesamtelektronengehalts (TEC) zeigt. Laut NOAA geschieht das vor allem in hohen Breiten, große Stürme können aber auch in mittleren Breiten starke Zunahmen verursachen.
+
+| Effekt | Was passiert | Wo und wann er am stärksten ist |
+|---|---|---|
+| Ionosphärische Verzögerung | Geladene Teilchen verzögern das Signal, die berechnete Entfernung zu jedem Satelliten stimmt nicht | Abhängig von Breite, Tageszeit, Jahreszeit und Sonnenaktivität |
+| Szintillation | Schnelle Schwankung von Amplitude und Phase des Signals, die das Tracking verhindern kann | Am stärksten innerhalb von etwa 20 Grad um den geomagnetischen Äquator und, weniger stark, in Polarlichtregionen; meist nach Ortssonnenuntergang bis Mitternacht |
+| Verlust der Fixierung | Der Empfänger kann einen Satelliten nicht mehr verfolgen, es sind weniger Satelliten nutzbar | Am wahrscheinlichsten bei starker Szintillation oder sehr gestörten Bedingungen |
+
+Der Empfängertyp spielt eine Rolle. Die NOAA gibt an, dass Einfrequenzempfänger normalerweise meter-genau sind, die Fehler bei einem schweren Sturm aber auf zehn Meter oder mehr steigen können, während Zweifrequenzempfänger normalerweise Zentimeter-Genauigkeit erreichen, aber ausfallen können, wenn sie das Signal nicht aufschalten können. Welche Variante ein bestimmtes Drohnenmodell nutzt, kann dieser Leitfaden nicht beurteilen; schauen Sie in die Herstellerangaben.
+
+### Was das für die Kp-Zahl bedeutet
+
+Kp misst keinen dieser Effekte direkt. Die Skala der NOAA verknüpft Kp-Stufen mit erwarteten Folgen für Technik: Bei G1 und G2 (Kp 5–6) ist keine Wirkung auf die Satellitennavigation aufgeführt, bei G3 (Kp 7) können zeitweilige Probleme auftreten, bei G4 (Kp 8) ist die Navigation stundenlang beeinträchtigt, und bei G5 (Kp 9) möglicherweise tagelang. Szintillation in Äquatornähe folgt dem Tag-Nacht-Rhythmus und wartet nicht auf einen hohen Kp-Wert; ein ruhiger Kp-Wert garantiert daher an einem Äquatorial-Abend kein sauberes GPS. Details finden Sie im Leitfaden zu [ionosphärischer Szintillation und Drohnen-GPS](/de/guides/ionospheric-scintillation-and-drone-gps).
 
 ## Warum der Kompass separat beeinflusst wird
 
 Das Magnetometer einer Drohne misst das lokale Magnetfeld direkt, um die Ausrichtung zu bestimmen. Ein gestörtes geomagnetisches Feld ist per Definition eine weniger stabile Referenz — dasselbe physikalische Phänomen, das der Kp-Index quantifiziert. Eine Kompassmessung kann während eines Sturms unerwartet driften oder „gieren", selbst wenn sich die Drohne physisch nicht gedreht hat.
 
+Die Größenordnung sollte man im Blick behalten. Das Erdfeld an der Oberfläche liegt je nach Ort bei etwa 22.000 bis 67.000 nT. Das GFZ nennt äußere Feldschwankungen von bis zu etwa 100 nT im Allgemeinen und einigen tausend nT bei starken Stürmen und gibt an, dass bei starken Stürmen in hohen Breiten Abweichungen der Kompassnadel in der Größenordnung von einigen Grad beobachtet werden können. Wie Ihr Flugcontroller auf eine solche Änderung reagiert, hängt von der Firmware ab, die dieser Leitfaden nicht beurteilen kann; folgen Sie dem Handbuch.
+
 ## Wie sich das für einen Piloten zeigt
 
 Bei erhöhtem Kp-Wert gemeldete Symptome umfassen: eine leicht driftende Position im GPS-Modus ohne Steuereingabe, ein „Toilettenschüssel"-Kreisen bei der automatischen Rückkehr, oder eine Kompasskalibrierungswarnung, die am Vortag am selben Ort noch nicht auftrat.
 
+Keines dieser Symptome ist spezifisch für Weltraumwetter. Schließen Sie vor dem Schuldspruch für Kp die häufigeren Ursachen aus:
+
+- Ein nicht kalibrierter Kompass oder einer, der neben Metall, einem Fahrzeug oder Stahlbeton kalibriert wurde (siehe [Kompasskalibrierung und magnetische Störungen](/de/guides/compass-calibration-and-magnetic-interference)).
+- Wenige Satelliten oder ein schlechter Fix, etwa in der Nähe von Gebäuden oder Bäumen (siehe [GPS-Mehrwegefehler](/de/guides/gps-multipath-error-explained-for-drone-pilots)).
+- Absichtliche Störung des GPS-Signals (siehe [GPS-Jamming und Spoofing](/de/guides/gps-jamming-and-spoofing-explained-for-drone-pilots)).
+
+Liegt der aktuelle Kp-Wert auf Sturmniveau und sind die anderen Ursachen ausgeschlossen, wird das Weltraumwetter zu einem plausiblen Faktor.
+
 ## Praktisches Fazit
 
-Behandeln Sie GPS-gestützte Flugmodi bei Kp 5 und höher mit zusätzlicher Vorsicht — fliegen Sie in geringerer Höhe, halten Sie die Drohne näher bei sich, und seien Sie bereit, in den manuellen/Attitude-Modus zu wechseln, falls die Positionshaltung unzuverlässig wird. Genau deshalb gehört die Prüfung eines aktuellen Kp-Werts vor dem Flug, nicht nur Wind und Regen, zu einer vollständigen Vorflugkontrolle.
+Behandeln Sie GPS-gestützte Flugmodi bei Kp 5 und höher mit zusätzlicher Vorsicht — halten Sie die Drohne näher bei sich und in Sichtweite, und seien Sie bereit, in den manuellen/Attitude-Modus zu wechseln, falls die Positionshaltung unzuverlässig wird. Genau deshalb gehört die Prüfung eines aktuellen Kp-Werts vor dem Flug, nicht nur Wind und Regen, zu einer vollständigen Vorflugkontrolle.
+
+Eine kurze Routine:
+
+1. Prüfen Sie vor dem Losgehen den aktuellen Kp-Wert und die 3-Tage-Vorhersage der NOAA im [Dashboard](/de).
+2. Warten Sie am Startplatz auf einen stabilen GPS-Fix mit gesunder Satellitenzahl, bevor Sie starten.
+3. Halten Sie das Fluggerät in Sichtweite, wenn Kp auf G1 oder höher liegt, und klären Sie im Handbuch Ihrer Drohne, wie Sie in den manuellen oder Attitude-Modus wechseln.
+4. Achten Sie auf Positionsdrift und seien Sie bereit, früher zu landen, statt sich auf die automatische Rückkehr zu verlassen.
+
+## Häufige Fehler
+
+- Kp als direkten GPS-Genauigkeitswert lesen. Es ist ein indirekter Indikator, und die äquatoriale Abend-Ionosphäre kann GPS auch bei niedrigem Kp stören.
+- Jede Drift oder Kompasswarnung einem Sturm zuschreiben, ohne lokale magnetische Störungen und Satellitenzahl zu prüfen.
+- Bei einem langen Flug nur beim Start prüfen. Die Bedingungen können sich zwischen 3-Stunden-Fenstern ändern.
+- Annehmen, Entfernung von den Polen bedeute keinen Effekt. Laut NOAA können große Stürme starke TEC-Zunahmen auch in mittleren Breiten verursachen.
+
+## Häufige Fragen
+
+### Garantiert Kp 3 gutes GPS?
+
+Nein. Kp beschreibt die magnetische Störung am Boden, und ionosphärische Szintillation nahe dem geomagnetischen Äquator kann GPS nach Sonnenuntergang unabhängig vom Kp-Wert beeinträchtigen.
+
+### Fällt mein Kompass bei Kp 5 aus?
+
+Dafür gibt es keinen offiziellen Schwellenwert. Das GFZ nennt Abweichungen von einigen Grad in hohen Breiten bei starken Stürmen; zuerst sollten Sie daher lokale magnetische Störungen prüfen.
+
+### Ist Zweifrequenz-GPS gegen Stürme immun?
+
+Nein. Laut NOAA sind Zweifrequenzempfänger normalerweise zentimetergenau, können aber unzuverlässig werden, wenn sie das Satellitensignal nicht aufschalten können.
+
+### Soll ich landen, wenn meine Drohne bei einem Sturm zu driften beginnt?
+
+Wechseln Sie wie im Handbuch beschrieben in die manuelle oder Attitude-Steuerung und landen Sie früher, wenn sich die Positionshaltung nicht erholt. Die automatische Rückkehr nutzt dieselben GPS- und Kompassdaten.
+
+## Quellen und weiterführende Links
+
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [GFZ Helmholtz-Zentrum Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)
+- [British Geological Survey — An Overview of the Earth's Magnetic Field](https://geomag.bgs.ac.uk/education/earthmag.html)
+- [NovAtel — What is ionospheric activity and how do I mitigate against the impact on GNSS?](https://novatel.com/tech-talk/ionospheric-activity)

@@ -2,6 +2,7 @@
 title: "Ionosphärische Szintillation und Drohnen-GPS"
 description: "Warum GPS nach Sonnenuntergang am Äquator oder bei Stürmen in hohen Breiten die Fixierung verlieren kann und wie sich Szintillation von Störungen unterscheidet."
 publishedAt: "2026-09-07"
+updatedAt: "2026-10-04"
 tags: ["ionosphere", "scintillation", "gps", "space-weather"]
 category: "space-weather-gps"
 image: "/guides/images/ionospheric-scintillation-and-drone-gps.webp"
@@ -9,25 +10,78 @@ imageCredit: "Kevin Stadnyk"
 imageCreditUrl: "https://unsplash.com/@obruta?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Stellen Sie sich vor, Sie fliegen eine Vermessungsmission in einem Land niedriger Breite eine Stunde nach Sonnenuntergang, und das GPS-Modul Ihrer Drohne meldet alle paar Minuten Zyklensprünge und kurzzeitigen Verlust der Fixierung, obwohl der Kp-Index an diesem Tag nie über 3 stieg. Prüfen Sie einen ionosphärischen Szintillationsmonitor für die Region, würden Sie wahrscheinlich sehen, dass der Amplituden-Szintillationsindex (S4) genau in diesem Zeitfenster deutlich über 0,6 ausschlägt. Das ist ionosphärische Szintillation — eine schnelle, kleinräumige Störung, die sich völlig anders verhält als die breiten, langsamen geomagnetischen Stürme, auf die sich die meisten Drohnen-Wetter-Hinweise stützen.
+Stellen Sie sich vor, Sie fliegen eine Vermessungsmission in einem Land niedriger Breiten eine Stunde nach Sonnenuntergang, und das GPS Ihrer Drohne verliert alle paar Minuten die Verbindung, obwohl der Kp-Index des Tages nie über 3 stieg. Das könnte ionosphärische Szintillation sein: eine schnelle, kleinräumige Störung, die sich völlig anders verhält als die großräumigen, langsamen geomagnetischen Stürme, auf die sich die meisten Wetterhinweise für Drohnenpiloten stützen.
+
+## Das Wichtigste in Kürze
+
+- Szintillation ist eine schnelle Schwankung von Amplitude und Phase eines Funksignals, verursacht durch kleinräumige Strukturen in der Elektronendichte der Ionosphäre.
+- Sie tritt vor allem in niedrigen und hohen Breiten auf. Laut NOAA ist die äquatoriale Form unmittelbar nach Sonnenuntergang am stärksten und Teil des natürlichen Tag-Nacht-Zyklus der äquatorialen Ionosphäre, kein Sturmeffekt.
+- Ein Whitepaper der SBAS Ionospheric Working Group nennt, dass GPS-Szintillation in der Regel kurz nach Sonnenuntergang auftritt und bis kurz nach Mitternacht Ortszeit anhalten kann, am stärksten in den äquatorialen Anomaliegebieten etwa 15 Grad nördlich und südlich des magnetischen Äquators.
+- Starke Szintillation kann verhindern, dass ein Empfänger einrastet, und die Positionsberechnung unmöglich machen; mildere Fälle verringern Genauigkeit und Vertrauen.
+- Ein niedriger Kp-Index schließt sie nicht aus. Planen Sie nach Ort und Ortszeit und halten Sie ein Ausweichfenster oder einen Plan für manuelles Fliegen bereit.
 
 ## Was Szintillation tatsächlich ist
 
-Szintillation ist eine schnelle Schwankung in Amplitude und Phase eines Satellitensignals, verursacht durch kleine Unregelmäßigkeiten in der Elektronendichte, während das Signal die Ionosphäre durchquert — vom Prinzip her ähnlich wie turbulente Luft das Sternenlicht funkeln lässt, nur dass hier Plasmadichte statt Luftdichte die Streuung verursacht. In der Nähe des geomagnetischen Äquators erwärmt die Sonne die Tagseite der Ionosphäre und baut ein starkes elektrisches Feld auf, das nach Sonnenuntergang eine Instabilität (die Rayleigh-Taylor-Instabilität) antreibt, die Plasma-„Blasen" erzeugt — Regionen verringerter Elektronendichte, die durch die Ionosphäre aufsteigen. GPS-Signale, die die Ränder dieser Blasen durchqueren, szintillieren stark, und der Effekt ist meist am stärksten innerhalb von etwa 15-20 Grad des magnetischen Äquators, konzentriert in den Stunden zwischen lokalem Sonnenuntergang und etwa Mitternacht. Eine zweite, separate Szintillationszone existiert in hohen Breiten und im Polarlichtoval, wo sie durch geomagnetische Stürme und Substürme statt durch den Tag-Nacht-Zyklus des elektrischen Felds angetrieben wird.
+Das Space Weather Prediction Center der NOAA definiert ionosphärische Szintillation als schnelle Veränderung von Funkwellen durch kleinräumige Strukturen in der Ionosphäre, mit Strukturgrößen von einigen zehn Metern bis zu einigen zehn Kilometern in der Elektronendichte. Die NOAA vergleicht den Effekt mit Wellen auf einer Wasseroberfläche, die Licht streuen. Zwei Indizes beschreiben ihn: S4 für die Amplitudenszintillation und Sigma-Phi für die Phasenszintillation; beide spiegeln wider, wie stark das Signal über einen Zeitraum, meist eine Minute, schwankt.
 
-## Warum sie leicht übersehen wird, wenn Sie nur den Kp-Index beobachten
+Sind die Amplitudeneinbrüche tief, kann der Signalpegel unter die Einrastschwelle des Empfängers fallen. Schnelle Phasenänderungen können außerdem Cycle Slips verursachen, die vor allem für hochpräzise Positionierung mit Trägerphase relevant sind. Das SBAS-Whitepaper ergänzt, dass unterbrochene Trägerphasenglättung die Entfernungsfehler um ein Mehrfaches erhöhen kann; wie sich das bei einer Consumer-Drohne zeigt, hängt vom Empfänger ab.
 
-Äquatoriale Szintillation ist ein an die Ortszeit gebundenes Phänomen, verknüpft mit der elektrischen Feldstruktur der Ionosphäre in der Abenddämmerung, nicht mit globaler geomagnetischer Aktivität — sie kann daher in einer Nacht stark ausfallen, in der der Kp-Index bei 1 oder 2 liegt, ein Wert, den die meisten Drohnenpiloten als „Weltraumwetter ist ruhig" lesen würden. Szintillation in hohen Breiten folgt geomagnetischer Aktivität zwar enger, doch selbst dort kann ein Empfänger Signalausfälle erleben, bevor sich der Effekt eines Sturms vollständig im 3-Stunden-Kp-Wert zeigt, weil Szintillation auf schnelle, lokalisierte Substurm-Aktivität reagiert, die ein globaler Index herausmittelt. Das praktische Ergebnis ist in beiden Zonen dasselbe: Ihre GPS-Vertrauensanzeige, Satellitenanzahl oder HDOP können einen Moment lang gut aussehen und sich im nächsten kurz verschlechtern oder eine Fixierung verlieren, ohne offensichtliche äußere Ursache.
+## Wo und wann sie auftritt
 
-## Der Fehler, den Piloten am häufigsten machen
+| Region | Typischer Zeitpunkt | Ursache |
+|---|---|---|
+| Nahe dem magnetischen Äquator, etwa 15 Grad nördlich und südlich | Kurz nach lokalem Sonnenuntergang, teils bis kurz nach Mitternacht Ortszeit | Natürlicher Tag-Nacht-Zyklus der äquatorialen Ionosphäre (NOAA) |
+| Hohe Breiten, einschließlich Polarlichtregionen | Kann in allen Jahreszeiten auftreten | Begleitet Polarlichter und geomagnetische Aktivität (SBAS-Whitepaper) |
+| Mittlere Breiten wie die USA | Deutlich seltener | Vor allem extreme magnetische Stürme |
 
-Der häufigste Fehler ist, Szintillation als Hardwareproblem zu behandeln — ein launisches GPS-Modul, eine lockere Antennenverbindung oder Störung durch einen nahen Motor —, weil das Symptom (sporadischer Fixierungsverlust, Positionssprünge) identisch zu einem Empfängerfehler aussieht. Ein zweiter häufiger Fehler ist, Präzisionsvermessungs- oder RTK-korrigierte Flüge in äquatorialen Regionen rein deshalb auf das Zeitfenster nach Sonnenuntergang zu legen, weil die Tageshitze oder der Wind nachgelassen hat, ohne zu wissen, dass genau dann das Szintillationsrisiko seinen Höhepunkt erreicht. Bei einem RTK-Aufbau kann Szintillation die Basisstation und den Empfänger der Drohne je nach ihrer genauen Position relativ zu einer Plasmablase unterschiedlich beeinflussen, sodass Piloten manchmal eine „schlechte Fixierung" durch wiederholtes Aus- und Wiedereinschalten der Drohne zu beheben versuchen, während die eigentliche Ursache von selbst vergeht, sobald sich die lokale Ionosphäre beruhigt — typischerweise nach lokaler Mitternacht.
+Das Whitepaper weist außerdem darauf hin, dass die Aktivität dem 11-jährigen Sonnenzyklus folgt und um das Sonnenmaximum stärker ist. Die NOAA nennt Ortszeit, Jahreszeit, geomagnetische Aktivität und Sonnenzyklus als Einflussfaktoren.
+
+## Warum ein niedriger Kp-Index keine Sicherheit bedeutet
+
+Äquatoriale Szintillation folgt der lokalen Zeitstruktur der Ionosphäre in der Dämmerung, nicht der globalen geomagnetischen Aktivität. Die NOAA stellt fest, dass sie mit keinem Weltraumwettersturm zusammenhängt; sie kann also in einer Nacht auftreten, in der der Kp-Index bei 1 oder 2 liegt, einem Wert, den die meisten Piloten als ruhig lesen würden. Die NOAA merkt außerdem an, dass Zweifrequenz-GPS-Empfänger nahe dem Äquator wegen der Szintillation oft die Verbindung verlieren. In hohen Breiten begleitet Szintillation dagegen geomagnetische Aktivität, daher gelten dort die Hinweise für Polarlichtphasen; siehe dazu [Wie Sonneneruptionen die Drohnennavigation beeinflussen](/de/guides/how-solar-flares-affect-drone-navigation).
+
+Szintillation ist etwas anderes als die allgemeine ionosphärische Laufzeitverzögerung, die Stürme verursachen. Die NOAA erklärt, dass Einfrequenz-GPS-Systeme bei ruhigen Bedingungen Positionsgenauigkeiten von einem Meter oder weniger liefern können, während diese Fehler bei einem schweren Weltraumwettersturm auf Dutzende Meter oder mehr ansteigen können. Dieser langsame, großräumige Fehler ist das Thema der Kp-basierten Hinweise in [Was ist der Kp-Index](/de/guides/what-is-the-kp-index).
+
+## Wie es sich an einer Drohne zeigen kann
+
+Die GPS-Vertrauensanzeige, die Satellitenanzahl oder der HDOP können im einen Moment in Ordnung aussehen und im nächsten kurz schlechter werden oder die Position verlieren, ohne erkennbare äußere Ursache. Das Fluggerät schwebt womöglich weniger ruhig oder wechselt in einen Modus ohne Satellitenpositionierung. Die genaue Reaktion hängt von Hersteller und Modell ab; das Handbuch der DJI Mini 4K etwa sagt, dass das Fluggerät automatisch in den ATTI-Modus wechselt, wenn das GPS-Signal schwach ist, und dass Wind in diesem Modus zu horizontalem Versatz führen kann.
+
+## Häufige Fehler
+
+- Szintillation als Hardwareproblem behandeln, etwa als defektes GPS-Modul, lose Antenne oder Motorstörung, weil der zeitweilige Verbindungsverlust einem Empfängerfehler gleicht. Prüfen Sie, ob Zeit und Ort zu Szintillation passen, bevor Sie etwas austauschen.
+- Präzisionsarbeiten im Zeitfenster nach Sonnenuntergang in äquatorialen Regionen ansetzen, nur weil Hitze oder Wind des Tages nachgelassen haben.
+- Die Drohne wiederholt aus- und einschalten, um einer schlechten Position hinterherzujagen, obwohl die Störung später in der Nacht vergehen kann.
+- Annehmen, ein ruhiger Kp-Index garantiere überall auf der Erde gutes GPS.
 
 ## Praktische Checkliste
 
-- Fliegen Sie regelmäßig innerhalb von etwa 20 Grad des magnetischen Äquators, behandeln Sie die zwei bis drei Stunden nach lokalem Sonnenuntergang als Zeitfenster mit erhöhtem Risiko für GPS-Fixierungsprobleme, unabhängig vom Kp-Index des Tages.
-- Behandeln Sie in hohen Breiten aktive geomagnetische Sturmperioden und Polarlichtaktivität zusätzlich zu den allgemeinen Kp-basierten Hinweisen für diese Region als Szintillations-Risikofenster.
-- Bevor Sie das GPS-Modul Ihrer Drohne nach sporadischem Fixierungsverlust als defekt einstufen, prüfen Sie, ob das Symptom zu einer Zeit und an einem Ort auftrat, die zu Szintillation passen, statt sofort einen Hardwarefehler anzunehmen.
-- Kalkulieren Sie für RTK-Missionen in szintillationsanfälligen Regionen zusätzliche Zeit oder ein Ausweichfenster ein, da auch bei intakter Hardware eine reine Float-Fixierung oder wiederholte Neuerfassung auftreten kann.
-- Vermeiden Sie es, Zentimeter-genaue äquatoriale Missionen in die unmittelbaren Stunden nach Sonnenuntergang zu legen, wenn ein Ausweichfenster am Tag verfügbar ist.
-- Gehen Sie nicht davon aus, dass ein niedriger Kp-Index ionosphärische Probleme ausschließt — äquatoriale Szintillation folgt der lokalen Sonnenuntergangszeit, nicht der globalen geomagnetischen Uhr.
+- Wenn Sie regelmäßig in niedrigen Breiten nahe dem magnetischen Äquator fliegen, betrachten Sie die Stunden von Sonnenuntergang bis etwa Mitternacht Ortszeit als Zeitfenster mit höherem Risiko für GPS-Einrastprobleme, unabhängig vom Kp-Wert des Tages.
+- In hohen Breiten betrachten Sie aktive Polarlicht- und geomagnetische Sturmphasen als zusätzliches Risikofenster.
+- Halten Sie das Fluggerät in Sichtweite und seien Sie bereit, manuell zu übernehmen, wenn die Verbindung abbricht. Die Schritte stehen in [Was tun, wenn das GPS-Signal schwach ist](/de/guides/what-to-do-when-drone-gps-signal-is-weak).
+- Planen Sie bei Hochpräzisionsmissionen in szintillationsanfälligen Regionen ein Ausweichfenster tagsüber ein, wenn der Auftrag es zulässt.
+- Das aktuelle Weltraumwetterbild zeigt das [FlyDroneMap-Dashboard](/de); beachten Sie, dass es äquatoriale Szintillation nicht vorhersagt.
+
+## Häufige Fragen
+
+### Wird Szintillation durch Sonnenstürme verursacht?
+
+Nicht am Äquator. Die NOAA erklärt, dass äquatoriale Szintillation Teil des natürlichen Tag-Nacht-Zyklus der Ionosphäre ist und mit keinem Weltraumwettersturm zusammenhängt. In hohen Breiten begleitet sie Polarlichter und geomagnetische Aktivität.
+
+### Sagt mir der Kp-Index, ob Szintillation auftritt?
+
+Nein. Der Kp-Index beschreibt die globale geomagnetische Aktivität, während äquatoriale Szintillation Ortszeit und Standort folgt. Ein niedriger Kp-Wert schließt sie nicht aus.
+
+### Wie lange dauert sie?
+
+Das SBAS-Whitepaper sagt, dass sie in äquatorialen Regionen in der Regel kurz nach Sonnenuntergang auftritt und bis kurz nach Mitternacht Ortszeit anhalten kann. Einzelne Ereignisse unterscheiden sich; verstehen Sie dies als grobes Muster, nicht als Garantie.
+
+### Sollte ich dann nicht fliegen?
+
+Das entscheiden Sie als verantwortlicher Pilot. Meldet Ihre Drohne GPS-Probleme, folgen Sie Ihrem Handbuch, landen Sie sicher und erwägen Sie, tagsüber oder an einem anderen Tag zu fliegen. Starten Sie nicht mit einer GPS-Warnung im Display.
+
+## Quellen und weiterführende Links
+
+- [NOAA Space Weather Prediction Center — Ionospheric Scintillation](https://www.spaceweather.gov/phenomena/ionospheric-scintillation)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [SBAS Ionospheric Working Group — Effect of Ionospheric Scintillations on GNSS, a White Paper](https://web.stanford.edu/group/scpnt/gpslab/website_files/sbas-ion_wg/sbas_iono_scintillations_white_paper.pdf)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)

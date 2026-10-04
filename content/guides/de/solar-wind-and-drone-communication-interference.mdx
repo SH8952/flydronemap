@@ -2,6 +2,7 @@
 title: "Sonnenwind und Störungen der Drohnenkommunikation"
 description: "Wie Sonnenaktivität die Funkverbindung zwischen einer Drohne und ihrer Fernsteuerung beeinflussen kann, und worauf Sie achten sollten."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["solar-wind", "radio", "interference"]
 category: "space-weather-gps"
 image: "/guides/images/solar-wind-and-drone-communication-interference.webp"
@@ -9,20 +10,93 @@ imageCredit: "Ian Baldwin"
 imageCreditUrl: "https://unsplash.com/@ianebaldwin?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Steuerverbindung und Video-Downlink einer Drohne sind auf Funkfrequenzen angewiesen, die dieselbe obere Atmosphäre durchqueren, die geomagnetische Aktivität stört.
+Steuerverbindung und Videoübertragung einer Drohne nutzen Funkfrequenzen, und es ist bekannt, dass Weltraumwetter manche Funksysteme stört. Die nützliche Frage für Piloten lautet, welche Systeme tatsächlich betroffen sind und welche nicht.
 
-## Die Wirkungskette
+## Das Wichtigste in Kürze
 
-Sonnenwind — ein kontinuierlicher Strom geladener Teilchen von der Sonne — verstärkt sich während Sonnenstürmen und komprimiert und stört dabei die Magnetosphäre der Erde. Diese Störung koppelt in die Ionosphäre hinunter und verändert, wie Funksignale sich brechen und ausbreiten. Die meisten Consumer-Drohnen arbeiten im 2,4-GHz- oder 5,8-GHz-Band, die weniger empfindlich auf ionosphärische Effekte reagieren als Langstrecken-Kurzwellenfunk, aber nicht völlig immun sind — besonders am Rand der Steuerreichweite einer Drohne.
+- Der Sonnenwind ist ein kontinuierlicher Strom aus Protonen und Elektronen, der von der Sonne ausgeht. Ist er schnell oder führt er ein starkes Magnetfeld mit, kann er geomagnetische Stürme antreiben.
+- Die Funkeffekte, die die NOAA und andere Stellen dokumentieren, betreffen Kurzwellenfunk (3 bis 30 MHz), Langwellen-Navigationssignale und Satellitennavigationssignale (GNSS).
+- Keine der für diese Anleitung genutzten Quellen sagt, dass Sonnenaktivität die 2,4-GHz- oder 5,8-GHz-Verbindungen von Verbraucherdrohnen stört. Geben Sie bei einer schwachen Steuerverbindung nicht zuerst der Sonne die Schuld.
+- Was Piloten bei starkem Weltraumwetter realistisch bemerken können, ist eine verschlechterte Satellitenposition oder ein auffälliges Kompassverhalten, nicht unbedingt eine abgebrochene Funkverbindung.
+- Alltägliche Ursachen wie Hindernisse, Antennenausrichtung und lokale elektromagnetische Störungen erklären Verbindungsprobleme weitaus häufiger.
 
-## Was Piloten tatsächlich bemerken
+## Was der Sonnenwind ist
 
-Das häufiger gemeldete Problem ist nicht ein vollständiger Verbindungsabbruch, sondern erhöhte Signalinstabilität am Rand der Reichweite — häufigere kurze Videoruckler, oder eine Steuerverbindung, die kurzzeitig vor Störung warnt, unter Bedingungen, bei denen sie das normalerweise nicht täte, während Phasen erhöhter geomagnetischer Aktivität.
+Die NOAA beschreibt den Sonnenwind als kontinuierlichen Strom aus überwiegend Protonen und Elektronen in einem Zustand namens Plasma, der das Magnetfeld der Sonne nach außen trägt. Seine Geschwindigkeit schwankt: Die NOAA nennt etwa 400 km/s für den langsameren äquatorialen Wind und 500 bis 800 km/s für schnellen Wind aus koronalen Löchern. Die Zusammenfassung der NOAA lautet, dass schnelle Winde geomagnetische Stürme bringen und langsame Winde ruhiges Weltraumwetter. Ein koronaler Massenauswurf ist ein anderes Phänomen, eine bei einer Eruption ausgestoßene Plasmawolke, und nach Angaben der NOAA können die schnellsten erdgerichteten schon nach 15 bis 18 Stunden die Erde erreichen.
 
-## Nicht jede Störung dem Weltraumwetter zuschreiben
+Wirken dieses Material und sein Magnetfeld effizient mit der magnetischen Umgebung der Erde zusammen, entsteht ein geomagnetischer Sturm. Laut NOAA können Stürme starke horizontale Schwankungen der Ionosphärendichte erzeugen, die den Weg von Funksignalen verändern und Fehler bei der GPS-Positionsbestimmung verursachen. Die Ionosphäre ist die Schicht geladenen Gases in der oberen Atmosphäre und das Bindeglied zwischen Weltraumwetter und Funk.
 
-Die meisten Unterbrechungen der Steuerverbindung haben weitaus banalere Ursachen: WLAN-Überlastung, physische Hindernisse oder Antennenausrichtung. Sonnenbedingte Störung ist ein reales, aber vergleichsweise seltenes Element — gut zu kennen, aber nicht das Erste, was man vermuten sollte.
+## Welche Funksysteme betroffen sind
 
-## Praktische Hinweise
+| System | Typische Frequenz | Was die Quellen dokumentieren |
+|---|---|---|
+| Kurzwellenfunk | 3 bis 30 MHz | Funkausfälle nach starken Sonneneruptionen auf der Tagseite (R-Skala); beeinträchtigter oder ausgefallener Kurzwellenfunk über den Polarregionen bei Strahlungsstürmen (S-Skala) |
+| Langwellennavigation | Langwelle | Beeinträchtigt oder gestört bei Funkausfällen und schweren geomagnetischen Stürmen |
+| GNSS (GPS und ähnliche) | Etwa 1,2 bis 1,6 GHz | Laufzeitverzögerung und Szintillation in der Ionosphäre, vor allem in hohen Breiten und nahe dem Äquator; seltene solare Radiobursts auf GPS-Frequenzen |
+| Steuer- und Videoverbindungen von Drohnen | 2,4 GHz und 5,8 GHz | In den Skalentabellen und Auswirkungsseiten der NOAA nicht aufgeführt |
 
-Fliegen Sie während Phasen erhöhten Kp-Werts näher an Ihrer maximalen komfortablen Reichweite (nicht am absoluten Maximum der Drohne), und behandeln Sie jede ungewöhnliche Verbindungswarnung als Signal, die Drohne näher heranzuholen, statt weiter hinauszufliegen.
+Der Frequenzbereich von GNSS ist eine allgemeine Angabe, die nicht auf jeder Quellenseite steht. Entscheidend ist die letzte Zeile der Tabelle: Die Bänder, die die meisten Verbraucherdrohnen für Steuerung und Video nutzen, tauchen unter den dokumentierten Effekten nicht auf. Das Handbuch der DJI Mavic 3 Pro etwa gibt an, dass die Fernsteuerung sowohl auf 2,4 als auch auf 5,8 GHz arbeitet, und vermerkt, dass 5,8 GHz in bestimmten Regionen nicht unterstützt wird.
+
+## Solare Radiobursts und GPS
+
+Ein Effekt, der auf den Frequenzen der Satellitennavigation dokumentiert ist, ist der solare Radioburst. Der Weltraumwetterdienst des australischen Bureau of Meteorology gibt an, dass eine Störung des GPS durch solare Radiobursts nur wenige Male pro Sonnenzyklus (etwa 11 Jahre) und jeweils nur für einige Minuten erwartet wird. Während der Signalerfassung kann ein Burst das Signal-Rausch-Verhältnis bei typischen Handempfängern um 8 bis 9 dB senken, was die Erfassung von Satelliten erschweren kann, auch wenn eine bestehende Verbindung selten verloren geht. Dieselbe Seite beschreibt ein Ereignis von 2006 am Learmonth Observatory, das zu einem Verlust der Verbindung zu GPS-Satelliten für rund zwei Stunden führte.
+
+Diese Seite behandelt GPS-Signale. Sie geht nicht auf 2,4-GHz- oder 5,8-GHz-Drohnenverbindungen ein, daher trifft diese Anleitung dazu keine Aussage.
+
+## Was das für die Steuerverbindung bedeutet
+
+Die meisten dokumentierten Funkeffekte betreffen Signale, die die Ionosphäre durchqueren (GNSS) oder an ihr reflektiert werden (Kurzwelle). Eine Fernsteuerung, die mit einer Drohne spricht, nutzt in der Regel einen kurzen Weg nahe am Boden. Das ist eine allgemeine Beschreibung der Funktionsweise solcher Verbindungen und keine Aussage einer offiziellen Seite, passt aber dazu, dass kein Effekt auf 2,4 oder 5,8 GHz dokumentiert ist.
+
+Praktisch heißt das: Das Erste, was Sie bei starkem Weltraumwetter wahrscheinlich bemerken, ist die Satellitenpositionierung oder der Kompass des Fluggeräts, nicht die Steuerverbindung. Meldet das Fluggerät schwaches GNSS, kann es laut DJI-Handbuch in den Attitude-Modus (ATTI) wechseln, in dem es von der Umgebung leichter beeinflusst werden kann, und es kehrt bei schwachem oder fehlendem GNSS unter Umständen nicht normal zum Startpunkt zurück. Die Maßnahmen finden Sie unter [Was tun bei schwachem GPS-Signal der Drohne](/de/guides/what-to-do-when-drone-gps-signal-is-weak).
+
+## Häufigere Ursachen für Verbindungsprobleme
+
+Das DJI-Handbuch rät, Bereiche mit starkem Elektromagnetismus zu meiden, etwa Stromleitungen, Basisstationen, Umspannwerke und Sendemasten, und warnt, dass hohe Gebäude und große Metallstrukturen die Genauigkeit von Kompass und GNSS beeinträchtigen können. Weitere alltägliche Ursachen einer schwachen Verbindung sind:
+
+- Hindernisse zwischen den Antennen, darunter Gelände, Bäume und Gebäude.
+- Schlechte Antennenausrichtung oder eine Fernsteuerung in ungünstigem Winkel.
+- Überlastete Funkumgebungen in Städten oder bei Veranstaltungen.
+- Große Entfernungen nahe der maximalen Reichweite des Systems.
+
+Weltraumwetter ist eine mögliche, aber vergleichsweise seltene Erklärung für ein Navigationsproblem. Bei einem Verbindungsproblem sollte es nicht der erste Verdacht sein.
+
+## Häufige Fehler
+
+- Annehmen, jeder Videoaussetzer an einem Tag mit hohem Kp werde vom Sonnenwind verursacht.
+- Die üblichen Prüfungen (Antenne, Standort, Störquellen) auslassen, weil "Weltraumwetter" eine bequeme Erklärung ist.
+- Nur den Kp ansehen. Eine Eruption kann die Tagseite beeinflussen, ohne dass sich der Kp ändert; siehe [Die NOAA-Weltraumwetterskalen verstehen](/de/guides/understanding-noaa-space-weather-scales).
+- Eine ruhige Weltraumwettervorhersage als Garantie gegen Störungen aus lokalen Quellen verstehen.
+
+## Praktische Schritte
+
+- Prüfen Sie vor Flügen, bei denen die Positionsgenauigkeit zählt, den aktuellen Kp und den 3-Tage-Ausblick der NOAA, und lesen Sie [Flüge bei geomagnetischen Stürmen vermeiden](/de/guides/avoid-flying-during-geomagnetic-storms), um sie einzuordnen.
+- Halten Sie das Fluggerät in Sichtweite und wählen Sie eine vorsichtige Reichweite. Das ist allgemein gute Praxis und schafft zusätzlich Spielraum, falls GNSS oder Verbindung nachlassen.
+- Erscheint eine Warnung, holen Sie das Fluggerät zu sich zurück, statt weiter hinauszufliegen, und halten Sie sich für die manuelle Steuerung bereit.
+- Nutzen Sie das [FlyDroneMap-Dashboard](/de) für aktuellen Kp und Windkontext, aber lassen Sie die Statusanzeigen Ihres Fluggeräts das letzte Wort haben.
+
+## Häufige Fragen
+
+### Kann der Sonnenwind die Fernsteuerung meiner Drohne stören?
+
+Keine der für diese Anleitung geprüften Quellen dokumentiert, dass Sonnenwind oder Eruptionen 2,4-GHz- oder 5,8-GHz-Steuerverbindungen stören. Die dokumentierten Funkeffekte betreffen Kurzwellenfunk, Langwellennavigation und GNSS.
+
+### Was ist der Unterschied zwischen Sonnenwind und Sonneneruption?
+
+Der Sonnenwind ist ein kontinuierlicher Plasmastrom, eine Eruption dagegen ein Strahlungsausbruch, der mit Lichtgeschwindigkeit die Erde erreicht. Ein koronaler Massenauswurf, der eine Eruption begleiten kann, ist eine eigene Plasmawolke, die Stunden bis Tage braucht.
+
+### Welches Signal ist eher betroffen, die Steuerverbindung oder GPS?
+
+Die Quellen deuten eher auf GNSS-Signale als auf die Steuerverbindung. Ionosphärische Störungen können GNSS-Signale verzögern oder verfälschen, besonders in hohen Breiten.
+
+### Sollte ich während eines geomagnetischen Sturms fliegen?
+
+Das hängt von Ihrem Fluggerät, dem Einsatz und den örtlichen Regeln ab, und keine Anleitung kann es für Sie entscheiden. Wenn Sie fliegen, rechnen Sie damit, dass GNSS und Kompass weniger zuverlässig sein können, und planen Sie eine manuelle Rückfalloption.
+
+## Quellen und weiterführende Links
+
+- [NOAA Space Weather Prediction Center — Solar Wind](https://www.spaceweather.gov/phenomena/solar-wind)
+- [NOAA Space Weather Prediction Center — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [Australian Bureau of Meteorology Space Weather Services — GPS Interference By Solar Radio Bursts](https://www.sws.bom.gov.au/Educational/1/3/10)
+- [DJI — Mavic 3 Pro User Manual](https://dl.djicdn.com/downloads/DJI_Mavic_3_Pro/20230425/DJI_Mavic_3_Pro_User_Manual_EN.pdf)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)

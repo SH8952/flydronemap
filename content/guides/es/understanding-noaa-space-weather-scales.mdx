@@ -2,6 +2,7 @@
 title: "Escalas de clima espacial de la NOAA: G, S y R explicadas"
 description: "Por qué las tres escalas de clima espacial de la NOAA abarcan más que el índice Kp por sí solo, y cuál realmente importa para tu próximo vuelo con drone."
 publishedAt: "2026-09-02"
+updatedAt: "2026-10-04"
 tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
 category: "space-weather-gps"
 image: "/guides/images/understanding-noaa-space-weather-scales.webp"
@@ -9,24 +10,99 @@ imageCredit: "NASA"
 imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Si hasta ahora solo has revisado el índice Kp antes de volar, estás siguiendo apenas un tercio de lo que realmente publica el Centro de Predicción del Clima Espacial de la NOAA. La NOAA mantiene tres escalas independientes de 1 a 5 — G, S y R — y una lectura de Kp tranquila no garantiza que las otras dos también lo estén.
+Si hasta ahora solo has revisado el índice Kp antes de volar, estás siguiendo una de las tres escalas que publica el Centro de Predicción del Clima Espacial (SWPC) de la NOAA. La NOAA mantiene tres escalas independientes de 1 a 5 — G, S y R — y una lectura de Kp tranquila no te dice si las otras dos también lo están.
 
-## Las tres escalas miden fenómenos físicos distintos
+## Puntos clave
 
-La escala G (Tormentas Geomagnéticas) es la que la mayoría de las herramientas de clima para drones ya muestra, porque se corresponde directamente con el índice Kp: G1 equivale a Kp 5, G2 a Kp 6, y así sucesivamente hasta G5 en Kp 9. La escala S (Tormentas de Radiación Solar) mide el flujo de protones de alta energía que llega a la Tierra, calificado de S1 a S5, y afecta sobre todo a operadores de satélites y a las comunicaciones de radio HF polares, más que a la precisión del GPS que preocupa a la mayoría de los pilotos. La escala R (Apagones de Radio) es provocada por fulguraciones solares de rayos X y se califica según la clase de la fulguración — una fulguración M1 se registra como R1, una X1 como R3, y así sucesivamente — y es la escala que más suele tomar por sorpresa a quienes solo vigilan el Kp.
+- Las escalas G, S y R de la NOAA miden tres cosas distintas: tormentas geomagnéticas (Kp), tormentas de radiación solar (protones de alta energía) y apagones de radio (fulguraciones solares de rayos X).
+- Solo la escala G se corresponde con el Kp: G1 equivale a Kp 5 y G5 a Kp 9.
+- La escala R reacciona en el momento en que se observa la fulguración, porque su radiación viaja a la velocidad de la luz, mientras que una tormenta geomagnética suele llegar después de una eyección de masa coronal (de 15 horas a varios días) o de una corriente de viento solar rápido.
+- Las tablas de la NOAA describen efectos sobre la radio HF, la navegación de baja frecuencia, los satélites y las redes eléctricas. No mencionan los enlaces de 2.4 GHz y 5.8 GHz que usan la mayoría de los drones de consumo.
+- Ninguna de las tres escalas es un número de "vuela o no vuela" específico para drones; úsalas como contexto junto con el [panel de FlyDroneMap](/es) y los avisos de tu propio dron.
 
-## Por qué la escala R sorprende a quienes solo miran el Kp
+## Las tres escalas de un vistazo
 
-Una fulguración solar de clase X puede desencadenar un evento de apagón de radio de escala R en cuestión de minutos, mucho antes de que cualquier perturbación geomagnética aparezca en el índice Kp, porque los rayos X de la fulguración llegan casi instantáneamente al lado iluminado de la ionosfera terrestre, mientras que la eyección de masa coronal asociada —la que eventualmente eleva el Kp— puede tardar un día o más en llegar, si es que llega. Durante un evento R2 o superior, los receptores GPS en el hemisferio iluminado pueden experimentar una caída real de precisión por el aumento de la perturbación ionosférica, incluso mientras el índice Kp sigue marcando un tranquilo 2 o 3. Un piloto que solo revisa el Kp antes de despegar puede pasar esto completamente por alto.
+| Escala | Qué mide | Niveles | Efectos típicos según la NOAA |
+|---|---|---|---|
+| G (Tormentas Geomagnéticas) | Perturbación geomagnética, ligada al Kp | G1 (Kp 5) a G5 (Kp 9) | Red eléctrica, naves espaciales, navegación por satélite, radio HF en latitudes altas |
+| S (Tormentas de Radiación Solar) | Flujo de protones de alta energía | S1 a S5 | Satélites, radio HF polar, exposición a la radiación |
+| R (Apagones de Radio) | Intensidad de la fulguración solar de rayos X | R1 (fulguración M1) a R5 (X20) | Radio HF en el lado iluminado, señales de navegación de baja frecuencia |
 
-## Un error común: creer que "sin pronóstico de aurora" significa "sin riesgo de clima espacial"
+## La escala G: tormentas geomagnéticas y Kp
 
-Los cazadores de auroras vigilan la escala G porque es el número ligado a la actividad visible de auroras, y muchos pilotos de drones han adoptado el mismo hábito sin darse cuenta — revisan el Kp, lo ven bajo y asumen que no hay ningún efecto de clima espacial. Pero un evento de escala R no necesita un Kp alto para ocurrir, y puede degradar el posicionamiento GPS durante la ventana en que está activo, típicamente desde minutos hasta unas pocas horas según la duración y el decaimiento de la fulguración.
+La escala G es la que se conecta directamente con el [índice Kp](/es/guides/what-is-the-kp-index): G1 es Kp 5, G2 es Kp 6, G3 es Kp 7, G4 es Kp 8 (incluido 9 menos) y G5 es Kp 9. La NOAA indica que el índice Kp se obtiene a partir de mediciones de magnetómetros en tierra, y en su página del índice señala que un valor de 5 o más indica una tormenta geomagnética.
 
-## Lista de verificación práctica
+Para la navegación, la tabla de la escala G enumera estos efectos:
 
-- Trata a G, S y R como tres números independientes, no como una puntuación combinada — un Kp tranquilo no garantiza una escala R igual de tranquila.
-- Antes de un vuelo donde la precisión sea crítica (mapeo, inspección, largo alcance), consulta el pronóstico de clima espacial a 3 días de la NOAA, no solo el índice Kp.
-- Si la precisión del GPS se ve inusualmente mala o tu drone reporta más pérdida de satélites de lo normal en condiciones por lo demás despejadas, considera un evento de escala R activo como posible causa.
-- Recuerda que los efectos de la escala R golpean con más fuerza en el lado iluminado de la Tierra y se desvanecen cuando el flujo de rayos X de la fulguración que los provocó disminuye — esperar suele ser la solución más simple.
-- No esperes a ver una aurora visible o un Kp alto como única señal para revisar el clima espacial antes de un vuelo crítico.
+- G2: la propagación de la radio HF puede debilitarse en latitudes altas.
+- G3: problemas intermitentes de navegación por satélite y de navegación por radio de baja frecuencia.
+- G4: navegación por satélite degradada durante horas; navegación por radio de baja frecuencia interrumpida.
+
+Los eventos G1 y G2 son los más frecuentes. La tabla de la NOAA indica unos 1700 eventos G1 y 600 G2 por ciclo solar, frente a unos 4 de G5. Por eso un Kp de 5 o 6 no es raro, y conviene saber qué puede y qué no puede significar para un vuelo. Cómo interactúan las tormentas con el GPS y la brújula se explica con más detalle en [cómo afecta el Kp a la fiabilidad del GPS y la brújula](/es/guides/kp-index-effect-on-gps-compass-reliability).
+
+## La escala S: tormentas de radiación solar
+
+La escala S califica el flujo de protones de alta energía cerca de la Tierra, de S1 a S5. La tabla de la NOAA enumera los efectos sobre todo como problemas de satélites (por ejemplo, errores de un solo evento), exposición a la radiación de astronautas y degradación o apagón de la radio HF en las regiones polares. S2 menciona además que pasajeros y tripulación de aviones que vuelan alto en latitudes altas podrían estar expuestos. La tabla no enumera efectos sobre la navegación de drones de consumo, así que en un vuelo típico a baja altura la escala S es información de contexto y no un dato para decidir.
+
+## La escala R: apagones de radio
+
+La escala R está ligada a la clase de rayos X máxima de una fulguración solar:
+
+| Nivel | Clase de fulguración | Descripción de la NOAA del efecto en radio HF |
+|---|---|---|
+| R1 (Menor) | M1 | Degradación débil o menor de la radio HF en el lado iluminado |
+| R2 (Moderado) | M5 | Apagón limitado en el lado iluminado, pérdida de contacto durante decenas de minutos |
+| R3 (Fuerte) | X1 | Apagón de área amplia, pérdida de contacto durante aproximadamente una hora |
+| R4 (Severo) | X10 | Apagón en la mayor parte del lado iluminado durante una a dos horas |
+| R5 (Extremo) | X20 | Apagón total de la radio HF en todo el lado iluminado durante varias horas |
+
+La misma tabla indica que las señales de navegación de baja frecuencia se degradan en todos los niveles, y menciona mayores errores de navegación por satélite solo en R5. La página de la NOAA sobre apagones de radio explica que el apagón afecta principalmente a las comunicaciones HF en la banda de 3 a 30 MHz, y que lo provocan los rayos X y la radiación ultravioleta extrema al ionizar las capas bajas de la ionosfera en el lado iluminado.
+
+Otras investigaciones sobre fulguraciones fuertes han medido cambios en el contenido total de electrones y en la calidad del posicionamiento GNSS. Por ejemplo, un estudio del periodo muy activo de octubre de 2014, con muchas fulguraciones de clase M y X, encontró mayores desviaciones de coordenadas en tres estaciones europeas que en periodos más tranquilos. Ese trabajo trataba de posicionamiento de precisión, no del mantenimiento de posición de un dron de consumo, y la escala R de la NOAA no asigna ningún efecto sobre el GPS a R2–R4. Considera la perturbación del GPS por fulguraciones como posible, no como consecuencia garantizada de un nivel R concreto. El mecanismo se detalla en [cómo afectan las erupciones solares a la navegación del dron](/es/guides/how-solar-flares-affect-drone-navigation).
+
+## Por qué el momento difiere entre escalas
+
+La NOAA señala que el efecto de una fulguración sobre el lado iluminado de la atmósfera ocurre al mismo tiempo que se observa el evento, porque la energía viaja a la velocidad de la luz. Una tormenta geomagnética, en cambio, suele depender de una eyección de masa coronal o de una corriente de viento solar rápido. La NOAA indica que las eyecciones dirigidas a la Tierra más rápidas pueden llegar en 15 a 18 horas, y las más lentas tardan varios días. Por eso un valor alto de la escala R y un Kp alto muchas veces no coinciden en el tiempo.
+
+## Errores comunes
+
+- Tratar el Kp como el panorama completo. Un Kp tranquilo no dice nada de una fulguración ocurrida en la última hora.
+- Tratar las escalas como una puntuación combinada. G, S y R son independientes.
+- Suponer que un valor alto de G o R significa que fallará el enlace de control. Las escalas de la NOAA no describen efectos sobre enlaces de 2.4 GHz o 5.8 GHz.
+- Suponer que los números son pronósticos de problemas para drones. Describen impactos generales en muchas tecnologías y regiones.
+- Ignorar los avisos del propio dron porque los números de clima espacial parecen tranquilos. La señal GNSS débil, los errores de brújula y la interferencia de radio local tienen muchas causas que no son solares.
+
+## Lista de verificación previa al vuelo
+
+- Consulta el valor actual de Kp y ten en cuenta que es una estimación basada en intervalos de tres horas.
+- Si haces trabajo de precisión, mira el último gráfico de flujo de rayos X de GOES de la NOAA, que se actualiza cada minuto.
+- Lee el pronóstico a 3 días de la NOAA, que se emite cada 12 horas y desglosa la previsión para cada una de las tres categorías de escala.
+- Decide de antemano qué harás si baja el número de satélites GPS o la brújula avisa: aterrizar, pasar a control manual o esperar.
+- Sigue el manual de tu aeronave y la normativa local; la información de clima espacial no sustituye a ninguno de los dos.
+
+## Preguntas frecuentes
+
+### ¿Es lo mismo el índice Kp que la escala G?
+
+No exactamente, pero están ligados. La escala G es una calificación de cinco niveles derivada del Kp: Kp 5 es G1 y Kp 9 es G5.
+
+### ¿Qué escala importa más para el GPS del dron?
+
+Las tablas de la NOAA vinculan los efectos sobre la navegación por satélite sobre todo con la escala G (G3 y superiores) y, en el extremo, con R5. Para vuelos normales, los valores G de 3 o más son la señal de aviso más clara según la propia redacción de la NOAA.
+
+### ¿Un evento de la escala R afecta al enlace de control de mi dron?
+
+La NOAA describe los apagones de la escala R como un efecto sobre la radio HF (3 a 30 MHz) y las señales de navegación de baja frecuencia. No menciona las bandas de 2.4 GHz o 5.8 GHz que usan la mayoría de los drones de consumo para el control y el vídeo.
+
+### ¿Puedo decidir si vuelo solo con estas escalas?
+
+No. Describen impactos generales del clima espacial, no las condiciones de tu zona de vuelo. Combínalas con el estado de tu aeronave, el tiempo local y las normas del lugar donde vuelas.
+
+## Fuentes y lecturas recomendadas
+
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)
+- [NOAA Space Weather Prediction Center — Coronal Mass Ejections](https://www.spaceweather.gov/phenomena/coronal-mass-ejections)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA Space Weather Prediction Center — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [SN Applied Sciences — Strong solar flare detection and its impact on ionospheric layers and on coordinates accuracy in the Western Balkans in October 2014](https://link.springer.com/article/10.1007/s42452-018-0040-9)

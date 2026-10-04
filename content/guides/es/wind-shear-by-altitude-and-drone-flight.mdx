@@ -2,6 +2,7 @@
 title: "Cizalladura del viento según la altitud y el vuelo con dron"
 description: "El viento del suelo suele diferir del que encuentra tu dron a 120 m. Cómo la capa límite, los chorros nocturnos y el terreno cambian el viento con la altura."
 publishedAt: "2026-09-21"
+updatedAt: "2026-10-04"
 tags: ["wind", "wind-shear", "altitude"]
 category: "weather-safety"
 image: "/guides/images/wind-shear-by-altitude-and-drone-flight.webp"
@@ -9,28 +10,85 @@ imageCredit: "Mark König"
 imageCreditUrl: "https://unsplash.com/@markkoenig?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Mirar una app del tiempo, ver 8 km/h y despegar con confianza responde a la pregunta equivocada. Lo que importa no es cuánto viento hace donde estás parado, sino cuánto hará cuando la aeronave llegue a 120 m (400 ft), y esas dos cifras pueden diferir mucho. Esa diferencia es justo lo que describe la cizalladura del viento (wind shear), y es una de las razones más comunes por las que un vuelo que parecía tranquilo en tierra se convierte, al subir, en una pelea inesperada por mantener el control.
+Mirar una app del tiempo, ver 8 km/h y despegar con confianza responde a la pregunta equivocada. Lo que importa no es cuánto sopla el viento a tus pies, sino cuánto soplará cuando la aeronave llegue a 120 m (400 ft), y esas dos cifras pueden diferir mucho. Esa diferencia es lo que describe la cizalladura del viento, y es una de las razones más comunes por las que un vuelo que parecía tranquilo en el suelo se convierte en una lucha inesperada por el control en cuanto el dron sube.
 
-## Por qué el viento se vuelve más fuerte y más cambiante con la altitud
+## Puntos clave
 
-Cerca del suelo, la fricción con edificios, árboles y un terreno irregular resta constantemente energía cinética al aire en movimiento, por eso las lecturas de viento en superficie casi siempre son más bajas que el viento real unos cientos de metros más arriba. En terreno abierto es habitual que el viento a 120 m sea entre 1,4 y 1,6 veces más fuerte que a los 10 m de altura estándar desde la que informan la mayoría de estaciones meteorológicas y apps; sobre una ciudad o el borde de un bosque, la diferencia puede ser aún mayor porque la fricción en superficie es más intensa. El problema práctico es que el dato que la mayoría de pilotos consulta antes de despegar describe justo la capa que menos se parece a la que la aeronave atravesará cerca de su techo de altitud legal.
+- La cizalladura del viento es un cambio de velocidad o de dirección del viento con la distancia; aquí, sobre todo con la altura. La lectura de superficie y el viento a 120 m pueden diferir bastante.
+- La fricción frena el viento cerca del suelo. En condiciones típicas de terreno abierto, el viento a 120 m suele rondar 1,4 veces el valor a 10 m, pero la proporción real depende de la estabilidad, el terreno y la rugosidad de la superficie.
+- En noches despejadas y calmadas, y a primera hora de la mañana, una inversión térmica puede dejar la superficie casi en calma mientras sopla viento más fuerte en altura.
+- Edificios, crestas y acantilados añaden su propia turbulencia sobre el perfil de altura. Sube por etapas y observa el comportamiento de la aeronave.
 
-## El chorro nocturno: el caso que engaña a quienes vuelan temprano
+## Qué es la cizalladura del viento
 
-Una de las formas más comunes en que esto sorprende a los pilotos tiene un mecanismo concreto. Durante la noche, el suelo se enfría más rápido que el aire por encima de él, y ese enfriamiento desacopla la delgada capa superficial del viento de más arriba: el aire junto al suelo prácticamente se detiene, mientras que una franja de aire rápido entre 100 y 300 m de altura sigue moviéndose, e incluso puede acelerarse. El resultado: un despegue a las 6 de la mañana con una lectura en tierra de 5-8 km/h puede encontrarse, al subir hasta esa franja, con más de 30 km/h, provocando deriva repentina, un horizonte inclinado en el vídeo y un consumo de batería más rápido de lo previsto, sin ningún aviso previo en el dato de tierra. Irónicamente, los pilotos que eligen la madrugada precisamente porque "se ve tranquila" son los que con más probabilidad se meten de lleno en esta trampa.
+El glosario del Servicio Meteorológico Nacional de EE. UU. (NWS) define la cizalladura del viento como la tasa a la que cambia la velocidad del viento de un punto a otro en una dirección dada, y la cizalladura vertical como el cambio de dirección y velocidad del viento con la altura. Por tanto, puede ser un cambio de velocidad, de dirección o de ambas. Para un piloto de dron importa sobre todo la vertical: la aeronave la atraviesa en pocos segundos.
 
-## La dirección también rota, no solo la velocidad
+## Por qué el viento suele ser más fuerte con la altura
 
-Como la fricción cerca del suelo no solo frena el viento sino que también desvía su dirección, el viento en altura puede soplar entre 20 y 40 grados distinto de lo que sugiere una veleta o un anemómetro en tierra. Para una ruta de retorno automático, un vuelo estacionario prolongado o una toma panorámica lenta planificada según la dirección del viento en superficie, esa rotación puede convertir una maniobra que sobre el papel parecía neutral respecto al viento en una que en realidad se vuela parcialmente de costado o a favor del viento, sin que el piloto haya cambiado el plan de vuelo.
+La fricción superficial frena el viento cerca del suelo. La circular de asesoramiento de la FAA sobre meteorología aeronáutica (AC 00-6A) explica que la fricción superficial frena el viento y reduce la fuerza de Coriolis, de modo que los vientos cercanos a la superficie se desvían a través de las isobaras hacia la baja presión. Más arriba, donde la fricción es mínima, el aire se mueve más rápido y fluye de otra manera.
 
-## Edificios, acantilados y crestas generan su propia cizalladura
+Los ingenieros eólicos describen el aumento medio con la altura mediante una ley de potencia. El Laboratorio Nacional de Energías Renovables de EE. UU. (NREL) indica que las condiciones típicas en tierra usan un exponente de cizalladura de aproximadamente 0,14, y que la forma del perfil y su exponente dependen en gran medida de la estabilidad atmosférica, la influencia del terreno local y la rugosidad de la superficie a barlovento. Con un exponente de 0,14, el viento a 120 m equivale a unas 1,4 veces el viento a 10 m (una lectura de 10 km/h a 10 m pasa a unos 14 km/h) y, a 80 m, a unas 1,3 veces. Tómalo como una estimación en condiciones neutras, no como un pronóstico: el factor real puede ser menor o mayor, y la ley de potencia no describe el caso nocturno que se explica abajo.
 
-Los accidentes del terreno crean una segunda fuente de cizalladura, independiente del perfil natural de la atmósfera. El viento que sube por la cara de un acantilado o un edificio alto suele acelerarse bruscamente justo en el borde del tejado o en la cresta, y justo después, o en el lado de sotavento, se rompe en una bolsa de turbulencia parecida a un rotor — un patrón que no tiene nada que ver con el gradiente suave por altitud descrito antes y que no se puede predecir con una lectura tomada al pie del acantilado. Un error habitual es juzgar las condiciones de un punto de despegue en la cima de un acantilado o una azotea solo por cómo se siente el viento abajo, cuando el viento justo en ese borde está determinado por el propio terreno, no por el perfil de aire libre.
+La dirección también cambia con la altura. La fricción actúa sobre la dirección además de sobre la velocidad, así que el viento en altura generalmente no sopla exactamente desde la misma dirección que en superficie. Esta guía no da un ángulo fijo porque varía de un día a otro; si tu fuente ofrece la dirección en altura, consúltala.
 
-## Qué comprobar antes de subir de altitud
+## El chorro nocturno: cuando el aire en calma del suelo engaña
 
-- Sube por etapas en vez de ir directo a tu altitud de trabajo: mantente en vuelo estacionario a 10 m, luego a 30-50 m, observando el ángulo de inclinación y la deriva en cada paso para notar exactamente en qué altura cambia el comportamiento de la aeronave.
-- Si tu fuente meteorológica ofrece viento en varias capas de altitud y no solo un dato de superficie, revísala — esto importa especialmente antes de vuelos al amanecer o al atardecer, cuando el efecto del chorro nocturno descrito arriba es más fuerte.
-- Trata una lectura sospechosamente tranquila al amanecer o al atardecer con más precaución, no con más confianza; esa calma en tierra suele coincidir justo con el momento en que la diferencia con la altitud es mayor.
-- Cerca de acantilados, crestas o edificios altos, espera un perfil de viento turbulento e impredecible en vez de uno suave, y añade un margen extra por encima de lo que sugiere la lectura en tierra.
-- Vigila la telemetría en vivo — ángulo de inclinación y consumo de energía — mientras la aeronave sube, ya que es el único dato que refleja el aire real en el que se encuentra el dron en ese momento, y no un pronóstico ni un instrumento en tierra.
+Por la noche el suelo se enfría y la capa de aire más baja puede volverse estable, formando una inversión térmica. La circular de la FAA ilustra la cizalladura en una zona entre viento relativamente en calma por debajo de una inversión y viento fuerte por encima. El glosario del NWS describe el chorro nocturno como un máximo de velocidad del viento que se produce justo por encima de la inversión nocturna durante la noche, típico del centro-sur de Estados Unidos a finales de primavera y en verano.
+
+Un estudio de la revista Drones, basado en mediciones con drones, define un chorro de bajo nivel como un máximo local pronunciado de la velocidad del viento, normalmente dentro de los 100–500 m sobre el suelo. En su caso de estudio, el núcleo del chorro estaba a 210–250 m, con una inversión de unos 4 °C en los 400 m más bajos. Así, el núcleo de un chorro puede estar por encima del techo de 120 m (400 ft) que se aplica en muchos lugares, pero una capa con viento fuerte sobre una inversión implica cizalladura en el aire situado debajo. El glosario del NWS indica que el chorro nocturno es típico de una región y una estación, de modo que la frecuencia con que lo encuentres depende de dónde vueles.
+
+La lección práctica es de prudencia, no de alarma. Una lectura muy tranquila del suelo a primera hora de la mañana o al final de la tarde no te dice cuánto viento hay a 80 o 120 m, así que consulta el viento en altura antes de comprometerte.
+
+## Edificios, acantilados y crestas
+
+El terreno crea cizalladura independiente del perfil suave en altura. La guía de estudio de piloto remoto de la FAA señala que los obstáculos en el suelo afectan al flujo del viento y pueden ser un peligro invisible, con ráfagas que cambian con rapidez de velocidad y dirección según el obstáculo y la velocidad del viento. En el lado de sotavento de una montaña, el aire sigue el relieve y es cada vez más turbulento. La misma guía indica que un viento a nivel de cima superior a 25 nudos (unos 46 km/h) sugiere cierta turbulencia, y que por encima de 40 nudos (unos 74 km/h) a través de una barrera montañosa exige precaución.
+
+Si despegas desde una azotea, un acantilado o una cresta, el viento en el borde lo moldea el terreno y puede sentirse muy distinto del de la base. Espera una bolsa irregular e impredecible justo a sotavento del borde y mantén distancia y margen adicionales.
+
+## Cizalladura de tormenta
+
+La cizalladura más intensa a baja altura procede de las tormentas. La misma guía de la FAA describe que los microrreventones (microbursts) producen corrientes descendentes de hasta 6.000 pies por minuto y pérdidas de viento de frente de 30–90 nudos. Con tormentas así lo sensato es quedarse en tierra; consulta [seguridad del dron con rayos y tormentas](/es/guides/lightning-and-thunderstorm-drone-safety).
+
+## Cómo comprobar antes de comprometerte con la altitud
+
+- Sube por etapas: mantén unos 10 m, luego 30–50 m, y observa el ángulo de inclinación, la deriva y el consumo de batería en cada paso para notar dónde cambia el comportamiento de la aeronave.
+- Cuando una fuente da el viento a varias alturas, léelo. El [panel de FlyDroneMap](/es) muestra las ráfagas y el viento a 10, 80 y 120 m, además de una cronología horaria de 24 horas de las condiciones de vuelo, para comparar las capas y ver cómo cambian las condiciones durante el día.
+- Trata una lectura de suelo inusualmente tranquila por la mañana temprano o al atardecer como un motivo para revisar el viento en altura, no para relajarte.
+- Cerca de acantilados, crestas o edificios altos, espera turbulencia y añade margen sobre la lectura del suelo.
+- Vigila la telemetría en directo al subir. Es la única lectura que refleja el aire en el que está el dron en ese momento.
+- Compara el viento en altura con la resistencia de tu modelo en la tabla de [resistencia al viento por modelo](/es/guides/drone-wind-resistance-by-model) y aplica los hábitos de la [lista de verificación de viento y ráfagas](/es/guides/wind-gust-checklist-before-drone-flight).
+
+## Errores comunes
+
+- Usar el valor de superficie a 10 m como si fuera el viento a 120 m.
+- Tomar una mañana tranquila como prueba de que toda la columna de aire está en calma.
+- Juzgar un despegue desde un acantilado o azotea por el viento en su base.
+- Planificar el regreso a casa y las esperas solo con la dirección del viento en superficie.
+- Subir directamente a la altitud de trabajo sin pausas a menor altura.
+
+## Preguntas frecuentes
+
+### ¿El viento siempre es más fuerte a 120 m que a nivel del suelo?
+
+Normalmente sí, pero no siempre, y la proporción varía. Las condiciones típicas en tierra sugieren en torno a 1,4 veces el valor a 10 m, aunque el terreno, la estabilidad y la rugosidad lo modifican.
+
+### ¿Por qué puede ser arriesgada una mañana tranquila?
+
+En noches despejadas una inversión térmica puede desacoplar el aire quieto de la superficie del viento más fuerte de arriba, de modo que una lectura baja del suelo dice poco del viento a 80–120 m.
+
+### ¿Cambia la dirección del viento con la altura?
+
+Sí. La fricción afecta a la dirección además de a la velocidad, así que el viento en altura generalmente no procede exactamente de la misma dirección que en superficie.
+
+### ¿El viento de una estación meteorológica se mide a la altura del dron?
+
+No. Las observaciones estándar de viento se hacen a 10 m sobre el suelo, muy por debajo de una altitud de vuelo típica de 120 m.
+
+## Fuentes y lecturas recomendadas
+
+- [NWS — Glossary: Wind shear](https://forecast.weather.gov/glossary.php?word=wind+shear)
+- [NWS — Glossary: Jet y Nocturnal Jet](https://forecast.weather.gov/glossary.php?word=JET)
+- [FAA — Aviation Weather, Advisory Circular AC 00-6A](https://www.faa.gov/documentlibrary/media/advisory_circular/ac%2000-6a%20chap%201-3.pdf)
+- [FAA — Remote Pilot Study Guide (FAA-G-8082-22)](https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/remote_pilot_study_guide.pdf)
+- [NREL — Assessment of Offshore Wind System Design, Safety, and Operation Standards](https://www.energy.gov/sites/prod/files/2014/03/f14/60573.pdf)
+- [Drones (MDPI) — Hungarian Drone-Based Wind Measurements During the WMO UAS Demonstration Campaign: A Low-Level Jet Case Study](https://www.mdpi.com/2504-446X/10/2/118)

@@ -2,18 +2,70 @@
 title: "FRIA란? Remote ID 예외 구역 이해하기"
 description: "FRIA가 무엇이고, Remote ID 없이 비행할 수 있는 예외 구역이 어떻게 지정되는지 정리합니다(미국 기준)."
 publishedAt: "2026-09-28"
+updatedAt: "2026-10-04"
 tags: ["fria", "remote-id", "regulations", "glossary"]
 category: "glossary"
 ---
 
 FRIA(FAA-Recognized Identification Area)는 미국에서 Remote ID 신호를 방송하지 않는 드론도 예외적으로 비행할 수 있도록 지정된 특정 구역입니다. 커뮤니티 기반 단체(CBO)나 교육기관이 신청해 FAA 승인을 받으면 지정됩니다.
 
+## 핵심 요약
+
+- FRIA는 Remote ID 장비가 없는 드론을 날릴 수 있는 명확히 정해진 지리적 구역입니다.
+- 비행 내내 드론과 조종자 모두 FRIA 경계 안에 있어야 하며, 드론을 육안 가시권에서 비행해야 합니다.
+- 신청 자격은 FAA가 인정한 커뮤니티 기반 단체와 교육기관뿐이고, FAADroneZone을 통해 신청합니다. 개인 조종자가 단독으로 FRIA를 만들 수는 없습니다.
+- 인정 기간이 한정되어 있고 FAA가 종료할 수도 있으므로, 오래된 비행장 목록보다 FAA 공식 지도를 확인하세요.
+
 ## 왜 필요한가
 
-Remote ID가 의무화되면서, 이를 지원하지 않는 구형 기체나 자작 드론(홈빌트)은 원칙적으로 비행이 어려워졌습니다. FRIA는 이런 기체들도 계속 취미 비행을 이어갈 수 있도록, 정해진 구역 안에서만 예외를 인정하는 제도입니다.
+Remote ID가 의무화되면서, 이를 방송할 수 없는 드론은 계속 날릴 수 있는 합법적인 장소가 필요해졌습니다. FRIA는 이에 대한 FAA의 해법으로, 승인된 경계 안에서는 Remote ID가 없는 드론도 운용할 수 있습니다. 규정은 14 CFR Part 89 Subpart C에 있고, 절차는 FAA 자문서 AC 89-3에서 설명합니다.
+
+기체가 Remote ID를 방송한다면(내장형이든 방송 모듈이든) FRIA는 필요 없습니다. 기본 의무가 어떻게 작동하는지는 [Remote ID 요건 가이드](/ko/guides/remote-id-requirements-explained)에서 볼 수 있습니다.
+
+## FRIA는 이렇게 작동합니다
+
+| 항목 | FAA 설명 |
+|---|---|
+| Remote ID 없이 비행할 수 있는 대상 | Remote ID 장비가 없는 드론, FRIA 안에서만 |
+| 조종자 위치 | FAA는 운용 내내 드론과 조종자가 모두 FRIA 경계 안에 있어야 한다고 설명합니다 |
+| 가시권 | Remote ID가 없는 드론은 육안 가시권 안에서 비행해야 합니다 |
+| 신청 자격 | FAA가 인정한 커뮤니티 기반 단체(CBO), 교육기관(초중등 학교, 직업학교, 단과대학, 종합대학) |
+| 신청 경로 | FAADroneZone의 FRIA 서비스 메뉴 |
+| 인정 기간 | FAA 승인일로부터 48개월, 갱신은 만료 120일 전까지 신청 |
+| 종료 | 항공 안전이나 공공 안전 문제, 허위 또는 오해를 부르는 정보 등이 있으면 FAA가 종료할 수 있습니다 |
+
+신청자는 단체와 권한을 가진 대표자를 밝히고, 정확한 위치와 구역의 목적 및 필요성을 설명하며, 해당 비행장에 관한 기존 협정서가 있으면 함께 제출해야 합니다. FAA는 겹치는 공역 제한, 다른 항공기의 안전하고 효율적인 공역 사용, 지상 안전, 근처에 이미 필요를 충족하는 FRIA가 있는지 등을 심사합니다(14 CFR 89.210, 89.215).
 
 ## 조종자가 알아야 할 것
 
-- FRIA는 미국 FAA 고유의 제도이며, 다른 나라의 유사 제도와는 명칭·조건이 다를 수 있습니다.
-- FRIA 밖에서는 Remote ID 미지원 기체를 비행할 수 없으므로, 자신의 기체가 Remote ID를 지원하는지 먼저 확인하는 것이 우선입니다.
-- FAA 공식 지도에서 가까운 FRIA 위치를 확인할 수 있으며, 대부분 지역 드론 클럽이나 모형항공기 동호회가 운영하는 비행장인 경우가 많습니다.
+- FRIA는 미국 FAA 고유의 제도이며, 다른 나라에 유사 제도가 있더라도 명칭과 조건이 다릅니다.
+- FRIA 밖에서는 미국 규정상 Remote ID 미지원 기체를 날릴 수 없으므로, 먼저 자신의 기체가 Remote ID를 지원하는지 확인하세요.
+- FRIA 안이라고 해서 다른 공역 규칙이 사라지지는 않습니다. FAA는 조종자가 자신이 비행하는 공역을 이해하고 필요한 승인을 받을 책임이 있다고 안내합니다. [미국 공역 등급 가이드](/ko/guides/understanding-us-airspace-classes)와 [미국 규정 페이지](/ko/regulations/us)를 참고하세요.
+- FAA는 승인된 FRIA 위치를 UAS Data Delivery System의 대화형 지도로 제공합니다. 운영 단체에 접근 방법과 규칙도 따로 확인하세요.
+
+## 흔한 실수
+
+- 아무 공터나 동호회 비행장을 FRIA로 여기는 것. FAA가 인정한 구역만 해당합니다.
+- 경계 밖에 서서 드론만 경계 안에서 날리는 것. 조종자도 안에 있어야 합니다.
+- FRIA를 가시권 규칙을 피하는 방법으로 생각하는 것. 육안 확인 의무는 그대로입니다.
+- 인정이 48개월 뒤 갱신 없이는 끝난다는 점을 잊는 것. 예전에 FRIA였던 장소가 지금은 아닐 수 있습니다.
+
+## 자주 묻는 질문
+
+### FRIA는 누가 만들 수 있나요?
+FAA가 인정한 커뮤니티 기반 단체와 교육기관만 신청할 수 있습니다. 개인은 신청할 수 없지만, FRIA를 가진 동호회에 가입할 수는 있습니다.
+
+### 드론에 Remote ID가 있으면 FRIA가 필요한가요?
+아니요. FRIA는 Remote ID를 방송하지 않는 드론을 위한 제도입니다. 방송하는 드론은 일반 Remote ID 요건을 따릅니다.
+
+### FRIA 밖에서 Remote ID 없는 드론을 날릴 수 있나요?
+FAA가 FRIA 페이지에서 설명하는 Remote ID 규정상으로는 FRIA 안에서 날려야 합니다. 현재 규정과 다른 준수 방법은 FAA의 Remote ID 페이지에서 확인하세요.
+
+### 가까운 FRIA는 어떻게 찾나요?
+UAS Data Delivery System의 FAA FRIA 대화형 지도를 이용하고, 해당 장소를 운영하는 단체에 접근과 규칙을 문의하세요.
+
+## 출처 및 참고 자료
+
+- [FAA — FAA-Recognized Identification Areas (FRIAs)](https://www.faa.gov/uas/getting_started/remote_id/fria)
+- [FAA — Remote ID](https://www.faa.gov/uas/getting_started/remote_id)
+- [eCFR — 14 CFR Part 89 Subpart C, FAA-Recognized Identification Areas](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-89/subpart-C)

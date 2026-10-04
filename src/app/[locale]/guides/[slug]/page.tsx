@@ -21,6 +21,9 @@ import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
 import { GuideToolCta } from "@/components/guide-tool-cta";
 import { ShareButton } from "@/components/share-button";
 
+// 가이드 작성자 필명(화면 표시 + Article JSON-LD author).
+const GUIDE_AUTHOR = "admin_SH";
+
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
     getGuideSlugs(locale).map((slug) => ({ locale, slug })),
@@ -92,9 +95,10 @@ export default async function GuidePage({
     description: meta.description,
     datePublished: meta.publishedAt,
     dateModified: meta.updatedAt ?? meta.publishedAt,
+    // 작성자 표시 — 2026-10-04: 사이트 운영자 필명 "admin_SH"(사람 이름 아님, 소개문 없음).
     author: {
-      "@type": "Organization",
-      name: "FlyDroneMap",
+      "@type": "Person",
+      name: GUIDE_AUTHOR,
     },
     publisher: {
       "@type": "Organization",
@@ -136,7 +140,8 @@ export default async function GuidePage({
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-muted-foreground">
             {dateFormatter.format(new Date(meta.publishedAt))} ·{" "}
-            {t("readingTime", { minutes: meta.readingMinutes })}
+            {t("readingTime", { minutes: meta.readingMinutes })} ·{" "}
+            {t("byline", { name: GUIDE_AUTHOR })}
             {meta.updatedAt && meta.updatedAt !== meta.publishedAt ? (
               // 최종 수정일 표시 — 2026-10-03 신규. JSON-LD의 dateModified와 같은
               // 값을 화면에도 보여 준다(updatedAt이 있는 글만).

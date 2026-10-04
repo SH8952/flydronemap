@@ -2,6 +2,7 @@
 title: "Compass Calibration and Magnetic Interference"
 description: "Why your drone's compass drifts near rebar and parked cars, how to tell hard-iron interference apart from a geomagnetic storm, and how to calibrate it correctly."
 publishedAt: "2026-09-05"
+updatedAt: "2026-10-04"
 tags: ["compass", "calibration", "magnetic-interference", "gps"]
 category: "space-weather-gps"
 image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
@@ -9,28 +10,83 @@ imageCredit: "Mick Haupt"
 imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-If your drone has ever taken off in a lazy, uncommanded spiral — the so-called "toilet bowl effect" — right after a calibration you thought went fine, the cause is almost always the spot where you calibrated, not the calibration procedure itself. Compass calibration failures and magnetic interference are among the most common flight incidents pilots misattribute to a firmware bug or a bad GPS lock, when the real problem is a magnetic field distorted by something metal a few meters away.
+If your drone has ever taken off in a lazy, uncommanded spiral, the so-called toilet bowl effect, right after a calibration you thought went fine, the cause is often the spot where you calibrated rather than the calibration procedure itself. Compass problems and magnetic interference are easy to mistake for a firmware bug or a bad GPS lock, when the real problem can be a magnetic field distorted by something metal nearby.
+
+## Key takeaways
+
+- A drone's compass measures the local magnetic field to get heading. Anything that distorts that field near the aircraft, such as steel in the ground or a phone in your pocket, distorts the heading.
+- DJI tells pilots not to calibrate near strong magnetic fields or large metal structures, naming examples such as parking structures, steel-reinforced basements and bridges.
+- Calibration is prompted by the aircraft, for example after long idle periods or when a warning appears. Intervals differ by manufacturer, and ArduPilot says recalibrating at a new location is not necessary.
+- ArduPilot describes magnetic interference as a cause of circling, or toilet-bowling, in loiter, RTL and auto modes on multicopters.
+- A compass warning that repeats at the same launch spot on any day points to local interference, not space weather.
 
 ## Why the compass needs calibrating in the first place
 
-A drone's onboard compass (magnetometer) measures the direction and strength of the local magnetic field to determine heading, and its readings drift slightly every time you travel to a new location or fly after months of storage, because the aircraft's own motors, wiring, and battery pack magnetize very slightly over time and shift the sensor's baseline offset. Calibration teaches the flight controller to subtract that aircraft-specific offset back out. This is different from magnetic declination — the several-degree gap between true north and magnetic north that changes by location — which the flight controller corrects for automatically from its GPS position and does not require recalibration to fix.
+A drone's onboard compass (magnetometer) measures the direction and strength of the local magnetic field to determine heading. The aircraft's own electronics, such as motors, battery and wiring, also create magnetic fields near the sensor, and the flight controller has to learn how to separate those from the Earth's field. Calibration, which typically involves rotating the aircraft through a prescribed pattern, is how it learns that.
 
-## Hard-iron interference: the calibration site is usually the problem
+This is different from magnetic declination, the angle between magnetic north and true north. NOAA describes declination as varying by location and time, and notes that its World Magnetic Model is the standard model for navigation and heading systems and is preinstalled in phones. ArduPilot documents that its built-in magnetic models mean you do not need to recalibrate just because you fly at a new location. Check what your manufacturer says for your model.
 
-Hard-iron interference comes from a fixed, nearby source of magnetism — rebar under a concrete parking lot or sidewalk, steel manhole covers, a parked car's frame, or even large belt buckles and phones in a pilot's pocket while holding the calibration routine. Rebar-reinforced concrete is a frequent offender because it looks like a perfectly open, flat launch site while carrying a dense steel grid roughly 5-10 cm below the surface. A magnetometer calibrated 1-2 meters above rebar or a car bumper bakes that local distortion directly into its stored offset, and the drone then flies with a heading error that can range from a few degrees to over 30 degrees depending on how close and how strong the interfering source was. The safest practice is to calibrate at least 5-6 meters from any vehicle, metal fencing, or manhole cover, and on soil or asphalt rather than directly over a rebar-reinforced slab.
+## When manufacturers say to calibrate
 
-## How to tell interference apart from a geomagnetic storm
+DJI's Mini 4K manual says to calibrate when flying at a location more than 31 miles (50 km) from where the aircraft was last flown, when the aircraft has not been flown for more than 30 days, or when a compass interference warning appears in the app or the status light alternates red and yellow. DJI's online compass guide says the app prompts calibration during flight or after the aircraft has been idle for a long period, and that the battery should be at least 50 percent. These numbers come from DJI and vary by model; ArduPilot takes the opposite view for its own platform. Follow the guidance for your aircraft.
 
-Both a badly calibrated compass and a strong geomagnetic storm can produce heading drift and unstable position hold, and pilots who've read about Kp index effects on GPS sometimes blame the wrong one. The distinguishing signal is the flight controller's own compass-vs-GPS heading mismatch warning, which fires for local interference at a specific location regardless of the day's Kp reading, and repeats every time you fly from that exact spot. A geomagnetic storm instead produces a slower, site-independent yaw drift that shows up across a wide area only while the Kp index is actively elevated. If a "compass error, please recalibrate" warning appears at the same launch pad on a calm, Kp-2 day, the cause is local hard-iron interference, not space weather.
+## Interference near the calibration site
 
-## Common mistakes during calibration
+Fixed sources of magnetism near the aircraft include steel reinforcement in concrete, large metal structures, vehicles and electrical equipment. DJI's compass guide says not to calibrate near strong magnetic fields or large pieces of metal, such as large electrical equipment, parking lots, ships or buildings with underground steel columns. The Mini 4K manual adds that you should not calibrate close to magnetite deposits or large metallic structures such as parking structures, steel-reinforced basements or bridges, and should not carry items containing ferromagnetic material, such as mobile phones, near the aircraft during calibration. ArduPilot gives similar advice and adds computers, metal desks and power supplies, and recommends removing electronics from your pockets.
 
-The most frequent mistake is performing the figure-eight or rotation calibration sequence while standing on the same spot you plan to launch from, which bakes that location's interference straight into the offset even if the site felt "clean." A second common error is calibrating with a phone, tablet, or metal-cased remote controller held close to the aircraft, since consumer electronics carry small magnets and speakers that add their own local field. Pilots also frequently ignore an on-screen "compass interference" alert and launch anyway, assuming it will resolve itself in the air — it usually does not, and the flight instead ends in an unstable hover or the toilet-bowl spiral.
+A site that looks like an open, flat launch pad can still sit above buried steel, so a good-looking site is not proof of a clean one.
+
+## Interference from the aircraft itself
+
+ArduPilot's documentation for self-built multicopters explains that the wires from the power distribution board, speed controllers and battery generate significant magnetic fields, and suggests mounting an external compass or GPS-plus-compass module on a mast up and away from those sources, keeping the wires short and twisted together. If you build or modify an aircraft, treat compass placement as part of the design. For ready-to-fly consumer drones, do not add magnetic accessories near the compass.
+
+## How to tell interference from a geomagnetic storm
+
+A badly calibrated compass and a geomagnetic storm can both appear as heading drift or poor position hold, so pilots who have read about Kp effects sometimes blame the wrong one. NOAA describes the main space-weather effect on GPS as a change in the ionosphere that degrades the satellite signals. A practical clue is repeatability: if a compass error or interference warning appears at the same launch spot on a calm day and repeats every time you fly from there, local interference is the likelier cause. For the space-weather side, see [how the Kp index affects GPS and compass reliability](/en/guides/kp-index-effect-on-gps-compass-reliability) and [what the Kp index is](/en/guides/what-is-the-kp-index). The [FlyDroneMap dashboard](/en) shows current conditions.
+
+## What the warnings look like
+
+DJI's Mini 4K manual says that if the aircraft status indicator blinks red and yellow alternately after calibration, the current location is not suitable for flying; a plain red blink means the calibration failed. In that case, move to a different place and try again rather than launching. DJI's guide also advises not touching the screen during calibration, because that can exit the calibration page, and says that if calibration keeps failing you should restart the device and try again, then contact DJI. Other brands use different indicators.
+
+## Common mistakes
+
+- Calibrating at the exact spot you plan to launch from without checking that spot, so any buried steel gets baked into the result.
+- Calibrating with a phone, metal-cased controller or tools close to the aircraft. DJI tells pilots not to carry ferromagnetic objects near the aircraft during calibration.
+- Launching despite an on-screen compass interference alert, assuming it will clear up in the air.
+- Recalibrating over and over in the same bad location instead of moving.
+- Blaming a storm when the warning appears only at one particular spot.
 
 ## Practical checklist
 
-- Calibrate at least 5-6 meters from parked vehicles, metal fencing, manhole covers, and rebar-reinforced concrete or slabs.
-- Keep phones, tablets, and metal objects away from your body and the aircraft during the calibration routine itself.
-- Recalibrate whenever you travel more than roughly 30-50 km from your last calibration site, or after long storage.
-- If a compass error or heading-mismatch warning repeats at the exact same spot, treat it as local interference and move the launch site, not the calibration method.
-- Don't assume a calm Kp index rules out compass trouble — hard-iron interference is a local, physical effect that has nothing to do with space weather.
+- Calibrate away from vehicles, metal fences, manhole covers and any structure with steel in or under it, and on open ground.
+- Remove phones, keys and other metal items from your pockets and keep them away from the aircraft.
+- Calibrate when your aircraft or app asks for it, and after long storage or long-distance travel if your manufacturer says so.
+- If a warning repeats at one spot, move the launch site instead of repeating the procedure.
+- Do not assume a calm Kp index rules out compass trouble.
+- Review the rest of your launch routine in the [beginner preflight checklist](/en/guides/beginner-drone-preflight-checklist).
+
+## FAQ
+
+### How often should I calibrate the compass?
+
+It depends on the manufacturer. DJI's Mini 4K manual lists more than 50 km from the last flight location, more than 30 days idle, or an interference warning. ArduPilot says recalibration at a new location is not necessary. Follow your own manual.
+
+### Can a geomagnetic storm ruin my compass calibration?
+
+The calibration guidance from DJI and ArduPilot ties calibration to the aircraft and the site where it is done, and neither names geomagnetic storms as a reason to recalibrate. For the space-weather side, see the Kp guide linked above.
+
+### Why does the drone circle after takeoff?
+
+ArduPilot lists circling, or toilet-bowling, as a symptom of magnetic interference in loiter, RTL and auto modes. If it happens, land safely and relocate before recalibrating.
+
+### Is a figure-eight always the right motion?
+
+No. DJI describes different patterns for different devices, such as a figure-eight on some remote controllers and aircraft rotations on others, so follow the on-screen instructions.
+
+## Sources and further reading
+
+- [DJI — Compass Calibration Guide](https://repair.dji.com/help/content?customId=en-us03400006765&spaceId=34&re=US&lang=en)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)
+- [ArduPilot — Compass Calibration](https://ardupilot.org/copter/docs/common-compass-calibration-in-mission-planner.html)
+- [ArduPilot — Magnetic Interference](https://ardupilot.org/copter/docs/common-magnetic-interference.html)
+- [NOAA NCEI — World Magnetic Model](https://www.ncei.noaa.gov/products/world-magnetic-model)

@@ -2,6 +2,7 @@
 title: "Die NOAA-Weltraumwetterskalen verstehen: G, S und R erklärt"
 description: "Warum die drei Weltraumwetterskalen der NOAA mehr abdecken als den Kp-Index allein, und welche davon für Ihren nächsten Drohnenflug tatsächlich zählt."
 publishedAt: "2026-09-02"
+updatedAt: "2026-10-04"
 tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
 category: "space-weather-gps"
 image: "/guides/images/understanding-noaa-space-weather-scales.webp"
@@ -9,24 +10,99 @@ imageCredit: "NASA"
 imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Wenn Sie vor einem Flug bisher nur den Kp-Index beobachtet haben, verfolgen Sie nur ein Drittel dessen, was das Space Weather Prediction Center der NOAA tatsächlich veröffentlicht. Die NOAA führt drei separate Skalen von 1 bis 5 — G, S und R —, und ein ruhiger Kp-Wert bedeutet nicht, dass auch alle drei ruhig sind.
+Wenn Sie vor einem Flug bisher nur den Kp-Index beobachtet haben, verfolgen Sie nur eine von drei Skalen, die das Space Weather Prediction Center (SWPC) der NOAA veröffentlicht. Die NOAA führt drei getrennte Skalen von 1 bis 5 — G, S und R —, und ein ruhiger Kp-Wert sagt nichts darüber, ob auch die beiden anderen ruhig sind.
 
-## Die drei Skalen decken unterschiedliche Physik ab
+## Das Wichtigste in Kürze
 
-Die G-Skala (geomagnetische Stürme) ist diejenige, die die meisten Drohnen-Wetter-Tools bereits anzeigen, weil sie direkt auf den Kp-Index abbildet: G1 entspricht Kp 5, G2 entspricht Kp 6, und so weiter bis G5 bei Kp 9. Die S-Skala (Sonnenstrahlungsstürme) misst den Fluss hochenergetischer Protonen, die die Erde erreichen, bewertet von S1 bis S5, und ist vor allem für Satellitenbetreiber und Polar-Kurzwellenfunk relevant, weniger für die GPS-Genauigkeit, die den meisten Piloten wichtig ist. Die R-Skala (Funkausfälle) wird von solaren Röntgeneruptionen angetrieben und nach der Röntgenklasse der Eruption bewertet — eine M1-Eruption entspricht R1, eine X1-Eruption entspricht R3, und so weiter —, und ist die Skala, die Piloten am ehesten überrascht.
+- Die G-, S- und R-Skala der NOAA messen drei verschiedene Dinge: geomagnetische Stürme (Kp), Sonnenstrahlungsstürme (hochenergetische Protonen) und Funkausfälle (Röntgenstrahlung von Sonneneruptionen).
+- Nur die G-Skala entspricht dem Kp: G1 ist Kp 5, G5 ist Kp 9.
+- Die R-Skala reagiert in dem Moment, in dem eine Eruption beobachtet wird, weil ihre Strahlung mit Lichtgeschwindigkeit eintrifft. Ein geomagnetischer Sturm folgt dagegen meist auf einen koronalen Massenauswurf (15 Stunden bis mehrere Tage) oder einen schnellen Sonnenwindstrom.
+- Die Tabellen der NOAA beschreiben Auswirkungen auf Kurzwellenfunk, Langwellennavigation, Satelliten und Stromnetze. Die 2,4-GHz- und 5,8-GHz-Verbindungen, die die meisten Verbraucherdrohnen nutzen, werden darin nicht erwähnt.
+- Keine der drei Skalen ist ein drohnenspezifischer "Fliegen oder nicht fliegen"-Wert; nutzen Sie sie als Kontext neben dem [FlyDroneMap-Dashboard](/de) und den Warnungen Ihrer eigenen Drohne.
 
-## Warum die R-Skala Piloten überrascht, die nur Kp beobachten
+## Die drei Skalen im Überblick
 
-Eine X-Klasse-Sonneneruption kann innerhalb von Minuten ein R-Skala-Funkausfallereignis auslösen, lange bevor irgendeine geomagnetische Störung im Kp-Index sichtbar wird, weil die Röntgenstrahlen der Eruption die sonnenbeschienene Seite der Ionosphäre nahezu augenblicklich treffen, während der zugehörige koronale Massenauswurf — der letztlich den Kp-Wert steigen lässt — einen Tag oder länger brauchen kann, um überhaupt anzukommen, sofern er das tut. Während eines Ereignisses der Stärke R2 oder höher können GPS-Empfänger auf der Taghalbkugel einen echten Genauigkeitseinbruch durch erhöhte ionosphärische Störung erleben, während der Kp-Index weiterhin einen ruhigen Wert von 2 oder 3 anzeigt. Ein Pilot, der vor dem Start nur Kp prüft, kann direkt daran vorbeigehen.
+| Skala | Was sie misst | Stufen | Typische Auswirkungen laut NOAA |
+|---|---|---|---|
+| G (geomagnetische Stürme) | Geomagnetische Störung, an Kp gekoppelt | G1 (Kp 5) bis G5 (Kp 9) | Stromnetz, Raumfahrzeuge, Satellitennavigation, Kurzwellenfunk in höheren Breiten |
+| S (Sonnenstrahlungsstürme) | Fluss hochenergetischer Protonen | S1 bis S5 | Satelliten, polarer Kurzwellenfunk, Strahlenexposition |
+| R (Funkausfälle) | Stärke der Röntgeneruption der Sonne | R1 (M1-Eruption) bis R5 (X20) | Kurzwellenfunk auf der Tagseite, Langwellen-Navigationssignale |
 
-## Ein häufiger Fehler: „keine Polarlicht-Vorhersage" mit „kein Weltraumwetterrisiko" gleichzusetzen
+## Die G-Skala: geomagnetische Stürme und Kp
 
-Polarlicht-Jäger beobachten die G-Skala, weil das die Zahl ist, die mit sichtbarer Polarlicht-Aktivität verknüpft ist, und viele Drohnenpiloten haben dieselbe Gewohnheit gewissermaßen übernommen — Kp prüfen, sehen, dass er niedrig ist, und annehmen, der Himmel sei frei von jedem Weltraumwettereffekt. Doch ein R-Skala-Ereignis braucht keinen hohen Kp-Wert, um aufzutreten, und kann die GPS-Positionierung für das konkrete Zeitfenster, in dem es aktiv ist, verschlechtern — typischerweise Minuten bis wenige Stunden, je nach Dauer und Abklingen der Eruption.
+Die G-Skala ist direkt mit dem [Kp-Index](/de/guides/what-is-the-kp-index) verknüpft: G1 ist Kp 5, G2 ist Kp 6, G3 ist Kp 7, G4 ist Kp 8 (einschließlich 9 minus) und G5 ist Kp 9. Die NOAA gibt an, dass der Kp-Index aus Messungen bodengestützter Magnetometer abgeleitet wird, und weist auf ihrer Seite zum Index darauf hin, dass ein Wert von 5 oder mehr einen geomagnetischen Sturm anzeigt.
 
-## Praktische Checkliste
+Für die Navigation führt die Tabelle der G-Skala folgende Auswirkungen auf:
 
-- Behandeln Sie G, S und R als drei unabhängige Zahlen, nicht als einen kombinierten Wert — ein ruhiger Kp-Wert garantiert keine ruhige R-Skala.
-- Prüfen Sie vor einem präzisionskritischen Flug (Vermessung, Inspektion, Langstrecke) den aktuellen 3-Tage-Weltraumwetter-Ausblick der NOAA, nicht nur den Kp-Index allein.
-- Wirkt die GPS-Genauigkeit ungewöhnlich schlecht oder meldet Ihre Drohne mehr verlorene Satelliten als üblich bei ansonsten klaren Bedingungen, prüfen Sie ein aktives R-Skala-Ereignis als mögliche Ursache.
-- Denken Sie daran, dass R-Skala-Effekte auf der sonnenbeschienenen Seite der Erde am stärksten wirken und abklingen, sobald der Röntgenfluss der auslösenden Eruption nachlässt — abzuwarten ist oft die einfachste Lösung.
-- Warten Sie nicht auf ein sichtbares Polarlicht oder einen hohen Kp-Wert als einzigen Auslöser, um vor einem kritischen Flug das Weltraumwetter erneut zu prüfen.
+- G2: Die Ausbreitung von Kurzwellenfunk kann in höheren Breiten nachlassen.
+- G3: zeitweise Probleme bei der Satellitennavigation und der Langwellennavigation.
+- G4: Satellitennavigation über Stunden beeinträchtigt; Langwellennavigation gestört.
+
+Ereignisse der Stufen G1 und G2 sind am häufigsten. Die NOAA-Tabelle nennt rund 1700 G1- und 600 G2-Ereignisse pro Sonnenzyklus gegenüber etwa 4 bei G5. Deshalb ist ein Kp von 5 oder 6 nichts Seltenes, und es lohnt sich zu wissen, was er für einen Flug bedeuten kann und was nicht. Wie Stürme mit GPS und Kompass zusammenwirken, erklärt ausführlicher der Beitrag [Wie der Kp-Index GPS und Kompass beeinflusst](/de/guides/kp-index-effect-on-gps-compass-reliability).
+
+## Die S-Skala: Sonnenstrahlungsstürme
+
+Die S-Skala stuft den Fluss hochenergetischer Protonen in Erdnähe von S1 bis S5 ein. Die NOAA-Tabelle nennt als Auswirkungen vor allem Satellitenprobleme (zum Beispiel Einzelereignis-Störungen), Strahlenbelastung für Astronauten sowie eine Beeinträchtigung oder einen Ausfall des Kurzwellenfunks über den Polarregionen. Bei S2 wird zusätzlich erwähnt, dass Passagiere und Besatzungen hochfliegender Flugzeuge in hohen Breiten einer Strahlung ausgesetzt sein können. Auswirkungen auf die Navigation von Verbraucherdrohnen führt die Tabelle nicht auf; für einen typischen Flug in geringer Höhe ist die S-Skala daher Hintergrundinformation und keine Entscheidungsgröße.
+
+## Die R-Skala: Funkausfälle
+
+Die R-Skala ist an die maximale Röntgenklasse einer Sonneneruption gekoppelt:
+
+| Stufe | Eruptionsklasse | Beschreibung der NOAA zur Wirkung auf Kurzwellenfunk |
+|---|---|---|
+| R1 (gering) | M1 | Schwache oder geringe Beeinträchtigung des Kurzwellenfunks auf der Tagseite |
+| R2 (mäßig) | M5 | Begrenzter Ausfall auf der Tagseite, Funkkontakt über Zehnerminuten verloren |
+| R3 (stark) | X1 | Großflächiger Ausfall, Funkkontakt etwa eine Stunde verloren |
+| R4 (schwer) | X10 | Ausfall auf dem größten Teil der Tagseite für ein bis zwei Stunden |
+| R5 (extrem) | X20 | Vollständiger Kurzwellenausfall auf der gesamten Tagseite für mehrere Stunden |
+
+Dieselbe Tabelle führt Langwellen-Navigationssignale auf allen Stufen als beeinträchtigt auf und erwähnt erhöhte Fehler der Satellitennavigation erst bei R5. Die NOAA-Seite zu Funkausfällen erklärt, dass der Ausfall vor allem die Kurzwellenkommunikation im Band von 3 bis 30 MHz betrifft; ausgelöst wird er durch Röntgen- und extreme Ultraviolettstrahlung, die die unteren Schichten der Ionosphäre auf der Tagseite ionisiert.
+
+Andere Untersuchungen zu starken Eruptionen haben Veränderungen des Gesamtelektronengehalts und der GNSS-Positionsqualität gemessen. So fand eine Studie zur sehr aktiven Phase im Oktober 2014 mit zahlreichen Eruptionen der Klassen M und X an drei europäischen Stationen größere Koordinatenabweichungen als in ruhigeren Zeiten. Diese Arbeit betraf hochpräzise Positionierung, nicht die Positionshaltung einer Verbraucherdrohne, und die R-Skala der NOAA ordnet R2 bis R4 keine GPS-Wirkung zu. Betrachten Sie eruptionsbedingte GPS-Störungen als möglich, nicht als garantierte Folge einer bestimmten R-Stufe. Der Mechanismus wird in [Wie Sonneneruptionen die Drohnennavigation beeinflussen](/de/guides/how-solar-flares-affect-drone-navigation) genauer behandelt.
+
+## Warum der Zeitpunkt je nach Skala abweicht
+
+Die NOAA weist darauf hin, dass die Wirkung einer Eruption auf der Tagseite der Atmosphäre gleichzeitig mit der Beobachtung des Ereignisses eintritt, weil die Energie mit Lichtgeschwindigkeit reist. Ein geomagnetischer Sturm hängt dagegen meist von einem koronalen Massenauswurf oder einem schnellen Sonnenwindstrom ab. Nach Angaben der NOAA können die schnellsten erdgerichteten Auswürfe in 15 bis 18 Stunden eintreffen, langsamere brauchen mehrere Tage. Ein hoher R-Wert und ein hoher Kp-Wert fallen deshalb oft zeitlich nicht zusammen.
+
+## Häufige Fehler
+
+- Kp als Gesamtbild behandeln. Ein ruhiger Kp sagt nichts über eine Eruption in der letzten Stunde.
+- Die Skalen als kombinierte Punktzahl behandeln. G, S und R sind voneinander unabhängig.
+- Annehmen, ein hoher G- oder R-Wert bedeute, dass die Steuerverbindung ausfällt. Die Skalen der NOAA beschreiben keine Auswirkungen auf 2,4-GHz- oder 5,8-GHz-Verbindungen.
+- Die Zahlen als Prognose für Drohnenprobleme lesen. Sie beschreiben allgemeine Auswirkungen auf viele Technologien und Regionen.
+- Die Warnungen der eigenen Drohne ignorieren, weil die Weltraumwetterwerte ruhig aussehen. Schwaches GNSS, Kompassfehler und lokale Funkstörungen haben viele nicht-solare Ursachen.
+
+## Checkliste vor dem Flug
+
+- Prüfen Sie den aktuellen Kp-Wert und bedenken Sie, dass er eine Schätzung auf Basis von Dreistundenintervallen ist.
+- Sehen Sie sich bei Präzisionsarbeiten das aktuelle GOES-Röntgenflussdiagramm der NOAA an, das jede Minute aktualisiert wird.
+- Lesen Sie die 3-Tage-Vorhersage der NOAA, die alle 12 Stunden erscheint und für jede der drei Skalenkategorien aufgeschlüsselt ist.
+- Legen Sie vorab fest, was Sie tun, wenn die Zahl der GPS-Satelliten sinkt oder der Kompass warnt: landen, auf manuelle Steuerung wechseln oder abwarten.
+- Folgen Sie dem Handbuch Ihres Fluggeräts und den örtlichen Vorschriften; Weltraumwetterinformationen ersetzen keines von beiden.
+
+## Häufige Fragen
+
+### Ist der Kp-Index dasselbe wie die G-Skala?
+
+Nicht ganz, aber sie sind verknüpft. Die G-Skala ist eine fünfstufige Einstufung, die aus dem Kp abgeleitet wird: Kp 5 ist G1, Kp 9 ist G5.
+
+### Welche Skala ist für das Drohnen-GPS am wichtigsten?
+
+Die Tabellen der NOAA ordnen Auswirkungen auf die Satellitennavigation vor allem der G-Skala (ab G3) und am extremen Ende R5 zu. Für normale Flüge sind G-Werte ab 3 nach dem Wortlaut der NOAA das deutlichste Warnsignal.
+
+### Beeinflusst ein Ereignis der R-Skala die Steuerverbindung meiner Drohne?
+
+Die NOAA beschreibt R-Skala-Ausfälle als Wirkung auf Kurzwellenfunk (3 bis 30 MHz) und Langwellen-Navigationssignale. Die Bänder 2,4 GHz und 5,8 GHz, die die meisten Verbraucherdrohnen für Steuerung und Video nutzen, werden nicht aufgeführt.
+
+### Kann ich allein anhand dieser Skalen entscheiden, ob ich fliege?
+
+Nein. Sie beschreiben allgemeine Auswirkungen des Weltraumwetters, nicht die Bedingungen an Ihrem Flugort. Kombinieren Sie sie mit dem Zustand Ihres Fluggeräts, dem lokalen Wetter und den Regeln vor Ort.
+
+## Quellen und weiterführende Links
+
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)
+- [NOAA Space Weather Prediction Center — Coronal Mass Ejections](https://www.spaceweather.gov/phenomena/coronal-mass-ejections)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA Space Weather Prediction Center — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [SN Applied Sciences — Strong solar flare detection and its impact on ionospheric layers and on coordinates accuracy in the Western Balkans in October 2014](https://link.springer.com/article/10.1007/s42452-018-0040-9)

@@ -2,6 +2,7 @@
 title: "Checks to Make Before Flying a Drone Near an Airport"
 description: "A practical checklist for flying near an airport: check your distance, identify the airspace class, get LAANC authorization if required, and check for TFRs."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["airport", "safety", "faa"]
 category: "us-airspace-regulations"
 image: "/guides/images/checks-before-flying-near-an-airport.webp"
@@ -9,28 +10,92 @@ imageCredit: "Dennis Gecaj"
 imageCreditUrl: "https://unsplash.com/@dannis?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Airports are the single highest-stakes location for a drone flight to go wrong, because the consequence of a mistake is a potential conflict with manned aircraft.
+Airports are the single highest-stakes location for a drone flight to go wrong, because the consequence of a mistake is a potential conflict with manned aircraft. This guide covers the U.S. process; rules in other countries differ, so check the regulator where you fly.
 
-## Step 1: Check your actual distance from any airport
+## Key takeaways
 
-"Near an airport" is often further than it looks. Controlled airspace commonly extends several miles laterally from the airport reference point, not just directly overhead the runway. Use the FAA's B4UFLY app or an aeronautical chart, not visual estimation.
+- "Near an airport" is defined by airspace, not by a fixed distance you can eyeball. Identify the airspace class at the exact spot where you will fly.
+- Class B, C, D, and the surface area of a Class E airspace designated for an airport require prior ATC authorization for Part 107 pilots and recreational flyers alike.
+- Request authorization for a specific time, altitude, and location, and stay at or below the altitude shown on the UAS Facility Map.
+- Authorization covers airspace only. Check TFRs, NOTAMs, and weather yourself.
+- You, not the manned aircraft, are responsible for keeping clear, so land if an aircraft approaches.
+
+## Step 1: Check your actual position relative to the airport
+
+"Near an airport" is often further than it looks. Controlled airspace is built around the airport and its approach and departure paths, so it can extend several miles in some directions and much less in others. For example, the AIM describes a typical Class C layout as a 5 nautical mile core with a 10 nautical mile shelf, while Class D airspace is individually tailored to each airport. Use an FAA-approved app or an aeronautical chart rather than visual estimation, and look at the map point where the drone will actually be, which may differ from where you are standing.
 
 ## Step 2: Identify the airspace class
 
-Once you know you're near an airport, confirm the airspace class (B, C, D, or a surface-level E) — this determines whether authorization is required at all, and through what process.
+Once you know you are near an airport, confirm the airspace class (B, C, D, or a surface-level E). This determines whether authorization is required at all and through what process. Our guide to [U.S. airspace classes](/en/guides/understanding-us-airspace-classes) explains each one. Two details trip people up:
 
-## Step 3: Get LAANC authorization if required
+- A Class D area can be part-time. When the tower is closed it may revert to a Class E surface area or to Class G, so confirm which class applies at the time you plan to fly.
+- An airport without a tower can still have a Class E surface area, which requires authorization just like Class D.
 
-For most controlled airspace near towered airports, request authorization through an FAA-approved LAANC app before flying, specifying your intended altitude, not just "as high as allowed."
+## Step 3: Get authorization if required
 
-## Step 4: Check for Temporary Flight Restrictions (TFRs)
+For most controlled airspace near airports, request authorization through an FAA-approved UAS Service Supplier using LAANC. Specify your intended altitude, location, and time rather than assuming you can go as high as the general limit.
 
-Independent of routine airspace class, a TFR can temporarily prohibit or restrict flight in an area — common around VIP travel, wildfires, and major public events. Check the FAA's TFR list for the specific date and location, not just the general airspace class.
+- Both Part 107 and recreational flyers can use near real-time LAANC authorization, after registering the aircraft and meeting the eligibility requirements (a Remote Pilot Certificate for Part 107, or the TRUST test for recreational flyers).
+- Fly at or below the UAS Facility Map altitude for the grid cell. A ceiling of zero means no flight is authorized without facility coordination.
+- If the airport is not LAANC-enabled, the manual FAA DroneZone process applies. The FAA says those requests are processed manually and historically have taken up to eight weeks, so plan well ahead.
+- Part 107 pilots can ask for further coordination above a map ceiling, up to 400 feet. Recreational flyers cannot.
 
-## Step 5: Stay alert during the flight, not just before it
+Read [what LAANC is and how it works](/en/guides/what-is-laanc-and-why-it-matters) for the details. LAANC provides airspace authorizations only, and you are still expected to follow every other rule.
 
-Manned aircraft can appear with little warning, especially during approach or departure. Maintain constant visual awareness and be ready to land immediately if an aircraft approaches, regardless of what authorization you hold.
+## Step 4: Check for Temporary Flight Restrictions and NOTAMs
 
-## The bottom line
+Independent of the routine airspace class, a TFR can temporarily prohibit or restrict flight in an area. Check the FAA's TFR information for the specific date and location, and read the [explanation of TFRs](/en/guides/temporary-flight-restrictions-tfr-explained) and [how NOTAMs work](/en/guides/notam-explained). The FAA states that pilots must still check NOTAMs and weather conditions even with a LAANC authorization.
 
-None of these steps are optional extras — they are the actual mechanism by which drone and manned-aircraft traffic stay safely separated near airports.
+## Step 5: Stay alert during the flight
+
+The FAA's own guidance is that drone operators are responsible for staying away from manned aircraft, and pilots of manned aircraft often cannot see a small drone until it is dangerously close. Keep the drone in visual line of sight, watch and listen for aircraft, and be ready to land immediately if one approaches, whatever authorization you hold. A helper acting as visual observer makes this easier. Our guide to [VLOS and BVLOS](/en/guides/vlos-bvlos-explained) covers the line-of-sight rules.
+
+## Pre-flight checklist near an airport
+
+| Check | What to confirm |
+|---|---|
+| Position | Map location of the drone, not just your own |
+| Class | B, C, D, E surface area, or G, and tower hours if part-time |
+| Authorization | LAANC or DroneZone approval for this time, place, and altitude |
+| Ceiling | Planned altitude at or below the Facility Map value |
+| TFR and NOTAM | Nothing active for your date and area |
+| Aircraft | Plan to land at once if manned aircraft approach |
+| Registration and Remote ID | Aircraft registered and Remote ID requirements met |
+| Paperwork | Authorization saved or screenshot, plus pilot proof as required |
+
+The FlyDroneMap [dashboard](/en) can show the Facility Map ceiling for a U.S. location as a quick reference, and the [U.S. regulations page](/en/regulations/us) summarizes the main rules. Neither replaces an actual authorization.
+
+## Common mistakes
+
+- Relying on how far the airport looks. Airspace boundaries do not follow roads or fences.
+- Requesting an authorization at the ceiling, then flying higher because the drone can.
+- Treating a dark tower as permission. Part-time Class D may become Class E or G, but verify rather than assume.
+- Skipping the TFR check because LAANC approved the flight. Authorization covers airspace only.
+- Calling the tower out of habit. Unless an authorization specifically asks for it, drone pilots do not need to notify the tower before they fly.
+
+## FAQ
+
+### How close to an airport is too close?
+
+There is no single distance that works everywhere. What matters is whether the spot lies in Class B, C, D, or a Class E surface area, which is why you check the airspace rather than measuring.
+
+### Do I need LAANC at a small airport without a tower?
+
+It depends on whether the airport has a Class E surface area (or a Class D). If it does, authorization is required. If the airspace there is Class G, ATC authorization is not required, but you must still avoid manned aircraft.
+
+### What if my airport is not available in LAANC?
+
+Use the manual process through FAA DroneZone and allow plenty of time. Do not fly in the controlled airspace until you have the authorization.
+
+### Is an authorization enough to fly safely?
+
+No. It only grants access to the airspace. You still check TFRs, NOTAMs, and weather, and you still yield to manned aircraft.
+
+## Sources and further reading
+
+- [FAA — UAS Data Exchange (LAANC)](https://www.faa.gov/uas/getting_started/laanc)
+- [FAA — Airspace Authorizations for Recreational Flyers](https://www.faa.gov/uas/recreational_flyers/authorization)
+- [FAA — Part 107 Airspace Authorizations](https://www.faa.gov/uas/commercial_operators/part_107_airspace_authorizations)
+- [FAA — Airspace 101 for drone pilots](https://www.faa.gov/uas/getting_started/where_can_i_fly/airspace_101)
+- [FAA — Aeronautical Information Manual, Chapter 3 Section 2: Controlled Airspace](https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap3_section_2.html)
+- [eCFR — 14 CFR 107.41, Operation in certain airspace](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.41)

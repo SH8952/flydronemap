@@ -2,6 +2,7 @@
 title: "Volar un dron entre niebla: guía de seguridad"
 description: "Por qué la niebla es más que un problema de visibilidad, y cómo juzgar si las condiciones son lo bastante seguras para volar."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["fog", "visibility", "safety"]
 category: "weather-safety"
 image: "/guides/images/flying-in-fog-safety-guide.webp"
@@ -11,22 +12,80 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 
 La niebla parece más tranquila que la lluvia o el viento, y precisamente por eso sorprende a los pilotos desprevenidos. Elimina lo único de lo que depende casi cualquier normativa de drones: poder ver la aeronave.
 
+## Puntos clave
+
+- La niebla se define por la poca visibilidad: la AEMET la define como visibilidad inferior a 1 km, el NWS la considera a menudo peligrosa con 1/4 de milla o menos y en los informes aeronáuticos se notifica con menos de 5/8 de milla terrestre, muy por debajo de las 3 millas terrestres que exige la Parte 107 de EE. UU.
+- La niebla se forma cuando la temperatura del aire y el punto de rocío se acercan, a menudo en noches despejadas y en calma, y suele aparecer en las horas alrededor del amanecer.
+- La niebla es agua suspendida en el aire: el manual del DJI Air 3S la incluye entre las condiciones en las que no volar y advierte de que la niebla densa o las nubes pueden mojar el gimbal.
+- La detección de obstáculos basada en visión depende del contraste, así que no la trates como una red de seguridad con niebla.
+- Comprueba las condiciones justo antes de despegar y aterriza en cuanto sea seguro si aparece niebla.
+
 ## La línea de visión visual es el verdadero límite
 
-La mayoría de las normativas de drones exigen que el piloto mantenga en todo momento la línea de visión visual (VLOS) con la aeronave, y en muchos marcos regulatorios — incluido el Part 107 de la FAA — también se exige una visibilidad mínima de vuelo (habitualmente 3 millas terrestres en operaciones controladas) observada desde el punto de control. La niebla puede reducir la visibilidad horizontal a unos pocos cientos de metros o menos, lo que incumple el requisito de VLOS mucho antes de que el dron salga de su alcance teórico.
+La mayoría de las normativas de drones exigen que el piloto mantenga en todo momento la línea de visión visual (VLOS) con la aeronave. En Estados Unidos, el 14 CFR 107.51 exige una visibilidad de vuelo mínima de 3 millas terrestres, observada desde el punto de control, y el 14 CFR 107.31 exige que la aeronave pueda verse durante todo el vuelo. La niebla puede reducir la visibilidad horizontal a unos pocos cientos de metros o menos, lo que incumple el requisito de VLOS mucho antes de que el dron salga de su alcance teórico.
+
+Las cifras muestran lo grande que es la diferencia. El glosario del NWS describe la niebla como gotas de agua suspendidas en el aire en la superficie terrestre, a menudo peligrosa cuando la visibilidad se reduce a 1/4 de milla o menos. En los informes aeronáuticos se usa niebla (fog) con visibilidad inferior a 5/8 de milla terrestre y neblina (mist) entre 5/8 y 6 millas terrestres. Tres millas terrestres son unos 4,8 km, así que incluso una neblina ligera puede quedar por debajo del mínimo de EE. UU. Consulta la guía sobre [visibilidad y estándares de vuelo seguro](/es/guides/visibility-and-safe-drone-flight-standards) para ver cómo encaja todo. Las normas de otros países difieren, así que consulta a tu regulador.
 
 ## La niebla se forma más rápido de lo que se actualizan los pronósticos
 
-La niebla de radiación suele formarse en la hora alrededor del amanecer, especialmente sobre agua, valles o campos abiertos, cuando el suelo se enfría durante la noche y la humedad del aire cercano a la superficie se condensa. Puede aparecer bastante después de emitido un pronóstico, y también puede disiparse en una hora una vez que el sol calienta el terreno. Un pronóstico consultado la noche anterior no sustituye a comprobar las condiciones actuales justo antes de despegar.
+La niebla de radiación suele formarse en las horas alrededor del amanecer sobre tierra, en valles y campos abiertos, cuando el suelo se enfría durante la noche y la humedad del aire cercano a la superficie se condensa. El material de formación del NWS la describe como una niebla que necesita cielo despejado, vientos flojos y aire húmedo, y señala que suele darse bajo un anticiclón estacionario. Puede aparecer bastante después de emitido un pronóstico, y la niebla de radiación suele disiparse cuando el sol calienta el terreno. Un pronóstico consultado la noche anterior no sustituye a comprobar las condiciones actuales justo antes de despegar.
+
+No toda la niebla se comporta así. La niebla de advección se forma cuando aire cálido y húmedo se desplaza sobre una superficie más fría, y el NWS señala que puede seguir renovando la humedad de modo que el sol no la despeje, por lo que puede durar todo el día. Por eso esperar al sol es un plan razonable solo para la niebla de radiación, y solo si las condiciones realmente despejan.
+
+## Qué mirar en los datos
+
+| Señal | Por qué importa |
+|---|---|
+| Temperatura menos punto de rocío | La niebla se forma cuando temperatura y punto de rocío se acercan; una guía de formación del NWS da una diferencia inferior a 5 °F (unos 3 °C) |
+| Viento | La niebla de radiación necesita vientos flojos; la misma guía del NWS da de 2 a 7 nudos como el mejor rango |
+| Cielo despejado por la noche | Un fuerte enfriamiento del suelo favorece la niebla al amanecer |
+| Visibilidad en las observaciones actuales | Los informes reales dicen más que un pronóstico general |
+
+Cuanto menor es la diferencia, más cerca está el aire de la saturación. Consulta la guía sobre [punto de rocío y empañamiento del lente](/es/guides/dew-point-and-drone-lens-fogging) para saber cómo leer esa diferencia.
 
 ## La humedad llega al dron incluso sin lluvia
 
-La niebla es agua suspendida en el aire, y una exposición prolongada permite que la humedad se deposite en la lente, el gimbal y los puntos de conexión de forma parecida a como lo haría una llovizna ligera, a menudo sin que el piloto lo note hasta que las imágenes salen borrosas o algún componente empieza a fallar. Que la lente se empañe en pleno vuelo es una de las formas más comunes en que un vuelo con niebla sale mal.
+La niebla es agua suspendida en el aire, y una exposición prolongada permite que la humedad se deposite en la lente, el gimbal y los puntos de conexión de forma parecida a como lo haría una llovizna ligera, a menudo sin que el piloto lo note hasta que las imágenes salen borrosas o algún componente empieza a fallar. El manual del DJI Air 3S indica no volar con condiciones meteorológicas severas como viento fuerte, nieve, lluvia y niebla, y que volar con niebla densa o entre nubes puede mojar el gimbal y causar un fallo temporal, con funcionamiento completo cuando se seca. Que la lente se empañe en pleno vuelo es una de las formas más comunes en que un vuelo con niebla sale mal. Para el lado de la electrónica, lee sobre cómo afecta la humedad a la electrónica de un dron.
 
 ## Los sensores de detección de obstáculos son menos fiables con niebla
 
-Los sistemas de detección de obstáculos basados en visión e infrarrojos dependen del contraste y la luz reflejada, y ambos se degradan con niebla. No trates estos sensores como una red de seguridad cuando la visibilidad ya está reducida; asume que pueden pasar por alto obstáculos que normalmente detectarían.
+Los sistemas de detección de obstáculos basados en visión e infrarrojos dependen del contraste y la luz reflejada, y ambos se degradan con niebla. No trates estos sensores como una red de seguridad cuando la visibilidad ya está reducida; asume que pueden pasar por alto obstáculos que normalmente detectarían. Esto es física general del funcionamiento de estos sensores, así que consulta el manual de tu modelo para conocer los límites declarados de su sistema de detección.
+
+## Errores comunes
+
+- Despegar porque el cielo sobre ti se ve claro. La niebla puede ser poco profunda, y lo que cuenta es la vista horizontal.
+- Confiar en el pronóstico de anoche en lugar de la observación actual.
+- Contar con los sensores de obstáculos para ver lo que tú no ves.
+- Alejarse y planear volver solo con la imagen de vídeo, lo que no cumple la regla de línea de visión visual.
+- Dar por bueno un vuelo corto y cercano. Si no ves la aeronave, la norma sigue sin cumplirse.
 
 ## Qué hacer en su lugar
 
-Revisa la visibilidad actual en tu ubicación exacta justo antes de volar, no solo un pronóstico general. Si hay niebla presente o se ve que se está acercando, espera: las condiciones de niebla suelen despejarse en una o dos horas conforme el sol sube. Si la niebla aparece durante el vuelo, aterriza en cuanto sea seguro hacerlo, en lugar de continuar guiándote por instrumentos o por memoria del terreno.
+Revisa la visibilidad actual en tu ubicación exacta justo antes de volar, no solo un pronóstico general, y consulta el [panel de FlyDroneMap](/es). Si hay niebla presente o se ve que se está acercando, espera y vuelve a comprobar, ya que la niebla de radiación suele levantarse con el calentamiento tras el amanecer, mientras que la de advección puede no hacerlo. Si la niebla aparece durante el vuelo, aterriza en cuanto sea seguro hacerlo, en lugar de continuar guiándote por instrumentos o por memoria del terreno. Tras un vuelo con niebla, seca la aeronave, incluido el gimbal, antes de guardarla.
+
+## Preguntas frecuentes
+
+### ¿Es legal o seguro volar un dron con niebla?
+
+Según la norma de EE. UU., se exige una visibilidad de vuelo de al menos 3 millas terrestres, y la niebla, por definición, queda muy por debajo. Otros países difieren, pero si no puedes ver tu aeronave no estás manteniendo la línea de visión visual.
+
+### ¿La niebla daña un dron?
+
+Puede mojar la lente, el gimbal y los conectores. El manual del DJI Air 3S indica que la niebla densa o las nubes pueden mojar el gimbal y causar un fallo temporal, y que se recupera al secarse.
+
+### ¿Cuánto dura la niebla?
+
+Varía. La niebla de radiación suele despejarse tras el amanecer al calentarse el suelo, pero la de advección puede persistir todo el día, así que mira las observaciones actuales en lugar de suponer una hora fija.
+
+### ¿Puede protegerme la detección de obstáculos con niebla?
+
+No cuentes con ello. Estos sistemas dependen del contraste y de la luz reflejada, que se degradan con niebla, así que trátalos como poco fiables cuando la visibilidad es baja.
+
+## Fuentes y lecturas recomendadas
+
+- [NOAA National Weather Service — Glosario: Fog (en inglés)](https://forecast.weather.gov/glossary.php?word=FOG)
+- [NOAA National Weather Service Houston — Guía de nieblas, tipos y formación (en inglés)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
+- [NOAA National Weather Service — Guía de formación sobre observaciones de superficie, METAR (en inglés)](https://www.weather.gov/media/surface/SFCTraining.pdf)
+- [AEMET — Manual de uso de términos meteorológicos, edición 2015](https://repositorio.aemet.es/bitstream/20.500.11765/2505/3/Manual%20t%C3%A9rminos%20met_2015.pdf)
+- [eCFR — 14 CFR 107.51, limitaciones operativas de aeronaves pequeñas no tripuladas (en inglés)](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.51)
+- [DJI — Manual de usuario del Air 3S (en inglés)](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/20260423/DJI_Air_3S_um_en1.pdf)

@@ -2,6 +2,7 @@
 title: "Interferencia y suplantación GPS explicadas para pilotos"
 description: "La diferencia entre una señal GPS bloqueada y una falsificada, y por qué tratarlas igual puede llevar tu dron a un lugar que nunca le indicaste."
 publishedAt: "2026-09-23"
+updatedAt: "2026-10-04"
 tags: ["gps", "jamming", "spoofing", "security"]
 category: "space-weather-gps"
 image: "/guides/images/gps-jamming-and-spoofing-explained-for-drone-pilots.webp"
@@ -9,24 +10,83 @@ imageCredit: "Chris Cordes"
 imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Si tu dron pierde de repente la señal GPS cerca de un aeropuerto, una instalación militar o un estadio con seguridad reforzada, la mayoría de los pilotos asume que es un fallo del satélite o del software. Cada vez más, no lo es. La interferencia GPS (jamming) y la suplantación de señal (spoofing) son interferencias deliberadas, y a diferencia de un pico en el índice Kp o un reflejo multitrayecto cerca de un edificio, están dirigidas intencionadamente a tu receptor, lo que significa que el modo de fallo es distinto, y también lo es la respuesta correcta.
+Si tu dron pierde de pronto la señal GPS cerca de un aeropuerto, una instalación militar o un lugar con seguridad reforzada, lo natural es sospechar de un fallo del satélite o del software. A veces la causa es una interferencia deliberada. La inhibición (jamming) y la suplantación (spoofing) del GPS se dirigen contra el receptor a propósito, a diferencia de un pico del índice Kp o de un rebote en un edificio cercano, así que el modo de fallo es distinto y la respuesta correcta también.
 
-## El jamming niega la señal, el spoofing la falsifica
+## Puntos clave
 
-El jamming inunda la banda de frecuencia GPS (alrededor de 1575.42 MHz para señales civiles L1) con ruido lo bastante fuerte como para ahogar la señal real del satélite, de modo que el receptor simplemente pierde el bloqueo — el dron normalmente detecta que ha perdido el GPS y cambia al respaldo que tenga disponible (modo manual/de actitud, o posicionamiento visual si lo incorpora). El spoofing es más peligroso precisamente porque no se anuncia: un transmisor de spoofing emite señales satelitales falsificadas que parecen válidas y desplazan gradualmente la posición calculada por el receptor hacia una ubicación irreal, a menudo mientras la pantalla del dron sigue mostrando un bloqueo GPS fuerte y aparentemente saludable. Un dron puede ser desviado 200-300 metros de su posición real mientras el piloto solo ve un indicador de señal con aspecto normal, y por eso el spoofing se ha usado para desviar de su rumbo a buques comerciales y aeronaves civiles en incidentes documentados cerca de zonas de conflicto.
+- La inhibición niega la señal: el receptor no puede adquirir ni seguir los satélites. La suplantación la falsifica: señales falsas parecidas a las GNSS pueden hacer que el receptor calcule una posición errónea.
+- La guía de recursos de la FAA enumera como indicios de inhibición los mensajes de fallo GNSS, y como indicios de suplantación el desacuerdo entre sistemas de navegación, velocidades sobre el suelo anormales y saltos bruscos de posición.
+- EASA indica que la suplantación implica más riesgo para la seguridad que la inhibición, porque se reconoce más tarde. Menciona como zonas afectadas los alrededores de zonas de conflicto o de riesgo geopolítico, entre ellas partes del Mediterráneo, el mar Negro, Oriente Medio, el Báltico y el Ártico.
+- El retorno a casa (RTH) depende de la posición GNSS. Si sospechas interferencia, vuela a la vista y aterriza manualmente en lugar de confiar en la automatización.
+- Según GPS.gov, el uso de inhibidores de GPS está prohibido por la ley federal de Estados Unidos. Las normas de otros países son distintas.
 
-## Por qué esto parece —pero no es— un problema de índice Kp o de multitrayecto
+## La inhibición niega la señal; la suplantación la falsifica
 
-Los pilotos que han aprendido a revisar el índice Kp o a vigilar el multitrayecto cerca de edificios de vidrio a veces asumen que cualquier irregularidad GPS se debe a una de esas dos causas, pero el jamming y el spoofing se comportan de forma distinta y vale la pena conocer esas diferencias. La degradación GPS causada por el clima espacial es amplia y gradual, correlacionada con una ventana de tormenta específica y afecta un área geográfica extensa; el multitrayecto está fijado a una ubicación física concreta ligada a una superficie reflectante. El jamming y el spoofing, en cambio, suelen estar localizados dentro del alcance de un transmisor específico (de unos cientos de metros a varios kilómetros según la potencia), pueden aparecer o desaparecer de forma abrupta sin ninguna correlación con los datos del clima espacial, y se concentran cerca de lugares con un motivo evidente para bloquear el GPS: fronteras internacionales, bases militares, prisiones y perímetros de seguridad de personalidades son los sitios reportados con más frecuencia.
+La guía de recursos sobre interferencias GNSS de la FAA, escrita para la aviación, define la inhibición como emisiones que no imitan señales GNSS pero interfieren con la capacidad del receptor para adquirirlas y seguirlas. El resultado es la denegación de la señal. La suplantación es la emisión de señales parecidas a las GNSS que un receptor puede seguir junto con las reales o en su lugar, con lo que puede recibir datos falsos de posición y hora. EASA usa definiciones similares en su Boletín de Información de Seguridad sobre interrupciones y alteraciones del GNSS, y añade que la suplantación implica más riesgo para la seguridad que la inhibición porque las tripulaciones la reconocen más tarde.
 
-## El error que cometen los pilotos: confiar en los instrumentos más que en el comportamiento
+Esos documentos se escribieron para aeronaves tripuladas, pero la física es la misma para el receptor de un dron. La reacción de cada dron depende del fabricante y del modelo, así que consulta en tu manual qué hace la aeronave cuando pierde el posicionamiento por satélite.
 
-El error más común y costoso es confiar en el estado GPS que muestra el controlador de vuelo en lugar de observar cómo se comporta realmente el dron. Si un dron indica bloqueo GPS completo pero se desvía de forma inconsistente con las entradas del mando, gana altitud por su cuenta en modo de mantenimiento de posición, o su posición mostrada no coincide con lo que ves a simple vista, esa discrepancia es una señal mucho más fiable que el número de satélites en pantalla. Un segundo error habitual es confiar en el Retorno a Casa (RTH) como red de seguridad en un entorno donde se sospecha spoofing — el RTH calcula su ruta a partir de esos mismos datos de posición falsificados, por lo que puede llevar al dron hacia una ubicación de "casa" falsa en lugar de la real, empeorando la situación en vez de resolverla.
+## En qué se diferencia del clima espacial y de la multitrayectoria
 
-## Qué hacer si sospechas de jamming o spoofing
+| Causa | Escala | Cuándo | Qué puedes ver |
+|---|---|---|---|
+| Clima espacial | Región amplia | Ligado a una tormenta o, cerca del ecuador, a la tarde-noche local | Precisión degradada o pérdida de enlace para muchos usuarios |
+| Multitrayectoria | Un punto cerca de reflectores | Cualquier día | Deriva repetible en el mismo lugar |
+| Inhibición | Alrededor de un transmisor | Puede aparecer y desaparecer de golpe | GPS perdido, avisos en pantalla |
+| Suplantación | Alrededor de un transmisor | Puede aparecer y desaparecer de golpe | Posición que parece válida pero es errónea o incoherente |
 
-- Si el bloqueo GPS se pierde de golpe sin una degradación gradual previa de la señal, cambia de inmediato a modo manual/de actitud en lugar de esperar a que el controlador de vuelo recupere el bloqueo por sí solo.
-- Presta atención a cualquier discrepancia entre lo que ves a simple vista y la posición mostrada — si lo que observas no coincide con lo que afirma la telemetría, confía en tus ojos y aterriza manualmente en lugar de confiar en el Retorno a Casa.
-- Antes de volar cerca de aeropuertos, instalaciones militares, prisiones o grandes eventos públicos, revisa los avisos publicados de interferencia GPS (en EE. UU., los NOTAM a menudo señalan zonas conocidas de pruebas de jamming o interferencia activa relacionada con seguridad).
-- Si tu dron lo permite, mantén activado el posicionamiento visual/óptico u otra fuente de navegación secundaria como verificación cruzada frente a los datos de posición basados solo en GPS.
-- No asumas que una señal GPS fuerte y aparentemente estable descarta el spoofing — una señal falsificada puede parecer incluso más estable que una señal real degradada por ruido ordinario.
+El patrón que hay que vigilar es la brusquedad y la incoherencia. La degradación por clima espacial es amplia y está ligada a una ventana de tormenta, como se explica en [cómo afecta el índice Kp a la fiabilidad del GPS y la brújula](/es/guides/kp-index-effect-on-gps-compass-reliability). La multitrayectoria está fijada a un punto físico, como en [el error de multitrayectoria explicado](/es/guides/gps-multipath-error-explained-for-drone-pilots). La interferencia de un transmisor es local a ese transmisor y no está ligada a los datos de clima espacial.
+
+## Qué señales busca la guía de aviación
+
+La guía de la FAA separa los indicios. Para la inhibición enumera mensajes de fallo GNSS en las pantallas de vuelo y la pérdida de funciones ADS-B y de enlace de datos. Para la suplantación, que califica de más insidiosa, enumera saltos de posición de varias millas en segundos, desacuerdo entre sistemas de navegación, indicaciones anormales de velocidad sobre el suelo y de viento, cambios en la hora del reloj y desvíos bruscos del rumbo del piloto automático. Un dron pequeño tiene menos instrumentos que comparar, así que la misma idea se traduce en un hábito sencillo: compara lo que dice la aplicación con lo que ves.
+
+- ¿La marca de la aeronave en el mapa coincide con el lugar donde está el dron en el cielo?
+- ¿Responde el dron a las órdenes como de costumbre, o deriva en una dirección inesperada mientras la aplicación indica un enlace fuerte?
+- ¿Saltó de golpe el punto de origen o la posición en el mapa?
+- ¿Muestran posiciones raras otros dispositivos cercanos, como un teléfono?
+
+## Dónde se han notificado interferencias
+
+El boletín de EASA menciona zonas alrededor de áreas de conflicto o de riesgo geopolítico, entre ellas el sur y el este del Mediterráneo, el mar Negro, Oriente Medio, el Báltico y el Ártico, y remite a su sitio web para la lista oficial de regiones de información de vuelo afectadas. La lista cambia, así que usa la oficial vigente en lugar de fiarte de un recuerdo fijo. Para los vuelos de dron, el uso práctico de esta información es la planificación: si viajas a una de esas regiones, cuenta con la posibilidad de un GNSS degradado y consulta las normas y avisos locales antes de volar.
+
+## Errores comunes
+
+- Fiarse del estado GPS que muestra la pantalla antes que del comportamiento de la aeronave. Una señal falsa puede parecer tan sana como una real.
+- Confiar en el retorno a casa cuando se sospecha interferencia. La documentación de DJI sobre Return to Home enumera una señal GPS fuerte y un punto de origen registrado correctamente como condiciones previas del RTH de seguridad, así que una posición dudosa hace poco fiable el regreso automático. Esto varía según el fabricante y el modelo.
+- Suponer que un Kp tranquilo significa que el GPS es seguro. La interferencia no tiene nada que ver con el clima espacial.
+- Ignorar los avisos escritos. La guía de la FAA recomienda consultar los NOTAM de zonas con interferencias en la planificación previa.
+
+## Qué hacer si sospechas inhibición o suplantación
+
+- Si el enlace se pierde de golpe, sin degradación gradual previa, mantén la calma, no pierdas el dron de vista y pasa a un modo manual o de actitud si tu aeronave lo ofrece. En [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak) tienes la secuencia de vuelo.
+- Si lo que ves no coincide con la posición en pantalla, fíate de tus ojos, pilota a mano y aterriza en el punto seguro más cercano.
+- Antes de volar cerca de aeropuertos u otros lugares sensibles, consulta los avisos publicados; mira la guía sobre los [NOTAM](/es/guides/notam-explained).
+- Mantén activo el posicionamiento visual u otra referencia secundaria si tu dron la tiene, como comprobación adicional.
+- Tras aterrizar, anota el lugar y la hora. La guía de la FAA pide a los pilotos de aeronaves que notifiquen las anomalías, y GPS.gov indica que en EE. UU. la sospecha de inhibición puede comunicarse mediante una queja a la FCC. Pregunta a tu autoridad local cómo deben notificar las interferencias los pilotos de dron.
+
+## Preguntas frecuentes
+
+### ¿Es legal inhibir el GPS?
+
+En Estados Unidos, GPS.gov afirma que la ley federal prohíbe operar, comercializar o vender equipos inhibidores que interfieran con comunicaciones de radio autorizadas, incluido el GPS. Otros países tienen sus propias normas, así que consulta a tu regulador nacional.
+
+### ¿Puedo distinguir la suplantación de un error normal de GPS?
+
+No solo por el número de satélites. Busca incoherencias: la aeronave se comporta distinto de lo que indica la pantalla, la posición en el mapa salta o la marca no coincide con lo que ves en el cielo.
+
+### ¿Me salvará el retorno a casa?
+
+No de forma fiable. El RTH depende de la posición GNSS, y el manual del DJI Mini 4K dice que la aeronave no puede volver si la señal GPS es débil o no está disponible. El comportamiento varía según el modelo, así que lee tu propio manual.
+
+### ¿Son comunes las interferencias cerca de aeropuertos?
+
+Depende del lugar. EASA y la FAA publican guías porque la interferencia es un problema reconocido para las aeronaves, y la FAA aconseja consultar los NOTAM de zonas con interferencias. Revisa los avisos de tu zona antes de volar.
+
+## Fuentes y lecturas recomendadas
+
+- [FAA — GNSS Interference Resource Guide](https://www.faa.gov/about/office_org/headquarters_offices/avs/offices/afx/afs/afs400/afs410/GNSS/GPS_GNSS_Interference_Resource_Guide.pdf)
+- [EASA — Safety Information Bulletin 2022-02 on GNSS outages and alterations](https://ad.easa.europa.eu/blob/EASA_SIB_2022_02R4.pdf/SIB_2022-02R4_1)
+- [GPS.gov — GPS Jamming](https://www.gps.gov/spectrum/jamming/)
+- [DJI — Drone RTH Logic](https://repair.dji.com/help/content?customId=en-us03400006776&spaceId=34&re=US&lang=en&documentType=artical&paperDocType=paper)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)

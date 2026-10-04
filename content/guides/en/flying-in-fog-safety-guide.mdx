@@ -2,6 +2,7 @@
 title: "4 Hidden Dangers of Flying a Drone in Fog"
 description: "Is it ever safe to fly a drone in fog? Here are 4 fog-related risks pilots often miss, and how to judge visibility before you launch."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["fog", "visibility", "safety"]
 category: "weather-safety"
 image: "/guides/images/flying-in-fog-safety-guide.webp"
@@ -11,22 +12,80 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 
 Fog looks calmer than rain or wind, which is exactly why it catches pilots off guard. It removes the one thing almost every drone rule depends on: being able to see your aircraft.
 
+## Key takeaways
+
+- Fog is defined by low visibility: the NWS says it is often hazardous at 1/4 mile or less, and in aviation reports it is reported when visibility is under 5/8 statute mile, far below the 3 statute miles required by US Part 107.
+- Fog forms when air temperature and dew point come together, often on clear, calm nights, and it can be densest around sunrise.
+- Fog is airborne water: the DJI Air 3S manual lists fog among conditions not to fly in and warns that heavy fog or clouds may wet the gimbal.
+- Vision-based obstacle sensing depends on seeing contrast, so do not treat it as a safety net in fog.
+- Check conditions right before launch and land as soon as it is safe if fog develops.
+
 ## Visual line of sight is the real limit
 
-Most drone regulations require the pilot to maintain visual line of sight (VLOS) with the aircraft at all times, and in many frameworks — including the FAA's Part 107 — a minimum flight visibility (commonly 3 statute miles in controlled operations) is also required as observed from the control station. Fog can push horizontal visibility to a few hundred meters or less, which fails VLOS long before the drone is even out of theoretical range.
+Most drone regulations require the pilot to maintain visual line of sight (VLOS) with the aircraft at all times. In the United States, 14 CFR 107.51 requires a minimum flight visibility of 3 statute miles, as observed from the location of the control station, and 14 CFR 107.31 requires that the aircraft can be seen throughout the entire flight. Fog can push horizontal visibility to a few hundred meters or less, which fails VLOS long before the drone is even out of theoretical range.
+
+The numbers show how large the gap is. The NWS glossary describes fog as water droplets suspended in the air at the Earth's surface, often hazardous when visibility is reduced to 1/4 mile or less. In aviation reports, fog is used when visibility is under 5/8 statute mile, and mist when it is between 5/8 and 6 statute miles. Three statute miles is about 4.8 km, so even thin mist can sit below the US minimum. See the guide on [visibility and safe flight standards](/en/guides/visibility-and-safe-drone-flight-standards) for how this fits together, and the US regulations page for the FAA basics. Rules in other countries differ, so check your regulator.
 
 ## Fog forms faster than most forecasts update
 
-Radiation fog often forms in the hour around sunrise, especially over water, valleys, or open fields, as the ground cools overnight and moisture condenses in the air near the surface. It can appear well after a forecast was issued and can also burn off within an hour once the sun warms the ground. A forecast checked the night before is not a substitute for looking at current conditions right before launch.
+Radiation fog often forms in the hours around sunrise over land, in valleys and open fields, as the ground cools overnight and moisture condenses in the air near the surface. NWS training material describes it as needing clear skies, light winds and moist air, and notes it typically occurs under a stationary high-pressure area. The NWS also says valley fog is densest around sunrise and is most common in autumn and spring. It can appear well after a forecast was issued, and radiation fog usually thins after the sun warms the ground. A forecast checked the night before is not a substitute for looking at current conditions right before launch.
+
+Not all fog behaves that way. Advection fog forms when warm, moist air moves over a colder surface, and the NWS notes it can keep replenishing moisture so that sunshine does not clear it, so it can last all day. That is why waiting for the sun is a reasonable plan only for radiation fog, and only if the conditions are really clearing.
+
+## What to look at in the data
+
+| Signal | Why it matters |
+|---|---|
+| Temperature minus dew point | Fog forms as the temperature and dew point approach each other; one NWS training guide gives a spread under 5°F (about 3°C) |
+| Wind | Radiation fog needs light winds; the same NWS guide gives 2 to 7 knots as the best range |
+| Clear sky overnight | Strong cooling of the ground favors fog by sunrise |
+| Visibility in current observations | Actual reports tell you more than a general forecast |
+
+The smaller the spread, the closer the air is to saturation. See the guide on [dew point and lens fogging](/en/guides/dew-point-and-drone-lens-fogging) for how to read the spread.
 
 ## Moisture reaches the drone even without rain
 
-Fog is airborne water, and prolonged exposure lets moisture settle on the lens, gimbal, and connector points in the same way a light drizzle would — often without the pilot noticing until footage looks hazy or a component starts acting up. A camera lens fogging over mid-flight is one of the more common ways a fog-weather flight goes wrong.
+Fog is airborne water, and prolonged exposure lets moisture settle on the lens, gimbal, and connector points in the same way a light drizzle would, often without the pilot noticing until footage looks hazy or a component starts acting up. The DJI Air 3S manual says not to fly in severe weather such as strong winds, snow, rain and fog, and that flying in heavy fog or clouds may make the gimbal wet and lead to temporary failure, with full function returning once it is dry. A camera lens fogging over mid-flight is one of the more common ways a fog-weather flight goes wrong. For the electronics side, read how humidity affects drone electronics.
 
 ## Obstacle avoidance sensors are less reliable in fog
 
-Vision-based and infrared obstacle avoidance systems rely on contrast and reflected light, both of which degrade in fog. Don't treat these sensors as a safety net when visibility is already reduced; assume they may miss obstacles they'd normally catch.
+Vision-based and infrared obstacle avoidance systems rely on contrast and reflected light, both of which degrade in fog. Don't treat these sensors as a safety net when visibility is already reduced; assume they may miss obstacles they'd normally catch. This is general physics of how such sensors work, so check your model's manual for the stated limits of its sensing system.
+
+## Common mistakes
+
+- Launching because the sky above looks bright. Fog can be shallow, and the horizontal view is what counts.
+- Relying on last night's forecast instead of the current observation.
+- Counting on obstacle sensors to see what you cannot.
+- Flying out and planning to navigate back from the video feed alone, which does not meet the visual line of sight rule.
+- Treating a short, close flight as automatically fine. If you cannot see the aircraft, the rule is still not met.
 
 ## What to do instead
 
-Check current visibility for your exact location right before flying, not just a general forecast. If fog is present or visibly rolling in, wait it out — fog conditions frequently clear within an hour or two once the sun rises higher. If fog develops mid-flight, land as soon as it's safe rather than continuing on instruments or memory of the area.
+Check current visibility for your exact location right before flying, not just a general forecast, and look at the [FlyDroneMap dashboard](/en) and what weather data to check before flying. If fog is present or visibly rolling in, wait it out and re-check, since radiation fog often lifts after sunrise heating while advection fog may not. If fog develops mid-flight, land as soon as it is safe rather than continuing on instruments or memory of the area. After a foggy flight, dry the aircraft, including the gimbal, before storing it.
+
+## FAQ
+
+### Is it ever legal or safe to fly a drone in fog?
+
+Under the US rule, flight visibility of at least 3 statute miles is required, and fog by definition is well below that. Other countries differ, but if you cannot see your aircraft you are not maintaining visual line of sight.
+
+### Does fog damage a drone?
+
+It can wet the lens, gimbal and connectors. DJI's Air 3S manual says heavy fog or clouds may make the gimbal wet, leading to temporary failure, and that it recovers once dry.
+
+### How long does fog last?
+
+It varies. Radiation fog typically clears after sunrise as the ground heats, but advection fog can persist all day, so check current observations instead of assuming a fixed time.
+
+### Can obstacle avoidance protect me in fog?
+
+Do not count on it. These systems depend on contrast and reflected light, which degrade in fog, so treat them as unreliable when visibility is low.
+
+## Sources and further reading
+
+- [NOAA National Weather Service — Glossary: Fog](https://forecast.weather.gov/glossary.php?word=FOG)
+- [NOAA National Weather Service Houston — Fog guide (types and formation)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
+- [NOAA National Weather Service — Mountain/Valley Fog](https://www.weather.gov/safety/fog-mountain-valley)
+- [NOAA National Weather Service — Surface observations training guide (METAR)](https://www.weather.gov/media/surface/SFCTraining.pdf)
+- [eCFR — 14 CFR 107.51 Operating limitations for small unmanned aircraft](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.51)
+- [DJI — Air 3S user manual](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/20260423/DJI_Air_3S_um_en1.pdf)

@@ -2,6 +2,7 @@
 title: "Qué datos meteorológicos comprobar antes de volar un dron"
 description: "Detrás de «despejado» en una app del tiempo hay varias cifras que deciden si un vuelo es seguro: viento y rachas, visibilidad, techo de nubes y clima espacial."
 publishedAt: "2026-09-22"
+updatedAt: "2026-10-04"
 tags: ["preflight-checklist", "weather-data", "wind"]
 category: "weather-safety"
 image: "/guides/images/what-weather-data-to-check-before-flying-a-drone.webp"
@@ -9,42 +10,101 @@ imageCredit: "Jerry Zhang"
 imageCreditUrl: "https://unsplash.com/@z734923105?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-La mayoría de apps del tiempo resumen el día entero en una sola palabra — "despejado", "nublado", "lluvia" —, pero el dato que de verdad importa a un piloto de dron está escondido detrás de ese resumen. "Despejado" con 5 m/s de viento y "despejado" con 15 m/s son dos vuelos completamente distintos, y "parcialmente nublado" con un techo de 300 m no es el mismo margen legal que la misma etiqueta con un techo de 100 m. Aquí va un repaso práctico de qué comprobar, y en qué orden.
+La mayoría de apps del tiempo resumen el día entero en una sola palabra — «despejado», «nublado», «lluvia» —, pero las cifras que de verdad importan a un piloto de dron están escondidas detrás de ese resumen. «Despejado» con 5 m/s de viento y «despejado» con 15 m/s son dos vuelos completamente distintos, y «parcialmente nublado» con una base de nubes baja puede cambiar lo que te permiten las normas de tu país. Aquí tienes un repaso práctico de qué mirar y en qué orden.
 
-## Mira la cifra de rachas, no la velocidad media del viento
+## Puntos clave
 
-Muchos pilotos miran la velocidad media del viento, ven que está por debajo de la resistencia máxima al viento de su aeronave (típicamente 8-10,7 m/s en drones de consumo) y dan el vuelo por seguro — pero lo que realmente rompe la estabilidad no es la media, sino la racha puntual. Un pronóstico puede mostrar una media tranquila de 6 m/s y aun así incluir ventanas breves en las que las rachas suben a 12-14 m/s, y son justo esos momentos en los que la aeronave puede quedarse sin autoridad de control incluso a máxima potencia y desplazarse de su posición. Cuando la diferencia entre la media y la racha — el factor de racha — es de 5 m/s o más, no trates la media como el dato seguro; decide si volar o no en función de la ventana de racha.
+- Mira la cifra de rachas, no solo el viento medio. El Servicio Meteorológico Nacional de EE. UU. (NWS) define una racha como una fluctuación rápida de la velocidad del viento con variaciones de 10 nudos (unos 5 m/s) o más entre picos y valles.
+- Un «30 % de probabilidad de lluvia» es la probabilidad de lluvia medible en un punto, no dice nada sobre su intensidad. Comprueba también la intensidad y la hora, y trata las tormentas eléctricas como una señal aparte de no volar.
+- La visibilidad y la base de las nubes son límites legales además de límites de seguridad. En EE. UU., la Parte 107 pide al menos 3 millas terrestres de visibilidad y 500 pies de distancia vertical por debajo de las nubes.
+- La temperatura, el punto de rocío y el índice Kp necesitan cada uno su propia mirada. Consulta los límites del manual de tu aparato en lugar de suponer un rango genérico.
+- Vuelve a comprobar justo antes de despegar: las previsiones se actualizan y las condiciones pueden cambiar dentro de la ventana en la que piensas volar.
 
-## Fíjate en el tipo e intensidad de la precipitación, no solo en la probabilidad
+## De dónde salen las cifras
 
-Ver "30% de probabilidad de lluvia" y decidir que es lo bastante bajo como para volar es un atajo habitual, pero la probabilidad indica cuán probable es que llueva, no con qué intensidad lo hará si ocurre. Una llovizna constante por debajo de 1 mm/h y un chubasco de baja probabilidad pero que descarga 10 mm/h o más exigen decisiones completamente distintas. La mayoría de aeronaves de consumo sin clasificación IP pueden soportar una llovizna breve, pero si la ventana del pronóstico incluye actividad de chubascos, conviene no volar sea cual sea el porcentaje de probabilidad.
+Elige una o dos fuentes y úsalas siempre igual. La previsión del servicio meteorológico de tu país, el panel del tiempo de tu app de vuelo y el [panel](/es) de FlyDroneMap te dan las condiciones actuales. El panel además muestra una línea temporal horaria de 24 horas y una ventana de vuelo recomendada, algo útil porque la pregunta rara vez es «¿está bien ahora?» sino «¿seguirá bien durante los 20 minutos que necesito?». Uses lo que uses, mira los valores horarios de tu ventana real de vuelo, no el resumen diario.
 
-## La visibilidad está directamente ligada al mínimo legal
+## Viento: mira las rachas, no solo la media
 
-La visibilidad no es solo "hasta dónde puedo ver" — en la mayoría de países está directamente ligada al mínimo legal para el vuelo con línea de visión (VLOS). La Part 107 de la FAA, por ejemplo, exige al menos 3 millas terrestres (unos 4,8 km) de visibilidad para el observador, y la niebla o la bruma que hacen caer esa cifra por debajo del umbral convierten el vuelo en directamente ilegal, no solo arriesgado. En un día en el que la visibilidad está justo en el límite, conviene comprobar el pronóstico por separado para la hora de despegue y para la hora prevista de aterrizaje — la niebla es conocida por reducir la visibilidad a la mitad en poco tiempo, sobre todo al atardecer.
+El viento medio es la cifra que casi todas las apps muestran primero, pero son las rachas las que desestabilizan a una aeronave. El NWS define una racha como una fluctuación rápida de la velocidad del viento con variaciones de 10 nudos o más entre picos y valles. En la práctica, una previsión de 6 m/s de media con rachas de 12 m/s describe un día en el que el dron se enfrentará una y otra vez a un viento el doble de fuerte de lo que sugiere la media.
 
-## Lee la temperatura en relación con la curva de rendimiento de la batería
+Compara las rachas, no la media, con el límite de viento publicado para tu aparato. Los límites varían según el modelo y figuran en los documentos del fabricante; la guía sobre la [resistencia al viento por modelo de dron](/es/guides/drone-wind-resistance-by-model) reúne cifras oficiales. Recuerda también que el viento junto al suelo y el viento a la altura de vuelo no son lo mismo, de modo que un punto de despegue en calma no garantiza aire en calma a 100 m.
 
-Lo que importa no es la cifra de temperatura en sí, sino en qué punto de la curva de descarga de la batería cae. La mayoría de baterías de polímero de litio rinden de forma más estable entre 15 y 25°C; al acercarse a 0°C o superar los 35°C, el tiempo de vuelo real disponible cae de forma notable por debajo de la cifra indicada. Con un pronóstico bajo cero, mantener la batería cerca de la temperatura corporal hasta justo antes de montarla en la aeronave reduce de forma medible esa pérdida de autonomía.
+## Precipitación: probabilidad no es intensidad
 
-## La diferencia entre humedad y punto de rocío anuncia empañamiento y condensación
+El NWS define la probabilidad de precipitación (PoP) como la probabilidad de al menos 0,01 pulgadas de precipitación en un punto cualquiera del área de previsión durante el periodo indicado. Combina la confianza del pronosticador en que se forme precipitación con la parte del área que cubrirá. Así que «30 %» habla de la probabilidad en un punto, no de lo fuerte que lloverá ni de cuánto durará.
 
-El dato a vigilar no es la humedad por sí sola, sino la diferencia entre la temperatura y el punto de rocío — en cuanto esa brecha se estrecha a unos 3 grados o menos, la condensación en superficies frías de la aeronave o en la lente se vuelve mucho más probable. Un error habitual es sacar una aeronave fría directamente de un almacenamiento interior al aire húmedo del exterior; si la lente se empaña por dentro, eso puede significar tener que aterrizar a mitad de vuelo solo para limpiarla.
+Para volar, busca la intensidad esperada y la hora en que la precipitación es más probable, y compáralas con la protección de tu aparato. Muchos drones de consumo no están preparados para el agua, y las guías de seguridad de los fabricantes, por ejemplo la de DJI, incluyen la lluvia entre las condiciones en las que no se debe volar. Si hay alguna tormenta eléctrica prevista en tu ventana, es motivo para mover el vuelo: consulta la guía de [seguridad ante rayos y tormentas](/es/guides/lightning-and-thunderstorm-drone-safety).
 
-## El techo de nubes limita hasta dónde puedes subir legalmente
+## Visibilidad y base de las nubes: límites legales
 
-El techo — la altura de la base de las nubes — importa especialmente cerca del espacio aéreo controlado, ya que muchas normativas exigen mantener una distancia horizontal y vertical determinada respecto a las nubes. Si el techo previsto es de 150 m y el plan es subir hasta el límite legal de 120 m, la separación de nube exigida come parte de ese margen y deja mucho menos altitud útil real de la que sugieren las dos cifras por separado. El techo también puede cambiar rápido en una mañana con niebla o estratos bajos, así que conviene volver a comprobar el pronóstico más reciente justo antes de despegar en lugar de confiar en un dato de horas atrás.
+En Estados Unidos, la norma 14 CFR 107.51 dice que la visibilidad mínima de vuelo, observada desde la ubicación de la estación de control, debe ser de al menos 3 millas terrestres (unos 4,8 km), y que la aeronave debe mantenerse al menos 500 pies por debajo de las nubes y al menos 2.000 pies en horizontal de ellas. Otros países fijan sus propias cifras, así que consulta al regulador del país donde vueles.
 
-## El clima espacial (índice Kp) es una comprobación aparte, no un añadido
+Una consecuencia práctica de la regla de nubes: con la aeronave a 400 pies sobre el suelo, la base de las nubes tendría que estar al menos a 900 pies sobre el suelo para conservar la separación vertical de 500 pies. Un techo bajo puede reducir tu altura útil aunque el límite legal de altura sea mayor. La niebla y la calima pueden recortar la visibilidad muy deprisa al amanecer y al atardecer.
 
-Al margen del tiempo en superficie, el índice Kp y el clima espacial que resume pueden afectar a la precisión del GPS y a la fiabilidad de la brújula — un factor fácil de pasar por alto por completo. Incluso en un día perfectamente tranquilo y despejado a nivel de suelo, un índice Kp de 5 o superior es motivo razonable para posponer un vuelo de largo alcance o cualquier misión que dependa mucho del retorno automático, y conviene acostumbrarse a comprobarlo en su propio panel en lugar de asumir que un buen pronóstico en superficie ya lo cubre.
+## Temperatura: léela frente a los límites de tu batería
 
-## Lista de comprobación antes de volar
+Los límites de temperatura dependen del modelo. A modo de ejemplo, el manual del DJI Air 3S da un rango de funcionamiento de -10 a 40 grados C, indica que la capacidad de la batería se reduce de forma significativa entre -10 y 5 grados C, y recomienda calentar la batería al menos hasta 10 grados C antes de despegar con temperaturas bajas. También señala que la batería solo se carga entre 5 y 40 grados C. Otros aparatos tienen otros límites, así que usa las cifras de tu propio manual.
 
-- Decide según la cifra de rachas, no la media, y compárala con la resistencia máxima al viento de tu aeronave.
-- Comprueba la intensidad de la precipitación (mm/h) y el tipo, no solo el porcentaje de probabilidad.
-- Confirma que la visibilidad cumple el mínimo legal VLOS de tu zona, comprobado por separado para la hora de despegue y la de aterrizaje prevista.
-- Si la temperatura queda fuera del rango estable de la batería (aproximadamente 15-25°C), prevé precalentarla o aislarla.
-- Vigila que la diferencia con el punto de rocío se estreche a 3 grados o menos — es tu señal para esperar condensación o empañamiento de la lente.
-- Cerca de espacio aéreo controlado, ten en cuenta el techo de nubes y la separación exigida al calcular tu altitud útil real, no solo el límite legal.
-- Comprueba el clima espacial (índice Kp) por separado del tiempo en superficie — un cielo tranquilo no lo descarta.
+## Punto de rocío: importa la diferencia, no la humedad
+
+La guía de niebla del NWS señala que la niebla se forma cuando la temperatura y el punto de rocío se acercan al mismo valor, con una diferencia inferior a 5 grados F (unos 3 grados C). Una diferencia pequeña entre temperatura y punto de rocío en la previsión es, por tanto, una señal para esperar niebla o condensación, sobre todo con calma y cielo despejado. También es un motivo para dejar que el dron y el objetivo se adapten antes de sacarlos a aire húmedo.
+
+## El clima espacial es una comprobación aparte
+
+El tiempo en tierra no dice nada del clima espacial. El Centro de Predicción del Clima Espacial de NOAA describe el índice K planetario (Kp) como un entero de 0 a 9, donde 1 es calma y 5 o más indica una tormenta geomagnética; Kp 5 corresponde al nivel G1 de la escala de NOAA. La tabla de la escala no indica efectos de navegación en el nivel G1 y menciona problemas de navegación por satélite solo en niveles superiores (por ejemplo, problemas intermitentes en G3), así que un Kp de 5 no prueba que haya un problema de GPS. Tomarlo como motivo para ser más prudente en vuelos largos o que dependan del regreso automático al punto de origen es un hábito conservador, no una norma. Lee [qué es el índice Kp](/es/guides/what-is-the-kp-index) antes de decidir tu propio umbral.
+
+## Un orden sencillo de comprobación
+
+| Paso | Qué mirar | Por qué |
+|---|---|---|
+| 1 | Riesgo de tormenta eléctrica | Anula todo lo demás |
+| 2 | Rachas en la ventana de vuelo | Decide si el dron puede mantener la posición |
+| 3 | Hora e intensidad de la precipitación | La mayoría de drones de consumo no están pensados para el agua |
+| 4 | Visibilidad y base de las nubes | Límites legales y capacidad de ver el dron |
+| 5 | Temperatura y punto de rocío | Rendimiento de la batería y empañamiento |
+| 6 | Índice Kp | Fiabilidad de la navegación en vuelos largos |
+
+## Errores frecuentes
+
+- Usar una sola cifra de previsión para todo el día. Mira las horas en que realmente vas a volar.
+- Tomar el viento medio como cifra segura cuando las rachas son mucho mayores.
+- Interpretar un porcentaje bajo de lluvia como permiso para volar bajo un chubasco.
+- Usar un rango de temperatura genérico en vez del que figura en el manual de tu aparato.
+- Mirar la previsión la noche anterior y no volver a hacerlo en el punto de despegue.
+
+## Lista de comprobación previa al vuelo
+
+- Las rachas de toda la ventana están por debajo del límite de viento de tu aparato, con margen.
+- No hay tormentas previstas; hora e intensidad de la precipitación comprobadas.
+- La visibilidad y la base de las nubes cumplen los mínimos legales de tu país, comprobados para la hora de despegue y de aterrizaje.
+- La temperatura está dentro de los límites del manual; batería calentada si hace frío.
+- Diferencia entre temperatura y punto de rocío revisada por si hay niebla o condensación.
+- Índice Kp revisado para vuelos largos.
+
+## Preguntas frecuentes
+
+### ¿Qué cifra importa más?
+
+En la mayoría de vuelos, la velocidad de las rachas en tu ventana de vuelo, comparada con el límite de viento de tu aparato. Una media tranquila puede esconder ráfagas breves mucho más fuertes.
+
+### ¿Qué significa un 30 % de probabilidad de lluvia?
+
+En términos del NWS, es un 30 % de probabilidad de al menos 0,01 pulgadas de lluvia en un punto dado durante el periodo de previsión. No indica lo fuerte que será la lluvia.
+
+### ¿Qué altura mínima pueden tener las nubes para volar legalmente?
+
+Depende del país. En EE. UU., la Parte 107 exige mantener la aeronave al menos 500 pies por debajo de las nubes y 2.000 pies en horizontal, además de al menos 3 millas terrestres de visibilidad. Consulta a tu regulador.
+
+### ¿Hay que mirar el Kp para un vuelo local corto?
+
+El Kp de NOAA es un indicador global de actividad geomagnética. Es más relevante en vuelos largos o que dependen mucho del GPS y del regreso automático. Mirarlo lleva unos segundos.
+
+## Fuentes y lecturas recomendadas
+
+- [National Weather Service — Probability of Precipitation (PoP) explained](https://www.weather.gov/media/pah/WeatherEducation/pop.pdf)
+- [National Weather Service — Glossary: Gust](https://forecast.weather.gov/glossary.php?word=gust)
+- [NWS Houston/Galveston — Fog guide (PDF)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
+- [eCFR — 14 CFR 107.51 Operating limitations for small unmanned aircraft](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.51)
+- [DJI — Air 3S User Manual (PDF)](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/DJI_Air_3S_User_Manual_v1.0_en.pdf)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)

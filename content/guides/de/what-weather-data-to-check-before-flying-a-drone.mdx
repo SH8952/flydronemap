@@ -2,6 +2,7 @@
 title: "Welche Wetterdaten Sie vor einem Drohnenflug prüfen sollten"
 description: "Welche Wetterzahlen darüber entscheiden, ob ein Flug sicher ist: Wind und Böen, Niederschlag, Sicht, Temperatur, Taupunkt, Wolkenuntergrenze und Weltraumwetter."
 publishedAt: "2026-09-22"
+updatedAt: "2026-10-04"
 tags: ["preflight-checklist", "weather-data", "wind"]
 category: "weather-safety"
 image: "/guides/images/what-weather-data-to-check-before-flying-a-drone.webp"
@@ -9,42 +10,101 @@ imageCredit: "Jerry Zhang"
 imageCreditUrl: "https://unsplash.com/@z734923105?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Die meisten Wetter-Apps fassen den ganzen Tag in einem einzigen Wort zusammen — „klar", „bewölkt", „Regen" —, doch die Zahl, die für einen Drohnenpiloten tatsächlich zählt, verbirgt sich hinter dieser Zusammenfassung. „Klar" bei 5 m/s und „klar" bei 15 m/s sind zwei völlig unterschiedliche Flüge, und „teilweise bewölkt" mit einer Wolkenuntergrenze von 300 m ist ein anderer rechtlicher Rahmen als dasselbe Etikett bei 100 m. Hier eine praktische Übersicht, was Sie in welcher Reihenfolge prüfen sollten.
+Die meisten Wetter-Apps fassen den ganzen Tag in einem einzigen Wort zusammen — „klar“, „bewölkt“, „Regen“ —, doch die Zahlen, die für einen Drohnenpiloten tatsächlich zählen, verbergen sich hinter dieser Zusammenfassung. „Klar“ bei 5 m/s und „klar“ bei 15 m/s sind zwei völlig unterschiedliche Flüge, und „teilweise bewölkt“ mit tiefer Wolkenuntergrenze kann ändern, was Ihnen die Vorschriften Ihres Landes erlauben. Hier ein praktischer Überblick, was Sie in welcher Reihenfolge prüfen sollten.
 
-## Prüfen Sie den Böenwert, nicht die durchschnittliche Windgeschwindigkeit
+## Das Wichtigste in Kürze
 
-Viele Piloten werfen einen Blick auf die durchschnittliche Windgeschwindigkeit, sehen, dass sie unter dem bewerteten maximalen Windwiderstand ihres Fluggeräts liegt (typischerweise 8-10,7 m/s bei Verbraucherdrohnen), und erklären den Flug für sicher — doch es ist die Böe, nicht der Durchschnitt, die tatsächlich die Stabilität bricht. Eine Vorhersage kann einen ruhigen Durchschnitt von 6 m/s zeigen und dennoch kurze Fenster enthalten, in denen Böen auf 12-14 m/s ansteigen, und genau das sind die Momente, in denen einem Fluggerät selbst bei voller Leistung die Kontrollreserve ausgehen und es von der Position gedrückt werden kann. Beträgt die Differenz zwischen Durchschnitt und Böe — der Böenfaktor — 5 m/s oder mehr, behandeln Sie den Durchschnitt nicht als die sichere Zahl; treffen Sie die Go/No-Go-Entscheidung stattdessen anhand des Böenfensters.
+- Schauen Sie auf den Böenwert, nicht nur auf den mittleren Wind. Der US-Wetterdienst (NWS) definiert eine Böe als schnelle Schwankung der Windgeschwindigkeit mit Unterschieden von 10 Knoten (etwa 5 m/s) oder mehr zwischen Spitzen und Flauten.
+- „30 % Regenwahrscheinlichkeit“ ist die Wahrscheinlichkeit für messbaren Regen an einem Punkt, keine Aussage über die Stärke. Prüfen Sie auch Intensität und Zeitpunkt, und behandeln Sie Gewitter als eigenes Flugverbotssignal.
+- Sicht und Wolkenuntergrenze sind nicht nur Sicherheits-, sondern auch rechtliche Grenzen. In den USA verlangt Part 107 mindestens 3 Statute Miles Sicht und 500 Fuß vertikalen Abstand unter Wolken.
+- Temperatur, Taupunkt und Kp-Index brauchen jeweils einen eigenen Blick. Prüfen Sie die Grenzen im Handbuch Ihres Geräts, statt einen allgemeinen Bereich anzunehmen.
+- Prüfen Sie kurz vor dem Start noch einmal: Vorhersagen werden aktualisiert, und Bedingungen können sich innerhalb Ihres Flugfensters ändern.
 
-## Achten Sie auf Niederschlagsart und -intensität, nicht nur auf die Wahrscheinlichkeit
+## Woher die Zahlen kommen
 
-„30 % Regenwahrscheinlichkeit" zu sehen und das für niedrig genug zu halten, um zu fliegen, ist eine verbreitete Abkürzung — doch die Wahrscheinlichkeit sagt Ihnen, wie wahrscheinlich Regen ist, nicht wie stark er fallen wird, falls es dazu kommt. Ein gleichmäßiger Nieselregen unter 1 mm/h und ein unwahrscheinlicher, aber heftiger Schauer mit 10 mm/h oder mehr erfordern völlig unterschiedliche Entscheidungen. Die meisten Verbraucher-Fluggeräte ohne IP-Schutzklasse überstehen einen kurzen Nieselregen problemlos, doch wenn das Vorhersagefenster jegliche Schaueraktivität einschließt, lohnt es sich, unabhängig vom Wahrscheinlichkeitswert am Boden zu bleiben.
+Wählen Sie ein bis zwei Quellen und nutzen Sie sie immer gleich. Die Vorhersage des Wetterdienstes Ihres Landes, das Wetterfeld Ihrer Flug-App und das [Dashboard](/de) von FlyDroneMap liefern aktuelle Bedingungen. Das Dashboard zeigt zusätzlich eine stündliche 24-Stunden-Zeitleiste und ein bestes Flugfenster, was nützlich ist, weil die Frage selten lautet „Ist es jetzt gut?“, sondern „Bleibt es die 20 Minuten gut, die ich brauche?“. Was auch immer Sie nutzen: Sehen Sie sich die Stundenwerte Ihres tatsächlichen Flugfensters an, nicht die Tageszusammenfassung.
 
-## Sicht ist direkt an das gesetzliche Minimum gekoppelt
+## Wind: Böen prüfen, nicht nur den Mittelwert
 
-Sicht bedeutet nicht nur „wie weit kann ich sehen" — in den meisten Ländern ist sie direkt an das gesetzliche Minimum für Sichtflug (VLOS) gekoppelt. Part 107 der FAA verlangt beispielsweise mindestens 3 Statute Miles (etwa 4,8 km) Sicht für den Beobachter, und Nebel oder Dunst, die diese Schwelle unterschreiten, machen den Flug rundweg illegal, nicht nur riskant. An einem Tag, an dem die Sicht genau an der Grenze liegt, prüfen Sie die Vorhersage getrennt für die Startzeit und die geplante Landezeit — Nebel ist dafür bekannt, die Sicht innerhalb eines kurzen Fensters um die Dämmerung herum zu halbieren.
+Der mittlere Wind ist die Zahl, die die meisten Apps zuerst zeigen, aber es sind die Böen, die ein Fluggerät aus dem Gleichgewicht bringen. Der NWS definiert eine Böe als schnelle Schwankung der Windgeschwindigkeit mit Unterschieden von 10 Knoten oder mehr zwischen Spitzen und Flauten. In der Praxis beschreibt eine Vorhersage mit 6 m/s Mittelwind und Böen von 12 m/s einen Tag, an dem die Drohne wiederholt doppelt so starkem Wind ausgesetzt ist, wie der Mittelwert vermuten lässt.
 
-## Lesen Sie die Temperatur im Verhältnis zur Leistungskurve des Akkus
+Vergleichen Sie die Böen, nicht den Mittelwert, mit der für Ihr Gerät veröffentlichten Windgrenze. Die Grenzen unterscheiden sich je nach Modell und stehen in den Herstellerunterlagen; die Anleitung zum [Windwiderstand nach Drohnenmodell](/de/guides/drone-wind-resistance-by-model) stellt offizielle Werte zusammen. Bedenken Sie auch, dass Wind am Boden und Wind in Flughöhe nicht dasselbe sind, ein ruhiger Startplatz also keine ruhige Luft in 100 m Höhe garantiert.
 
-Wichtig ist nicht die Temperaturzahl selbst, sondern wo sie auf der Entladeleistungskurve des Akkus liegt. Die meisten Lithium-Polymer-Akkus arbeiten zwischen 15-25 °C am gleichmäßigsten; nähert man sich 0 °C oder überschreitet 35 °C, sinkt die nutzbare Flugzeit spürbar unter den angegebenen Wert. Bei einer Vorhersage unter dem Gefrierpunkt verringert es diesen Flugzeitverlust messbar, den Akku bis kurz vor dem Einbau nahe der Körpertemperatur zu halten.
+## Niederschlag: Wahrscheinlichkeit ist nicht Intensität
 
-## Die Spanne zwischen Luftfeuchtigkeit und Taupunkt signalisiert Beschlagen und Kondensation
+Der NWS definiert die Niederschlagswahrscheinlichkeit (PoP) als Wahrscheinlichkeit für mindestens 0,01 Zoll Niederschlag an einem beliebigen Punkt im Vorhersagegebiet während des angegebenen Zeitraums. Sie verbindet, wie sicher der Meteorologe ist, dass sich Niederschlag bildet, mit dem Anteil der Fläche, den er bedecken wird. „30 %“ sagt also etwas über die Wahrscheinlichkeit an einem Punkt, nicht darüber, wie stark es regnet oder wie lange.
 
-Die zu beobachtende Zahl ist nicht die Luftfeuchtigkeit allein, sondern die Spanne zwischen Temperatur und Taupunkt — verengt sich dieser Abstand auf etwa 3 Grad, wird Kondensation auf kalten Rahmenoberflächen oder der Linse deutlich wahrscheinlicher. Ein häufiger Fehler ist, ein kaltes Fluggerät direkt aus der Innenlagerung in feuchte Außenluft zu bringen; beschlägt die Linse von innen, kann das eine ungeplante Zwischenlandung mitten im Flug nur zum Freimachen bedeuten.
+Suchen Sie für den Flug die erwartete Intensität und die Stunde mit der höchsten Wahrscheinlichkeit und vergleichen Sie sie mit dem Wasserschutz Ihres Geräts. Viele Consumer-Drohnen sind nicht für Wasser ausgelegt, und Sicherheitshinweise von Herstellern, zum Beispiel von DJI, nennen Regen unter den Bedingungen, bei denen nicht geflogen werden soll. Ist im Flugfenster irgendein Gewitter vorhergesagt, ist das ein Grund, den Flug zu verschieben: Lesen Sie dazu die Anleitung zu [Blitz- und Gewittersicherheit](/de/guides/lightning-and-thunderstorm-drone-safety).
 
-## Die Wolkenuntergrenze begrenzt, wie hoch Sie legal fliegen dürfen
+## Sicht und Wolkenuntergrenze sind rechtliche Grenzen
 
-Die Wolkenuntergrenze — die Höhe der Wolkenbasis — ist besonders in der Nähe von kontrolliertem Luftraum wichtig, da die Vorschriften vieler Länder einen festgelegten horizontalen und vertikalen Abstand zu Wolken verlangen. Ist die Untergrenze bei 150 m vorhergesagt und der Plan sieht einen Aufstieg auf eine gesetzliche Obergrenze von 120 m vor, zehrt der erforderliche Wolkenabstand diesen Spielraum auf und lässt deutlich weniger reale Reserve, als die beiden Zahlen für sich genommen vermuten lassen. Die Untergrenze kann sich an einem nebligen oder tiefbewölkten Morgen auch schnell verschieben, weshalb es sich lohnt, die aktuelle Vorhersage unmittelbar vor dem Start erneut zu prüfen, statt sich auf einen mehrere Stunden alten Wert zu verlassen.
+In den USA sagt 14 CFR 107.51, dass die minimale Flugsicht, vom Standort der Kontrollstation aus beobachtet, mindestens 3 Statute Miles (etwa 4,8 km) betragen muss und dass das Fluggerät mindestens 500 Fuß unter Wolken und mindestens 2.000 Fuß horizontal von Wolken entfernt bleiben muss. Andere Länder legen eigene Werte fest; prüfen Sie daher die Behörde des Landes, in dem Sie fliegen.
 
-## Weltraumwetter (der Kp-Index) ist eine eigene Prüfung, kein Nachgedanke
+Eine praktische Folge der Wolkenregel: Fliegt das Gerät 400 Fuß über Grund, müsste die Wolkenuntergrenze mindestens 900 Fuß über Grund liegen, um den vertikalen Abstand von 500 Fuß einzuhalten. Eine tiefe Wolkenbasis kann Ihre nutzbare Höhe also verringern, selbst wenn die gesetzliche Höhengrenze höher liegt. Nebel und Dunst können die Sicht rund um Dämmerung und Morgen sehr schnell verringern.
 
-Unabhängig vom bodennahen Wetter können der Kp-Index und das Weltraumwetter, das er zusammenfasst, die GPS-Genauigkeit und die Kompasszuverlässigkeit beeinträchtigen — ein Faktor, der leicht ganz übersehen wird. Selbst an einem völlig ruhigen, klaren Tag am Boden ist ein Kp-Index von 5 oder höher ein sinnvoller Anlass, einen Langstreckenflug oder alles, was stark auf die automatische Rückkehr angewiesen ist, zu verschieben — und es lohnt sich, die Gewohnheit aufzubauen, ihn auf seinem eigenen Dashboard zu prüfen, statt anzunehmen, eine gute Bodenvorhersage decke das mit ab.
+## Temperatur: an den Grenzen Ihres Akkus messen
 
-## Vorflug-Checkliste
+Temperaturgrenzen sind modellabhängig. Als Beispiel nennt das Handbuch der DJI Air 3S einen Betriebstemperaturbereich von -10 bis 40 Grad C, sagt, die Akkukapazität sei bei Temperaturen zwischen -10 und 5 Grad C deutlich verringert, und empfiehlt, den Akku bei niedrigen Temperaturen vor dem Start auf mindestens 10 Grad C aufzuwärmen. Es gibt außerdem an, dass der Akku nur zwischen 5 und 40 Grad C lädt. Andere Geräte haben andere Grenzen; nutzen Sie die Werte aus Ihrem eigenen Handbuch.
 
-- Beurteilen Sie anhand des Böenwerts, nicht des Durchschnitts, und vergleichen Sie ihn mit dem bewerteten maximalen Windwiderstand Ihres Fluggeräts.
-- Prüfen Sie Niederschlagsintensität (mm/h) und -art, nicht nur den Wahrscheinlichkeitswert in Prozent.
-- Bestätigen Sie, dass die Sicht Ihr örtliches gesetzliches VLOS-Minimum erfüllt, getrennt geprüft für Startzeit und erwartete Landezeit.
-- Liegt die Temperatur außerhalb des stabilen Akkubereichs (etwa 15-25 °C), planen Sie Vorwärmen oder Isolierung ein.
-- Achten Sie auf eine Taupunktspanne, die sich auf 3 Grad verengt — das ist Ihr Hinweis, Kondensation oder Linsenbeschlag zu erwarten.
-- Berücksichtigen Sie in der Nähe von kontrolliertem Luftraum Wolkenuntergrenze und erforderlichen Abstand für Ihre tatsächlich nutzbare Höhe, nicht nur die gesetzliche Obergrenze.
-- Prüfen Sie das Weltraumwetter (Kp-Index) getrennt vom Bodenwetter — ein ruhiger Himmel schließt es nicht aus.
+## Taupunkt: Entscheidend ist der Abstand, nicht die Luftfeuchte
+
+Die Nebelanleitung des NWS stellt fest, dass sich Nebel bildet, wenn sich Temperatur und Taupunkt demselben Wert annähern, mit einer Differenz von weniger als 5 Grad F (etwa 3 Grad C). Ein kleiner Abstand zwischen Temperatur und Taupunkt in der Vorhersage ist daher ein Hinweis, mit Nebel oder Kondensation zu rechnen, besonders bei Windstille und klarem Himmel. Er ist auch ein Grund, Drohne und Objektiv sich anpassen zu lassen, bevor Sie sie in feuchte Luft bringen.
+
+## Weltraumwetter ist eine eigene Prüfung
+
+Das Wetter am Boden sagt nichts über das Weltraumwetter. Das Space Weather Prediction Center der NOAA beschreibt den planetaren K-Index (Kp) als ganze Zahl von 0 bis 9, wobei 1 ruhig bedeutet und 5 oder mehr einen geomagnetischen Sturm anzeigt; Kp 5 entspricht der Stufe G1 der NOAA-Skala. Die Skalentabelle nennt auf Stufe G1 keine Navigationseffekte und erwähnt Probleme bei der Satellitennavigation erst auf höheren Stufen (zum Beispiel zeitweilige Probleme bei G3); ein Kp von 5 ist also kein Beweis für ein GPS-Problem. Ihn als Anlass für mehr Vorsicht bei Langstreckenflügen oder Flügen zu nehmen, die sich auf die automatische Rückkehr stützen, ist eine vorsichtige Gewohnheit, keine Regel. Lesen Sie [was der Kp-Index ist](/de/guides/what-is-the-kp-index), bevor Sie Ihre eigene Schwelle festlegen.
+
+## Eine einfache Prüfreihenfolge
+
+| Schritt | Was prüfen | Warum |
+|---|---|---|
+| 1 | Gewitterrisiko | Hat Vorrang vor allem anderen |
+| 2 | Böen im Flugfenster | Entscheidet, ob die Drohne ihre Position halten kann |
+| 3 | Zeitpunkt und Intensität des Niederschlags | Die meisten Consumer-Drohnen sind nicht für Wasser ausgelegt |
+| 4 | Sicht und Wolkenuntergrenze | Rechtliche Grenzen und Sichtkontakt zum Gerät |
+| 5 | Temperatur und Taupunkt | Akkuleistung und Beschlagen |
+| 6 | Kp-Index | Zuverlässigkeit der Navigation bei längeren Flügen |
+
+## Häufige Fehler
+
+- Einen einzigen Vorhersagewert für den ganzen Tag verwenden. Schauen Sie auf die Stunden, in denen Sie tatsächlich fliegen.
+- Den mittleren Wind für die sichere Zahl halten, wenn die Böen viel höher liegen.
+- Eine niedrige Regenprozentzahl als Erlaubnis lesen, in einen Schauer zu fliegen.
+- Einen allgemeinen Temperaturbereich statt des Bereichs aus dem Handbuch Ihres Geräts nutzen.
+- Die Vorhersage am Vorabend prüfen und am Startplatz nicht noch einmal.
+
+## Checkliste vor dem Flug
+
+- Die Böen im gesamten Fenster liegen mit Reserve unter der angegebenen Windgrenze Ihres Geräts.
+- Keine Gewitter vorhergesagt; Zeitpunkt und Intensität des Niederschlags geprüft.
+- Sicht und Wolkenuntergrenze erfüllen die rechtlichen Mindestwerte Ihres Landes, geprüft für Start- und Landezeit.
+- Temperatur liegt innerhalb der Grenzen des Handbuchs; Akku bei Kälte aufgewärmt.
+- Abstand zwischen Temperatur und Taupunkt auf Nebel oder Kondensation geprüft.
+- Kp-Index für längere Flüge geprüft.
+
+## Häufige Fragen
+
+### Welche einzelne Zahl ist am wichtigsten?
+
+Für die meisten Flüge ist es die Böengeschwindigkeit in Ihrem Flugfenster im Vergleich zur Windgrenze Ihres Geräts. Ein ruhiger Mittelwert kann kurze, deutlich stärkere Böen verbergen.
+
+### Was bedeutet 30 % Regenwahrscheinlichkeit?
+
+Im Sinne des NWS ist es eine Wahrscheinlichkeit von 30 %, dass an einem bestimmten Punkt während des Vorhersagezeitraums mindestens 0,01 Zoll Regen fallen. Wie stark der Regen wird, sagt sie nicht.
+
+### Wie tief dürfen die Wolken für einen legalen Flug sein?
+
+Das hängt vom Land ab. In den USA verlangt Part 107, dass das Gerät mindestens 500 Fuß unter Wolken und 2.000 Fuß horizontal von ihnen entfernt bleibt, dazu mindestens 3 Statute Miles Sicht. Prüfen Sie Ihre Behörde.
+
+### Muss ich den Kp-Index auch für einen kurzen lokalen Flug prüfen?
+
+Der Kp-Index der NOAA ist ein globaler Indikator für geomagnetische Aktivität. Am wichtigsten ist er bei längeren Flügen oder Flügen, die stark auf GPS und automatische Rückkehr angewiesen sind. Ein Blick dauert nur Sekunden.
+
+## Quellen und weiterführende Links
+
+- [National Weather Service — Probability of Precipitation (PoP) explained](https://www.weather.gov/media/pah/WeatherEducation/pop.pdf)
+- [National Weather Service — Glossary: Gust](https://forecast.weather.gov/glossary.php?word=gust)
+- [NWS Houston/Galveston — Fog guide (PDF)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
+- [eCFR — 14 CFR 107.51 Operating limitations for small unmanned aircraft](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.51)
+- [DJI — Air 3S User Manual (PDF)](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/DJI_Air_3S_User_Manual_v1.0_en.pdf)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)

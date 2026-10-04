@@ -2,6 +2,7 @@
 title: "Was tun, wenn das GPS-Signal Ihrer Drohne schwach ist"
 description: "Wie Sie eine schwache GPS-Fixierung erkennen, welche Ursachen es gibt und wie Sie mitten im Flug und nach der Landung am sichersten reagieren."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["gps", "troubleshooting", "safety"]
 category: "gear-flight-tips"
 image: "/guides/images/what-to-do-when-drone-gps-signal-is-weak.webp"
@@ -9,24 +10,90 @@ imageCredit: "Shane Smith"
 imageCreditUrl: "https://unsplash.com/@byshanesmith?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Ein schwaches oder instabiles GPS-Signal verändert, wie sich Ihre Drohne verhält, und die Warnzeichen zu kennen, bevor Sie mitten im Flug sind, zählt.
+Ein schwaches oder instabiles GPS-Signal verändert das Verhalten Ihrer Drohne, und es ist wichtig, die Warnzeichen schon vor dem Flug zu kennen. Diese Anleitung erklärt, wie Sie eine schwache Verbindung erkennen, welche Ursachen üblich sind und welche ruhige Abfolge von Handlungen in der Luft und am Boden sinnvoll ist. Das Verhalten unterscheidet sich je nach Hersteller und Modell; betrachten Sie Ihr eigenes Handbuch als das letzte Wort.
 
-## Die Warnzeichen erkennen
+## Das Wichtigste in Kürze
 
-Die meisten Flug-Apps zeigen vor dem Start eine Satellitenanzahl und eine Signalstärkeanzeige — behandeln Sie eine niedrige Satellitenanzahl (üblicherweise weniger als etwa 7-10, wobei die Schwelle je nach Drohne variiert) oder eine GPS-Warnung auf dem Bildschirm als Grund zu warten, nicht als Grund, trotzdem zu starten. Im Flug sind unerwartete Drift beim Schweben oder eine Drohne, die die Position bei Wind nicht hält, wie sie es normalerweise täte, Anzeichen für eine geschwächte GPS-Fixierung.
+- Starten Sie nicht mit einer GPS-Warnung im Display. Warten Sie, wechseln Sie auf freies Gelände oder fliegen Sie an einem anderen Tag.
+- Die meisten Fälle von schwachem GPS stammen vom Standort, etwa von Himmelsabschattung und Reflexionen, nicht vom Weltraumwetter. GPS.gov nennt atmosphärische Effekte, Himmelsabschattung und Empfängerqualität als Hauptfaktoren der tatsächlichen Genauigkeit.
+- Viele Drohnen fallen auf einen Lagemodus ohne Satellitenpositionierung zurück. Das Handbuch der DJI Mini 4K sagt, dass Wind dann zu horizontalem Versatz führen kann und dass das Fluggerät nicht zum Startpunkt zurückkehren kann, wenn das GPS-Signal schwach oder nicht verfügbar ist.
+- Behalten Sie die Drohne im Blick, verringern Sie die Geschwindigkeit, bewegen Sie sich wenn möglich zu offenerem Himmel und landen Sie am nächsten sicheren, freien Platz.
+- Macht derselbe Ort an verschiedenen Tagen Probleme, behandeln Sie ihn als Standortproblem und planen Sie darum herum.
 
-## Häufige Ursachen jenseits geomagnetischer Aktivität
+## Warnzeichen erkennen
 
-Flüge in der Nähe hoher Gebäude, dichten Baumbestands, Brücken oder Metallstrukturen können alle GPS-Multipath-Störung oder Signalblockade verursachen — das ist eine weitaus häufigere Ursache für schwaches GPS als Weltraumwetter und lohnt sich, zuerst auszuschließen.
+Die meisten Flug-Apps zeigen vor dem Start einen Satellitenindikator oder einen GPS-Status. Es gibt keine allgemeingültige Satellitenzahl, die eine gute Ortung garantiert: Das Handbuch der DJI Mini 4K nennt zum Beispiel kein Minimum, und andere Hersteller verwenden eigene Schwellen. Werten Sie jede GPS-Warnung im Display, eine fehlende Bestätigung des Startpunkts oder einen dauerhaft schlechten Status als Grund zu warten, nicht als Grund, trotzdem zu starten.
 
-## Was Sie tun sollten, wenn es mitten im Flug passiert
+Im Flug sind die Zeichen:
 
-Wechseln Sie, falls Ihre Drohne es unterstützt, in einen Attitude- oder manuellen Flugmodus, der für die Stabilisierung auf Beschleunigungsmesser und Barometer statt auf GPS angewiesen ist und weniger von einer geschwächten Satellitenfixierung betroffen ist. Reduzieren Sie die Geschwindigkeit, gewinnen Sie, falls sicher möglich, etwas Höhe (offener Himmel bedeutet im Allgemeinen ein stärkeres Signal als in der Nähe von Hindernissen), und landen Sie am nächstgelegenen sicheren, offenen Ort, statt im automatisierten Modus zu versuchen, exakt zu Ihrem Startpunkt zurückzukehren.
+- Unerwartete Abdrift im Schwebeflug oder Unfähigkeit, die Position bei Wind zu halten, den die Drohne normalerweise bewältigt.
+- Eine Positionsmarkierung auf der Karte, die springt oder nicht zur tatsächlichen Position der Drohne passt.
+- Ein Wechsel des Flugmodus oder eine App-Meldung zu schwachem GPS oder zu einem Lagemodus.
+- Eine Startpunkt-Meldung, die nach dem Start nicht erscheint, sodass kein sicherer Rückkehrpunkt gespeichert ist.
 
-## Verlassen Sie sich bei einem GPS-Problem nicht allein auf die automatische Rückkehr
+## Häufige Ursachen, beginnend mit den lokalsten
 
-Die automatische Rückkehr (Return-to-Home) ist eine GPS-abhängige Funktion — bei einem echten GPS-Problem funktioniert sie möglicherweise nicht zuverlässig. Behalten Sie jederzeit das Bewusstsein für manuelle Steuerung, statt anzunehmen, die Automatik werde einen GPS-bezogenen Notfall von selbst lösen.
+Die Ursachen sind ungefähr in der Reihenfolge aufgelistet, in der sich eine Prüfung lohnt.
+
+| Ursache | Was passiert | Was hilft |
+|---|---|---|
+| Himmelsabschattung: Bäume, Brücken, Gebäude, steiles Gelände | Weniger Satelliten sind sichtbar | Von freiem Gelände mit weitem Blick zum Himmel starten |
+| Reflexionen an Glas, Wasser, Metall | Verzögerte Signalkopien verfälschen die Position; siehe [GPS-Multipath-Fehler erklärt](/de/guides/gps-multipath-error-explained-for-drone-pilots) | Vom Reflektor wegbewegen |
+| Störung | Ein lokaler Sender blockiert oder fälscht das Signal; siehe die Anleitung zu GPS-Jamming und -Spoofing | Landen, melden, das Gebiet meiden |
+| Ionosphärische Störung | Großräumige Verschlechterung bei Stürmen oder nahe dem Äquator nach Sonnenuntergang; siehe die Anleitung zur ionosphärischen Szintillation | Bedingungen prüfen, verschieben oder manuell fliegen |
+| Empfängerprobleme | Antennen-, Firmware- oder Hardwareproblem | Servicehinweisen des Herstellers folgen |
+
+GPS.gov nennt atmosphärische Effekte, Himmelsabschattung und Empfängerqualität als die drei Hauptfaktoren der Genauigkeit, die Nutzer tatsächlich erleben. Bei jedem davon ist Ihr eigener Standort der Teil, den Sie ändern können. Für die Weltraumwetterlage in Ihrer Region schauen Sie ins [FlyDroneMap-Dashboard](/de).
+
+## Vor dem Start
+
+- Schalten Sie im Freien ein und warten Sie, bis die App einen nutzbaren GPS-Status und einen aufgezeichneten Startpunkt bestätigt. Die DJI-Dokumentation zu Return to Home nennt einen erfolgreich aufgezeichneten Startpunkt unter den Bedingungen für die automatische Rückkehr.
+- Starten Sie nicht unter einem Dach, zwischen Gebäuden oder dicht an einer Glaswand.
+- Halten Sie Metall und starke Magnetquellen fern; erscheint eine Kompasswarnung, siehe [Kompasskalibrierung und magnetische Störungen](/de/guides/compass-calibration-and-magnetic-interference).
+- Prüfen Sie den Startpunkt auf der Karte. Ist er offensichtlich falsch, starten Sie an einem besseren Ort neu, statt zu fliegen.
+- Gehen Sie eine vollständige Vorflugkontrolle durch und nicht nur den GPS-Status.
+
+## Was tun, wenn es im Flug passiert
+
+1. Bleiben Sie ruhig und behalten Sie die Drohne im Blick. Schauen Sie zuerst auf das Fluggerät, dann auf den Bildschirm.
+2. Verringern Sie die Geschwindigkeit und vermeiden Sie abrupte Eingaben. Ohne Satellitenpositionierung hält die Drohne gegen Wind womöglich nicht die Position. Das Handbuch der DJI Mini 4K sagt, dass Wind im ATTI-Modus zu horizontalem Versatz führen kann.
+3. Wechseln Sie in den manuellen oder Lagemodus, den Ihr Fluggerät bietet, falls es das nicht schon getan hat. Wie das funktioniert, hängt vom Modell ab.
+4. Bewegen Sie sich zu offenerem Himmel, wenn das sicher und zulässig ist, da Himmelsabschattung einer der Hauptfaktoren der GPS-Leistung ist. Steigen Sie nicht über die zulässige Höhe und fliegen Sie nicht auf Hindernisse zu, um ein Signal zu suchen.
+5. Landen Sie am nächsten sicheren, freien Platz. Bestehen Sie nicht darauf, zum genauen Startpunkt zurückzukehren.
+
+## Verlassen Sie sich nicht allein auf die automatische Rückkehr
+
+RTH nutzt die Satellitenposition. Die DJI-Dokumentation zu RTH nennt ein starkes GPS-Signal und einen aufgezeichneten Startpunkt als Voraussetzungen für die Failsafe-Rückkehr, und das Handbuch der Mini 4K sagt, dass das Fluggerät nicht zum Startpunkt zurückkehren kann, wenn das GPS-Signal schwach oder nicht verfügbar ist. Wird das Signal nach dem Start der Rückkehr schwach, schwebt das Fluggerät laut diesem Handbuch an Ort und Stelle. Andere Marken unterscheiden sich. Welche Einstellungen Sie vorab prüfen sollten, steht in [Return-to-Home-Einstellungen erklärt](/de/guides/return-to-home-settings-explained).
+
+## Visuelle Positionierung ersetzt nicht alles
+
+Manche Drohnen haben ein nach unten gerichtetes Sichtsystem, das in geringer Höhe die Position halten hilft. Das Handbuch der DJI Mini 4K sagt, dass es über Flächen ohne klare Muster oder bei schwachem Licht nicht richtig funktionieren kann und am besten in einer Höhe von 0,5 bis 10 m arbeitet. Über Wasser, Schnee, dunklem Boden oder nachts hilft es also womöglich nicht, und oberhalb von 10 m sollte man nicht davon ausgehen, dass dieses System hilft. Prüfen Sie die Grenzen Ihres eigenen Modells.
 
 ## Nach der Landung
 
-Tritt ein schwaches Signal an derselben Stelle an verschiedenen Tagen wiederholt auf, behandeln Sie das als ortsspezifisches Problem (wahrscheinlich strukturelle Störung) statt als Einzelfall, und planen Sie künftig entsprechend.
+Kehrt ein schwaches Signal am selben Ort an verschiedenen Tagen wieder, behandeln Sie es als standortspezifisches Problem, etwa durch nahe Bauwerke oder Reflexionen, und planen Sie entsprechend. Folgt es der Drohne an verschiedene Orte, prüfen Sie Firmware, Antennenzustand und die Supportseiten des Herstellers. Notieren Sie Zeit und Ort; diese Angaben sind nützlich, falls sich Störung oder eine regionale Beeinträchtigung als Ursache herausstellt.
+
+## Häufige Fragen
+
+### Wie viele Satelliten brauche ich?
+
+Es gibt keine allgemeingültige Zahl. Das Handbuch der DJI Mini 4K nennt zum Beispiel keine Mindestzahl an Satelliten; verlassen Sie sich auf die eigenen Statusanzeigen und Warnungen Ihrer Drohne.
+
+### Kann ich einfach im Lagemodus fliegen?
+
+Bei vielen Drohnen ist das möglich, doch ohne Satellitenpositionierung kann das Fluggerät mit dem Wind abdriften und braucht aktive Steuereingaben. Tun Sie es nur, wenn Sie dafür geübt sind und sich in einem sicheren, freien Gebiet befinden.
+
+### Verursacht ein hoher Kp-Index immer schwaches GPS?
+
+Nein. Die meisten Fälle von schwachem GPS stammen vom Standort. Weltraumwetter kann GPS beeinträchtigen, doch bodennahe Ursachen sollte man zuerst ausschließen.
+
+### Was tun, wenn das GPS direkt nach dem Start ausfällt?
+
+Behalten Sie das Fluggerät im Blick, hören Sie auf zu steigen und landen Sie, sobald es sicher ist; klären Sie die Ursache dann am Boden.
+
+## Quellen und weiterführende Links
+
+- [GPS.gov — GPS Accuracy](https://www.gps.gov/systems/gps/performance/accuracy/)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)
+- [DJI — Drone RTH Logic](https://repair.dji.com/help/content?customId=en-us03400006776&spaceId=34&re=US&lang=en&documentType=artical&paperDocType=paper)
+- [ESA Navipedia — Multipath](https://gssc.esa.int/navipedia/index.php/Multipath)

@@ -2,6 +2,7 @@
 title: "Qué hacer cuando la señal GPS de tu dron es débil"
 description: "Cómo reconocer un bloqueo GPS débil, sus causas comunes más allá de la actividad geomagnética y la forma más segura de reaccionar en pleno vuelo y al aterrizar."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["gps", "troubleshooting", "safety"]
 category: "gear-flight-tips"
 image: "/guides/images/what-to-do-when-drone-gps-signal-is-weak.webp"
@@ -9,24 +10,90 @@ imageCredit: "Shane Smith"
 imageCreditUrl: "https://unsplash.com/@byshanesmith?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Una señal GPS débil o inestable cambia el comportamiento de tu dron, y conocer las señales de advertencia antes de estar en pleno vuelo es importante.
+Una señal GPS débil o inestable cambia el comportamiento de tu dron, y conocer las señales de aviso antes de estar en pleno vuelo es importante. Esta guía explica cómo reconocer un enlace débil, las causas habituales y una secuencia tranquila de acciones en el aire y en tierra. El comportamiento varía según el fabricante y el modelo, así que considera tu propio manual como la última palabra.
 
-## Reconoce las señales de advertencia
+## Puntos clave
 
-La mayoría de las apps de vuelo muestran un recuento de satélites y un indicador de intensidad de señal antes de despegar: trata un recuento bajo de satélites (por lo general menos de unos 7-10, aunque los umbrales varían según el dron) o una advertencia de GPS en pantalla como un motivo para esperar, no para despegar de todos modos. En vuelo, una deriva inesperada mientras se mantiene estacionario, o que el dron no logre mantener la posición con un viento que normalmente sí podría, son señales de que el bloqueo GPS se ha debilitado.
+- No despegues con un aviso de GPS en pantalla. Espera, muévete a terreno abierto o vuela otro día.
+- La mayoría de los casos de GPS débil vienen del lugar, como el bloqueo del cielo y las reflexiones, no del clima espacial. GPS.gov nombra los efectos atmosféricos, el bloqueo del cielo y la calidad del receptor como los factores principales de la precisión real.
+- Muchos drones pasan a un modo de actitud sin posicionamiento por satélite. El manual del DJI Mini 4K dice que entonces el viento puede provocar desplazamientos horizontales, y que la aeronave no puede volver al punto de origen si la señal GPS es débil o no está disponible.
+- Mantén el dron a la vista, reduce la velocidad, ve hacia cielo más abierto si es seguro y aterriza en el punto abierto y seguro más cercano.
+- Si el mismo lugar da problemas en días distintos, trátalo como un problema del sitio y planifica en consecuencia.
 
-## Causas comunes más allá de la actividad geomagnética
+## Reconoce las señales de aviso
 
-Volar cerca de edificios altos, arbolado denso, puentes o estructuras metálicas puede causar interferencia por multitrayecto GPS o bloqueo de señal — esta es una causa mucho más común de GPS débil que el clima espacial, y vale la pena descartarla primero.
+La mayoría de las aplicaciones de vuelo muestran un indicador de satélites o un estado del GPS antes de despegar. No existe un número universal de satélites que garantice un buen enlace: el manual del DJI Mini 4K, por ejemplo, no publica un mínimo, y otros fabricantes usan sus propios umbrales. Considera cualquier aviso de GPS en pantalla, la falta de confirmación del punto de origen o un estado que sigue siendo malo como un motivo para esperar, no para despegar de todos modos.
+
+En vuelo, las señales son:
+
+- Deriva inesperada en vuelo estacionario, o incapacidad de mantener la posición con un viento que normalmente soportaría.
+- Una marca de posición en el mapa que salta o no coincide con donde está el dron.
+- Un cambio de modo de vuelo o un mensaje de la aplicación sobre GPS débil o un modo de actitud.
+- Un mensaje de punto de origen que no aparece tras el despegue, de modo que no hay un punto de regreso seguro almacenado.
+
+## Causas habituales, empezando por las más locales
+
+Las causas se enumeran aproximadamente en el orden en que conviene revisarlas.
+
+| Causa | Qué ocurre | Qué ayuda |
+|---|---|---|
+| Bloqueo del cielo: árboles, puentes, edificios, terreno escarpado | Se ven menos satélites | Despega desde terreno abierto con amplia vista del cielo |
+| Reflexiones en vidrio, agua, metal | Copias retrasadas de la señal distorsionan la posición; consulta [el error de multitrayectoria explicado](/es/guides/gps-multipath-error-explained-for-drone-pilots) | Aléjate del reflector |
+| Interferencia | Un transmisor local bloquea o falsifica la señal; consulta la guía de interferencia y suplantación | Aterriza, notifica, evita la zona |
+| Perturbación ionosférica | Degradación en una zona amplia durante tormentas, o cerca del ecuador tras la puesta de sol; consulta la guía de centelleo ionosférico | Revisa las condiciones, retrasa el vuelo o pilota a mano |
+| Problemas del receptor | Fallo de antena, firmware o hardware | Sigue el consejo de servicio del fabricante |
+
+GPS.gov enumera los efectos atmosféricos, el bloqueo del cielo y la calidad del receptor como los tres factores principales de la precisión que los usuarios experimentan en realidad. En cada uno de ellos, el lugar es la parte que puedes cambiar. Para las condiciones de clima espacial de tu zona, consulta el [panel de FlyDroneMap](/es).
+
+## Antes de despegar
+
+- Enciende al aire libre y espera a que la aplicación confirme un estado de GPS utilizable y un punto de origen registrado. La documentación de DJI sobre Return to Home enumera un punto de origen registrado correctamente entre las condiciones del regreso automático.
+- No despegues bajo un techo, entre edificios ni junto a un muro de vidrio.
+- Mantén lejos el metal y las fuentes magnéticas fuertes; si aparece un aviso de brújula, consulta [calibración de la brújula e interferencia magnética](/es/guides/compass-calibration-and-magnetic-interference).
+- Comprueba en el mapa la ubicación del punto de origen. Si claramente es errónea, reinicia en un lugar mejor en lugar de volar.
+- Haz una revisión previa completa y no solo del estado del GPS.
 
 ## Qué hacer si ocurre en pleno vuelo
 
-Cambia a un modo de vuelo de actitud o manual si tu dron lo admite, ya que este depende del acelerómetro y el barómetro en lugar del GPS para la estabilización y se ve menos afectado por un bloqueo satelital degradado. Reduce la velocidad, gana algo de altitud si es seguro hacerlo (el cielo abierto generalmente significa una señal más fuerte que cerca de obstrucciones), y aterriza en el lugar seguro y abierto más cercano en lugar de intentar regresar a tu punto exacto de despegue en modo automático.
+1. Mantén la calma y no pierdas el dron de vista. Mira primero la aeronave y después la pantalla.
+2. Reduce la velocidad y evita movimientos bruscos. Sin posicionamiento por satélite el dron puede no mantenerse contra el viento. El manual del DJI Mini 4K dice que en modo ATTI el viento puede provocar desplazamientos horizontales.
+3. Cambia al modo manual o de actitud que ofrezca tu aeronave si no lo ha hecho ya. Cómo funciona depende del modelo.
+4. Ve hacia cielo más abierto si es seguro y legal, ya que el bloqueo del cielo es uno de los factores principales en el rendimiento del GPS. No subas por encima del límite legal de altura ni vueles hacia obstáculos para buscar señal.
+5. Aterriza en el punto abierto y seguro más cercano. No insistas en volver al punto exacto de despegue.
 
-## No dependas solo del retorno a casa durante un problema de GPS
+## No confíes solo en el retorno a casa
 
-El retorno a casa es una función que depende del GPS: durante un problema real de GPS, puede que no funcione de forma fiable. Mantén siempre conciencia del control manual en lugar de asumir que la automatización resolverá una emergencia relacionada con el GPS.
+El RTH usa la posición por satélite. La documentación de DJI sobre RTH dice que una señal GPS fuerte y un punto de origen registrado son condiciones previas del RTH de seguridad, y el manual del Mini 4K dice que la aeronave no puede volver al punto de origen si la señal GPS es débil o no está disponible. Si la señal se debilita después de iniciarse el RTH, ese manual dice que la aeronave se quedará en vuelo estacionario. Otras marcas difieren. Consulta [la configuración de Return-to-Home explicada](/es/guides/return-to-home-settings-explained) para ver los ajustes que conviene revisar de antemano.
+
+## El posicionamiento visual no sustituye todo
+
+Algunos drones tienen un sistema de visión inferior que ayuda a mantener la posición a baja altura. El manual del DJI Mini 4K dice que no puede funcionar bien sobre superficies sin patrones claros o con poca luz, y que funciona mejor a una altitud de 0,5 a 10 m. Así que sobre agua, nieve, suelo oscuro o de noche puede no ayudar, y por encima de 10 m no debe darse por hecho que ese sistema ayude. Comprueba los límites de tu propio modelo.
 
 ## Después de aterrizar
 
-Si una señal débil se repite en el mismo lugar en días diferentes, trátalo como un problema específico del sitio (probablemente interferencia estructural) en lugar de algo puntual, y planifica en consecuencia para el futuro.
+Si una señal débil se repite en el mismo lugar en días distintos, trátalo como un problema específico del sitio, como estructuras cercanas o reflexiones, y planifica en consecuencia. Si sigue al dron a lugares distintos, revisa el firmware, el estado de la antena y las páginas de soporte del fabricante. Anota la hora y el lugar; esa información es útil si la causa resulta ser una interferencia o una perturbación regional.
+
+## Preguntas frecuentes
+
+### ¿Cuántos satélites necesito?
+
+No hay un número universal. El manual del DJI Mini 4K, por ejemplo, no especifica un mínimo de satélites, así que fíate de los indicadores y avisos propios de tu dron.
+
+### ¿Puedo volar sin más en modo actitud?
+
+Es posible en muchos drones, pero sin posicionamiento por satélite la aeronave puede derivar con el viento y requiere órdenes activas. Hazlo solo si estás entrenado y en una zona abierta y segura.
+
+### ¿Un Kp alto causa siempre GPS débil?
+
+No. La mayoría de los casos de GPS débil vienen del lugar. El clima espacial puede degradar el GPS, pero conviene descartar primero las causas a nivel del suelo.
+
+### ¿Qué hago si el GPS falla justo después de despegar?
+
+Mantén la aeronave a la vista, deja de subir y aterriza en cuanto sea seguro; averigua la causa ya en tierra.
+
+## Fuentes y lecturas recomendadas
+
+- [GPS.gov — GPS Accuracy](https://www.gps.gov/systems/gps/performance/accuracy/)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)
+- [DJI — Drone RTH Logic](https://repair.dji.com/help/content?customId=en-us03400006776&spaceId=34&re=US&lang=en&documentType=artical&paperDocType=paper)
+- [ESA Navipedia — Multipath](https://gssc.esa.int/navipedia/index.php/Multipath)

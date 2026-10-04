@@ -2,12 +2,19 @@
 title: "Resistencia al viento por modelo de dron: DJI, Autel, Skydio"
 description: "Comparación de las especificaciones oficiales de resistencia al viento de drones de DJI, Autel y Skydio, y por qué conviene volar por debajo del límite."
 publishedAt: "2026-09-28"
-updatedAt: "2026-10-03"
+updatedAt: "2026-10-04"
 tags: ["wind", "gear", "dji", "autel", "skydio"]
 category: "gear-flight-tips"
 ---
 
 Cada dron tiene una resistencia máxima al viento indicada por el fabricante: la velocidad del viento con la que se supone que puede mantener su posición. Aquí tienes una comparación rápida de modelos populares, útil tanto para elegir un dron como para juzgar si el viento de hoy está dentro de los límites de tu aeronave.
+
+## Puntos clave
+
+- Las cifras de la tabla son valores de los fabricantes tomados de sus páginas oficiales de especificaciones. Van desde unos 29 km/h hasta unos 50 km/h según el modelo y la fase del vuelo.
+- La resistencia máxima indicada es un techo fijado por el fabricante, no una velocidad cómoda de trabajo. Deja un margen y juzga por las ráfagas, no por el promedio.
+- Algunos fabricantes indican valores distintos para despegue/aterrizaje y para vuelo, y Skydio usa la expresión "manejo máximo de ráfagas". Lee el texto exacto antes de comparar modelos.
+- Las ráfagas a nivel del suelo son solo una referencia: el viento a la altitud de vuelo puede ser más fuerte.
 
 ## Resistencia máxima al viento por modelo
 
@@ -27,20 +34,74 @@ Cada dron tiene una resistencia máxima al viento indicada por el fabricante: la
 
 *Las cifras se comprobaron en las páginas oficiales de especificaciones de los fabricantes el 3 de octubre de 2026. Esta actualización corrige la tabla anterior, que indicaba el Air 3, la familia Mavic 3 y el Inspire 3 con 38 km/h (10,7 m/s) y daba otras cifras para Autel y Skydio. Cuando el fabricante indica valores distintos para despegue/aterrizaje y para vuelo (Inspire 3, Autel EVO II Pro V3), se muestran ambos. Las cifras exactas pueden cambiar entre revisiones de modelo, así que consulta la página de especificaciones actual del fabricante antes de comprar o volar.*
 
+## Cómo leer las cifras
+
+Unidades: 1 m/s equivale a 3,6 km/h, por eso 12 m/s aparece como unos 43 km/h en la tabla y 10,7 m/s como unos 38 km/h. En la escala de Beaufort del Servicio Meteorológico Nacional de EE. UU. (NWS), 10,7 m/s (unas 24 mph) es el extremo superior de la fuerza 5, una "brisa fresca" en la que, según la descripción del NWS, empiezan a moverse los árboles pequeños con hojas. 12 m/s (unas 27 mph) entra en la fuerza 6, en la que se mueven las ramas grandes y resulta difícil usar paraguas.
+
+Fase del vuelo: DJI indica el Inspire 3 con 12 m/s en despegue y aterrizaje y 14 m/s en vuelo, y Autel indica el EVO II Pro V3 con hasta 10,7 m/s en despegue y aterrizaje y hasta 12 m/s en crucero. Cuando un modelo da dos valores, planifica según el más bajo, como hace la comprobación del panel que se describe más abajo.
+
+Terminología: las especificaciones técnicas de Skydio indican un "manejo máximo de ráfagas" de 12,8 m/s (28,6 mph) para el X10, mientras que las páginas de DJI usan "resistencia máxima a la velocidad del viento". No se garantiza que ambas expresiones correspondan a la misma prueba, así que, si puedes, compara modelos con la terminología de un mismo fabricante.
+
+Condiciones: DJI indica que los valores del Inspire 3 se aplican al nivel del mar, con la cámara con gimbal y el objetivo montados y sin otros accesorios. Esa indicación no cubre otras configuraciones, así que consulta tu manual para conocer las condiciones que hay detrás de la cifra de tu modelo.
+
+El manual del DJI Air 3 también indica no operar la aeronave con mal tiempo, incluidos vientos de más de 12 m/s, en línea con su página de especificaciones. El manual añade que la aeronave puede no lograr regresar a su punto de origen cuando el viento es demasiado fuerte.
+
 ## Por qué no debes tomar la cifra indicada como tu límite real de vuelo
 
-La cifra de resistencia máxima al viento del fabricante es el punto en el que la aeronave aún puede mantener su actitud en condiciones de prueba controladas — no es una garantía de imágenes estables ni de un vuelo cómodo. A medida que el viento se acerca a ese límite, la batería se agota más rápido, aumentan las vibraciones del gimbal y el temblor en las imágenes, y una ráfaga repentina sobre un viento sostenido cercano al límite puede superar momentáneamente la capacidad de control de la aeronave.
+La cifra de resistencia máxima al viento es el límite que declara el fabricante en las condiciones que especifica. No es una garantía de imágenes estables ni de un vuelo cómodo. A medida que el viento se acerca a ese límite, cabe esperar un gasto de batería más rápido, más vibración del gimbal y temblor en las imágenes, y menos reserva si llega una ráfaga repentina sobre un viento sostenido cercano a la cifra indicada.
 
-## El margen de seguridad que usan los pilotos experimentados
+## El margen de seguridad que se suele usar
 
-Muchos pilotos experimentados consideran el **60-70% de la cifra indicada** como su techo práctico. Para un dron DJI con una clasificación de 38 km/h, eso equivale a unos 23-27 km/h antes de replantearse el vuelo. Los principiantes deberían ser aún más conservadores, manteniéndose por debajo de unos 15-20 km/h mientras ganan experiencia.
+Una regla práctica que se cita con frecuencia es considerar aproximadamente el 60-70 % de la cifra indicada como techo práctico. Para un dron con una resistencia de 38 km/h, eso equivale a unos 23-27 km/h antes de replantearse el vuelo. Es una pauta orientativa, no una indicación del fabricante, y también influyen tu experiencia, la antigüedad de la aeronave, el estado de la batería y el terreno. Los principiantes deberían ser más conservadores y mantenerse por debajo de unos 15-20 km/h mientras ganan experiencia. Los umbrales prudentes de la [lista de verificación de viento y ráfagas](/es/guides/wind-gust-checklist-before-drone-flight) siguen la misma idea.
 
 ## Cómo funciona el "viento para su dron" del panel
 
 En el panel de FlyDroneMap puedes elegir uno de los modelos de arriba y las rachas actuales se comparan con la resistencia máxima oficial al viento de ese modelo. Las rachas **por debajo del 50 % del máximo se muestran como buenas, a partir del 50 % como precaución y a partir del 70 % como no recomendadas**. Para un modelo con unos 43 km/h (12 m/s), por ejemplo, la precaución empieza hacia los 22 km/h y "no recomendado" hacia los 30 km/h. Si un modelo indica valores distintos para despegue/aterrizaje y para vuelo, se usa el más bajo. La valoración es una referencia basada en las rachas a nivel del suelo y no tiene en cuenta el espacio aéreo ni la normativa.
 
+## Ráfagas a nivel del suelo frente al viento en altura
+
+La valoración del panel se basa en las ráfagas a nivel del suelo, pero la aeronave vuela en altura. El mismo [panel](/es) de FlyDroneMap muestra también las ráfagas y el viento a 10, 80 y 120 m, además de una cronología horaria de condiciones de vuelo de 24 horas, para que veas si se espera que el viento aumente con la altura o cambie a lo largo del día. Los motivos se explican en la guía sobre la [cizalladura del viento por altitud](/es/guides/wind-shear-by-altitude-and-drone-flight). Si el viento a 80-120 m se acerca a la resistencia de tu modelo o la supera, toma con cautela la valoración "buena" del nivel del suelo.
+
+Recuerda también que un dron que sale con viento de cola regresa con viento de frente. Lee [los ajustes de regreso a casa explicados](/es/guides/return-to-home-settings-explained) y deja suficiente batería de reserva.
+
+## Errores frecuentes
+
+- Tomar la cifra indicada como un objetivo en lugar de como un techo.
+- Comparar un valor de despegue/aterrizaje con un valor de vuelo de otro modelo.
+- Usar una cifra antigua tras una revisión del modelo; consulta la página de especificaciones actual del fabricante.
+- Juzgar por el viento promedio e ignorar las ráfagas.
+- Mirar solo la lectura a nivel del suelo cuando la aeronave volará a 100 m o más.
+
 ## Antes de volar
 
 - Juzga por la velocidad de las ráfagas, no por la lectura promedio del viento.
 - Confirma tu modelo exacto y su especificación oficial actual en el sitio del fabricante.
+- Comprueba el viento en altura además del viento a nivel del suelo.
 - Trata las cifras de esta página como un resumen de referencia — la especificación oficial de tu fabricante siempre es la última palabra sobre los límites de seguridad.
+
+## Preguntas frecuentes
+
+### ¿Qué dron tiene la mayor resistencia al viento de esta tabla?
+
+Entre los modelos de la tabla, el DJI Inspire 3 tiene la cifra más alta: unos 50 km/h (14 m/s) en vuelo. Su valor en despegue y aterrizaje es más bajo, unos 43 km/h (12 m/s).
+
+### ¿Una cifra más alta significa que puedo volar con ese viento?
+
+No con seguridad en el límite. La cifra es el techo del fabricante, y las ráfagas, el viento en altura y el estado de la batería reducen tu margen real.
+
+### ¿Por qué algunos modelos indican dos valores?
+
+Fabricantes como DJI (Inspire 3) y Autel (EVO II Pro V3) dan cifras separadas para despegue/aterrizaje y para vuelo o crucero. La comprobación del panel usa el valor más bajo.
+
+### ¿Cambian las cifras entre revisiones de un modelo?
+
+Pueden cambiar. Consulta siempre la página de especificaciones y el manual actuales de tu modelo exacto antes de comprar o volar.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — Air 3 specs](https://www.dji.com/air-3/specs)
+- [DJI — Inspire 3 specs](https://www.dji.com/inspire-3/specs)
+- [DJI — Air 3 User Manual v1.6](https://dl.djicdn.com/downloads/DJI_Air_3/UM/20240627/1/DJI_Air_3_User_Manual_v1.6_EN.pdf)
+- [Autel Robotics — EVO II Pro V3 Specifications: Aircraft](https://shop.autelrobotics.com/pages/evo-ii-pro-v3-specifications-aircraft)
+- [Skydio — X10 technical specs](https://www.skydio.com/x10/technical-specs)
+- [NWS — Beaufort Scale](https://www.weather.gov/mfl/beaufort)

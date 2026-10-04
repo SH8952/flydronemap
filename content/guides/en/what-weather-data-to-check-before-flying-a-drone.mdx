@@ -2,6 +2,7 @@
 title: "What Weather Data to Check Before Flying a Drone"
 description: "The weather numbers that decide whether a drone flight is safe: wind and gusts, precipitation, visibility, temperature, dew point, cloud ceiling, space weather."
 publishedAt: "2026-09-22"
+updatedAt: "2026-10-04"
 tags: ["preflight-checklist", "weather-data", "wind"]
 category: "weather-safety"
 image: "/guides/images/what-weather-data-to-check-before-flying-a-drone.webp"
@@ -9,42 +10,101 @@ imageCredit: "Jerry Zhang"
 imageCreditUrl: "https://unsplash.com/@z734923105?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Most weather apps compress the whole day into a single word — "clear," "cloudy," "rain" — but the number that actually matters to a drone pilot is hiding behind that summary. "Clear" at 5 m/s and "clear" at 15 m/s are two completely different flights, and "partly cloudy" with a 300m ceiling is a different legal envelope than the same label with a 100m ceiling. Here's a practical rundown of what to check, and in what order.
+Most weather apps compress the whole day into a single word — "clear," "cloudy," "rain" — but the numbers that matter to a drone pilot are hiding behind that summary. "Clear" at 5 m/s and "clear" at 15 m/s are two completely different flights, and "partly cloudy" with a low cloud base can change what you are allowed to do under the rules of your country. Here is a practical rundown of what to check, and in what order.
 
-## Check the gust number, not the average wind speed
+## Key takeaways
 
-A lot of pilots glance at the average wind speed, see it's under their aircraft's rated max wind resistance (typically 8-10.7 m/s for consumer drones), and call it safe — but it's the gust, not the average, that actually breaks stability. A forecast can show a calm 6 m/s average and still carry brief windows where gusts spike to 12-14 m/s, and those are exactly the moments an aircraft can run out of authority even at full power and get pushed off position. When the gap between average and gust — the gust factor — runs 5 m/s or more, don't treat the average as the safe number; make the go/no-go call based on the gust window instead.
+- Look at the gust figure, not only the average wind. The US National Weather Service (NWS) defines a gust as a rapid fluctuation of wind speed with variations of 10 knots (about 5 m/s) or more between peaks and lulls.
+- A "30% chance of rain" is a probability of measurable rain at a point, not a statement about how heavy it will be. Check intensity and timing as well, and treat thunderstorms as a separate no-fly signal.
+- Visibility and cloud base are legal limits as well as safety limits. In the US, Part 107 asks for at least 3 statute miles of visibility and 500 feet of vertical distance below clouds.
+- Temperature, dew point and the Kp index each need their own look. Check the limits in your own aircraft's manual instead of assuming a generic range.
+- Re-check right before takeoff: forecasts are updated, and conditions can change within the window you plan to fly.
 
-## Look at precipitation type and intensity, not just probability
+## Where the numbers come from
 
-Seeing "30% chance of rain" and deciding that's low enough to fly is a common shortcut, but probability tells you how likely rain is, not how hard it will fall if it does. A steady drizzle under 1mm/hr and a low-probability but sharp shower dumping 10mm/hr or more call for completely different decisions. Most consumer aircraft without an IP rating can shrug off a brief drizzle, but if the forecast window includes any shower activity, it's worth standing down regardless of what the probability number says.
+Pick one or two sources and use them the same way every time. A national weather service forecast (in the US, the NWS hourly forecast and its forecast discussion), the weather panel of your flight app, and the FlyDroneMap [dashboard](/en) all give you current conditions. The dashboard also shows a 24-hour hourly timeline and a best flying window, which is useful because the question is rarely "is it fine right now?" but "will it stay fine for the 20 minutes I need?". Whatever you use, look at the hourly values for your actual flight window, not the daily summary.
 
-## Visibility ties directly into the legal minimum
+## Wind: check the gust number, not just the average
 
-Visibility isn't just "how far can I see" — in most countries it's tied directly to the legal minimum for visual line-of-sight (VLOS) flight. FAA Part 107, for example, requires at least 3 statute miles (about 4.8 km) of visibility for the observer, and fog or haze that drops below that threshold makes the flight illegal outright, not just risky. On a day when visibility is sitting right at the margin, check the forecast separately for takeoff time and for your planned landing time — fog is notorious for cutting visibility in half within a short window around dusk.
+The average wind is the number most apps show first, but it is the gusts that disturb an aircraft. NWS defines a gust as a rapid fluctuation of wind speed with variations of 10 knots or more between peaks and lulls. In practice, a forecast showing 6 m/s average with gusts of 12 m/s describes a day when the aircraft will repeatedly face wind twice as strong as the average suggests.
 
-## Read temperature against the battery's performance curve
+Compare the gust, not the average, with the wind limit published for your aircraft. Limits differ by model and are stated in the manufacturer's documents; the guide on [wind resistance by drone model](/en/guides/drone-wind-resistance-by-model) collects official figures. Remember too that wind close to the ground and wind at flight height are not the same thing, so a calm launch site does not guarantee calm air at 100 m.
 
-What matters isn't the temperature number itself but where it falls on the battery's discharge performance curve. Most lithium-polymer batteries perform most consistently between 15-25°C; move toward 0°C or past 35°C and usable flight time drops noticeably below the rated figure. On a below-freezing forecast, keeping the battery close to body temperature until just before it goes into the aircraft measurably cuts into that flight-time loss.
+## Precipitation: probability is not intensity
 
-## Humidity and dew point spread signal fogging and condensation
+The NWS defines probability of precipitation (PoP) as the chance of at least 0.01 inch of precipitation at any given point in the forecast area during the stated period. It combines how confident the forecaster is that precipitation will form with how much of the area it will cover. So "30%" tells you about likelihood at a point, not about how hard it will rain or for how long.
 
-The number to watch isn't humidity on its own but the spread between temperature and dew point — once that gap narrows to within about 3 degrees, condensation on cold airframe surfaces or the lens becomes far more likely. A common mistake is pulling a cold aircraft straight from indoor storage into humid outdoor air; if the lens fogs from the inside, that can mean an unplanned landing mid-flight just to clear it.
+For drone flying, look for the expected intensity and the hour in which precipitation is most likely, then compare with your aircraft's rating. Many consumer aircraft are not rated for water, and manufacturer safety guidelines, for example DJI's, list rain among the conditions in which not to fly. If any thunderstorm is in the forecast for your window, treat that as a reason to move the flight: see [lightning and thunderstorm safety](/en/guides/lightning-and-thunderstorm-drone-safety).
 
-## Cloud ceiling limits how high you're legally allowed to go
+## Visibility and cloud base are legal limits
 
-Ceiling — the height of the cloud base — matters most near controlled airspace, since many countries' rules require keeping a set horizontal and vertical distance from cloud. If the ceiling is forecast at 150m and the plan is to climb to a legal cap of 120m, the required cloud clearance eats into that gap and leaves far less real margin than the two numbers suggest on their own. Ceiling can also shift fast on a foggy or low-stratus morning, so it's worth rechecking the latest forecast right before takeoff rather than trusting an hours-old number.
+In the United States, 14 CFR 107.51 says the minimum flight visibility, observed from the location of the control station, must be at least 3 statute miles (about 4.8 km), and the aircraft must stay at least 500 feet below clouds and at least 2,000 feet horizontally from clouds. Other countries set their own figures, so check the regulator for the country where you fly.
 
-## Space weather (the Kp index) is a separate check, not an afterthought
+A practical consequence of the cloud rule: with the aircraft at 400 feet above ground, the cloud base would need to be at least 900 feet above ground to keep the 500-foot vertical gap. A low ceiling can therefore reduce your usable altitude even when the legal height cap is higher. Fog and haze can cut visibility quickly around dusk and dawn.
 
-Separate from ground-level weather, the Kp index and the space weather it summarizes can affect GPS accuracy and compass reliability — a factor that's easy to overlook entirely. Even on a perfectly calm, clear day at ground level, a Kp index of 5 or higher is a reasonable trigger to postpone a long-range flight or anything that leans heavily on automatic return-to-home, and it's worth building the habit of checking it on its own dashboard rather than assuming a good ground forecast covers it.
+## Temperature: read it against your battery's limits
+
+Temperature limits are model-specific. As one example, DJI's Air 3S manual gives an operating temperature of -10 to 40 degrees C, says battery capacity is significantly reduced when flying at temperatures between -10 and 5 degrees C, and recommends warming the battery to at least 10 degrees C before takeoff in low temperatures. It also states that the battery only charges between 5 and 40 degrees C. Other aircraft have other limits, so use the figures in your own manual.
+
+## Dew point: the gap matters more than the humidity
+
+NWS fog guidance notes that fog forms when temperature and dew point approach the same value, with a spread of less than 5 degrees F (about 3 degrees C). A small temperature-dew point spread on the forecast is therefore a cue to expect fog or condensation, especially in calm, clear conditions. It is also a reason to let a cold aircraft and lens adapt before you take them into humid air;
+
+## Space weather is a separate check
+
+Ground weather says nothing about space weather. NOAA's Space Weather Prediction Center describes the planetary K-index (Kp) as an integer from 0 to 9, where 1 is calm and 5 or more indicates a geomagnetic storm; Kp 5 corresponds to the G1 level on NOAA's scale. NOAA's scale table lists no navigation effects at the G1 level and mentions satellite-navigation problems only at higher levels (for example, intermittent problems at G3), so a Kp of 5 is not proof of a GPS problem. Treating it as a reason to be more cautious on long-range flights or flights that rely on automatic return-to-home is a conservative habit, not a rule. Read [what the Kp index is](/en/guides/what-is-the-kp-index) before deciding on your own threshold.
+
+## A simple order of checks
+
+| Step | What to look at | Why |
+|---|---|---|
+| 1 | Thunderstorm risk | Overrides everything else |
+| 2 | Gusts for the flight window | Decides whether the aircraft can hold position |
+| 3 | Precipitation timing and intensity | Most consumer aircraft are not rated for water |
+| 4 | Visibility and cloud base | Legal limits and your ability to see the aircraft |
+| 5 | Temperature and dew point | Battery performance and fogging |
+| 6 | Kp index | Navigation reliability on longer flights |
+
+## Common mistakes
+
+- Using one forecast number for the whole day. Look at the hours you will actually fly.
+- Reading the average wind as the safe number when gusts are much higher.
+- Taking a low rain percentage as permission to fly into a shower.
+- Using a generic temperature range instead of the one in your aircraft's manual.
+- Checking the forecast the night before and not again at the launch site.
 
 ## Preflight checklist
 
-- Judge by the gust number, not the average, and compare it against your aircraft's rated max wind resistance.
-- Check precipitation intensity (mm/hr) and type, not just the probability percentage.
-- Confirm visibility meets your local VLOS legal minimum, checked separately for takeoff time and expected landing time.
-- If temperature falls outside the battery's stable range (roughly 15-25°C), plan for preheating or insulation.
-- Watch for a dew point spread narrowing to within 3 degrees — that's your cue to expect condensation or lens fogging.
-- Near controlled airspace, factor cloud ceiling and required clearance into your real usable altitude, not just the legal cap.
-- Check space weather (Kp index) separately from ground weather — a calm sky doesn't rule it out.
+- Gusts for the whole window are below your aircraft's stated wind limit with margin.
+- No thunderstorms forecast; precipitation timing and intensity checked.
+- Visibility and cloud base meet your local legal minimums, checked for takeoff and landing time.
+- Temperature is inside your manual's limits; battery warmed if it is cold.
+- Temperature-dew point spread checked for fog or lens condensation.
+- Kp index checked for longer flights.
+
+## FAQ
+
+### Which single number matters most?
+
+For most flights it is the gust speed in your flight window, compared with the wind limit of your aircraft. A calm average can hide short bursts that are much stronger.
+
+### What does a 30% chance of rain mean?
+
+In NWS terms, it is a 30% chance of at least 0.01 inch of rain at a given point during the forecast period. It does not tell you how heavy the rain will be.
+
+### How low can the clouds be for a legal flight?
+
+It depends on the country. In the US, Part 107 requires the aircraft to stay at least 500 feet below clouds and 2,000 feet horizontally away from them, plus at least 3 statute miles of visibility. Check your own regulator.
+
+### Do I need to check Kp for a short local flight?
+
+NOAA's Kp is a global indicator of geomagnetic activity. It is most relevant for longer flights or flights that depend heavily on GPS and automatic return-to-home. A quick look takes seconds.
+
+## Sources and further reading
+
+- [National Weather Service — Probability of Precipitation (PoP) explained](https://www.weather.gov/media/pah/WeatherEducation/pop.pdf)
+- [National Weather Service — Glossary: Gust](https://forecast.weather.gov/glossary.php?word=gust)
+- [NWS Houston/Galveston — Fog guide (PDF)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
+- [eCFR — 14 CFR 107.51 Operating limitations for small unmanned aircraft](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.51)
+- [DJI — Air 3S User Manual (PDF)](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/DJI_Air_3S_User_Manual_v1.0_en.pdf)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)

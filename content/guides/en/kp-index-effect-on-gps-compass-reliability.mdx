@@ -2,6 +2,7 @@
 title: "How the Kp Index Affects GPS and Compass Reliability"
 description: "The physical link between geomagnetic activity and reduced GPS and compass accuracy for drones, and why the compass is affected separately from GPS."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["kp-index", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/kp-index-effect-on-gps-compass-reliability.webp"
@@ -11,18 +12,91 @@ imageCreditUrl: "https://unsplash.com/@wbayreuther?utm_source=FlyDroneMap&utm_me
 
 Drones rely on GPS for position-holding and a magnetometer (electronic compass) for heading. Both can be affected when geomagnetic activity rises.
 
+## Key takeaways
+
+- The Kp index measures magnetic disturbance at the ground. GPS errors come mainly from the ionosphere, so Kp is a useful warning flag but an indirect one.
+- NOAA's storm scale lists no satellite navigation effects at Kp 5–6, intermittent problems at Kp 7, degradation for hours at Kp 8, and possibly for days at Kp 9.
+- NOAA says single-frequency GPS errors that are normally around a meter can grow to tens of meters or more in a severe storm.
+- The compass is affected through a different route: GFZ reports compass-needle deviations of a few degrees at high latitudes during strong storms.
+- Drift, circling or compass warnings have many everyday causes, so rule those out before blaming space weather.
+
 ## Why GPS degrades during geomagnetic storms
 
 Geomagnetic storms disturb the ionosphere, the charged layer of the upper atmosphere that GPS signals pass through on their way from satellites to your drone. Increased ionospheric disturbance introduces extra signal delay and scintillation (rapid signal fluctuation), which reduces position-fix accuracy and, in more severe cases, can cause temporary loss of GPS lock.
+
+NOAA describes the mechanism like this: the ionosphere bends the path of the GPS radio signal, much as a lens bends light. In calm conditions the receiver's built-in models compensate for the average effect, but space weather events make those models inaccurate. Storms can enhance electron density, shown as an increase in total electron content (TEC). NOAA notes this occurs mainly at high latitudes, although major storms can produce large enhancements at mid-latitudes as well.
+
+| Effect | What happens | Where and when it is strongest |
+|---|---|---|
+| Ionospheric delay | The signal is delayed by charged particles, so the computed distance to each satellite is off | Varies with latitude, time of day, season and solar activity |
+| Scintillation | Rapid fluctuation of signal amplitude and phase, which can prevent tracking | Strongest within about 20 degrees of the geomagnetic equator and, less severely, in auroral regions; mostly after local sunset until midnight |
+| Loss of lock | The receiver cannot keep tracking a satellite, so fewer satellites are usable | Most likely under strong scintillation or very disturbed conditions |
+
+Receiver type matters. NOAA says that single-frequency receivers normally give meter-level accuracy but that errors can increase to tens of meters or more during a severe storm, while dual-frequency receivers normally reach centimeter level but can fail when they cannot lock onto the signal. This guide has no data on what any particular drone model uses, so check your manufacturer's specifications.
+
+### What this means for the Kp number
+
+Kp does not measure any of these effects directly. NOAA's scale links Kp levels to expected technology impacts: no satellite navigation effect is listed at G1 or G2 (Kp 5–6), intermittent satellite navigation problems may occur at G3 (Kp 7), navigation is degraded for hours at G4 (Kp 8), and may be degraded for days at G5 (Kp 9). Scintillation near the equator follows the day-night cycle and does not wait for a high Kp, so a quiet Kp is not a guarantee of a clean GPS fix on an equatorial evening. For the details, see the guide on [ionospheric scintillation and drone GPS](/en/guides/ionospheric-scintillation-and-drone-gps).
 
 ## Why the compass is affected separately
 
 A drone's magnetometer measures the local magnetic field directly to determine heading. A disturbed geomagnetic field is, by definition, a less stable reference — this is the same physical phenomenon the Kp index quantifies. A compass reading during a storm can drift or "yaw" unexpectedly even when the drone hasn't physically rotated.
 
+The size of the effect is worth keeping in perspective. The Earth's field at the surface is roughly 22,000 to 67,000 nT depending on location. GFZ gives external field variations of up to about 100 nT in general and a few thousand nT during strong storms, and states that compass-needle variations of the order of a few degrees can be observed at high latitudes in strong storms. How your flight controller reacts to a shift like that depends on its firmware, which this guide cannot assess, so follow your manual.
+
 ## What this looks like to a pilot
 
 Symptoms reported during elevated Kp include: the drone's position drifting slightly in GPS mode without stick input, "toilet bowl" circling behavior on return-to-home, or a compass calibration warning that wasn't present the day before in the same location.
 
+None of these symptoms is specific to space weather. Before blaming Kp, rule out the more common causes:
+
+- A compass that has not been calibrated, or was calibrated next to metal, a vehicle or reinforced concrete (see [compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference)).
+- Few satellites or a poor fix, for example near buildings or trees (see [GPS multipath error](/en/guides/gps-multipath-error-explained-for-drone-pilots)).
+- Deliberate interference with the GPS signal (see [GPS jamming and spoofing](/en/guides/gps-jamming-and-spoofing-explained-for-drone-pilots)).
+
+If the live Kp is at storm level and the other causes are excluded, space weather becomes a plausible contributor.
+
 ## Practical takeaway
 
-At Kp 5 and above, treat GPS-assisted flight modes with extra caution — fly at lower altitude, keep the drone closer, and be ready to switch to manual/attitude mode if position-hold becomes unreliable. This is exactly why checking a live Kp reading before flying, not just wind and rain, is part of a complete preflight check.
+At Kp 5 and above, treat GPS-assisted flight modes with extra caution — keep the drone closer and within sight, and be ready to switch to manual/attitude mode if position-hold becomes unreliable. This is exactly why checking a live Kp reading before flying, not just wind and rain, is part of a complete preflight check.
+
+A short routine:
+
+1. Check the live Kp and NOAA's 3-day forecast on the [dashboard](/en) before leaving home.
+2. At the site, wait for a stable GPS fix with a healthy satellite count before taking off.
+3. Keep the aircraft within visual range when Kp is at G1 or above and confirm how to switch to manual or attitude mode in your drone's manual.
+4. Watch for position drift and be ready to land early rather than rely on return-to-home.
+
+## Common mistakes
+
+- Reading Kp as a direct GPS accuracy value. It is an indirect indicator, and the equatorial evening ionosphere can disturb GPS at a low Kp.
+- Blaming every drift or compass warning on a storm without checking local magnetic interference and satellite count.
+- Checking only at launch for a long flight. Conditions can change between 3-hour periods.
+- Assuming that being far from the poles means no effect. NOAA notes major storms can produce large TEC enhancements at mid-latitudes.
+
+## FAQ
+
+### Does a Kp of 3 guarantee good GPS?
+
+No. Kp describes ground magnetic disturbance, and ionospheric scintillation near the geomagnetic equator can affect GPS after sunset regardless of the Kp value.
+
+### Will my compass fail at Kp 5?
+
+There is no official threshold for that. GFZ reports deviations of a few degrees at high latitudes in strong storms, so local magnetic interference is usually the first thing to check.
+
+### Is dual-frequency GPS immune to storms?
+
+No. NOAA says dual-frequency receivers are normally accurate to centimeters but can become unreliable when the receiver cannot lock onto the satellite signal.
+
+### Should I land if my drone starts drifting during a storm?
+
+Switch to manual or attitude control as your manual describes and land early if position-hold does not recover. Return-to-home relies on the same GPS and compass data.
+
+## Sources and further reading
+
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [GFZ Helmholtz Centre Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)
+- [British Geological Survey — An Overview of the Earth's Magnetic Field](https://geomag.bgs.ac.uk/education/earthmag.html)
+- [NovAtel — What is ionospheric activity and how do I mitigate against the impact on GNSS?](https://novatel.com/tech-talk/ionospheric-activity)

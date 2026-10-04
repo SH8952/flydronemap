@@ -2,6 +2,7 @@
 title: "Viento solar e interferencia en las comunicaciones del dron"
 description: "Cómo la actividad solar puede afectar el enlace de radio entre un dron y su mando, y qué señales observar."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["solar-wind", "radio", "interference"]
 category: "space-weather-gps"
 image: "/guides/images/solar-wind-and-drone-communication-interference.webp"
@@ -9,20 +10,93 @@ imageCredit: "Ian Baldwin"
 imageCreditUrl: "https://unsplash.com/@ianebaldwin?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-El enlace de control y la transmisión de video de un dron dependen de frecuencias de radio que atraviesan la misma atmósfera superior que la actividad geomagnética perturba.
+El enlace de control y la transmisión de video de un dron usan frecuencias de radio, y se sabe que el clima espacial perturba algunos sistemas de radio. La pregunta útil para un piloto es cuáles se ven realmente afectados y cuáles no.
 
-## La cadena de causa y efecto
+## Puntos clave
 
-El viento solar —un flujo continuo de partículas cargadas del sol— se intensifica durante las tormentas solares y comprime y perturba la magnetosfera terrestre. Esa perturbación se transmite hasta la ionosfera, alterando cómo se refractan y propagan las señales de radio. La mayoría de los drones de consumo operan en las bandas de 2.4 GHz o 5.8 GHz, que son menos sensibles a los efectos ionosféricos que la radio HF de largo alcance, pero no son totalmente inmunes, especialmente en los límites del alcance de control de un dron.
+- El viento solar es un flujo continuo de protones y electrones que sale del Sol. Cuando es rápido o lleva un campo magnético intenso, puede provocar tormentas geomagnéticas.
+- Los efectos de radio que documentan la NOAA y otros organismos se dan en la radio HF (3 a 30 MHz), las señales de navegación de baja frecuencia y las señales de navegación por satélite (GNSS).
+- Ninguna de las fuentes usadas en esta guía dice que la actividad solar interfiera los enlaces de 2.4 GHz o 5.8 GHz de los drones de consumo. No culpes primero al Sol por un enlace de control débil.
+- Lo que un piloto puede notar de forma realista durante un clima espacial intenso es una posición por satélite degradada o un comportamiento anómalo de la brújula, no necesariamente un enlace de radio roto.
+- Las causas cotidianas, como obstáculos, orientación de la antena e interferencias electromagnéticas locales, explican con mucha más frecuencia los problemas de enlace.
 
-## Qué notan realmente los pilotos
+## Qué es el viento solar
 
-El problema más comúnmente reportado no es una pérdida total del enlace, sino una mayor inestabilidad de la señal en el alcance marginal: tartamudeos de video breves más frecuentes, o un enlace de control que avisa brevemente de interferencia en condiciones donde normalmente no lo haría, durante periodos de actividad geomagnética elevada.
+La NOAA describe el viento solar como un flujo continuo de protones y electrones, en un estado llamado plasma, que lleva hacia fuera el campo magnético del Sol. Su velocidad varía: la NOAA indica unos 400 km/s para el viento ecuatorial más lento y de 500 a 800 km/s para el viento rápido procedente de los agujeros coronales. El resumen de la NOAA es que los vientos de alta velocidad traen tormentas geomagnéticas y los lentos, un clima espacial tranquilo. Una eyección de masa coronal es un fenómeno distinto: una nube de plasma lanzada en una erupción, y la NOAA indica que las más rápidas dirigidas a la Tierra pueden llegar en 15 a 18 horas.
 
-## No atribuyas cada fallo al clima espacial
+Cuando este material y su campo magnético interactúan de forma eficiente con el entorno magnético de la Tierra, se produce una tormenta geomagnética. Según la NOAA, las tormentas pueden crear fuertes variaciones horizontales en la densidad de la ionosfera que modifican la trayectoria de las señales de radio y generan errores en el posicionamiento GPS. La ionosfera es la capa de gas cargado de la atmósfera superior y es el vínculo entre el clima espacial y la radio.
 
-La mayoría de las interrupciones del enlace de control tienen causas mucho más mundanas: congestión de Wi-Fi, obstrucciones físicas u orientación de la antena. La interferencia de origen solar es un factor real pero comparativamente raro, que vale la pena conocer pero no es lo primero que hay que sospechar.
+## Qué sistemas de radio se ven afectados
 
-## Consejo práctico
+| Sistema | Frecuencia típica | Qué documentan las fuentes |
+|---|---|---|
+| Radio HF | 3 a 30 MHz | Apagones de radio tras fulguraciones solares fuertes en el lado iluminado (escala R); radio HF degradada o bloqueada en regiones polares durante tormentas de radiación (escala S) |
+| Navegación de baja frecuencia | Baja frecuencia | Degradada o interrumpida durante apagones de radio y tormentas geomagnéticas severas |
+| GNSS (GPS y similares) | Aproximadamente 1.2 a 1.6 GHz | Retraso de trayectoria y centelleo en la ionosfera, sobre todo en latitudes altas y cerca del ecuador; ráfagas de radio solares poco frecuentes en las frecuencias del GPS |
+| Enlaces de control y vídeo del dron | 2.4 GHz y 5.8 GHz | No figuran en las tablas de escalas ni en las páginas de impactos de la NOAA |
 
-Vuela más cerca de tu alcance máximo cómodo (no el máximo absoluto del dron) durante periodos de Kp elevado, y trata cualquier advertencia inusual del enlace como una señal para acercar el dron en lugar de alejarlo más.
+El rango de frecuencias del GNSS es un dato general que no aparece en todas las páginas de las fuentes. Lo importante de la tabla es la última fila: las bandas que usa la mayoría de los drones de consumo para control y vídeo no aparecen entre los efectos documentados. Por ejemplo, el manual del DJI Mavic 3 Pro indica que su mando funciona en 2.4 y 5.8 GHz, y aclara que 5.8 GHz no está permitido en ciertas regiones.
+
+## Ráfagas de radio solares y GPS
+
+Un efecto que sí está documentado en las frecuencias de navegación por satélite es la ráfaga de radio solar. El servicio de clima espacial de la Oficina de Meteorología de Australia indica que la interferencia al GPS por ráfagas de radio solares se espera solo unas pocas veces en cada ciclo solar (de unos 11 años) y solo durante unos minutos cada vez. Durante la adquisición de señal, una ráfaga puede reducir la relación señal-ruido entre 8 y 9 dB en receptores portátiles típicos, lo que puede dificultar la adquisición de satélites, aunque un enganche ya establecido rara vez se pierde. La misma página describe un evento de 2006 en el Observatorio de Learmonth que provocó pérdida de enganche con los satélites GPS durante unas dos horas.
+
+Esa página trata de las señales GPS. No aborda los enlaces de 2.4 GHz o 5.8 GHz de los drones, así que esta guía no hace ninguna afirmación sobre ellos.
+
+## Qué implica esto para el enlace de control
+
+La mayoría de los efectos de radio documentados afectan a señales que atraviesan la ionosfera (GNSS) o rebotan en ella (HF). Un mando que se comunica con un dron suele usar un trayecto corto cerca del suelo. Es una descripción general de cómo funcionan estos enlaces y no una afirmación de una página oficial, pero encaja con que no exista ningún efecto documentado en 2.4 o 5.8 GHz.
+
+La consecuencia práctica es que lo primero que probablemente notes con un clima espacial intenso es el posicionamiento por satélite o la brújula de la aeronave, no el enlace de control. Si la aeronave indica GNSS débil, el manual de DJI dice que puede pasar a modo de actitud (ATTI), en el que puede verse más afectada por el entorno, y que puede no volver normalmente al punto de origen si el GNSS es débil o no está disponible. Consulta [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak) para ver los pasos de respuesta.
+
+## Causas más comunes de problemas de enlace
+
+El manual de DJI aconseja evitar zonas con altos niveles de electromagnetismo, como líneas eléctricas, estaciones base, subestaciones eléctricas y torres de radiodifusión, y advierte de que los edificios altos y las grandes estructuras metálicas pueden afectar a la precisión de la brújula y del GNSS. Otras causas cotidianas de un enlace débil son:
+
+- Obstáculos entre las antenas, incluidos terreno, árboles y edificios.
+- Mala orientación de la antena o un mando sostenido en un ángulo inadecuado.
+- Entornos de radio saturados en ciudades o en eventos.
+- Distancias largas, cerca del alcance máximo del sistema.
+
+El clima espacial es una explicación posible, pero comparativamente rara, de un problema de navegación. No debería ser la primera sospecha ante un problema de enlace.
+
+## Errores comunes
+
+- Suponer que cualquier fallo de vídeo en un día de Kp alto lo causa el viento solar.
+- Saltarse las comprobaciones normales (antena, ubicación, interferencias) porque "clima espacial" es una explicación cómoda.
+- Mirar solo el Kp. Una fulguración puede afectar al lado iluminado sin ningún cambio en el Kp; consulta las [escalas de clima espacial de la NOAA explicadas](/es/guides/understanding-noaa-space-weather-scales).
+- Tomar un pronóstico de clima espacial tranquilo como garantía frente a interferencias de fuentes locales.
+
+## Pasos prácticos
+
+- Consulta el Kp actual y la perspectiva a 3 días de la NOAA antes de vuelos en los que importe la precisión de posición, y mira [por qué evitar volar durante tormentas geomagnéticas](/es/guides/avoid-flying-during-geomagnetic-storms) para saber cómo usarlos.
+- Mantén la aeronave dentro de la línea de visión y fija un alcance prudente. Es una buena práctica general, y además deja margen si el GNSS o el enlace se degradan.
+- Si aparece un aviso, acerca la aeronave hacia ti en lugar de seguir alejándola, y prepárate para tomar el control manual.
+- Usa el [panel de FlyDroneMap](/es) para ver el Kp y el viento actuales, pero deja que las pantallas de estado de tu aeronave tengan la última palabra.
+
+## Preguntas frecuentes
+
+### ¿Puede el viento solar interferir el mando de mi dron?
+
+Ninguna de las fuentes revisadas para esta guía documenta que el viento solar o las fulguraciones interfieran enlaces de control de 2.4 GHz o 5.8 GHz. Los efectos de radio documentados se dan en la radio HF, la navegación de baja frecuencia y el GNSS.
+
+### ¿Qué diferencia hay entre el viento solar y una fulguración solar?
+
+El viento solar es un flujo continuo de plasma, mientras que una fulguración es una ráfaga de radiación que llega a la Tierra a la velocidad de la luz. Una eyección de masa coronal, que puede acompañar a una fulguración, es una nube de plasma aparte que tarda de horas a días en llegar.
+
+### ¿Qué señal tiene más probabilidades de verse afectada, el enlace de control o el GPS?
+
+Las fuentes apuntan a las señales GNSS más que al enlace de control. Las perturbaciones ionosféricas pueden retrasar o alterar las señales GNSS, sobre todo en latitudes altas.
+
+### ¿Debo volar durante una tormenta geomagnética?
+
+Depende de tu aeronave, de la misión y de las normas locales, y ninguna guía puede decidirlo por ti. Si vuelas, ten en cuenta que el GNSS y la brújula pueden ser menos fiables y planifica una alternativa manual.
+
+## Fuentes y lecturas recomendadas
+
+- [NOAA Space Weather Prediction Center — Solar Wind](https://www.spaceweather.gov/phenomena/solar-wind)
+- [NOAA Space Weather Prediction Center — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [Australian Bureau of Meteorology Space Weather Services — GPS Interference By Solar Radio Bursts](https://www.sws.bom.gov.au/Educational/1/3/10)
+- [DJI — Mavic 3 Pro User Manual](https://dl.djicdn.com/downloads/DJI_Mavic_3_Pro/20230425/DJI_Mavic_3_Pro_User_Manual_EN.pdf)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)

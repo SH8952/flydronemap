@@ -2,6 +2,7 @@
 title: "Was ist LAANC und warum es für Drohnenpiloten wichtig ist"
 description: "Wie das automatisierte Luftraumgenehmigungssystem LAANC der FAA funktioniert, wann ein Antrag nicht automatisch erfolgt und wann Sie es brauchen."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["laanc", "faa", "authorization"]
 category: "us-airspace-regulations"
 image: "/guides/images/what-is-laanc-and-why-it-matters.webp"
@@ -11,22 +12,80 @@ imageCreditUrl: "https://unsplash.com/@lukassouza?utm_source=FlyDroneMap&utm_med
 
 LAANC (Low Altitude Authorization and Notification Capability) ist das System der FAA, um Drohnenpiloten nahezu in Echtzeit eine Genehmigung für Flüge in kontrolliertem Luftraum zu erteilen.
 
+## Das Wichtigste in Kürze
+
+- LAANC ist eine Zusammenarbeit von FAA und Industrie. Piloten beantragen die Genehmigung über von der FAA zugelassene UAS Service Supplier, per App oder am Desktop.
+- Es deckt kontrollierten Luftraum in 400 ft oder tiefer ab, und Anträge innerhalb der Obergrenze der UAS Facility Map können nahezu in Echtzeit genehmigt werden.
+- Part-107-Piloten und Freizeitpiloten können es nutzen, aber nur Part-107-Piloten können eine weitere Abstimmung über der Kartenobergrenze beantragen.
+- Flughäfen ohne LAANC nutzen das langsamere, manuelle Verfahren über FAA DroneZone.
+- LAANC erteilt ausschließlich eine Luftraumgenehmigung. NOTAMs, TFRs, Wetter und alle übrigen Regeln bleiben Ihre Verantwortung.
+
 ## Welches Problem es löst
 
-Vor LAANC bedeutete ein Flug in kontrolliertem Luftraum in der Nähe eines Flughafens, einen manuellen Antrag einzureichen und zu warten — manchmal tagelang — bis ein menschlicher Prüfer bei der FAA antwortete. LAANC automatisiert diesen Prozess für vorab genehmigte Höhen und Orte und liefert eine Genehmigung typischerweise innerhalb von Sekunden bis Minuten über eine von der FAA zugelassene App.
+Ein Flug in kontrolliertem Luftraum in der Nähe eines Flughafens erfordert eine vorherige ATC-Genehmigung. Vor der Automatisierung bedeutete das einen manuellen Antrag, der von Menschen geprüft wurde. Die FAA-Seite für Part-107-Piloten gibt an, dass manuelle Anträge über FAA DroneZone in den Air Traffic Service Centers der FAA von Hand bearbeitet werden und die Bearbeitung bisher bis zu acht Wochen gedauert hat. LAANC automatisiert den Regelfall: Ein Antrag für eine Höhe, auf die sich Flughafen und ATC bereits geeinigt haben, kann über eine von der FAA zugelassene App nahezu in Echtzeit beantwortet werden.
 
 ## Wie es in der Praxis funktioniert
 
-LAANC nutzt UAS Facility Maps — Raster, die über kontrolliertem Luftraum in der Nähe von Flughäfen liegen und die maximale Höhe festlegen, für die eine Drohne in jeder Rasterzelle genehmigt werden kann, basierend auf Abstimmung mit dem Flughafen und der Flugsicherung. Ein Pilot beantragt über eine zugelassene App eine Genehmigung für einen bestimmten Ort und eine bestimmte Höhe; liegt der Antrag innerhalb der vorab genehmigten Rasterobergrenze, wird er automatisch erteilt.
+LAANC stützt sich auf UAS Facility Maps. Das sind Raster über dem kontrollierten Luftraum um Flughäfen mit Kontrollturm, die die maximale Höhe angeben, in 50-ft-Schritten von 0 bis 400 ft AGL, bis zu der eine Kleindrohne ohne gesonderte Abstimmung mit der Dienststelle genehmigt werden kann. Die Flugsicherungsanweisung der FAA legt fest, dass Flüge, die auf oder unter der für ein Rastersegment angegebenen Höhe beantragt werden, ohne Abstimmung mit der Dienststelle genehmigt werden, und dass ein Wert von null bedeutet, dass ohne diese Abstimmung keine UA-Flüge genehmigt werden. Der zuständige Flugverkehrsleiter überprüft die Karten mindestens jährlich oder bei Änderungsbedarf.
+
+Ein Pilot beantragt über einen zugelassenen UAS Service Supplier eine Genehmigung für einen bestimmten Ort, eine bestimmte Zeit und eine bestimmte Höhe. Liegt der Antrag innerhalb der vorab genehmigten Obergrenze, wird er automatisch erteilt. Anträge sind bis zu 90 Tage im Voraus möglich, und die FAA weist darauf hin, dass Drohnenpiloten den Turm vor dem Flug nicht benachrichtigen müssen, es sei denn, die Genehmigung verlangt es ausdrücklich.
+
+## Wer es nutzen kann
+
+| Pilotentyp | Voraussetzungen | LAANC nahezu in Echtzeit | Weitere Abstimmung |
+|---|---|---|---|
+| Part 107 | Drohne registrieren und ein Remote Pilot Certificate besitzen | Ja | Ja |
+| Freizeit (Section 44809) | Drohne registrieren und den TRUST-Test bestehen | Ja | Nein |
+
+Die FAA führt auf ihrer LAANC-Seite eine Reihe zugelassener UAS Service Supplier auf. Sie unterscheiden sich in den unterstützten Plattformen und den angebotenen Genehmigungsarten. Wählen Sie also einen, der zu Ihrem Gerät und Ihrem Einsatz passt. Die Unternehmen, die den B4UFLY-Dienst der FAA bereitstellen, sind zugleich von der FAA zugelassene UAS Service Supplier für LAANC.
 
 ## Wenn ein Antrag nicht automatisch erfolgt
 
-Müssen Sie höher fliegen als die genehmigte Obergrenze einer Rasterzelle, kann LAANC weiterhin einen weiteren Abstimmungsantrag einreichen, doch die Genehmigung erfolgt dann nicht sofort und ist nicht garantiert. Mancher sensibler Luftraum ist vollständig von LAANC ausgeschlossen und erfordert ein anderes Antragsverfahren.
+Müssen Sie höher fliegen als die Obergrenze einer Rasterzelle, können Part-107-Piloten einen Antrag auf weitere Abstimmung bis zu 400 ft stellen. Die FAA-Seite zu Part 107 gibt an, dass diese Anträge mindestens 72 Stunden vor der gewünschten Startzeit eingereicht werden müssen und dass die Dienststelle sie genehmigen, mit Auflagen wie zeitlichen oder Höhenbeschränkungen versehen oder ablehnen kann. Die Genehmigung erfolgt nicht sofort und ist nicht garantiert. Freizeitpiloten müssen auf oder unter der Höhe der Facility Map bleiben.
+
+Ist der nächstgelegene Flughafen nicht für LAANC freigeschaltet, wird stattdessen der manuelle Weg über FAA DroneZone genutzt. Die LAANC-Seite der FAA nannte bei der Aktualisierung dieses Artikels 726 Flughäfen mit LAANC. Diese Zahl kann sich ändern, prüfen Sie daher die aktuelle Seite und die Abdeckungskarte Ihres Anbieters.
+
+## Was LAANC nicht leistet
+
+Die FAA stellt ausdrücklich klar, dass LAANC ausschließlich Luftraumgenehmigungen liefert. Piloten müssen weiterhin NOTAMs und Wetterbedingungen prüfen und alle Luftraumbeschränkungen einhalten. Eine LAANC-Genehmigung hebt keine TFR auf und ersetzt weder die Sichtverbindung noch die übrigen Betriebsregeln. Siehe unsere Leitfäden zu [TFRs](/de/guides/temporary-flight-restrictions-tfr-explained) und zu den [Grundlagen von Part 107](/de/guides/faa-part-107-explained).
 
 ## Warum das auch wichtig ist, wenn Sie selten in der Nähe von Flughäfen fliegen
 
-Luftraumgrenzen reichen oft weiter, als viele Piloten erwarten, und ein Ort, der wie offenes Land wirkt, kann dennoch innerhalb eines bodennahen Bereichs der Klasse D oder E liegen, der an einen nahen kleinen Flughafen gebunden ist. Zu prüfen, ob Sie eine LAANC-Genehmigung benötigen — statt einfach anzunehmen, dass Sie es nicht tun —, gehört zu einer verantwortungsvollen Vorflugplanung.
+Luftraumgrenzen reichen oft weiter, als viele Piloten erwarten, und ein Ort, der wie offenes Land wirkt, kann dennoch innerhalb eines bodennahen Bereichs der Klasse D oder E liegen, der an einen nahen kleinen Flughafen gebunden ist. Zu prüfen, ob Sie eine LAANC-Genehmigung benötigen — statt einfach anzunehmen, dass Sie es nicht tun —, gehört zu einer verantwortungsvollen Vorflugplanung. Zu den Klassen selbst lesen Sie die [US-Luftraumklassen](/de/guides/understanding-us-airspace-classes), und für die vollständige Routine die [Prüfpunkte vor dem Flug in Flughafennähe](/de/guides/checks-before-flying-near-an-airport).
 
 ## Die Rolle dieses Dashboards
 
-Die auf dem Dashboard dieser Website angezeigten Luftraum-Obergrenzendaten spiegeln dieselben UAS-Facility-Map-Daten der FAA wider, auf die auch LAANC zurückgreift — rein zu Informationszwecken. Bestätigen Sie die tatsächliche Genehmigung vor einem Flug in kontrolliertem Luftraum stets über einen zugelassenen LAANC-Anbieter oder FAADroneZone.
+Die Obergrenzendaten auf dem [Dashboard](/de) von FlyDroneMap spiegeln UAS-Facility-Map-Daten der FAA wider, wie sie auch LAANC nutzt, rein zu Informationszwecken. Siehe auch die [Seite zu den US-Vorschriften](/de/regulations/us). Bestätigen Sie die tatsächliche Genehmigung vor einem Flug in kontrolliertem Luftraum stets über einen zugelassenen LAANC-Anbieter oder FAA DroneZone.
+
+## Häufige Fehler
+
+- Die Dashboard-Obergrenze als Genehmigung behandeln. Sie ist eine Orientierung, keine Erlaubnis.
+- Mehr Höhe beantragen als nötig und sich dann über die Verzögerung durch die weitere Abstimmung wundern.
+- Vergessen, dass sich Karten ändern. Die Werte der Facility Maps werden überprüft und angepasst, stellen Sie daher jedes Mal einen neuen Antrag.
+- Annehmen, dass eine Genehmigung weitere Prüfungen überflüssig macht.
+
+## Häufige Fragen
+
+### Wie weit im Voraus kann ich eine Genehmigung beantragen?
+
+Die FAA gibt an, dass Anträge bis zu 90 Tage vor dem Flug eingereicht werden können. Eine Genehmigung nahezu in Echtzeit ist für Anträge innerhalb der Obergrenze der Facility Map möglich.
+
+### Können Freizeitpiloten LAANC nutzen?
+
+Ja, nach der Registrierung der Drohne und bestandenem TRUST. Sie müssen auf oder unter der Höhe der Facility Map fliegen und können keine weitere Abstimmung beantragen.
+
+### Was bedeutet eine Obergrenze von null?
+
+Sie bedeutet, dass in dieser Rasterzelle ohne Abstimmung mit der Dienststelle kein Flug genehmigt wird. Part-107-Piloten können eine weitere Abstimmung beantragen. Freizeitpiloten sollten dort ohne Genehmigung nicht fliegen.
+
+### Muss ich nach der LAANC-Genehmigung den Turm anrufen?
+
+Nein, es sei denn, die Genehmigung verlangt es ausdrücklich, so die FAA.
+
+## Quellen und weiterführende Links
+
+- [FAA — UAS Data Exchange (LAANC)](https://www.faa.gov/uas/getting_started/laanc)
+- [FAA — Airspace Authorizations for Recreational Flyers](https://www.faa.gov/uas/recreational_flyers/authorization)
+- [FAA — Part 107 Airspace Authorizations](https://www.faa.gov/uas/commercial_operators/part_107_airspace_authorizations)
+- [FAA — Order JO 7210.3, Section 10: UAS Facility Maps](https://www.faa.gov/air_traffic/publications/atpubs/foa_html/chap12_section_10.html)
+- [FAA — B4UFLY](https://www.faa.gov/uas/getting_started/b4ufly)

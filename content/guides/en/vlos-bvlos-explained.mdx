@@ -2,22 +2,72 @@
 title: "VLOS vs. BVLOS: What's the Difference?"
 description: "What VLOS (Visual Line of Sight) and BVLOS (Beyond Visual Line of Sight) mean, and why most hobbyist flights are restricted to VLOS."
 publishedAt: "2026-09-28"
+updatedAt: "2026-10-04"
 tags: ["vlos", "bvlos", "regulations", "glossary"]
 category: "glossary"
 ---
 
 VLOS (Visual Line of Sight) means flying a drone only within a range where the pilot (or an observer) can see it continuously with the naked eye, without aids like binoculars or a screen. BVLOS (Beyond Visual Line of Sight) means the drone flies outside that range, relying on a camera feed or autonomous navigation instead.
 
-## Why the distinction matters
+## Key takeaways
 
-In most countries, standard hobbyist and commercial drone rules are built around VLOS as the default. The FAA's Part 107 in the US, and similar frameworks elsewhere, assume the pilot can visually spot and avoid nearby manned aircraft and obstacles at all times.
+- VLOS is the default assumption in the US, EU, Japan and Korea. Flying beyond it normally needs a waiver, authorization or approval.
+- Under 14 CFR 107.31, the pilot (or a visual observer) must see the aircraft with unaided vision (corrective lenses are fine) throughout the flight. A camera screen does not count.
+- Being able to see the drone on screen but not with your own eyes means you are in BVLOS territory, even if you didn't plan it.
+- Rules differ by country and change over time, so check the regulator before relying on any exception.
+
+## What "line of sight" actually requires
+
+The US rule, 14 CFR 107.31, says the remote pilot in command, the person manipulating the flight controls, and the visual observer (if one is used) must be able to see the aircraft throughout the flight with unaided vision, other than corrective lenses. The purpose is to let them know where the aircraft is, determine its attitude, altitude and direction, observe the surrounding airspace for other traffic or hazards, and confirm it doesn't endanger life or property. The requirement can be met by the pilot and the person on the controls, or by a visual observer.
+
+The regulation does not set a fixed distance. How far you can actually see the drone depends on its size, lighting, weather and obstacles. The Korean government's legal guidance describes visual range in the same way: a distance at which the pilot can no longer confirm the drone's attitude by eye, which varies with the size of the aircraft, the weather and obstacles.
+
+## How different regulators treat it
+
+| Region | VLOS wording | Beyond VLOS |
+|---|---|---|
+| US | 14 CFR 107.31, unaided vision | 107.31 is on the FAA's list of waivable provisions |
+| EU | Regulation (EU) 2019/947 defines VLOS as the remote pilot maintaining continuous unaided visual contact with the unmanned aircraft; BVLOS is any operation not conducted in VLOS | In the open category the pilot must keep the aircraft in VLOS, with exceptions such as follow-me mode or using an unmanned aircraft observer (Article 4(1)(d)) |
+| Japan | MLIT describes direct monitoring with the naked eye, excluding binoculars and monitors | MLIT lists BVLOS among flights that need approval |
+| Korea | Visual range is where the pilot can recognize the drone's state by eye | Flights outside visual range need a special flight approval, applied for through the Drone One-Stop service |
 
 ## Why BVLOS gets special treatment
 
-Once a drone is out of sight, the pilot can't visually detect and avoid hazards, so BVLOS flights typically require a separate waiver or authorization, plus extra equipment like detect-and-avoid systems. Much of the drone industry's growth — package delivery, long-distance infrastructure inspection — hinges on relaxed BVLOS rules, which is why aviation authorities worldwide are actively updating BVLOS regulations.
+Once a drone is out of sight, the pilot can't visually detect and avoid hazards such as manned aircraft. That is why regulators ask for something extra: in the US a waiver of 107.31, and elsewhere a special approval, authorization or an operational authorization.
 
-## What pilots should know
+The FAA has also published a proposed rule, often called Part 108, intended to make BVLOS operations such as package delivery, agriculture and aerial surveying more routine. The FAA's fact sheet presents it as a proposal and gives no effective date, so check the FAA for the current status instead of assuming it applies.
 
-- Without special authorization, ordinary pilots are generally limited to flying within VLOS.
-- Fog, nighttime, or a drone passing behind a building — anything where you can see it on-screen but not with your own eyes — can put you in BVLOS territory without realizing it.
-- Using a visual observer to maintain eyes on the drone is an accepted way to stay VLOS-compliant under some rules.
+## When you can slip into BVLOS without noticing
+
+- Fog, haze or low light that hides the aircraft while its video feed still looks fine. See the [fog safety guide](/en/guides/flying-in-fog-safety-guide) and the [visibility standards guide](/en/guides/visibility-and-safe-drone-flight-standards).
+- A drone that passes behind a tree line, building or hill.
+- Flying by the FPV or camera view alone.
+- Distance. A small drone can become impossible to see well before it reaches the link range.
+- Dusk and night, which bring their own rules; see the [night flying guide](/en/guides/night-flying-rules-for-drone-pilots).
+
+## Using a visual observer
+
+Under 14 CFR 107.33, the remote pilot in command, the person on the controls and the visual observer must keep effective communication at all times, and the visual observer must be positioned so the aircraft can be seen as 107.31 requires. An observer extends who is watching the aircraft; it does not remove the line-of-sight requirement. For waiver basics, see the [Part 107 waiver guide](/en/guides/how-to-get-a-part-107-waiver).
+
+## FAQ
+
+### Is VLOS the same as flying within the range of the controller?
+No. Range is a radio-link limit. VLOS is about whether you can actually see the aircraft with your own eyes.
+
+### Can I use binoculars or the camera view to stay VLOS?
+Under the US rule, no: unaided vision is required, apart from corrective lenses. The Japanese MLIT description likewise excludes binoculars and monitors.
+
+### Can a visual observer make a flight BVLOS-legal?
+In the US, an observer is one accepted way to satisfy 107.31, but the aircraft must still be seen throughout the flight. For true BVLOS you need a waiver or the equivalent approval in your country.
+
+### Will BVLOS rules be relaxed?
+Regulators are working on it, and the FAA has proposed a rule, but a proposal is not law. Check the regulator's current page before planning a flight.
+
+## Sources and further reading
+
+- [eCFR — 14 CFR 107.31, Visual line of sight aircraft operation](https://www.ecfr.gov/current/title-14/chapter-I/subchapter-F/part-107/subpart-B/section-107.31)
+- [FAA — Part 107 waivers](https://www.faa.gov/uas/commercial_operators/part_107_waivers)
+- [FAA — Beyond Visual Line of Sight (BVLOS) fact sheet](https://www.faa.gov/newsroom/fact_sheets/Fact_Sheet_BVLOS.pdf)
+- [EUR-Lex — Commission Implementing Regulation (EU) 2019/947](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019R0947)
+- [MLIT Japan — Methods of flight (飛行の方法)](https://www.mlit.go.jp/koku/koku_fr10_000041.html)
+- [Korea Easy Law — Special flight approval (특별비행승인)](https://easylaw.go.kr/CSP/CnpClsMain.laf?popMenu=ov&csmSeq=1814&ccfNo=3&cciNo=1&cnpClsNo=2)

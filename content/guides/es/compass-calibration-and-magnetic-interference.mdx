@@ -2,6 +2,7 @@
 title: "Calibración de brújula e interferencia magnética"
 description: "Por qué la brújula del dron se desvía cerca de varillas de refuerzo y coches, cómo distinguir el hierro duro de una tormenta geomagnética y cómo calibrarla."
 publishedAt: "2026-09-05"
+updatedAt: "2026-10-04"
 tags: ["compass", "calibration", "magnetic-interference", "gps"]
 category: "space-weather-gps"
 image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
@@ -9,28 +10,83 @@ imageCredit: "Mick Haupt"
 imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Si alguna vez tu dron despegó trazando una espiral lenta y descontrolada —el llamado "efecto inodoro" (toilet bowl effect)— justo después de una calibración que creías correcta, la causa casi siempre es el lugar donde calibraste, no el procedimiento en sí. Los fallos de calibración de la brújula y la interferencia magnética están entre los incidentes de vuelo que los pilotos atribuyen con más frecuencia a un error de firmware o a una mala señal GPS, cuando el verdadero problema es un campo magnético distorsionado por algo metálico a pocos metros de distancia.
+Si tu dron alguna vez despegó describiendo una espiral perezosa y no ordenada, el llamado efecto "toilet bowl", justo después de una calibración que creías correcta, la causa suele ser el lugar donde calibraste y no el procedimiento de calibración en sí. Los problemas de brújula y la interferencia magnética se confunden fácilmente con un error de firmware o un mal enlace GPS, cuando el problema real puede ser un campo magnético distorsionado por algo metálico cercano.
+
+## Puntos clave
+
+- La brújula del dron mide el campo magnético local para obtener el rumbo. Todo lo que distorsione ese campo cerca de la aeronave, como acero en el suelo o un teléfono en tu bolsillo, distorsiona el rumbo.
+- DJI indica a los pilotos que no calibren cerca de campos magnéticos fuertes ni de grandes estructuras metálicas, y cita ejemplos como estructuras de aparcamiento, sótanos con refuerzo de acero y puentes.
+- La calibración la solicita la propia aeronave, por ejemplo tras largos periodos sin uso o cuando aparece un aviso. Los intervalos difieren según el fabricante, y ArduPilot dice que no es necesario recalibrar en un lugar nuevo.
+- ArduPilot describe la interferencia magnética como causa de giros en círculo (toilet-bowling) en los modos loiter, RTL y auto de los multirrotores.
+- Un aviso de brújula que se repite en el mismo punto de despegue, cualquier día, apunta a interferencia local y no al clima espacial.
 
 ## Por qué la brújula necesita calibrarse
 
-La brújula integrada del dron (magnetómetro) mide la dirección y la intensidad del campo magnético local para determinar el rumbo, y sus lecturas se desvían ligeramente cada vez que viajas a un lugar nuevo o vuelas después de meses de almacenamiento, porque los motores, el cableado y la batería del propio dron se magnetizan muy levemente con el tiempo y desplazan el offset de referencia del sensor. La calibración enseña al controlador de vuelo a restar de nuevo ese offset específico de la aeronave. Esto es distinto de la declinación magnética —la diferencia de varios grados entre el norte verdadero y el norte magnético, que varía según la ubicación— que el controlador de vuelo corrige automáticamente a partir de su posición GPS y no requiere recalibración para solucionarse.
+La brújula integrada del dron (magnetómetro) mide la dirección y la intensidad del campo magnético local para determinar el rumbo. La propia electrónica de la aeronave, como los motores, la batería y el cableado, también crea campos magnéticos cerca del sensor, y el controlador de vuelo tiene que aprender a separarlos del campo terrestre. La calibración, que suele consistir en girar la aeronave siguiendo un patrón indicado, es como lo aprende.
 
-## Interferencia de hierro duro: el lugar de calibración suele ser el problema
+Esto es distinto de la declinación magnética, el ángulo entre el norte magnético y el norte verdadero. NOAA describe la declinación como variable según el lugar y el tiempo, y señala que su Modelo Magnético Mundial es el modelo estándar para los sistemas de navegación y rumbo y viene preinstalado en los teléfonos. ArduPilot documenta que sus modelos magnéticos integrados hacen que no haga falta recalibrar solo por volar en un lugar nuevo. Consulta qué dice tu fabricante para tu modelo.
 
-La interferencia de hierro duro proviene de una fuente de magnetismo fija y cercana: varillas de refuerzo bajo un estacionamiento o acera de concreto, tapas de alcantarilla de acero, el chasis de un coche estacionado, o incluso hebillas de cinturón grandes y teléfonos en el bolsillo del piloto mientras realiza la rutina de calibración. El concreto reforzado con varillas es un culpable frecuente porque parece un lugar de despegue perfectamente abierto y plano, mientras oculta una densa malla de acero a apenas 5-10 cm bajo la superficie. Un magnetómetro calibrado a 1-2 metros sobre varillas de refuerzo o el parachoques de un coche incorpora esa distorsión local directamente en su offset almacenado, y el dron después vuela con un error de rumbo que puede ir de unos pocos grados a más de 30 grados según la cercanía e intensidad de la fuente interferente. La práctica más segura es calibrar al menos a 5-6 metros de cualquier vehículo, valla metálica o tapa de alcantarilla, y sobre tierra o asfalto en lugar de directamente sobre una losa reforzada con varillas.
+## Cuándo dicen los fabricantes que hay que calibrar
+
+El manual del DJI Mini 4K indica calibrar al volar en un lugar a más de 31 millas (50 km) de donde se voló por última vez, cuando la aeronave lleva más de 30 días sin volar, o cuando aparece un aviso de interferencia de la brújula en la aplicación o la luz de estado alterna rojo y amarillo. La guía en línea de DJI sobre la brújula dice que la aplicación solicita la calibración durante el vuelo o tras un largo periodo de inactividad, y que la batería debe estar al menos al 50 %. Estas cifras son de DJI y varían según el modelo; ArduPilot adopta la postura contraria para su propia plataforma. Sigue las indicaciones de tu aeronave.
+
+## Interferencia cerca del lugar de calibración
+
+Entre las fuentes fijas de magnetismo cerca de la aeronave están el acero de refuerzo del hormigón, las grandes estructuras metálicas, los vehículos y los equipos eléctricos. La guía de brújula de DJI dice que no hay que calibrar cerca de campos magnéticos fuertes ni de grandes piezas de metal, como grandes equipos eléctricos, aparcamientos, barcos o edificios con columnas de acero subterráneas. El manual del Mini 4K añade que no hay que calibrar cerca de depósitos de magnetita ni de grandes estructuras metálicas como estructuras de aparcamiento, sótanos con refuerzo de acero o puentes, y que no hay que llevar cerca de la aeronave durante la calibración objetos con material ferromagnético, como teléfonos móviles. ArduPilot da consejos similares y añade ordenadores, escritorios metálicos y fuentes de alimentación, y recomienda sacar los aparatos electrónicos de los bolsillos.
+
+Un lugar que parece una plataforma de despegue abierta y plana puede estar sobre acero enterrado, así que un lugar de buen aspecto no es prueba de un lugar limpio.
+
+## Interferencia de la propia aeronave
+
+La documentación de ArduPilot para multirrotores de construcción propia explica que los cables de la placa de distribución de energía, de los controladores de velocidad y de la batería generan campos magnéticos importantes, y sugiere montar una brújula externa o un módulo GPS con brújula en un mástil, arriba y lejos de esas fuentes, con los cables cortos y trenzados. Si construyes o modificas una aeronave, trata la ubicación de la brújula como parte del diseño. En los drones de consumo listos para volar, no añadas accesorios magnéticos cerca de la brújula.
 
 ## Cómo distinguir la interferencia de una tormenta geomagnética
 
-Tanto una brújula mal calibrada como una tormenta geomagnética fuerte pueden producir desviación de rumbo e inestabilidad en el mantenimiento de posición, y los pilotos que han leído sobre los efectos del índice Kp en el GPS a veces culpan a la causa equivocada. La señal distintiva es la propia advertencia del controlador de vuelo por discrepancia entre el rumbo de la brújula y el del GPS, que se activa por interferencia local en una ubicación específica sin importar la lectura de Kp del día, y se repite cada vez que vuelas desde ese mismo punto. Una tormenta geomagnética, en cambio, produce una deriva de guiñada más lenta e independiente del lugar, que aparece en un área amplia solo mientras el índice Kp está realmente elevado. Si una advertencia de "error de brújula, recalibre" aparece en el mismo punto de despegue en un día tranquilo con Kp 2, la causa es interferencia local de hierro duro, no clima espacial.
+Una brújula mal calibrada y una tormenta geomagnética pueden aparecer ambas como deriva del rumbo o mal mantenimiento de la posición, así que los pilotos que han leído sobre los efectos del Kp a veces culpan a la causa equivocada. NOAA describe el principal efecto del clima espacial sobre el GPS como un cambio en la ionosfera que degrada las señales de los satélites. Una pista práctica es la repetición: si un error de brújula o un aviso de interferencia aparece en el mismo punto de despegue en un día tranquilo y se repite cada vez que vuelas desde allí, la interferencia local es la causa más probable. Para el lado del clima espacial, consulta [cómo afecta el índice Kp a la fiabilidad del GPS y la brújula](/es/guides/kp-index-effect-on-gps-compass-reliability) y [qué es el índice Kp](/es/guides/what-is-the-kp-index). El [panel de FlyDroneMap](/es) muestra las condiciones actuales.
 
-## Errores comunes durante la calibración
+## Cómo son los avisos
 
-El error más frecuente es realizar la secuencia de calibración en forma de ocho o de rotación parado exactamente en el mismo punto desde el que planeas despegar, lo que incorpora la interferencia de ese lugar directamente al offset aunque el sitio pareciera "limpio". Un segundo error común es calibrar con un teléfono, una tableta o un control remoto con carcasa metálica cerca de la aeronave, ya que la electrónica de consumo lleva pequeños imanes y altavoces que añaden su propio campo local. Los pilotos también suelen ignorar una alerta en pantalla de "interferencia de brújula" y despegar de todos modos, asumiendo que se resolverá sola en el aire — normalmente no ocurre así, y el vuelo termina en un vuelo estacionario inestable o en el giro en espiral del efecto inodoro.
+El manual del DJI Mini 4K dice que si el indicador de estado de la aeronave parpadea alternando rojo y amarillo tras la calibración, el lugar actual no es adecuado para volar; un parpadeo rojo simple significa que la calibración falló. En ese caso, muévete a otro sitio e inténtalo de nuevo en lugar de despegar. La guía de DJI también aconseja no tocar la pantalla durante la calibración, porque eso puede salir de la página de calibración, y dice que si la calibración sigue fallando hay que reiniciar el dispositivo e intentarlo de nuevo, y después contactar con DJI. Otras marcas usan indicadores distintos.
 
-## Lista de verificación práctica
+## Errores comunes
 
-- Calibra al menos a 5-6 metros de vehículos estacionados, vallas metálicas, tapas de alcantarilla y concreto o losas reforzadas con varillas.
-- Mantén teléfonos, tabletas y objetos metálicos alejados de tu cuerpo y de la aeronave durante la rutina de calibración misma.
-- Vuelve a calibrar cada vez que viajes más de aproximadamente 30-50 km desde tu último lugar de calibración, o después de un almacenamiento prolongado.
-- Si un error de brújula o una advertencia de discrepancia de rumbo se repite exactamente en el mismo lugar, trátalo como interferencia local y cambia el sitio de despegue, no el método de calibración.
-- No asumas que un índice Kp tranquilo descarta problemas de brújula — la interferencia de hierro duro es un efecto local y físico que no tiene nada que ver con el clima espacial.
+- Calibrar justo en el punto desde el que piensas despegar sin comprobarlo, de modo que cualquier acero enterrado queda incorporado al resultado.
+- Calibrar con un teléfono, un mando con carcasa metálica o herramientas cerca de la aeronave. DJI indica a los pilotos que no lleven objetos ferromagnéticos cerca de la aeronave durante la calibración.
+- Despegar a pesar de un aviso de interferencia de la brújula en pantalla, suponiendo que se resolverá en el aire.
+- Recalibrar una y otra vez en el mismo mal lugar en vez de moverse.
+- Culpar a una tormenta cuando el aviso aparece solo en un punto concreto.
+
+## Lista práctica
+
+- Calibra lejos de vehículos, vallas metálicas, tapas de alcantarilla y cualquier estructura con acero dentro o debajo, y sobre terreno abierto.
+- Saca teléfonos, llaves y otros objetos metálicos de los bolsillos y mantenlos lejos de la aeronave.
+- Calibra cuando tu aeronave o la aplicación lo pidan, y tras un almacenamiento largo o un viaje largo si tu fabricante lo indica.
+- Si un aviso se repite en un punto, cambia el lugar de despegue en lugar de repetir el procedimiento.
+- No des por hecho que un Kp tranquilo descarta problemas de brújula.
+- Repasa el resto de tu rutina de despegue en la [lista previa al vuelo para principiantes](/es/guides/beginner-drone-preflight-checklist).
+
+## Preguntas frecuentes
+
+### ¿Cada cuánto debo calibrar la brújula?
+
+Depende del fabricante. El manual del DJI Mini 4K indica más de 50 km desde el último lugar de vuelo, más de 30 días sin volar o un aviso de interferencia. ArduPilot dice que no es necesario recalibrar en un lugar nuevo. Sigue tu propio manual.
+
+### ¿Puede una tormenta geomagnética estropear la calibración de mi brújula?
+
+Las indicaciones de calibración de DJI y ArduPilot vinculan la calibración con la aeronave y el lugar donde se hace, y ninguna cita las tormentas geomagnéticas como motivo para recalibrar. Para el lado del clima espacial, consulta la guía del Kp enlazada arriba.
+
+### ¿Por qué el dron da vueltas en círculo tras despegar?
+
+ArduPilot enumera los giros en círculo (toilet-bowling) como síntoma de interferencia magnética en los modos loiter, RTL y auto. Si ocurre, aterriza con seguridad y cambia de lugar antes de recalibrar.
+
+### ¿Es siempre correcto el movimiento en ocho?
+
+No. DJI describe patrones distintos según el dispositivo, como un ocho en algunos mandos y giros de la aeronave en otros, así que sigue las instrucciones en pantalla.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — Compass Calibration Guide](https://repair.dji.com/help/content?customId=en-us03400006765&spaceId=34&re=US&lang=en)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)
+- [ArduPilot — Compass Calibration](https://ardupilot.org/copter/docs/common-compass-calibration-in-mission-planner.html)
+- [ArduPilot — Magnetic Interference](https://ardupilot.org/copter/docs/common-magnetic-interference.html)
+- [NOAA NCEI — World Magnetic Model](https://www.ncei.noaa.gov/products/world-magnetic-model)

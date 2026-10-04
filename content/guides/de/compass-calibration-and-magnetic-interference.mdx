@@ -2,6 +2,7 @@
 title: "Kompasskalibrierung und magnetische Störungen"
 description: "Warum der Kompass Ihrer Drohne bei Baustahl und geparkten Autos abdriftet, wie Sie Störungen von einem geomagnetischen Sturm trennen und richtig kalibrieren."
 publishedAt: "2026-09-05"
+updatedAt: "2026-10-04"
 tags: ["compass", "calibration", "magnetic-interference", "gps"]
 category: "space-weather-gps"
 image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
@@ -9,28 +10,83 @@ imageCredit: "Mick Haupt"
 imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Wenn Ihre Drohne direkt nach einer scheinbar problemlosen Kalibrierung schon einmal in einer trägen, unbefohlenen Spirale gestartet ist — dem sogenannten „Toilettenschüssel-Effekt" —, liegt die Ursache fast immer am Ort der Kalibrierung, nicht am Kalibrierverfahren selbst. Fehlgeschlagene Kompasskalibrierungen und magnetische Störungen gehören zu den häufigsten Flugzwischenfällen, die Piloten fälschlich einem Firmware-Fehler oder einer schlechten GPS-Fixierung zuschreiben, obwohl das eigentliche Problem ein durch etwas Metallisches wenige Meter entfernt verzerrtes Magnetfeld ist.
+Ist Ihre Drohne direkt nach einer Kalibrierung, die Sie für gelungen hielten, schon einmal in einer trägen, unbefohlenen Spirale gestartet, dem sogenannten Toilet-Bowl-Effekt, liegt die Ursache oft im Ort der Kalibrierung und nicht im Kalibrierverfahren selbst. Kompassprobleme und magnetische Störungen werden leicht für einen Firmwarefehler oder eine schlechte GPS-Verbindung gehalten, obwohl das eigentliche Problem ein durch etwas Metallisches in der Nähe verzerrtes Magnetfeld sein kann.
+
+## Das Wichtigste in Kürze
+
+- Der Kompass einer Drohne misst das lokale Magnetfeld, um die Flugrichtung zu bestimmen. Alles, was dieses Feld nahe dem Fluggerät verzerrt, etwa Stahl im Boden oder ein Smartphone in der Tasche, verzerrt auch die Richtung.
+- DJI weist Piloten an, nicht in der Nähe starker Magnetfelder oder großer Metallstrukturen zu kalibrieren, und nennt Beispiele wie Parkhäuser, Keller mit Stahlbewehrung und Brücken.
+- Die Kalibrierung wird vom Fluggerät angefordert, zum Beispiel nach langen Standzeiten oder wenn eine Warnung erscheint. Die Intervalle unterscheiden sich je nach Hersteller, und ArduPilot sagt, dass eine Neukalibrierung an einem neuen Ort nicht nötig ist.
+- ArduPilot beschreibt magnetische Störungen als Ursache für Kreisen (Toilet-Bowling) in den Modi Loiter, RTL und Auto bei Multikoptern.
+- Eine Kompasswarnung, die sich am selben Startplatz an jedem Tag wiederholt, deutet auf lokale Störung hin, nicht auf Weltraumwetter.
 
 ## Warum der Kompass überhaupt kalibriert werden muss
 
-Der eingebaute Kompass (Magnetometer) einer Drohne misst Richtung und Stärke des lokalen Magnetfelds, um die Ausrichtung zu bestimmen, und seine Messwerte driften bei jedem Ortswechsel oder nach monatelanger Lagerung leicht ab, weil sich die eigenen Motoren, Kabel und der Akku des Fluggeräts im Laufe der Zeit sehr leicht magnetisieren und den Nullpunkt des Sensors verschieben. Die Kalibrierung bringt dem Flugcontroller bei, genau diesen fluggerätspezifischen Versatz wieder herauszurechnen. Das unterscheidet sich von der magnetischen Deklination — der je nach Ort unterschiedlichen Abweichung von mehreren Grad zwischen geografisch Nord und magnetisch Nord —, die der Flugcontroller automatisch anhand seiner GPS-Position korrigiert und die keine Neukalibrierung erfordert.
+Der eingebaute Kompass (Magnetometer) einer Drohne misst Richtung und Stärke des lokalen Magnetfelds, um die Flugrichtung zu bestimmen. Auch die eigene Elektronik des Fluggeräts, also Motoren, Akku und Verkabelung, erzeugt in Sensornähe Magnetfelder, und der Flugcontroller muss lernen, diese vom Erdfeld zu trennen. Die Kalibrierung, die meist darin besteht, das Fluggerät in einem vorgegebenen Muster zu drehen, ist der Weg dazu.
 
-## Hart-magnetische Störungen: meist ist der Kalibrierort das Problem
+Das ist etwas anderes als die magnetische Deklination, der Winkel zwischen magnetisch Nord und geografisch Nord. Die NOAA beschreibt die Deklination als nach Ort und Zeit veränderlich und merkt an, dass ihr World Magnetic Model das Standardmodell für Navigations- und Richtungssysteme ist und auf Smartphones vorinstalliert wird. ArduPilot dokumentiert, dass seine eingebauten Magnetmodelle eine Neukalibrierung allein wegen eines neuen Flugorts überflüssig machen. Prüfen Sie, was Ihr Hersteller für Ihr Modell sagt.
 
-Hart-magnetische Störungen stammen von einer festen, nahegelegenen Magnetquelle — Baustahl unter einem Betonparkplatz oder Gehweg, Stahl-Kanaldeckel, das Chassis eines geparkten Autos oder sogar große Gürtelschnallen und Handys in der Tasche des Piloten während der Kalibrierroutine. Stahlbetonflächen sind ein häufiger Übeltäter, da sie wie ein perfekt offener, flacher Startplatz aussehen, während sie etwa 5-10 cm unter der Oberfläche ein dichtes Stahlgitter tragen. Ein Magnetometer, das 1-2 Meter über Baustahl oder einer Autostoßstange kalibriert wird, backt diese lokale Verzerrung direkt in seinen gespeicherten Versatz ein, und die Drohne fliegt anschließend mit einem Ausrichtungsfehler, der je nach Nähe und Stärke der Störquelle von wenigen Grad bis über 30 Grad reichen kann. Die sicherste Praxis ist es, mindestens 5-6 Meter von jedem Fahrzeug, Metallzaun oder Kanaldeckel entfernt zu kalibrieren, und auf Erde oder Asphalt statt direkt über einer stahlbewehrten Platte.
+## Wann Hersteller zur Kalibrierung raten
+
+Das Handbuch der DJI Mini 4K nennt als Anlässe: ein Flug an einem Ort mehr als 31 Meilen (50 km) vom letzten Flugort entfernt, ein Fluggerät, das mehr als 30 Tage nicht geflogen wurde, oder eine Kompassstörungswarnung in der App beziehungsweise eine Statusleuchte, die abwechselnd rot und gelb blinkt. Die Online-Kompassanleitung von DJI sagt, dass die App die Kalibrierung im Flug oder nach längerer Standzeit anfordert und der Akku mindestens 50 Prozent haben sollte. Diese Zahlen stammen von DJI und variieren je nach Modell; ArduPilot vertritt für die eigene Plattform den gegenteiligen Standpunkt. Folgen Sie den Angaben für Ihr Fluggerät.
+
+## Störungen am Kalibrierort
+
+Zu den festen Magnetismusquellen in der Nähe des Fluggeräts gehören Bewehrungsstahl im Beton, große Metallstrukturen, Fahrzeuge und elektrische Geräte. Die Kompassanleitung von DJI sagt, dass nicht in der Nähe starker Magnetfelder oder großer Metallteile kalibriert werden soll, etwa großer elektrischer Geräte, Parkplätze, Schiffe oder Gebäude mit unterirdischen Stahlstützen. Das Handbuch der Mini 4K ergänzt, nicht nahe Magnetitvorkommen oder großer Metallstrukturen wie Parkhäusern, Kellern mit Stahlbewehrung oder Brücken zu kalibrieren und während der Kalibrierung keine ferromagnetischen Gegenstände wie Mobiltelefone in der Nähe des Fluggeräts zu tragen. ArduPilot gibt ähnliche Hinweise, nennt zusätzlich Computer, Metalltische und Netzteile und empfiehlt, Elektronik aus den Taschen zu nehmen.
+
+Ein Ort, der wie ein offener, ebener Startplatz aussieht, kann über vergrabenem Stahl liegen; ein gutes Aussehen ist also kein Beweis für einen sauberen Ort.
+
+## Störungen durch das Fluggerät selbst
+
+Die ArduPilot-Dokumentation für selbstgebaute Multikopter erklärt, dass die Kabel von Stromverteiler, Drehzahlreglern und Akku erhebliche Magnetfelder erzeugen, und empfiehlt, einen externen Kompass oder ein GPS-plus-Kompass-Modul auf einem Mast oberhalb und abseits dieser Quellen zu montieren und die Kabel kurz und verdrillt zu halten. Wenn Sie ein Fluggerät bauen oder verändern, betrachten Sie die Kompassposition als Teil des Entwurfs. Bei flugfertigen Consumer-Drohnen bringen Sie keine magnetischen Zubehörteile in die Nähe des Kompasses.
 
 ## Wie Sie Störungen von einem geomagnetischen Sturm unterscheiden
 
-Sowohl ein schlecht kalibrierter Kompass als auch ein starker geomagnetischer Sturm können Ausrichtungsdrift und instabile Positionshaltung verursachen, und Piloten, die über Kp-Index-Effekte auf GPS gelesen haben, schreiben das Problem manchmal der falschen Ursache zu. Das unterscheidende Signal ist die eigene Kompass-vs-GPS-Abweichungswarnung des Flugcontrollers, die bei lokaler Störung an einem bestimmten Ort unabhängig vom aktuellen Kp-Wert auslöst und sich bei jedem Flug von genau diesem Ort wiederholt. Ein geomagnetischer Sturm erzeugt dagegen eine langsamere, ortsunabhängige Gierdrift, die in einem weiten Gebiet nur auftritt, während der Kp-Index tatsächlich erhöht ist. Erscheint eine Warnung „Kompassfehler, bitte neu kalibrieren" an derselben Startstelle an einem ruhigen Tag mit Kp 2, liegt die Ursache in lokaler hart-magnetischer Störung, nicht im Weltraumwetter.
+Ein schlecht kalibrierter Kompass und ein geomagnetischer Sturm können beide als Richtungsabweichung oder schlechte Positionshaltung erscheinen, weshalb Piloten, die über Kp-Effekte gelesen haben, manchmal die falsche Ursache verantwortlich machen. Die NOAA beschreibt den wichtigsten Weltraumwettereffekt auf GPS als Veränderung der Ionosphäre, die die Satellitensignale verschlechtert. Ein praktischer Hinweis ist die Wiederholbarkeit: Erscheint ein Kompassfehler oder eine Störungswarnung an einem ruhigen Tag am selben Startplatz und wiederholt sich bei jedem Flug von dort, ist lokale Störung die wahrscheinlichere Ursache. Zur Weltraumwetterseite siehe [Wie der Kp-Index die GPS- und Kompasszuverlässigkeit beeinflusst](/de/guides/kp-index-effect-on-gps-compass-reliability) und [Was ist der Kp-Index](/de/guides/what-is-the-kp-index). Das [FlyDroneMap-Dashboard](/de) zeigt die aktuellen Bedingungen.
 
-## Häufige Fehler bei der Kalibrierung
+## Wie die Warnungen aussehen
 
-Der häufigste Fehler ist, die Achter- oder Rotationskalibrierung genau an dem Ort durchzuführen, an dem Sie später starten wollen — das backt die Störung dieses Ortes direkt in den Versatz ein, selbst wenn sich der Ort „sauber" anfühlte. Ein zweiter häufiger Fehler ist die Kalibrierung mit einem Handy, Tablet oder einer Fernsteuerung mit Metallgehäuse nahe am Fluggerät, da Unterhaltungselektronik kleine Magnete und Lautsprecher mit eigenem lokalen Feld mitbringt. Piloten ignorieren zudem häufig eine Bildschirmwarnung „Kompassstörung" und starten trotzdem, in der Annahme, sie werde sich in der Luft von selbst lösen — meist tut sie das nicht, und der Flug endet stattdessen in instabilem Schweben oder der Toilettenschüssel-Spirale.
+Das Handbuch der DJI Mini 4K sagt, dass der aktuelle Ort nicht zum Fliegen geeignet ist, wenn die Statusanzeige des Fluggeräts nach der Kalibrierung abwechselnd rot und gelb blinkt; ein einfaches rotes Blinken bedeutet, dass die Kalibrierung fehlgeschlagen ist. Wechseln Sie dann den Ort und versuchen Sie es erneut, statt zu starten. Die DJI-Anleitung rät außerdem, den Bildschirm während der Kalibrierung nicht zu berühren, weil dies die Kalibrierseite verlassen kann, und sagt, dass Sie bei wiederholtem Fehlschlag das Gerät neu starten, es erneut versuchen und danach DJI kontaktieren sollen. Andere Marken verwenden andere Anzeigen.
+
+## Häufige Fehler
+
+- Genau an der Stelle kalibrieren, von der aus Sie starten wollen, ohne sie zu prüfen, sodass vergrabener Stahl ins Ergebnis eingebrannt wird.
+- Mit einem Smartphone, einer Fernsteuerung mit Metallgehäuse oder Werkzeug nahe dem Fluggerät kalibrieren. DJI weist Piloten an, während der Kalibrierung keine ferromagnetischen Gegenstände in der Nähe des Fluggeräts zu tragen.
+- Trotz einer Kompassstörungswarnung im Display starten, in der Annahme, sie verschwinde in der Luft.
+- Immer wieder am selben schlechten Ort neu kalibrieren, statt den Ort zu wechseln.
+- Einen Sturm verantwortlich machen, wenn die Warnung nur an einer bestimmten Stelle auftritt.
 
 ## Praktische Checkliste
 
-- Kalibrieren Sie mindestens 5-6 Meter von geparkten Fahrzeugen, Metallzäunen, Kanaldeckeln und stahlbewehrtem Beton oder Platten entfernt.
-- Halten Sie Handys, Tablets und Metallgegenstände während der Kalibrierroutine selbst von Körper und Fluggerät fern.
-- Kalibrieren Sie neu, wenn Sie mehr als etwa 30-50 km vom letzten Kalibrierort entfernt sind oder nach langer Lagerung.
-- Wiederholt sich eine Kompassfehler- oder Ausrichtungs-Abweichungswarnung genau am selben Ort, behandeln Sie das als lokale Störung und verlegen Sie den Startplatz, nicht die Kalibriermethode.
-- Gehen Sie nicht davon aus, dass ein ruhiger Kp-Index Kompassprobleme ausschließt — hart-magnetische Störung ist ein lokaler, physischer Effekt, der nichts mit Weltraumwetter zu tun hat.
+- Kalibrieren Sie abseits von Fahrzeugen, Metallzäunen, Kanaldeckeln und Bauwerken mit Stahl darin oder darunter, und auf freiem Gelände.
+- Nehmen Sie Smartphones, Schlüssel und andere Metallgegenstände aus den Taschen und halten Sie sie vom Fluggerät fern.
+- Kalibrieren Sie, wenn Ihr Fluggerät oder die App es verlangt, und nach langer Lagerung oder weiter Reise, wenn Ihr Hersteller es vorsieht.
+- Wiederholt sich eine Warnung an einem Ort, wechseln Sie den Startplatz, statt das Verfahren zu wiederholen.
+- Nehmen Sie nicht an, ein ruhiger Kp-Index schließe Kompassprobleme aus.
+- Den Rest Ihrer Startroutine finden Sie in der [Vorflug-Checkliste für Einsteiger](/de/guides/beginner-drone-preflight-checklist).
+
+## Häufige Fragen
+
+### Wie oft sollte ich den Kompass kalibrieren?
+
+Das hängt vom Hersteller ab. Das Handbuch der DJI Mini 4K nennt mehr als 50 km vom letzten Flugort, mehr als 30 Tage Stillstand oder eine Störungswarnung. ArduPilot sagt, dass an einem neuen Ort keine Neukalibrierung nötig ist. Folgen Sie Ihrem eigenen Handbuch.
+
+### Kann ein geomagnetischer Sturm meine Kompasskalibrierung ruinieren?
+
+Die Kalibrierhinweise von DJI und ArduPilot binden die Kalibrierung an das Fluggerät und den Ort, an dem sie erfolgt, und keiner nennt geomagnetische Stürme als Grund zur Neukalibrierung. Zur Weltraumwetterseite siehe die oben verlinkte Kp-Anleitung.
+
+### Warum kreist die Drohne nach dem Start?
+
+ArduPilot nennt Kreisen (Toilet-Bowling) als Symptom magnetischer Störung in den Modi Loiter, RTL und Auto. Tritt es auf, landen Sie sicher und wechseln Sie den Ort, bevor Sie neu kalibrieren.
+
+### Ist die Acht immer die richtige Bewegung?
+
+Nein. DJI beschreibt je nach Gerät unterschiedliche Muster, etwa eine Acht bei manchen Fernsteuerungen und Drehungen des Fluggeräts bei anderen; folgen Sie daher den Anweisungen auf dem Bildschirm.
+
+## Quellen und weiterführende Links
+
+- [DJI — Compass Calibration Guide](https://repair.dji.com/help/content?customId=en-us03400006765&spaceId=34&re=US&lang=en)
+- [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)
+- [ArduPilot — Compass Calibration](https://ardupilot.org/copter/docs/common-compass-calibration-in-mission-planner.html)
+- [ArduPilot — Magnetic Interference](https://ardupilot.org/copter/docs/common-magnetic-interference.html)
+- [NOAA NCEI — World Magnetic Model](https://www.ncei.noaa.gov/products/world-magnetic-model)

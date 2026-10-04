@@ -2,12 +2,19 @@
 title: "Drone Wind Resistance by Model: DJI, Autel, Skydio"
 description: "Official max wind resistance specs for popular DJI, Autel, and Skydio drones side by side, and why real flying needs a margin below the rated limit."
 publishedAt: "2026-09-28"
-updatedAt: "2026-10-03"
+updatedAt: "2026-10-04"
 tags: ["wind", "gear", "dji", "autel", "skydio"]
 category: "gear-flight-tips"
 ---
 
 Every drone has a manufacturer-rated maximum wind resistance — the wind speed it's rated to fly in and still hold position. Here's a quick comparison of popular models, useful whether you're choosing a drone or judging whether today's wind is within your aircraft's limits.
+
+## Key takeaways
+
+- The ratings in the table below are manufacturer figures taken from official spec pages. They range from about 29 km/h to about 50 km/h depending on model and phase of flight.
+- A rated maximum is a ceiling set by the manufacturer, not a comfortable working speed. Keep a margin and judge by gusts, not the average.
+- Some manufacturers list separate values for takeoff/landing and in flight, and Skydio uses the wording "max gust handling". Read the exact wording before comparing models.
+- Gusts at ground level are only a reference: the wind at flight altitude can be stronger.
 
 ## Max wind resistance by model
 
@@ -27,20 +34,74 @@ Every drone has a manufacturer-rated maximum wind resistance — the wind speed 
 
 *Figures were checked against the manufacturers' official spec pages on October 3, 2026. This update corrects the earlier table, which listed the Air 3, the Mavic 3 family and the Inspire 3 at 38 km/h (10.7 m/s) and gave different Autel and Skydio numbers. Where a manufacturer lists different values for takeoff/landing and in flight (Inspire 3, Autel EVO II Pro V3), both are shown. Exact figures can change between model revisions, so check the manufacturer's current spec page before you buy or fly.*
 
+## How to read the ratings
+
+Units: 1 m/s equals 3.6 km/h, which is why 12 m/s appears as about 43 km/h in the table and 10.7 m/s as about 38 km/h. On the US National Weather Service Beaufort scale, 10.7 m/s (about 24 mph) is the top of force 5, a "fresh breeze" in which "small trees in leaf begin to sway". 12 m/s (about 27 mph) falls in force 6, where large branches are in motion and umbrellas are used with difficulty.
+
+Phase of flight: DJI lists the Inspire 3 at 12 m/s for takeoff and landing and 14 m/s in flight, and Autel lists the EVO II Pro V3 at up to 10.7 m/s for takeoff and landing and up to 12 m/s when cruising. When a model lists two values, plan around the lower one, as the dashboard check below does.
+
+Wording: Skydio's technical specs list "max gust handling" of 12.8 m/s (28.6 mph) for the X10, while DJI's spec pages use "max wind speed resistance". The two phrases are not guaranteed to mean the same test, so compare models on the same manufacturer's wording where you can.
+
+Conditions: DJI states that the Inspire 3 values apply at sea level with the gimbal camera and lens attached and no other accessories. That statement does not cover other setups, so check your own manual for the conditions behind your model's figure.
+
+DJI's Air 3 manual also tells pilots not to operate the aircraft in severe weather including wind speeds exceeding 12 m/s, matching its spec page. Its manual adds that the aircraft may not be able to return to its Home Point when the wind speed is too high.
+
 ## Why you shouldn't treat the rated number as your real flying limit
 
-A manufacturer's max wind resistance figure is the point at which the aircraft can still hold its attitude under controlled test conditions — it's not a guarantee of stable footage or comfortable flying. As wind approaches that limit, battery drain accelerates, gimbal shake and footage jitter increase, and a sudden gust on top of sustained wind near the rating can momentarily overwhelm the aircraft's control authority.
+A manufacturer's max wind resistance figure is the limit the manufacturer states under the conditions it specifies. It is not a guarantee of stable footage or comfortable flying. As wind approaches that limit, expect faster battery drain, more gimbal shake and footage jitter, and less reserve if a sudden gust arrives on top of a sustained wind near the rating.
 
-## The safety margin experienced pilots actually use
+## The safety margin pilots commonly use
 
-Many experienced pilots treat **60-70% of the rated figure** as their practical ceiling. For a DJI drone rated at 38 km/h, that works out to roughly 23-27 km/h before they'd reconsider flying. Beginners should be even more conservative — staying under about 15-20 km/h while building experience.
+A frequently quoted rule of thumb is to treat roughly 60–70% of the rated figure as a practical ceiling. For a drone rated at 38 km/h, that works out to about 23–27 km/h before you would reconsider flying. This is a heuristic, not manufacturer guidance, and your own experience, the aircraft's age and battery condition, and the terrain all matter. Beginners should be more conservative, staying under about 15–20 km/h while building experience. The conservative thresholds in the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight) follow the same idea.
 
 ## How the dashboard's "wind check for your drone" works
 
 On the FlyDroneMap dashboard you can pick one of the models above and the current gust speed is compared with that model's official maximum wind resistance. Gusts **below 50% of the maximum show as good, 50% or more as caution, and 70% or more as not recommended**. For a model rated at about 43 km/h (12 m/s), for example, caution starts at around 22 km/h and "not recommended" at around 30 km/h. When a model lists different values for takeoff/landing and in flight, the lower one is used. The verdict is a reference based on ground-level gusts and does not take airspace or regulations into account.
 
+## Ground-level gusts versus the wind at altitude
+
+The dashboard verdict is based on ground-level gusts, but the aircraft flies at altitude. The same FlyDroneMap [dashboard](/en) also shows gusts and wind at 10, 80 and 120 m and a 24-hour hourly flight-conditions timeline, so you can see whether the wind is expected to increase with height or change during the day. The reasons are explained in [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight). If the wind at 80–120 m is close to or above your model's rating, treat the ground-level "good" verdict with caution.
+
+Remember too that a drone flying out with a tailwind returns into a headwind. Read [return-to-home settings explained](/en/guides/return-to-home-settings-explained) and keep enough battery in reserve.
+
+## Common mistakes
+
+- Treating the rating as a target instead of a ceiling.
+- Comparing a takeoff/landing figure with an in-flight figure for another model.
+- Using an old figure after a model revision; check the manufacturer's current spec page.
+- Judging by the average wind and ignoring gusts.
+- Checking only the ground-level reading when the aircraft will fly at 100 m or more.
+
 ## Before you fly
 
 - Judge by gust speed, not the average wind reading.
 - Confirm your exact model and its current official spec on the manufacturer's site.
+- Check wind at altitude as well as at the ground.
 - Treat the numbers here as a reference summary — your manufacturer's official spec is always the final word on safety limits.
+
+## FAQ
+
+### Which drone has the highest wind resistance in this table?
+
+Among the models listed here, the DJI Inspire 3 has the highest figure, about 50 km/h (14 m/s) in flight. Its takeoff and landing value is lower, about 43 km/h (12 m/s).
+
+### Does a higher rating mean I can fly in that wind?
+
+Not safely at the limit. The rating is the manufacturer's ceiling, and gusts, altitude wind and battery condition all reduce your real margin.
+
+### Why do some models list two values?
+
+Manufacturers such as DJI (Inspire 3) and Autel (EVO II Pro V3) give separate figures for takeoff/landing and for flight or cruising. The dashboard check uses the lower value.
+
+### Do the figures change between model revisions?
+
+They can. Always check the current spec page and manual for your exact model before you buy or fly.
+
+## Sources and further reading
+
+- [DJI — Air 3 specs](https://www.dji.com/air-3/specs)
+- [DJI — Inspire 3 specs](https://www.dji.com/inspire-3/specs)
+- [DJI — Air 3 User Manual v1.6](https://dl.djicdn.com/downloads/DJI_Air_3/UM/20240627/1/DJI_Air_3_User_Manual_v1.6_EN.pdf)
+- [Autel Robotics — EVO II Pro V3 Specifications: Aircraft](https://shop.autelrobotics.com/pages/evo-ii-pro-v3-specifications-aircraft)
+- [Skydio — X10 technical specs](https://www.skydio.com/x10/technical-specs)
+- [NWS — Beaufort Scale](https://www.weather.gov/mfl/beaufort)

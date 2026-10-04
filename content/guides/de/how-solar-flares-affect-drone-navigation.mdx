@@ -2,6 +2,7 @@
 title: "Wie Sonneneruptionen die Drohnennavigation beeinflussen"
 description: "Warum eine Sonneneruption das GPS Ihrer Drohne binnen Minuten verschlechtern kann, selbst bei ruhigem Kp-Index, und wie Sie sie von einem Sturm unterscheiden."
 publishedAt: "2026-09-04"
+updatedAt: "2026-10-04"
 tags: ["solar-flare", "gps", "space-weather", "navigation"]
 category: "space-weather-gps"
 image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
@@ -9,24 +10,102 @@ imageCredit: "Ivana Cajina"
 imageCreditUrl: "https://unsplash.com/@von_co?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Stellen Sie sich einen Präzisions-Vermessungsflug vor, bei dem die GPS-Positionshaltung für etwa zwanzig Minuten nachlässt, während die Kp-Index-Anzeige weiterhin einen ruhigen Wert von 2 zeigt. Prüfen Sie den Röntgenfluss der NOAA, finden Sie wahrscheinlich eine X-Klasse-Sonneneruption, die zehn Minuten zuvor ihren Höhepunkt erreichte. Das ist eine plötzliche ionosphärische Störung, die direkt durch die Eruption ausgelöst wird — nicht der langsamere geomagnetische Sturm, auf den die meisten Drohnen-Wetter-Tools ausgelegt sind.
+Stellen Sie sich einen Präzisions-Kartierungsflug vor, bei dem die GPS-Positionshaltung eine Zeit lang nachlässt, obwohl der Kp-Index weiterhin ruhige 2 anzeigt. Ein Blick auf das Röntgenflussdiagramm der NOAA lohnt sich in dieser Situation. Eine starke Sonneneruption wirkt binnen Minuten auf die Tagseite der Erdatmosphäre — nach einer anderen Uhr als die langsameren geomagnetischen Stürme, die die meisten Drohnen-Wetter-Tools abbilden sollen.
 
-## Wie eine Eruption die GPS-Genauigkeit tatsächlich verschlechtert
+## Das Wichtigste in Kürze
 
-Eine Sonneneruption ist ein Ausbruch von Röntgen- und extremer UV-Strahlung von der Sonnenoberfläche, und weil sie sich mit Lichtgeschwindigkeit ausbreitet, erreicht sie die Erde in etwa acht Minuten — verglichen mit dem Tag oder mehr, den ein koronaler Massenauswurf (CME) benötigt. Trifft diese Strahlung auf die sonnenbeschienene Seite der Ionosphäre der Erde, erhöht sie plötzlich die Elektronendichte in der D- und F-Schicht, verändert den Brechungsindex, den das GPS-Signal durchqueren muss, und wirft die Pseudorange-Berechnung durcheinander, auf die Ihr Empfänger angewiesen ist. Das nennt sich Sudden Ionospheric Disturbance (SID) und betrifft nur die Taghalbkugel. Während einer starken X-Klasse-Eruption kann der GPS-Entfernungsfehler innerhalb von Minuten von wenigen Metern auf über zehn Meter springen und sich typischerweise über Dutzende von Minuten bis wenige Stunden wieder beruhigen, während der Röntgenfluss abklingt.
+- Die Strahlung einer Sonneneruption erreicht die Erde nach etwa 8 Minuten, und laut NOAA tritt ihre Wirkung auf der Tagseite der oberen Atmosphäre gleichzeitig mit der Beobachtung des Ereignisses ein.
+- Die Effekte, die die NOAA für Eruptionen dokumentiert, sind Kurzwellen-Funkausfälle (3 bis 30 MHz) und beeinträchtigte Langwellen-Navigationssignale. Die R-Skala der NOAA erwähnt erhöhte Fehler der Satellitennavigation nur bei R5.
+- Forschung zu starken Eruptionen hat einen erhöhten Elektronengehalt der Ionosphäre und größere Fehler bei der präzisen GNSS-Positionierung gemessen. Keine hier geprüfte Quelle beziffert die Auswirkung auf die Positionshaltung einer Verbraucherdrohne.
+- Seltene solare Radiobursts können den GPS-Empfang ebenfalls für Minuten stören.
+- Kp zeigt geomagnetische Stürme an, keine Eruptionen. Für Eruptionen sind die aktuellen Röntgenflussdaten maßgeblich.
 
-## Warum das Timing völlig anders ist als bei einem geomagnetischen Sturm
+## Eruptionen und CMEs sind nicht dasselbe
 
-Die geomagnetischen Stürme, die den Kp-Index steigen lassen, benötigen geladene Teilchen eines koronalen Massenauswurfs, die tatsächlich die Magnetosphäre der Erde erreichen müssen, und weil diese Teilchen mit Sonnenwindgeschwindigkeit unterwegs sind, dauert das meist ein bis drei Tage nach der Eruption. Die Röntgenstrahlen der Eruption treffen in acht Minuten ein. Diese Lücke bedeutet, dass ein ruhiger Kp-Index nichts darüber aussagt, was in der letzten Stunde passiert ist — das verletzlichste Zeitfenster liegt oft in den Dutzenden Minuten direkt nach einer starken Eruption, während der Kp-Wert noch niedrig anzeigt. Die NOAA erfasst dies separat als R-Skala (Radio Blackout).
+Oft wird für beides "Sonnensturm" gesagt, doch sie verhalten sich verschieden.
 
-## Der Fehler, den Piloten am häufigsten machen
+| | Sonneneruption | Koronaler Massenauswurf (CME) |
+|---|---|---|
+| Was es ist | Ein Strahlungsausbruch (Röntgen- und extremes Ultraviolett) | Eine von der Sonne ausgestoßene Wolke geladenen Plasmas |
+| Dauer bis zur Erde | Etwa 8 Minuten, die Laufzeit des Lichts | NOAA: schon 15 bis 18 Stunden bei den schnellsten erdgerichteten, mehrere Tage bei langsameren |
+| Wo es wirkt | Die Tagseite der Erdatmosphäre | Magnetische Umgebung und Ionosphäre der Erde, am stärksten in hohen Breiten |
+| Zugehörige Skala | R (Funkausfälle) | G (geomagnetische Stürme), über Kp |
+| Dauer | Minuten bis Stunden | Ein daraus folgender Sturm kann Stunden oder länger dauern |
 
-Der häufigste Fehler ist, eine Kp-Prüfung als vollständiges Weltraumwetter-Briefing zu behandeln, was eruptionsbedingte GPS-Störungen vollständig übersieht. Bei RTK-korrigierten Vermessungsflügen wird es noch schlimmer: Basisstation und Drohne befinden sich gleichzeitig unter derselben gestörten Ionosphäre, sodass der Korrekturdatenstrom selbst verzögert eintreffen oder ausfallen kann — Piloten verbringen dann häufig Zeit mit der Fehlersuche an der Funkverbindung der Basisstation, während die eigentliche Ursache weiter oben in der Ionosphäre liegt. Eruptionen sind zudem praktisch nicht vorhersagbar — es gibt keine verlässliche Warnung wie „eine X-Klasse-Eruption trifft in drei Stunden ein" —, und der Effekt zeigt sich innerhalb von Minuten nach dem Ereignis, weshalb eine sinnvolle Vorflugprüfung bedeutet, den Live-Röntgenfluss der GOES-Satelliten der NOAA zu beobachten, nicht eine Vorhersage.
+Die NOAA weist darauf hin, dass CMEs typischerweise zusammen mit Eruptionen auftreten, und die NASA sagt, dass die stärksten Eruptionen fast immer mit CMEs korreliert sind. Deshalb folgt auf eine große Eruption oft einen Tag oder mehr später ein geomagnetischer Sturm, doch eine Eruption kann auch ohne erdgerichteten CME auftreten.
 
-## Praktische Checkliste
+## Wie eine Eruption die Ionosphäre stört
 
-- Prüfen Sie vor einem Präzisionsflug den Live-GOES-Röntgenfluss und den aktuellen R-Skala-Status des NOAA SWPC, nicht nur den Kp-Index.
-- Werden GPS- oder RTK-Korrekturen während einer Zentimeter-genauen Mission plötzlich instabil, schließen Sie zuerst eine kürzliche X-Klasse-Eruption aus, bevor Sie die Funkverbindung verantwortlich machen.
-- Halten Sie sich für die Dutzenden Minuten bis wenigen Stunden nach Meldung eines Ereignisses der Stärke R2 oder höher mit Präzisionsarbeiten zurück — die meisten Störungen klingen von selbst ab, sobald der Fluss nachlässt.
-- Denken Sie daran, dass nur Flüge auf der Tagseite betroffen sind, sodass sich derselbe Tag je nach Uhrzeit von Eruption zu Eruption sehr unterschiedlich darstellen kann.
-- Lesen Sie einen ruhigen Kp-Index nicht als „Weltraumwetter ist klar" — Eruptionen und geomagnetische Stürme laufen nach völlig unterschiedlichen Zeitplänen ab.
+Die NOAA erklärt, dass die verstärkte Röntgen- und extreme Ultraviolettstrahlung einer Eruption die unteren Schichten der Ionosphäre auf der Tagseite der Erde ionisiert. Das erzeugt einen Funkausfall: das Fehlen von Kurzwellenkommunikation, vor allem im Band von 3 bis 30 MHz. Die NASA beschreibt das Ergebnis als Funkausfälle, die Minuten oder im schlimmsten Fall Stunden dauern können.
+
+Die R-Skala der NOAA koppelt die Stärke an die maximale Röntgenklasse der Eruption, und die Dauer der Kurzwelleneffekte wächst mit der Klasse: Zehnerminuten bei R2 (M5), etwa eine Stunde bei R3 (X1) und ein bis zwei Stunden bei R4 (X10). Dieselbe Tabelle führt Langwellen-Navigationssignale bei R1 als kurzzeitig, bei R2 über Zehnerminuten und bei R3 etwa eine Stunde beeinträchtigt auf und erwähnt erhöhte Fehler der Satellitennavigation erst bei R5 (X20). Die vollständige Tabelle finden Sie unter [Die NOAA-Weltraumwetterskalen verstehen](/de/guides/understanding-noaa-space-weather-scales).
+
+Nur die beleuchtete Halbkugel ist diesem Effekt ausgesetzt. Ob ein bestimmter Flug betroffen ist, hängt also davon ab, wo die Sonne zur fraglichen Zeit relativ zum Flugort steht.
+
+## Was die Forschung zu GNSS sagt
+
+Satellitennavigationssignale durchqueren die Ionosphäre, und alles, was deren Elektronengehalt verändert, verändert die Laufzeit des Signals. Eine Studie zur sehr aktiven Phase im Oktober 2014 maß einen typischen mittäglichen Gesamtelektronengehalt von 30 bis 40 TECU mit Spitzen über 50 TECU und an Tagen mit X-Klasse-Eruptionen etwa 10 TECU zusätzlichen Anstieg gegenüber den vorangegangenen ruhigen Tagen. Im selben Zeitraum waren die Koordinatenabweichungen an drei europäischen Stationen mindestens doppelt so groß wie in einer ruhigeren Phase. Die berichteten vertikalen Schwankungen bei der präzisen Punktpositionierung lagen im Bereich von Millimetern bis etwa 12 cm.
+
+Diese Zahlen stammen aus hochpräziser Positionierung an festen Stationen. Sie zeigen, dass Eruptionen und aktive Phasen für Arbeiten im Zentimeterbereich wie RTK- oder PPP-Kartierung eine Rolle spielen können. Sie lassen sich nicht direkt in einen Fehlerwert für die Positionshaltung einer Verbraucherdrohne übersetzen, und keine für diese Anleitung geprüfte Quelle nennt einen.
+
+## Solare Radiobursts
+
+Unabhängig vom Ionosphäreneffekt kann eine Eruption einen Ausbruch von Radiorauschen auf den vom GPS genutzten Frequenzen erzeugen. Der Weltraumwetterdienst des australischen Bureau of Meteorology gibt an, dass eine solche Störung nur wenige Male pro Sonnenzyklus und jeweils nur für einige Minuten erwartet wird. Sie kann das Signal-Rausch-Verhältnis bei der Signalerfassung senken, obwohl eine bestehende Verbindung selten verloren geht, und die Seite beschreibt ein Ereignis von 2006, das an einem Observatorium zu einem Verlust der Verbindung zu GPS-Satelliten für rund zwei Stunden führte. Das ist selten und kein Grund, an jedem Eruptionstag Probleme zu erwarten.
+
+## Eruption oder geomagnetischer Sturm: So unterscheiden Sie
+
+| Hinweis | Eruptionsbedingt | Sturmbedingt |
+|---|---|---|
+| Zeitpunkt | Beginnt, wenn die Eruption ihren Höhepunkt erreicht, binnen Minuten | Baut sich über Stunden auf, oft einen Tag oder mehr nach dem Ausbruch |
+| Kp | Oft noch niedrig | Steigend; 5 oder mehr zeigt einen Sturm an |
+| Ort | Tagseite | In hohen Breiten am stärksten, bei großen Stürmen auch in niedrigeren Breiten |
+| Wo nachsehen | GOES-Röntgenfluss, R-Skala-Warnungen | Kp, G-Skala, Polarlichtvorhersagen |
+| Typische Dauer | Zehnerminuten bis einige Stunden | Stunden oder länger |
+
+Zu Stürmen und ihren Auswirkungen in hohen Breiten lesen Sie die Anleitung zu Polarlichtsaison und Navigationsanomalien in hohen Breiten. Die verwandte Anleitung zur ionosphärischen Szintillation behandelt diesen Mechanismus ausführlicher.
+
+## Was Sie vor und während des Flugs beobachten sollten
+
+Die GOES-Röntgendiagramme der NOAA enthalten Einminutenmittel in zwei Wellenlängenbereichen und werden jede Minute aktualisiert. Die NOAA versendet Weltraumwetter-Warnungen ab der Stufe M5. Die 3-Tage-Vorhersage erscheint alle 12 Stunden, mit prognostizierten und beobachteten Angaben, aufgeschlüsselt für jede der drei Skalenkategorien. Weil die Wirkung einer Eruption gleichzeitig mit ihrer Beobachtung eintritt, ist das Live-Diagramm die nützliche Prüfung vor dem Flug; eine Vorhersage hilft bei den kommenden Tagen.
+
+## Häufige Fehler
+
+- Kp als vollständige Weltraumwetterprüfung verwenden.
+- Einer Funkverbindung oder einem Drohnenfehler die Schuld geben, ohne andere Ursachen zu bedenken. Vieles beeinträchtigt die Positionierung: Hindernisse, Mehrwegeausbreitung, eine geringe Satellitenzahl und lokale Störungen.
+- Annehmen, jeder Eruptionstag bedeute einen gefährlichen Flug. Die NOAA-Tabelle zählt rund 2000 R1-Ereignisse pro Sonnenzyklus, aber nur etwa 175 bei R3 und etwa 8 bei R4, und die verfügbaren Quellen beziffern keine Auswirkungen auf Drohnenebene.
+- Vergessen, dass der Effekt nur auf der Tagseite auftritt.
+
+## Checkliste
+
+- Sehen Sie sich vor Präzisionsarbeiten neben dem Kp den aktuellen GOES-Röntgenfluss und jede aktive R-Skala-Warnung an.
+- Wird das GPS bei einer Präzisionsmission instabil, ziehen Sie eine kürzliche Eruption als mögliche Ursache in Betracht, neben den üblichen.
+- Vermuten Sie einen Eruptionseffekt, warten Sie ab und beobachten Sie. Die dokumentierten Kurzwelleneffekte dauern je nach Stufe von Zehnerminuten bis zu ein bis zwei Stunden.
+- Halten Sie eine manuelle Rückfalloption bereit. Siehe [Was tun bei schwachem GPS-Signal der Drohne](/de/guides/what-to-do-when-drone-gps-signal-is-weak).
+- Nutzen Sie das [FlyDroneMap-Dashboard](/de) für den Kp, bedenken Sie aber, dass es das Röntgendiagramm für Eruptionen nicht ersetzt.
+
+## Häufige Fragen
+
+### Stört eine Sonneneruption die Funkverbindung meiner Drohne?
+
+Die dokumentierten Eruptionseffekte betreffen Kurzwellenfunk, Langwellennavigation und laut Forschung die GNSS-Genauigkeit. Keine der für diese Anleitung geprüften Quellen beschreibt, dass Eruptionen 2,4-GHz- oder 5,8-GHz-Steuerverbindungen stören.
+
+### Wie schnell wirkt eine Eruption auf die Atmosphäre?
+
+Die NOAA sagt, dass die Wirkung auf der Tagseite gleichzeitig mit der Beobachtung des Ereignisses eintritt. Die NASA gibt die Laufzeit des Lichts von der Sonne mit etwa 8 Minuten an.
+
+### Warum ist der Kp bei einer Eruption ruhig?
+
+Kp misst die geomagnetische Störung, die von geladenen Teilchen und Magnetfeldern abhängt, die von der Sonne eintreffen. Die Strahlung einer Eruption kommt in Minuten an, ein CME braucht mindestens etwa 15 Stunden.
+
+### Muss ich bei jeder Eruption das Fliegen einstellen?
+
+Die Quellen geben keine Regel für Drohnen vor. Prüfen Sie die Eruptionsklasse und den Status der Positionierung Ihres Fluggeräts und entscheiden Sie nach Einsatz und örtlichen Vorschriften.
+
+## Quellen und weiterführende Links
+
+- [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)
+- [NASA Science — Solar Flares FAQs](https://science.nasa.gov/blogs/solar-cycle-25/2022/06/10/solar-flares-faqs/)
+- [NOAA Space Weather Prediction Center — GOES X-ray Flux](https://www.spaceweather.gov/products/goes-x-ray-flux)
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [Australian Bureau of Meteorology Space Weather Services — GPS Interference By Solar Radio Bursts](https://www.sws.bom.gov.au/Educational/1/3/10)
+- [SN Applied Sciences — Strong solar flare detection and its impact on ionospheric layers and on coordinates accuracy in the Western Balkans in October 2014](https://link.springer.com/article/10.1007/s42452-018-0040-9)

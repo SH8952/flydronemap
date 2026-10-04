@@ -2,6 +2,7 @@
 title: "Understanding NOAA Space Weather Scales: G, S, and R Explained"
 description: "Why NOAA's three space weather scales cover more than the Kp index alone, and which one actually matters for your next drone flight."
 publishedAt: "2026-09-02"
+updatedAt: "2026-10-04"
 tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
 category: "space-weather-gps"
 image: "/guides/images/understanding-noaa-space-weather-scales.webp"
@@ -9,24 +10,99 @@ imageCredit: "NASA"
 imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-If you've only ever watched the Kp index before a flight, you're tracking one third of what NOAA's Space Weather Prediction Center actually publishes. NOAA runs three separate 1-to-5 scales — G, S, and R — and a quiet Kp reading doesn't mean all three are quiet too.
+If you have only ever watched the Kp index before a flight, you are following one of three scales that NOAA's Space Weather Prediction Center publishes. NOAA runs three separate scales, each rated 1 to 5 — G, S, and R — and a quiet Kp reading does not tell you whether the other two are quiet as well.
 
-## The three scales cover different physics
+## Key takeaways
 
-The G-scale (Geomagnetic Storms) is the one most drone weather tools already surface, because it maps directly onto the Kp index: G1 corresponds to Kp 5, G2 to Kp 6, and so on up through G5 at Kp 9. The S-scale (Solar Radiation Storms) measures the flux of high-energy protons reaching Earth, rated from S1 to S5, and matters most for satellite operators and polar HF radio rather than for the GPS accuracy most pilots care about. The R-scale (Radio Blackouts) is driven by solar X-ray flares and is rated by the flare's X-ray class — an M1 flare registers as R1, an X1 flare as R3, and so on — and it's the scale most likely to catch a pilot off guard.
+- NOAA's G, S, and R scales measure three different things: geomagnetic storms (Kp), solar radiation storms (high-energy protons), and radio blackouts (solar X-ray flares).
+- Only the G-scale maps onto Kp: G1 is Kp 5 and G5 is Kp 9.
+- The R-scale reacts at the moment a flare is observed, because the flare's light reaches Earth at the speed of light, while a geomagnetic storm usually follows a coronal mass ejection (15 hours to several days) or a high-speed solar wind stream.
+- NOAA's scale tables describe effects on HF radio, low-frequency navigation, satellites, and power grids. They do not mention the 2.4 GHz and 5.8 GHz links that most consumer drones use.
+- None of the three scales is a drone-specific "go or no-go" number; use them as context alongside the [FlyDroneMap dashboard](/en) and your aircraft's own warnings.
 
-## Why the R-scale surprises people who only watch Kp
+## The three scales at a glance
 
-An X-class solar flare can trigger an R-scale radio blackout event within minutes, well before any geomagnetic disturbance shows up in the Kp index, because the flare's X-rays hit the sunlit side of Earth's ionosphere almost instantly while the associated coronal mass ejection — the thing that eventually drives Kp up — can take a day or more to arrive, if it arrives at all. During an R2 or higher event, GPS receivers on the sunlit hemisphere can see a real accuracy dip from increased ionospheric disturbance even while the Kp index still reads a calm 2 or 3. A pilot who only checks Kp before takeoff can walk straight past this.
+| Scale | What it measures | Levels | What NOAA lists as typical effects |
+|---|---|---|---|
+| G (Geomagnetic Storms) | Geomagnetic disturbance, tied to Kp | G1 (Kp 5) to G5 (Kp 9) | Power grid, spacecraft, satellite navigation, HF radio at higher latitudes |
+| S (Solar Radiation Storms) | Flux of high-energy protons | S1 to S5 | Satellites, polar HF radio, radiation exposure |
+| R (Radio Blackouts) | Solar X-ray flare strength | R1 (M1 flare) to R5 (X20 flare) | HF radio on the sunlit side, low-frequency navigation signals |
 
-## A common mistake: treating "no aurora forecast" as "no space weather risk"
+## The G-scale: geomagnetic storms and Kp
 
-Aurora chasers watch the G-scale because that's the number tied to visible aurora activity, and a lot of drone pilots have picked up the same habit by osmosis — checking Kp, seeing it's low, and assuming the sky is clear of any space weather effect. But an R-scale event doesn't need a high Kp to happen, and it can degrade GPS positioning for the specific window it's active, typically minutes to a few hours depending on the flare's duration and decay.
+The G-scale is the one that connects directly to the [Kp index](/en/guides/what-is-the-kp-index): G1 is Kp 5, G2 is Kp 6, G3 is Kp 7, G4 is Kp 8 (including 9 minus), and G5 is Kp 9. NOAA describes the Kp index as being derived from ground-based magnetometer measurements, and its page for the index notes that a value of 5 or more indicates a geomagnetic storm.
 
-## Practical checklist
+For navigation, the G-scale table lists these effects:
 
-- Treat G, S, and R as three independent numbers, not one combined score — a quiet Kp does not guarantee a quiet R-scale.
-- Before a precision-critical flight (mapping, inspection, long-range), check NOAA's current 3-day space weather outlook rather than the Kp index alone.
-- If GPS accuracy looks unusually poor or your drone reports more satellites lost than normal in otherwise clear conditions, check for an active R-scale event as a possible cause.
-- Remember that R-scale effects hit hardest on the sunlit side of Earth and fade once the triggering flare's X-ray flux subsides — waiting it out is often the simplest fix.
-- Don't wait for a visible aurora or a high Kp number as your only trigger to double-check space weather before a critical flight.
+- G2: HF radio propagation can fade at higher latitudes.
+- G3: intermittent satellite navigation and low-frequency radio navigation problems.
+- G4: satellite navigation degraded for hours; low-frequency radio navigation disrupted.
+
+G1 and G2 events are the most common. NOAA's table gives roughly 1,700 G1 events and 600 G2 events per solar cycle, compared with about 4 G5 events. That is why Kp 5 or 6 is not rare, and why it is worth knowing what it can and cannot mean for a flight. The longer-form discussion of how storms interact with GPS and the compass is in [how Kp affects GPS and compass reliability](/en/guides/kp-index-effect-on-gps-compass-reliability).
+
+## The S-scale: solar radiation storms
+
+The S-scale rates the flux of high-energy protons near Earth, from S1 to S5. NOAA's table lists the effects mainly as satellite problems (such as single-event upsets), radiation exposure for astronauts, and HF radio degradation or blackout through polar regions. S2 also mentions that passengers and crew in high-flying aircraft at high latitudes may be exposed. The table does not list effects on consumer drone navigation, so for a typical low-altitude flight the S-scale is background information rather than a decision input.
+
+## The R-scale: radio blackouts
+
+The R-scale is tied to the peak X-ray class of a solar flare:
+
+| Level | Flare class | NOAA's description of HF radio effect |
+|---|---|---|
+| R1 (Minor) | M1 | Weak or minor degradation of HF radio on the sunlit side |
+| R2 (Moderate) | M5 | Limited blackout on the sunlit side, loss of contact for tens of minutes |
+| R3 (Strong) | X1 | Wide-area blackout, loss of radio contact for about an hour |
+| R4 (Severe) | X10 | Blackout on most of the sunlit side for one to two hours |
+| R5 (Extreme) | X20 | Complete HF blackout on the entire sunlit side for a number of hours |
+
+The same table lists low-frequency navigation signals as degraded at every level, and it mentions increased satellite navigation errors only at R5. NOAA's page on radio blackouts says the blackout primarily affects HF communication in the 3 to 30 MHz band, caused by X-ray and extreme ultraviolet radiation ionizing the lower layers of the ionosphere on the sunlit side.
+
+Other research on strong flares has measured changes in GNSS total electron content and positioning quality. For example, a study of the very active period of October 2014, which included many M and X class flares, found larger coordinate deviations at three European stations than in quieter periods. That work concerned precise positioning, not the position hold of a consumer drone, and NOAA's R-scale does not assign a GPS effect to R2 through R4. Treat flare-related GPS disturbance as possible, not as a guaranteed consequence of a given R level. The mechanism is covered in more detail in [how solar flares affect drone navigation](/en/guides/how-solar-flares-affect-drone-navigation).
+
+## Why the timing differs between the scales
+
+NOAA notes that the effect of a flare on the sunlit side of the atmosphere occurs at the same time the event is observed, because the energy travels at the speed of light. A geomagnetic storm, by contrast, usually depends on a coronal mass ejection or a high-speed solar wind stream. NOAA states that the fastest Earth-directed CMEs can arrive in 15 to 18 hours, and slower ones take several days. So a high R-scale value and a high Kp value often do not coincide in time.
+
+## Common mistakes
+
+- Treating Kp as the whole picture. A calm Kp tells you nothing about a flare that happened in the last hour.
+- Treating the scales as a combined score. G, S, and R are independent.
+- Assuming a high G or R number means the drone's control link will fail. NOAA's scales do not describe effects on 2.4 GHz or 5.8 GHz links.
+- Assuming the numbers are forecasts of drone problems. They describe general impacts across many technologies and regions.
+- Ignoring the aircraft's own warnings because the space weather numbers look calm. Weak GNSS, compass errors, and local radio interference have many non-solar causes.
+
+## Pre-flight checklist
+
+- Check the current Kp value and note that it is an estimate based on three-hour intervals.
+- Check the latest NOAA GOES X-ray flux plot, which updates every minute, if you are doing precision work.
+- Read NOAA's 3-day forecast, which is issued every 12 hours and is broken down for each of the three scale categories.
+- Decide in advance what you will do if GPS satellite count drops or the compass warns: land, switch to manual control, or wait.
+- Follow your aircraft manual and local regulations; space weather information does not replace either.
+
+## FAQ
+
+### Is the Kp index the same as the G-scale?
+
+Not exactly, but they are linked. The G-scale is a five-step rating derived from Kp: Kp 5 is G1 and Kp 9 is G5.
+
+### Which scale matters most for drone GPS?
+
+NOAA's tables tie satellite navigation effects mainly to the G-scale (G3 and above) and, at the extreme end, to R5. For ordinary flights, G-scale values of 3 or higher are the clearest warning in NOAA's own wording.
+
+### Does an R-scale event affect my drone's control link?
+
+NOAA describes R-scale blackouts as affecting HF radio (3 to 30 MHz) and low-frequency navigation signals. It does not list the 2.4 GHz or 5.8 GHz bands that most consumer drones use for control and video.
+
+### Can I rely on these scales alone to decide whether to fly?
+
+No. They describe general space weather impacts, not conditions at your site. Combine them with your aircraft's status, local weather, and the rules where you fly.
+
+## Sources and further reading
+
+- [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)
+- [NOAA Space Weather Prediction Center — Coronal Mass Ejections](https://www.spaceweather.gov/phenomena/coronal-mass-ejections)
+- [NOAA Space Weather Prediction Center — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA Space Weather Prediction Center — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [SN Applied Sciences — Strong solar flare detection and its impact on ionospheric layers and on coordinates accuracy in the Western Balkans in October 2014](https://link.springer.com/article/10.1007/s42452-018-0040-9)

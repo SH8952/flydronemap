@@ -2,6 +2,7 @@
 title: "Cómo afecta el índice Kp a la fiabilidad del GPS y la brújula"
 description: "El vínculo físico entre la actividad geomagnética y la menor precisión del GPS/brújula en los drones."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["kp-index", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/kp-index-effect-on-gps-compass-reliability.webp"
@@ -11,18 +12,91 @@ imageCreditUrl: "https://unsplash.com/@wbayreuther?utm_source=FlyDroneMap&utm_me
 
 Los drones dependen del GPS para mantener la posición y de un magnetómetro (brújula electrónica) para el rumbo. Ambos pueden verse afectados cuando aumenta la actividad geomagnética.
 
+## Puntos clave
+
+- El índice Kp mide la perturbación magnética en la superficie. Los errores del GPS provienen sobre todo de la ionosfera, así que el Kp es una señal de aviso útil pero indirecta.
+- La escala de tormentas de la NOAA no lista efectos en la navegación por satélite en Kp 5-6, indica problemas intermitentes en Kp 7, degradación durante horas en Kp 8 y posiblemente durante días en Kp 9.
+- La NOAA señala que los errores del GPS de una sola frecuencia, normalmente de alrededor de un metro, pueden crecer hasta decenas de metros o más en una tormenta severa.
+- La brújula se ve afectada por otra vía: el GFZ indica desviaciones de la aguja de unos pocos grados en latitudes altas durante tormentas fuertes.
+- La deriva, los giros en círculo o los avisos de brújula tienen muchas causas cotidianas, así que descártalas antes de culpar al clima espacial.
+
 ## Por qué el GPS empeora durante las tormentas geomagnéticas
 
 Las tormentas geomagnéticas perturban la ionosfera, la capa cargada de la atmósfera superior que atraviesan las señales GPS en su camino desde los satélites hasta tu dron. Una mayor perturbación ionosférica introduce retraso adicional de la señal y centelleo (fluctuación rápida de la señal), lo que reduce la precisión de la posición y, en casos más graves, puede causar la pérdida temporal de la señal GPS.
+
+La NOAA describe el mecanismo así: la ionosfera desvía la trayectoria de la señal de radio del GPS, igual que una lente desvía la luz. En condiciones tranquilas, los modelos integrados en el receptor compensan el efecto medio, pero los eventos de clima espacial hacen que esos modelos sean inexactos. Las tormentas pueden aumentar la densidad de electrones, lo que se refleja en un aumento del contenido total de electrones (TEC). La NOAA indica que esto ocurre sobre todo en latitudes altas, aunque las tormentas mayores pueden producir aumentos importantes también en latitudes medias.
+
+| Efecto | Qué ocurre | Dónde y cuándo es más intenso |
+|---|---|---|
+| Retraso ionosférico | Las partículas cargadas retrasan la señal y la distancia calculada a cada satélite es errónea | Varía con la latitud, la hora del día, la estación y la actividad solar |
+| Centelleo | Fluctuación rápida de la amplitud y la fase de la señal, que puede impedir el seguimiento | Más intenso a unos 20 grados del ecuador geomagnético y, con menos severidad, en regiones aurorales; sobre todo desde el atardecer local hasta la medianoche |
+| Pérdida de enganche | El receptor no consigue seguir un satélite, así que hay menos satélites utilizables | Más probable con centelleo fuerte o condiciones muy perturbadas |
+
+El tipo de receptor importa. La NOAA indica que los receptores de una sola frecuencia dan normalmente precisión de metros, pero que los errores pueden aumentar hasta decenas de metros o más durante una tormenta severa, mientras que los de doble frecuencia suelen alcanzar el nivel de centímetros pero pueden fallar cuando no logran enganchar la señal. Esta guía no tiene datos sobre qué usa cada modelo de dron, así que consulta las especificaciones del fabricante.
+
+### Qué significa esto para el número de Kp
+
+El Kp no mide ninguno de estos efectos directamente. La escala de la NOAA vincula los niveles de Kp con impactos esperados en la tecnología: no se lista efecto en la navegación por satélite en G1 ni G2 (Kp 5-6), pueden darse problemas intermitentes en G3 (Kp 7), la navegación se degrada durante horas en G4 (Kp 8) y puede degradarse durante días en G5 (Kp 9). El centelleo cerca del ecuador sigue el ciclo día-noche y no espera a que el Kp sea alto, así que un Kp tranquilo no garantiza una buena señal GPS en una tarde-noche ecuatorial. Para más detalle, consulta la guía sobre el [centelleo ionosférico y el GPS del dron](/es/guides/ionospheric-scintillation-and-drone-gps).
 
 ## Por qué la brújula se ve afectada por separado
 
 El magnetómetro de un dron mide directamente el campo magnético local para determinar el rumbo. Un campo geomagnético perturbado es, por definición, una referencia menos estable — este es exactamente el fenómeno físico que cuantifica el índice Kp. Una lectura de la brújula durante una tormenta puede desviarse o "guiñar" de forma inesperada aunque el dron no haya girado físicamente.
 
+Conviene poner el tamaño del efecto en perspectiva. El campo terrestre en la superficie va de unos 22.000 a 67.000 nT según el lugar. El GFZ cita variaciones del campo externo de hasta unos 100 nT en general y de unos pocos miles de nT en tormentas fuertes, e indica que en latitudes altas pueden observarse desviaciones de la aguja del orden de unos pocos grados en tormentas fuertes. Cómo reacciona tu controlador de vuelo ante un cambio así depende de su firmware, algo que esta guía no puede evaluar, así que sigue el manual.
+
 ## Cómo se manifiesta esto para un piloto
 
 Entre los síntomas reportados durante un Kp elevado están: la posición del dron desviándose ligeramente en modo GPS sin entrada de los mandos, un comportamiento de giro en círculo ("toilet bowl") durante el retorno a casa, o una advertencia de calibración de la brújula que no aparecía el día anterior en el mismo lugar.
 
+Ninguno de estos síntomas es específico del clima espacial. Antes de culpar al Kp, descarta las causas más comunes:
+
+- Una brújula sin calibrar, o calibrada junto a metal, un vehículo u hormigón armado (consulta [calibración de la brújula e interferencias magnéticas](/es/guides/compass-calibration-and-magnetic-interference)).
+- Pocos satélites o una señal pobre, por ejemplo cerca de edificios o árboles (consulta [error por multitrayecto del GPS](/es/guides/gps-multipath-error-explained-for-drone-pilots)).
+- Interferencia deliberada de la señal GPS (consulta [inhibición y suplantación del GPS](/es/guides/gps-jamming-and-spoofing-explained-for-drone-pilots)).
+
+Si el Kp en tiempo real está en nivel de tormenta y se han descartado las demás causas, el clima espacial pasa a ser un factor plausible.
+
 ## Conclusión práctica
 
-Con Kp 5 o superior, trata los modos de vuelo asistidos por GPS con precaución adicional: vuela a menor altitud, mantén el dron más cerca y prepárate para cambiar a modo manual/de actitud si el mantenimiento de posición se vuelve poco fiable. Por esto, comprobar una lectura de Kp en tiempo real antes de volar —no solo el viento y la lluvia— forma parte de una revisión previa al vuelo completa.
+Con Kp 5 o superior, trata los modos de vuelo asistidos por GPS con precaución adicional: mantén el dron más cerca y a la vista y prepárate para cambiar a modo manual/de actitud si el mantenimiento de posición se vuelve poco fiable. Por esto, comprobar una lectura de Kp en tiempo real antes de volar —no solo el viento y la lluvia— forma parte de una revisión previa al vuelo completa.
+
+Una rutina breve:
+
+1. Consulta el Kp en tiempo real y el pronóstico de 3 días de la NOAA en el [panel](/es) antes de salir de casa.
+2. En el lugar, espera una señal GPS estable con un número de satélites sano antes de despegar.
+3. Mantén la aeronave al alcance de la vista cuando el Kp esté en G1 o superior y confirma en el manual de tu dron cómo pasar a modo manual o de actitud.
+4. Vigila la deriva de posición y prepárate para aterrizar antes en lugar de confiar en el retorno a casa.
+
+## Errores comunes
+
+- Leer el Kp como un valor directo de precisión del GPS. Es un indicador indirecto, y la ionosfera ecuatorial al anochecer puede perturbar el GPS con un Kp bajo.
+- Culpar a una tormenta de toda deriva o aviso de brújula sin revisar la interferencia magnética local y el número de satélites.
+- Comprobar solo al despegar en un vuelo largo. Las condiciones pueden cambiar entre períodos de 3 horas.
+- Suponer que estar lejos de los polos significa que no hay efecto. La NOAA señala que las tormentas mayores pueden producir aumentos importantes del TEC en latitudes medias.
+
+## Preguntas frecuentes
+
+### ¿Un Kp de 3 garantiza un buen GPS?
+
+No. El Kp describe la perturbación magnética en tierra, y el centelleo ionosférico cerca del ecuador geomagnético puede afectar al GPS después del atardecer sea cual sea el valor de Kp.
+
+### ¿Fallará mi brújula con Kp 5?
+
+No hay un umbral oficial para eso. El GFZ indica desviaciones de unos pocos grados en latitudes altas en tormentas fuertes, así que lo primero que conviene revisar suele ser la interferencia magnética local.
+
+### ¿El GPS de doble frecuencia es inmune a las tormentas?
+
+No. La NOAA indica que los receptores de doble frecuencia suelen tener precisión de centímetros pero pueden dejar de ser fiables cuando no logran enganchar la señal del satélite.
+
+### ¿Debo aterrizar si mi dron empieza a derivar durante una tormenta?
+
+Pasa a control manual o de actitud como indica tu manual y aterriza antes si el mantenimiento de posición no se recupera. El retorno a casa usa los mismos datos de GPS y brújula.
+
+## Fuentes y lecturas recomendadas
+
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [GFZ Helmholtz Centre Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)
+- [British Geological Survey — An Overview of the Earth's Magnetic Field](https://geomag.bgs.ac.uk/education/earthmag.html)
+- [NovAtel — What is ionospheric activity and how do I mitigate against the impact on GNSS?](https://novatel.com/tech-talk/ionospheric-activity)

@@ -469,6 +469,7 @@
     "empty": "In dieser Sprache sind noch keine Ratgeber veröffentlicht — schauen Sie bald wieder vorbei.",
     "readingTime": "{minutes} Min. Lesezeit",
     "updatedOn": "Aktualisiert am {date}",
+    "byline": "Von {name}",
     "showMore": "Mehr anzeigen",
     "showLess": "Weniger anzeigen",
     "backToGuides": "← Zurück zu den Ratgebern",

@@ -2,6 +2,7 @@
 title: "Why You Should Avoid Flying During Geomagnetic Storms"
 description: "Why GPS drift, compass instability, and communication interference compound during geomagnetic storms, and how to turn that into one practical pre-flight rule."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["geomagnetic-storm", "safety", "kp-index"]
 category: "space-weather-gps"
 image: "/guides/images/avoid-flying-during-geomagnetic-storms.webp"
@@ -9,23 +10,89 @@ imageCredit: "Tobias"
 imageCreditUrl: "https://unsplash.com/@tobiash?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Individually, each effect of a geomagnetic storm on a drone — GPS drift, compass instability, and marginal communication interference — is manageable. Combined, and especially at higher Kp levels, they compound into a genuinely elevated risk.
+Individually, each effect of a geomagnetic storm on a drone — GPS drift, compass instability, and marginal communication interference — is manageable. Combined, and especially at higher Kp levels, they can compound into a genuinely elevated risk.
+
+## Key takeaways
+
+- This guide cites no regulatory Kp limit for drones. The levels below are a conservative planning guide built on NOAA's storm scale, not a legal rule.
+- NOAA lists no satellite navigation effects at G1–G2 (Kp 5–6), intermittent problems at G3 (Kp 7), degradation for hours at G4 (Kp 8) and possibly for days at G5 (Kp 9).
+- Automated, long-range and out-of-sight flights depend most on GPS, so they are the first to postpone.
+- Check the forecast and the trend, not just the live number, and expect that your fix quality, not Kp alone, decides whether a flight is sensible.
+- If conditions worsen mid-flight, bring the aircraft back early instead of waiting for return-to-home to sort it out.
 
 ## Why the effects stack
 
-A drone relying on GPS for position-hold and a compass for heading, during a storm that degrades both simultaneously, loses two of its primary stabilization references at once — precisely when a pilot most needs the automation to work correctly. Add marginal-range communication instability and a "close call" scenario becomes more plausible than any single factor alone would suggest.
+A drone relying on GPS for position-hold and a compass for heading, during a storm that degrades both at the same time, can lose two of its primary stabilization references at once — precisely when a pilot most needs the automation to work correctly. Add marginal-range communication instability and a "close call" scenario becomes more plausible than any single factor alone would suggest.
+
+It helps to be honest about the evidence. NOAA ties satellite navigation problems to the stronger storm levels, and GFZ reports compass deviations of only a few degrees even in strong storms at high latitudes. At lower levels the combined effect is a matter of prudence rather than a documented failure rate, which is why the guidance below scales with Kp.
 
 ## A simple rule of thumb by Kp level
 
-- Kp 0-4: Normal precautions apply; fly as you normally would.
-- Kp 5 (G1 storm): Fly conservatively — closer range, lower altitude, be ready to switch to manual mode.
-- Kp 6 (G2 storm): Consider postponing non-essential flights, especially in GPS-heavy modes like automated waypoint missions.
-- Kp 7+ (G3-G5 storm): Postpone flying if possible; these events are associated with widespread GPS degradation and are rare enough that waiting a few hours to a day is usually practical.
+| Kp | NOAA level | NOAA-listed navigation effect | Suggested planning approach |
+|---|---|---|---|
+| 0–4 | Below storm level | None listed | Normal precautions; fly as you normally would |
+| 5 | G1 | None listed | Fly conservatively: closer range, in sight, ready to switch to manual mode |
+| 6 | G2 | None listed | Consider postponing non-essential flights, especially GPS-heavy modes such as automated waypoint missions |
+| 7 | G3 | Intermittent satellite navigation problems may occur | Postpone if possible |
+| 8–9 | G4–G5 | Degraded for hours (G4) or possibly days (G5) | Postpone |
+
+The practical reasoning: Kp 7+ (G3-G5 storm) events are rare. NOAA's scale page puts G3 at roughly 130 days per 11-year solar cycle, G4 at roughly 60 days and G5 at roughly 4 days, so postponing a flight is usually practical. How long a storm lasts varies, so re-check the forecast instead of assuming that a few hours will be enough.
+
+## Before you postpone: a quick decision routine
+
+1. Look at the live Kp and the G-level it corresponds to.
+2. Open NOAA's 3-day forecast, issued every 12 hours, and see whether the level is expected to rise or fall during your window.
+3. Decide how much your flight depends on GPS: an automated waypoint mission or a flight beyond visual line of sight depends on it far more than a short manual hover.
+4. If you still go, shorten the range and set up a return margin (see [return-to-home settings explained](/en/guides/return-to-home-settings-explained)).
+5. Check your app for the satellite count and fix quality at the site before takeoff.
+
+Remember that Kp is only an indirect indicator. Equatorial scintillation after sunset can disturb GPS at a low Kp, and the guide on [how the Kp index affects GPS and compass reliability](/en/guides/kp-index-effect-on-gps-compass-reliability) explains the difference in more detail.
+
+## If conditions worsen during a flight
+
+- Bring the aircraft home early. Treat the trigger as a rising Kp or any unexplained drift, not as a total GPS loss.
+- Take manual or attitude control if position-hold drifts, following the procedure in your drone's manual.
+- Do not rely on automated return-to-home to correct a growing error, because it uses the same GPS and compass data.
+- Land and wait, then re-check the live Kp and the forecast before launching again.
 
 ## Where to check current conditions
 
-NOAA's Space Weather Prediction Center publishes the planetary Kp index continuously and is the authoritative public source most drone weather tools, including this one, draw from.
+NOAA's Space Weather Prediction Center publishes the planetary Kp index continuously and is the authoritative public source most drone weather tools, including this one, draw from. Its Kp chart is updated every minute, and the NOAA 3-day forecast gives the expected trend. The [dashboard](/en) shows the current reading next to wind and other weather data.
 
 ## The bottom line
 
 Treat the Kp index the same way you'd treat a wind or rain forecast: a routine, five-second check before every flight, not an afterthought reserved for aurora season.
+
+## Common mistakes
+
+- Waiting to see an aurora before taking space weather seriously. Aurora is a night-side phenomenon and can be hidden by daylight or cloud.
+- Treating a low Kp as proof of good GPS. Always check the satellite count and fix quality.
+- Using one launch-time reading for a multi-hour flight.
+- Treating the table above as a legal limit. It is only a planning guide, and local rules may differ, so check your aviation authority.
+
+## FAQ
+
+### At what Kp should I stop flying my drone?
+
+No official drone threshold is cited here. A cautious approach is normal precautions up to Kp 4, extra care at Kp 5–6 and postponing at Kp 7 and above, especially for automated or long-range flights.
+
+### Can I fly during a G1 storm?
+
+Many short, line-of-sight flights are reasonable, since NOAA lists no satellite navigation effect at G1. Keep the drone close, watch for drift and be ready to take manual control.
+
+### How long does a geomagnetic storm last?
+
+It varies. NOAA notes that storms caused by coronal mass ejections and by high-speed solar wind streams behave differently, with the latter often producing less intense but longer-lasting storms, so follow the forecast.
+
+### Does being far from the poles mean I can ignore storms?
+
+Not entirely. NOAA says major storms can produce large ionospheric electron-density enhancements at mid-latitudes, although the effects are more common at high latitudes. Check the live level before you fly.
+
+## Sources and further reading
+
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA SWPC — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [GFZ Helmholtz Centre Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)

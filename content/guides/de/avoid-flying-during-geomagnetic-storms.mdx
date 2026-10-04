@@ -2,6 +2,7 @@
 title: "Warum Sie bei geomagnetischen Stürmen nicht fliegen sollten"
 description: "GPS-, Kompass- und Kommunikationseffekte zu einer praktischen Faustregel vor dem Flug zusammengefasst."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["geomagnetic-storm", "safety", "kp-index"]
 category: "space-weather-gps"
 image: "/guides/images/avoid-flying-during-geomagnetic-storms.webp"
@@ -9,23 +10,89 @@ imageCredit: "Tobias"
 imageCreditUrl: "https://unsplash.com/@tobiash?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Für sich genommen ist jeder einzelne Effekt eines geomagnetischen Sturms auf eine Drohne — GPS-Drift, Kompass-Instabilität und leichte Kommunikationsstörungen — beherrschbar. Zusammen, und insbesondere bei höheren Kp-Werten, summieren sie sich jedoch zu einem tatsächlich erhöhten Risiko.
+Für sich genommen ist jeder einzelne Effekt eines geomagnetischen Sturms auf eine Drohne — GPS-Drift, Kompass-Instabilität und leichte Kommunikationsstörungen — beherrschbar. Zusammen, und insbesondere bei höheren Kp-Werten, können sie sich jedoch zu einem tatsächlich erhöhten Risiko summieren.
+
+## Das Wichtigste in Kürze
+
+- Dieser Leitfaden nennt keine behördliche Kp-Grenze für Drohnen. Die folgenden Stufen sind eine vorsichtige Planungshilfe auf Basis der Sturmskala der NOAA, keine Rechtsvorschrift.
+- Die NOAA führt bei G1–G2 (Kp 5–6) keine Wirkung auf die Satellitennavigation auf, bei G3 (Kp 7) zeitweilige Probleme, bei G4 (Kp 8) stundenlange Beeinträchtigung und bei G5 (Kp 9) möglicherweise tagelange.
+- Automatisierte Flüge, Langstreckenflüge und Flüge außer Sichtweite hängen am stärksten vom GPS ab; sie verschieben Sie zuerst.
+- Prüfen Sie Vorhersage und Trend, nicht nur den Live-Wert, und beachten Sie, dass Ihre Fixqualität, nicht Kp allein, über die Sinnhaftigkeit eines Flugs entscheidet.
+- Verschlechtern sich die Bedingungen mitten im Flug, holen Sie das Fluggerät früh zurück, statt darauf zu warten, dass die automatische Rückkehr das Problem löst.
 
 ## Warum sich die Effekte addieren
 
-Eine Drohne, die für die Positionshaltung auf GPS und für die Ausrichtung auf den Kompass angewiesen ist, verliert während eines Sturms, der beide gleichzeitig beeinträchtigt, zwei ihrer wichtigsten Stabilisierungsreferenzen auf einmal — genau dann, wenn ein Pilot am meisten darauf angewiesen ist, dass die Automatik korrekt funktioniert. Kommt noch eine leichte Instabilität der Funkreichweite hinzu, wird ein „knapper" Zwischenfall wahrscheinlicher, als jeder einzelne Faktor für sich vermuten ließe.
+Eine Drohne, die für die Positionshaltung auf GPS und für die Ausrichtung auf den Kompass angewiesen ist, kann während eines Sturms, der beide gleichzeitig beeinträchtigt, zwei ihrer wichtigsten Stabilisierungsreferenzen auf einmal verlieren — genau dann, wenn ein Pilot am meisten darauf angewiesen ist, dass die Automatik korrekt funktioniert. Kommt noch eine leichte Instabilität der Funkreichweite hinzu, wird ein „knapper" Zwischenfall wahrscheinlicher, als jeder einzelne Faktor für sich vermuten ließe.
+
+Man sollte ehrlich mit der Beleglage umgehen. Die NOAA verknüpft Probleme der Satellitennavigation mit den stärkeren Sturmstufen, und das GFZ nennt selbst bei starken Stürmen in hohen Breiten Kompassabweichungen von nur einigen Grad. Auf den niedrigeren Stufen ist die Summenwirkung eine Frage der Vorsicht und keine dokumentierte Ausfallrate, weshalb die folgende Orientierung mit Kp zunimmt.
 
 ## Eine einfache Faustregel nach Kp-Wert
 
-- Kp 0-4: Normale Vorsichtsmaßnahmen gelten; fliegen Sie wie gewohnt.
-- Kp 5 (G1-Sturm): Fliegen Sie zurückhaltend — geringere Reichweite, niedrigere Höhe, bereit sein, in den manuellen Modus zu wechseln.
-- Kp 6 (G2-Sturm): Erwägen Sie, nicht unbedingt notwendige Flüge zu verschieben, besonders in GPS-intensiven Modi wie automatisierten Wegpunkt-Missionen.
-- Kp 7+ (G3-G5-Sturm): Verschieben Sie den Flug nach Möglichkeit; diese Ereignisse gehen mit weitverbreiteten GPS-Störungen einher und sind selten genug, dass ein Warten von einigen Stunden bis zu einem Tag meist praktikabel ist.
+| Kp | NOAA-Stufe | Von der NOAA genannte Navigationswirkung | Vorgeschlagener Planungsansatz |
+|---|---|---|---|
+| 0–4 | Unterhalb Sturmniveau | Keine aufgeführt | Normale Vorsichtsmaßnahmen; fliegen Sie wie gewohnt |
+| 5 | G1 | Keine aufgeführt | Fliegen Sie zurückhaltend: geringere Reichweite, in Sichtweite, bereit für den manuellen Modus |
+| 6 | G2 | Keine aufgeführt | Erwägen Sie, nicht unbedingt notwendige Flüge zu verschieben, besonders in GPS-intensiven Modi wie automatisierten Wegpunkt-Missionen |
+| 7 | G3 | Zeitweilige Probleme der Satellitennavigation möglich | Nach Möglichkeit verschieben |
+| 8–9 | G4–G5 | Stundenlang (G4) oder möglicherweise tagelang (G5) beeinträchtigt | Verschieben |
+
+Die praktische Überlegung: Ereignisse mit Kp 7+ (G3-G5-Sturm) sind selten. Die Skalenseite der NOAA nennt für G3 rund 130 Tage pro 11-jährigem Sonnenzyklus, für G4 rund 60 Tage und für G5 rund 4 Tage, sodass ein Verschieben des Flugs meist praktikabel ist. Wie lange ein Sturm dauert, ist unterschiedlich; prüfen Sie die Vorhersage deshalb erneut, statt anzunehmen, dass wenige Stunden genügen.
+
+## Bevor Sie verschieben: eine kurze Entscheidungsroutine
+
+1. Sehen Sie sich den aktuellen Kp-Wert und die zugehörige G-Stufe an.
+2. Öffnen Sie die alle 12 Stunden erscheinende 3-Tage-Vorhersage der NOAA und prüfen Sie, ob die Stufe in Ihrem Zeitfenster voraussichtlich steigt oder fällt.
+3. Entscheiden Sie, wie stark Ihr Flug vom GPS abhängt: Eine automatisierte Wegpunkt-Mission oder ein Flug außerhalb der Sichtweite hängt viel stärker davon ab als ein kurzer manueller Schwebeflug.
+4. Wenn Sie dennoch fliegen, verkürzen Sie die Reichweite und legen Sie eine Rückkehrreserve fest (siehe [Return-to-Home-Einstellungen erklärt](/de/guides/return-to-home-settings-explained)).
+5. Prüfen Sie vor dem Start in Ihrer App Satellitenzahl und Fixqualität am Startplatz.
+
+Denken Sie daran, dass Kp nur ein indirekter Indikator ist. Äquatoriale Szintillation nach Sonnenuntergang kann GPS auch bei niedrigem Kp stören, und der Leitfaden [Wie der Kp-Index GPS und Kompass beeinflusst](/de/guides/kp-index-effect-on-gps-compass-reliability) erklärt den Unterschied genauer.
+
+## Wenn sich die Bedingungen während eines Flugs verschlechtern
+
+- Holen Sie das Fluggerät früh zurück. Betrachten Sie einen steigenden Kp-Wert oder jede unerklärliche Drift als Auslöser, nicht erst einen vollständigen GPS-Verlust.
+- Übernehmen Sie die manuelle oder Attitude-Steuerung, wenn die Positionshaltung driftet, und folgen Sie dem Verfahren im Handbuch Ihrer Drohne.
+- Verlassen Sie sich nicht darauf, dass die automatische Rückkehr einen wachsenden Fehler korrigiert, denn sie nutzt dieselben GPS- und Kompassdaten.
+- Landen Sie und warten Sie; prüfen Sie dann den Live-Kp-Wert und die Vorhersage erneut, bevor Sie wieder starten.
 
 ## Wo Sie die aktuellen Bedingungen prüfen können
 
-Das Space Weather Prediction Center der NOAA veröffentlicht den planetarischen Kp-Index fortlaufend und ist die maßgebliche öffentliche Quelle, aus der die meisten Drohnen-Wetter-Tools — auch dieses hier — ihre Daten beziehen.
+Das Space Weather Prediction Center der NOAA veröffentlicht den planetarischen Kp-Index fortlaufend und ist die maßgebliche öffentliche Quelle, aus der die meisten Drohnen-Wetter-Tools — auch dieses hier — ihre Daten beziehen. Die Kp-Kurve wird jede Minute aktualisiert, und die 3-Tage-Vorhersage der NOAA zeigt den erwarteten Trend. Das [Dashboard](/de) zeigt den aktuellen Wert neben Wind und anderen Wetterdaten.
 
 ## Fazit
 
 Behandeln Sie den Kp-Index genauso wie eine Wind- oder Regenvorhersage: als routinemäßige Fünf-Sekunden-Prüfung vor jedem Flug, nicht als Nachgedanke, der nur der Polarlicht-Saison vorbehalten ist.
+
+## Häufige Fehler
+
+- Auf ein sichtbares Polarlicht warten, bevor man Weltraumwetter ernst nimmt. Polarlicht ist ein Nachtphänomen und kann durch Tageslicht oder Wolken verdeckt sein.
+- Einen niedrigen Kp-Wert als Beweis für gutes GPS behandeln. Prüfen Sie immer Satellitenzahl und Fixqualität.
+- Einen einzigen Wert beim Start für einen mehrstündigen Flug verwenden.
+- Die Tabelle oben als gesetzliche Grenze behandeln. Sie ist nur eine Planungshilfe, und lokale Regeln können abweichen; fragen Sie Ihre Luftfahrtbehörde.
+
+## Häufige Fragen
+
+### Ab welchem Kp-Wert sollte ich nicht mehr fliegen?
+
+Hier wird keine offizielle Drohnen-Schwelle genannt. Ein vorsichtiger Ansatz sind normale Vorsichtsmaßnahmen bis Kp 4, besondere Sorgfalt bei Kp 5–6 und Verschieben ab Kp 7, vor allem bei automatisierten oder Langstreckenflügen.
+
+### Kann ich bei einem G1-Sturm fliegen?
+
+Viele kurze Flüge in Sichtweite sind vertretbar, da die NOAA bei G1 keine Wirkung auf die Satellitennavigation aufführt. Halten Sie die Drohne nah, achten Sie auf Drift und seien Sie bereit, manuell zu übernehmen.
+
+### Wie lange dauert ein geomagnetischer Sturm?
+
+Das ist unterschiedlich. Die NOAA weist darauf hin, dass sich Stürme durch koronale Massenauswürfe und durch schnelle Sonnenwindströme unterschiedlich verhalten; Letztere erzeugen oft weniger intensive, aber länger anhaltende Stürme. Folgen Sie daher der Vorhersage.
+
+### Heißt Entfernung von den Polen, dass ich Stürme ignorieren kann?
+
+Nicht ganz. Laut NOAA können große Stürme auch in mittleren Breiten starke Zunahmen der ionosphärischen Elektronendichte verursachen, die Effekte sind aber in hohen Breiten häufiger. Prüfen Sie vor dem Flug die aktuelle Stufe.
+
+## Quellen und weiterführende Links
+
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA SWPC — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [GFZ Helmholtz-Zentrum Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)

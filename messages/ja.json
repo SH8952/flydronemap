@@ -469,6 +469,7 @@
     "empty": "この言語で公開されているガイドはまだありません。近日公開予定です。",
     "readingTime": "{minutes}分で読めます",
     "updatedOn": "{date} 更新",
+    "byline": "著者: {name}",
     "showMore": "もっと見る",
     "showLess": "閉じる",
     "backToGuides": "← ガイド一覧に戻る",

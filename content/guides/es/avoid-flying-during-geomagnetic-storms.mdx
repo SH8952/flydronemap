@@ -2,6 +2,7 @@
 title: "Por qué debes evitar volar durante tormentas geomagnéticas"
 description: "Reunir los efectos sobre el GPS, la brújula y la comunicación en una sola regla práctica antes de volar."
 publishedAt: "2026-08-26"
+updatedAt: "2026-10-04"
 tags: ["geomagnetic-storm", "safety", "kp-index"]
 category: "space-weather-gps"
 image: "/guides/images/avoid-flying-during-geomagnetic-storms.webp"
@@ -9,23 +10,89 @@ imageCredit: "Tobias"
 imageCreditUrl: "https://unsplash.com/@tobiash?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Por separado, cada efecto de una tormenta geomagnética sobre un dron —deriva del GPS, inestabilidad de la brújula e interferencia marginal en las comunicaciones— es manejable. Combinados, y especialmente con niveles de Kp más altos, se acumulan hasta convertirse en un riesgo genuinamente elevado.
+Por separado, cada efecto de una tormenta geomagnética sobre un dron —deriva del GPS, inestabilidad de la brújula e interferencia marginal en las comunicaciones— es manejable. Combinados, y especialmente con niveles de Kp más altos, pueden acumularse hasta convertirse en un riesgo genuinamente elevado.
+
+## Puntos clave
+
+- Esta guía no cita ningún límite normativo de Kp para drones. Los niveles de abajo son una guía de planificación prudente basada en la escala de tormentas de la NOAA, no una norma legal.
+- La NOAA no lista efectos en la navegación por satélite en G1-G2 (Kp 5-6), indica problemas intermitentes en G3 (Kp 7), degradación durante horas en G4 (Kp 8) y posiblemente durante días en G5 (Kp 9).
+- Los vuelos automáticos, de largo alcance y fuera de la vista dependen más del GPS, así que son los primeros que conviene posponer.
+- Revisa el pronóstico y la tendencia, no solo el valor en vivo, y ten presente que la calidad de tu señal, y no solo el Kp, decide si un vuelo tiene sentido.
+- Si las condiciones empeoran en pleno vuelo, trae la aeronave de vuelta pronto en lugar de esperar a que el retorno a casa lo resuelva.
 
 ## Por qué los efectos se acumulan
 
-Un dron que depende del GPS para mantener la posición y de una brújula para el rumbo, durante una tormenta que degrada ambos simultáneamente, pierde dos de sus referencias de estabilización principales a la vez, precisamente cuando el piloto más necesita que la automatización funcione correctamente. Si se suma la inestabilidad de comunicación en el alcance marginal, un escenario de "casi accidente" se vuelve más plausible de lo que sugeriría cualquier factor por sí solo.
+Un dron que depende del GPS para mantener la posición y de una brújula para el rumbo, durante una tormenta que degrada ambos a la vez, puede perder dos de sus referencias de estabilización principales al mismo tiempo, precisamente cuando el piloto más necesita que la automatización funcione correctamente. Si se suma la inestabilidad de comunicación en el alcance marginal, un escenario de "casi accidente" se vuelve más plausible de lo que sugeriría cualquier factor por sí solo.
+
+Conviene ser honesto con la evidencia. La NOAA vincula los problemas de navegación por satélite con los niveles de tormenta más fuertes, y el GFZ indica desviaciones de la brújula de solo unos pocos grados incluso en tormentas fuertes en latitudes altas. En los niveles bajos, el efecto combinado es una cuestión de prudencia y no una tasa de fallos documentada, por eso la guía de abajo se endurece con el Kp.
 
 ## Una regla simple según el nivel de Kp
 
-- Kp 0-4: Se aplican las precauciones normales; vuela como lo harías habitualmente.
-- Kp 5 (tormenta G1): Vuela de forma conservadora: alcance más corto, altitud más baja, listo para cambiar a modo manual.
-- Kp 6 (tormenta G2): Considera posponer vuelos no esenciales, especialmente en modos muy dependientes del GPS como las misiones automáticas por waypoints.
-- Kp 7+ (tormenta G3-G5): Pospón el vuelo si es posible; estos eventos se asocian con una degradación generalizada del GPS y son lo bastante raros como para que esperar unas horas o un día suela ser práctico.
+| Kp | Nivel NOAA | Efecto en la navegación según la NOAA | Enfoque de planificación sugerido |
+|---|---|---|---|
+| 0-4 | Por debajo de tormenta | Ninguno listado | Precauciones normales; vuela como lo harías habitualmente |
+| 5 | G1 | Ninguno listado | Vuela de forma conservadora: alcance más corto, a la vista, listo para cambiar a modo manual |
+| 6 | G2 | Ninguno listado | Considera posponer vuelos no esenciales, especialmente en modos muy dependientes del GPS como las misiones automáticas por waypoints |
+| 7 | G3 | Pueden darse problemas intermitentes de navegación por satélite | Pospón si es posible |
+| 8-9 | G4-G5 | Degradada durante horas (G4) o posiblemente días (G5) | Pospón |
+
+El razonamiento práctico: los eventos de Kp 7+ (tormenta G3-G5) son raros. La página de escalas de la NOAA sitúa G3 en unos 130 días por ciclo solar de 11 años, G4 en unos 60 días y G5 en unos 4 días, así que posponer un vuelo suele ser factible. La duración de una tormenta varía, por lo que conviene volver a consultar el pronóstico en lugar de dar por hecho que bastarán unas horas.
+
+## Antes de posponer: una rutina de decisión rápida
+
+1. Mira el Kp en tiempo real y el nivel G al que corresponde.
+2. Abre el pronóstico de 3 días de la NOAA, emitido cada 12 horas, y comprueba si se espera que el nivel suba o baje durante tu ventana.
+3. Decide cuánto depende tu vuelo del GPS: una misión automática por waypoints o un vuelo más allá del alcance visual depende mucho más de él que un vuelo manual corto en estacionario.
+4. Si aun así vuelas, acorta el alcance y define un margen de retorno (consulta [ajustes de retorno a casa explicados](/es/guides/return-to-home-settings-explained)).
+5. Comprueba en tu aplicación el número de satélites y la calidad de la señal en el lugar antes de despegar.
+
+Recuerda que el Kp es solo un indicador indirecto. El centelleo ecuatorial al atardecer puede perturbar el GPS con un Kp bajo, y la guía sobre [cómo afecta el índice Kp a la fiabilidad del GPS y la brújula](/es/guides/kp-index-effect-on-gps-compass-reliability) explica la diferencia con más detalle.
+
+## Si las condiciones empeoran durante un vuelo
+
+- Trae la aeronave de vuelta pronto. Toma como señal un Kp en aumento o cualquier deriva inexplicable, no una pérdida total de GPS.
+- Toma el control manual o de actitud si el mantenimiento de posición deriva, siguiendo el procedimiento del manual de tu dron.
+- No confíes en que el retorno automático corrija un error creciente, porque usa los mismos datos de GPS y brújula.
+- Aterriza y espera; después vuelve a comprobar el Kp en tiempo real y el pronóstico antes de volver a despegar.
 
 ## Dónde consultar las condiciones actuales
 
-El Centro de Predicción del Clima Espacial de la NOAA publica el índice Kp planetario de forma continua y es la fuente pública autorizada de la que se nutren la mayoría de las herramientas de clima para drones, incluida esta.
+El Centro de Predicción del Clima Espacial de la NOAA publica el índice Kp planetario de forma continua y es la fuente pública autorizada de la que se nutren la mayoría de las herramientas de clima para drones, incluida esta. Su gráfico de Kp se actualiza cada minuto, y el pronóstico de 3 días de la NOAA indica la tendencia esperada. El [panel](/es) muestra la lectura actual junto con el viento y otros datos meteorológicos.
 
 ## En resumen
 
 Trata el índice Kp igual que un pronóstico de viento o lluvia: una comprobación rutinaria de cinco segundos antes de cada vuelo, no algo secundario reservado para la temporada de auroras.
+
+## Errores comunes
+
+- Esperar a ver una aurora para tomarse en serio el clima espacial. La aurora es un fenómeno nocturno y puede quedar oculta por la luz del día o las nubes.
+- Tratar un Kp bajo como prueba de buen GPS. Comprueba siempre el número de satélites y la calidad de la señal.
+- Usar una sola lectura al despegar para un vuelo de varias horas.
+- Tratar la tabla de arriba como un límite legal. Es solo una guía de planificación y las normas locales pueden diferir, así que consulta a tu autoridad aeronáutica.
+
+## Preguntas frecuentes
+
+### ¿A partir de qué Kp debería dejar de volar mi dron?
+
+Aquí no se cita ningún umbral oficial para drones. Un enfoque prudente es aplicar precauciones normales hasta Kp 4, extremar el cuidado con Kp 5-6 y posponer con Kp 7 o más, sobre todo en vuelos automáticos o de largo alcance.
+
+### ¿Puedo volar durante una tormenta G1?
+
+Muchos vuelos cortos a la vista son razonables, ya que la NOAA no lista efectos en la navegación por satélite en G1. Mantén el dron cerca, vigila la deriva y prepárate para tomar el control manual.
+
+### ¿Cuánto dura una tormenta geomagnética?
+
+Varía. La NOAA señala que las tormentas causadas por eyecciones de masa coronal y las causadas por corrientes de viento solar de alta velocidad se comportan de forma distinta, y estas últimas suelen producir tormentas menos intensas pero más duraderas, así que sigue el pronóstico.
+
+### ¿Estar lejos de los polos significa que puedo ignorar las tormentas?
+
+No del todo. La NOAA indica que las tormentas mayores pueden producir grandes aumentos de la densidad de electrones ionosférica en latitudes medias, aunque los efectos son más habituales en latitudes altas. Comprueba el nivel en tiempo real antes de volar.
+
+## Fuentes y lecturas recomendadas
+
+- [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
+- [NOAA SWPC — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)
+- [NOAA SWPC — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
+- [NOAA SWPC — Geomagnetic Storms](https://www.spaceweather.gov/phenomena/geomagnetic-storms)
+- [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [GFZ Helmholtz Centre Potsdam — Frequently asked questions regarding geomagnetism](https://www.gfz.de/en/section/geomagnetism/data-products-services/frequently-asked-questions-regarding-geomagnetism)

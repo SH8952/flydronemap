@@ -2,6 +2,7 @@
 title: "Aurora Season and High-Latitude Drone Navigation Anomalies"
 description: "Why GPS and compass behavior gets shakier the further north (or south) you fly, and what changes once the aurora is actually overhead."
 publishedAt: "2026-09-24"
+updatedAt: "2026-10-04"
 tags: ["aurora", "high-latitude", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/aurora-season-and-high-latitude-drone-navigation-anomalies.webp"
@@ -9,26 +10,81 @@ imageCredit: "Christian Cueni"
 imageCreditUrl: "https://unsplash.com/@chrigu?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-A clear aurora night is a rare chance to shoot something most pilots never get on camera — but it's also exactly when GPS and compass behavior are least trustworthy. The mid-latitude habit of "check the Kp index once before takeoff" only covers half the problem once you're flying at high latitude.
+A clear aurora night is a rare chance to capture something most pilots never film, but it is also a time of strong space weather, when GPS and compass behavior deserve extra attention. The mid-latitude habit of checking the Kp index once before takeoff covers only part of the picture once you fly at high latitude.
 
-## Why navigation errors cluster at high latitude
+## Key takeaways
 
-The auroral oval is drawn around geomagnetic latitude, not geographic latitude, and it expands toward the equator as a storm intensifies. But the ionosphere under that oval is already structurally messier than the mid-latitude ionosphere on a quiet day — polar cap patches, localized pockets of sharply different electron density, show up there even with no storm running, so scintillation (rapid signal fading) is inherently more common at the same Kp value than it would be further south. Once Kp actually climbs, the storm's disturbance layers on top of that baseline instability instead of simply adding to it, so GPS error tends to compound rather than sum.
+- NOAA says the aurora forms two ovals centered approximately on the magnetic poles, and that the oval extends equatorward as space weather activity increases.
+- Ionospheric disturbances are especially significant at auroral latitudes, and geomagnetic storms create large disturbances that can degrade GNSS accuracy, mostly at high latitudes.
+- Research is nuanced: in one study at high latitudes, precise positioning continued even under intense scintillation, so effects vary with method and conditions.
+- Near the magnetic poles the horizontal magnetic field is weak. NOAA's World Magnetic Model defines a blackout zone where compasses should not be relied on and a caution zone around it.
+- Some manufacturer manuals give explicit polar-region limits for GNSS. Read your own aircraft's manual before flying at high latitude.
 
-## The compass is unsteady up there even without a storm
+## Where the aurora is and why it matters
 
-A drone's magnetometer reads heading off the horizontal component of Earth's magnetic field, and that horizontal component physically weakens the closer you get to the magnetic pole. Around geomagnetic latitude 70°, compass error margins run wider than at mid-latitude even on a magnetically quiet day, and a storm on top of that compounds the problem. Pilots shooting aurora above roughly 65°N during a Kp 6+ night, for instance, report GPS-mode position slowly drifting with no stick input, or a Return-to-Home path that plots toward somewhere other than the actual takeoff point.
+NOAA says the best viewing is under an oval-shaped region roughly between 60 and 75 degrees north or south latitude, where aurora can be seen on more than half the nights of a year. When space weather activity increases, the aurora extends equatorward; in extreme events it has been observed as far south as the US, Europe, and Asia. Dark, clear skies are needed, and NOAA notes that during summer at auroral latitudes the midnight sun prevents auroral observations. That is why "aurora season" means the darker months at those latitudes.
 
-## Mistakes pilots commonly make
+For a pilot, the point is simple: the places and times where aurora is visible are also the places and times where geomagnetic activity is concentrated.
 
-- Getting absorbed in the shot and trusting a Kp reading checked earlier in the day without rechecking overnight — the same geomagnetic storm that lights up the sky can swing Kp from 3 to 6 or 7 within a few hours.
-- Not knowing high latitude means the compass is relatively unstable even on an ordinary day, and mistaking that baseline drift for a hardware fault or firmware bug.
-- Treating RTH as an unconditional safety net even while GPS and compass data are already off — RTH's path is calculated from that same drifted position and heading data, so it can underperform exactly when you need it most.
+## GNSS at high latitudes
 
-## Pre-flight checklist
+NOAA's page on space weather and GPS says that geomagnetic storms create large disturbances in the ionosphere, usually at high latitudes, though major storms can produce large total electron content enhancements at mid-latitudes as well. It also says that during a severe storm, errors for single-frequency GPS can increase to tens of meters or more, and that dual-frequency systems that normally achieve centimeter-level accuracy may be unable to lock onto the signal. Natural Resources Canada states that ionospheric disturbances are especially significant at auroral latitudes, such as over much of Canada.
 
-- If aurora activity is expected overnight, recheck the Kp index right before you fly — a reading from a few hours earlier may already be stale.
-- Above roughly geomagnetic latitude 60°, plan for lower altitude and a tighter radius than you would at mid-latitude.
-- If the on-screen GPS position and what you're actually seeing don't match, be ready to switch to manual/attitude mode immediately.
-- Don't rely on RTH alone — keep the aircraft within visual line of sight and have a manual landing path worked out in advance.
-- If your aircraft supports it, enable vision-based or other non-GPS positioning aids before takeoff.
+Scintillation, the rapid fluctuation of a radio signal passing through ionospheric irregularities, behaves differently by region. A 2018 study found that at high latitudes phase fluctuations dominate while amplitude effects are modest, and that precise positioning could continue even during intense scintillation, whereas at low latitudes frequent cycle slips caused larger degradation. The takeaway is not that high latitude is safe. It is that the effect depends on the receiver and processing method, and a consumer drone's receiver was not the subject of that study. See [ionospheric scintillation and drone GPS](/en/guides/ionospheric-scintillation-and-drone-gps) for the basics.
+
+## The compass near the magnetic poles
+
+A drone's compass reads the direction of Earth's magnetic field, and the horizontal part of that field gets weaker as you approach a magnetic pole. NOAA's World Magnetic Model defines Blackout Zones around the poles, where the horizontal intensity is below 2000 nT and "compasses are not accurate and should not be relied on for navigation". Around them is a caution zone where the horizontal intensity is between 2000 and 6000 nT and compasses should be used with caution. The model describes the main field only and does not include the effects of the ionosphere and magnetosphere, so storm disturbances come on top of what the model gives.
+
+Kp itself is derived from the maximum fluctuations of the horizontal magnetic field measured on magnetometers over three hours, which shows that storms do perturb that field. How large the effect is on a drone's onboard magnetometer is not quantified in the sources used here.
+
+Magnetic and electromagnetic interference near the ground also matters. See [compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference) for how to separate local causes from regional ones.
+
+## What a manufacturer manual says
+
+The DJI Mavic 3 Pro manual states in its flight environment requirements that GNSS cannot be used on the aircraft in polar regions and to use the vision system instead. It also says the aircraft changes to Attitude (ATTI) mode when vision systems are unavailable and GNSS is weak or the compass experiences interference, and that in ATTI mode the aircraft may be more easily affected by its surroundings. For return to home, the manual says the Home Point is recorded at the first location with a strong to moderately strong GNSS signal, that failsafe RTH activates when the Home Point has been recorded and the compass is working normally, and that the aircraft may not return normally if GNSS is weak or unavailable.
+
+Other models and manufacturers differ. Read the manual for your own aircraft, and see [return-to-home settings explained](/en/guides/return-to-home-settings-explained) for how RTH depends on position data.
+
+## Planning an aurora flight
+
+- Local rules apply. Aurora flights are usually at night, so check the night flying rules where you fly.
+- Check current Kp just before flying. NOAA says Kp is an estimate updated every minute from magnetometer readings, based on three-hour intervals.
+- Check the [FlyDroneMap dashboard](/en) for Kp, wind, and other conditions, and stay within visual line of sight.
+- Use vision-based positioning aids if your aircraft supports them and your manual allows it.
+- Decide your manual fallback in advance: what you will do if GNSS drops or the compass warns.
+
+## Common mistakes
+
+- Trusting an old Kp reading. Storm levels can change during a long night.
+- Treating strange drift as a hardware fault without considering the region, the compass zone, and the manual's limits.
+- Assuming RTH will always work. It depends on a recorded Home Point and normal position and compass data.
+- Applying mid-latitude assumptions near the magnetic poles.
+- Ignoring cold and darkness. These are separate hazards that also need planning.
+
+## FAQ
+
+### Does the aurora itself interfere with my drone?
+
+The aurora is light, so it does not interfere in itself. It is a visible sign of geomagnetic activity, which NOAA says can disturb the ionosphere and degrade GPS.
+
+### Is high-latitude flying always unsafe for GPS?
+
+No. Effects vary with conditions and equipment, and one study found precise positioning could continue under intense high-latitude scintillation. But the risk is higher during storms, and your manual may set limits.
+
+### What is the compass blackout zone?
+
+It is an area around a magnetic pole where NOAA's World Magnetic Model says the horizontal magnetic field is under 2000 nT and compasses should not be relied on for navigation.
+
+### What should I do if GPS and the picture disagree?
+
+Be ready to take manual control and bring the aircraft back while it is within sight. Your manual describes how your model behaves when GNSS is weak.
+
+## Sources and further reading
+
+- [NOAA Space Weather Prediction Center — Aurora](https://www.spaceweather.gov/phenomena/aurora)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [Natural Resources Canada — Space weather effects on technology](https://www.spaceweather.gc.ca/tech/index-en.php)
+- [NOAA National Centers for Environmental Information — World Magnetic Model Accuracy, Limitations, and Error Model](https://www.ncei.noaa.gov/products/world-magnetic-model/accuracy-limitations-error-model)
+- [Journal of Space Weather and Space Climate — Feasibility of precise navigation in high and low latitude regions under scintillation conditions](https://www.swsc-journal.org/articles/swsc/pdf/2018/01/swsc170055.pdf)
+- [DJI — Mavic 3 Pro User Manual](https://dl.djicdn.com/downloads/DJI_Mavic_3_Pro/20230425/DJI_Mavic_3_Pro_User_Manual_EN.pdf)

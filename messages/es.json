@@ -469,6 +469,7 @@
     "empty": "Todavía no hay guías publicadas en este idioma — vuelve pronto.",
     "readingTime": "{minutes} min de lectura",
     "updatedOn": "Actualizado el {date}",
+    "byline": "Por {name}",
     "showMore": "Ver más",
     "showLess": "Ver menos",
     "backToGuides": "← Volver a Guías",
