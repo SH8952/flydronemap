@@ -1,3 +1,17 @@
+## 2026-10-04 — 일본어 가이드 9개 보강 (미국 규정·공항 근처·용어집)
+
+**배경**
+- 사용량 한도로 중단되었던 가이드 본문 보강 작업을 이어서 진행함. 일본어 미보강 9개를 영어판 보강본을 기준으로 옮겼고, 새 조사는 하지 않음.
+
+**변경 사항**
+- `content/guides/ja/`: checks-before-flying-near-an-airport, faa-part-107-explained, fria-explained, how-to-get-a-part-107-waiver, moa-explained, notam-explained, understanding-us-airspace-classes, vlos-bvlos-explained, what-is-laanc-and-why-it-matters 보강(要点·세부 섹션·よくある質問·出典・参考資料·내부 링크, `updatedAt: "2026-10-04"` 추가, 기존 frontmatter 유지, 굵은 글씨 없음).
+- 영어판에서 정정·삭제된 내용(출처 없는 서술, 부정확한 수치)은 일본어판에도 동일하게 반영됨. 일본 국토교통성 자료는 일본어 공식 명칭(飛行の方法)으로 표기. 용어는 기존 일본어판 표기(ウェイバー)에 맞춤.
+
+**검증 / 참고**
+- 9개 파일 모두 frontmatter 변경은 `updatedAt` 추가뿐, 내부 링크 대상 존재, 필수 소제목 1회씩, MDX 특수문자(`{ } < >`) 없음, 굵은 글씨 없음을 확인. 이 클라우드 환경은 `node_modules`가 없어 빌드·`next start` 확인은 하지 못함(로컬에서 `npm run build` 확인 필요).
+- 작업 전 일본어 폴더 백업: `.backups/backup_*_ja9보강작업전/`(저장소에는 포함하지 않음).
+- 남은 미보강: 5개 언어 공통 19개 주제(독일어는 11개) — 일본어 19개 + 영어 19개 + 스페인어 19개 + 한국어 19개 + 독일어 11개 = 87개 파일.
+
 ## 2026-10-04 — 홈 "사용법" 4단계 → 7단계로 보강 (최근 추가 기능 설명)
 
 **배경**
