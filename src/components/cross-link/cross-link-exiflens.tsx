@@ -5,12 +5,11 @@ import { Camera, ArrowUpRight } from "lucide-react";
 
 /**
  * Contextual cross-link to the sister site ExifLens (camera EXIF
- * analysis & ND filter long-exposure calculator). Rendered by
- * `HomeDashboardSection` only once the user has an actual flight-condition
- * result from `DroneDashboard` (same gating as the result cards there),
- * and placed after the "장비 추천" gear recommendation section
- * (2026-09-07, matches the section order used on exifnd.com) rather than
- * as a site-wide banner. Kept as `rel="noopener noreferrer"`
+ * analysis & ND filter long-exposure calculator). Rendered on the home
+ * page below the FAQ highlights and above the "장비 추천" gear
+ * recommendation section (2026-10-04: moved to the very bottom of the
+ * home page, matching exifnd.com; it is now always shown instead of only
+ * after the dashboard has a result). Kept as `rel="noopener noreferrer"`
  * (no nofollow/sponsored): this is a legitimate same-owner tool
  * recommendation, not a paid or manipulative link.
  */

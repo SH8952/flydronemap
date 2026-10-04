@@ -5,6 +5,7 @@ import { HomeDashboardSection } from "@/components/home-dashboard-section";
 import { webApplicationJsonLd } from "@/lib/seo";
 import { HomeGuideHighlights } from "@/components/home-guide-highlights";
 import { HomeFaqHighlights } from "@/components/home-faq-highlights";
+import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 
 export default async function HomePage({
   params,
@@ -33,9 +34,7 @@ export default async function HomePage({
         </p>
       </div>
 
-      <HomeDashboardSection
-        gearSection={<GearRecommendationSection locale={locale} />}
-      />
+      <HomeDashboardSection />
 
       <AdZone
         id="mid-content"
@@ -61,6 +60,13 @@ export default async function HomePage({
 
       {/* FAQ 하이라이트 — 위와 같은 이유로 2026-09-27 신설 */}
       <HomeFaqHighlights />
+
+      {/* 관련 도구 → 장비 추천: 2026-10-04 홈 최하단(FAQ 아래)으로 이동.
+          광고·제휴 영역이 위쪽에 있으면 정보 제공보다 수익 목적이 강해 보일 수
+          있다는 판단(exifnd.com과 동일 순서). */}
+      <CrossLinkExifLens />
+
+      <GearRecommendationSection locale={locale} />
     </div>
   );
 }
