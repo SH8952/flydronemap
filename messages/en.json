@@ -164,10 +164,13 @@
     "gearSectionHint": "Recommended drone gear for pilots will appear here.",
     "gearDisclosure": "As an affiliate, we may earn a commission from qualifying purchases made through these links, at no extra cost to you.",
     "usageSteps": [
-      "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are.",
-      "Review live wind speed, wind gusts, and visibility — key factors for whether it's safe to fly your specific drone model.",
-      "Check the planetary Kp index to see whether geomagnetic activity might affect your GPS lock or compass heading.",
-      "In the US, see the FAA UAS Facility Map altitude ceiling for the area — then confirm authorization through LAANC or FAADroneZone before you fly."
+      "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are. The airspace information and the regulation link you see depend on the country of the selected location.",
+      "Review live wind speed, wind gusts, visibility, and temperature, plus the wind at 10 m, 80 m, and 120 m above ground. Gusts matter more than the average wind speed, and wind is often stronger at higher altitude. The banner at the top combines the gust and the Kp index into one general reading: gusts under 20 km/h are good, 20 km/h up to 35 km/h call for caution, and 35 km/h or more is not recommended.",
+      "Check the planetary Kp index to see whether geomagnetic activity might affect your GPS lock or compass heading. A Kp below 4 is quiet, 4 up to 5 is unsettled, and 5 or higher is storm level, where GPS accuracy and compass reliability can drop.",
+      "Use the airspace card and the airspace layers on the map to see the restricted areas of the selected country, and confirm the latest rules with the official authority through the regulation button. In the US, see the FAA UAS Facility Map altitude ceiling for the area — then confirm authorization through LAANC or FAADroneZone before you fly.",
+      "Use the 24-Hour Flight Conditions forecast to find the best time window. Each hour is rated good, caution, or not recommended from the forecast gusts, precipitation (caution from 0.1 mm per hour, not recommended from 0.5 mm), and visibility (caution under 5 km, not recommended under 1 km). The summary above the cards shows the longest good stretch, in the local time of the selected location. The current reading and the forecast for the current hour may not match exactly, so differences of a few km/h can appear. This rating does not include the Kp index, airspace rules, or night-flying regulations, so check those separately.",
+      "In \"Wind Check for Your Drone\", pick your drone model to compare the current gust with the manufacturer's official maximum wind speed. Below 50% of that figure is good, 50% or more calls for caution, and 70% or more is not recommended. Your choice is also applied to the 24-hour forecast and is stored only in this browser.",
+      "Treat every rating as a reference only. Aircraft condition, battery, payload, local rules, and night-flying requirements are not included, so the final decision and responsibility remain with the pilot. The guides on this site explain the thresholds and background in more detail."
     ],
     "guideHighlightsTitle": "Explore the Guides",
     "guideHighlightsSubtitle": "Practical guides on flight safety, weather judgment, and drone regulations.",
