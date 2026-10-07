@@ -42,6 +42,7 @@ LOG_PATH = os.path.expanduser("~/Library/Logs/%s-indexnow.log" % SITE_NAME)
 UA = "Mozilla/5.0 (compatible; IndexNowSubmitter/1.0; owner-tool)"
 
 DETACHED = False
+_HOST_NOTE_LOGGED = False
 
 
 def log(msg):
@@ -94,9 +95,19 @@ def sitemap_locs(base):
                 expanded += [html.unescape(x) for x in re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", b2)]
         else:
             expanded.append(u)
+    # 사이트맵에 적힌 호스트(www 여부 등)가 기준 주소와 달라도, 항상 기준 주소(SITE_BASE)의
+    # 호스트로 맞춰서 보낸다. (IndexNow는 키 파일과 같은 호스트의 주소만 받는다)
+    global _HOST_NOTE_LOGGED
+    bp = urlparse(base)
+    origin = "%s://%s" % (bp.scheme, bp.netloc)
     out = {}
     for u in expanded:
-        out[urlparse(u).path.rstrip("/") or "/"] = u
+        p = urlparse(u)
+        if p.netloc and p.netloc != bp.netloc and not _HOST_NOTE_LOGGED:
+            log("참고: 사이트맵 주소의 호스트(%s)가 기준 주소(%s)와 달라 기준 주소로 맞춰 전송합니다." % (p.netloc, bp.netloc))
+            _HOST_NOTE_LOGGED = True
+        fixed = origin + p.path + (("?" + p.query) if p.query else "")
+        out[p.path.rstrip("/") or "/"] = fixed
     return out
 
 

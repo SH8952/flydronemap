@@ -1,3 +1,11 @@
+## 2026-10-07 — IndexNow 기준 주소를 www 없는 주소로 통일·보강
+
+- 배경: 세 사이트 모두 www 없는 주소(apex)로 통일됨. firelic의 `automation/indexnow-submit.py` 기준 주소(`SITE_BASE`)와 `.env.example`이 이전 www 주소로 남아 있어 보정.
+- 보강(3개 사이트 공통): 사이트맵에서 읽은 주소의 호스트가 기준 주소와 다르면(예: www 여부 차이) 호스트를 기준 주소로 맞춰서 전송. 경로·쿼리는 그대로 유지하며, 달라진 경우 로그에 한 번 안내. IndexNow는 키 파일과 같은 호스트의 주소만 받으므로, 배포 환경의 `NEXT_PUBLIC_SITE_URL` 값과 무관하게 항상 `https://flydronemap.com` 기준으로 전송됨.
+- 시험: 가짜 서버(사이트맵 주소 호스트 127.0.0.1 ↔ 기준 주소 localhost)로 3개 사이트 모두 전송 호스트·keyLocation·주소 목록이 기준 주소로 정규화되는 것을 확인. `py_compile` 통과. 실제 사이트·api.indexnow.org에는 전송하지 않음.
+- 백업: `.backups/indexnow-host_20261007_100049/`.
+- 영향: 발행 스크립트·키 파일·사이트 코드는 변경 없음. 10월 발행 일시중지 상태이므로 첫 실제 전송은 발행 재개 후.
+
 ## 2026-10-07 — IndexNow 적용 (Bing·Naver·Yandex 등에 새 글 즉시 알림)
 
 - 배경: Bing 웹마스터도구에 3개 사이트와 사이트맵을 등록해 노출이 시작됨. IndexNow(https://www.indexnow.org)는 글이 추가·수정될 때 Bing·Naver·Yandex·Seznam·Yep·Amazon 등 참여 검색엔진에 주소를 직접 알려 주는 방식이며, 한 번 알리면 참여 엔진 전체에 공유됨(Google은 미참여 — 기존 사이트맵·서치 콘솔 경로는 그대로 유지).
