@@ -1,3 +1,13 @@
+## 2026-10-07 — IndexNow 적용 (Bing·Naver·Yandex 등에 새 글 즉시 알림)
+
+- 배경: Bing 웹마스터도구에 3개 사이트와 사이트맵을 등록해 노출이 시작됨. IndexNow(https://www.indexnow.org)는 글이 추가·수정될 때 Bing·Naver·Yandex·Seznam·Yep·Amazon 등 참여 검색엔진에 주소를 직접 알려 주는 방식이며, 한 번 알리면 참여 엔진 전체에 공유됨(Google은 미참여 — 기존 사이트맵·서치 콘솔 경로는 그대로 유지).
+- 키 파일: `public/89a83668fe5141598df24f562a173e3a.txt` 추가(내용은 키 한 줄, 사이트 루트 `https://flydronemap.com/89a83668fe5141598df24f562a173e3a.txt`로 서비스). 키는 공개 값이며 사이트마다 다름. 언어 경로 처리(`proxy.ts`/`middleware.ts`)는 점(.)이 있는 경로를 처리 대상에서 제외하므로 영향 없음.
+- 제출 스크립트: `automation/indexnow-submit.py` 신규(파이썬 표준 라이브러리만 사용). `--slugs <슬러그...>`로 새 가이드(전 언어) + 언어별 가이드 목록 페이지를 알리거나 `--urls <경로...>`로 임의 주소를 알림. 배포가 끝나 새 글이 사이트맵에 나타날 때까지 최대 20분 기다리고, 키 파일과 각 글 주소가 실제로 열리는지(200) 확인한 주소만 `https://api.indexnow.org/indexnow`로 전송. `--dry-run`(전송 없이 확인), `--detach`(백그라운드 분리) 지원. 기록: `~/Library/Logs/flydronemap-indexnow.log`. 어떤 오류가 나도 발행 자체에는 영향 없음.
+- 발행 연동: `automation/publish-guide.command`의 `git push` 성공 직후 `indexnow-submit.py --detach --slugs …`를 호출(1건 처리 구조). push가 실패하면 호출하지 않음. 백그라운드로 완전히 분리되어 터미널 창은 기존처럼 자동으로 닫힘. 스크립트 자신은 삭제하지 않고 `git add -A`도 사용하지 않음(기존 동작 그대로).
+- 검증: 가짜 서버(사이트맵·키 파일·접수 주소)로 시험 — 배포 대기 후 전송, `--dry-run` 비전송, 존재하지 않는 글은 전송 안 함·종료코드 1, 404 주소 제외, `--detach` 즉시 반환(19ms) 모두 통과. `bash -n`·`py_compile` 통과. 실서버 전송은 push·배포 후 첫 발행 때 처음 일어남.
+- 운영 메모: IndexNow 공식 권고에 따라 "IndexNow 사용 시작 이후에 추가·수정·삭제된 주소"만 알림. 같은 주소를 하루에 여러 번 반복 전송하지 말 것(다시 보낼 때는 5분 이상 간격). 10월은 자동 발행 일시중지 상태라 첫 전송은 발행 재개 후.
+- 되돌리려면: `public/89a83668fe5141598df24f562a173e3a.txt`, `automation/indexnow-submit.py` 삭제 + `publish-guide.command`의 "IndexNow 알림" 블록 제거. 작업 전 백업: `.backups/indexnow_20261007_*/`.
+
 ## 2026-10-04 — Part 107 웨이버 가이드 설명문(description) 근거 없는 서술 완화 (5개 언어)
 
 **배경**

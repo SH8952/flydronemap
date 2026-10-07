@@ -218,6 +218,18 @@ if ! git push origin main; then
   exit 1
 fi
 
+# --- IndexNow 알림 (2026-10-07 추가) ---
+# push 성공 후(위에서 실패하면 이미 종료됨) 이번에 발행한 글의 주소를 Bing·Naver·Yandex 등에 알립니다.
+# 배포가 끝날 때까지 기다렸다가 전송하므로 백그라운드로 분리해 실행하며(이 창은 바로 닫힘),
+# 실패해도 발행에는 영향이 없습니다. 기록: ~/Library/Logs/flydronemap-indexnow.log
+if [ -f "$REPO/automation/indexnow-submit.py" ]; then
+  if python3 "$REPO/automation/indexnow-submit.py" --detach --slugs "$SLUG"; then
+    echo "IndexNow 알림 예약됨: 배포 완료 후 자동 전송 ($SLUG)"
+  else
+    echo "(IndexNow 알림 예약 실패 - 발행에는 영향 없음)"
+  fi
+fi
+
 # --- 6. 성공 시에만 정리 ---
 rm -f "$CONTENT_DIR/guide-${SLUG}-en.mdx" "$CONTENT_DIR/guide-${SLUG}-ja.mdx" "$CONTENT_DIR/guide-${SLUG}-ko.mdx" "$CONTENT_DIR/guide-${SLUG}-es.mdx" "$CONTENT_DIR/new-queue.json" "$CONTENT_DIR/changelog-snippet.txt"
 
