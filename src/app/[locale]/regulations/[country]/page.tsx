@@ -9,6 +9,8 @@ import { ShareButton } from "@/components/share-button";
 import { RegulationRelatedGuides } from "@/components/regulation-related-guides";
 import {
   REGULATION_COUNTRIES,
+  REGULATION_SOURCES,
+  REGULATIONS_VERIFIED_ON,
   getRegulationCountry,
 } from "@/lib/country-regulations";
 
@@ -140,6 +142,32 @@ export default async function RegulationCountryPage({
               >
                 {t(`countries.${country.id}.links.${link.key}`)}
                 <ExternalLink className="size-3.5" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="flex flex-col gap-1 text-xs text-muted-foreground">
+        <p className="font-medium">{t("sourcesTitle")}</p>
+        <p>
+          {t("sourcesNote", {
+            date: new Intl.DateTimeFormat(locale, {
+              dateStyle: "long",
+              timeZone: "UTC",
+            }).format(new Date(`${REGULATIONS_VERIFIED_ON}T00:00:00Z`)),
+          })}
+        </p>
+        <ul className="flex flex-col gap-0.5">
+          {REGULATION_SOURCES[country.id].map((source) => (
+            <li key={source.url}>
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-foreground"
+              >
+                {source.name}
               </a>
             </li>
           ))}

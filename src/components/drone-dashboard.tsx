@@ -112,6 +112,19 @@ type GeocodeResult = {
   longitude: number;
 };
 
+// "2026-10-12T14:15" / "2026-10-12T05:12:00" → "2026-10-12 14:15" (표시용)
+function formatDataTime(time: string): string {
+  return time.replace("T", " ").slice(0, 16);
+}
+
+// NOAA 시각은 UTC이며 시간대 표기가 없는 경우가 있어 Z를 보정해 비교한다.
+const KP_STALE_AFTER_MS = 3 * 60 * 60 * 1000;
+function isKpStale(time: string): boolean {
+  const iso = /[zZ]|[+-]\d\d:?\d\d$/.test(time) ? time : `${time}Z`;
+  const ts = Date.parse(iso);
+  return Number.isNaN(ts) ? false : Date.now() - ts > KP_STALE_AFTER_MS;
+}
+
 type DashboardData = {
   weather: {
     temperatureC: number;
@@ -130,6 +143,8 @@ type DashboardData = {
     levels: { altitudeM: number; windSpeedKmh: number; windDirectionDeg: number }[];
   } | null;
   kp: { kp: number; time: string } | null;
+  // NOAA Kp 마지막 관측이 3시간(=Kp 산출 주기)보다 오래됐는지 — fetch 직후 계산해 둔다.
+  kpStale?: boolean;
   // 지금부터 24시간 시간별 비행 조건 — 2026-10-03 신규(타임라인·기종 판정).
   // 호출이 실패하거나 데이터가 부족하면 null이고, 그 경우 타임라인은 숨긴다.
   hourly: HourlyCondition[] | null;
@@ -347,6 +362,7 @@ export function DroneDashboard({
       if (krZone) {
         json.airspace = krZone;
       }
+      json.kpStale = json.kp ? isKpStale(json.kp.time) : false;
       json.usAirspaceZones = usZones;
       json.esAirspaceZones = esZones;
       json.deAirspaceZones = deZones;
@@ -874,8 +890,29 @@ export function DroneDashboard({
                         </span>
                       </div>
                     ))}
+                    <p className="text-[11px] text-muted-foreground">
+                      {t("dataTimeLocal", {
+                        time: formatDataTime(data.altitudeWind.time),
+                      })}
+                    </p>
                   </>
                 ) : null}
+                <p className="mt-1 border-t border-border pt-1.5 text-[11px] leading-snug text-muted-foreground">
+                  {t("dataTimeLocal", {
+                    time: formatDataTime(data.weather.time),
+                  })}
+                  {" · "}
+                  {t("dataSourceLabel")}:{" "}
+                  <a
+                    href="https://open-meteo.com/en/docs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    Open-Meteo
+                  </a>{" "}
+                  ({t("weatherModelNote")})
+                </p>
               </div>
             ) : (
               <p className="text-sm text-muted-foreground">
@@ -902,6 +939,28 @@ export function DroneDashboard({
                 </div>
                 <p className="text-xs text-muted-foreground">
                   {t(`kpHint.${kpRisk(data.kp.kp)}`)}
+                </p>
+                {data.kpStale ? (
+                  <p
+                    role="status"
+                    className="rounded-md border border-amber-500/40 bg-amber-500/10 px-2 py-1 text-xs text-amber-600 dark:text-amber-400"
+                  >
+                    {t("kpStaleWarning")}
+                  </p>
+                ) : null}
+                <p className="text-[11px] leading-snug text-muted-foreground">
+                  {t("dataTimeUtc", { time: formatDataTime(data.kp.time) })}
+                  {" · "}
+                  {t("dataSourceLabel")}:{" "}
+                  <a
+                    href="https://www.swpc.noaa.gov/products/planetary-k-index"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2"
+                  >
+                    NOAA SWPC
+                  </a>{" "}
+                  ({t("kpFeedNote")})
                 </p>
               </div>
             ) : (
@@ -1094,6 +1153,9 @@ export function DroneDashboard({
                       country: countryDisplayName,
                     })
                   : t("airspaceDisclaimerUnknownLocation")}
+            </p>
+            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+              {t("airspaceSourcesNote")}
             </p>
             {priorityRegulationId && regulationOfficialUrl ? (
               <Button variant="outline" size="sm" className="mt-3" asChild>

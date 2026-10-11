@@ -122,7 +122,7 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
       },
       {
         key: "registration",
-        url: "https://www.lba.de/DE/Drohnen/Betreiberregistrierung/Betreiberregistrierung_node.html",
+        url: "https://www.lba.de/DE/Drohnen/UAS_Betreiberregistrierung/UAS_Betreiberregistrierung_node.html",
       },
       {
         key: "airspaceMap",
@@ -137,3 +137,38 @@ export function getRegulationCountry(
 ): RegulationCountryDef | undefined {
   return REGULATION_COUNTRIES.find((c) => c.id === id);
 }
+
+/**
+ * 국가별 요약을 작성할 때 직접 열어 확인한 공식 자료(2026-10-12). 요약 문구를 고치거나
+ * 새 국가를 추가할 때는 이 목록과 확인일(REGULATIONS_VERIFIED_ON)도 함께 갱신할 것.
+ * 화면에는 페이지 하단에 작은 글씨로 표시된다(번역하지 않는 고유 명칭·주소만 둔다).
+ */
+export const REGULATIONS_VERIFIED_ON = "2026-10-12";
+
+export const REGULATION_SOURCES: Record<
+  RegulationCountryId,
+  { name: string; url: string }[]
+> = {
+  us: [
+    { name: "FAA — Recreational Flyers", url: "https://www.faa.gov/uas/recreational_flyers" },
+    { name: "FAA — Become a Drone Pilot (Part 107)", url: "https://www.faa.gov/uas/commercial_operators/become_a_drone_pilot" },
+    { name: "FAA — LAANC", url: "https://www.faa.gov/uas/getting_started/laanc" },
+  ],
+  kr: [
+    { name: "드론원스톱 (국토교통부)", url: "https://drone.onestop.go.kr" },
+    { name: "서울특별시 — 드론 비행 제한구역 안내", url: "https://news.seoul.go.kr/gov/archives/549810" },
+  ],
+  jp: [
+    { name: "国土交通省 — 無人航空機の飛行ルール", url: "https://www.mlit.go.jp/koku/koku_fr10_000042.html" },
+    { name: "国土交通省 — 無人航空機登録制度", url: "https://www.mlit.go.jp/koku/info/index.html" },
+    { name: "国土交通省 — DIPS 2.0", url: "https://www.mlit.go.jp/koku/koku_ua_dips.html" },
+  ],
+  es: [
+    { name: "AESA — Registro de operador de drones/UAS", url: "https://www.seguridadaerea.gob.es/en/ambitos/drones/registro-de-operador-de-drones-uas" },
+    { name: "AESA — Zonas geográficas de UAS", url: "https://www.seguridadaerea.gob.es/en/ambitos/drones/zonas-geograficas-de-uas" },
+  ],
+  de: [
+    { name: "LBA — Betreiberregistrierung", url: "https://www.lba.de/DE/Drohnen/UAS_Betreiberregistrierung/UAS_Betreiberregistrierung_node.html" },
+    { name: "LBA — FAQ Drohnen", url: "https://www.lba.de/DE/Drohnen/FAQ/Uebersicht_FAQ_node.html" },
+  ],
+};

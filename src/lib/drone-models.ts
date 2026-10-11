@@ -3,7 +3,7 @@
  *
  * 2026-10-03 신규 — 경쟁 사이트 분석에서 나온 "내 기종 기준 비행 가능 판정" 기능.
  * 값은 모두 제조사 공식 스펙 페이지(dji.com, autelrobotics.com, skydio.com)에서
- * 2026-10-03에 직접 확인한 것만 넣었다. 확인하지 못한 기종은 넣지 않는다 —
+ * 2026-10-03에 직접 확인(2026-10-12 재확인 + 스펙 URL 기록)한 것만 넣었다. 확인하지 못한 기종은 넣지 않는다 —
  * 스펙이 바뀌거나 기종을 추가할 때는 반드시 공식 페이지를 다시 확인할 것.
  *
  * `maxWindMs`는 단일 기준값이다. 이륙/착륙과 비행 중 값이 다른 기종은 더 낮은
@@ -19,28 +19,30 @@ export type DroneModel = {
   maxWindMs: number;
   /** 이륙·착륙/비행 중 값이 달라 낮은 값을 쓴 경우 true. */
   conservative?: boolean;
+  /** 제조사 공식 스펙 페이지(2026-10-12에 직접 열어 최대 풍속 값을 확인한 URL). */
+  specUrl: string;
 };
 
 export const DRONE_MODELS: readonly DroneModel[] = [
-  { id: "dji-neo", brand: "DJI", name: "DJI Neo", maxWindMs: 8 },
-  { id: "dji-mini-4k", brand: "DJI", name: "DJI Mini 4K", maxWindMs: 10.7 },
-  { id: "dji-mini-3", brand: "DJI", name: "DJI Mini 3", maxWindMs: 10.7 },
-  { id: "dji-mini-3-pro", brand: "DJI", name: "DJI Mini 3 Pro", maxWindMs: 10.7 },
-  { id: "dji-mini-4-pro", brand: "DJI", name: "DJI Mini 4 Pro", maxWindMs: 10.7 },
-  { id: "dji-mini-5-pro", brand: "DJI", name: "DJI Mini 5 Pro", maxWindMs: 12 },
-  { id: "dji-air-2s", brand: "DJI", name: "DJI Air 2S", maxWindMs: 10.7 },
-  { id: "dji-air-3", brand: "DJI", name: "DJI Air 3", maxWindMs: 12 },
-  { id: "dji-air-3s", brand: "DJI", name: "DJI Air 3S", maxWindMs: 12 },
-  { id: "dji-avata-2", brand: "DJI", name: "DJI Avata 2", maxWindMs: 10.7 },
-  { id: "dji-mavic-3-classic", brand: "DJI", name: "DJI Mavic 3 Classic", maxWindMs: 12 },
-  { id: "dji-mavic-3-pro", brand: "DJI", name: "DJI Mavic 3 Pro", maxWindMs: 12 },
+  { id: "dji-neo", brand: "DJI", name: "DJI Neo", maxWindMs: 8, specUrl: "https://www.dji.com/neo/specs" },
+  { id: "dji-mini-4k", brand: "DJI", name: "DJI Mini 4K", maxWindMs: 10.7, specUrl: "https://www.dji.com/mini-2-se/specs" },
+  { id: "dji-mini-3", brand: "DJI", name: "DJI Mini 3", maxWindMs: 10.7, specUrl: "https://www.dji.com/mini-3/specs" },
+  { id: "dji-mini-3-pro", brand: "DJI", name: "DJI Mini 3 Pro", maxWindMs: 10.7, specUrl: "https://www.dji.com/support/product/mini-3-pro" },
+  { id: "dji-mini-4-pro", brand: "DJI", name: "DJI Mini 4 Pro", maxWindMs: 10.7, specUrl: "https://www.dji.com/mini-4-pro/specs" },
+  { id: "dji-mini-5-pro", brand: "DJI", name: "DJI Mini 5 Pro", maxWindMs: 12, specUrl: "https://www.dji.com/mini-5-pro/specs" },
+  { id: "dji-air-2s", brand: "DJI", name: "DJI Air 2S", maxWindMs: 10.7, specUrl: "https://www.dji.com/support/product/air-2s" },
+  { id: "dji-air-3", brand: "DJI", name: "DJI Air 3", maxWindMs: 12, specUrl: "https://www.dji.com/air-3/specs" },
+  { id: "dji-air-3s", brand: "DJI", name: "DJI Air 3S", maxWindMs: 12, specUrl: "https://www.dji.com/air-3s/specs" },
+  { id: "dji-avata-2", brand: "DJI", name: "DJI Avata 2", maxWindMs: 10.7, specUrl: "https://www.dji.com/avata-2/specs" },
+  { id: "dji-mavic-3-classic", brand: "DJI", name: "DJI Mavic 3 Classic", maxWindMs: 12, specUrl: "https://www.dji.com/mavic-3-classic/specs" },
+  { id: "dji-mavic-3-pro", brand: "DJI", name: "DJI Mavic 3 Pro", maxWindMs: 12, specUrl: "https://www.dji.com/mavic-3-pro/specs" },
   // 공식: 이륙/착륙 12 m/s, 비행 중 14 m/s → 보수적으로 12.
-  { id: "dji-inspire-3", brand: "DJI", name: "DJI Inspire 3", maxWindMs: 12, conservative: true },
+  { id: "dji-inspire-3", brand: "DJI", name: "DJI Inspire 3", maxWindMs: 12, conservative: true, specUrl: "https://www.dji.com/inspire-3/specs" },
   // 공식: 이륙/착륙 10.7 m/s, 순항 12 m/s → 보수적으로 10.7.
-  { id: "autel-evo-ii-pro-v3", brand: "Autel", name: "Autel EVO II Pro V3", maxWindMs: 10.7, conservative: true },
-  { id: "autel-evo-iii", brand: "Autel", name: "Autel EVO III", maxWindMs: 12 },
+  { id: "autel-evo-ii-pro-v3", brand: "Autel", name: "Autel EVO II Pro V3", maxWindMs: 10.7, conservative: true, specUrl: "https://www.autelrobotics.com/productdetail/evo-ii-pro-drones/" },
+  { id: "autel-evo-iii", brand: "Autel", name: "Autel EVO III", maxWindMs: 12, specUrl: "https://www.autelrobotics.com/productdetail/autel-evo-%E2%85%B2/" },
   // 공식 표기는 "Max gust handling 12.8 m/s".
-  { id: "skydio-x10", brand: "Skydio", name: "Skydio X10", maxWindMs: 12.8 },
+  { id: "skydio-x10", brand: "Skydio", name: "Skydio X10", maxWindMs: 12.8, specUrl: "https://www.skydio.com/x10/technical-specs" },
 ];
 
 export function getDroneModel(id: string | null | undefined): DroneModel | null {

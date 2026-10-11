@@ -1,3 +1,30 @@
+## 2026-10-12 — 신뢰도 보강: 규정 출처·확인일, 데이터 관측 시각·출처, 기종 스펙 링크, 판정 기준 근거 (5개 언어)
+
+**배경**
+- 애드센스 거절 후 외부 진단 보고서에서 지적된 "데이터·규정 신뢰도"를 보강. 모든 조사 출처를 작은 글씨로 화면에 기록하는 방식으로 진행(사용자 승인).
+
+**1단계 — 규정 페이지(미국·한국·일본·스페인·독일)**
+- 공식 페이지를 직접 열어 확인한 내용으로 요약 문단 정정: 미국(250g 이상 FAA 등록·Remote ID), 한국(드론원스톱 기준 1차 위반 과태료 150만원 — 기존 "최대 150만원" 표현 정정, 서울시 안내 병기), 일본(옥외 100g 이상 등록·Remote ID, DIPS 2.0 허가·승인, 특정 비행 카테고리II), 스페인(250g 이상/카메라, 왕령 517/2024, ENAIRE), 독일(250g 이상/카메라, e-ID, DIPUL, LuftVO §21h).
+- 근거 없던 서술 삭제(일본 미등록 벌칙·지방항공국·긴급용무공역 등), 한국 `metaDescription`의 과태료 표현 정정(ko/ja/de).
+- 각 국가 페이지 하단에 "출처 및 확인일"(작은 글씨 + 공식 링크) 표시. `country-regulations.ts`에 `REGULATIONS_VERIFIED_ON`, `REGULATION_SOURCES` 추가. 독일 등록 링크를 작동하는 LBA 주소로 교체.
+- 열어보지 못한 곳(molit.go.kr, law.go.kr, easylaw.go.kr, dipul.de는 접근 차단)은 출처로 쓰지 않고 다른 공식 페이지로 대체.
+
+**2단계 — 대시보드 데이터 표시**
+- 바람 카드: 데이터 시각(현지 시간)과 출처(Open-Meteo, 예보 모델 기반 현재 값) 표시, 고도별 바람에도 데이터 시각 표시.
+- Kp 카드: 데이터 시각(UTC)과 출처(NOAA SWPC) 표시. 마지막 Kp 관측이 3시간 넘게 지났으면 경고 문구 표시(`kpStale`, fetch 직후 계산).
+- 공역 카드: 공역 레이어 출처(FAA·ENAIRE·DIPUL·VWorld)와 참고용 안내 한 줄.
+
+**3단계 — 기종·기준 근거**
+- 16개 기종에 제조사 공식 스펙 URL(`specUrl`)을 기록하고(2026-10-12에 실제로 열어 최대 풍속 값 일치 확인), 기종 판정 카드에 작은 글씨 링크 표시. Mini 4K는 공식 슬러그가 `mini-2-se`. Mini 3 Pro·Air 2S는 `/specs` 페이지에 표가 없어 공식 지원 페이지 사용.
+- 판정 기준 근거 문구 추가: 돌풍 20/35km/h, 기종 비율 50/70%, 강수·가시거리 경계는 이 사이트 자체 기준임을 명시. Kp 4/5는 NOAA 경보(Kp 4)·G1 폭풍(Kp 5) 분류를 근거로 표기.
+
+**변경 파일**
+- `messages/{en,ko,ja,es,de}.json`(Regulations 요약·출처 키, Home 신규 키 8개), `src/lib/country-regulations.ts`, `src/app/[locale]/regulations/[country]/page.tsx`, `src/components/drone-dashboard.tsx`, `src/components/drone-model-verdict.tsx`, `src/lib/drone-models.ts`.
+
+**검증 / 참고**
+- `tsc --noEmit`·eslint 통과(기존 경고 3건만), 5개 언어 키 일치 확인. 작업 전 백업: `.backups/출처표시작업전_20261012/`.
+- 사용자 확인(localhost) 후 배포.
+
 ## 2026-10-07 — IndexNow 기준 주소를 www 없는 주소로 통일·보강
 
 - 배경: 세 사이트 모두 www 없는 주소(apex)로 통일됨. firelic의 `automation/indexnow-submit.py` 기준 주소(`SITE_BASE`)와 `.env.example`이 이전 www 주소로 남아 있어 보정.

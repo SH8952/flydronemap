@@ -105,6 +105,17 @@ export function DroneModelVerdict({
             {t("modelConservativeNote")}
           </p>
         ) : null}
+        <p className="text-[11px] leading-snug text-muted-foreground">
+          {t("modelSpecSource", { max: model.maxWindMs })}{" "}
+          <a
+            href={model.specUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            {t("modelSpecLink", { brand: model.brand })}
+          </a>
+        </p>
       </div>
     );
   }
@@ -141,6 +152,9 @@ export function DroneModelVerdict({
       {content}
       <p className="mt-3 text-xs text-muted-foreground">
         {t("modelDisclaimer")}
+      </p>
+      <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+        {t("thresholdBasis")}
       </p>
     </div>
   );

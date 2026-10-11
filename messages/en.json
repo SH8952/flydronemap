@@ -208,7 +208,17 @@
     "crossLinkTitle": "Related tool",
     "crossLinkDescription": "Planning a long-exposure shot after your flight? Calculate the right ND filter exposure time for your aperture and ISO.",
     "crossLinkCta": "ND filter exposure calculator",
-    "crossLinkCtaAria": "Opens ExifLens in a new tab — ND filter exposure calculator"
+    "crossLinkCtaAria": "Opens ExifLens in a new tab — ND filter exposure calculator",
+    "dataTimeLocal": "Data time: {time} (local time at this location)",
+    "dataTimeUtc": "Data time: {time} UTC",
+    "dataSourceLabel": "Source",
+    "weatherModelNote": "model-based current conditions",
+    "kpFeedNote": "estimated planetary K-index",
+    "kpStaleWarning": "The latest Kp reading is more than 3 hours old and may not reflect current conditions. Check again later.",
+    "airspaceSourcesNote": "Airspace layer sources: FAA UAS Facility Map (US), ENAIRE (ES), DIPUL (DE), VWorld (KR). For reference only — confirm in the official app or map before flying.",
+    "modelSpecSource": "Max wind resistance used: {max} m/s, as listed by the manufacturer.",
+    "modelSpecLink": "Official {brand} spec page ↗",
+    "thresholdBasis": "How the thresholds are set: gusts under 20 km/h show as good, 20–35 km/h as caution and 35 km/h or more as no-fly. These cut-offs are this site's own rule of thumb, chosen to stay below the 8–12.8 m/s (about 29–46 km/h) maximum wind resistance that manufacturers list for common models — no authority publishes them. For a selected model, 50% of the manufacturer's figure is caution and 70% is not recommended, a conservative choice made by this site. Kp 4 shows as unsettled and Kp 5 or higher as storm: NOAA issues Kp alerts when Kp reaches 4 and rates Kp 5 as a G1 geomagnetic storm. The precipitation (0.1 / 0.5 mm) and visibility (5 / 1 km) cut-offs are also this site's own rules of thumb."
   },
   "Faq": {
     "title": "Frequently Asked Questions",
@@ -507,7 +517,7 @@
         "authority": "Federal Aviation Administration (FAA)",
         "summary": [
           "Recreational flyers must pass the online TRUST safety test, while commercial drone operations require an FAA Part 107 Remote Pilot Certificate.",
-          "Most drones must be registered with the FAA, and flying in controlled airspace near airports requires prior approval through LAANC (Low Altitude Authorization and Notification Capability).",
+          "Drones weighing 250 g (0.55 lb) or more must be registered with the FAA and broadcast Remote ID, and flying in controlled airspace near airports requires prior FAA authorization through LAANC or DroneZone.",
           "Always check airspace with the B4UFLY app or the FAA's UAS facility map before you fly."
         ],
         "links": {
@@ -524,7 +534,7 @@
         "authority": "Ministry of Land, Infrastructure and Transport (MOLIT) · Drone OneStop",
         "summary": [
           "Depending on weight and purpose, you must register your drone and obtain flight/aerial-photography approval in advance through the Drone OneStop portal.",
-          "Flying without prior approval in no-fly zones, control zones, or restricted zones can result in fines of up to KRW 1.5 million. Most of central Seoul falls under restricted airspace.",
+          "Flying in an approval-required area without prior approval carries a fine of KRW 1.5 million for a first violation, according to Drone OneStop. Seoul and the Seoul metropolitan area are listed as no-fly and restricted airspace, so most flights there need prior approval, and the Seoul city government also cites fines of up to KRW 5 million under Article 161 of the Aviation Safety Act.",
           "On this site, selecting a location in South Korea also shows no-fly zones, control zones, and other airspace layers in color on the map."
         ],
         "links": {
@@ -540,9 +550,9 @@
         "capital": "Tokyo",
         "authority": "Ministry of Land, Infrastructure, Transport and Tourism (MLIT)",
         "summary": [
-          "Drones weighing 100g or more must be registered with MLIT (including Remote ID); flying an unregistered drone is punishable by law.",
-          "Flying near airports, above 150m, over densely inhabited districts (DID), or in emergency-use airspace requires prior permission from the regional civil aviation bureau, applied for online via DIPS2.0.",
-          "Night flights, beyond-visual-line-of-sight flights and similar also require separate approval (with some exceptions for certified aircraft/pilots). Always check the latest rules on the official site before flying."
+          "Drones weighing 100 g or more that are flown outdoors must be registered and equipped with Remote ID, as required by law.",
+          "Flying near airports, at 150 m or higher above ground, over event venues, or when transporting dangerous goods or dropping objects requires prior permission or approval, applied for online via DIPS 2.0 (submit at least 10 business days before the flight; 3–4 weeks ahead is recommended).",
+          "Flights over densely inhabited districts (DID), at night, or beyond visual line of sight are also special flights (Category II); a permit can be waived when the pilot holds the required skill certificate, the aircraft is certified, and a flight manual is in place. Always check the latest rules on the official site before flying."
         ],
         "links": {
           "official": "MLIT drone guidance",
@@ -557,8 +567,8 @@
         "authority": "AESA (Spanish Aviation Safety Agency)",
         "summary": [
           "Spain follows the EU-wide EASA framework, which splits drone operations into three risk-based categories — Open, Specific, and Certified. Most hobby flying falls under the Open category.",
-          "Drone operators must register with AESA and display their registration number on the aircraft.",
-          "Where you can fly is defined by AESA's 'UAS geographical zones' service — always check it for restricted areas before flying."
+          "Operators must register with AESA if their drone weighs 250 g or more, or if a lighter drone has a camera or sensor that can capture personal data (unless it complies with the Toy Safety Directive). The operator registration number must be included on all of the operator's drones.",
+          "Geographical UAS zones are set by Royal Decree 517/2024. AESA points to the ENAIRE drone app to see where drone flights are prohibited or restricted — always check it before flying."
         ],
         "links": {
           "official": "AESA drone guidance",
@@ -573,8 +583,8 @@
         "authority": "LBA (German Federal Aviation Office)",
         "summary": [
           "Germany follows the EU-wide EASA framework, which splits drone operations into three risk-based categories — Open, Specific, and Certified. Most hobby flying falls under the Open category.",
-          "Drone operators must register with the LBA (Luftfahrt-Bundesamt) and display their registration number on the aircraft.",
-          "Where you can fly is defined by DIPUL (Digital Platform for Unmanned Aviation) — always check it for flight restriction and control zones before flying."
+          "Operators must register with the LBA (Luftfahrt-Bundesamt) if their drone has a take-off mass of 250 g or more, or if a lighter drone has a sensor that captures personal data, such as a camera. The electronic registration number (e-ID) must be attached to each drone.",
+          "Before each flight, the LBA recommends checking the DIPUL platform's map tool for geographical UAS zones (federal zones are set out in § 21h of the German Air Traffic Regulation, LuftVO). DIPUL's map also shows zones in other EU countries, where rules can differ."
         ],
         "links": {
           "official": "LBA drone guidance",
@@ -585,7 +595,9 @@
         "metaDescription": "Germany drone rules under the EU EASA framework: Open, Specific and Certified categories, LBA registration, and how to check DIPUL flight restriction zones."
       }
     },
-    "relatedGuidesTitle": "Related guides"
+    "relatedGuidesTitle": "Related guides",
+    "sourcesTitle": "Sources",
+    "sourcesNote": "Summary checked against the official pages below on {date}. Rules change — confirm with the authority before flying."
   },
   "Contact": {
     "title": "Contact FlyDroneMap",

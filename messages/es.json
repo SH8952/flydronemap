@@ -208,7 +208,17 @@
     "crossLinkTitle": "Herramienta relacionada",
     "crossLinkDescription": "¿Piensas hacer una exposición larga después del vuelo? Calcula el tiempo de exposición del filtro ND según tu apertura e ISO.",
     "crossLinkCta": "Calculadora de exposición con filtro ND",
-    "crossLinkCtaAria": "Abre ExifLens en una pestaña nueva — calculadora de exposición con filtro ND"
+    "crossLinkCtaAria": "Abre ExifLens en una pestaña nueva — calculadora de exposición con filtro ND",
+    "dataTimeLocal": "Hora de los datos: {time} (hora local del lugar)",
+    "dataTimeUtc": "Hora de los datos: {time} UTC",
+    "dataSourceLabel": "Fuente",
+    "weatherModelNote": "valores actuales basados en modelos",
+    "kpFeedNote": "índice K planetario estimado",
+    "kpStaleWarning": "La última lectura de Kp tiene más de 3 horas y puede no reflejar las condiciones actuales. Vuelve a comprobarlo más tarde.",
+    "airspaceSourcesNote": "Fuentes de las capas de espacio aéreo: FAA UAS Facility Map (EE. UU.), ENAIRE (ES), DIPUL (DE), VWorld (KR). Solo orientativo: confirma en la app o el mapa oficial antes de volar.",
+    "modelSpecSource": "Resistencia máxima al viento aplicada: {max} m/s, según indica el fabricante.",
+    "modelSpecLink": "Ficha técnica oficial de {brand} ↗",
+    "thresholdBasis": "Cómo se fijan los umbrales: las ráfagas por debajo de 20 km/h se muestran como buenas, de 20 a 35 km/h como precaución y de 35 km/h o más como no volar. Estos límites son una regla práctica propia de este sitio, elegida para quedar por debajo de la resistencia máxima al viento que los fabricantes indican para los modelos habituales (8–12,8 m/s, unos 29–46 km/h); ninguna autoridad los publica. Con un modelo seleccionado, el 50 % de la cifra del fabricante es precaución y el 70 % no recomendado, una decisión conservadora de este sitio. Kp 4 se muestra como inestable y Kp 5 o más como tormenta: NOAA emite alertas cuando el Kp llega a 4 y clasifica Kp 5 como tormenta geomagnética G1. Los límites de precipitación (0,1 / 0,5 mm) y visibilidad (5 / 1 km) también son reglas prácticas propias de este sitio."
   },
   "Faq": {
     "title": "Preguntas Frecuentes",
@@ -507,7 +517,7 @@
         "authority": "Administración Federal de Aviación (FAA)",
         "summary": [
           "Los pilotos recreativos deben aprobar el examen de seguridad en línea TRUST, y para operaciones comerciales con drones se requiere el certificado de piloto remoto Part 107 de la FAA.",
-          "La mayoría de los drones deben registrarse ante la FAA, y volar en espacio aéreo controlado cerca de aeropuertos requiere autorización previa mediante LAANC.",
+          "Los drones de 250 g (0,55 lb) o más deben registrarse ante la FAA y emitir Remote ID, y volar en espacio aéreo controlado cerca de aeropuertos requiere autorización previa de la FAA mediante LAANC o DroneZone.",
           "Antes de volar, comprueba siempre el espacio aéreo con la app B4UFLY o el mapa de instalaciones UAS de la FAA."
         ],
         "links": {
@@ -524,7 +534,7 @@
         "authority": "Ministerio de Tierra, Infraestructura y Transporte · Drone OneStop",
         "summary": [
           "Según el peso y el uso, es necesario registrar el dron y obtener autorización de vuelo o de fotografía aérea a través del portal Drone OneStop.",
-          "Volar sin autorización previa en zonas de exclusión, zonas de control o zonas restringidas puede conllevar multas de hasta 1.500.000 KRW. La mayor parte del centro de Seúl es espacio restringido.",
+          "Según Drone OneStop, volar en una zona que requiere autorización sin haberla obtenido conlleva una multa de 1.500.000 KRW por la primera infracción. Seúl y su área metropolitana figuran como espacio aéreo de exclusión y restringido, por lo que la mayoría de los vuelos requieren autorización previa; además, el Ayuntamiento de Seúl menciona sanciones de hasta 5.000.000 KRW conforme al artículo 161 de la Ley de Seguridad Aérea.",
           "En este sitio, al seleccionar una ubicación en Corea del Sur también se muestran en el mapa, en color, las zonas de exclusión, zonas de control y otras capas de espacio aéreo."
         ],
         "links": {
@@ -540,9 +550,9 @@
         "capital": "Tokio",
         "authority": "Ministerio de Tierra, Infraestructura, Transporte y Turismo (MLIT)",
         "summary": [
-          "Los drones de 100 g o más deben registrarse ante el MLIT (incluido Remote ID); volar un dron no registrado es sancionable.",
-          "Volar cerca de aeropuertos, por encima de 150 m, sobre zonas densamente pobladas (DID) o en espacio aéreo de uso de emergencia requiere permiso previo de la oficina regional de aviación civil, solicitado en línea a través de DIPS2.0.",
-          "Los vuelos nocturnos o más allá del alcance visual también requieren autorización aparte (con algunas excepciones para aeronaves/pilotos certificados). Comprueba siempre la normativa más reciente en el sitio oficial antes de volar."
+          "Los drones de 100 g o más que vuelan al aire libre deben registrarse y llevar Remote ID, como exige la ley.",
+          "Volar cerca de aeropuertos, a 150 m o más sobre el suelo, sobre eventos o transportando mercancías peligrosas o lanzando objetos requiere permiso o autorización previa, que se solicita en línea a través de DIPS 2.0 (con al menos 10 días hábiles de antelación; se recomiendan de 3 a 4 semanas).",
+          "Los vuelos sobre zonas densamente pobladas (DID), de noche o más allá del alcance visual también son vuelos especiales (Categoría II); el permiso puede no ser necesario si el piloto tiene el certificado de aptitud requerido, la aeronave está certificada y se dispone de un manual de vuelo. Comprueba siempre la normativa más reciente en el sitio oficial antes de volar."
         ],
         "links": {
           "official": "Información oficial de drones del MLIT",
@@ -557,8 +567,8 @@
         "authority": "AESA (Agencia Estatal de Seguridad Aérea)",
         "summary": [
           "España sigue el marco común de la EASA en la UE, que divide las operaciones con drones en tres categorías según el riesgo: abierta, específica y certificada. La mayoría de los vuelos recreativos entran en la categoría abierta.",
-          "Los operadores de drones deben registrarse en AESA y mostrar su número de registro en la aeronave.",
-          "Dónde se puede volar se define en el servicio de 'zonas geográficas de UAS' de AESA — compruébalo siempre antes de volar para evitar zonas restringidas."
+          "Los operadores deben registrarse en AESA si su dron pesa 250 g o más, o si uno más ligero lleva una cámara o sensor capaz de captar datos personales (salvo que cumpla la Directiva de Juguetes). El número de registro de operador debe incluirse en todos los drones del operador.",
+          "Las zonas geográficas de UAS se establecen en el Real Decreto 517/2024. AESA remite a la app ENAIRE Drones para consultar dónde está prohibido o restringido volar drones; compruébala siempre antes de volar."
         ],
         "links": {
           "official": "Información oficial de drones de AESA",
@@ -573,8 +583,8 @@
         "authority": "LBA (Oficina Federal de Aviación de Alemania)",
         "summary": [
           "Alemania sigue el marco común de la EASA en la UE, que divide las operaciones con drones en tres categorías según el riesgo: abierta, específica y certificada. La mayoría de los vuelos recreativos entran en la categoría abierta.",
-          "Los operadores de drones deben registrarse en la LBA (Luftfahrt-Bundesamt) y mostrar su número de registro en la aeronave.",
-          "Dónde se puede volar se define en DIPUL (Plataforma Digital de Aviación No Tripulada) — compruébalo siempre antes de volar para ver las zonas de restricción de vuelo y de control."
+          "Los operadores deben registrarse en la LBA (Luftfahrt-Bundesamt) si su dron tiene una masa de despegue de 250 g o más, o si uno más ligero lleva un sensor que capta datos personales, como una cámara. El número de registro electrónico (e-ID) debe colocarse en cada dron.",
+          "Antes de cada vuelo, la LBA recomienda consultar la herramienta de mapas de la plataforma DIPUL para ver las zonas geográficas de UAS (las zonas federales están recogidas en el § 21h del Reglamento de Tránsito Aéreo alemán, LuftVO). El mapa de DIPUL también muestra zonas de otros países de la UE, donde las normas pueden ser distintas."
         ],
         "links": {
           "official": "Información oficial de drones de la LBA",
@@ -585,7 +595,9 @@
         "metaDescription": "Normativa de drones en Alemania: marco EASA de la UE, registro ante el LBA y cómo consultar las zonas de restricción de vuelo en DIPUL antes de volar."
       }
     },
-    "relatedGuidesTitle": "Guías relacionadas"
+    "relatedGuidesTitle": "Guías relacionadas",
+    "sourcesTitle": "Fuentes",
+    "sourcesNote": "Resumen contrastado con las páginas oficiales siguientes el {date}. La normativa cambia: confirma con la autoridad antes de volar."
   },
   "Contact": {
     "title": "Contacta con FlyDroneMap",

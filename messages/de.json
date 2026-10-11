@@ -208,7 +208,17 @@
     "crossLinkTitle": "Verwandtes Tool",
     "crossLinkDescription": "Planen Sie nach dem Flug eine Langzeitbelichtung? Berechnen Sie die passende ND-Filter-Belichtungszeit für Blende und ISO.",
     "crossLinkCta": "ND-Filter-Belichtungsrechner",
-    "crossLinkCtaAria": "Öffnet ExifLens in einem neuen Tab — ND-Filter-Belichtungsrechner"
+    "crossLinkCtaAria": "Öffnet ExifLens in einem neuen Tab — ND-Filter-Belichtungsrechner",
+    "dataTimeLocal": "Datenzeit: {time} (Ortszeit am Standort)",
+    "dataTimeUtc": "Datenzeit: {time} UTC",
+    "dataSourceLabel": "Quelle",
+    "weatherModelNote": "modellbasierte Momentanwerte",
+    "kpFeedNote": "geschätzter planetarer K-Index",
+    "kpStaleWarning": "Der letzte Kp-Wert ist älter als 3 Stunden und spiegelt die aktuelle Lage möglicherweise nicht wider. Bitte später erneut prüfen.",
+    "airspaceSourcesNote": "Quellen der Luftraumebenen: FAA UAS Facility Map (USA), ENAIRE (ES), DIPUL (DE), VWorld (KR). Nur zur Orientierung – vor dem Flug in der offiziellen App oder Karte prüfen.",
+    "modelSpecSource": "Verwendete maximale Windbeständigkeit: {max} m/s laut Herstellerangabe.",
+    "modelSpecLink": "Offizielle {brand}-Spezifikationsseite ↗",
+    "thresholdBasis": "So werden die Schwellenwerte festgelegt: Böen unter 20 km/h gelten als gut, 20–35 km/h als Vorsicht und ab 35 km/h als nicht fliegen. Diese Grenzen sind eine eigene Faustregel dieser Website; sie liegen bewusst unter der vom Hersteller angegebenen maximalen Windbeständigkeit gängiger Modelle (8–12,8 m/s, etwa 29–46 km/h) und werden von keiner Behörde veröffentlicht. Bei einem gewählten Modell gelten 50 % der Herstellerangabe als Vorsicht und 70 % als nicht empfohlen – eine bewusst vorsichtige Festlegung dieser Website. Kp 4 wird als unruhig und Kp 5 oder mehr als Sturm angezeigt: NOAA gibt Kp-Warnungen aus, wenn der Kp-Wert 4 erreicht, und stuft Kp 5 als geomagnetischen G1-Sturm ein. Auch die Grenzen für Niederschlag (0,1 / 0,5 mm) und Sicht (5 / 1 km) sind eigene Faustregeln dieser Website."
   },
   "Faq": {
     "title": "Häufig gestellte Fragen",
@@ -507,7 +517,7 @@
         "authority": "Federal Aviation Administration (FAA)",
         "summary": [
           "Hobbypiloten müssen den kostenlosen Online-Sicherheitstest TRUST bestehen, während für kommerzielle Drohnenflüge ein FAA Part 107 Remote Pilot Certificate erforderlich ist.",
-          "Die meisten Drohnen müssen bei der FAA registriert werden, und für Flüge im kontrollierten Luftraum in Flughafennähe ist eine vorherige Freigabe über LAANC (Low Altitude Authorization and Notification Capability) erforderlich.",
+          "Drohnen ab 250 g (0,55 lb) müssen bei der FAA registriert werden und Remote ID senden; für Flüge im kontrollierten Luftraum in Flughafennähe ist eine vorherige FAA-Freigabe über LAANC oder DroneZone erforderlich.",
           "Prüfen Sie den Luftraum vor jedem Flug immer mit der App B4UFLY oder der UAS Facility Map der FAA."
         ],
         "links": {
@@ -524,7 +534,7 @@
         "authority": "Ministerium für Land, Infrastruktur und Verkehr (MOLIT) · Drone OneStop",
         "summary": [
           "Je nach Gewicht und Verwendungszweck müssen Sie Ihre Drohne registrieren und über das Portal Drone OneStop vorab eine Flug-/Luftaufnahmegenehmigung einholen.",
-          "Fliegen ohne vorherige Genehmigung in Flugverbotszonen, Kontrollzonen oder Sperrzonen kann Bußgelder von bis zu 1,5 Millionen KRW nach sich ziehen. Der Großteil der Innenstadt von Seoul liegt in eingeschränktem Luftraum.",
+          "Wer in einem genehmigungspflichtigen Gebiet ohne vorherige Genehmigung fliegt, muss laut Drone OneStop bei einem ersten Verstoß ein Bußgeld von 1,5 Mio. KRW zahlen. Seoul und der Großraum Seoul sind als Flugverbots- und Sperrluftraum ausgewiesen, sodass die meisten Flüge dort eine vorherige Genehmigung brauchen; die Stadt Seoul verweist zudem auf Geldstrafen von bis zu 5 Mio. KRW nach Artikel 161 des Luftfahrtsicherheitsgesetzes.",
           "Auf dieser Website werden bei der Auswahl eines Standorts in Südkorea auch Flugverbotszonen, Kontrollzonen und weitere Luftraum-Ebenen farbig auf der Karte angezeigt."
         ],
         "links": {
@@ -533,16 +543,16 @@
           "flightApproval": "Antrag auf Flugfreigabe"
         },
         "metaTitle": "Südkorea: Drohnenregeln & Flugverbotszonen",
-        "metaDescription": "Drohnenregeln in Südkorea: Registrierung und Genehmigung über Drone OneStop, Flugverbots- und Kontrollzonen, Bußgelder bis 1,5 Mio. KRW und Luftraumkarte."
+        "metaDescription": "Drohnenregeln in Südkorea: Registrierung und Genehmigung über Drone OneStop, Flugverbots- und Kontrollzonen, Bußgelder (1,5 Mio. KRW beim ersten Verstoß) und Luftraumkarte."
       },
       "jp": {
         "name": "Japan",
         "capital": "Tokio",
         "authority": "Ministerium für Land, Infrastruktur, Verkehr und Tourismus (MLIT)",
         "summary": [
-          "Drohnen ab 100 g Gewicht müssen beim MLIT registriert werden (einschließlich Remote-ID); der Flug mit einer nicht registrierten Drohne ist strafbar.",
-          "Flüge in der Nähe von Flughäfen, über 150 m Höhe, über dicht besiedelten Gebieten (DID) oder in für Notfälle reservierten Lufträumen erfordern eine vorherige Genehmigung des regionalen Luftfahrtamts, die online über DIPS2.0 beantragt wird.",
-          "Nachtflüge, Flüge außerhalb der Sichtweite und Ähnliches erfordern ebenfalls eine gesonderte Genehmigung (mit einigen Ausnahmen für zertifizierte Fluggeräte/Piloten). Prüfen Sie vor jedem Flug die aktuellen Regeln auf der offiziellen Website."
+          "Drohnen ab 100 g, die im Freien fliegen, müssen gesetzlich registriert und mit Remote-ID ausgestattet sein.",
+          "Flüge in der Nähe von Flughäfen, in 150 m Höhe oder höher, über Veranstaltungen sowie der Transport gefährlicher Güter oder das Abwerfen von Gegenständen erfordern eine vorherige Erlaubnis bzw. Genehmigung, die online über DIPS 2.0 beantragt wird (mindestens 10 Werktage vor dem Flug; 3–4 Wochen werden empfohlen).",
+          "Flüge über dicht besiedelten Gebieten (DID), bei Nacht oder außerhalb der Sichtweite gelten ebenfalls als besondere Flüge (Kategorie II); die Genehmigung kann entfallen, wenn der Pilot den erforderlichen Kompetenznachweis besitzt, das Fluggerät zertifiziert ist und ein Flughandbuch vorliegt. Prüfen Sie vor jedem Flug die aktuellen Regeln auf der offiziellen Website."
         ],
         "links": {
           "official": "MLIT-Drohnenleitfaden",
@@ -557,8 +567,8 @@
         "authority": "AESA (Spanische Luftfahrtsicherheitsbehörde)",
         "summary": [
           "Spanien folgt dem EU-weiten EASA-Rahmenwerk, das den Drohnenbetrieb in drei risikobasierte Kategorien unterteilt — Open, Specific und Certified. Die meisten Hobbyflüge fallen unter die Kategorie Open.",
-          "Drohnenbetreiber müssen sich bei der AESA registrieren und ihre Registrierungsnummer am Fluggerät anbringen.",
-          "Wo Sie fliegen dürfen, wird durch den Dienst „UAS-Geografiezonen“ der AESA festgelegt — prüfen Sie ihn vor jedem Flug auf Sperrgebiete."
+          "Betreiber müssen sich bei der AESA registrieren, wenn ihre Drohne 250 g oder mehr wiegt oder eine leichtere Drohne eine Kamera bzw. einen Sensor zur Erfassung personenbezogener Daten hat (außer sie entspricht der Spielzeugrichtlinie). Die Betreiber-Registrierungsnummer muss an allen Drohnen des Betreibers angebracht sein.",
+          "Die geografischen UAS-Gebiete sind im Königlichen Dekret (Real Decreto) 517/2024 festgelegt. Die AESA verweist auf die ENAIRE-Drohnen-App, um zu sehen, wo Drohnenflüge verboten oder eingeschränkt sind – prüfen Sie sie vor jedem Flug."
         ],
         "links": {
           "official": "AESA-Drohnenleitfaden",
@@ -573,8 +583,8 @@
         "authority": "LBA (Luftfahrt-Bundesamt)",
         "summary": [
           "Deutschland folgt dem EU-weiten EASA-Rahmenwerk, das den Drohnenbetrieb in drei risikobasierte Kategorien unterteilt — Open, Specific und Certified. Die meisten Hobbyflüge fallen unter die Kategorie Open.",
-          "Drohnenbetreiber müssen sich beim LBA (Luftfahrt-Bundesamt) registrieren und ihre Registrierungsnummer am Fluggerät anbringen.",
-          "Wo Sie fliegen dürfen, wird durch DIPUL (Digitale Plattform Unbemannte Luftfahrt) festgelegt — prüfen Sie dort vor jedem Flug auf Flugbeschränkungs- und Kontrollzonen."
+          "Betreiber müssen sich beim LBA (Luftfahrt-Bundesamt) registrieren, wenn ihre Drohne eine Startmasse von 250 g oder mehr hat oder eine leichtere Drohne einen Sensor zur Erfassung personenbezogener Daten, z. B. eine Kamera, besitzt. Die elektronische Registrierungsnummer (e-ID) muss an jeder Drohne angebracht werden.",
+          "Vor jedem Flug empfiehlt das LBA, im Kartentool der Plattform DIPUL die geografischen UAS-Gebiete zu prüfen (die Bundesgebiete sind in § 21h der Luftverkehrs-Ordnung, LuftVO, geregelt). Die DIPUL-Karte zeigt auch Gebiete anderer EU-Staaten, in denen andere Regeln gelten können."
         ],
         "links": {
           "official": "LBA-Drohnenleitfaden",
@@ -585,7 +595,9 @@
         "metaDescription": "Drohnenregeln in Deutschland: EU-EASA-Rahmen mit drei Kategorien, Registrierung beim LBA und Prüfung von Flugbeschränkungs- und Kontrollzonen über DIPUL."
       }
     },
-    "relatedGuidesTitle": "Ähnliche Ratgeber"
+    "relatedGuidesTitle": "Ähnliche Ratgeber",
+    "sourcesTitle": "Quellen",
+    "sourcesNote": "Zusammenfassung am {date} mit den folgenden offiziellen Seiten abgeglichen. Regeln ändern sich – bestätigen Sie sie vor dem Flug bei der Behörde."
   },
   "Contact": {
     "title": "Kontakt zu FlyDroneMap",
