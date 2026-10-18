@@ -1,3 +1,19 @@
+## 2026-10-18 (2) — 규정·보험 가이드 5건의 en/ko/ja/es 판을 독일어 검증본 기준으로 정정
+
+**배경**
+- 독일어 번역 때 공식 규제기관 페이지로 대조해 정정한 내용이 다른 4개 언어 원문에는 남아 있어, 독일어 검증본을 기준으로 20개 파일(5건 x en/ko/ja/es)을 새로 작성.
+
+**대상**: japan-mlit-drone-regulations-overview, korea-drone-license-and-registration-guide, eu-easa-drone-regulations-basics, spain-drone-regulations-and-enaire-zguas-explained, do-you-need-drone-insurance-checklist
+
+**정정·삭제한 서술(요약)**
+- 일본: DID 면적 비율(3.5%), 카테고리 I/II/III 정의와 승인 요건, Remote ID 면제 대상, 타국 기준과의 비교 문구 삭제.
+- 한국: 확인 불가한 250g 등록 기준·1~3종 세부·교육시간, "Air 3/Mavic 3는 3종" 오류, 서울 경호구역·촬영허가 관련 서술 삭제/완화. 확인된 4종(250g 초과~2kg)·승인 조건 유지. 제목·설명문에서 "완벽/완전" 및 미확인 수치 제거.
+- EU/스페인: 비인증 250g 미만 드론을 A3로 단정한 오류 정정(2019/947 제20조), Specific/Certified 범주 예시, STS 조건, U-space 정의, 등록 기준, 미확인 구역 명칭(LEP/LER/LED)·공항 8km·DJI GEO·Part 107·DGAC 서술 삭제.
+- 보험: "대부분 보험이 항공기 제외" 등 일반화 완화, 스페인 RD 517/2024·독일 LuftVG 책임보험 의무 추가.
+- 5건 모두 `updatedAt: 2026-10-17`, 독일어와 같은 공식 출처 링크의 출처 섹션 추가.
+
+**검증**: 검증기(front-matter 유지, 외부 링크가 독일어 검증본 출처 안에 있는지, 내부 링크, MDX 컴파일, 분량, ko/ja 굵은 글씨 금지) 20파일 통과. 작업 전 백업 `.backups/규정오류수정전_20261018/`. 사용자 localhost 확인 후 배포.
+
 ## 2026-10-18 — 가이드 확장: 목차, 독일어 번역 9건, 기종별 풍속 8종·오류 메시지 3종 페이지 (5개 언어)
 
 **배경**
