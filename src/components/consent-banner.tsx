@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { needsConsentBanner } from "@/lib/consent";
 
 const STORAGE_KEY = "consent-choice";
 
@@ -52,6 +53,32 @@ function getServerSnapshot(): StoredChoice {
   return "pending";
 }
 
+// 동의 배너 필요 여부는 방문자 국가로 판정한다. 예전에는 서버(레이아웃)가
+// x-vercel-ip-country 헤더로 계산했지만, 그러면 모든 페이지가 요청마다 동적
+// 렌더링되므로 proxy/middleware가 심어 두는 geo-country 쿠키를 브라우저에서
+// 읽는다. 쿠키가 아직 없으면(첫 방문 첫 응답 직후 등) 값 없음 → 기존과 같이
+// "동의 필요"로 처리(needsConsentBanner(null) === true).
+const GEO_NOT_READY = "__server__";
+
+function subscribeGeo() {
+  return () => {};
+}
+
+function getGeoSnapshot(): string {
+  try {
+    const m = document.cookie.match(/(?:^|; )geo-country=([^;]+)/);
+    return m ? decodeURIComponent(m[1]) : "";
+  } catch {
+    return "";
+  }
+}
+
+// 서버 렌더링 및 하이드레이션 최초 시점에는 국가를 알 수 없으므로 "준비 안 됨"
+// 값을 돌려주고 배너를 그리지 않는다(하이드레이션 후 쿠키 값으로 자동 재동기화).
+function getGeoServerSnapshot(): string {
+  return GEO_NOT_READY;
+}
+
 function saveChoice(choice: "accepted" | "rejected") {
   try {
     window.localStorage.setItem(STORAGE_KEY, choice);
@@ -64,8 +91,8 @@ function saveChoice(choice: "accepted" | "rejected") {
 /**
  * Google Consent Mode v2용 쿠키 동의 배너.
  *
- * `needsConsent`는 서버 컴포넌트(레이아웃)에서 방문자의 국가(Vercel의
- * x-vercel-ip-country 헤더)를 보고 미리 계산해 내려준다 — EEA/영국/스위스가
+ * 방문자 국가는 proxy가 심어 둔 geo-country 쿠키를 브라우저에서 읽어 판정한다(예전에는 레이아웃이
+ * x-vercel-ip-country 헤더로 계산해 내려줬으나, 그러면 모든 페이지가 동적 렌더링되어 제거함) — EEA/영국/스위스가
  * 아니면 애초에 gtag의 consent 기본값이 "거부"로 설정되지 않으므로(레이아웃의
  * GA4 inline script의 `region` 옵션 참고) 이 배너도 띄우지 않는다.
  *
@@ -76,8 +103,11 @@ function saveChoice(choice: "accepted" | "rejected") {
  * granted로 업데이트, "거부"를 누르면 기본값(denied)을 그대로 유지한 채 배너만
  * 닫는다. 선택은 로컬스토리지에 저장해 다음 방문부터는 다시 묻지 않는다.
  */
-export function ConsentBanner({ needsConsent }: { needsConsent: boolean }) {
+export function ConsentBanner() {
   const t = useTranslations("Consent");
+  const geo = React.useSyncExternalStore(subscribeGeo, getGeoSnapshot, getGeoServerSnapshot);
+  const geoReady = geo !== GEO_NOT_READY;
+  const needsConsent = needsConsentBanner(geo || null);
   const choice = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   React.useEffect(() => {
@@ -87,7 +117,7 @@ export function ConsentBanner({ needsConsent }: { needsConsent: boolean }) {
     // "rejected"는 기본값(denied)과 동일한 상태이므로 별도 업데이트 불필요.
   }, [choice]);
 
-  if (!needsConsent || choice !== "pending") return null;
+  if (!geoReady || !needsConsent || choice !== "pending") return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t bg-background/95 p-4 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/90">

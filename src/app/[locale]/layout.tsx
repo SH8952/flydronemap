@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { headers } from "next/headers";
-import { CONSENT_REGION_CODES, needsConsentBanner } from "@/lib/consent";
+import { CONSENT_REGION_CODES } from "@/lib/consent";
 import { ConsentBanner } from "@/components/consent-banner";
 import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
 import { getPartialGuideLocales } from "@/lib/guides";
@@ -98,9 +97,11 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  const headersList = await headers();
-  const geoCountry = headersList.get("x-vercel-ip-country");
-  const needsConsent = needsConsentBanner(geoCountry);
+  // 이전에는 여기서 headers()로 x-vercel-ip-country를 읽어 동의 배너 필요 여부를
+  // 계산했다. headers()는 요청 시점 API라서 이 레이아웃 아래 모든 페이지가
+  // 요청마다 서버에서 새로 렌더링되어 함수 CPU를 소모했다(Vercel Fluid Active CPU).
+  // 판정 자체(needsConsentBanner)는 그대로 두고, 입력값만 proxy/middleware가
+  // 심어 두는 geo-country 쿠키를 브라우저에서 읽도록 ConsentBanner 안으로 옮겼다.
 
   return (
     <html lang={locale} suppressHydrationWarning className="h-full antialiased">
@@ -165,7 +166,7 @@ export default async function LocaleLayout({
               />
             </div>
             <SiteFooter />
-            <ConsentBanner needsConsent={needsConsent} />
+            <ConsentBanner />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

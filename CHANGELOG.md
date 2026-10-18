@@ -1,3 +1,25 @@
+## 2026-10-18 (3) — Vercel CPU 다이어트: 레이아웃의 요청 헤더 읽기 제거로 대부분의 페이지를 정적으로 제공 (동작 변경 없음)
+
+**배경**
+- Moneypick(Hobby) 팀의 Fluid Active CPU가 한도(4h)에 도달. 레이아웃이 `headers()`로 `x-vercel-ip-country`를 읽는 탓에 FlyDroneMap의 모든 페이지가 요청마다 서버에서 새로 렌더링(함수 CPU 소모)되고 있었음. ExifLens에서 같은 방식으로 먼저 적용·배포해 실제 응답이 `x-vercel-cache: PRERENDER` / `cache-control: public`으로 바뀐 것을 확인한 뒤 같은 절차로 적용.
+- 목표: 방문자에게 보이는 동작(언어 선택, 제휴 광고 판정, 무작위 카드, 동의 배너)은 그대로 두고 CPU만 절감.
+
+**변경**
+- `src/app/[locale]/layout.tsx`: `headers()` 읽기와 `needsConsent` 계산 제거, `<ConsentBanner />`로 변경. (GA4 inline script의 consent `region` 목록은 그대로)
+- `src/components/consent-banner.tsx`: 국가를 서버 헤더 대신 `src/proxy.ts`가 이미 심는 `geo-country` 쿠키에서 브라우저가 읽도록 변경(`useSyncExternalStore`). 판정 함수 `needsConsentBanner`는 그대로, 값 없음은 '동의 필요'로 유지.
+- `src/app/[locale]/page.tsx`: `export const dynamic = "force-dynamic"` 명시(지금까지처럼 요청마다 생성 — 무작위 가이드/FAQ 카드, 서버에서 가져오는 쇼핑 추천 상품 유지).
+- 제휴 광고 판정(`resolveAffiliateProvider`, `gear-recommendation`)과 언어 라우팅은 변경 없음.
+
+**검증 (격리 복사본, `next build --webpack` — 실제 폴더 `.next`는 건드리지 않음)**
+- 경로 표: 변경 전 `/[locale]/*` 11종 전부 동적(ƒ) → 변경 후 홈만 동적, 나머지(about, contact, disclosure, faq, guides 및 글 345편, privacy, regulations 및 국가별, terms)는 5개 언어 전부 정적(●). 변경 후 빌드 로그의 `DYNAMIC_SERVER_USAGE` 0건.
+- `next start` + curl: 정적 페이지는 `x-nextjs-cache: HIT`, `Cache-Control: s-maxage=31536000`이며 `x-vercel-ip-country: DE` 요청에서도 `geo-country=DE` 쿠키가 응답에 실림. 홈은 `private, no-store`(요청마다 생성)이고 새로고침 4회 모두 가이드 카드 구성이 달라짐(무작위 유지).
+- 동의 배너(jsdom으로 실제 컴포넌트 구동): DE/de/GB 쿠키 → 표시, KR/US → 미표시, 쿠키 없음 → 표시(기존과 동일하게 '알 수 없음=동의 필요'), 이미 선택(accepted/rejected) → 미표시, '동의' 클릭 → 저장+gtag consent 1회, '거부' 클릭 → 저장만. 서버 렌더 결과는 배너 없음(국가 확인 전에는 그리지 않음). 전 시나리오 PASS.
+
+**알려진 한계**
+- 푸터 연도(`new Date().getFullYear()`)는 이제 빌드 시점에 고정됨(다음 배포 때 갱신).
+- 홈·API·프록시는 계속 CPU를 사용함. 실제 절감량은 배포 후 Vercel Usage 그래프에서 1~2일 관찰해 확인.
+- 백업: `.backups/CPU다이어트전_20261018/`
+
 ## 2026-10-18 (2) — 규정·보험 가이드 5건의 en/ko/ja/es 판을 독일어 검증본 기준으로 정정
 
 **배경**

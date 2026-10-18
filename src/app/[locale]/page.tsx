@@ -7,6 +7,11 @@ import { HomeGuideHighlights } from "@/components/home-guide-highlights";
 import { HomeFaqHighlights } from "@/components/home-faq-highlights";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 
+// 이 페이지는 요청 시점에 따라 결과가 달라지는 동작(무작위 가이드/FAQ 카드, 서버에서 가져오는 쇼핑 추천 상품)을
+// 가지고 있어 항상 요청마다 렌더링한다. 레이아웃에서 headers()를 걷어낸 뒤에도
+// 기존 동작이 그대로 유지되도록 명시한다.
+export const dynamic = "force-dynamic";
+
 export default async function HomePage({
   params,
 }: {
