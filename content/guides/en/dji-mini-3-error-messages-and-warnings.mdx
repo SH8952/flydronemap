@@ -1,0 +1,118 @@
+---
+title: "DJI Mini 3 Error Messages and Warnings: What They Mean and What to Do"
+description: "The warnings DJI documents for the Mini 3 in its manual and safety guidelines: status light patterns, battery LED codes, flight prompts, with meaning and action."
+publishedAt: "2026-10-17"
+tags: ["dji-mini-3", "error-messages", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+When the DJI Mini 3 shows a blinking light, a beep or a prompt in the DJI Fly app, the quickest answer is in DJI's own documents. This page collects the warnings that appear in the official DJI Mini 3 User Manual (v1.2, 2024.01), the Safety Guidelines and the Quick Start Guide, rephrases what DJI says each one means, and notes the action DJI gives. Where the manual gives only a meaning and no action, this page says so instead of guessing.
+
+## Key takeaways
+
+- The aircraft status light uses fixed patterns: slow red means low battery, fast red means critically low battery, periodic red means IMU error, solid red means critical error, and alternating red and yellow means compass calibration is required.
+- For a low-battery or high-wind warning, DJI's safety guidelines say to land in a safe location. They also say not to fly in wind over 10.7 m/s (38.5 km/h).
+- Battery LED codes tell you whether a charging fault is about current, voltage or temperature. Charging is only possible between 5 and 40 °C.
+- The manual does not list every message the app can show. For anything not covered here, follow the prompt on screen and check the current manual on DJI's download page.
+
+## How to use this page
+
+The tables below use the manufacturer's English wording in quotes, so you can match what you see on the aircraft or in DJI Fly. The meaning column is a rephrasing of the official text, not a copy. The last column is the action the official documents give. If it says "Manual gives no steps", the documents describe the state but do not tell you what to do; in that case follow the on-screen prompts in DJI Fly and the current manual. This is a reference to published documents, not a diagnosis of your aircraft. Check live conditions for your location on the [FlyDroneMap dashboard](/en) before flying.
+
+## Aircraft status light: warning patterns
+
+The status light is the first place to look. These are the warning patterns listed in the manual.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| "Blinks red slowly" | "Low battery" | Land in a safe location (safety guidelines: low battery warning) |
+| "Blinks red quickly" | "Critically low battery" | Land in a safe location. At extremely low battery the aircraft lands by itself and this cannot be cancelled |
+| "Periodically blinks red" | "IMU error" | Manual gives no steps; follow the prompt in DJI Fly |
+| "Solid red" | "Critical error" | Manual gives no steps; follow the prompt in DJI Fly |
+| "Blinks red and yellow alternately" | "Compass calibration required" | Calibrate when prompted; see the compass section below |
+| "Blinks yellow quickly" | "Remote controller signal lost" | Failsafe RTH starts after the signal has been lost for more than 11 seconds, if the failsafe action is set to Return to Home |
+
+## Compass, IMU and positioning
+
+The manual links several flight-behavior changes to the compass and satellite positioning.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| "Compass calibration required" (red and yellow light) | The compass needs calibrating | Calibrate when DJI Fly asks. See [compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference) for general background |
+| ATTI mode | The aircraft enters ATTI mode in situations such as the downward vision system being unavailable or disabled, weak GNSS, or compass interference. It can drift with the wind, cannot position or brake automatically, and Intelligent flight modes and RTH are unavailable | Avoid areas with weak GNSS signal; fly in open areas away from interference. See [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak) |
+| Max hover altitude 5 m | The aircraft has a maximum hovering altitude of 5 m if GNSS is unavailable | Keep this limit in mind in areas with no GNSS signal |
+
+The Safety Guidelines add that buildings, mountains and trees can block GNSS signals and affect the compass, and list Wi-Fi hotspots, routers, Bluetooth devices, high-voltage lines and similar sources as interference to stay away from.
+
+## Battery and temperature
+
+Charging faults are reported by the battery LEDs. These codes are from the manual's battery protection table.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| LED2 blinks twice per second | "Overcurrent detected" | Disconnect and reconnect the charger |
+| LED2 blinks three times per second | "Short circuit detected" | Disconnect and reconnect the charger |
+| LED3 blinks twice per second | "Overcharge detected" | Disconnect and reconnect the charger |
+| LED3 blinks three times per second | "Over-voltage charger detected" | Disconnect and reconnect the charger |
+| LED4 blinks twice per second | "Charging temperature is too low" | Wait until the temperature is back in range; charging resumes automatically |
+| LED4 blinks three times per second | "Charging temperature is too high" | Wait until the temperature is back in range; charging resumes automatically |
+| LEDs 3 and 4 blink together, power button not pressed | The battery is not working normally | Remove it and reinsert it securely |
+| All four LEDs blink together while charging | The battery is damaged | Do not keep using it; contact DJI or an authorized dealer |
+| Battery in hibernation | Cell voltage below 3.0 V or charge below 10%, to prevent over-discharge | Charge the battery to wake it |
+
+Temperature rules from the documents: charge between 5 and 40 °C, let the battery cool to near room temperature after a flight before charging, and use batteries between -10 and 40 °C. In cold weather the manual recommends hovering for a while to warm the battery and fully charging before takeoff. See [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance) for background.
+
+## Signal, return to home and landing prompts in DJI Fly
+
+These are prompts rather than light patterns. The manual describes when they appear.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Weak transmission signal prompt | "A prompt will be displayed in DJI Fly if the transmission signal is weak during flight" | Reposition so the aircraft is within the optimal range of the remote controller |
+| Prompt to start RTH after video link loss | The video link is lost but the remote controller can still control the aircraft | Start RTH, or cancel it if you prefer to keep control |
+| Low-battery RTH warning | The battery is enough only to complete a return flight | Let the return finish. Cancelling the return can lead to a crash. See [return-to-home settings explained](/en/guides/return-to-home-settings-explained) |
+| Home Point recorded | A prompt appears in DJI Fly once the Home Point is recorded | Informational |
+| Landing prompt at 0.5 m | If Landing Protection is not operating, DJI Fly shows a landing prompt at 0.5 m above the ground | Confirm landing, or push the throttle down |
+| Height 30 m and range 50 m limit | Without being connected or logged in, flight is restricted to 30 m height and 50 m range | Connect and log in to DJI Fly |
+
+## Gimbal, camera and propellers
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Gimbal motor in protection mode | May occur if the aircraft is on uneven ground or the gimbal is hit | Do not apply external force to the gimbal after power-on; check it for damage after an impact |
+| Camera cannot record with DJI RC | With the DJI RC remote controller, no photos or videos can be captured without a microSD card | Insert a recommended microSD card beforehand |
+| Motor stuck | A motor cannot rotate freely | Land the aircraft immediately |
+| Broken propeller | A propeller is damaged | Remove and discard both propellers on that motor and replace them with two from the same package |
+
+## Remote controller status light
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| "Blinking cyan" | "Control sticks not centered" | Release the sticks so they return to center |
+| "Solid yellow" | "Firmware update failed" | Manual gives no steps; retry the update as prompted in DJI Fly. See [firmware update best practices](/en/guides/best-practices-for-drone-firmware-updates) |
+
+## FAQ
+
+### Is it safe to keep flying after a compass warning?
+
+The manual only states that compass calibration is required and does not say whether you can continue. Follow the prompts in DJI Fly and the current manual. DJI also says the aircraft can enter ATTI mode when the compass has interference, with RTH unavailable.
+
+### Where do I find the full list of DJI Mini 3 warnings?
+
+In the User Manual and Safety Guidelines on DJI's Mini 3 download page. This page covers only what those documents describe; the app can show prompts that are not listed.
+
+### What should I do on a low-battery or high-wind warning?
+
+DJI's safety guidelines say to land in a safe location. They also advise not to fly in wind over 10.7 m/s (38.5 km/h), snow, rain, fog, hail or lightning.
+
+### Should I update the firmware first?
+
+The Safety Guidelines say to update the DJI Fly app and the aircraft firmware to the latest version, and the manual says to update when the app prompts you.
+
+## Sources and further reading
+
+- [DJI — Mini 3 User Manual v1.2 (2024.01, English)](https://dl.djicdn.com/downloads/DJI_Mini_3/UM/20240125/DJI_Mini_3_User_Manual_EN_v1.2.pdf)
+- [DJI — Mini 3 User Manual v1.2 (German edition, same revision)](https://dl.djicdn.com/downloads/DJI_Mini_3/UM/20240125/DJI_Mini_3_User_Manual_DE_v1.2.pdf)
+- [DJI — Mini 3 Safety Guidelines (RC-N1 version)](https://dl.djicdn.com/downloads/DJI_Mini_3/SG/20250220/DJI_Mini_3_Safety_Guidelines_RC-N1_multi.pdf)
+- [DJI — Mini 3 Quick Start Guide (RC-N1 version)](https://dl.djicdn.com/downloads/DJI_Mini_3/QSG/DJI_Mini_3_Quick_Start_Guide_RC-N1_29langs.pdf)
+- [DJI — Mini 3 downloads page](https://www.dji.com/mini-3/downloads)

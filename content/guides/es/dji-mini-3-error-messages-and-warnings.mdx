@@ -1,0 +1,118 @@
+---
+title: "DJI Mini 3: mensajes de error y avisos, qué significan y qué hacer"
+description: "Los avisos que DJI documenta para el Mini 3 en su manual y sus pautas de seguridad: luces de estado, LED de la batería y mensajes en vuelo, con significado y acción."
+publishedAt: "2026-10-17"
+tags: ["dji-mini-3", "error-messages", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+Cuando el DJI Mini 3 parpadea, pita o muestra un mensaje en la app DJI Fly, la respuesta más fiable está en los documentos oficiales de DJI. Esta página reúne los avisos que aparecen en el Manual de usuario del DJI Mini 3 (v1.2, 2024.01), en las Pautas de seguridad y en la Guía de inicio rápido, explica con otras palabras qué significa cada uno y indica la acción que da el fabricante. Cuando el manual describe un estado pero no dice qué hacer, lo señalamos en lugar de inventar un procedimiento.
+
+## Puntos clave
+
+- La luz de estado de la aeronave usa patrones fijos: rojo lento significa batería baja, rojo rápido significa batería críticamente baja, rojo periódico significa error de IMU, rojo fijo significa error crítico y rojo y amarillo alternos significan que hace falta calibrar la brújula.
+- Ante un aviso de batería baja o de viento fuerte, las pautas de seguridad de DJI indican aterrizar en un lugar seguro. También dicen que no se vuele con viento superior a 10,7 m/s (38,5 km/h).
+- Los códigos LED de la batería indican si un fallo de carga se debe a corriente, tensión o temperatura. Solo se puede cargar entre 5 y 40 °C.
+- El manual no recoge todos los mensajes que puede mostrar la app. Para lo que no aparezca aquí, sigue las indicaciones en pantalla y consulta el manual vigente en la página de descargas de DJI.
+
+## Cómo usar esta página
+
+Las tablas conservan entre comillas el texto en inglés del fabricante, para que puedas compararlo con lo que ves en la aeronave o en DJI Fly. La columna de significado es una explicación con otras palabras, no una copia del texto oficial, y la última columna recoge la acción que dan los documentos oficiales. Si pone "El manual no da pasos", el documento describe el estado pero no indica cómo actuar; en ese caso sigue las indicaciones de DJI Fly y el manual vigente. Esta página resume documentos publicados y no sirve para diagnosticar tu aeronave. Antes de volar, consulta también las condiciones de tu ubicación en el [panel de FlyDroneMap](/es).
+
+## Luz de estado de la aeronave: patrones de aviso
+
+La luz de estado es lo primero que conviene mirar. Estos son los patrones de aviso que figuran en el manual.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| "Blinks red slowly" (rojo parpadeando despacio) | "Low battery" (batería baja) | Aterrizar en un lugar seguro (pautas de seguridad: aviso de batería baja) |
+| "Blinks red quickly" (rojo parpadeando rápido) | "Critically low battery" (batería críticamente baja) | Aterrizar en un lugar seguro. Con batería extremadamente baja la aeronave aterriza sola y no se puede cancelar |
+| "Periodically blinks red" (rojo parpadeando de forma periódica) | "IMU error" (error de IMU) | El manual no da pasos; sigue el aviso de DJI Fly |
+| "Solid red" (rojo fijo) | "Critical error" (error crítico) | El manual no da pasos; sigue el aviso de DJI Fly |
+| "Blinks red and yellow alternately" (rojo y amarillo alternos) | "Compass calibration required" (hace falta calibrar la brújula) | Calibrar cuando la app lo pida; consulta la sección de la brújula |
+| "Blinks yellow quickly" (amarillo parpadeando rápido) | "Remote controller signal lost" (señal del control remoto perdida) | Si la señal se pierde más de 11 segundos y la acción de seguridad es volver al punto de origen, se activa el RTH de seguridad |
+
+## Brújula, IMU y posicionamiento
+
+El manual relaciona varios cambios en el comportamiento de vuelo con la brújula y el posicionamiento por satélite.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| "Compass calibration required" (luz roja y amarilla) | La brújula necesita calibración | Calibrar cuando DJI Fly lo solicite. Para más contexto, lee [calibración de la brújula e interferencias magnéticas](/es/guides/compass-calibration-and-magnetic-interference) |
+| Modo ATTI | La aeronave entra en este modo en situaciones como que el sistema de visión inferior no esté disponible o esté desactivado, que el GNSS sea débil o que haya interferencias en la brújula. Puede derivar con el viento, no se posiciona ni frena automáticamente, y los modos de vuelo inteligentes y el RTH no están disponibles | Evita zonas con GNSS débil y vuela en espacios abiertos sin interferencias. Consulta [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak) |
+| Altitud máxima de vuelo estacionario de 5 m | Si el GNSS no está disponible, la altitud máxima de vuelo estacionario es de 5 m | Ten presente este límite donde no haya señal GNSS |
+
+Las pautas de seguridad añaden que los edificios, las montañas y los árboles pueden bloquear el GNSS y afectar a la brújula, y piden alejarse de fuentes de interferencia como puntos de acceso Wi-Fi, routers, dispositivos Bluetooth o líneas de alta tensión.
+
+## Batería y temperatura
+
+Los fallos de carga se indican con los LED de la batería. Estos códigos proceden de la tabla de protección de la batería del manual.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| LED2 parpadea dos veces por segundo | "Overcurrent detected" (sobrecorriente detectada) | Desconectar el cargador y volver a conectarlo |
+| LED2 parpadea tres veces por segundo | "Short circuit detected" (cortocircuito detectado) | Desconectar el cargador y volver a conectarlo |
+| LED3 parpadea dos veces por segundo | "Overcharge detected" (sobrecarga detectada) | Desconectar el cargador y volver a conectarlo |
+| LED3 parpadea tres veces por segundo | "Over-voltage charger detected" (sobretensión del cargador detectada) | Desconectar el cargador y volver a conectarlo |
+| LED4 parpadea dos veces por segundo | "Charging temperature is too low" (temperatura de carga demasiado baja) | Esperar a que la temperatura vuelva al rango; la carga se reanuda sola |
+| LED4 parpadea tres veces por segundo | "Charging temperature is too high" (temperatura de carga demasiado alta) | Esperar a que la temperatura vuelva al rango; la carga se reanuda sola |
+| LED3 y LED4 parpadean a la vez sin pulsar el botón de encendido | La batería no funciona con normalidad | Sacarla y volver a insertarla bien |
+| Los cuatro LED parpadean a la vez durante la carga | La batería está dañada | No seguir usándola; contactar con DJI o con un distribuidor autorizado |
+| Batería en hibernación | Tensión de celda inferior a 3,0 V o carga inferior al 10 %, para evitar la descarga excesiva | Cargar la batería para reactivarla |
+
+Reglas de temperatura de los documentos: carga entre 5 y 40 °C, deja que la batería se enfríe hasta cerca de la temperatura ambiente tras el vuelo antes de cargarla, y usa las baterías entre -10 y 40 °C. Con frío, el manual recomienda cargarla del todo antes de despegar y mantener la aeronave en vuelo estacionario un rato para calentar la batería. Para más contexto, consulta [temperatura y rendimiento de la batería del dron](/es/guides/temperature-and-drone-battery-performance).
+
+## Señal, regreso al punto de origen y avisos de aterrizaje en DJI Fly
+
+Son avisos de la app y no patrones de luz. El manual indica cuándo aparecen.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Aviso de señal de transmisión débil | Si la señal de transmisión es débil durante el vuelo, DJI Fly muestra un aviso | Reorientar o recolocar el control remoto para que la aeronave quede dentro del rango óptimo |
+| Aviso para iniciar el RTH tras perder el enlace de vídeo | Se ha perdido el enlace de vídeo pero el control remoto aún controla la aeronave | Iniciar el RTH, o cancelarlo si prefieres seguir pilotando |
+| Aviso de RTH por batería baja | La batería solo basta para completar el regreso | Dejar que el regreso termine. El manual advierte de que cancelarlo puede provocar un accidente. Lee [ajustes de regreso al punto de origen explicados](/es/guides/return-to-home-settings-explained) |
+| Punto de origen registrado | Aparece un aviso en DJI Fly cuando se registra el punto de origen | Aviso informativo |
+| Aviso de aterrizaje a 0,5 m | Si la protección de aterrizaje no actúa, DJI Fly muestra un aviso a 0,5 m del suelo | Confirmar el aterrizaje o bajar el acelerador |
+| Límite de 30 m de altura y 50 m de distancia | Sin conexión o sin sesión iniciada, el vuelo se limita a 30 m de altura y 50 m de distancia | Conectar e iniciar sesión en DJI Fly |
+
+## Cardán, cámara y hélices
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Motor del cardán en modo de protección | Puede ocurrir si la aeronave está sobre un suelo irregular o el cardán recibe un golpe | No aplicar fuerza externa al cardán una vez encendido; revisarlo si ha habido un impacto |
+| La cámara no graba con DJI RC | Con el control remoto DJI RC no se pueden hacer fotos ni vídeos sin tarjeta microSD | Insertar de antemano una tarjeta microSD recomendada |
+| Motor atascado | Un motor no gira libremente | Aterrizar de inmediato |
+| Hélice rota | Una hélice está dañada | Retirar y desechar las dos hélices de ese motor y sustituirlas por dos del mismo paquete |
+
+## Luz de estado del control remoto
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| "Blinking cyan" (cian parpadeando) | "Control sticks not centered" (palancas sin centrar) | Soltar las palancas para que vuelvan al centro |
+| "Solid yellow" (amarillo fijo) | "Firmware update failed" (falló la actualización del firmware) | El manual no da pasos; vuelve a intentarlo según DJI Fly. Consulta [buenas prácticas para actualizar el firmware](/es/guides/best-practices-for-drone-firmware-updates) |
+
+## Preguntas frecuentes
+
+### ¿Es seguro seguir volando después de un aviso de brújula?
+
+El manual solo indica que hace falta calibrar la brújula y no dice si puedes continuar. Sigue las indicaciones de DJI Fly y el manual vigente. DJI explica además que con interferencias en la brújula la aeronave puede pasar a modo ATTI, sin RTH disponible.
+
+### ¿Dónde encuentro la lista completa de avisos del DJI Mini 3?
+
+En el Manual de usuario y en las Pautas de seguridad de la página de descargas del Mini 3 de DJI. Esta página solo cubre lo que describen esos documentos, y la app puede mostrar avisos que no aparecen en ellos.
+
+### ¿Qué hago ante un aviso de batería baja o de viento fuerte?
+
+Las pautas de seguridad de DJI indican aterrizar en un lugar seguro. También aconsejan no volar con viento superior a 10,7 m/s (38,5 km/h), ni con nieve, lluvia, niebla, granizo o rayos.
+
+### ¿Debo actualizar el firmware primero?
+
+Las pautas de seguridad indican actualizar la app DJI Fly y el firmware de la aeronave a la última versión, y el manual dice que se actualice cuando la app lo solicite.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — Mini 3 User Manual v1.2 (2024.01, inglés)](https://dl.djicdn.com/downloads/DJI_Mini_3/UM/20240125/DJI_Mini_3_User_Manual_EN_v1.2.pdf)
+- [DJI — Mini 3 User Manual v1.2 (edición en alemán, misma revisión)](https://dl.djicdn.com/downloads/DJI_Mini_3/UM/20240125/DJI_Mini_3_User_Manual_DE_v1.2.pdf)
+- [DJI — Mini 3 Safety Guidelines (versión RC-N1)](https://dl.djicdn.com/downloads/DJI_Mini_3/SG/20250220/DJI_Mini_3_Safety_Guidelines_RC-N1_multi.pdf)
+- [DJI — Mini 3 Quick Start Guide (versión RC-N1)](https://dl.djicdn.com/downloads/DJI_Mini_3/QSG/DJI_Mini_3_Quick_Start_Guide_RC-N1_29langs.pdf)
+- [DJI — Página de descargas del Mini 3](https://www.dji.com/mini-3/downloads)

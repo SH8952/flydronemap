@@ -1,0 +1,100 @@
+---
+title: "DJI Mini 4 Pro Error Messages and Warnings: Meaning and Action"
+description: "What the DJI Mini 4 Pro status light patterns and DJI Fly warnings mean according to DJI's own documents, and what the manufacturer says to do about each one."
+publishedAt: "2026-10-17"
+tags: ["dji", "mini-4-pro", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+When the DJI Mini 4 Pro blinks an unfamiliar color or the app shows a warning, it helps to know whether you are looking at a harmless status or a reason to stay on the ground. This page collects the warnings that DJI describes in its own documents for this aircraft, explains them in plain words and says what the manufacturer recommends. It is not a complete error list and it is not a substitute for the manual.
+
+## Key takeaways
+
+- The aircraft status lights are the quickest check on the ground. Yellow and green patterns mostly describe normal states, while solid or blinking red, fast yellow and alternating red and yellow mean something needs attention.
+- A slowly blinking red light with takeoff disabled means you should read the warning in DJI Fly before doing anything else.
+- On a low-battery warning DJI says to land in a safe place. If the battery becomes critical, the aircraft lands automatically and that landing cannot be cancelled.
+- Keep DJI Fly and the aircraft firmware up to date, and keep the official manual for your firmware version at hand: the exact wording of app prompts depends on the app language and version.
+
+## Where these messages come from
+
+Everything below comes from DJI's published material for the Mini 4 Pro: the user manual v1.4 (June 2024, checked in the Dutch and Portuguese editions published by DJI), the safety guidelines for the DJI RC 2 and DJI RC-N2 versions, the quick start guide and the firmware release notes. The English manual is available on DJI's download page for the product, linked in the sources.
+
+Two things to keep in mind. First, the status lights show the state of the flight control system while the aircraft is on and the motors are off, and the manual describes them by color and blink pattern. Second, app prompts appear in the language of your app, so this page describes what each prompt means rather than quoting every wording. If you need the exact text, look it up in the manual in your language. Messages and firmware behavior can change with updates, so the current manual and DJI Fly always take priority over this page.
+
+## Aircraft status lights
+
+The following table covers the warning patterns in the manual's status indicator list.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Red blinks slowly | Takeoff is disabled, for example because the battery level is too low | The manual says to check the warning in DJI Fly to see the reason |
+| Red blinks quickly | Battery is critically low | Land as soon as it is safe to do so; see the battery section below |
+| Solid red | Critical error | The manual's status table gives no fix. Treat it as a reason not to fly and check DJI Fly and the manual, or contact DJI support if it persists |
+| Red and yellow alternate | Compass calibration is required | Calibrate the compass as DJI Fly instructs, away from metal structures and interference. See our [compass calibration guide](/en/guides/compass-calibration-and-magnetic-interference) |
+| Yellow blinks quickly | The remote controller signal is lost | Restore the link if you can. The aircraft may start failsafe Return to Home, described below |
+
+For comparison, the manual lists these as normal states: alternating red, yellow and green while powering on and running self-diagnostics, four yellow blinks while warming up, a slow green blink when GNSS is active, two green blinks repeating when the vision systems are active, and a slow yellow blink when GNSS and the vision systems are both off and the aircraft is in ATTI mode.
+
+## Battery and Return to Home warnings
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Low battery warning in DJI Fly | The battery has only enough charge for a Return to Home flight. The app counts down and, if you do nothing, the aircraft flies back to the Home Point | Let it return, or land in a safe place yourself. DJI's safety guidelines say to land in a safe location on a "low battery or high wind warning" |
+| Return to Home cancelled after the warning | The battery may no longer hold enough charge to land safely | Avoid cancelling unless you are certain you can land quickly, because the aircraft could crash or be lost |
+| Critical low battery, automatic landing | The remaining charge only supports a descent from the current altitude | The landing cannot be cancelled. You can still steer horizontally and control the descent with the sticks |
+| Battery in deep hibernation | A battery left at a low charge for a long time enters deep hibernation | Charge it to wake it up |
+
+If power remains during an automatic landing, the manual says pushing the throttle up makes the aircraft climb slowly at 1 m/s, but holding it up until the battery runs out will make the aircraft fall. To review how automatic return is configured, see [return-to-home settings explained](/en/guides/return-to-home-settings-explained).
+
+Failsafe Return to Home works like this according to the manual: if the failsafe action is set to Return to Home, a Home Point is recorded and the compass works normally, the aircraft starts returning automatically after the controller signal has been lost for more than six seconds. The failsafe action can also be set to landing or hovering in the advanced safety settings in DJI Fly.
+
+## Positioning and vision warnings
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Slow yellow blink (ATTI mode) | GNSS and the vision systems are off, so the aircraft holds position less well and wind can move it more easily | Land as soon as possible, as the manual advises for flight without automatic hovering and braking |
+| Weak GNSS signal | Positioning is degraded and flight height is limited, for example to 2 m above ground when the light is insufficient and the 3D infrared sensing is working | Fly in good lighting and visibility, in open areas. See [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak) |
+| Maximum altitude or maximum distance reached prompt in DJI Fly | You have reached the flight limit currently in effect | Fly back inside the limit; the manual lists these as prompts shown in DJI Fly |
+| Vision system limited | Low light, or reflective surfaces such as water and snow, can make the vision system work abnormally | Fly only in good light and avoid reflective surfaces |
+| Compass or GNSS interference | Buildings, mountains and trees can block GNSS and affect the compass, and magnetic or radio interference should be avoided | Move to an open area away from interference sources such as Wi-Fi hotspots, routers, Bluetooth devices, high-voltage lines and radar stations |
+
+The manual also says that obstacle avoidance is off in Sport mode and when the obstacle avoidance setting is turned off, so the aircraft will not detect obstacles automatically in those cases.
+
+## Firmware and activation
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| New firmware prompt in DJI Fly | A firmware update is available | DJI's safety guidelines say to make sure DJI Fly and the aircraft firmware are updated to the latest version. See [best practices for drone firmware updates](/en/guides/best-practices-for-drone-firmware-updates) |
+| Update fails | The firmware update did not complete | DJI's release notes say to restart the aircraft, the remote controller and DJI Fly or DJI Assistant 2 (Consumer Drones Series), then retry |
+| Aircraft not activated | The aircraft must be activated before first use, and activation needs an internet connection | Activate it in the app. The quick start guide also says to charge the battery to activate it before first use |
+
+## Before you fly
+
+Check the status lights after power-on, confirm in DJI Fly that there are no warnings and that the gimbal and camera work normally, and read the current conditions on the [FlyDroneMap dashboard](/en). Low temperatures and heat both affect batteries, so see [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance). DJI states an operating range of minus 10 to 40 degrees Celsius for the product.
+
+## FAQ
+
+### Is it safe to keep flying after a compass warning?
+
+The manual says compass calibration is required when the lights alternate red and yellow, so calibrate as the app instructs before flying. If the warning stays, follow the on-screen instructions and the manual.
+
+### Where do I find the full list of warnings?
+
+In the DJI Mini 4 Pro user manual and in DJI Fly. This page covers only the messages DJI describes in the documents listed below.
+
+### Should I update the firmware first?
+
+DJI's safety guidelines say to make sure DJI Fly and the aircraft firmware are on the latest version before flying, so update when DJI Fly offers it and you have time to finish safely on the ground.
+
+### What does a low battery warning mean for my flight plan?
+
+It means the remaining charge is enough only for the flight home. Start returning or land in a safe place instead of continuing the flight.
+
+## Sources and further reading
+
+- [DJI — DJI Mini 4 Pro downloads (user manual, quick start guides, safety guidelines, release notes)](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — DJI Mini 4 Pro User Manual v1.4 (Portuguese edition)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_PT.pdf)
+- [DJI — DJI Mini 4 Pro Safety Guidelines (DJI RC 2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_2_Safety_Guidelines-5.pdf)
+- [DJI — DJI Mini 4 Pro Safety Guidelines (DJI RC-N2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_N2_Safety_Guidelines-5.pdf)
+- [DJI — DJI Mini 4 Pro Quick Start Guide (DJI RC 2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_2_Quick_Start_Guide.pdf)
+- [DJI — DJI Mini 4 Pro Release Notes](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20251105/DJI_Mini_4_Pro_Release_Notes_EN.pdf)

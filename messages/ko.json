@@ -483,6 +483,7 @@
     "readingTime": "{minutes}분 읽기",
     "updatedOn": "{date} 업데이트",
     "byline": "작성자 {name}",
+    "toc": { "title": "목차" },
     "showMore": "더보기",
     "showLess": "접기",
     "backToGuides": "← 가이드 목록으로",

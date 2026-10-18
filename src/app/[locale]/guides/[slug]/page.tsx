@@ -20,6 +20,8 @@ import {
 import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
 import { GuideToolCta } from "@/components/guide-tool-cta";
 import { ShareButton } from "@/components/share-button";
+import { GuideToc } from "@/components/guides/guide-toc";
+import { GuideFloatingToc } from "@/components/guides/guide-floating-toc";
 
 // 가이드 작성자 필명(화면 표시 + Article JSON-LD author).
 const GUIDE_AUTHOR = "admin_SH";
@@ -79,7 +81,7 @@ export default async function GuidePage({
 
   const compiled = await compileGuide(locale as Locale, slug);
   if (!compiled) notFound();
-  const { Content, meta } = compiled;
+  const { Content, meta, headings } = compiled;
   const relatedGuides = getRelatedGuides(locale as Locale, slug);
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
@@ -202,7 +204,11 @@ export default async function GuidePage({
 
       <GuideToolCta />
 
-      <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-a:text-primary">
+      <GuideToc headings={headings} title={t("toc.title")} />
+
+      <GuideFloatingToc headings={headings} title={t("toc.title")} />
+
+      <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-a:text-primary">
         <Content />
       </article>
 

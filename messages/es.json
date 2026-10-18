@@ -483,6 +483,7 @@
     "readingTime": "{minutes} min de lectura",
     "updatedOn": "Actualizado el {date}",
     "byline": "Por {name}",
+    "toc": { "title": "Índice" },
     "showMore": "Ver más",
     "showLess": "Ver menos",
     "backToGuides": "← Volver a Guías",

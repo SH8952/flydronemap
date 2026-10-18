@@ -1,0 +1,89 @@
+---
+title: "DJI Air 3S Windresistenz: Offizielles Limit und reale Bedingungen"
+description: "DJI gibt für die Air 3S eine maximale Windresistenz von 12 m/s (43,2 km/h) an. Datentabelle, FlyDroneMap-Schwellen und wie Sie echten Wind und Böen einschätzen."
+publishedAt: "2026-10-17"
+tags: ["wind", "dji", "air-3s", "gusts", "preflight"]
+category: "weather-safety"
+---
+
+DJI gibt für die Air 3S eine maximale Windresistenz von 12 m/s an, also 43,2 km/h. Das ist derselbe Wert wie bei der Air 3, doch die Air 3S ist ein anderes Fluggerät mit eigenen technischen Daten und einem eigenen Handbuch. Diese Seite stellt den offiziellen Wert neben die übrigen Daten, zeigt die Schwellen, die FlyDroneMap für dieses Modell anwendet, und nennt, was Sie vor dem Start prüfen sollten.
+
+## Das Wichtigste in Kürze
+
+- Die Spezifikationsseite von DJI nennt für die Air 3S eine maximale Windresistenz (Max Wind Speed Resistance) von 12 m/s (43,2 km/h).
+- Das Handbuch der Air 3S rät, bei schwerem Wetter wie starkem Wind nicht zu fliegen, und warnt, dass das Fluggerät bei zu hoher Windgeschwindigkeit womöglich nicht zum Startpunkt zurückkehren kann.
+- Bei FlyDroneMap gelten für dieses Modell Böen unter 21,6 km/h als gut, ab 21,6 km/h als Vorsicht und ab 30,2 km/h als nicht empfohlen. Das sind eigene Schwellen der Seite, kein offizieller Standard.
+- Laut Handbuch verringert Kälte die Windresistenz des Fluggeräts, ein Wert für milde Tage lässt sich also nicht einfach auf frostige Tage übertragen.
+
+## Offizielle technische Daten
+
+Die Werte stammen von der Air-3S-Spezifikationsseite von DJI. Die Hinweise zum Wind stammen aus dem Air 3S User Manual v1.0 (englisch).
+
+| Merkmal | Wert |
+|---|---|
+| Maximale Windresistenz | 12 m/s (43,2 km/h) |
+| Startgewicht | 724 g |
+| Maximale Horizontalgeschwindigkeit | 21 m/s (75,6 km/h), in der EU 19 m/s (68,4 km/h); in windloser Umgebung auf Meereshöhe |
+| Maximale Flugzeit | 45 Minuten |
+| Maximale Schwebezeit | 41 Minuten, gemessen in windloser Umgebung auf Meereshöhe |
+| Maximale Starthöhe | 6000 m |
+| Betriebstemperatur | -10 bis 40 °C |
+| Satellitennavigation | GPS + Galileo + BeiDou |
+| Hinderniserkennung | Omnidirektionales binokulares Sichtsystem, ergänzt durch nach vorn gerichtetes LiDAR |
+
+Die Spezifikationsseite nennt die Testbedingungen für den Wert von 12 m/s nicht. Verstehen Sie ihn daher als Maximum des Herstellers und nicht als Zusage, dass der Flug bei dieser Windgeschwindigkeit stabil bleibt.
+
+## Was das Handbuch zum Wind sagt
+
+Das Handbuch der Air 3S verlangt, bei schwerem Wetter wie starkem Wind, Schnee, Regen und Nebel nicht zu fliegen, und auch bei schlechtem Wetter allgemein, etwa an Regen- oder Windtagen. Zur automatischen Rückkehr (RTH) warnt es, dass das Fluggerät bei zu hoher Windgeschwindigkeit womöglich nicht zum Startpunkt zurückkehren kann und dass die Akkuschätzung ungenau sein kann, wenn sich die aktuelle Höhe und die Rückkehrhöhe stark unterscheiden, weil der Wind in verschiedenen Höhen anders weht. Außerdem kann bei starkem Wind der Gimbal während der Aufnahme vibrieren, und im ATTI-Modus kann das Fluggerät weder automatisch schweben noch bremsen, sodass der Wind es seitlich versetzen kann. Prüfen Sie vor dem Flug das aktuelle Handbuch für Ihr Gerät.
+
+## Wie FlyDroneMap dieses Modell bewertet
+
+FlyDroneMap vergleicht die vorhergesagte Böe mit dem offiziellen Maximum. Gut bedeutet, dass der aktuelle Wind oder die Böe unter 50 % des Maximums liegt, Vorsicht gilt ab 50 % und nicht empfohlen ab 70 %. Für die Air 3S ergibt das:
+
+| Stufe | Anteil von 43,2 km/h | Böengeschwindigkeit |
+|---|---|---|
+| Gut | unter 50 % | unter 21,6 km/h |
+| Vorsicht | 50 % bis unter 70 % | 21,6 bis unter 30,2 km/h |
+| Nicht empfohlen | 70 % oder mehr | 30,2 km/h und mehr |
+
+Das Dashboard bewertet Böen außerdem für sich: geringes Risiko unter 20 km/h, mäßig von 20 bis unter 35 km/h, hoch ab 35 km/h. Weichen beide Bewertungen voneinander ab, folgen Sie der vorsichtigeren.
+
+## Warum das offizielle Limit nicht Ihre Einsatzgrenze ist
+
+Ein vom Hersteller genannter Höchstwert sagt wenig darüber, wie sich Böen verhalten. Sie kommen als plötzliche Stöße, und in 80–120 m Höhe ist der Wind meist stärker als in der Vorhersage für 10 m; der Ratgeber zur [Windscherung in verschiedenen Höhen](/de/guides/wind-shear-by-altitude-and-drone-flight) erklärt den Grund. Ein leichtes Fluggerät, das gegen den Wind fliegt, verbraucht mehr Akku und kommt über Grund langsamer voran, lassen Sie daher eine großzügige Reserve für den Rückweg. Laut Handbuch wird dieser Puffer bei Kälte noch kleiner.
+
+## Vor dem Start
+
+- Öffnen Sie das [FlyDroneMap-Dashboard](/de) und prüfen Sie für Ihren Ort und Ihre Uhrzeit die Böen, nicht nur den Durchschnittswind.
+- Vergleichen Sie sie mit 21,6 und 30,2 km/h für dieses Modell und gehen Sie die [Checkliste zu Wind und Böen](/de/guides/wind-gust-checklist-before-drone-flight) durch.
+- Planen Sie die Route so, dass der Rückweg nicht der schwerste Abschnitt wird, und kalkulieren Sie die Akkureserve vorsichtig.
+- Für den Vergleich mit anderen Geräten dient die [Windresistenz nach Modell](/de/guides/drone-wind-resistance-by-model).
+
+## Häufige Fehler
+
+- 43,2 km/h als Ziel statt als Obergrenze zu lesen.
+- Böen zu ignorieren, weil der Durchschnittswind niedrig aussieht.
+- Die 45 Minuten Flugzeit auch an windigen oder kalten Tagen zu erwarten.
+- Air 3 und Air 3S zu verwechseln: Der Windwert ist gleich, Gewicht, Sensoren und Handbuch unterscheiden sich.
+
+## Häufige Fragen
+
+### Wie hoch ist das Windlimit der DJI Air 3S?
+
+DJI nennt auf der Spezifikationsseite der Air 3S eine maximale Windresistenz von 12 m/s, das sind 43,2 km/h.
+
+### Kann ich die Air 3S bei 30 km/h Wind fliegen?
+
+30 km/h sind etwa 8,3 m/s, rund 69 % des offiziellen Maximums. Nach den Kriterien von FlyDroneMap ist das Vorsicht, knapp unter dem Bereich nicht empfohlen, und stärkere Böen oder Kälte würden die Lage verschlechtern.
+
+### Warum zeigt die Seite schon vor dem offiziellen Limit Vorsicht an?
+
+Der offizielle Wert ist ein Maximum, doch im echten Flug kommen Böen, stärkerer Wind in der Höhe und ein Rückweg gegen den Wind hinzu. Die Stufen bei 50 % und 70 % sind der eigene Puffer der Seite.
+
+## Quellen und weiterführende Links
+
+- [DJI — Air 3S specs](https://www.dji.com/air-3s/specs)
+- [DJI — Air 3S User Manual v1.0](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/20260423/DJI_Air_3S_um_en1.pdf)
+- [DJI — Air 3S Download Center](https://www.dji.com/downloads/products/air-3s)
+- [DJI — Support for DJI Air 3S](https://www.dji.com/ae/support/product/air-3s)

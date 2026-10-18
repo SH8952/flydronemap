@@ -1,0 +1,101 @@
+---
+title: "DJI Air 3: Fehlermeldungen und Warnungen, Bedeutung und Maßnahmen"
+description: "Die im offiziellen DJI-Handbuch beschriebenen Warnungen, Sprachansagen und Statusleuchten der DJI Air 3: Bedeutung und die vom Hersteller genannte Maßnahme."
+publishedAt: "2026-10-17"
+tags: ["dji", "air-3", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+Die DJI Air 3 meldet Probleme auf drei Wegen: über Meldungen in der App DJI Fly, über Sprachansagen und über Farbe und Blinkmuster der Statusleuchte am Fluggerät. Dieser Beitrag fasst die Meldungen zusammen, die im offiziellen DJI-Benutzerhandbuch (v1.6) und in den Sicherheitshinweisen beschrieben sind, erklärt sie in einfachen Worten und gibt die vom Hersteller genannte Maßnahme wieder. Numerische Fehlercodes werden nicht behandelt, weil die offiziellen Dokumente keine auflisten.
+
+## Das Wichtigste in Kürze
+
+- Lesen Sie jede Meldung in DJI Fly, statt sie einfach wegzuklicken. Laut Handbuch können Sie die Motoren starten, wenn DJI Fly nach der Selbstdiagnose keine auffällige Warnung zeigt.
+- Rote Leuchtmuster verdienen Aufmerksamkeit: langsames Rot bedeutet Start gesperrt, schnelles Rot kritisch niedrigen Akku, Dauerrot einen kritischen Fehler, für den das Handbuch keine Behebungsschritte nennt.
+- Bei einer Warnung vor niedrigem Akkustand oder starkem Wind rät DJI in den Sicherheitshinweisen, an einem sicheren Ort zu landen.
+- Maßgeblich ist das Handbuch. Dieser Beitrag deckt nur ab, was die Dokumente nennen; für alles andere nutzen Sie das Handbuch und den DJI-Support.
+
+## Statusleuchte des Fluggeräts
+
+Die Statusleuchte am Fluggerät zeigt den Zustand mit Farben und Blinkmustern an. Die Bedeutungen stammen aus der Tabelle zur Statusanzeige im Handbuch.
+
+| Meldung oder Symptom | Bedeutung (laut Hersteller) | Maßnahme |
+|---|---|---|
+| Rot, Gelb und Grün blinken im Wechsel | Einschalten und Selbstdiagnose laufen | Warten Sie, bis die Tests beendet sind, bevor Sie die Motoren starten |
+| Grün blinkt langsam | GNSS aktiviert | Normalzustand |
+| Grün blinkt wiederholt zweimal | Visionssysteme aktiviert | Normalzustand |
+| Gelb blinkt schnell | Signal der Fernsteuerung verloren (Remote controller signal lost) | Prüfen Sie die Verbindung; das Fluggerät folgt der in DJI Fly eingestellten Aktion bei Signalverlust (Rückkehr, Landung oder Schweben) |
+| Rot blinkt langsam | Start gesperrt, zum Beispiel wegen niedrigen Akkus | Lesen Sie die Warnung in DJI Fly, um den Grund zu sehen |
+| Rot blinkt schnell | Akku kritisch niedrig | Folgen Sie den Hinweisen zum Akku weiter unten |
+| Dauerrot | Kritischer Fehler (Critical error) | Das Handbuch nennt keine Behebungsschritte; prüfen Sie die Meldung in DJI Fly und wenden Sie sich an den DJI-Support |
+| Rot und Gelb blinken im Wechsel | Kompasskalibrierung erforderlich (Compass calibration required) | Kalibrieren Sie, wie DJI Fly es anleitet; siehe den [Leitfaden zur Kompasskalibrierung](/de/guides/compass-calibration-and-magnetic-interference) |
+
+## Positionierung, Startpunkt und Flugbeschränkungen
+
+| Meldung oder Symptom | Bedeutung (laut Hersteller) | Maßnahme |
+|---|---|---|
+| Sprachansage "Home Point is updated" | Das Fluggerät hat seinen Startpunkt (Home Point) gespeichert | Warten Sie auf diese Ansage, bevor Sie weiterfliegen. In der Nähe hoher Gebäude kann der Startpunkt ungenauer sein, beobachten Sie das Fluggerät bei der automatischen Rückkehr genau |
+| "Max flight altitude reached." | Die in DJI Fly eingestellte maximale Flughöhe ist erreicht | Sie behalten die Kontrolle, das Fluggerät steigt aber nicht weiter |
+| Maximale Flugdistanz erreicht | Die Entfernung in gerader Linie zum Startpunkt hat die in DJI Fly eingestellte Grenze erreicht | Bleiben Sie innerhalb der in DJI Fly eingestellten Distanzgrenze |
+
+Das Handbuch erklärt auch, was bei schwachem Satellitenempfang passiert. Ist das GNSS-Signal schwach, wird der Startpunkt nicht aktualisiert, und laut Tabelle der Flugbeschränkungen wird die Höhe bei ausreichender Beleuchtung auf 30 m über dem Startpunkt begrenzt. Die Sicherheitshinweise ergänzen, dass Sie bei schwachem GNSS-Signal bei guter Beleuchtung und Sicht fliegen sollten, weil das Fluggerät sich stärker auf sein Visionssystem stützt. Mehr dazu finden Sie unter [Was tun bei schwachem GPS-Signal](/de/guides/what-to-do-when-drone-gps-signal-is-weak).
+
+## Akku und automatische Rückkehr
+
+| Meldung oder Symptom | Bedeutung (laut Hersteller) | Maßnahme |
+|---|---|---|
+| Warnung vor niedrigem Akkustand in DJI Fly | Die Restenergie reicht nur noch für den Rückflug | Tun Sie nichts, fliegt das Fluggerät nach einem Countdown selbst zurück. Ein Abbruch kann zu wenig Energie für eine sichere Landung lassen |
+| Automatische Landung | Die Restenergie reicht nur noch für den Sinkflug | Sie lässt sich nicht abbrechen, Sie können aber horizontal steuern und die Sinkgeschwindigkeit regeln |
+| Alle vier Akku-LEDs blinken zweimal pro Sekunde | Der Akku braucht Wartung; Start gesperrt, DJI Fly zeigt einen Hinweis | Vollständig laden, 48 Stunden ruhen lassen und bei Bedarf wiederholen. Hilft es nach zwei Durchgängen nicht, wenden Sie sich an den DJI-Support |
+| Warnung vor beschädigter Akkuzelle | Eine beschädigte Zelle wurde erkannt | Folgen Sie dem Hinweis und prüfen Sie den Akku; das Handbuch nennt keine weiteren Schritte |
+| Keine LED beim Drücken der Einschalttaste | Der Akku kann nach langer Lagerung bei niedriger Ladung im Ruhemodus (Hibernation) sein | Laden Sie ihn, um ihn aufzuwecken |
+
+Auch die Temperatur spielt eine Rolle. Das Handbuch nennt als Betriebstemperatur minus 10 bis 40 Grad C, sagt, dass Akkus unter minus 10 Grad C nicht verwendet werden können, und verlangt bei Kälte, den Flug zu beenden, sobald die Warnung vor niedrigem Akkustand erscheint. Geladen wird bei 5 bis 40 Grad C, und ein heißer Akku sollte nicht direkt nach dem Flug geladen werden. Lesen Sie dazu [Temperatur und Akkuleistung bei Drohnen](/de/guides/temperature-and-drone-battery-performance).
+
+Die automatische Rückkehr hat Grenzen. Das Handbuch warnt, dass das Fluggerät bei zu starkem Wind unter Umständen nicht zum Startpunkt zurückkehren kann und dass es ohne funktionierende Visionssysteme bei der automatischen Rückkehr keine Hindernisse erkennt. Was Sie vor dem Flug einstellen sollten, erklärt [Return-to-Home-Einstellungen erklärt](/de/guides/return-to-home-settings-explained).
+
+## Vision, Landung und Hindernisse
+
+| Meldung oder Symptom | Bedeutung (laut Hersteller) | Maßnahme |
+|---|---|---|
+| Landehinweis in 0,5 m Höhe | Der Landeschutz bittet um Bestätigung | Bestätigen Sie oder halten Sie den Gashebel eine Sekunde nach unten, um zu landen. Wirkt der Boden unsicher, schwebt das Fluggerät und wartet |
+| Lagemodus (ATTI) | Wird automatisch aktiviert, zum Beispiel wenn die Visionssysteme nicht verfügbar oder deaktiviert sind. Das Fluggerät kann nicht selbstständig schweben oder bremsen | So bald wie möglich landen |
+| Kollisionswarnung gelb | Ein Hindernis ist in Blickrichtung 2,2 bis 5 m entfernt | Das Handbuch nennt keine konkrete Maßnahme; behalten Sie den Abstand zum Hindernis im Blick |
+| Kollisionswarnung rot | Ein Hindernis ist näher als 2,2 m | Es ist sehr nah, weichen Sie sofort aus |
+
+Laut Handbuch erreichen die Visionssysteme bei schwachem Licht, über sehr dunklen oder sehr hellen Flächen und über einfarbigen Flächen wie reinem Schwarz, Weiß, Rot oder Grün unter Umständen nicht ihre beste Leistung. Die Vision-Unterstützung dient nur als Orientierung und kann Glas, dünne Äste, Drähte und Drachenschnüre übersehen.
+
+## Motoren, Firmware und Aktivierung
+
+- Blockierter Motor: Das Handbuch sagt, dass Sie sofort landen sollen, wenn ein Motor blockiert ist und sich nicht frei dreht. Außerdem sollen Sie vor jedem Flug prüfen, ob Propeller und Motoren fest montiert sind.
+- Firmware: DJI Fly meldet sich, wenn neue Firmware verfügbar ist, und die Sicherheitshinweise verlangen, App und Firmware des Fluggeräts aktuell zu halten. Siehe den [Leitfaden zu Firmware-Updates](/de/guides/best-practices-for-drone-firmware-updates).
+- Aktivierung: Die Air 3 muss vor der ersten Nutzung aktiviert werden; dafür sind eine Internetverbindung und die Anweisungen auf dem Bildschirm nötig.
+- Gimbal-Schutz: Entfernen Sie ihn und klappen Sie alle Arme aus, bevor Sie einschalten, sonst kann die Selbstdiagnose beeinträchtigt werden.
+
+## Vor dem Start
+
+Prüfen Sie die Bedingungen im [FlyDroneMap-Dashboard](/de), warten Sie das Ende der Selbstdiagnose ab, bestätigen Sie die Sprachansage zum Startpunkt und lesen Sie vor dem Start jede Warnung in DJI Fly.
+
+## Häufige Fragen
+
+### Ist es sicher, nach einer Kompasswarnung weiterzufliegen?
+
+Das Handbuch sagt nur, dass ein abwechselnd rotes und gelbes Blinken bedeutet, dass der Kompass kalibriert werden muss. Folgen Sie den Anweisungen in DJI Fly und im Handbuch und wenden Sie sich an den DJI-Support, wenn die Warnung immer wieder auftritt.
+
+### Wo finde ich die vollständige Liste der Warnungen der Air 3?
+
+Im offiziellen Benutzerhandbuch und in den Sicherheitshinweisen auf der Download-Seite der DJI Air 3. Dieser Beitrag behandelt nur die dort beschriebenen Meldungen, maßgeblich bleibt das Handbuch.
+
+### Sollte ich zuerst die Firmware aktualisieren?
+
+DJI rät, App und Firmware des Fluggeräts aktuell zu halten, und DJI Fly zeigt einen Hinweis, wenn ein Update verfügbar ist. Aktualisieren Sie, wenn Sie nicht unmittelbar vor einem Flug stehen.
+
+### Was tun, wenn die Warnung vor niedrigem Akkustand erscheint?
+
+Die Sicherheitshinweise von DJI raten, bei einer Warnung vor niedrigem Akkustand oder starkem Wind an einem sicheren Ort zu landen. Lassen Sie die automatische Rückkehr laufen, behalten Sie das Fluggerät im Blick.
+
+## Quellen und weiterführende Links
+
+- [DJI — Air 3 Benutzerhandbuch v1.6 (Englisch)](https://dl.djicdn.com/downloads/DJI_Air_3/UM/20240627/1/DJI_Air_3_User_Manual_v1.6_EN.pdf)
+- [DJI — Air 3 Sicherheitshinweise (DJI RC-N2)](https://dl.djicdn.com/downloads/DJI_Air_3/SG/20250220/DJI_Air_3_Safety_Guidelines_DJI_RC-N2_7langs.pdf)
+- [DJI — Air 3 Downloads](https://www.dji.com/air-3/downloads)

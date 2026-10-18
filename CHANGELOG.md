@@ -1,3 +1,30 @@
+## 2026-10-18 — 가이드 확장: 목차, 독일어 번역 9건, 기종별 풍속 8종·오류 메시지 3종 페이지 (5개 언어)
+
+**배경**
+- 미구현 작업 보고 후 사용자 승인 항목(독일어 미번역, 목차, 기종별 풍속/오류 페이지, 소규모 정리) 일괄 처리.
+
+**목차 (가이드 상세)**
+- 본문 H2를 수집(`collectH2Headings`, `src/lib/guides.ts`)해 첫 도구 안내 아래에 목차 박스(`guide-toc.tsx`), 스크롤 시 나타나는 리모컨형 목차(`guide-floating-toc.tsx`: 넓은 화면은 좌측 고정 패널, 좁은 화면은 우하단 버튼+펼침, 현재 위치 강조, Esc/바깥 클릭으로 닫기) 추가.
+- `Guides.toc.title` 키 5개 언어 추가, 제목 앵커에 `scroll-mt-24`.
+
+**독일어 번역 9건** (aurora, beginner-practice, gimbal, fpv-vs-camera, eu-easa, spain, insurance, japan-mlit, korea)
+- 규정·보험 5건은 공식 페이지로 대조하며 번역하고 `updatedAt: 2026-10-17` + "Quellen und weiterführende Links" 추가. 영어 원문과 달라진 서술(정정·삭제)은 독일어 판에만 반영되어 있으며 다른 언어는 후속 정리 대상.
+
+**신규 페이지 55건 (11개 slug x 5개 언어)**
+- 기종별 풍속(`<기종>-wind-resistance`): Mini 4 Pro, Mini 3, Mini 3 Pro, Air 3, Air 3S, Mavic 3 Pro, Neo, Avata 2. 공식 스펙 페이지에서 확인한 값만 사용(사이트 `drone-models.ts` 값과 전부 일치).
+- 오류·경고 메시지(`<기종>-error-messages-and-warnings`): Mini 3, Mini 4 Pro, Air 3. 공식 사용 설명서·안전 가이드에서 확인된 항목만 수록, 확인 못한 부분은 본문에 명시.
+- 허브 `drone-wind-resistance-by-model`(5개 언어)에 "기종별 페이지" 링크 섹션 추가(표·수치는 그대로).
+
+**소규모 정리**
+- `temperature-and-drone-battery-performance` en/de 제목의 근거 없는 "20-30%" 단정 제거(본문 설명도 정렬).
+- EASA "3개 범주(open/specific/certified)" 문장은 규정(EU 2019/947)과 일치해 변경 없음.
+- 중복 글 통합: Kp 4건, 안개/가시거리, 습도/이슬점, 배터리 2건, 초보 2건을 비교한 결과 검색 의도가 모두 달라 통합하지 않음(301 불필요).
+
+**검증**
+- 신규·번역 64파일 검증기 전부 통과(front-matter, 내부 링크 로케일/slug, MDX 컴파일, 분량), `tsc --noEmit`·eslint(변경 파일) 통과, 격리 사본 `next build --webpack` 성공. 신규 페이지 렌더·목차 항목=H2 일치·hreflang 5개 언어+x-default·사이트맵 포함 확인.
+- 작업 전 백업: `.backups/backup_20261017_132211_가이드확장작업전/`, `.backups/허브링크추가전_20261018/`, `.backups/소규모정리전_20261018/`.
+- 사용자 localhost 확인 후 배포.
+
 ## 2026-10-12 — 신뢰도 보강: 규정 출처·확인일, 데이터 관측 시각·출처, 기종 스펙 링크, 판정 기준 근거 (5개 언어)
 
 **배경**

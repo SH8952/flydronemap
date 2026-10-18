@@ -1,0 +1,101 @@
+---
+title: "DJI Air 3: mensajes de error y avisos, qué significan y qué hacer"
+description: "Avisos, mensajes de voz y patrones de la luz de estado del DJI Air 3 según el manual oficial de DJI: qué significan y qué acción indica el fabricante."
+publishedAt: "2026-10-17"
+tags: ["dji", "air-3", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+El DJI Air 3 te avisa de los problemas por tres vías: los mensajes de la app DJI Fly, los avisos de voz y el color y el patrón de parpadeo de la luz de estado de la aeronave. Esta guía reúne los que se describen en el manual de usuario oficial de DJI (v1.6) y en sus directrices de seguridad, los explica con palabras sencillas y repite la acción que da el fabricante. No incluye códigos de error numéricos, porque los documentos oficiales no los enumeran.
+
+## Puntos clave
+
+- Trata cualquier mensaje de DJI Fly como algo que hay que leer, no que cerrar sin más. Según el manual, puedes arrancar los motores cuando DJI Fly no muestra ningún aviso anómalo tras el autodiagnóstico.
+- Las luces rojas merecen atención: rojo lento significa despegue desactivado, rojo rápido significa batería críticamente baja y rojo fijo se describe como error crítico, sin pasos de recuperación en el manual.
+- Ante un aviso de batería baja o de viento fuerte, las directrices de seguridad de DJI indican aterrizar en un lugar seguro.
+- La referencia completa es el manual. Esta página solo cubre lo que dicen los documentos, así que para lo demás consulta el manual y el soporte de DJI.
+
+## Luz de estado de la aeronave
+
+La luz de estado de la aeronave usa colores y patrones de parpadeo. Estos significados provienen de la tabla de indicadores de estado del manual.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Rojo, amarillo y verde parpadeando alternos | Encendido y autodiagnóstico en curso | Espera a que terminen las pruebas antes de arrancar los motores |
+| Verde parpadeando despacio | GNSS activado | Estado normal |
+| Verde parpadeando dos veces de forma repetida | Sistemas de visión activados | Estado normal |
+| Amarillo parpadeando rápido | Señal del mando perdida (Remote controller signal lost) | Comprueba el enlace; la aeronave aplica la acción de pérdida de señal configurada en DJI Fly (regreso, aterrizaje o vuelo estacionario) |
+| Rojo parpadeando despacio | Despegue desactivado, por ejemplo por batería baja | Lee el aviso de DJI Fly para ver el motivo |
+| Rojo parpadeando rápido | Batería críticamente baja | Sigue las indicaciones de batería de más abajo |
+| Rojo fijo | Error crítico (Critical error) | El manual no da pasos de recuperación; revisa el aviso de DJI Fly y contacta con el soporte de DJI |
+| Rojo y amarillo parpadeando alternos | Hace falta calibrar la brújula (Compass calibration required) | Calibra como indica DJI Fly; consulta la [guía de calibración de la brújula](/es/guides/compass-calibration-and-magnetic-interference) |
+
+## Posicionamiento, punto de origen y límites de vuelo
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Aviso de voz "Home Point is updated" | La aeronave ha registrado su punto de origen | Espera este aviso antes de seguir volando. Cerca de edificios altos el punto de origen puede ser menos preciso, así que vigila la aeronave durante el regreso automático |
+| "Max flight altitude reached." | La aeronave ha llegado a la altitud máxima fijada en DJI Fly | Sigues teniendo el control, pero la aeronave no subirá más |
+| Distancia máxima alcanzada | La distancia en línea recta al punto de origen ha llegado al límite fijado en DJI Fly | Mantente dentro del límite de distancia configurado en DJI Fly |
+
+El manual también explica qué pasa con poca señal de satélites. Si la señal GNSS es débil, el punto de origen no se actualiza, y su tabla de límites de vuelo restringe la altitud a 30 m desde el punto de despegue cuando hay luz suficiente. Las directrices de seguridad añaden que, con señal GNSS débil, conviene volar con buena iluminación y visibilidad, porque la aeronave depende más de su sistema de visión. Tienes más contexto en [qué hacer cuando la señal GPS es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak).
+
+## Batería y regreso a casa
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Aviso de batería baja en DJI Fly | La carga solo alcanza para completar el vuelo de regreso | Si no haces nada, la aeronave vuelve sola tras una cuenta atrás. Cancelar puede dejar muy poca energía para aterrizar con seguridad |
+| Aterrizaje automático | La carga solo alcanza para descender | No se puede cancelar, pero puedes mover la aeronave en horizontal y controlar la velocidad de descenso |
+| Los cuatro LED de la batería parpadean dos veces por segundo | La batería necesita mantenimiento; el despegue queda bloqueado y DJI Fly muestra un aviso | Carga por completo, déjala reposar 48 horas y repite si hace falta. Si tras dos ciclos sigue igual, contacta con el soporte de DJI |
+| Aviso de celda de batería dañada | Se ha detectado una celda dañada | Sigue el aviso y revisa la batería; el manual no da más pasos |
+| Ningún LED al pulsar el botón de encendido | La batería puede estar en hibernación tras quedarse con poca carga | Cárgala para despertarla |
+
+La temperatura también cuenta. El manual da como temperatura de funcionamiento de -10 a 40 grados C, indica que las baterías no se pueden usar por debajo de -10 grados C y dice que, con frío, termines el vuelo en cuanto aparezca el aviso de batería baja. La carga se especifica entre 5 y 40 grados C, y no debes cargar la batería justo después del vuelo, cuando está caliente. Mira [temperatura y rendimiento de la batería del dron](/es/guides/temperature-and-drone-battery-performance).
+
+El regreso a casa tiene límites. El manual advierte de que la aeronave puede no lograr volver al punto de origen si el viento es demasiado fuerte, y de que sin sistemas de visión operativos el regreso automático no detecta obstáculos. En [los ajustes de regreso a casa explicados](/es/guides/return-to-home-settings-explained) ves qué configurar antes de volar.
+
+## Visión, aterrizaje y obstáculos
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Aviso de aterrizaje a 0,5 m del suelo | La protección de aterrizaje te pide confirmar | Confirma, o mantén la palanca del acelerador hacia abajo durante un segundo, para aterrizar. Si el suelo parece inseguro, la aeronave se queda en estacionario y espera |
+| Modo de actitud (ATTI) | Se activa automáticamente, por ejemplo cuando los sistemas de visión no están disponibles o están desactivados. La aeronave no puede mantenerse ni frenar sola | Aterriza lo antes posible |
+| Aviso de colisión en amarillo | Hay un obstáculo a entre 2,2 y 5 m en la dirección de visión | El manual no da una acción concreta; vigila la distancia al obstáculo |
+| Aviso de colisión en rojo | Hay un obstáculo a menos de 2,2 m | Está muy cerca, así que evítalo de inmediato |
+
+Según el manual, los sistemas de visión pueden no rendir de forma óptima con poca luz, sobre superficies muy oscuras o muy brillantes, o sobre superficies de un solo color como negro, blanco, rojo o verde puros. La asistencia visual es solo orientativa y puede pasar por alto cristal, ramas finas, cables e hilos de cometa.
+
+## Motores, firmware y activación
+
+- Motor atascado: el manual indica aterrizar de inmediato si un motor está atascado y no gira con libertad. También pide comprobar antes de cada vuelo que hélices y motores están bien instalados.
+- Firmware: DJI Fly te avisa cuando hay firmware nuevo, y las directrices de seguridad piden mantener al día tanto la app como el firmware de la aeronave. Consulta la [guía de actualización de firmware](/es/guides/best-practices-for-drone-firmware-updates).
+- Activación: el Air 3 debe activarse antes del primer uso, lo que requiere conexión a internet y seguir las indicaciones en pantalla.
+- Protector del gimbal: quítalo y despliega todos los brazos antes de encender, o el autodiagnóstico podría verse afectado.
+
+## Antes de despegar
+
+Revisa las condiciones en el [panel de FlyDroneMap](/es), espera a que termine el autodiagnóstico, confirma el aviso de voz del punto de origen y lee cualquier aviso de DJI Fly antes de despegar.
+
+## Preguntas frecuentes
+
+### ¿Es seguro seguir volando tras un aviso de brújula?
+
+El manual solo dice que una luz roja y amarilla alterna significa que hay que calibrar la brújula. Sigue las instrucciones de DJI Fly y del manual, y contacta con el soporte de DJI si el aviso se repite.
+
+### ¿Dónde encuentro la lista completa de avisos del Air 3?
+
+En el manual de usuario oficial y en las directrices de seguridad de la página de descargas del Air 3 de DJI. Esta página solo cubre los mensajes descritos allí, y la referencia es siempre el manual.
+
+### ¿Debo actualizar primero el firmware?
+
+DJI pide mantener la app y el firmware de la aeronave al día, y DJI Fly muestra un aviso cuando hay una actualización. Actualiza cuando no estés a punto de volar.
+
+### ¿Qué hago cuando aparece el aviso de batería baja?
+
+Las directrices de seguridad de DJI indican aterrizar en un lugar seguro ante un aviso de batería baja o de viento fuerte. Si dejas que continúe el regreso automático, no pierdas de vista la aeronave.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — Manual de usuario del Air 3 v1.6 (inglés)](https://dl.djicdn.com/downloads/DJI_Air_3/UM/20240627/1/DJI_Air_3_User_Manual_v1.6_EN.pdf)
+- [DJI — Directrices de seguridad del Air 3 (DJI RC-N2)](https://dl.djicdn.com/downloads/DJI_Air_3/SG/20250220/DJI_Air_3_Safety_Guidelines_DJI_RC-N2_7langs.pdf)
+- [DJI — Descargas del Air 3](https://www.dji.com/air-3/downloads)

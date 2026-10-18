@@ -1,0 +1,100 @@
+---
+title: "DJI Mini 4 Pro: errores y advertencias, qué significan y qué hacer"
+description: "Qué significan los patrones de las luces de estado del DJI Mini 4 Pro y las advertencias de DJI Fly según los documentos oficiales de DJI, y qué recomienda el fabricante."
+publishedAt: "2026-10-17"
+tags: ["dji", "mini-4-pro", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+Cuando el DJI Mini 4 Pro parpadea con un color que no conoces o la app muestra una advertencia, conviene distinguir si se trata de un simple estado normal o de un motivo para quedarte en tierra. Esta página reúne las advertencias que DJI describe en sus propios documentos para esta aeronave, las explica con palabras sencillas e indica lo que recomienda el fabricante. No es una lista completa de errores ni sustituye al manual del usuario.
+
+## Puntos clave
+
+- Las luces de estado de la aeronave son la forma más rápida de comprobar el aparato en tierra. Los patrones amarillos y verdes suelen describir estados normales; el rojo fijo o intermitente, el amarillo rápido y la alternancia de rojo y amarillo indican que hay algo que atender.
+- Si el rojo parpadea despacio y el despegue está desactivado, lee primero la advertencia que aparece en DJI Fly antes de hacer nada más.
+- Ante una advertencia de batería baja, DJI indica que aterrices en un lugar seguro. Si la batería llega a nivel crítico, la aeronave aterriza sola y ese aterrizaje no se puede cancelar.
+- Mantén DJI Fly y el firmware de la aeronave actualizados y ten a mano el manual oficial de tu versión: el texto exacto de los avisos de la app depende del idioma y de la versión.
+
+## De dónde salen estos mensajes
+
+Todo lo que sigue procede de la documentación publicada por DJI para el Mini 4 Pro: el manual del usuario v1.4 (junio de 2024, consultado en las ediciones neerlandesa y portuguesa que publica DJI), las directrices de seguridad para las versiones con DJI RC 2 y DJI RC-N2, la guía de inicio rápido y las notas de la versión del firmware. El manual en inglés está disponible en la página de descargas del producto en DJI, enlazada en las fuentes.
+
+Conviene tener presentes dos cosas. Primero, las luces de estado muestran el estado del sistema de control de vuelo con la aeronave encendida y los motores parados, y el manual las describe por color y patrón de parpadeo. Segundo, los avisos de la app aparecen en el idioma de tu app, así que esta página explica qué significa cada uno en lugar de citar todos los textos. Si necesitas la redacción exacta, búscala en el manual en tu idioma. Los mensajes y el comportamiento del firmware pueden cambiar con las actualizaciones, de modo que el manual vigente y DJI Fly prevalecen siempre sobre esta página.
+
+## Luces de estado de la aeronave
+
+La tabla siguiente recoge los patrones de advertencia de la lista de indicadores de estado del manual.
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Rojo intermitente lento | El despegue está desactivado, por ejemplo porque el nivel de batería es demasiado bajo | El manual indica que revises la advertencia en DJI Fly para conocer el motivo |
+| Rojo intermitente rápido | La batería está en nivel crítico | Aterriza lo antes posible cuando sea seguro; consulta la sección de batería más abajo |
+| Rojo fijo | Error crítico | La tabla de estados del manual no da una solución. Considéralo un motivo para no volar y revisa DJI Fly y el manual, o contacta con el soporte de DJI si persiste |
+| Rojo y amarillo alternados | Hace falta calibrar la brújula | Calibra la brújula como indique DJI Fly. Más detalles en nuestra guía de [calibración de la brújula e interferencias magnéticas](/es/guides/compass-calibration-and-magnetic-interference) |
+| Amarillo intermitente rápido | Se ha perdido la señal del mando | Si puedes, recupera el enlace. La aeronave puede iniciar el regreso automático de seguridad que se describe más abajo |
+
+Como referencia, el manual enumera como estados normales los siguientes: rojo, amarillo y verde alternados mientras se enciende y realiza el autodiagnóstico, cuatro parpadeos amarillos durante el calentamiento, verde intermitente lento cuando el GNSS está activo, dos parpadeos verdes repetidos cuando los sistemas de visión están activos y amarillo intermitente lento cuando el GNSS y los sistemas de visión están desactivados y la aeronave está en modo ATTI.
+
+## Advertencias de batería y regreso automático
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Advertencia de batería baja en DJI Fly | La batería solo tiene carga suficiente para el vuelo de regreso. La app hace una cuenta atrás y, si no haces nada, la aeronave vuelve al punto de origen | Deja que regrese o aterriza tú mismo en un lugar seguro. Las directrices de seguridad de DJI indican que aterrices en un lugar seguro ante una advertencia de batería baja o de viento fuerte |
+| Regreso automático cancelado tras la advertencia | Puede que la batería ya no tenga carga suficiente para aterrizar con seguridad | Evita cancelarlo salvo que estés seguro de poder aterrizar enseguida, porque la aeronave podría estrellarse o perderse |
+| Batería en nivel crítico, aterrizaje automático | La carga restante solo alcanza para descender desde la altitud actual | El aterrizaje no se puede cancelar. Con las palancas aún puedes mover la aeronave en horizontal y controlar el descenso |
+| Batería en hibernación profunda | Una batería guardada mucho tiempo con poca carga entra en hibernación profunda | Cárgala para reactivarla |
+
+Si queda energía durante un aterrizaje automático, el manual indica que subir el acelerador hace ascender la aeronave lentamente a 1 m/s, pero mantenerlo arriba hasta que se agote la batería hará que la aeronave caiga. Para repasar cómo se configura el regreso automático, consulta [ajustes de regreso a casa explicados](/es/guides/return-to-home-settings-explained).
+
+El regreso de seguridad funciona así según el manual: si la acción de seguridad está configurada como regreso a casa, hay un punto de origen registrado y la brújula funciona con normalidad, la aeronave inicia el regreso automáticamente cuando la señal del mando se pierde durante más de seis segundos. La acción también puede cambiarse a aterrizar o a mantenerse en el aire en los ajustes avanzados de seguridad de DJI Fly.
+
+## Advertencias de posicionamiento y visión
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Amarillo intermitente lento (modo ATTI) | El GNSS y los sistemas de visión están desactivados, la aeronave mantiene peor la posición y el viento la desplaza con más facilidad | El manual indica que aterrices lo antes posible, ya que no hay estacionamiento ni frenado automáticos |
+| Señal GNSS débil | El posicionamiento empeora y la altura de vuelo se limita, por ejemplo a 2 m sobre el suelo cuando la luz es insuficiente y el sensor infrarrojo 3D funciona | Vuela con buena luz y visibilidad, en zonas abiertas. Consulta [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak) |
+| Aviso de altitud máxima o distancia máxima alcanzada en DJI Fly | Has llegado al límite de vuelo vigente | Vuelve al interior del límite; el manual los recoge como avisos que se muestran en DJI Fly |
+| Sistema de visión limitado | Con poca luz, o sobre superficies reflectantes como agua y nieve, el sistema de visión puede funcionar de forma anómala | Vuela solo con buena iluminación y evita las superficies reflectantes |
+| Interferencia en la brújula o el GNSS | Edificios, montañas y árboles pueden bloquear el GNSS y afectar a la brújula, y hay que evitar las zonas con interferencias magnéticas o de radio | Muévete a una zona abierta lejos de fuentes de interferencia como puntos Wi-Fi, routers, dispositivos Bluetooth, líneas de alta tensión y radares |
+
+El manual también indica que la evitación de obstáculos no funciona en modo Sport ni cuando el ajuste de evitación de obstáculos está desactivado, por lo que en esos casos la aeronave no detecta obstáculos automáticamente.
+
+## Firmware y activación
+
+| Mensaje o síntoma | Significado (según el fabricante) | Qué hacer |
+|---|---|---|
+| Aviso de firmware nuevo en DJI Fly | Hay una actualización de firmware disponible | Las directrices de seguridad de DJI indican que antes de volar te asegures de tener DJI Fly y el firmware de la aeronave en la última versión. Consulta [buenas prácticas para actualizar el firmware](/es/guides/best-practices-for-drone-firmware-updates) |
+| Falla la actualización | La actualización del firmware no se completó | Las notas de la versión de DJI indican reiniciar la aeronave, el mando y DJI Fly o DJI Assistant 2 (Consumer Drones Series), y volver a intentarlo |
+| Aeronave sin activar | La aeronave debe activarse antes del primer uso y la activación requiere conexión a internet | Actívala en la app. La guía de inicio rápido también indica cargar la batería para activarla antes del primer uso |
+
+## Antes de volar
+
+Revisa las luces de estado tras el encendido, comprueba en DJI Fly que no haya advertencias y que el gimbal y la cámara funcionen con normalidad, y consulta las condiciones actuales en el [panel de FlyDroneMap](/es). El frío y el calor afectan a las baterías, así que lee también [temperatura y rendimiento de la batería del dron](/es/guides/temperature-and-drone-battery-performance). DJI indica para el producto un rango de temperatura de funcionamiento de menos 10 a 40 grados Celsius.
+
+## Preguntas frecuentes
+
+### ¿Es seguro seguir volando después de una advertencia de la brújula?
+
+El manual indica que hace falta calibrar la brújula cuando las luces alternan rojo y amarillo, así que calibra siguiendo la app antes de volar. Si la advertencia continúa, sigue las instrucciones en pantalla y el manual.
+
+### ¿Dónde encuentro la lista completa de advertencias?
+
+En el manual del usuario del DJI Mini 4 Pro y en DJI Fly. Esta página solo cubre los mensajes que DJI describe en los documentos de las fuentes.
+
+### ¿Debo actualizar el firmware primero?
+
+Las directrices de seguridad de DJI indican que antes de volar tengas DJI Fly y el firmware de la aeronave en la última versión. Si DJI Fly te ofrece una actualización, hazla cuando tengas tiempo de terminarla con calma en tierra.
+
+### ¿Qué significa una advertencia de batería baja para mi plan de vuelo?
+
+Significa que la carga restante solo alcanza para volver. En lugar de seguir con el vuelo, inicia el regreso o aterriza en un lugar seguro.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — DJI Mini 4 Pro downloads (user manual, quick start guides, safety guidelines, release notes)](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — DJI Mini 4 Pro User Manual v1.4 (Portuguese edition)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_PT.pdf)
+- [DJI — DJI Mini 4 Pro Safety Guidelines (DJI RC 2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_2_Safety_Guidelines-5.pdf)
+- [DJI — DJI Mini 4 Pro Safety Guidelines (DJI RC-N2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_N2_Safety_Guidelines-5.pdf)
+- [DJI — DJI Mini 4 Pro Quick Start Guide (DJI RC 2)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/DJI_Mini_4_Pro_DJI_RC_2_Quick_Start_Guide.pdf)
+- [DJI — DJI Mini 4 Pro Release Notes](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20251105/DJI_Mini_4_Pro_Release_Notes_EN.pdf)

@@ -1,0 +1,104 @@
+---
+title: "DJI Mini 3 Windwiderstand: Offizielles Limit und reale Bedingungen"
+description: "Der DJI Mini 3 ist offiziell für 10,7 m/s (38,5 km/h) Wind ausgelegt. Die Daten im Überblick und wie FlyDroneMap daraus Böenstufen ableitet."
+publishedAt: "2026-10-17"
+tags: ["wind", "dji", "mini-3", "gear"]
+category: "weather-safety"
+---
+
+DJI gibt für den Mini 3 einen maximalen Windwiderstand von 10,7 m/s an, also rund 38,5 km/h. Für ein Fluggerät mit 248 g ist das die Obergrenze des Herstellers, keine Windgeschwindigkeit, bei der sich angenehm fliegen lässt. Diese Seite stellt den offiziellen Wert den wichtigsten technischen Daten gegenüber, fasst zusammen, was DJIs Unterlagen zum Wind sagen, und erklärt, wie FlyDroneMap ihn mit eigenen Kriterien in praktische Böenstufen übersetzt.
+
+## Das Wichtigste in Kürze
+
+- Die Spezifikationsseite von DJI nennt einen maximalen Windwiderstand von 10,7 m/s (38,5 km/h), bezeichnet als Level 5, ohne Angabe von Testbedingungen.
+- Die Sicherheitshinweise von DJI sagen, das Fluggerät nicht bei schwerem Wetter einzusetzen, einschließlich starkem Wind über 10,7 m/s, und bei einer Starkwindwarnung an einem sicheren Ort zu landen.
+- Das Handbuch von DJI warnt, dass das Fluggerät bei zu hoher Windgeschwindigkeit möglicherweise nicht zum Startpunkt zurückkehren kann und dass ein kalter Akku den Windwiderstand des Fluggeräts verringert.
+- Bei FlyDroneMap gelten Böen unter 19,3 km/h für dieses Modell als gut, ab 19,3 km/h als Vorsicht und ab 27,0 km/h als nicht empfohlen. Das sind eigene Schwellen der Website, keine offizielle Norm.
+
+## Offizielle technische Daten
+
+Die Werte stammen von der Spezifikationsseite des Mini 3 bei DJI. Aufgenommen sind nur Zeilen, die dort tatsächlich stehen.
+
+| Merkmal | Wert |
+|---|---|
+| Maximaler Windwiderstand | 10,7 m/s (38,5 km/h), bezeichnet als Level 5; keine Testbedingungen angegeben |
+| Startgewicht | 248 g für das Standardfluggerät mit Intelligent-Flight-Akku, Propellern und microSD-Karte (tatsächliches Gewicht kann abweichen); über 249 g mit dem Battery Plus |
+| Maximale horizontale Fluggeschwindigkeit | 16 m/s im Sport-Modus, im Windkanal ohne Wind auf Meereshöhe gemessen |
+| Maximale Steig- und Sinkgeschwindigkeit | 5 m/s aufwärts, 3,5 m/s abwärts |
+| Maximale Flugzeit | 38 Minuten mit dem Intelligent-Flight-Akku; 51 Minuten mit dem Battery Plus (im Windkanal bei konstant 21,6 km/h im Foto-Modus gemessen) |
+| Maximale Starthöhe | 4000 m mit dem Intelligent-Flight-Akku; 3000 m mit dem Battery Plus |
+| Betriebstemperatur | -10 bis 40 °C |
+| Satellitenortung | GPS + GLONASS + Galileo |
+| Sichtsensorik | Abwärts gerichtetes Sichtsystem mit präzisem Schwebebereich von 0,5–10 m; Hinderniserkennung in anderen Richtungen nennt die Seite nicht |
+
+Die Angaben zu Flugzeit und Geschwindigkeit wurden ohne Wind gemessen. Ein realer Flug bei Wind erreicht sie nicht.
+
+## Was DJI zum Wind sagt
+
+- Die Sicherheitshinweise besagen, das Fluggerät nicht bei schwerem Wetter zu verwenden, einschließlich starkem Wind über 10,7 m/s.
+- Sie sagen außerdem, bei einer Warnung wegen niedrigen Akkustands oder starken Winds an einem sicheren Ort zu landen.
+- Das Benutzerhandbuch sagt, dass das Fluggerät bei zu hoher Windgeschwindigkeit möglicherweise nicht zum Startpunkt zurückkehren kann.
+- In seiner Warnung zum Akku bei niedrigen Temperaturen nennt das Handbuch, dass Kälte die Windwiderstandsleistung des Fluggeräts verringert. Hintergründe finden Sie im Leitfaden zu [Temperatur und Akkuleistung von Drohnen](/de/guides/temperature-and-drone-battery-performance).
+- Die FAQ zum Mini 3 erklärt, dass bei starkem Wind leichte Vibrationen wegen des geringen Gewichts normal sind und der Gimbal automatisch ausgleicht, damit das Bild ruhig bleibt.
+
+## Wie FlyDroneMap dieses Modell beurteilt
+
+FlyDroneMap vergleicht die aktuelle Böengeschwindigkeit mit dem offiziellen Maximum des Modells. Das ist die eigene, vorsichtigere Methode der Website: gut, wenn die Böe unter 50 % des offiziellen Maximums liegt, Vorsicht ab 50 % und nicht empfohlen ab 70 %.
+
+| Bewertung | Anteil am offiziellen Maximum | Böengeschwindigkeit für den Mini 3 |
+|---|---|---|
+| Gut | Unter 50 % | Unter 19,3 km/h (etwa 5,4 m/s) |
+| Vorsicht | 50 % bis unter 70 % | 19,3 bis unter 27,0 km/h |
+| Nicht empfohlen | 70 % oder mehr | 27,0 km/h und mehr (etwa 7,5 m/s) |
+
+Das Dashboard bewertet das Böenrisiko außerdem mit einer eigenen Skala: niedrig unter 20 km/h, mittel von 20 bis unter 35 km/h und hoch ab 35 km/h. Die beiden Skalen beantworten unterschiedliche Fragen. Die Modellprüfung zeigt, wie nahe die Böe an der Angabe dieses Fluggeräts liegt; die Böenskala beschreibt, wie unruhig die Luft allgemein ist. Für einen Mini 3 sind 35 km/h bereits etwa 91 % des offiziellen Maximums.
+
+## Warum das offizielle Maximum keine Arbeitsgeschwindigkeit ist
+
+Die 10,7 m/s sind ein vom Hersteller genanntes Maximum. Mehrere Faktoren verringern den tatsächlichen Spielraum:
+
+- Böen sind kurze Spitzen über dem Mittelwind, und ein leichtes Fluggerät spürt sie als plötzliche Stöße. Achten Sie auf den Böenwert, nicht nur auf den anhaltenden Wind.
+- Prognosewerte gelten meist für 10 m Höhe. In 80–120 m kann die Luft schneller strömen; mehr dazu im Leitfaden zur [Windscherung in verschiedenen Höhen](/de/guides/wind-shear-by-altitude-and-drone-flight).
+- Eine Drohne, die mit Rückenwind hinausfliegt, kehrt gegen den Wind zurück, was mehr Leistung und mehr Akku braucht. DJI warnt selbst, dass die Rückkehr bei starkem Wind scheitern kann. Planen Sie also eine großzügige Reserve ein und lesen Sie die Erklärung der [Rückkehr-Einstellungen](/de/guides/return-to-home-settings-explained).
+- Laut Handbuch verringert ein kalter Akku den Spielraum. Bei Kälte sollten Sie die obigen Schwellen noch vorsichtiger auslegen.
+
+## Vor dem Start
+
+1. Öffnen Sie das [FlyDroneMap-Dashboard](/de) und lesen Sie die Böen für Ihren Standort sowie den Wind in 80 und 120 m Höhe ab.
+2. Vergleichen Sie die Böe mit der Tabelle oben: unter 19,3 km/h ist gut, ab 19,3 km/h ist Vorsicht geboten.
+3. Gehen Sie die [Checkliste zu Wind und Böen](/de/guides/wind-gust-checklist-before-drone-flight) durch, einschließlich Windrichtung, Hindernissen und Rückweg.
+4. Wenn Sie mehrere Modelle fliegen, vergleichen Sie auch den Überblick zum [Windwiderstand nach Modell](/de/guides/drone-wind-resistance-by-model).
+5. Prüfen Sie direkt vor dem Start noch einmal und landen Sie früher, wenn die Böen zunehmen oder eine Starkwindwarnung erscheint.
+
+## Häufige Fehler
+
+- Die 10,7 m/s als Ziel statt als Obergrenze zu verstehen.
+- Den Mittelwind zu lesen und die Böen zu ignorieren.
+- Bei Wind die angegebene Flugzeit zu erwarten, obwohl sie ohne Wind gemessen wurde.
+- Die Rückkehr zu spät oder mit zu wenig Akku für den Gegenwind zu beginnen.
+- Bei Kälte zu fliegen, ohne einen schwächeren Akku einzuplanen.
+
+## Häufige Fragen
+
+### Wie hoch ist das Windlimit des DJI Mini 3?
+
+Die Spezifikationsseite von DJI nennt einen maximalen Windwiderstand von 10,7 m/s (Level 5), etwa 38,5 km/h. Die Sicherheitshinweise von DJI sagen, das Fluggerät nicht bei starkem Wind über 10,7 m/s einzusetzen.
+
+### Kann ich den Mini 3 bei 30 km/h Wind fliegen?
+
+30 km/h sind etwa 8,3 m/s und rund 78 % des offiziellen Maximums. Nach den Kriterien von FlyDroneMap liegt das im Bereich nicht empfohlen, der bei 27,0 km/h beginnt. Handelt es sich bei dem Wert um eine Böe oder ist der Wind in der Höhe stärker, ist der Spielraum noch kleiner.
+
+### Warum zeigt die Website Vorsicht schon vor dem offiziellen Limit?
+
+Der offizielle Wert ist eine Obergrenze unter den vom Hersteller festgelegten Bedingungen. FlyDroneMap beginnt bei 50 % mit Vorsicht, damit Platz für Böen, Wind in der Höhe und einen Rückflug gegen den Wind bleibt.
+
+### Verändert Kälte den Windspielraum?
+
+Laut DJI-Handbuch verringert ein kalter Akku die Windwiderstandsleistung des Fluggeräts. Das Handbuch nennt keine Zahl, planen Sie bei Kälte daher zusätzlichen Spielraum ein.
+
+## Quellen und weiterführende Links
+
+- [DJI — Mini 3 specs](https://www.dji.com/mini-3/specs)
+- [DJI — Mini 3 FAQ](https://www.dji.com/mini-3/faq)
+- [DJI — Mini 3 Safety Guidelines](https://dl.djicdn.com/downloads/DJI_Mini_3/SG/20250220/DJI_Mini_3_Safety_Guidelines_RC_multi.pdf)
+- [DJI — Mini 3 User Manual v1.2 (portugiesische Ausgabe)](https://dl.djicdn.com/downloads/DJI_Mini_3/UM/2024/DJI_Mini_3_User_Manual_v1.2_PT.pdf)

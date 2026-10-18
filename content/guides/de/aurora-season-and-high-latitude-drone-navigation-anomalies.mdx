@@ -1,0 +1,90 @@
+---
+title: "Polarlicht-Saison und Drohnen-Navigation in hohen Breiten"
+description: "Warum GPS und Kompass weiter im Norden (oder Süden) unzuverlässiger werden und was sich ändert, sobald das Polarlicht tatsächlich über Ihnen steht."
+publishedAt: "2026-09-24"
+updatedAt: "2026-10-04"
+tags: ["aurora", "high-latitude", "gps", "compass"]
+category: "space-weather-gps"
+image: "/guides/images/aurora-season-and-high-latitude-drone-navigation-anomalies.webp"
+imageCredit: "Christian Cueni"
+imageCreditUrl: "https://unsplash.com/@chrigu?utm_source=FlyDroneMap&utm_medium=referral"
+---
+
+Eine klare Polarlichtnacht ist eine seltene Gelegenheit, etwas zu filmen, das die meisten Piloten nie aufnehmen, zugleich aber eine Zeit starken Weltraumwetters, in der GPS- und Kompassverhalten besondere Aufmerksamkeit verdienen. Die aus mittleren Breiten gewohnte Gewohnheit, vor dem Start einmal den Kp-Index zu prüfen, deckt in hohen Breiten nur einen Teil des Gesamtbilds ab.
+
+## Das Wichtigste in Kürze
+
+- Laut NOAA bildet das Polarlicht zwei Ovale, die ungefähr um die magnetischen Pole zentriert sind; das Oval dehnt sich äquatorwärts aus, wenn die Weltraumwetteraktivität zunimmt.
+- Ionosphärenstörungen sind in Polarlichtbreiten besonders ausgeprägt, und geomagnetische Stürme erzeugen große Störungen, die die GNSS-Genauigkeit beeinträchtigen können, vor allem in hohen Breiten.
+- Die Forschung ist differenziert: In einer Studie in hohen Breiten funktionierte die präzise Positionierung selbst bei starker Szintillation weiter, die Effekte hängen also von Methode und Bedingungen ab.
+- Nahe den magnetischen Polen ist die horizontale Magnetfeldkomponente schwach. Das World Magnetic Model der NOAA definiert eine Blackout-Zone, in der man sich nicht auf Kompasse verlassen sollte, sowie eine Vorsichtszone darum herum.
+- Manche Herstellerhandbücher nennen ausdrückliche Einschränkungen für GNSS in Polarregionen. Lesen Sie vor dem Flug in hohen Breiten das Handbuch Ihres eigenen Fluggeräts.
+
+## Wo das Polarlicht auftritt und warum das wichtig ist
+
+Laut NOAA sind die besten Beobachtungsbedingungen unter einer ovalen Zone ungefähr zwischen 60 und 75 Grad nördlicher oder südlicher Breite gegeben, wo Polarlicht in mehr als der Hälfte der Nächte eines Jahres zu sehen ist. Nimmt die Weltraumwetteraktivität zu, dehnt sich das Polarlicht äquatorwärts aus; bei extremen Ereignissen wurde es bis in die USA, nach Europa und Asien beobachtet. Erforderlich sind dunkle, klare Himmel, und die NOAA weist darauf hin, dass die Mitternachtssonne im Sommer in Polarlichtbreiten Beobachtungen verhindert. Deshalb bedeutet „Polarlicht-Saison“ dort die dunkleren Monate.
+
+Für Piloten ist der Punkt einfach: Die Orte und Zeiten, an denen Polarlicht sichtbar ist, sind zugleich die Orte und Zeiten, an denen sich die geomagnetische Aktivität konzentriert.
+
+## GNSS in hohen Breiten
+
+Die Seite der NOAA zu Weltraumwetter und GPS besagt, dass geomagnetische Stürme große Störungen in der Ionosphäre erzeugen, meist in hohen Breiten, wobei große Stürme auch in mittleren Breiten starke Erhöhungen des Gesamtelektronengehalts hervorrufen können. Außerdem heißt es dort, dass bei einem schweren Sturm die Fehler bei Einfrequenz-GPS auf Dutzende Meter oder mehr ansteigen können und dass Zweifrequenzsysteme, die normalerweise zentimetergenau arbeiten, das Signal womöglich nicht mehr erfassen. Natural Resources Canada hält fest, dass Ionosphärenstörungen in Polarlichtbreiten, etwa über weiten Teilen Kanadas, besonders ausgeprägt sind.
+
+Szintillation, die schnelle Schwankung eines Funksignals beim Durchgang durch Unregelmäßigkeiten der Ionosphäre, verhält sich je nach Region unterschiedlich. Eine Studie aus dem Jahr 2018 fand, dass in hohen Breiten Phasenschwankungen dominieren und Amplitudeneffekte gering ausfallen und dass präzise Positionierung selbst bei starker Szintillation fortgesetzt werden konnte, während in niedrigen Breiten häufige Cycle Slips zu größeren Einbußen führten. Die Schlussfolgerung lautet nicht, dass hohe Breiten sicher seien. Sie lautet, dass der Effekt vom Empfänger und vom Auswerteverfahren abhängt und dass der Empfänger einer Consumer-Drohne nicht Gegenstand dieser Studie war. Die Grundlagen finden Sie unter [ionosphärische Szintillation und Drohnen-GPS](/de/guides/ionospheric-scintillation-and-drone-gps).
+
+## Der Kompass nahe den magnetischen Polen
+
+Der Kompass einer Drohne misst die Richtung des Erdmagnetfelds, und die horizontale Komponente dieses Feldes wird schwächer, je näher Sie einem magnetischen Pol kommen. Das World Magnetic Model der NOAA definiert um die Pole Blackout-Zonen, in denen die horizontale Intensität unter 2000 nT liegt und „Kompasse nicht genau sind und nicht zur Navigation herangezogen werden sollten“. Darum herum liegt eine Vorsichtszone, in der die horizontale Intensität zwischen 2000 und 6000 nT beträgt und Kompasse mit Vorsicht verwendet werden sollten. Das Modell beschreibt nur das Hauptfeld und enthält keine Effekte der Ionosphäre und Magnetosphäre; Störungen durch Stürme kommen also zu dem hinzu, was das Modell liefert.
+
+Kp selbst wird aus den maximalen Schwankungen der horizontalen Magnetfeldkomponente abgeleitet, die Magnetometer über drei Stunden messen. Das zeigt, dass Stürme dieses Feld tatsächlich stören. Wie groß die Wirkung auf das Magnetometer an Bord einer Drohne ist, wird in den hier verwendeten Quellen nicht quantifiziert.
+
+Auch magnetische und elektromagnetische Störungen in Bodennähe spielen eine Rolle. Wie Sie lokale von regionalen Ursachen unterscheiden, lesen Sie unter [Kompasskalibrierung und magnetische Störungen](/de/guides/compass-calibration-and-magnetic-interference).
+
+## Was ein Herstellerhandbuch sagt
+
+Das Handbuch der DJI Mavic 3 Pro hält in den Anforderungen an die Flugumgebung fest, dass GNSS in Polarregionen am Fluggerät nicht genutzt werden kann und stattdessen das Vision-System verwendet werden soll. Außerdem steht dort, dass das Fluggerät in den Modus Attitude (ATTI) wechselt, wenn die Vision-Systeme nicht verfügbar sind und GNSS schwach ist oder der Kompass gestört wird, und dass das Fluggerät im ATTI-Modus leichter von seiner Umgebung beeinflusst werden kann. Zur Rückkehrfunktion (RTH) nennt das Handbuch: Der Startpunkt wird an der ersten Position mit starkem bis mäßig starkem GNSS-Signal aufgezeichnet, das Failsafe-RTH wird ausgelöst, wenn der Startpunkt aufgezeichnet wurde und der Kompass normal arbeitet, und das Fluggerät kehrt möglicherweise nicht normal zurück, wenn GNSS schwach oder nicht verfügbar ist.
+
+Andere Modelle und Hersteller unterscheiden sich. Lesen Sie das Handbuch Ihres eigenen Fluggeräts, und unter [Return-to-Home-Einstellungen erklärt](/de/guides/return-to-home-settings-explained) erfahren Sie, wie RTH von Positionsdaten abhängt.
+
+## Einen Polarlichtflug planen
+
+- Lokale Regeln gelten. Polarlichtflüge finden meist nachts statt, prüfen Sie also die Regeln für Nachtflüge an Ihrem Flugort.
+- Prüfen Sie den aktuellen Kp-Wert unmittelbar vor dem Flug. Laut NOAA ist Kp eine Schätzung, die jede Minute aus Magnetometerdaten aktualisiert wird und auf Drei-Stunden-Intervallen beruht.
+- Sehen Sie im [FlyDroneMap-Dashboard](/de) nach Kp, Wind und weiteren Bedingungen, und bleiben Sie in Sichtweite.
+- Nutzen Sie visuelle Positionierungshilfen, wenn Ihr Fluggerät sie unterstützt und Ihr Handbuch es erlaubt.
+- Legen Sie Ihre manuelle Rückfallebene vorab fest: Was Sie tun, wenn GNSS ausfällt oder der Kompass warnt.
+
+## Häufige Fehler
+
+- Sich auf einen alten Kp-Wert verlassen. Die Sturmstärke kann sich während einer langen Nacht ändern.
+- Auffälliges Driften als Hardwaredefekt behandeln, ohne Region, Kompasszone und die Grenzen des Handbuchs zu berücksichtigen.
+- Davon ausgehen, dass RTH immer funktioniert. Es hängt von einem aufgezeichneten Startpunkt sowie normalen Positions- und Kompassdaten ab.
+- Annahmen aus mittleren Breiten nahe den magnetischen Polen anwenden.
+- Kälte und Dunkelheit ignorieren. Das sind eigene Gefahren, die ebenfalls geplant werden müssen.
+
+## Häufige Fragen
+
+### Stört das Polarlicht selbst meine Drohne?
+
+Das Polarlicht ist Licht und stört daher nicht von sich aus. Es ist ein sichtbares Zeichen geomagnetischer Aktivität, die laut NOAA die Ionosphäre stören und GPS verschlechtern kann.
+
+### Ist Fliegen in hohen Breiten für GPS immer unsicher?
+
+Nein. Die Effekte hängen von Bedingungen und Ausrüstung ab, und eine Studie fand, dass präzise Positionierung selbst bei starker Szintillation in hohen Breiten weiterlaufen konnte. Bei Stürmen ist das Risiko jedoch höher, und Ihr Handbuch kann Einschränkungen vorgeben.
+
+### Was ist die Kompass-Blackout-Zone?
+
+Es ist ein Gebiet um einen magnetischen Pol, in dem laut dem World Magnetic Model der NOAA die horizontale Magnetfeldstärke unter 2000 nT liegt und man sich bei der Navigation nicht auf Kompasse verlassen sollte.
+
+### Was tun, wenn GPS und Bild nicht übereinstimmen?
+
+Seien Sie bereit, die manuelle Steuerung zu übernehmen und das Fluggerät zurückzuholen, solange es in Sichtweite ist. Ihr Handbuch beschreibt, wie sich Ihr Modell bei schwachem GNSS verhält.
+
+## Quellen und weiterführende Links
+
+- [NOAA Space Weather Prediction Center — Aurora](https://www.spaceweather.gov/phenomena/aurora)
+- [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
+- [Natural Resources Canada — Space weather effects on technology](https://www.spaceweather.gc.ca/tech/index-en.php)
+- [NOAA National Centers for Environmental Information — World Magnetic Model Accuracy, Limitations, and Error Model](https://www.ncei.noaa.gov/products/world-magnetic-model/accuracy-limitations-error-model)
+- [Journal of Space Weather and Space Climate — Feasibility of precise navigation in high and low latitude regions under scintillation conditions](https://www.swsc-journal.org/articles/swsc/pdf/2018/01/swsc170055.pdf)
+- [DJI — Mavic 3 Pro User Manual](https://dl.djicdn.com/downloads/DJI_Mavic_3_Pro/20230425/DJI_Mavic_3_Pro_User_Manual_EN.pdf)

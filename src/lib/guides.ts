@@ -169,6 +169,43 @@ export function getRelatedGuides(
   return [...sameCategory, ...rest].slice(0, limit);
 }
 
+/** 목차용 H2 소제목 — rehype-slug가 붙인 id와 일치한다. */
+export type GuideHeading = { id: string; text: string };
+
+type HastNode = {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: { id?: unknown };
+  children?: HastNode[];
+};
+
+function hastText(node: HastNode): string {
+  if (node.type === "text") return node.value ?? "";
+  return (node.children ?? []).map(hastText).join("");
+}
+
+/**
+ * rehype-slug 뒤·autolink 앞에서 H2 소제목(id, 글자)을 수집하는 플러그인.
+ * H3·FAQ 질문은 제외. 결과는 `sink` 배열에 쌓인다. (2026-10-17 신규)
+ */
+function collectH2Headings(sink: GuideHeading[]) {
+  return () => (tree: HastNode) => {
+    const walk = (node: HastNode) => {
+      if (
+        node.type === "element" &&
+        node.tagName === "h2" &&
+        typeof node.properties?.id === "string"
+      ) {
+        const text = hastText(node).trim();
+        if (text) sink.push({ id: node.properties.id, text });
+      }
+      node.children?.forEach(walk);
+    };
+    walk(tree);
+  };
+}
+
 /**
  * Compiles one guide's MDX body into a renderable React component. Called
  * from a server component (RSC) — @mdx-js/mdx's `evaluate` runs the MDX
@@ -178,7 +215,11 @@ export function getRelatedGuides(
 export async function compileGuide(
   locale: Locale,
   slug: string,
-): Promise<{ Content: ComponentType; meta: GuideMeta } | null> {
+): Promise<{
+  Content: ComponentType;
+  meta: GuideMeta;
+  headings: GuideHeading[];
+} | null> {
   const filePath = path.join(guideDir(locale), `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
@@ -186,6 +227,7 @@ export async function compileGuide(
   const { data, content } = matter(raw);
   const fm = data as GuideFrontmatter;
 
+  const headings: GuideHeading[] = [];
   const { default: Content } = await evaluate(content, {
     ...runtime,
     // singleTilde: false — 콘텐츠 본문에서 "~"를 범위 표기(예: "23~27km/h")로
@@ -193,7 +235,12 @@ export async function compileGuide(
     // 있어도 취소선으로 해석해 문장이 잘못 표시되는 버그가 있었음(2026-09-28 발견).
     // "~~"(더블 틸드)로만 취소선을 인식하도록 명시적으로 제한.
     remarkPlugins: [[remarkGfm, { singleTilde: false }]],
-    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+    // collectH2Headings의 변환기 타입은 hast 전체 타입과 구조만 같아 `as never`로 통과시킨다.
+    rehypePlugins: [
+      rehypeSlug,
+      collectH2Headings(headings) as never,
+      rehypeAutolinkHeadings,
+    ],
   });
 
   return {
@@ -202,6 +249,6 @@ export async function compileGuide(
       ...fm,
       slug,
       readingMinutes: estimateReadingMinutes(content),
-    },
+    },    headings,
   };
 }

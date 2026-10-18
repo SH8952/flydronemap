@@ -1,0 +1,94 @@
+---
+title: "DJI Neo Windwiderstand: offizielle Grenze und reale Bedingungen"
+description: "DJI nennt für die Neo einen maximalen Windwiderstand von 8 m/s (28,8 km/h). Offizielle Daten und wie Sie Böen bei einer 135-g-Drohne mit Reserve beurteilen."
+publishedAt: "2026-10-17"
+tags: ["wind", "dji", "neo", "specs"]
+category: "weather-safety"
+---
+
+Die DJI Neo ist eine sehr kleine, leichte Kameradrohne, und DJI gibt ihren maximalen Windwiderstand mit 8 m/s an, also rund 28,8 km/h. Das ist der niedrigste Wert unter den Modellen, die FlyDroneMap abdeckt, und das Benutzerhandbuch weist ausdrücklich an, die Neo nicht bei Windgeschwindigkeiten über 8 m/s zu betreiben. Diese Seite fasst die offiziellen Zahlen zusammen, erklärt, wie die Einstufung der Website für dieses Modell funktioniert, und gibt eine praktische Routine für windige Tage.
+
+## Das Wichtigste in Kürze
+
+- DJI nennt für die Neo 8 m/s (Level 4), das sind 28,8 km/h. Laut Handbuch soll sie nicht bei schwerem Wetter betrieben werden, auch nicht bei Windgeschwindigkeiten über 8 m/s.
+- Bei FlyDroneMap gelten für die Neo Böen unter etwa 14 km/h als gut, ab etwa 14 km/h als Vorsicht und ab etwa 20 km/h als nicht empfohlen. Das sind eigene Schwellen der Website, kein offizieller Standard.
+- Das Handbuch empfiehlt für Start und Landung von der Hand (Palm Control) nach Möglichkeit eine windstille Umgebung und weist darauf hin, dass der Gimbal bei starkem Wind während der Aufnahme vibrieren kann.
+- Mit etwa 135 g reagiert die Neo früher auf Böen als schwerere Drohnen, daher ist eine Reserve unter dem offiziellen Wert besonders wichtig.
+
+## Offizielle technische Daten
+
+Die Werte stammen von der Neo-Spezifikationsseite und aus dem Benutzerhandbuch v1.2. DJI gibt an, die Geschwindigkeiten in einem Windkanal unter Bedingungen gemessen zu haben, die windstillem Betrieb auf Meereshöhe entsprechen, und die maximale Starthöhe in windstiller Umgebung.
+
+| Merkmal | Wert |
+|---|---|
+| Maximaler Windwiderstand | 8 m/s (Level 4), rund 28,8 km/h |
+| Startgewicht | Ca. 135 g |
+| Maximale Horizontalgeschwindigkeit | 6 m/s im Normalmodus, 8 m/s im Sportmodus, 16 m/s im manuellen Modus |
+| Maximale Flugzeit | Ca. 18 Minuten, ca. 17 Minuten mit Propellerschutz; laut DJI abhängig von Umgebung, Nutzung und Firmware |
+| Maximale Starthöhe | 2000 m |
+| Betriebstemperatur | -10 bis 40 °C |
+| Genannter Positionierungssensor | Visuelle Positionierung nach unten, Schwebebereich 0,5 bis 10 m |
+
+Die Spezifikationsseite enthält keine Fußnote und keine zusätzliche Testbedingung zu den 8 m/s.
+
+Das Handbuch enthält mehrere Hinweise zum Wind. Abschnitt 2.2 weist an, nicht bei schwerem Wetter zu fliegen, darunter Windgeschwindigkeiten über 8 m/s, Schnee, Regen und Nebel. Für die Palm Control wird gebeten, nach Möglichkeit in windstiller Umgebung zu arbeiten. Außerdem steht dort, dass eine geringere Akkukapazität bei Kälte den Windwiderstand verringert und dass der Gimbal bei starkem Wind während der Aufnahme vibrieren kann.
+
+## Wie FlyDroneMap dieses Modell beurteilt
+
+Das Dashboard vergleicht die aktuelle Böe mit dem offiziellen Maximum des gewählten Modells. Diese Prozentwerte sind eigene Kriterien der Website, kein offizieller Standard: gut unter 50 % des Maximums, Vorsicht ab 50 % und nicht empfohlen ab 70 %. Für die Neo ergibt das:
+
+| Einstufung | Anteil am Maximum | Böengeschwindigkeit |
+|---|---|---|
+| Gut | Unter 50 % | Unter 14,4 km/h (4 m/s) |
+| Vorsicht | 50 % bis unter 70 % | 14,4 bis unter 20,2 km/h |
+| Nicht empfohlen | 70 % oder mehr | 20,2 km/h (5,6 m/s) und mehr |
+
+Das Dashboard bewertet Böen zusätzlich für sich: geringes Risiko unter 20 km/h, mäßig von 20 bis unter 35 km/h, hoch ab 35 km/h. Für die Neo ist die modellbezogene Einstufung strenger als die allgemeine, eine Böe, die die allgemeine Skala als geringes Risiko bezeichnet, kann für dieses Fluggerät also schon Vorsicht bedeuten.
+
+## Warum die offizielle Grenze nicht Ihre Arbeitsgrenze ist
+
+- Böen. Die 8 m/s sind ein Maximum, kein Versprechen für plötzliche Spitzen. Beurteilen Sie den Böenwert, nicht den Mittelwert.
+- Geschwindigkeitsreserve. Im Normalmodus beträgt die Höchstgeschwindigkeit der Neo 6 m/s und liegt damit unter ihrem Windwiderstand von 8 m/s. DJI hat diese Geschwindigkeiten ohne Wind gemessen, daher ist das nur eine Orientierung zur Größenordnung: Bei starkem Gegenwind bleibt wenig Spielraum zum Vorankommen, und der Rückweg kann der schwierigste Teil sein.
+- Höhe. Die Vorhersage gilt für 10 m. Der Wind nimmt mit der Höhe oft zu, ein ruhiger Wert am Boden garantiert also keine ruhige Luft darüber. Siehe den Ratgeber zur [Windscherung nach Flughöhe](/de/guides/wind-shear-by-altitude-and-drone-flight).
+- Kälte. DJI erklärt, dass eine geringere Akkukapazität bei Kälte den Windwiderstand verringert. Lesen Sie vor Flügen an kalten Tagen [Temperatur und Akkuleistung von Drohnen](/de/guides/temperature-and-drone-battery-performance).
+- Kleine Akkureserve. Bei rund 18 Minuten Flugzeit, gemessen ohne Wind, verbraucht der Kampf gegen den Wind einen größeren Teil des Akkus.
+
+## Vor dem Start
+
+1. Öffnen Sie das [FlyDroneMap-Dashboard](/de), wählen Sie die Neo und achten Sie auf die Böe, nicht nur auf den mittleren Wind.
+2. Vergleichen Sie die Böe mit der Tabelle oben. Im Vorsichtsbereich fliegen Sie kurz, niedrig und in der Nähe.
+3. Prüfen Sie auch den Wind in 80–120 m und nutzen Sie die [Checkliste zu Wind und Böen](/de/guides/wind-gust-checklist-before-drone-flight) für Richtung, Hindernisse und Landung.
+4. Wenn Sie von der Hand starten oder landen, wählen Sie einen windgeschützten Platz, denn das Handbuch empfiehlt eine windstille Umgebung.
+5. Vergleichen Sie die Neo mit anderen Modellen unter [Windwiderstand von Drohnen nach Modell](/de/guides/drone-wind-resistance-by-model).
+
+## Häufige Fehler
+
+- Die 8 m/s als normale Flugwindgeschwindigkeit statt als Obergrenze zu lesen.
+- Den mittleren Wind zu betrachten und Böen zu ignorieren.
+- An einem geschützten Platz zu starten und in offene, windigere Luft hinauszufliegen.
+- Mit Rückenwind weit hinauszufliegen und keinen Akku für den Rückweg gegen den Wind zu behalten.
+- Gimbal-Vibrationen und Abdrift nicht als frühe Zeichen für zu starken Wind zu verstehen.
+
+## Häufige Fragen
+
+### Wie hoch ist die Windgrenze der DJI Neo?
+
+DJI nennt 8 m/s (Level 4), rund 28,8 km/h, und das Handbuch weist an, die Neo nicht bei Windgeschwindigkeiten über 8 m/s zu betreiben.
+
+### Kann ich die Neo bei 30 km/h Wind fliegen?
+
+30 km/h entsprechen etwa 8,3 m/s und liegen damit über den 8 m/s, die DJI nennt. Nach den Kriterien von FlyDroneMap ist das weit im Bereich nicht empfohlen, und das Handbuch weist an, bei Wind über 8 m/s nicht zu fliegen.
+
+### Warum zeigt die Website schon vor der offiziellen Grenze Vorsicht an?
+
+Der offizielle Wert ist ein Maximum unter den Bedingungen des Herstellers. Böen, stärkerer Wind in der Höhe, kalte Akkus und der Rückweg verringern die reale Reserve, deshalb warnt die Website ab 50 % des Maximums.
+
+### Darf ich bei Wind von der Hand starten und landen?
+
+DJI empfiehlt für Start und Landung von der Handfläche nach Möglichkeit eine windstille Umgebung. Wählen Sie einen windgeschützten Platz und warten Sie, wenn die Böen stark sind.
+
+## Quellen und weiterführende Links
+
+- [DJI — Neo technische Daten](https://www.dji.com/neo/specs)
+- [DJI — Neo Benutzerhandbuch v1.2 (Englisch)](https://dl.djicdn.com/downloads/neo/20241106/DJI_Neo_User_Manual_v1.2_en_us.pdf)
+- [DJI — Neo Download-Center](https://www.dji.com/downloads/products/neo)

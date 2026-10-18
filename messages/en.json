@@ -483,6 +483,7 @@
     "readingTime": "{minutes} min read",
     "updatedOn": "Updated {date}",
     "byline": "By {name}",
+    "toc": { "title": "Table of contents" },
     "showMore": "Show more",
     "showLess": "Show less",
     "backToGuides": "← Back to Guides",

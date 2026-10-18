@@ -483,6 +483,7 @@
     "readingTime": "{minutes}分で読めます",
     "updatedOn": "{date} 更新",
     "byline": "著者: {name}",
+    "toc": { "title": "目次" },
     "showMore": "もっと見る",
     "showLess": "閉じる",
     "backToGuides": "← ガイド一覧に戻る",

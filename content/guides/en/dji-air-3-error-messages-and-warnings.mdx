@@ -1,0 +1,101 @@
+---
+title: "DJI Air 3 Error Messages and Warnings: What They Mean and What to Do"
+description: "A guide to the DJI Air 3 warnings, voice prompts and status-light patterns listed in DJI's own manual, with what each one means and what the manufacturer says to do."
+publishedAt: "2026-10-17"
+tags: ["dji", "air-3", "warnings", "troubleshooting"]
+category: "gear-flight-tips"
+---
+
+The DJI Air 3 tells you about problems through three channels: prompts in the DJI Fly app, voice prompts, and the colour pattern of the aircraft status light. This guide collects the ones that are described in DJI's official User Manual (v1.6) and Safety Guidelines, explains them in plain language and repeats the action the manufacturer gives. It does not cover numeric error codes, because the official documents do not list them.
+
+## Key takeaways
+
+- Treat any prompt in DJI Fly as an instruction to read, not to dismiss. DJI's manual says the motors can be started when DJI Fly shows no irregular warning after the self-diagnostics.
+- Red lights deserve attention: slow red means takeoff is disabled, fast red means critically low battery, and solid red is listed as a critical error with no recovery steps in the manual.
+- When a low-battery or high-wind warning appears, DJI's safety guidelines say to land in a safe location.
+- The manual is the complete reference. This page covers only what the documents state, so for anything else check the manual and DJI Support.
+
+## Aircraft status light
+
+The status indicator on the aircraft uses colour and blink patterns. These meanings are from the manual's status indicator table.
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Red, yellow and green blinking alternately | Powering on and running self-diagnostic tests | Wait until the tests finish before starting the motors |
+| Green blinking slowly | GNSS enabled | Normal state |
+| Green blinking twice repeatedly | Vision systems enabled | Normal state |
+| Yellow blinking quickly | Remote controller signal lost | Check the link; the aircraft follows the signal-loss action set in DJI Fly (return to home, land or hover) |
+| Red blinking slowly | Takeoff is disabled, for example because of low battery | Read the warning prompt in DJI Fly to see the reason |
+| Red blinking quickly | Critically low battery | Follow the low-battery guidance below |
+| Solid red | Critical error | The manual gives no recovery steps; check the prompt in DJI Fly and contact DJI Support |
+| Red and yellow blinking alternately | Compass calibration required | Calibrate the compass as DJI Fly instructs; see the [compass calibration guide](/en/guides/compass-calibration-and-magnetic-interference) |
+
+## Positioning, Home Point and flight limits
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Voice prompt "Home Point is updated" | The aircraft has recorded its Home Point | Wait for this prompt before continuing the flight. Near tall buildings the Home Point may be less accurate, so watch the aircraft closely during automatic return |
+| "Max flight altitude reached." | The aircraft is at the altitude limit set in DJI Fly | You keep control, but the aircraft will not climb further |
+| Maximum distance limit reached | The straight-line distance to the Home Point has reached the limit set in DJI Fly | Stay within the distance limit set in DJI Fly |
+
+The manual also explains what weak satellite reception does. If the GNSS signal is weak, the Home Point is not updated, and its flight-limits table restricts altitude to 30 m from the takeoff point when lighting is sufficient. The safety guidelines add that with a weak GNSS signal you should fly where lighting and visibility are good, because the aircraft then relies more on its vision system. More background is in [what to do when GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak).
+
+## Battery and return to home
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Low-battery prompt in DJI Fly | Charge is only enough to complete a return flight | The aircraft flies home automatically after a countdown if you do nothing. Cancelling may leave too little power to land safely |
+| Automatic landing | Charge is only enough to descend | It cannot be cancelled, but you can still steer horizontally and control descent speed |
+| Four battery LEDs blinking twice per second | The battery needs maintenance; takeoff is blocked and DJI Fly shows a prompt | Charge fully, let it rest for 48 hours, and repeat if needed. After two maintenance cycles without success, contact DJI Support |
+| Battery cell damage warning | A damaged cell has been detected | Follow the prompt and check the battery; the manual gives no further steps |
+| No LEDs when the power button is pressed | The battery may be in hibernation after sitting at low charge | Charge it to wake it |
+
+Temperature matters too. The manual gives -10 to 40 degrees C as the operating temperature, says batteries cannot be used below -10 degrees C, and says to end the flight as soon as the low-battery warning appears in cold conditions. Charging is specified at 5 to 40 degrees C, and the battery should not be charged straight after a flight while it is hot. See [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance).
+
+Return to home has limits. The manual warns that the aircraft may not be able to return to the Home Point when the wind speed is too high, and that automatic return without working vision systems cannot sense obstacles. [Return-to-home settings explained](/en/guides/return-to-home-settings-explained) shows what to set before you fly.
+
+## Vision, landing and obstacles
+
+| Message or symptom | Meaning (per manufacturer) | What to do |
+|---|---|---|
+| Landing prompt at 0.5 m above ground | Landing Protection is asking you to confirm landing | Confirm, or hold the throttle stick down for one second, to land. If the ground looks unsafe the aircraft hovers and waits |
+| Attitude (ATTI) mode | Entered automatically, for example when vision systems are unavailable or disabled. The aircraft cannot hover or brake automatically | Land as soon as possible |
+| Collision warning, yellow | An obstacle is 2.2 to 5 m away in the view direction | The manual gives no specific action; watch the obstacle distance |
+| Collision warning, red | An obstacle is within 2.2 m | The obstacle is very close, so avoid it immediately |
+
+The manual says vision systems may not perform optimally in low light, over very dark or very bright surfaces, or over single-colour surfaces such as pure black, white, red or green. Vision assist is for reference only and can miss glass, thin branches, wires and kite strings.
+
+## Motors, firmware and activation
+
+- Stuck motor: the manual says to land immediately if a motor is stuck and cannot rotate freely. It also asks you to check before every flight that propellers and motors are installed securely.
+- Firmware: DJI Fly prompts you when new firmware is available, and the safety guidelines say to make sure both the app and the aircraft firmware are up to date. See the [firmware update guide](/en/guides/best-practices-for-drone-firmware-updates).
+- Activation: the Air 3 must be activated before first use, which needs an internet connection and follows on-screen prompts.
+- Gimbal protector: remove it and unfold all arms before powering on, or the self-diagnostics may be affected.
+
+## Before you launch
+
+Check conditions on the [FlyDroneMap dashboard](/en), wait for the self-diagnostics to finish, confirm the Home Point voice prompt, and read any DJI Fly warning before taking off.
+
+## FAQ
+
+### Is it safe to keep flying after a compass warning?
+
+The manual only says that a red and yellow alternating light means compass calibration is required. Follow the on-screen instructions in DJI Fly and the manual, and contact DJI Support if the warning keeps coming back.
+
+### Where do I find the full list of Air 3 warnings?
+
+In the official User Manual and Safety Guidelines on DJI's Air 3 downloads page. This page covers only the messages described there, and the manual is the authority.
+
+### Should I update the firmware first?
+
+DJI says to keep the app and aircraft firmware up to date, and DJI Fly shows a prompt when an update is available. Apply updates when you are not about to fly.
+
+### What should I do when the low-battery warning appears?
+
+DJI's safety guidelines say to land in a safe location on a low-battery or high-wind warning. If you let the automatic return run, keep watching the aircraft.
+
+## Sources and further reading
+
+- [DJI — Air 3 User Manual v1.6 (English)](https://dl.djicdn.com/downloads/DJI_Air_3/UM/20240627/1/DJI_Air_3_User_Manual_v1.6_EN.pdf)
+- [DJI — Air 3 Safety Guidelines (DJI RC-N2)](https://dl.djicdn.com/downloads/DJI_Air_3/SG/20250220/DJI_Air_3_Safety_Guidelines_DJI_RC-N2_7langs.pdf)
+- [DJI — Air 3 Downloads](https://www.dji.com/air-3/downloads)

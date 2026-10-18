@@ -483,6 +483,7 @@
     "readingTime": "{minutes} Min. Lesezeit",
     "updatedOn": "Aktualisiert am {date}",
     "byline": "Von {name}",
+    "toc": { "title": "Inhaltsverzeichnis" },
     "showMore": "Mehr anzeigen",
     "showLess": "Weniger anzeigen",
     "backToGuides": "← Zurück zu den Ratgebern",
