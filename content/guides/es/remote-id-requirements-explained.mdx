@@ -1,7 +1,8 @@
 ---
 title: "Requisitos de Remote ID explicados"
-description: "Qué transmite un dron bajo Remote ID, la trampa de cada uno de los tres métodos de cumplimiento y por qué la exención de 250 g es más limitada de lo que parece."
+description: "Qué transmite un dron con el Remote ID de la FAA, las tres formas de cumplir, cómo funciona la exención de 250 gramos y dónde comprobar las normas."
 publishedAt: "2026-09-12"
+updatedAt: "2026-10-19"
 tags: ["remote-id", "part-107", "faa", "regulations"]
 category: "us-airspace-regulations"
 image: "/guides/images/remote-id-requirements-explained.webp"
@@ -9,29 +10,74 @@ imageCredit: "Jakub Żerdzicki"
 imageCreditUrl: "https://unsplash.com/@jakubzerdzicki?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Un piloto saca un dron comprado de segunda mano en 2021 y lo lleva al parque del barrio por primera vez en años. Está registrado, la batería es nueva y el vuelo en sí parece rutinario — hasta que un guarda del parque se acerca y le señala que la aeronave no está transmitiendo señal Remote ID. Puede parecer injusto desde el punto de vista del piloto; este requisito no existía cuando compró el dron. Pero Remote ID se aplica según la norma vigente en el momento de volar, no en el momento de la compra, y la mayoría de pilotos lo descubre de la peor manera, en pleno encuentro con la autoridad.
+Esta guía trata sobre Estados Unidos. Remote ID es una norma de la FAA y se aplica al dron que vuelas el día en que vuelas, no al día en que lo compraste. Quien saca del cajón un dron registrado en 2021 y lo vuela hoy en un parque queda sujeto a la norma actual, sea lo que sea lo que decía la caja cuando lo compró.
 
-## Lo que realmente transmite Remote ID
+## Puntos clave
 
-Remote ID suele describirse como una "matrícula digital", pero los datos transmitidos son más detallados de lo que sugiere esa frase: un identificador de la aeronave (número de serie o ID de sesión), la ubicación y altitud en tiempo real del dron, su velocidad, la ubicación de la estación de control (o el punto de despegue, según el método de cumplimiento), un indicador de estado de emergencia y una marca de tiempo. Nada de esto viaja por internet ni por datos móviles — se transmite localmente por Wi-Fi o Bluetooth, lo que significa que no se sube a un servidor en la nube, sino que lo capta directamente cualquier persona cercana que use una aplicación receptora compatible. El alcance varía según la aeronave y el entorno, pero por lo general se estima entre unos cientos de metros y aproximadamente una milla, suficiente para que otro visitante del parque o un agente de control lo detecte en la mayoría de los lugares donde se suele volar.
+- Remote ID se aplica a los drones que deben estar registrados o que lo están, tanto si se vuelan por ocio, por trabajo o para seguridad pública.
+- Hay tres formas de cumplir: un dron con Remote ID estándar (Standard Remote ID drone), un dron con módulo de transmisión (broadcast module) o volar sin transmitir dentro de un área de identificación reconocida por la FAA (FRIA).
+- La página de registro de la FAA indica una excepción: un dron de 0,55 libras o menos (menos de 250 gramos) que se vuela de forma recreativa no tiene que registrarse y, por tanto, no queda sujeto a Remote ID.
+- El periodo de aplicación discrecional de la FAA terminó el 16 de marzo de 2024, así que los pilotos de aeronaves que no cumplen ya pueden enfrentarse a multas y a medidas contra su certificado de piloto.
+- Verifica con la FAA tu propia aeronave y tu propia situación antes de volar. Esta página es una referencia de planificación, no asesoramiento legal.
 
-## Tres formas de cumplir, y una trampa en cada una
+## Qué transmite realmente Remote ID
 
-Hay tres caminos. El primero es un dron Standard Remote ID con la capacidad integrada de fábrica — el caso de la mayoría de aeronaves de generación actual. El segundo es instalar un módulo de transmisión en un dron más antiguo, y aquí hay un detalle que suele pasarse por alto: el módulo informa la posición del dron en tiempo real de forma continua, pero transmite la ubicación del piloto como un punto de despegue fijo en lugar de una estación de control que se mueve. Si el piloto camina o se desplaza a otro lugar durante el vuelo, ese valor transmitido no se actualiza — algo que conviene saber antes de asumir que el módulo refleja fielmente dónde está realmente el operador. El tercer camino es volar únicamente dentro de una Área de Identificación Reconocida por la FAA (FRIA); es la única opción legal para cualquier aeronave sin ninguna capacidad Remote ID, incluidos la mayoría de drones construidos de forma casera, que en general no pueden optar por el módulo de transmisión y quedan restringidos específicamente a operar dentro de una FRIA.
+A Remote ID se le suele llamar la matrícula digital del dron. Según la FAA, un dron con Remote ID estándar transmite un identificador único (un número de serie o un ID de sesión), la latitud, la longitud, la altitud geométrica y la velocidad del dron, la latitud, la longitud y la altitud geométrica de la estación de control, una marca de tiempo y un indicador de estado de emergencia. Un dron con módulo de transmisión envía el número de serie del módulo, la posición y la velocidad del dron, el lugar de despegue y una marca de tiempo. En ambos casos la transmisión funciona desde el despegue hasta el apagado.
 
-## Por qué se malinterpreta la exención de 250 gramos
+La FAA indica que otras partes pueden recibir esta información. La FAA, las fuerzas del orden y otras agencias federales la usan para localizar una estación de control, y las personas autorizadas de organizaciones de seguridad pública pueden preguntar a la FAA quién es el propietario de un dron. Las fuerzas del orden y la FAA pueden vincular los ID de sesión con los números de serie, pero ese vínculo no es público. Las páginas de la FAA no describen la tecnología de radio ni el alcance, así que consulta el manual de tu aeronave en lugar de suponer una distancia.
 
-Los drones de menos de 0,55 libras (unos 250 gramos) están exentos de registro cuando se vuelan únicamente con fines recreativos, y como Remote ID está vinculado a la obligación de registro y no al peso en sí, un dron no registrado de menos de 250 gramos tampoco lo necesita. Lo que suele confundir es que la exención depende del propósito del vuelo, no solo del peso de la aeronave — ese mismo dron de menos de 250 gramos pierde la exención en el momento en que se usa para algo más que pura recreación, como una sesión de fotos inmobiliarias pagada u otra operación bajo Part 107, lo que activa a la vez el registro y Remote ID. Los pilotos que recuerdan "es liviano, así que está exento" como una regla general son los que con más frecuencia se ven sorprendidos cuando el uso de esa misma aeronave cambia silenciosamente.
+## Tres formas de cumplir
 
-## El malentendido más común: no es rastreo en tiempo real
+La primera es un dron con Remote ID estándar, que se fabrica con la capacidad de transmisión incorporada. La segunda es un dron equipado con un módulo de transmisión, ya sea un dispositivo o una función de software añadida a la aeronave; con esta opción el piloto debe poder ver el dron en todo momento durante el vuelo. La tercera es volar sin equipo de Remote ID, algo que solo se permite dentro del alcance visual directo y únicamente dentro de un área de identificación reconocida por la FAA (FAA-recognized identification area, FRIA). Las FRIA pueden ser solicitadas por organizaciones comunitarias e instituciones educativas. Nuestra [guía sobre las FRIA](/es/guides/fria-explained) explica cómo funcionan.
 
-Muchos pilotos imaginan Remote ID como si la FAA rastreara cada dron por satélite en tiempo real, pero el mecanismo real es una transmisión local únicamente. Ya sea un miembro del público o un agente de la autoridad, alguien tiene que estar cerca con una aplicación receptora para ver algo — no existe un flujo automático que alimente un historial de ubicación continuo hacia un servidor de la FAA. Pasar por alto esta distinción también facilita olvidar una consecuencia muy práctica: la batería del módulo de transmisión es independiente de la batería de vuelo del dron, y cuando se agota, la aeronave sigue volando con normalidad mientras la señal Remote ID se apaga silenciosamente — algo que muchas veces no se nota hasta bien avanzado el vuelo.
+Hay una diferencia que conviene tener presente. El módulo informa del lugar de despegue, no de la posición en tiempo real de la estación de control. Por eso, un piloto que se desplaza durante el vuelo no queda registrado del mismo modo que con una aeronave con Remote ID estándar, y los datos del módulo no deben interpretarse como la posición actual del operador.
 
-## Lista de verificación práctica
+## Cómo funciona la exención de 250 gramos
 
-- Confirme si su aeronave es Standard Remote ID, tiene módulo instalado, o solo puede volar en FRIA antes de llevarla a un lugar nuevo.
-- Si usa un módulo de transmisión, revise su batería por separado de la batería de vuelo — no son la misma fuente de energía.
-- Si su dron es de construcción casera, recuerde que operar dentro de una FRIA suele ser su única opción legal fuera de eso.
-- No asuma que un dron de menos de 250 gramos está exento una vez que el vuelo tiene cualquier propósito comercial o laboral — en ese momento aplican tanto el registro como Remote ID.
-- Los límites de una FRIA suelen ser más pequeños que el parque o el terreno donde se ubican — verifique el límite exacto en el mapa, no solo la ubicación general.
-- La información de este sitio es solo de referencia para planificación; verifique las normas vigentes de Remote ID y el estado de registro de su aeronave directamente con la FAA antes de volar.
+La página de registro de la FAA dice que la mayoría de los drones deben registrarse y que la excepción es un dron que pesa 0,55 libras o menos (menos de 250 gramos) y se vuela de forma recreativa. Remote ID sigue al registro: la FAA afirma que un dron que necesita un número de registro de la FAA también debe transmitir Remote ID, salvo que se vuele dentro de una FRIA. Un dron registrado voluntariamente también queda cubierto por la norma de Remote ID.
+
+Lo que importa es cómo vuelas, no solo el peso. Un dron usado bajo la Parte 107, por ejemplo para un trabajo remunerado, no entra en la excepción recreativa, y un dron registrado para uso recreativo no puede usarse bajo la Parte 107. El registro cuesta 5 dólares estadounidenses y es válido durante tres años; el registro recreativo cubre todos los drones que tengas, mientras que el registro de la Parte 107 es por aeronave. Si tus planes para un dron ligero incluyen algún fin laboral, lee primero nuestra [introducción a la Parte 107](/es/guides/faa-part-107-explained).
+
+## Remote ID es una transmisión, no un seguimiento en directo
+
+Algunos pilotos imaginan que la FAA sigue cada dron en tiempo real. La norma se basa en una transmisión que los receptores cercanos pueden captar y en la capacidad de la FAA y de las fuerzas del orden para trabajar con los datos. No es un servicio público de historial de vuelos. Las páginas de la FAA no describen la alimentación ni el alcance de los módulos, así que lee el manual de tu módulo y comprueba su alimentación y sus ajustes antes de cada vuelo.
+
+## Plazos y aplicación de la norma
+
+La página de Remote ID de la FAA da como plazo de cumplimiento el 16 de septiembre de 2023. Después, la FAA anunció que su política de aplicación discrecional terminaría el 16 de marzo de 2024. Desde esa fecha, los operadores que no cumplen pueden enfrentarse a multas, así como a la suspensión o la revocación de sus certificados de piloto de drones, según las propias palabras de la FAA. Las normas pueden cambiar, así que confirma el texto vigente en el sitio de la FAA.
+
+## Lista de comprobación práctica
+
+- Averigua si tu aeronave es un dron con Remote ID estándar, si usa un módulo de transmisión o si solo puede volarse dentro de una FRIA.
+- Si usas un módulo, revisa su alimentación y sus ajustes antes de cada vuelo, y recuerda que debes mantener el dron a la vista.
+- Si vuelas en una FRIA, busca el límite exacto en el mapa y confirma que tu vuelo se queda dentro.
+- No des por hecho que un dron ligero está exento si el vuelo tiene cualquier fin laboral.
+- Comprueba el estado de tu registro y su fecha de vencimiento.
+- Verifica las normas vigentes directamente con la FAA antes de volar.
+
+## Preguntas frecuentes
+
+### ¿Un dron que compré antes de la norma necesita Remote ID?
+
+Si debe estar registrado, o si lo registraste tú, la norma de Remote ID se le aplica. La FAA indica las mismas tres opciones de cumplimiento para las aeronaves más antiguas: una capacidad incorporada, un módulo de transmisión o una FRIA.
+
+### ¿Puede alguien ver dónde estoy?
+
+La FAA dice que otras partes pueden recibir la información de Remote ID. El personal de seguridad pública puede pedir a la FAA la identidad de un propietario, mientras que el vínculo entre los ID de sesión y los números de serie no es público.
+
+### ¿Mi dron de menos de 250 gramos necesita Remote ID?
+
+La página de registro de la FAA dice que un dron de 0,55 libras o menos que se vuela de forma recreativa no necesita registrarse. Si no necesita un número de registro de la FAA, no se aplica el requisito de Remote ID que va ligado al registro. Cuando el dron se usa bajo la Parte 107 o está registrado, la norma sí se aplica.
+
+### ¿Remote ID es lo mismo que el registro?
+
+No. El registro te da un número de la FAA para la aeronave, mientras que Remote ID es la transmisión de datos de identidad y de posición durante el vuelo. Ambos están conectados, porque un dron que necesita un número de registro también debe transmitir Remote ID.
+
+## Fuentes y lecturas recomendadas
+
+- [FAA — Remote ID](https://www.faa.gov/uas/getting_started/remote_id)
+- [FAA — Remote ID para pilotos de drones](https://www.faa.gov/uas/getting_started/remote_id/drone_pilots)
+- [FAA — Cómo registrar tu dron](https://www.faa.gov/uas/getting_started/register_drone)
+- [FAA — Pilotos recreativos y organizaciones comunitarias](https://www.faa.gov/uas/recreational_flyers)
+- [FAA — La FAA pone fin a la política de aplicación discrecional del Remote ID de drones](https://www.faa.gov/newsroom/faa-ends-discretionary-enforcement-policy-drone-remote-identification)
+- Relacionado en este sitio: [normativa de drones en Estados Unidos](/es/regulations/us)
