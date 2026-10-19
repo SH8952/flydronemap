@@ -1,7 +1,8 @@
 ---
 title: "Return-to-Home-Einstellungen erklärt"
-description: "Wie RTH-Höhe, Heimatpunkt und das Verhalten bei niedrigem Akkustand oder Signalverlust funktionieren und welche Standards das Sicherheitsnetz gefährden."
+description: "Wie Return-to-Home bei DJI-Fluggeräten wie der Mini 4 Pro funktioniert: drei Auslöser, RTH-Höhe, Home-Point-Aufzeichnung, niedriger Akku, Signalverlust und Starts vom Boot."
 publishedAt: "2026-09-19"
+updatedAt: "2026-10-19"
 tags: ["return-to-home", "rth", "safety", "gps"]
 category: "gear-flight-tips"
 image: "/guides/images/return-to-home-settings-explained.webp"
@@ -9,33 +10,71 @@ imageCredit: "Erik Mclean"
 imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Ein Pilot fliegt niedrig über einen Fluss, um für eine Aufnahme unter einer Brücke hindurchzufliegen, und das Signal fällt für ein paar Sekunden aus. Die Drohne löst automatisch Return-to-Home (RTH) aus und beginnt, auf ihre konfigurierte RTH-Höhe zu steigen — die zufällig niedriger liegt als die Brücke über ihr. RTH ist nicht „die Funktion, die Ihre Drohne zurückbringt"; es ist „die Funktion, die Ihre Drohne genau so zurückbringt, wie Sie sie konfiguriert haben". Diese Lücke steckt hinter einem der häufigsten RTH-bezogenen Zwischenfälle, die Piloten melden, meist weil die Höhe auf der Werkseinstellung belassen wurde.
+Return-to-Home (RTH), die automatische Rückkehr zum Startpunkt, bringt deine Drohne nicht auf magische Weise zurück. Sie bringt sie so zurück, wie du sie eingestellt hast. Liegt die eingestellte Höhe unter einem Hindernis auf dem Weg oder ist der Home Point falsch, kann RTH genau das Problem erzeugen, das es lösen sollte. Dieser Leitfaden nutzt das Benutzerhandbuch der DJI Mini 4 Pro als Hauptquelle und vermerkt, wo ein Verhalten für dieses Fluggerät spezifisch ist. Andere Modelle und Marken unterscheiden sich – lies also dein eigenes Handbuch.
 
-## Drei Arten, wie RTH tatsächlich auslöst
+## Das Wichtigste in Kürze
 
-RTH startet normalerweise auf eine von drei Arten: ein manueller Auslöser, den der Pilot in der App oder an der Fernsteuerung betätigt, ein automatischer Auslöser, wenn der Akkustand einen konfigurierten Schwellenwert erreicht (üblicherweise im Bereich von 20-30 % einstellbar), und ein automatischer Auslöser, nachdem die Verbindung zwischen Fernsteuerung und Fluggerät für eine festgelegte Zeit unterbrochen war. Alle drei sehen nach dem Start identisch aus, sind aber nicht immer gleichermaßen abbrechbar — bei vielen Fluggeräten ist eine durch kritischen Akkustand ausgelöste RTH absichtlich so konzipiert, dass sie Steuereingaben ignoriert, sodass der Pilot sie nicht überschreiben kann. Das ist eine Sicherheitsmaßnahme, die einen Absturz durch Akkuerschöpfung verhindern soll, doch der Moment, in dem ein Pilot merkt, dass die Sticks nicht reagieren, ist zugleich der verwirrendste Moment des Flugs.
+- Bei der Mini 4 Pro kann RTH auf drei Arten starten: Du löst es aus, der Akku ist niedrig, oder das Steuersignal zwischen Fernsteuerung und Fluggerät geht verloren.
+- Das Handbuch weist an, vor dem Start eine passende maximale Flughöhe und RTH-Höhe einzustellen. Die RTH-Höhe sollte höher sein als alle Hindernisse im Flugbereich.
+- Die erste Position, an der das Fluggerät ein starkes oder mittleres GNSS-Signal (Satellitenortung) erhält, wird als standardmäßiger Home Point gespeichert. Ein schwaches Signal aktualisiert den Home Point nicht.
+- Bei Signalverlust kannst du in den Sicherheitseinstellungen RTH, Landung oder Schweben wählen. Failsafe-RTH startet, wenn das Signal mehr als sechs Sekunden verloren war, der Home Point registriert ist und der Kompass normal funktioniert.
+- Das Handbuch sagt, du sollst nicht von bewegten Objekten wie Autos, Schiffen und Flugzeugen starten.
 
-## Warum die RTH-Höheneinstellung wichtiger ist, als Piloten annehmen
+## Die drei Arten, wie RTH startet
 
-Die meisten Consumer-Drohnen erlauben eine RTH-Höhe zwischen etwa 20 m und 150 m, und die Werkseinstellung liegt meist bei etwa 30 m. Das Problem: Eine Standardhöhe von 30 m kann niedriger sein als gewöhnliche Hindernisse, in deren Nähe Sie tatsächlich fliegen werden — mittelhohe Gebäude, ausgewachsene Bäume, Hochspannungsmasten, Brückenüberbauten. Die Grundregel lautet, das höchste Hindernis in Ihrem Fluggebiet zu identifizieren und die RTH-Höhe mindestens 10-20 m darüber zu setzen, nicht nur über dem Boden. Viele Fluggeräte steigen zudem zunächst auf die konfigurierte RTH-Höhe, bevor sie horizontal nach Hause fliegen, falls ihre aktuelle Höhe niedriger ist — was bedeutet, dass ein durch plötzlichen Signalverlust unterbrochener Flug in niedriger Höhe einen deutlich steileren, schnelleren Steigflug auslösen kann, als ein Pilot erwartet.
+Laut Handbuch kann RTH vom Piloten, durch einen niedrigen Akku oder durch den Verlust des Steuersignals gestartet werden. Hast du es selbst ausgelöst, kannst du es in der Regel mit der RTH-Taste oder der Pausetaste an der Fernsteuerung abbrechen. Bei niedrigem Akku schätzt das Fluggerät anhand von Position, Umgebung und Geschwindigkeit ab, ob die Restladung für den Heimweg reicht, und zeigt in DJI Fly eine Warnung an. Unternimmst du nichts, kehrt es nach einem Countdown automatisch zurück. Das Handbuch warnt, dass ein Abbruch nach der Warnung zu wenig Akku für eine sichere Landung übrig lassen kann. Reicht der Akku nur noch, um von der aktuellen Höhe abzusteigen, landet das Fluggerät automatisch; diese Landung lässt sich nicht abbrechen, du kannst aber weiterhin horizontal steuern und die Sinkrate beeinflussen. Weil sich das Verhalten je nach Modell unterscheidet, nimm nicht an, dass dein Fluggerät genauso funktioniert.
 
-## Die Aufzeichnung des Heimatpunkts hängt von ausreichend erfassten Satelliten ab
+## Die RTH-Höhe musst du selbst festlegen
 
-Die Koordinate, zu der RTH zurückfliegt — der Heimatpunkt —, wird normalerweise automatisch kurz vor oder nach dem Start aufgezeichnet, sobald das Fluggerät genügend GPS-Satelliten erfasst hat (üblicherweise sechs oder mehr). Ein hastiger Start, während die GPS-Anzeige der App noch instabil ist oder blinkt, kann einen Heimatpunkt aufzeichnen, der vom tatsächlichen Startort um wenige bis zu mehreren Dutzend Metern abweicht. Auf ein stabiles Signal zu warten und die Benachrichtigung „Heimatpunkt aufgezeichnet" vor dem Start zu bestätigen, wirkt wie ein kleiner zusätzlicher Schritt, ist aber das grundlegendste Element, das bestimmt, wie genau RTH tatsächlich ist, wenn sie wirklich auslöst.
+Das Handbuch weist an, vor dem Flug eine passende RTH-Höhe einzustellen, und führt sie in seiner Checkliste vor dem Flug auf. Einen Standardwert nennt es in den Teilen, die wir lesen konnten, nicht, und ein Leitfaden eines Drittanbieters für dasselbe Fluggerät sagt nur, die RTH-Höhe solle höher sein als alle Hindernisse im Flugbereich. Daraus folgt die praktische Regel: Finde das höchste Hindernis auf deiner Route, etwa Bäume, Gebäude, Türme oder das Deck einer Brücke, und stelle die RTH-Höhe darüber ein, mit einer Reserve, die du für den Ort selbst festlegst. Prüfe diesen Wert vor jedem Flug, denn es ist leicht, eine Einstellung vom letzten Ort stehen zu lassen. Nimm nicht an, dass eine Zahl von dieser Seite oder aus einem Forum für dein Fluggerät stimmt.
 
-## Der häufige Fehler: Start von einer beweglichen Plattform
+## Aufzeichnung des Home Points
 
-Der Start von einem Boot, einem fahrenden Fahrzeug oder einem Bootsdeck ist ein besonders riskantes Szenario. Da RTH nur zu den beim Start aufgezeichneten GPS-Koordinaten zurückfliegt, fliegt die Drohne, falls sich das Boot bis zur Auslösung von RTH bewegt hat, zu einer Stelle, die inzwischen offenes Wasser ist, und schwebt dort entweder, bis der Akku leer ist, oder versucht, auf dem Meer zu landen. In solchen Situationen ist es sicherer, sich gar nicht erst auf automatisches RTH zu verlassen und stattdessen eine manuelle Rückkehr und Landung zu planen, oder im Voraus zu prüfen, ob Ihr Fluggerät erlaubt, den Heimatpunkt mitten im Flug neu aufzuzeichnen, falls die Plattform später stillsteht.
+Das Handbuch der Mini 4 Pro besagt, dass die erste Position, an der das Fluggerät ein starkes oder mittelstarkes GNSS-Signal empfängt, angezeigt durch ein weißes Symbol, als standardmäßiger Home Point gespeichert wird. Er kann vor dem Start aktualisiert werden, wenn ein neues starkes oder mittleres Signal empfangen wird, und wird bei schwachem Signal nicht aktualisiert. Du kannst ihn auch manuell in den Sicherheitseinstellungen aktualisieren. Warte, bis die App anzeigt, dass der Home Point aufgezeichnet wurde, bevor du startest, und prüfe ihn erneut, wenn du zu einer anderen Startstelle wechselst. Der Leitfaden des Drittanbieters vermerkt, dass der Pilot eine Sprachansage hört, wenn der Home Point aktualisiert wird.
 
-## Der Zusammenhang zwischen GPS-Genauigkeit und Weltraumwetter
+## Signalverlust
 
-RTH hängt vollständig von GPS ab. Bei erhöhter geomagnetischer Aktivität — der Art, auf die die Kp-Index-Anzeige dieser Website ausgelegt ist — kann sich die GPS-Positionsgenauigkeit verschlechtern, was sowohl beeinflusst, wie präzise der Heimatpunkt aufgezeichnet wurde, als auch, wie präzise RTH landet, wenn sie auslöst. An Tagen mit erhöhtem Kp-Index oder angezeigter reduzierter GPS-Zuverlässigkeit ist es sicherer, RTH als letztes Mittel statt als primäres Sicherheitsnetz zu behandeln und stattdessen Sichtverbindung sowie einen manuellen Rückkehrplan zu priorisieren.
+In den Sicherheitseinstellungen legst du fest, was das Fluggerät bei Verlust des Steuersignals tut: RTH, Landung oder Schweben. Ist RTH eingestellt, der Home Point registriert und funktioniert der Kompass normal, startet Failsafe-RTH, wenn das Signal mehr als sechs Sekunden verloren war. Bei wenig Licht fliegt das Fluggerät laut demselben Drittanbieter-Leitfaden nach dem Failsafe-RTH 50 Meter rückwärts, und die Hinderniserkennung ist nicht verfügbar – die von dir eingestellte Höhe ist dann noch wichtiger. Überlege dir vor dem Flug, welche Aktion zu deinem Ort passt. Über Wasser, Wald oder Menschenansammlungen kann die richtige Wahl anders ausfallen.
+
+## Nicht von bewegten Objekten starten
+
+Das Handbuch sagt, du sollst nicht von bewegten Objekten wie Autos, Schiffen und Flugzeugen starten. Die Begründung ist leicht nachzuvollziehen: RTH fliegt zum aufgezeichneten Punkt, und ein Boot oder Fahrzeug ist längst weitergefahren, wenn RTH startet. Ist ein Flug von einer bewegten Plattform nicht zu vermeiden, lies zuerst das Handbuch deines Modells und plane eine manuelle Rückkehr.
+
+## GPS-Genauigkeit und Weltraumwetter
+
+RTH hängt von der Satellitenortung ab. Ist die GNSS-Qualität schlecht, sind Home Point und Rückflugweg weniger zuverlässig. Prüfe vor dem Flug den Kp-Index und den Satellitenstatus in der App, wie in unserem [Kp-Index-Leitfaden](/de/guides/what-is-the-kp-index) beschrieben, und halte einen Plan für die manuelle Rückkehr bereit.
 
 ## Praktische Checkliste
 
-- Identifizieren Sie das höchste Hindernis in Ihrem Fluggebiet und setzen Sie die RTH-Höhe mindestens 10-20 m darüber, nicht nur über dem Boden.
-- Warten Sie vor dem Start auf eine stabile GPS-Fixierung und bestätigen Sie die Benachrichtigung „Heimatpunkt aufgezeichnet".
-- Sind Sie von einem Boot oder einer anderen beweglichen Plattform gestartet, verlassen Sie sich nicht auf automatisches RTH — planen Sie stattdessen eine manuelle Rückkehr und Landung.
-- Wissen Sie im Voraus, dass eine durch kritischen Akkustand ausgelöste RTH möglicherweise nicht abbrechbar ist, und treten Sie den Rückweg deutlich vor Erreichen dieser Schwelle an.
-- Behandeln Sie RTH an Tagen mit hohem Kp-Wert oder geringer GPS-Zuverlässigkeit als Rückfalloption, nicht als Hauptplan — halten Sie Sichtverbindung und einen manuellen Rückkehrplan bereit.
-- Die Informationen dieser Website dienen nur als Referenz zur Flugplanung und ersetzen keine tatsächliche Flugfreigabe — prüfen Sie stets das Handbuch Ihres Fluggeräts und die örtlichen Vorschriften.
+- Stelle vor dem Start die maximale Flughöhe und die RTH-Höhe für den Ort ein, mit dem höchsten Hindernis im Blick.
+- Warte, bis der Home Point aufgezeichnet ist, und bestätige ihn in der App.
+- Wähle die Aktion bei Signalverlust bewusst: RTH, Landung oder Schweben.
+- Wisse, dass sich eine Warnung bei niedrigem Akku abbrechen lässt, die abschließende automatische Landung aber nicht.
+- Starte nicht von fahrenden Fahrzeugen, Booten oder Flugzeugen.
+- Lies das Handbuch deines eigenen Modells, denn das Verhalten ist unterschiedlich, und halte Sichtkontakt.
+
+## Häufige Fragen
+
+### Wie hoch ist die standardmäßige RTH-Höhe?
+
+Die Handbuchstellen, die wir lesen konnten, nennen sie nicht. Sieh also in den Einstellungen deines eigenen Fluggeräts nach und lege den Wert selbst fest.
+
+### Wann kehrt das Fluggerät von selbst zurück?
+
+Wenn der Pilot RTH auslöst, wenn der Akku niedrig ist und nach dem Countdown nichts unternommen wird, und wenn das Steuersignal verloren geht – je nachdem, welche Aktion bei Signalverlust du eingestellt hast.
+
+### Kann ich RTH abbrechen?
+
+Bei vom Piloten ausgelöstem RTH und RTH wegen niedrigen Akkus kannst du laut Handbuch mit der RTH- oder der Pausetaste abbrechen. Die abschließende automatische Landung lässt sich nicht abbrechen.
+
+### Reicht RTH allein aus?
+
+Nein. Es ist eine Absicherung. Behalte das Fluggerät im Blick und plane eine manuelle Rückkehr.
+
+## Quellen und weiterführende Links
+
+- [DJI — Downloads und Handbücher zur Mini 4 Pro](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — Benutzerhandbuch der Mini 4 Pro, niederländische Ausgabe (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_NL.pdf)
+- [DJI — Benutzerhandbuch der Mini 4 Pro, portugiesische Ausgabe (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_PT.pdf)
+- [Heliguy — So nutzt du Smart RTH bei der DJI Mini 4 Pro](https://www.heliguy.com/blogs/knowledge-base/how-to-use-smart-rth-on-the-dji-mini-4-pro-drone/)
+- Mehr auf dieser Seite: [Kompasskalibrierung und magnetische Störungen](/de/guides/compass-calibration-and-magnetic-interference) und [Was tun bei schwachem GPS-Signal der Drohne](/de/guides/what-to-do-when-drone-gps-signal-is-weak)

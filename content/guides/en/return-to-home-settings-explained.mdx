@@ -1,7 +1,8 @@
 ---
 title: "Return-to-Home Settings Explained"
-description: "How RTH altitude, home point recording, and low-battery or lost-signal behavior actually work — and the default settings that turn a safety net into a crash."
+description: "How return-to-home works on DJI aircraft such as the Mini 4 Pro: three triggers, RTH altitude, home point recording, low battery and signal loss, and boat launches."
 publishedAt: "2026-09-19"
+updatedAt: "2026-10-19"
 tags: ["return-to-home", "rth", "safety", "gps"]
 category: "gear-flight-tips"
 image: "/guides/images/return-to-home-settings-explained.webp"
@@ -9,33 +10,71 @@ imageCredit: "Erik Mclean"
 imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-A pilot flies low over a river to pass under a bridge for a shot, and the signal drops for a few seconds. The drone automatically triggers Return-to-Home and starts climbing to its configured RTH altitude — which happens to be lower than the bridge deck above it. RTH isn't "the feature that brings your drone back"; it's "the feature that brings your drone back exactly the way you configured it." That gap is behind one of the most common RTH-related incidents pilots report, usually because the altitude was left at its factory default.
+Return-to-Home, or RTH, does not bring your drone back by magic. It brings the drone back the way you configured it. If the configured altitude is lower than an obstacle on the way, or the home point is wrong, RTH can create the problem it was meant to solve. This guide uses the DJI Mini 4 Pro user manual as its main reference and notes where behavior is specific to that aircraft. Other models and brands differ, so read your own manual.
 
-## Three ways RTH actually triggers
+## Key takeaways
 
-RTH normally starts in one of three ways: a manual trigger the pilot presses in the app or on the controller, an automatic trigger when battery level drops to a configured threshold (commonly adjustable somewhere in the 20-30% range), and an automatic trigger after the controller-to-aircraft link has been lost for a set period. All three look identical once they start, but they aren't always equally cancellable — on many aircraft, a critical-battery RTH is deliberately designed to ignore stick input, so the pilot can't override it. That's a safety measure meant to prevent a battery-depletion crash, but the moment a pilot realizes the sticks aren't responding is also the most disorienting moment of the flight.
+- On the Mini 4 Pro, RTH can start in three ways: you trigger it, the battery is low, or the control signal between the remote controller and the aircraft is lost.
+- The manual tells you to set a suitable maximum altitude and RTH altitude before takeoff. The RTH altitude should be higher than all obstacles in the flying area.
+- The first position where the aircraft gets a strong or moderate GNSS signal is saved as the default home point. A weak signal does not update the home point.
+- For signal loss you can choose RTH, landing or hovering in the safety settings. Failsafe RTH starts after the signal has been lost for more than six seconds if the home point is registered and the compass works normally.
+- The manual says not to take off from moving objects such as cars, ships and aircraft.
 
-## Why the RTH altitude setting matters more than pilots assume
+## The three ways RTH starts
 
-Most consumer drones let you set RTH altitude somewhere between roughly 20m and 150m (about 66-492 ft), and the factory default usually sits around 30m (about 98 ft). The problem is that a 30m default can be lower than ordinary obstacles you'll actually fly near — mid-rise buildings, mature trees, transmission towers, bridge decks. The basic rule is to identify the tallest obstacle in your flight area and set RTH altitude at least 10-20m above it, not just above the ground. Many aircraft also climb to the configured RTH altitude first before flying horizontally home if their current altitude is lower, which means a low-altitude flight interrupted by a sudden signal loss can trigger a much steeper, faster climb than a pilot expects.
+According to the manual, RTH can be started by the pilot, by a low battery or by the loss of the control signal. When you trigger it yourself you can usually cancel it with the RTH button or the pause button on the controller. For a low battery, the aircraft estimates whether the remaining charge is enough to get home, based on its position, surroundings and speed, and shows a warning in DJI Fly. If you take no action, it returns automatically after a countdown. The manual warns that canceling after the warning may leave too little battery for a safe landing. When the battery is only enough to descend from the current altitude, the aircraft lands automatically, and that landing cannot be canceled, although you can still steer horizontally and control the descent rate. Because behavior differs by model, do not assume your aircraft works the same way.
 
-## Home point recording depends on having enough satellites locked
+## RTH altitude is a setting you must choose
 
-The coordinate RTH flies back to — the home point — is normally recorded automatically right before or right after takeoff, once the aircraft has locked onto enough GPS satellites (commonly six or more). Launching in a hurry while the app's GPS indicator is still unstable or blinking can record a home point that's off from the actual takeoff spot by anywhere from a few meters to tens of meters. Waiting for a stable signal and confirming the home-point-recorded notification before launch feels like a minor extra step, but it's the single most basic thing that determines how accurate RTH actually is when it fires for real.
+The manual tells you to set a suitable RTH altitude before flight and lists it in its pre-flight checklist. It does not state a default value in the parts we could read, and a third-party guide for the same aircraft says only that the RTH altitude should be higher than all obstacles in the flying area. The practical rule follows: find the tallest obstacle on your route, such as trees, buildings, towers or the deck of a bridge, and set the RTH altitude above it with a margin that you decide for the site. Check that value before every flight, because it is easy to leave a setting from a previous location. Do not assume a number from this page or from a forum is correct for your aircraft.
 
-## The common mistake: taking off from a moving platform
+## Home point recording
 
-Launching from a boat, a moving vehicle, or a boat deck is a particularly risky setup. Because RTH only flies back to the GPS coordinates recorded at takeoff, if the boat has moved by the time RTH triggers, the drone will fly to a spot that's now open water and either hover there until the battery runs out or attempt to land on the sea. In these situations it's safer to avoid relying on automatic RTH altogether and plan a manual return and landing instead, or check ahead of time whether your aircraft lets you re-record the home point mid-flight if the platform later becomes stationary.
+The Mini 4 Pro manual says the first location where the aircraft receives a strong or moderately strong GNSS signal, shown by a white icon, is saved as the default home point. It can be updated before takeoff if a new strong or moderate signal is received, and it is not updated if the signal is weak. You can also update it manually in the safety settings. Wait for the app to show that the home point has been recorded before you launch, and if you move to a different takeoff spot, check it again. The third-party guide notes that the pilot hears a voice prompt when the home point is updated.
 
-## The GPS accuracy connection to space weather
+## Signal loss
 
-RTH is entirely dependent on GPS. During elevated geomagnetic activity — the kind this site's Kp index tracking is built around — GPS positioning accuracy can degrade, which affects both how precisely the home point was recorded and how precisely RTH lands when it fires. On days when the Kp index is elevated or GPS reliability is showing as reduced, it's safer to treat RTH as a last resort rather than a primary safety net, and to prioritize visual line of sight and a manual return plan instead.
+In the safety settings you can set what the aircraft does when the controller signal is lost: RTH, land or hover. If it is set to RTH, the home point is registered and the compass works normally, failsafe RTH starts after the signal has been lost for more than six seconds. In low light the same third-party guide says that after failsafe RTH the aircraft flies backward 50 meters and obstacle sensing is not available, so the altitude you set matters even more. Think about which action suits your site before you fly. Over water, forests or crowded areas the right choice may differ.
+
+## Do not take off from moving objects
+
+The manual says not to take off from moving objects such as cars, ships and aircraft. The reasoning is easy to follow: RTH flies to the recorded point, and a boat or vehicle will have moved on by the time RTH starts. If a flight from a moving platform is unavoidable, check your model's manual first and plan a manual return.
+
+## GPS accuracy and space weather
+
+RTH depends on satellite positioning. When GNSS quality is poor, the home point and the return path are less reliable. Check the Kp index and the satellite status in the app before the flight, as described in our [Kp index guide](/en/guides/what-is-the-kp-index), and keep a manual return plan ready.
 
 ## Practical checklist
 
-- Identify the tallest obstacle in your flight area and set RTH altitude at least 10-20m above it, not just above the ground.
-- Wait for a stable GPS lock and confirm the home-point-recorded notification before you launch.
-- If you took off from a boat or another moving platform, don't rely on automatic RTH — plan a manual return and landing instead.
-- Know in advance that a critical-battery RTH may not be cancellable, and start heading back well before you hit that threshold.
-- On high-Kp or low-GPS-reliability days, treat RTH as a backup, not a primary plan — keep visual line of sight and a manual return plan ready.
-- Information on this site is for flight-planning reference only and doesn't replace an actual flight authorization — always check your aircraft's manual and local regulations.
+- Set the maximum altitude and the RTH altitude for the site before takeoff, with the tallest obstacle in mind.
+- Wait for the home point to be recorded and confirm it in the app.
+- Choose the signal-loss action deliberately: RTH, land or hover.
+- Know that a low-battery warning can be canceled but that the final automatic landing cannot.
+- Do not take off from moving vehicles, boats or aircraft.
+- Read your own model's manual, because behavior varies, and keep visual line of sight.
+
+## FAQ
+
+### What is the default RTH altitude?
+
+The manual passages we could read do not state it, so check your own aircraft's settings and set the value yourself.
+
+### When does the aircraft return by itself?
+
+When the pilot triggers RTH, when the battery is low and no action is taken after the countdown, and when the control signal is lost, depending on the signal-loss action you set.
+
+### Can I cancel RTH?
+
+For pilot-triggered and low-battery RTH, the manual says you can cancel with the RTH or pause button. The final automatic landing cannot be canceled.
+
+### Is RTH enough on its own?
+
+No. It is a backup. Keep the aircraft in sight and plan a manual return.
+
+## Sources and further reading
+
+- [DJI — Mini 4 Pro downloads and user manuals](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — Mini 4 Pro user manual, Dutch edition (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_NL.pdf)
+- [DJI — Mini 4 Pro user manual, Portuguese edition (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_PT.pdf)
+- [Heliguy — How to use Smart RTH on the DJI Mini 4 Pro](https://www.heliguy.com/blogs/knowledge-base/how-to-use-smart-rth-on-the-dji-mini-4-pro-drone/)
+- Related on this site: [Compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference) and [What to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak)

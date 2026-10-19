@@ -1,7 +1,8 @@
 ---
-title: "Best Practices für Drohnen-Firmware-Updates"
-description: "Wann ein Firmware-Update sicher ist, warum Akkustand und Stromversorgung entscheiden und was Sie danach prüfen sollten, falls Einstellungen zurückgesetzt sind."
+title: "Firmware-Updates für Drohnen: Bewährte Vorgehensweisen"
+description: "Wann du Drohnen-Firmware aktualisierst, warum stabile Stromversorgung zählt, welche Einstellungen du danach prüfst und was bei einem hängenden Update zu tun ist."
 publishedAt: "2026-09-17"
+updatedAt: "2026-10-19"
 tags: ["firmware", "maintenance", "updates"]
 category: "gear-flight-tips"
 image: "/guides/images/best-practices-for-drone-firmware-updates.webp"
@@ -9,41 +10,70 @@ imageCredit: "Brecht Corbeel"
 imageCreditUrl: "https://unsplash.com/@brechtcorbeel?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Viele Piloten tippen aus der gleichen Gewohnheit wie bei Handy-Apps sofort auf „Aktualisieren", sobald eine Firmware-Benachrichtigung erscheint. Doch ein Firmware-Update schreibt den Boot-Code des Flugcontrollers selbst neu — anders als bei einem App-Update kann ein Fehler mitten im Vorgang das Fluggerät dauerhaft funktionsunfähig machen. Es ist nicht ungewöhnlich zu hören, dass jemand am Abend vor einem bezahlten Dreh ein Update durchgeführt hat, nur um am nächsten Morgen festzustellen, dass sich die Drohne nicht mehr einschalten lässt. Ein paar Gewohnheiten vermeiden fast dieses gesamte Risiko.
+Viele Piloten tippen auf „Aktualisieren", sobald eine Benachrichtigung erscheint, genau wie bei einer Smartphone-App. Firmware ist aber etwas anderes, denn sie steuert das Fluggerät selbst – ein unterbrochenes Update ist deshalb ein größeres Problem als ein fehlgeschlagenes App-Update. Dieser Leitfaden gibt allgemeine Gewohnheiten wieder und verlässt sich bei allem Modellspezifischen auf die Anweisungen deines Herstellers. Wir zitieren die veröffentlichten Seiten von DJI als Beispiel, weil sie weit verbreitet sind; sie gelten nicht für jede Marke.
 
-## Timing: nicht kurz vor einem wichtigen Flug aktualisieren
+## Das Wichtigste in Kürze
 
-Firmware, die am ersten Tag veröffentlicht wird, birgt ein vergleichsweise höheres Risiko für Fehler, die die Community noch nicht gemeldet hat. Wenn ein kommerzieller Auftrag oder ein wichtiger Dreh ansteht, lohnt es sich, mindestens einige Tage nach der Veröffentlichung zu warten und im Forum des Herstellers oder in Community-Threads nach Berichten über plötzlichen Akkuverbrauch, Gimbal-Zittern oder Verbindungsabbrüche zu suchen, bevor Sie installieren. Umgekehrt: Wenn Sie ein Ersatzfluggerät oder eine ruhige Woche haben, ist es sinnvoll, dieses zuerst zu aktualisieren, um Probleme aufzudecken, bevor sie Ihre Hauptflotte betreffen.
+- DJI sagt, die App DJI Fly fordere dich zu Firmware-Updates auf, wenn das Fluggerät mit der Fernsteuerung verbunden ist, und das Handbuch rät, jedes Mal zu aktualisieren, wenn du dazu aufgefordert wirst.
+- Die Anforderungen an Akkustand und Ablauf unterscheiden sich je nach Modell – folge deshalb dem, was die App und die Versionshinweise des Herstellers für dein Fluggerät sagen.
+- Starte kein Update unmittelbar vor einem wichtigen Flug. Lass Zeit zum Testen.
+- Halte Stromversorgung und Verbindungen stabil, bis das Update abgeschlossen ist.
+- Prüfe nach einem Update deine Einstellungen, mach einen kurzen Testflug und halte den Support-Kontakt des Herstellers für Wiederherstellungsschritte bereit.
 
-## Akkustand und stabile Stromversorgung entscheiden tatsächlich darüber, ob Sie das Gerät lahmlegen
+## Wann du aktualisierst
 
-Die Installation einer Firmware dauert typischerweise 3-10 Minuten für die Dateiübertragung und weitere 5-15 Minuten, um sie tatsächlich in den Flash-Speicher zu schreiben — und ein Stromausfall mitten in diesem Schreibvorgang kann die Boot-Partition halb beschrieben zurücklassen, was das Fluggerät dauerhaft funktionsunfähig machen kann. Deshalb blenden viele Hersteller die Update-Schaltfläche in der App unterhalb von etwa 50 % Akkustand einfach aus. Selbst bei ausreichender Ladung kann ein altes oder lockeres USB-Kabel oder ein Hub in der Kette eine kurzzeitige Unterbrechung mitten in der Übertragung verursachen — die Regel lautet daher: verwenden Sie ein kurzes, möglichst originalgetreues Kabel mit direkter Verbindung, und berühren Sie weder Kabel noch Einschaltknopf, solange ein „Installation läuft"-Bildschirm angezeigt wird.
+Das Handbuch der DJI Mini 4 Pro besagt, dass in DJI Fly eine Aufforderung erscheint, wenn neue Firmware verfügbar ist, und empfiehlt, bei jeder Aufforderung zu aktualisieren, um die beste Erfahrung zu haben. Für die meisten Flüge ist das ein vernünftiger Ausgangspunkt. Die praktische Ausnahme ist der Zeitpunkt: Steht ein wichtiger Auftrag oder eine Reise an, führe das Update Tage vorher durch, nicht am Abend davor, damit du Zeit hast, das Fluggerät zu testen und bei Problemen den Support zu kontaktieren. Wer ein zweites Fluggerät hat, kann zuerst das Ersatzgerät aktualisieren und prüfen, bevor er das Hauptgerät aktualisiert.
 
-## Nicht übereinstimmende Versionen von Fluggerät, Fernsteuerung und App verursachen mehr als nur fehlende Funktionen
+## Stabile Stromversorgung und Verbindung
 
-Wenn nur die Firmware des Fluggeräts aktualisiert wird, während Fernsteuerung oder App auf einer älteren Version bleiben, verbirgt das nicht nur neue Funktionen — es kann zu wiederholt abbrechenden Kopplungen oder zu Telemetrie führen, die dem tatsächlichen Geschehen hinterherhinkt, weil sich die beiden Firmware-Versionen nicht mehr auf dieselbe Version des Kommunikationsprotokolls einigen. Erscheint mehr als eine Update-Benachrichtigung, besteht die eigentliche Lösung darin, Fluggerät, Fernsteuerung und App gemeinsam auf die neueste Version zu bringen — nicht nur die Drohne.
+Die genaue Akkuanforderung hängt von Modell und Marke ab, und die Seiten, die wir geprüft haben, nennen dafür keinen Wert – nutze also die Angabe der App oder des Herstellers. Welche Zahl auch gilt, das Prinzip bleibt gleich: Ein Firmware-Update darf nicht unterbrochen werden. Lade Fluggerät und Fernsteuerung gut auf, nutze das vom Hersteller mitgelieferte Kabel oder ein kurzes in guter Qualität, vermeide USB-Hubs und berühre weder Kabel noch Einschalttaste, solange die App eine laufende Installation anzeigt. Wenn die App dich auffordert, das Fluggerät eingeschaltet zu lassen oder in einem bestimmten Modus zu halten, befolge das genau.
 
-## Prüfen Sie, ob Ihre Einstellungen auf die Standardwerte zurückgesetzt wurden
+## Fluggerät, Fernsteuerung und App auf einen Stand bringen
 
-Größere Versions-Updates setzen häufig sicherheitsrelevante Einstellungen — insbesondere die Rückkehrhöhe (RTH) und die Empfindlichkeit der Hindernisvermeidung — auf die Werkseinstellungen des Herstellers zurück. Ein Pilot, der die RTH-Höhe auf 30 m gesenkt hatte, um ein über 20 m hohes Blätterdach zu überfliegen, bemerkt es möglicherweise nicht, wenn diese Einstellung stillschweigend auf einen werkseitigen Standardwert (oft irgendwo zwischen 20 und 40 m) zurückgesetzt wird, und entdeckt es erst beim nächsten Flug, wenn der Rückweg einen Ast streift. Anzunehmen, dass die alten Einstellungen übernommen wurden, ist hier der mit Abstand häufigste Fehler — gehen Sie nach jedem Update RTH-Höhe, maximale Entfernungs-/Höhenbegrenzungen und die Stärke der Hindernisvermeidung einzeln durch, bevor Sie fliegen.
+Werden mehrere Updates angeboten, etwa für das Fluggerät, die Fernsteuerung und die App, installiere sie zusammen, so wie die App es vorgibt. Unterschiedliche Versionen der Komponenten können zu Funktionen führen, die nicht arbeiten, oder zu Verbindungsproblemen, und die Aufforderungen der App sind dafür gedacht, die Teile auf einen Stand zu bringen. Kannst du ein Teil nicht aktualisieren, sieh vor dem Flug auf der Seite des Herstellers nach.
 
-## Warum die Neukalibrierung von IMU und Kompass nach einem Update wichtig ist
+## Einstellungen danach prüfen
 
-Wenn ein Firmware-Update den Algorithmus ändert, der Sensordaten verarbeitet, können die unter dem alten Algorithmus gespeicherten Kalibrierungswerte leicht nicht mehr zum neuen passen. In der Praxis kann sich das als leichte Drift zur Seite direkt nach dem Start zeigen, oder als Höhe, die während eines eigentlich völlig stabilen Schwebeflugs langsam abdriftet. Auch wenn der Hersteller eine Neukalibrierung nicht ausdrücklich als erforderlich kennzeichnet, ist es nach jedem größeren Update empfehlenswert, IMU- und Kompasskalibrierung an einem offenen Ort ohne Personen in der Nähe durchzuführen und anschließend einen kurzen Schwebeflug-Test zu machen, bevor Sie sich auf einen vollständigen Flug einlassen.
+Ein Update kann Standardwerte ändern, Menüpunkte verschieben oder Funktionen hinzufügen. Gehe nach jedem Update die Sicherheitseinstellungen durch, auf die du dich verlässt: die Return-to-Home-Höhe, die Aktion bei Signalverlust, Höhen- und Entfernungsgrenzen und die Hinderniserkennung. Vergleiche sie mit dem, was du vor dem Update genutzt hast, anhand deiner Notizen oder eines früheren Screenshots. Erwähnen die Versionshinweise eine Kalibrierung, führe sie wie beschrieben durch, auf freiem Gelände fern von Metall und Kabeln, und schließe vor einem echten Flug mit einem kurzen Schwebetest ab. Warum diese Einstellungen wichtig sind, erklärt unser [Return-to-Home-Leitfaden](/de/guides/return-to-home-settings-explained).
 
-## Häufiger Fehler: die gesamte Flotte auf einmal aktualisieren
+## Mehr als ein Fluggerät aktualisieren
 
-Ein häufiger Fehler von Teams, die mehrere Fluggeräte betreiben, ist es, jede Drohne sofort bei Erscheinen einer neuen Firmware zu aktualisieren. Stellt sich heraus, dass diese Version einen unerwarteten Fehler enthält, erbt die gesamte Flotte gleichzeitig dasselbe Problem. Zuerst ein Ersatzfluggerät zu aktualisieren, es gründlich am Boden zu testen und zu bestätigen, dass nichts nicht stimmt, bevor das Update auf den Rest ausgerollt wird, verringert dieses Risiko erheblich.
+Wenn du mehrere Fluggeräte betreibst, aktualisiere zuerst eines, teste es und aktualisiere dann die anderen. Ein Problem in einer neuen Version betrifft dann ein Gerät statt der ganzen Flotte. Notiere dir, welche Version jedes Fluggerät hat und wann du es aktualisiert hast.
 
-## Wenn ein Update die Drohne funktionsunfähig zurücklässt
+## Wenn ein Update hängt oder fehlschlägt
 
-Wenn der Fortschritt auf dem Installationsbildschirm festzustecken scheint, kann erzwungenes Ausschalten oder wiederholtes Neustarten die Situation eher verschlimmern als verbessern. Die meisten Hersteller bieten für genau diesen Fall einen speziellen Wiederherstellungs- oder Force-Download-Modus an — prüfen Sie zuerst die Support-Seite des Herstellers für das Wiederherstellungsverfahren Ihres konkreten Modells, und wenn das Gerät danach immer noch nicht reagiert, kontaktieren Sie den Support, anstatt eigenständig weiter zu versuchen; wiederholte blinde Versuche sind es, die ein wiederherstellbares Gerät tatsächlich dauerhaft unbrauchbar machen.
+Schalte das Fluggerät nicht wiederholt aus und wieder ein, wenn der Fortschrittsbalken festzuhängen scheint. Warte eine angemessene Zeit, sieh dann auf der Support-Seite des Herstellers für dein Modell nach einem Wiederherstellungsverfahren und kontaktiere den Support, wenn das Fluggerät darauf nicht reagiert. Modellspezifische Wiederherstellungsschritte können wir hier nicht angeben, weil sie vom Produkt abhängen.
 
 ## Praktische Checkliste
 
-- Installieren Sie vor einem wichtigen Dreh keine Day-One-Firmware — warten Sie einige Tage und prüfen Sie zuerst Community-Berichte.
-- Starten Sie ein Update nur bei mindestens 50 % Akkustand über eine kurze, stabile Kabelverbindung in OEM-Qualität.
-- Halten Sie die Firmware-Versionen von Fluggerät, Fernsteuerung und App aufeinander abgestimmt.
-- Prüfen Sie nach einem Update, ob RTH-Höhe, Entfernungs-/Höhenbegrenzungen und Einstellungen zur Hindernisvermeidung nicht stillschweigend zurückgesetzt wurden.
-- Kalibrieren Sie nach einem größeren Update IMU und Kompass an einem offenen Ort neu und machen Sie einen kurzen Schwebeflug-Test vor einem echten Flug.
-- Bei mehreren Fluggeräten: zuerst an einem Ersatzgerät validieren, dann das Update nacheinander auf die übrigen ausrollen.
+- Aktualisiere, wenn du dazu aufgefordert wirst, aber nicht unmittelbar vor einem wichtigen Flug.
+- Nutze den Akkustand, den die App oder der Hersteller verlangt, und halte Strom und Kabel die ganze Zeit stabil.
+- Aktualisiere Fluggerät, Fernsteuerung und App zusammen, wenn du dazu aufgefordert wirst.
+- Prüfe nach dem Update Return-to-Home, Aktion bei Signalverlust, Grenzen und Hinderniserkennung.
+- Kalibriere nur so, wie es die App oder die Versionshinweise vorgeben, und mach dann einen kurzen Testflug.
+- Wenn etwas schiefgeht, halte an und nutze die Wiederherstellungsseite oder den Support des Herstellers.
+
+## Häufige Fragen
+
+### Sollte ich immer die neueste Firmware installieren?
+
+Das Handbuch von DJI empfiehlt, bei jeder Aufforderung zu aktualisieren. Zeitpunkt und Tests liegen bei dir – vermeide also den Tag vor einem wichtigen Flug.
+
+### Welcher Akkustand ist nötig?
+
+Das hängt vom Modell ab, und die von uns geprüften Quellen nennen keinen. Folge der App und den Hinweisen des Herstellers für dein Fluggerät.
+
+### Kann ein Update meine Einstellungen verändern?
+
+Es kann Standardwerte ändern oder Optionen hinzufügen – prüfe deine Sicherheitseinstellungen deshalb nach jedem Update.
+
+### Was, wenn das Update hängen bleibt?
+
+Versuche es nicht blind erneut. Nutze das Wiederherstellungsverfahren des Herstellers für dein Modell oder kontaktiere den Support.
+
+## Quellen und weiterführende Links
+
+- [DJI — Support für die Mini 4 Pro](https://www.dji.com/support/product/mini-4-pro)
+- [DJI — Downloads und Handbücher zur Mini 4 Pro](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — Download der App DJI Fly](https://www.dji.com/downloads/djiapp/dji-fly)
+- Mehr auf dieser Seite: [Kompasskalibrierung und magnetische Störungen](/de/guides/compass-calibration-and-magnetic-interference) und [Tipps zu Pflege und Lebensdauer von Drohnenakkus](/de/guides/drone-battery-care-and-lifespan-tips)

@@ -1,7 +1,8 @@
 ---
 title: "Configuración de Return-to-Home (RTH) explicada"
-description: "Cómo funcionan la altitud de RTH, el punto de origen y la reacción ante batería baja o pérdida de señal, y los ajustes por defecto que resultan peligrosos."
+description: "Cómo funciona el Return-to-Home en aeronaves DJI como la Mini 4 Pro: tres activadores, altitud de RTH, punto de origen, batería baja, pérdida de señal y barcos."
 publishedAt: "2026-09-19"
+updatedAt: "2026-10-19"
 tags: ["return-to-home", "rth", "safety", "gps"]
 category: "gear-flight-tips"
 image: "/guides/images/return-to-home-settings-explained.webp"
@@ -9,33 +10,71 @@ imageCredit: "Erik Mclean"
 imageCreditUrl: "https://unsplash.com/@introspectivedsgn?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Un piloto vuela a baja altura sobre un río para pasar por debajo de un puente y conseguir una toma, y la señal se pierde durante unos segundos. El dron activa automáticamente el Return-to-Home (RTH) y empieza a ascender hasta su altitud de RTH configurada, que resulta estar por debajo del tablero del puente que tiene justo encima. El RTH no es "la función que trae de vuelta tu dron"; es "la función que trae de vuelta tu dron exactamente como tú la configuraste". Esa diferencia está detrás de uno de los incidentes relacionados con RTH que los pilotos reportan con más frecuencia, normalmente porque la altitud se dejó en el valor de fábrica.
+El Return-to-Home, o RTH (retorno al punto de origen), no trae tu dron de vuelta por arte de magia. Lo trae de vuelta como lo hayas configurado. Si la altitud configurada es menor que un obstáculo del camino, o si el punto de origen es incorrecto, el RTH puede crear el problema que debía resolver. Esta guía usa el manual de usuario del DJI Mini 4 Pro como referencia principal e indica dónde el comportamiento es específico de esa aeronave. Otros modelos y marcas son distintos, así que lee tu propio manual.
 
-## Las tres formas en que se activa el RTH
+## Puntos clave
 
-El RTH normalmente se activa de una de tres maneras: un disparo manual que el piloto pulsa en la app o en el mando, un disparo automático cuando el nivel de batería llega a un umbral configurado (habitualmente ajustable en algún punto entre el 20% y el 30%), y un disparo automático cuando el enlace entre el mando y la aeronave se pierde durante un periodo determinado. Las tres se ven idénticas una vez que empiezan, pero no siempre se pueden cancelar por igual: en muchas aeronaves, el RTH por batería crítica está diseñado deliberadamente para ignorar la entrada de los sticks, de modo que el piloto no pueda anularlo. Es una medida de seguridad pensada para evitar un accidente por agotamiento de batería, pero el momento en que el piloto se da cuenta de que los sticks no responden es también el más desconcertante del vuelo.
+- En el Mini 4 Pro, el RTH puede empezar de tres maneras: lo activas tú, la batería está baja o se pierde la señal de control entre el control remoto y la aeronave.
+- El manual te indica que fijes una altitud máxima y una altitud de RTH adecuadas antes del despegue. La altitud de RTH debe ser mayor que todos los obstáculos de la zona de vuelo.
+- La primera posición en la que la aeronave obtiene una señal GNSS fuerte o moderada se guarda como punto de origen predeterminado. Una señal débil no actualiza el punto de origen.
+- Para la pérdida de señal puedes elegir RTH, aterrizar o mantenerte en vuelo estacionario en los ajustes de seguridad. El RTH de seguridad (failsafe) empieza cuando la señal lleva perdida más de seis segundos, si el punto de origen está registrado y la brújula funciona con normalidad.
+- El manual dice que no se debe despegar desde objetos en movimiento, como coches, barcos y aeronaves.
 
-## Por qué la altitud de RTH importa más de lo que los pilotos suponen
+## Las tres formas en que empieza el RTH
 
-La mayoría de los drones de consumo permiten configurar la altitud de RTH aproximadamente entre 20 m y 150 m (unos 66-492 ft), y el valor de fábrica suele rondar los 30 m (unos 98 ft). El problema es que ese valor por defecto de 30 m puede quedar por debajo de obstáculos habituales con los que realmente te vas a cruzar —edificios de altura media, árboles maduros, torres de transmisión, tableros de puentes—. La regla básica es identificar el obstáculo más alto de tu zona de vuelo y fijar la altitud de RTH al menos 10-20 m por encima de él, no solo por encima del suelo. Además, muchas aeronaves ascienden primero hasta la altitud de RTH configurada antes de volar horizontalmente hacia el punto de origen si su altitud actual es más baja, lo que significa que un vuelo a poca altura interrumpido por una pérdida repentina de señal puede provocar un ascenso mucho más brusco y rápido de lo que el piloto espera.
+Según el manual, el RTH puede iniciarlo el piloto, una batería baja o la pérdida de la señal de control. Cuando lo activas tú mismo, normalmente puedes cancelarlo con el botón de RTH o con el botón de pausa del control remoto. Con la batería baja, la aeronave calcula si la carga restante basta para volver, según su posición, su entorno y su velocidad, y muestra un aviso en DJI Fly. Si no haces nada, regresa automáticamente tras una cuenta atrás. El manual advierte de que cancelar después del aviso puede dejar muy poca batería para un aterrizaje seguro. Cuando la batería solo alcanza para descender desde la altitud actual, la aeronave aterriza automáticamente, y ese aterrizaje no se puede cancelar, aunque todavía puedes dirigirla en horizontal y controlar la velocidad de descenso. Como el comportamiento cambia según el modelo, no des por hecho que tu aeronave funciona igual.
 
-## El registro del punto de origen depende de tener suficientes satélites bloqueados
+## La altitud de RTH es un ajuste que tienes que elegir
 
-La coordenada a la que vuelve el RTH —el punto de origen (home point)— normalmente se registra de forma automática justo antes o justo después del despegue, una vez que la aeronave ha bloqueado suficientes satélites GPS (habitualmente seis o más). Despegar con prisa mientras el indicador de GPS de la app todavía está inestable o parpadeando puede hacer que el punto de origen quede registrado con un desfase de varios metros hasta decenas de metros respecto al lugar real de despegue. Esperar a que la señal esté estable y confirmar el aviso de "punto de origen registrado" antes de despegar puede parecer un paso extra menor, pero es lo más básico que determina cuán preciso será realmente el RTH cuando se active de verdad.
+El manual te indica que fijes una altitud de RTH adecuada antes del vuelo y la incluye en su lista de comprobación previa al vuelo. No indica un valor predeterminado en las partes que pudimos leer, y una guía de terceros para la misma aeronave dice solo que la altitud de RTH debe ser mayor que todos los obstáculos de la zona de vuelo. De ahí la regla práctica: localiza el obstáculo más alto de tu ruta, como árboles, edificios, torres o la cubierta de un puente, y fija la altitud de RTH por encima con un margen que decidas tú según el lugar. Comprueba ese valor antes de cada vuelo, porque es fácil dejar un ajuste de una ubicación anterior. No des por hecho que una cifra de esta página o de un foro sea correcta para tu aeronave.
 
-## El error común: despegar desde una plataforma en movimiento
+## Registro del punto de origen
 
-Despegar desde un barco, un vehículo en movimiento o la cubierta de una embarcación es una situación especialmente arriesgada. Como el RTH solo vuela hacia las coordenadas GPS registradas en el despegue, si el barco se ha desplazado para cuando se activa el RTH, el dron volará hacia un punto que ahora es solo mar abierto, y se quedará suspendido ahí hasta agotar la batería o intentará posarse sobre el agua. En estas situaciones es más seguro evitar depender del RTH automático y planificar en su lugar un regreso y aterrizaje manual, o comprobar de antemano si tu aeronave permite volver a registrar el punto de origen durante el vuelo si la plataforma queda luego estacionaria.
+El manual del Mini 4 Pro dice que el primer lugar en el que la aeronave recibe una señal GNSS fuerte o moderadamente fuerte, indicada por un icono blanco, se guarda como punto de origen predeterminado. Puede actualizarse antes del despegue si se recibe una nueva señal fuerte o moderada, y no se actualiza si la señal es débil. También puedes actualizarlo manualmente en los ajustes de seguridad. Espera a que la app muestre que el punto de origen se ha registrado antes de despegar y, si cambias de lugar de despegue, vuelve a comprobarlo. La guía de terceros señala que el piloto oye un aviso de voz cuando se actualiza el punto de origen.
 
-## La relación entre la precisión del GPS y el clima espacial
+## Pérdida de señal
 
-El RTH depende por completo de la señal GPS. Durante periodos de actividad geomagnética elevada —el tipo de fenómeno en torno al cual este sitio construye el seguimiento del índice Kp—, la precisión de posicionamiento GPS puede degradarse, lo que afecta tanto a la precisión con la que se registró el punto de origen como a la precisión con la que aterriza el RTH cuando se activa. En días con el índice Kp elevado o con la fiabilidad del GPS mostrada como reducida, es más seguro tratar el RTH como último recurso en lugar de como red de seguridad principal, y priorizar el vuelo con línea de visión directa (VLOS) junto con un plan de regreso manual.
+En los ajustes de seguridad puedes definir qué hace la aeronave cuando se pierde la señal del control remoto: RTH, aterrizar o mantenerse en vuelo estacionario. Si está configurado en RTH, el punto de origen está registrado y la brújula funciona con normalidad, el RTH de seguridad empieza cuando la señal lleva perdida más de seis segundos. Con poca luz, la misma guía de terceros dice que, tras el RTH de seguridad, la aeronave vuela hacia atrás 50 metros y no dispone de detección de obstáculos, así que la altitud que fijes importa todavía más. Piensa qué acción conviene a tu lugar antes de volar. Sobre el agua, en bosques o en zonas concurridas, la elección correcta puede ser otra.
 
-## Lista de verificación práctica
+## No despegues desde objetos en movimiento
 
-- Identifica el obstáculo más alto de tu zona de vuelo y fija la altitud de RTH al menos 10-20 m por encima de él, no solo por encima del suelo.
-- Espera a tener un bloqueo GPS estable y confirma el aviso de punto de origen registrado antes de despegar.
-- Si despegaste desde un barco u otra plataforma en movimiento, no confíes en el RTH automático: planifica en su lugar un regreso y aterrizaje manual.
-- Ten en cuenta de antemano que un RTH por batería crítica puede no ser cancelable, y empieza a regresar mucho antes de llegar a ese umbral.
-- En días con Kp alto o fiabilidad GPS baja, trata el RTH como un respaldo, no como plan principal: mantén línea de visión directa y un plan de regreso manual preparado.
-- La información de este sitio es solo una referencia para la planificación de vuelos y no sustituye una autorización de vuelo real: consulta siempre el manual de tu aeronave y la normativa local.
+El manual dice que no se debe despegar desde objetos en movimiento, como coches, barcos y aeronaves. El motivo es fácil de entender: el RTH vuela hacia el punto registrado, y un barco o un vehículo ya se habrá movido cuando empiece el RTH. Si un vuelo desde una plataforma en movimiento es inevitable, consulta antes el manual de tu modelo y planifica un regreso manual.
+
+## Precisión del GPS y clima espacial
+
+El RTH depende del posicionamiento por satélite. Cuando la calidad del GNSS es mala, el punto de origen y la trayectoria de regreso son menos fiables. Comprueba el índice Kp y el estado de los satélites en la app antes del vuelo, como se explica en nuestra [guía del índice Kp](/es/guides/what-is-the-kp-index), y ten preparado un plan de regreso manual.
+
+## Lista de comprobación práctica
+
+- Fija la altitud máxima y la altitud de RTH para el lugar antes del despegue, pensando en el obstáculo más alto.
+- Espera a que se registre el punto de origen y confírmalo en la app.
+- Elige la acción ante la pérdida de señal de forma deliberada: RTH, aterrizar o vuelo estacionario.
+- Ten presente que un aviso de batería baja se puede cancelar, pero el aterrizaje automático final no.
+- No despegues desde vehículos, barcos o aeronaves en movimiento.
+- Lee el manual de tu propio modelo, porque el comportamiento varía, y mantén la línea de visión directa.
+
+## Preguntas frecuentes
+
+### ¿Cuál es la altitud de RTH predeterminada?
+
+Los pasajes del manual que pudimos leer no la indican, así que consulta los ajustes de tu propia aeronave y fija tú el valor.
+
+### ¿Cuándo vuelve la aeronave por sí sola?
+
+Cuando el piloto activa el RTH, cuando la batería está baja y no se hace nada tras la cuenta atrás, y cuando se pierde la señal de control, según la acción ante la pérdida de señal que hayas fijado.
+
+### ¿Puedo cancelar el RTH?
+
+En el RTH activado por el piloto y en el de batería baja, el manual dice que puedes cancelarlo con el botón de RTH o el de pausa. El aterrizaje automático final no se puede cancelar.
+
+### ¿Basta con el RTH por sí solo?
+
+No. Es un respaldo. Mantén la aeronave a la vista y planifica un regreso manual.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI — Descargas y manuales de usuario del Mini 4 Pro](https://www.dji.com/downloads/products/mini-4-pro)
+- [DJI — Manual de usuario del Mini 4 Pro, edición neerlandesa (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_NL.pdf)
+- [DJI — Manual de usuario del Mini 4 Pro, edición portuguesa (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_PT.pdf)
+- [Heliguy — Cómo usar el Smart RTH en el DJI Mini 4 Pro](https://www.heliguy.com/blogs/knowledge-base/how-to-use-smart-rth-on-the-dji-mini-4-pro-drone/)
+- Relacionado en este sitio: [calibración de la brújula e interferencia magnética](/es/guides/compass-calibration-and-magnetic-interference) y [qué hacer cuando la señal GPS del dron es débil](/es/guides/what-to-do-when-drone-gps-signal-is-weak)
