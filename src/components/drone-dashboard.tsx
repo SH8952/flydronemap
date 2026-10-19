@@ -90,7 +90,7 @@ const FlightMap = dynamic(
       <div className="relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted sm:h-96">
         <img
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
-          alt=""
+          alt="Map"
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
@@ -628,7 +628,7 @@ export function DroneDashboard({
               유도함 — 실제 지도/기능 동작은 전혀 바뀌지 않음. */}
           <img
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23262626'/%3E%3C/svg%3E"
-            alt=""
+            alt={t("loadingText")}
             aria-hidden="true"
             fetchPriority="high"
             decoding="async"
