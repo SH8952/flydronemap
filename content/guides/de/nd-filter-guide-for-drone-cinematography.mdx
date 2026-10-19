@@ -1,7 +1,8 @@
 ---
-title: "ND-Filter-Leitfaden für die Drohnen-Kinematografie"
-description: "Warum feste Blenden bei Drohnenkameras ND-Filter unverzichtbar machen, wie Sie die passende Stärke fürs Licht wählen und welche Fehler häufig sind."
+title: "ND-Filter für Drohnen-Videografie"
+description: "Warum helles Licht bei Drohnenvideos ND-Filter erzwingt, wie du die Stärke aus Blendenstufen berechnest, wo variable ND-Filter scheitern und was DJI empfiehlt."
 publishedAt: "2026-09-14"
+updatedAt: "2026-10-19"
 tags: ["nd-filter", "camera", "cinematography", "gear"]
 category: "gear-flight-tips"
 image: "/guides/images/nd-filter-guide-for-drone-cinematography.webp"
@@ -9,36 +10,73 @@ imageCredit: "Jordy Muñoz"
 imageCreditUrl: "https://unsplash.com/@jordymunoz?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Die meisten Consumer-Drohnenkameras haben eine feste oder sehr schmale Blendenspanne, was es praktisch unmöglich macht, bei hellem Tageslicht eine kinematografische Verschlusszeit ohne einen Neutraldichte-(ND-)Filter zu erreichen. Wählen Sie die falsche Stärke, landen Sie entweder bei überbelichtetem, ausgewaschenem Material oder bei Aufnahmen mit hartem, ruckartigem „Shutter Judder".
+Bei hellem Tageslicht ist eine Verschlusszeit, die im Video natürlich wirkt, oft nicht erreichbar, ohne Licht wegzunehmen. Ein Neutraldichtefilter (ND-Filter) übernimmt genau das. Dieser Leitfaden erklärt die Regel hinter der Wahl, zeigt, wie du eine Stärke berechnest statt zu raten, und nutzt veröffentlichte DJI-Seiten und Fotografie-Quellen. Eine Tabelle, die vorgibt, zu jeder Lichtsituation zu passen, geben wir nicht, denn die richtige Stärke hängt von deiner Kamera, der Szene und der Tageszeit ab.
 
-## Warum Drohnen ND-Filter mehr brauchen als Handkameras
+## Das Wichtigste in Kürze
 
-Eine Spiegelreflexkamera kann die Blende schließen, um Licht zu reduzieren, doch die meisten Drohnenkameras sitzen fest bei etwa f/2.8. Selbst bei einem hellen Mittagsdreh mit ISO auf dem Minimum von 100 kommen Sie ohne mehrere Blendenstufen Überbelichtung nicht in die Nähe der klassischen „180-Grad-Verschlussregel" (Verschlusszeit etwa doppelt so hoch wie die Bildrate — rund 1/48–1/50 s bei 24 fps). Ein ND-Filter reduziert das einfallende Licht bereits am Objektiv, sodass Sie diese Verschlusszeit beibehalten können, statt sie mit Einstellungen zu erzwingen, die der Bildqualität schaden.
+- Die 180-Grad-Verschlussregel besagt, dass die Verschlusszeit etwa das Doppelte der Bildrate betragen soll: 1/48 Sekunde bei 24 fps, meist auf 1/50 eingestellt, und 1/60 Sekunde bei 30 fps.
+- Die Nummer eines ND-Filters ist ein Faktor der Lichtminderung: ND2 sind 1 Blendenstufe, ND4 sind 2 Stufen, und jede Verdopplung fügt eine Stufe hinzu – ND16 sind also 4 Stufen, ND32 sind 5 und ND64 sind 6.
+- Manche Drohnenkameras bieten wenig oder keine Blendensteuerung. Die technischen Daten der Mini 4 Pro nennen einen einzigen Blendenwert, f/1.7.
+- Ein variabler ND-Filter kann nahe seiner stärksten Einstellung ein dunkles X-förmiges Muster zeigen, vor allem bei Weitwinkelobjektiven.
+- DJI sagt, du sollst für seine Fluggeräte offizielle ND-Filter nutzen, weil sie auf den Schwerpunkt der Gimbal-Kamera abgestimmt sind, und keinen Filter verwenden, der für das Licht zu stark ist.
 
-## Die ND-Stärke an das tatsächliche Licht anpassen
+## Warum helles Licht nach ND verlangt
 
-Als grobe Ausgangsbasis bei 24 fps, 1/50 s und ISO 100: ND16–ND32 funktioniert meist bei klarer Mittagssonne, ND8–ND16 bei leichter Bewölkung und ND4–ND8 bei bedecktem Himmel oder den Minuten direkt nach Sonnenauf- oder -untergang. Diese Werte verschieben sich je nach Breitengrad und Jahreszeit, betrachten Sie sie also nur als Ausgangspunkt — prüfen Sie das Histogramm oder Zebra-Muster des Gimbal-Feeds, bevor Sie sich auf eine Stärke festlegen, nicht erst nachdem Sie die Aufnahme bereits gedreht haben.
+Bei niedriger ISO und der kleinsten praktikablen Blende braucht eine helle Szene trotzdem eine sehr kurze Verschlusszeit. Kurze Verschlusszeiten frieren jedes Bild ein und lassen Bewegung ruckelig wirken. Die 180-Grad-Regel bewahrt genug Bewegungsunschärfe für flüssige Bewegung, daher soll die Verschlusszeit etwa das Doppelte der Bildrate betragen. Die Fotografie-Seite Lightstalking erklärt die Regel und merkt an, dass dies bei hellem Licht schwer zu erreichen sein kann, weil sich die Blende nur begrenzt schließen lässt. DJIs eigener ND-Leitfaden beschreibt ND-Filter als Sonnenbrillen für die Kamera und nennt dieselbe Regel für Video. An einer Drohne, bei der sich das Objektiv oft nicht abblenden lässt, ist der ND-Filter das wichtigste Steuermittel, das dir bleibt.
 
-## Wo variable ND-Filter an ihre Grenzen stoßen
+## Die Stärke berechnen statt raten
 
-Viele Piloten versuchen, ein Filteretui zu vermeiden, indem sie sich stattdessen auf einen einzelnen variablen ND-Filter verlassen. Das Problem ist mechanisch: Ein variabler ND-Filter stapelt zwei rotierende Polarisationselemente, und nahe seiner stärksten Einstellung (meist über ND32) erzeugt das ein sichtbares dunkles X-förmiges Kreuzmuster über das Bild — ein Polarisationsartefakt, das auf den bei Drohnen üblichen Weitwinkelobjektiven besonders auffällt. In der Praxis hält sich ein Satz fester Filterstärken (ND4/8/16/32/64), den Sie je nach Bedingungen wechseln, besser als ein bis an sein Limit gedrehter variabler Filter.
+Rechne in Blendenstufen. Lege zuerst Bildrate und Verschlusszeit nach der Regel fest, zum Beispiel 1/50 bei 24 fps. Sieh dann nach, welche Verschlusszeit die Kamera bei deiner Basis-ISO im aktuellen Licht für eine korrekte Belichtung braucht, indem du kurz die Belichtungsautomatik nutzt. Der Abstand zwischen diesen beiden Verschlusszeiten, in Verdopplungen gezählt, ist die Zahl der Stufen, die du wegnehmen musst. Will die Kamera zum Beispiel 1/1000 Sekunde und du willst 1/50, beträgt das Verhältnis 20, das sind etwas mehr als vier Verdopplungen – du bräuchtest also etwas mehr als 4 Stufen. Ein ND16 (4 Stufen) oder ein ND32 (5 Stufen) bringt dich nahe heran, und eine kleine Anpassung von ISO oder Verschlusszeit gleicht den Rest aus. Das ist eine Veranschaulichung der Methode, keine Regel für deine Szene. Prüfe das Ergebnis vor der Aufnahme in der App, mit Histogramm oder Zebra-Anzeige, falls deine Kamera eine hat. Ein zu starker Filter unterbelichtet das Bild und zwingt dich, die ISO zu erhöhen, wie DJIs Leitfaden warnt.
 
-## Der Fehler, der selbst erfahrene Piloten trifft: die Sitzprüfung auslassen
+## Was die Zahlen bedeuten
 
-Magnetische ND-Filter lassen sich bequem während des Flugs wechseln, doch es gibt echte Berichte über Filter, die sich bei Startvibrationen oder einer scharfen Fluglagenänderung im böigen Wind gelöst haben und dann in Richtung der Propeller gezogen wurden. Drücken Sie nach dem Anbringen eines magnetischen Filters mit der Fingerspitze dagegen, um den vollen Sitz zu bestätigen — und fügen Sie „ND-Filter sitzt fest" als eigenen Punkt zu Ihrer Vorflug-Checkliste hinzu, statt anzunehmen, ein magnetisches Klicken bedeute automatisch sicheren Halt.
+Ein ND-Faktor beschreibt, wie viel Licht geblockt wird: ND4 lässt ein Viertel des Lichts durch, das sind 2 Stufen. Fotografen nutzen auch die optische Dichte, bei der 0,3 für 1 Stufe und 0,6 für 2 Stufen steht. Hersteller drucken manchmal andere Bezeichnungen auf, lies also die Verpackung und rechne selbst in Stufen um. DJI verkauft für die Mini 4 Pro ein ND-Set 16/64/256, das grob 4, 6 und 8 Stufen abdeckt. Ein Set mit weit auseinanderliegenden Werten lässt Lücken, prüfe deshalb nach jedem Wechsel die Belichtung.
 
-## ND-PL-Filter (Kombination mit Polfilter): nützlich, aber situativ
+## Wo variable ND-Filter an Grenzen stoßen
 
-Ein ND-PL-Filter kombiniert ND mit einem zirkularen Polfilter, was Reflexionen auf Wasser oder nassen Dächern reduziert und die Farbsättigung angenehm vertieft. Bei einem Weitwinkelobjektiv neigt dieselbe Polarisation jedoch dazu, den Himmel ungleichmäßig über das Bild hinweg abzudunkeln — ein sichtbarer Bänderungseffekt. Er passt besser zu engeren Aufnahmen einer bestimmten reflektierenden Fläche als zu einer weiten Panoramaaufnahme des Himmels, wo die Ungleichmäßigkeit deutlich wird.
+Ein variabler ND-Filter kombiniert zwei Polarisationsschichten, die gegeneinander gedreht werden. Nahe der maximalen Dichte tritt das Licht ungleichmäßig durch, was dunkle diagonale Bänder erzeugt, oft X-Muster genannt. Ein Leitfaden von KF Concept sagt, es sei nahe der Max-Einstellung am wahrscheinlichsten und vor allem bei Weitwinkelobjektiven, und am sichtbarsten in gleichmäßigen Flächen wie klarem Himmel, Wasser und Schnee. Als Abhilfe schlägt er vor, den Ring zurück Richtung Minimum zu drehen, eine längere Brennweite zu nutzen, keinen Polfilter zu stapeln und für mehr Abdunklung einen festen ND-Filter zu verwenden. Weil die meisten Drohnenobjektive weitwinklig sind, ist ein fester Filter, den du bei wechselndem Licht tauschst, meist die sicherere Wahl – teste deinen eigenen Filter aber vor einem wichtigen Auftrag.
 
-## Filter lagern und pflegen
+## Filter nutzen, für die dein Fluggerät gebaut ist
 
-Ein Fingerabdruck oder ein Staubkorn im Strahlengang zeigt sich als weiches Aufblitzen in den Lichtern, bewahren Sie Filter also in einzelnen Fächern in einem harten Etui auf und reinigen Sie sie nur mit einem Mikrofasertuch. Günstige Filter mit abgenutzter oder fehlender Beschichtung erzeugen oft einen sichtbaren Farbstich (meist grün oder magenta) — nutzen Sie älteres oder einfacheres Glas, lohnt es sich, den Weißabgleich vor Drehbeginn manuell zu prüfen, statt sich auf den automatischen Weißabgleich zur Korrektur zu verlassen.
+DJI empfiehlt für seine Fluggeräte offizielle ND-Filter, weil sie auf den Schwerpunkt der Gimbal-Kamera abgestimmt sind. Filter von Drittanbietern können in Ordnung sein, fügen aber an der Front eines kleinen Gimbals Gewicht hinzu. Schalte nach dem Anbringen eines Filters das Fluggerät ein und bestätige, dass sich der Gimbal frei bewegt und seinen Selbsttest besteht, bevor du startest, und drücke den Filter leicht an, um sicherzugehen, dass er vollständig sitzt. Befolge für die Montage die Anweisungen des Filterherstellers.
+
+## Farbe, Reinigung und Lagerung
+
+Manche Filter erzeugen einen Farbstich – nimm einen kurzen Testclip auf und stelle den Weißabgleich manuell ein, wenn du einen siehst. Ein Fingerabdruck oder Staub auf einem Filter kann in hellen Lichtern als Streulicht oder Weichheit sichtbar werden, bewahre daher jeden Filter in einem eigenen Fach eines Etuis auf und reinige ihn mit einem Mikrofasertuch. Eine sichere Reihenfolge für die Objektivreinigung beschreibt unser [Leitfaden zu Gimbal-Wartung und Reinigung](/de/guides/drone-gimbal-maintenance-and-cleaning-guide).
 
 ## Praktische Checkliste
 
-- Prüfen Sie vor dem Start das Licht des Tages (klar / leicht bewölkt / bedeckt) und bringen Sie den dazu passenden ND-Stärkebereich mit.
-- Bestätigen Sie die Belichtung anhand des Histogramms oder Zebra-Musters des Gimbal-Feeds, statt allein anhand der Stärke zu schätzen.
-- Prüfen Sie jeden magnetischen Filter vor dem Start durch Andrücken auf vollen Sitz — jedes Mal, nicht nur bei der ersten Montage des Tages.
-- Greifen Sie bei weiten Himmelsaufnahmen eher zu einem festen ND-Filter als zu einem variablen ND- oder ND-PL-Filter.
-- Reinigen Sie Filter nur mit einem Mikrofasertuch und lagern Sie sie getrennt, um Kratzer und Blendenflecken durch Fingerabdrücke zu vermeiden.
+- Lege zuerst die Bildrate fest und stelle die Verschlusszeit auf etwa das Doppelte ein, etwa 1/50 bei 24 fps.
+- Ermittle die nötigen Stufen, wähle den nächstliegenden ND-Wert und prüfe die Belichtung in der App.
+- Nutze keinen Filter, der stärker ist, als das Licht verlangt.
+- Bevorzuge feste ND-Filter für Weitwinkelaufnahmen und teste einen variablen ND über seinen ganzen Bereich, bevor du ihm vertraust.
+- Nutze die für dein Fluggerät empfohlenen Filter und prüfe, dass sich der Gimbal mit Filter frei bewegt.
+- Prüfe den Sitz des Filters vor jedem Start mit leichtem Druck.
+- Lagere Filter getrennt und reinige sie mit einem Mikrofasertuch.
+
+## Häufige Fragen
+
+### Warum brauche ich überhaupt einen ND-Filter?
+
+Helles Licht erzwingt eine kurze Verschlusszeit, wodurch Video ruckelig wirkt. Ein ND-Filter lässt dich eine längere Verschlusszeit behalten, die zur Bildrate passt.
+
+### Welche ND-Nummer soll ich kaufen?
+
+Das hängt von deiner Kamera und dem Licht ab. Berechne die nötigen Stufen wie oben gezeigt und beginne mit einem kleinen Set, das deine üblichen Bedingungen abdeckt.
+
+### Ist ein variabler ND-Filter für eine Drohne eine gute Idee?
+
+Er ist bequem, kann nahe seiner stärksten Einstellung aber bei Weitwinkelobjektiven ein X-Muster zeigen. Ein festes Set ist der sicherere Standard.
+
+### Brauche ich offizielle Filter?
+
+DJI sagt, offizielle Filter seien auf den Schwerpunkt der Gimbal-Kamera abgestimmt. Wenn du andere nutzt, prüfe, dass sich der Gimbal frei bewegt.
+
+## Quellen und weiterführende Links
+
+- [DJI Store — ND-Filter für deine Drohne und Kamera](https://store.dji.com/content/drone-nd-filters-work-and-use)
+- [DJI Store — ND-Filter-Set für die Mini 4 Pro (ND16/64/256)](https://store.dji.com/product/dji-mini-4-pro-nd-filters-set-16-256)
+- [DJI — Technische Daten der Mini 4 Pro](https://www.dji.com/mini-4-pro/specs)
+- [Lightstalking — Warum du beim Videodreh ND-Filter brauchst](https://www.lightstalking.com/nd-filters-for-video/)
+- [KF Concept — X-Muster beim variablen ND-Filter: Ursachen und Abhilfe](https://www.kfconcept.com/blog/variable-nd-filter-x-pattern)
+- Mehr auf dieser Seite: [Drohnen-Gimbal: Wartung und Reinigung](/de/guides/drone-gimbal-maintenance-and-cleaning-guide) und [Kameraeinstellungen für Flüge bei starkem Wind](/de/guides/camera-settings-for-flying-in-strong-wind)

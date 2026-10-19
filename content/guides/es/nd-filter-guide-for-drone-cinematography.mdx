@@ -1,7 +1,8 @@
 ---
 title: "Guía de filtros ND para cine con drones"
-description: "Por qué el diafragma fijo de las cámaras de dron hace casi obligatorios los filtros ND, cómo elegir la intensidad según la luz y los errores más frecuentes."
+description: "Por qué la luz intensa obliga a usar filtros ND en el vídeo con drones, cómo calcular la intensidad con los pasos de luz, los límites del ND variable y qué dice DJI."
 publishedAt: "2026-09-14"
+updatedAt: "2026-10-19"
 tags: ["nd-filter", "camera", "cinematography", "gear"]
 category: "gear-flight-tips"
 image: "/guides/images/nd-filter-guide-for-drone-cinematography.webp"
@@ -9,36 +10,73 @@ imageCredit: "Jordy Muñoz"
 imageCreditUrl: "https://unsplash.com/@jordymunoz?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-La mayoría de las cámaras de dron de consumo tienen una apertura fija o con un rango muy estrecho, lo que hace casi imposible alcanzar una velocidad de obturación cinematográfica en pleno día sin un filtro de densidad neutra (ND). Elegir mal la intensidad te deja con un video sobreexpuesto y lavado, o con un efecto entrecortado conocido como "shutter judder".
+Con luz solar intensa, una velocidad de obturación de vídeo que se vea natural suele ser imposible de alcanzar sin reducir la luz. Un filtro de densidad neutra (ND) se encarga de reducirla. Esta guía explica la regla que hay detrás de la elección, muestra cómo calcular una intensidad en lugar de adivinarla y usa páginas publicadas de DJI y referencias de fotografía. No ofrecemos una tabla que pretenda valer para todas las condiciones de luz, porque la intensidad adecuada depende de tu cámara, de la escena y de la hora del día.
 
-## Por qué los drones necesitan filtros ND más que una cámara de mano
+## Puntos clave
 
-Una cámara réflex puede cerrar el diafragma para reducir la luz, pero la mayoría de las cámaras de dron quedan fijas alrededor de f/2.8. Incluso bajando el ISO hasta su mínimo de 100 en una sesión de mediodía despejado, mantener la conocida "regla de los 180 grados" (velocidad de obturación aproximadamente el doble del framerate, unos 1/48–1/50s a 24fps) implica varios pasos de sobreexposición sin un filtro. El filtro ND reduce la luz directamente en el objetivo, permitiéndote conservar esa velocidad de obturación sin sacrificar la imagen.
+- La regla del obturador de 180 grados dice que la velocidad de obturación debe ser aproximadamente el doble de la frecuencia de imagen: 1/48 de segundo a 24 fps, normalmente ajustado a 1/50, y 1/60 de segundo a 30 fps.
+- El número de un filtro ND es un factor de reducción de luz: ND2 es 1 paso, ND4 son 2 pasos y cada duplicación añade un paso, así que ND16 son 4 pasos, ND32 son 5 y ND64 son 6.
+- Algunas cámaras de dron ofrecen poco o ningún control del diafragma. La especificación del Mini 4 Pro indica un único valor de apertura, f/1.7.
+- Un filtro ND variable puede mostrar un patrón oscuro en forma de X cerca de su ajuste más fuerte, sobre todo con objetivos gran angular.
+- DJI dice que se usen filtros ND oficiales para sus aeronaves porque están diseñados para funcionar con el centro de gravedad de la cámara del gimbal, y que no se use un filtro demasiado fuerte para la luz.
 
-## Cómo elegir la intensidad del ND según la luz real
+## Por qué la luz intensa pide ND
 
-Como referencia general a 24fps, 1/50s e ISO 100: un ND16–ND32 suele funcionar con sol de mediodía despejado, un ND8–ND16 con nubosidad ligera, y un ND4–ND8 con cielo cubierto o en los minutos justo después del amanecer o antes del atardecer. Estos valores varían según la latitud y la estación, así que trátalos como punto de partida: confirma la exposición con el histograma o el patrón de cebra de la señal del gimbal antes de dar por buena la toma, no después de grabarla.
+Con un ISO bajo y el diafragma más cerrado que resulte práctico, una escena luminosa sigue necesitando una velocidad de obturación muy alta. Las velocidades de obturación altas congelan cada fotograma y hacen que el movimiento se vea entrecortado. La regla de los 180 grados conserva el desenfoque suficiente para un movimiento fluido, por lo que el obturador debe ser aproximadamente el doble de la frecuencia de imagen. El sitio de fotografía Lightstalking explica la regla y señala que puede ser difícil de alcanzar con luz intensa, porque el diafragma solo se puede cerrar hasta cierto punto. La propia guía de ND de DJI describe los filtros ND como gafas de sol para la cámara y cita la misma regla para el vídeo. En un dron, donde a menudo no se puede cerrar el diafragma del objetivo, el filtro ND es el principal control que te queda.
 
-## Dónde fallan los filtros ND variables
+## Calcula la intensidad en lugar de adivinarla
 
-Muchos pilotos evitan cargar con un set de filtros y confían en un único ND variable. El problema es mecánico: un ND variable superpone dos elementos polarizadores giratorios, y cerca de su ajuste máximo (normalmente por encima de ND32) eso produce una cruz oscura en forma de X visible en el encuadre, un artefacto de polarización especialmente notorio en los objetivos gran angular que suelen llevar los drones. En la práctica, un set de filtros de intensidad fija (ND4/8/16/32/64) que se intercambian según cambian las condiciones da mejores resultados que un variable forzado al límite.
+Trabaja en pasos de luz. Primero fija la frecuencia de imagen y la velocidad de obturación según la regla, por ejemplo 1/50 a 24 fps. Después mira qué velocidad de obturación necesita la cámara para una exposición correcta con tu ISO base en la luz actual, usando un momento la exposición automática. La diferencia entre esas dos velocidades, contada en duplicaciones, es el número de pasos que debes quitar. Por ejemplo, si la cámara quiere 1/1000 de segundo y tú quieres 1/50, la relación es 20, que es algo más de cuatro duplicaciones, así que necesitarías algo más de 4 pasos. Un ND16 (4 pasos) o un ND32 (5 pasos) se acerca bastante, y un pequeño ajuste del ISO o de la velocidad de obturación compensa el resto. Es una ilustración del método, no una regla para tu escena. Comprueba el resultado en la app antes de grabar, con el histograma o la visualización de zebra si tu cámara los tiene. Un filtro demasiado fuerte subexpone la imagen y te obliga a subir el ISO, como advierte la guía de DJI.
 
-## El error que comete incluso un piloto con experiencia: no comprobar el ajuste
+## Qué significan los números
 
-Los filtros ND magnéticos son cómodos para cambiar entre vuelos, pero existen reportes reales de filtros que se desprenden por la vibración del despegue o un cambio brusco de actitud con ráfagas de viento, terminando succionados hacia las hélices. Después de montar un filtro magnético, presiónalo con la yema del dedo para confirmar que quedó completamente asentado, y añade "filtro ND bien asentado" como punto propio en tu checklist previo al vuelo, en lugar de asumir que el clic magnético ya garantiza que está fijo.
+Un factor ND describe cuánta luz bloquea: un ND4 deja pasar una cuarta parte de la luz, es decir, 2 pasos. Los fotógrafos también usan la densidad óptica, donde 0,3 es 1 paso y 0,6 son 2 pasos. Los fabricantes a veces imprimen etiquetas distintas, así que lee el envase y convierte tú mismo a pasos. DJI vende un set ND 16/64/256 para el Mini 4 Pro, que abarca aproximadamente 4, 6 y 8 pasos. Un set con valores muy separados deja huecos, así que comprueba la exposición después de cada cambio.
 
-## Filtros ND-PL (con polarizador): útiles, pero según el caso
+## Dónde se queda corto el filtro ND variable
 
-Un filtro ND-PL combina el ND con un polarizador circular, lo que reduce los reflejos en agua o tejados mojados y intensifica el color. En un objetivo gran angular, sin embargo, esa misma polarización tiende a oscurecer el cielo de forma desigual en el encuadre, un efecto de bandeado visible. Funciona mejor en tomas cerradas sobre una superficie reflectante concreta que en un plano panorámico amplio del cielo, donde la irregularidad se nota mucho más.
+Un filtro ND variable combina dos capas polarizadoras que giran una contra otra. Cerca de la densidad máxima la luz pasa de forma desigual, lo que produce bandas diagonales oscuras, a menudo llamadas patrón en X. Una guía de KF Concept dice que es más probable cerca del ajuste Max y sobre todo con objetivos gran angular, y que se nota más en zonas uniformes como el cielo despejado, el agua y la nieve. Sus soluciones sugeridas son girar el anillo de vuelta hacia el mínimo, usar una distancia focal más larga, evitar apilar un polarizador y usar un ND fijo para reducir más. Como la mayoría de los objetivos de dron son angulares, un filtro fijo que cambias según varía la luz suele ser la opción más segura, pero prueba tu propio filtro antes de un trabajo importante.
 
-## Cómo guardar y mantener tus filtros
+## Usa filtros para los que se diseñó tu aeronave
 
-Grabar con una huella dactilar o una mota de polvo en el filtro suele aparecer como un destello suave en las luces altas, así que guarda cada filtro en su propio compartimento dentro de un estuche rígido y límpialos solo con un paño de microfibra. Los filtros económicos con el recubrimiento desgastado o ausente suelen introducir un dominante de color (verde o magenta); si usas vidrio antiguo o de gama baja, conviene revisar manualmente el balance de blancos antes de grabar en vez de confiar en que el automático lo corrija.
+DJI recomienda filtros ND oficiales para sus aeronaves porque están diseñados para funcionar con el centro de gravedad de la cámara del gimbal. Los filtros de terceros pueden ir bien, pero añaden peso en la parte delantera de un gimbal pequeño. Después de montar cualquier filtro, enciende y confirma que el gimbal se mueve con libertad y supera su autocomprobación antes de despegar, y presiona ligeramente el filtro para asegurarte de que está bien asentado. Sigue las instrucciones del fabricante del filtro para colocarlo.
 
-## Checklist práctico
+## Color, limpieza y almacenamiento
 
-- Antes de despegar, evalúa la luz del día (despejado / nubosidad ligera / cubierto) y lleva el rango de intensidades ND que corresponda.
-- Confirma la exposición con el histograma o el patrón de cebra del gimbal, no solo a partir de la intensidad elegida.
-- Presiona cualquier filtro magnético para comprobar que quedó bien asentado antes de cada despegue, no solo en el primero del día.
-- Para planos amplios de cielo, prioriza un ND de intensidad fija antes que uno variable o un ND-PL.
-- Limpia los filtros solo con paño de microfibra y guárdalos por separado para evitar rayones y destellos por huellas.
+Algunos filtros añaden una dominante de color, así que graba un clip de prueba corto y ajusta el balance de blancos manualmente si la ves. Una huella o polvo en un filtro puede aparecer como destello o falta de nitidez en las altas luces, así que guarda cada filtro en su propio hueco de un estuche y límpialo con un paño de microfibra. Nuestra [guía de limpieza del gimbal y la lente](/es/guides/drone-gimbal-maintenance-and-cleaning-guide) describe un orden seguro para limpiar una lente.
+
+## Lista de comprobación práctica
+
+- Fija primero la frecuencia de imagen y la velocidad de obturación en aproximadamente el doble, como 1/50 a 24 fps.
+- Calcula los pasos que necesitas, elige el valor ND más cercano y comprueba la exposición en la app.
+- No uses un filtro más fuerte de lo que la luz requiere.
+- Prefiere filtros ND fijos para planos amplios y prueba un ND variable en todo su rango antes de fiarte de él.
+- Usa los filtros recomendados para tu aeronave y comprueba que el gimbal se mueve con libertad con el filtro puesto.
+- Comprueba con una ligera presión que el filtro está bien asentado antes de cada despegue.
+- Guarda los filtros por separado y límpialos con un paño de microfibra.
+
+## Preguntas frecuentes
+
+### ¿Por qué necesito un filtro ND?
+
+La luz intensa obliga a usar una velocidad de obturación alta, lo que hace que el vídeo se vea entrecortado. Un filtro ND te permite mantener una velocidad de obturación más lenta que coincida con la frecuencia de imagen.
+
+### ¿Qué número de ND debo comprar?
+
+Depende de tu cámara y de la luz. Calcula los pasos que necesitas como se muestra arriba y empieza con un set pequeño que cubra tus condiciones habituales.
+
+### ¿Es buena idea un filtro ND variable para un dron?
+
+Es cómodo, pero cerca de su ajuste más fuerte puede mostrar un patrón en X con objetivos angulares. Un set fijo es la opción más segura por defecto.
+
+### ¿Necesito filtros oficiales?
+
+DJI dice que los filtros oficiales están diseñados para el centro de gravedad de la cámara del gimbal. Si usas otros, comprueba que el gimbal se mueve con libertad.
+
+## Fuentes y lecturas recomendadas
+
+- [DJI Store — Filtros ND para tu dron y tu cámara](https://store.dji.com/content/drone-nd-filters-work-and-use)
+- [DJI Store — Set de filtros ND del Mini 4 Pro (ND16/64/256)](https://store.dji.com/product/dji-mini-4-pro-nd-filters-set-16-256)
+- [DJI — Especificaciones del Mini 4 Pro](https://www.dji.com/mini-4-pro/specs)
+- [Lightstalking — Por qué necesitas filtros ND al grabar vídeo](https://www.lightstalking.com/nd-filters-for-video/)
+- [KF Concept — Patrón en X del filtro ND variable: causas y cómo corregirlo](https://www.kfconcept.com/blog/variable-nd-filter-x-pattern)
+- Relacionado en este sitio: [guía de mantenimiento y limpieza del gimbal del dron](/es/guides/drone-gimbal-maintenance-and-cleaning-guide) y [ajustes de cámara para volar con viento fuerte](/es/guides/camera-settings-for-flying-in-strong-wind)
