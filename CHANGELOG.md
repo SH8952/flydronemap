@@ -4,6 +4,7 @@
 - 백업 위치를 `.backups/` 한 곳으로 통일(CLAUDE.md 규칙 추가). 새 `automation/make-backup.sh [라벨]`: `.backups/`·`.next*`·`node_modules`·`.git` 제외 rsync 백업(중첩·용량 폭증 방지).
 - `automation/publish-guide.command`·`apply-seo-task.command`의 rsync 제외 목록에 `.next*`(.next_old·.next_stale 포함)와 모든 백업 폴더명 추가.
 - 불필요 파일 정리: 재생성 가능한 빌드 캐시 `.next_old_1791047407`(154M)과 `.DS_Store`·`automation/__pycache__` 삭제.
+- 임시 보조 자료 삭제: `.backups/`의 `guides_current.tgz·zip`(보강 전 가이드 스냅샷), `guides_reinforced.zip`(보강본 압축 — 179개 파일이 커밋 68b3fd7로 반영되어 git 이력에 있음), `meta_in/out.json`, `fhf_tmp_check.ts`. (아래 2026-10-04 항목의 `guides_reinforced.zip` 언급은 당시 기록)
 - 백업: .backups/백업규칙정비전_20261021
 
 ## 2026-10-19 (4) — 팁·촬영 가이드 5개 공식 자료 대조·보강 (비행 시간, 짐벌, ND 필터, FPV 비교, 초보 연습) × 5개 언어
