@@ -1,3 +1,11 @@
+## 2026-10-21 — 백업 폴더 단일화·1주일 초과 백업 삭제·백업 방식 수정 (사이트 동작 변경 없음)
+- 2026-10-14 이전(1주일 경과) 백업 폴더·압축 파일 삭제. 보존: 10-14 이후 백업, 날짜 없는 보조 자료.
+- 루트의 `_backups`(구형)·`.claude-backups`(빈 폴더)를 제거해 `.backups`로 단일화. `automation/apply-seo-task.command`의 백업 위치도 `_backups` → `.backups`로 변경.
+- 백업 위치를 `.backups/` 한 곳으로 통일(CLAUDE.md 규칙 추가). 새 `automation/make-backup.sh [라벨]`: `.backups/`·`.next*`·`node_modules`·`.git` 제외 rsync 백업(중첩·용량 폭증 방지).
+- `automation/publish-guide.command`·`apply-seo-task.command`의 rsync 제외 목록에 `.next*`(.next_old·.next_stale 포함)와 모든 백업 폴더명 추가.
+- 불필요 파일 정리: 재생성 가능한 빌드 캐시 `.next_old_1791047407`(154M)과 `.DS_Store`·`automation/__pycache__` 삭제.
+- 백업: .backups/백업규칙정비전_20261021
+
 ## 2026-10-19 (4) — 팁·촬영 가이드 5개 공식 자료 대조·보강 (비행 시간, 짐벌, ND 필터, FPV 비교, 초보 연습) × 5개 언어
 
 **배경**
