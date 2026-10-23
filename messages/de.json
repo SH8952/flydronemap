@@ -511,6 +511,8 @@
     "mapUnavailableNote": "Für dieses Land liegen noch keine kartenbasierten Luftraumdaten vor. Bitte nutzen Sie die offiziellen Links unten.",
     "viewOnMapLabel": "Auf der Startseiten-Karte ansehen",
     "officialLinksTitle": "Offizielle Links",
+    "highlightsTitle": "Die wichtigsten Regeln im Überblick",
+    "checklistTitle": "Vor dem Flug",
     "countries": {
       "us": {
         "name": "Vereinigte Staaten",
@@ -520,6 +522,19 @@
           "Hobbypiloten müssen den kostenlosen Online-Sicherheitstest TRUST bestehen, während für kommerzielle Drohnenflüge ein FAA Part 107 Remote Pilot Certificate erforderlich ist.",
           "Drohnen ab 250 g (0,55 lb) müssen bei der FAA registriert werden und Remote ID senden; für Flüge im kontrollierten Luftraum in Flughafennähe ist eine vorherige FAA-Freigabe über LAANC oder DroneZone erforderlich.",
           "Prüfen Sie den Luftraum vor jedem Flug immer mit der App B4UFLY oder der UAS Facility Map der FAA."
+        ],
+        "highlights": [
+          "Hobbypiloten müssen den kostenlosen Online-Sicherheitstest TRUST bestehen und beim Fliegen den Nachweis dabeihaben.",
+          "Registriere jede Drohne ab 250 g (0,55 lb). Eine registrierte Drohne muss außerdem Remote ID senden, außer sie fliegt in einem von der FAA anerkannten Identifikationsbereich (FRIA).",
+          "Im unkontrollierten Luftraum (Klasse G) fliege höchstens 400 Fuß (etwa 120 m) hoch und halte die Drohne in Sichtweite oder setze einen Beobachter ein, der neben dir steht.",
+          "In den Luftraumklassen B, C, D und im bodennahen Luftraum der Klasse E in Flughafennähe brauchst du eine vorherige FAA-Freigabe, die über LAANC oder DroneZone beantragt wird.",
+          "Flüge für Arbeit oder Geschäft fallen unter Part 107 statt unter die Hobbyregeln: Du brauchst ein FAA Remote Pilot Certificate, und das Fluggerät muss unter 55 lb wiegen."
+        ],
+        "checklist": [
+          "Führe den TRUST-Nachweis mit und bringe deine FAA-Registrierungsnummer an der Drohne an.",
+          "Prüfe vor jedem Flug den Luftraum in der App B4UFLY oder mit der FAA-Seite Where Can I Fly?.",
+          "Beantrage die LAANC-Freigabe, bevor du im kontrollierten Luftraum nahe einem Flughafen fliegst.",
+          "Suche nach temporären Flugbeschränkungen (TFR) und NOTAMs für deinen Ort und Zeitraum."
         ],
         "links": {
           "official": "FAA-Drohnenleitfaden",
@@ -538,6 +553,19 @@
           "Wer in einem genehmigungspflichtigen Gebiet ohne vorherige Genehmigung fliegt, muss laut Drone OneStop bei einem ersten Verstoß ein Bußgeld von 1,5 Mio. KRW zahlen. Seoul und der Großraum Seoul sind als Flugverbots- und Sperrluftraum ausgewiesen, sodass die meisten Flüge dort eine vorherige Genehmigung brauchen; die Stadt Seoul verweist zudem auf Geldstrafen von bis zu 5 Mio. KRW nach Artikel 161 des Luftfahrtsicherheitsgesetzes.",
           "Auf dieser Website werden bei der Auswahl eines Standorts in Südkorea auch Flugverbotszonen, Kontrollzonen und weitere Luftraum-Ebenen farbig auf der Karte angezeigt."
         ],
+        "highlights": [
+          "Drohnen für gewerbliche Zwecke müssen registriert werden. Laut der Stadt Seoul brauchen nicht gewerblich genutzte Drohnen unter 2 kg keine Registrierung.",
+          "Ab mehr als 250 g maximaler Startmasse ist ein Pilotenzeugnis nötig. Die niedrigste Klasse (Klasse 4, über 250 g bis 2 kg) erwirbst du mit einem Online-Kurs und einer Prüfung der Korea Transportation Safety Authority (KOTSA).",
+          "Eine Fluggenehmigung ist ab 150 m Höhe, für Drohnen über 25 kg sowie in Flugverbotszonen, Sperrgebieten und Kontrollzonen erforderlich. Zivile und militärische Kontrollzonen um Flugplätze haben einen Radius von 9,3 km.",
+          "Seoul und der Großraum sind Flugverbots- und Sperrluftraum, daher brauchen Flüge dort eine vorherige Genehmigung über Drone OneStop, meist 3 bis 5 Tage im Voraus.",
+          "Laut der Stadt Seoul sind Nachtflüge (Sonnenuntergang bis Sonnenaufgang), Flüge über Menschenmengen und Flüge unter Alkoholeinfluss nicht erlaubt."
+        ],
+        "checklist": [
+          "Wiege deine Drohne mit Akku und Zubehör, um zu klären, ob Registrierung und Pilotenzeugnis gelten.",
+          "Prüfe deinen Standort auf der Luftraumkarte von Drone OneStop und beantrage die Fluggenehmigung, wo nötig, einige Werktage vorher.",
+          "Fotografiere oder filme keine Militäranlagen oder andere sensible Einrichtungen. Informiere dich vor einem Dreh bei Drone OneStop über den aktuellen Hinweis zu Luftaufnahmen.",
+          "Fliege bei Tageslicht und halte Abstand zu Menschenansammlungen."
+        ],
         "links": {
           "official": "Drone-OneStop-Portal",
           "registration": "Drohnenregistrierung",
@@ -555,6 +583,19 @@
           "Flüge in der Nähe von Flughäfen, in 150 m Höhe oder höher, über Veranstaltungen sowie der Transport gefährlicher Güter oder das Abwerfen von Gegenständen erfordern eine vorherige Erlaubnis bzw. Genehmigung, die online über DIPS 2.0 beantragt wird (mindestens 10 Werktage vor dem Flug; 3–4 Wochen werden empfohlen).",
           "Flüge über dicht besiedelten Gebieten (DID), bei Nacht oder außerhalb der Sichtweite gelten ebenfalls als besondere Flüge (Kategorie II); die Genehmigung kann entfallen, wenn der Pilot den erforderlichen Kompetenznachweis besitzt, das Fluggerät zertifiziert ist und ein Flughandbuch vorliegt. Prüfen Sie vor jedem Flug die aktuellen Regeln auf der offiziellen Website."
         ],
+        "highlights": [
+          "Drohnen ab 100 g, die im Freien fliegen, müssen registriert werden. Die Registrierung gilt 3 Jahre, und der Flug einer nicht registrierten Drohne kann mit einer Geldstrafe bis 500.000 Yen oder bis zu einem Jahr Haft geahndet werden.",
+          "Neben der am Fluggerät angebrachten Registrierungskennung ist eine Remote-ID-Ausrüstung erforderlich; Ausnahmen gibt es nur eingeschränkt, etwa für in der Vorregistrierungsphase registrierte Drohnen und Flüge an der Leine.",
+          "Flüge in der Nähe von Flughäfen und ab 150 m über Boden oder Wasser sind grundsätzlich verboten, es sei denn, du stimmst dich mit der Behörde ab und erhältst eine Genehmigung. Um acht große Flughäfen sind auch Flüge unter den Anflug- und Übergangsflächen grundsätzlich verboten.",
+          "Eine Erlaubnis oder Genehmigung brauchst du außerdem für Flüge über dicht besiedelten Gebieten (DID), bei Nacht, außerhalb der Sichtweite, näher als 30 m an Personen oder Objekten, über Veranstaltungsorten, beim Transport gefährlicher Güter oder Abwerfen von Gegenständen sowie für Drohnen ab 25 kg.",
+          "Seit dem 1. Oktober 2025 brauchen Drohnen ab 25 kg bei neuen Genehmigungsanträgen eine Haftpflichtversicherung für Dritte."
+        ],
+        "checklist": [
+          "Registriere die Drohne, bringe die Registrierungskennung an und richte Remote ID vor dem ersten Flug ein.",
+          "Prüfe vor der Wahl des Flugorts auf einer Karte die Umgebung von Flughäfen und dicht besiedelte Gebiete (DID).",
+          "Handelt es sich um einen besonderen Flug, beantrage ihn über DIPS 2.0 mindestens 10 Werktage vorher und plane insgesamt 3 bis 4 Wochen ein.",
+          "Halte 30 m Abstand zu Personen und Objekten, sofern du keine Genehmigung hast."
+        ],
         "links": {
           "official": "MLIT-Drohnenleitfaden",
           "registration": "Registrierung & Flugantrag (DIPS2.0)"
@@ -571,6 +612,19 @@
           "Betreiber müssen sich bei der AESA registrieren, wenn ihre Drohne 250 g oder mehr wiegt oder eine leichtere Drohne eine Kamera bzw. einen Sensor zur Erfassung personenbezogener Daten hat (außer sie entspricht der Spielzeugrichtlinie). Die Betreiber-Registrierungsnummer muss an allen Drohnen des Betreibers angebracht sein.",
           "Die geografischen UAS-Gebiete sind im Königlichen Dekret (Real Decreto) 517/2024 festgelegt. Die AESA verweist auf die ENAIRE-Drohnen-App, um zu sehen, wo Drohnenflüge verboten oder eingeschränkt sind – prüfen Sie sie vor jedem Flug."
         ],
+        "highlights": [
+          "Spanien wendet auf die meisten Hobbyflüge die EU-Kategorie „Open“ an: eine Drohne unter 25 kg, geflogen in Sichtweite und höchstens 120 m über Grund, ohne vorherige Genehmigung.",
+          "Du musst dich bei der AESA als Betreiber registrieren, wenn die Drohne 250 g oder mehr wiegt, bei einem Aufprall mehr als 80 Joule übertragen kann oder eine Kamera bzw. ein Mikrofon hat (außer sie entspricht der Spielzeugrichtlinie). Die Registrierung erfolgt über die elektronische Sede der AESA.",
+          "Piloten brauchen das kostenlose Online-Zertifikat A1/A3 (40 Fragen, 40 Minuten, 75 % zum Bestehen, 5 Jahre gültig) für C1-Drohnen (A1) und C2-, C3- oder C4-Drohnen (A3). Die Unterkategorie A2 ist auf Drohnen der Klasse C2 beschränkt und erfordert zusätzlich die A2-Prüfung und die erklärte praktische Selbstschulung.",
+          "Die Klassenkennzeichnung legt die Grenzen fest: C0 unter 250 g, C1 unter 900 g, C2 unter 4 kg sowie C3 und C4 unter 25 kg. Eine vor dem 1. Januar 2024 in Verkehr gebrachte Drohne ohne Klassenkennzeichnung darf in A1 fliegen, wenn sie unter 250 g wiegt, sonst in A3.",
+          "Die Registrierung bei der AESA gilt in den EASA-Mitgliedstaaten, erlaubt aber keine Flüge an jedem Ort: Die nationalen Luftraumbeschränkungen gelten weiterhin."
+        ],
+        "checklist": [
+          "Prüfe vor dem Flug die Klassenkennzeichnung deiner Drohne (C0 bis C4) und die zulässige Unterkategorie.",
+          "Bringe deine Betreiber-Registrierungsnummer an jeder Drohne an, die du fliegst.",
+          "Erwirb das kostenlose A1/A3-Zertifikat der AESA, wenn deine Drohne es verlangt. Die AESA empfiehlt es auch dann, wenn es nicht Pflicht ist.",
+          "Prüfe vor jedem Flug in der Drohnen-App von ENAIRE die geografischen UAS-Zonen."
+        ],
         "links": {
           "official": "AESA-Drohnenleitfaden",
           "registration": "Betreiberregistrierung (AESA)"
@@ -586,6 +640,19 @@
           "Deutschland folgt dem EU-weiten EASA-Rahmenwerk, das den Drohnenbetrieb in drei risikobasierte Kategorien unterteilt — Open, Specific und Certified. Die meisten Hobbyflüge fallen unter die Kategorie Open.",
           "Betreiber müssen sich beim LBA (Luftfahrt-Bundesamt) registrieren, wenn ihre Drohne eine Startmasse von 250 g oder mehr hat oder eine leichtere Drohne einen Sensor zur Erfassung personenbezogener Daten, z. B. eine Kamera, besitzt. Die elektronische Registrierungsnummer (e-ID) muss an jeder Drohne angebracht werden.",
           "Vor jedem Flug empfiehlt das LBA, im Kartentool der Plattform DIPUL die geografischen UAS-Gebiete zu prüfen (die Bundesgebiete sind in § 21h der Luftverkehrs-Ordnung, LuftVO, geregelt). Die DIPUL-Karte zeigt auch Gebiete anderer EU-Staaten, in denen andere Regeln gelten können."
+        ],
+        "highlights": [
+          "Registriere dich beim LBA, wenn deine Drohne eine Startmasse von 250 g oder mehr hat oder eine leichtere Drohne eine Kamera oder einen anderen Sensor besitzt, der personenbezogene Daten erfassen kann (Spielzeug ausgenommen). Die Registrierung gilt für den Betreiber, und die erhaltene e-ID muss an der Drohne angebracht werden.",
+          "Ab 250 g brauchst du einen EU-Kompetenznachweis. Das A1/A3-Zertifikat erhältst du mit einer Online-Schulung und einer Online-Prüfung (40 Fragen, mindestens 75 % richtig). Für die Unterkategorie A2 sind das A1/A3-Zertifikat, eine zusätzliche Theorieprüfung bei einer vom LBA anerkannten Prüfstelle und eine Drohne der Klasse C2 nötig.",
+          "Eine Haftpflichtversicherung ist nach § 43 des Luftverkehrsgesetzes (LuftVG) Pflicht. Wer ohne sie fliegt, begeht eine Ordnungswidrigkeit, und die Versicherungsbestätigung muss mitgeführt werden.",
+          "In der Kategorie Open beträgt die maximale Flughöhe 120 m über Grund.",
+          "Drohnen unter 250 g erfordern keine Prüfung, doch die Betreiber müssen die Regeln kennen und befolgen."
+        ],
+        "checklist": [
+          "Prüfe, ob deine LBA-Registrierung aktuell ist und die e-ID an der Drohne angebracht ist.",
+          "Stelle sicher, dass deine Haftpflichtversicherung Drohnenflüge abdeckt, und führe die Versicherungsbestätigung mit.",
+          "Führe deinen Kompetenznachweis (A1/A3 oder A2) mit, wenn du eine Drohne ab 250 g fliegst.",
+          "Prüfe vor jedem Flug die geografischen Zonen auf der DIPUL-Karte, auch in anderen EU-Ländern, wo die Regeln abweichen können."
         ],
         "links": {
           "official": "LBA-Drohnenleitfaden",

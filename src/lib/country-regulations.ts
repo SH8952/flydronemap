@@ -139,11 +139,11 @@ export function getRegulationCountry(
 }
 
 /**
- * 국가별 요약을 작성할 때 직접 열어 확인한 공식 자료(2026-10-12). 요약 문구를 고치거나
+ * 국가별 요약을 작성할 때 직접 열어 확인한 공식 자료(2026-10-12, 보강 2026-10-23). 요약 문구를 고치거나
  * 새 국가를 추가할 때는 이 목록과 확인일(REGULATIONS_VERIFIED_ON)도 함께 갱신할 것.
  * 화면에는 페이지 하단에 작은 글씨로 표시된다(번역하지 않는 고유 명칭·주소만 둔다).
  */
-export const REGULATIONS_VERIFIED_ON = "2026-10-12";
+export const REGULATIONS_VERIFIED_ON = "2026-10-23";
 
 export const REGULATION_SOURCES: Record<
   RegulationCountryId,
@@ -166,6 +166,8 @@ export const REGULATION_SOURCES: Record<
   es: [
     { name: "AESA — Registro de operador de drones/UAS", url: "https://www.seguridadaerea.gob.es/en/ambitos/drones/registro-de-operador-de-drones-uas" },
     { name: "AESA — Zonas geográficas de UAS", url: "https://www.seguridadaerea.gob.es/en/ambitos/drones/zonas-geograficas-de-uas" },
+    { name: "AESA — Training of UAS/drones pilots in the 'open' category", url: "https://www.seguridadaerea.gob.es/en/node/1531" },
+    { name: "AESA — Drone/UAS class marking and direct remote identification (2024)", url: "https://www.seguridadaerea.gob.es/en/node/2821" },
   ],
   de: [
     { name: "LBA — Betreiberregistrierung", url: "https://www.lba.de/DE/Drohnen/UAS_Betreiberregistrierung/UAS_Betreiberregistrierung_node.html" },

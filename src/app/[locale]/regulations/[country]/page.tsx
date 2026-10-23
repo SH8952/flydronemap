@@ -70,6 +70,10 @@ export default async function RegulationCountryPage({
   setRequestLocale(locale);
   const t = await getTranslations("Regulations");
   const summary = t.raw(`countries.${country.id}.summary`) as string[];
+  const rawHighlights = t.raw(`countries.${country.id}.highlights`);
+  const rawChecklist = t.raw(`countries.${country.id}.checklist`);
+  const highlights = Array.isArray(rawHighlights) ? (rawHighlights as string[]) : [];
+  const checklist = Array.isArray(rawChecklist) ? (rawChecklist as string[]) : [];
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10">
@@ -106,6 +110,36 @@ export default async function RegulationCountryPage({
           </p>
         ))}
       </div>
+
+      {highlights.length > 0 ? (
+        <section className="flex flex-col gap-2">
+          <h2 className="text-lg font-semibold tracking-tight">
+            {t("highlightsTitle")}
+          </h2>
+          <ul className="flex list-disc flex-col gap-2 pl-5">
+            {highlights.map((item, i) => (
+              <li key={i} className="text-sm leading-relaxed text-foreground">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {checklist.length > 0 ? (
+        <section className="flex flex-col gap-2">
+          <h2 className="text-lg font-semibold tracking-tight">
+            {t("checklistTitle")}
+          </h2>
+          <ul className="flex list-disc flex-col gap-2 pl-5">
+            {checklist.map((item, i) => (
+              <li key={i} className="text-sm leading-relaxed text-foreground">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       <div className="rounded-lg border border-border p-5">
         <div className="flex items-start gap-3">
