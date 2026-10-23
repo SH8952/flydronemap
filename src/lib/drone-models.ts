@@ -36,6 +36,7 @@ export const DRONE_MODELS: readonly DroneModel[] = [
   { id: "dji-avata-2", brand: "DJI", name: "DJI Avata 2", maxWindMs: 10.7, specUrl: "https://www.dji.com/avata-2/specs" },
   { id: "dji-mavic-3-classic", brand: "DJI", name: "DJI Mavic 3 Classic", maxWindMs: 12, specUrl: "https://www.dji.com/mavic-3-classic/specs" },
   { id: "dji-mavic-3-pro", brand: "DJI", name: "DJI Mavic 3 Pro", maxWindMs: 12, specUrl: "https://www.dji.com/mavic-3-pro/specs" },
+  { id: "dji-mavic-4-pro", brand: "DJI", name: "DJI Mavic 4 Pro", maxWindMs: 12, specUrl: "https://www.dji.com/mavic-4-pro/specs" },
   // 공식: 이륙/착륙 12 m/s, 비행 중 14 m/s → 보수적으로 12.
   { id: "dji-inspire-3", brand: "DJI", name: "DJI Inspire 3", maxWindMs: 12, conservative: true, specUrl: "https://www.dji.com/inspire-3/specs" },
   // 공식: 이륙/착륙 10.7 m/s, 순항 12 m/s → 보수적으로 10.7.
