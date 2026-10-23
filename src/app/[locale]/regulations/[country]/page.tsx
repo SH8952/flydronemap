@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ExternalLink, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { ShareButton } from "@/components/share-button";
 import { RegulationRelatedGuides } from "@/components/regulation-related-guides";
 import {
@@ -50,6 +50,7 @@ export async function generateMetadata({
       type: "article",
       locale: ogLocale(locale),
       siteName: "FlyDroneMap",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: `${SITE_URL}/${locale}/regulations/${country.id}`,

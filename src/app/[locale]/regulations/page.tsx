@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { ShareButton } from "@/components/share-button";
 import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
 
@@ -26,6 +26,7 @@ export async function generateMetadata({
       type: "website",
       locale: ogLocale(locale),
       siteName: "FlyDroneMap",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: `${SITE_URL}/${locale}/regulations`,

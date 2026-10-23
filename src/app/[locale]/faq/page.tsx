@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 type FaqItem = { question: string; answer: string };
 
@@ -27,6 +27,7 @@ export async function generateMetadata({
       type: "website",
       locale: ogLocale(locale),
       siteName: "FlyDroneMap",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: `${SITE_URL}/${locale}/faq`,

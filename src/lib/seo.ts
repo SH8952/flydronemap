@@ -9,6 +9,17 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
   "https://flydronemap.com";
 
+/**
+ * 기본 공유 이미지(1200×630). 대표 이미지가 없는 페이지(홈·목록·규정·정책·
+ * 이미지 없는 가이드)가 SNS·메신저로 공유될 때 미리보기에 쓰인다(2026-10-23).
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: `${SITE_URL}/og-default.png`,
+  width: 1200,
+  height: 630,
+  alt: "FlyDroneMap",
+};
+
 const LOCALE_TO_OG: Record<(typeof routing.locales)[number], string> = {
   en: "en_US",
   ko: "ko_KR",

@@ -8,8 +8,7 @@ import {
   SITE_URL,
   breadcrumbJsonLd,
   languageAlternates,
-  ogLocale,
-} from "@/lib/seo";
+  ogLocale, DEFAULT_OG_IMAGE, } from "@/lib/seo";
 import {
   compileGuide,
   getGuideLocales,
@@ -59,13 +58,13 @@ export async function generateMetadata({
       modifiedTime: meta.updatedAt ?? meta.publishedAt,
       images: meta.image
         ? [{ url: `${SITE_URL}${meta.image}`, width: 1600, height: 900 }]
-        : undefined,
+        : [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
-      images: meta.image ? [`${SITE_URL}${meta.image}`] : undefined,
+      images: [meta.image ? `${SITE_URL}${meta.image}` : DEFAULT_OG_IMAGE.url],
     },
   };
 }

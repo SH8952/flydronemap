@@ -5,8 +5,7 @@ import {
   SITE_URL,
   breadcrumbJsonLd,
   languageAlternates,
-  ogLocale,
-} from "@/lib/seo";
+  ogLocale, DEFAULT_OG_IMAGE, } from "@/lib/seo";
 import { getGuidesByCategory } from "@/lib/guides";
 import { GuideCategorySection } from "@/components/guides/guide-category-section";
 
@@ -31,6 +30,7 @@ export async function generateMetadata({
       type: "website",
       locale: ogLocale(locale),
       siteName: "FlyDroneMap",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: `${SITE_URL}/${locale}/guides`,

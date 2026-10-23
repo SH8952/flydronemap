@@ -6,7 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { CONSENT_REGION_CODES } from "@/lib/consent";
 import { ConsentBanner } from "@/components/consent-banner";
-import { SITE_URL, languageAlternates, ogLocale } from "@/lib/seo";
+import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { getPartialGuideLocales } from "@/lib/guides";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
@@ -70,6 +70,7 @@ export async function generateMetadata({
       type: "website",
       locale: ogLocale(locale),
       siteName: "FlyDroneMap",
+      images: [DEFAULT_OG_IMAGE],
       title,
       description,
       url: `${SITE_URL}/${locale}`,
@@ -78,6 +79,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
+      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }
