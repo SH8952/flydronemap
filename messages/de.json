@@ -555,7 +555,7 @@
         ],
         "highlights": [
           "Ein Multicopter mit einer maximalen Startmasse über 2 kg muss angemeldet werden (신고). Auch Drohnen, die in einem Gewerbe nach dem Luftfahrtgeschäftsgesetz eingesetzt werden (Fluggeräteverleih, Luftfahrt-Freizeitsport oder Betrieb von Ultraleichtfluggeräten), unterliegen der Anmeldung. Ob die Nutzung gewerblich ist, richtet sich nach dem tatsächlichen Zweck; im Zweifel hilft die Registrierungs-FAQ von Drone OneStop.",
-          "Das Pilotenzeugnis richtet sich nach der maximalen Startmasse der Drohne, nicht nach dem Verwendungszweck. Die niedrigste Klasse (Klasse 4, über 250 g bis 2 kg) erwirbst du mit einem Online-Kurs und einer Prüfung der Korea Transportation Safety Authority (KOTSA). Welche Anforderungen für deine Drohne gelten, erfährst du bei KOTSA.",
+          "Ob ein Pilotenzeugnis nötig ist und welche Klasse, kann unter anderem von Art und Gewicht der Drohne abhängen. Die Einzelheiten prüfst du direkt auf der Seite der Korea Transportation Safety Authority (KOTSA) zum Pilotenzeugnis.",
           "Flüge an folgenden Orten sind eingeschränkt und brauchen die Erlaubnis der regionalen Luftfahrtbehörde oder des Verteidigungsministeriums: im Umkreis von 9,3 km um einen Flugplatz (Kontrollzone), in Flugverbotszonen (nahe der Waffenstillstandslinie und in Teilen der Seouler Innenstadt) und ab 150 m Höhe. Auch Drohnen über 25 kg brauchen eine Flugfreigabe. Laut Drone OneStop braucht eine Drohne bis 25 kg bei Tageslicht unter 150 m außerhalb von Kontroll- und Flugverbotszonen keine Flugfreigabe.",
           "Flüge bei Nacht (Sonnenuntergang bis Sonnenaufgang) oder in einer Entfernung, in der du die Drohne mit bloßem Auge nicht mehr erkennen kannst, brauchen eine Sonderfreigabe der regionalen Luftfahrtbehörde. Die Sonderfreigabe ist von der normalen Flugfreigabe getrennt.",
           "Die Verhaltensregeln für Piloten gelten für alle, unabhängig von Gewicht und Zweck (Artikel 129 des Flugsicherheitsgesetzes): keine Gegenstände abwerfen, nicht gefährlich über Menschenmengen oder dicht besiedelten Gebieten fliegen, nicht so nah an Gebäuden fliegen, dass eine Kollision droht, nicht unter Alkoholeinfluss fliegen und nicht fliegen, wenn du die Drohne nicht sehen kannst. Verstöße können mit einem Bußgeld von bis zu 2 Millionen Won geahndet werden."
@@ -661,6 +661,95 @@
         },
         "metaTitle": "Deutschland: Drohnenregeln & DIPUL-Karte",
         "metaDescription": "Drohnenregeln in Deutschland: EU-EASA-Rahmen mit drei Kategorien, Registrierung beim LBA und Prüfung von Flugbeschränkungs- und Kontrollzonen über DIPUL."
+      },
+      "gb": {
+        "name": "Vereinigtes Königreich",
+        "capital": "London",
+        "authority": "CAA (britische Zivilluftfahrtbehörde)",
+        "summary": [
+          "Im Vereinigten Königreich überwacht die Zivilluftfahrtbehörde (CAA) den Drohnenflug. Der Großteil des Freizeitflugs und des risikoarmen gewerblichen Flugs fällt in die Kategorie Open, und der Drone and Model Aircraft Code der CAA ist dafür die wichtigste Referenz.",
+          "Für die meisten Flüge im Freien brauchst du eine Flyer ID (du erhältst sie, indem du den Online-Theorietest der CAA bestehst) und eine Operator ID (sie registriert die für das Fluggerät verantwortliche Person). Welche du brauchst, hängt vom Gewicht oder der Klassenkennzeichnung des Fluggeräts und davon ab, ob es eine Kamera hat. Die CAA erkennt ausländische Registrierungen und Qualifikationen nicht an, deshalb brauchen auch Besucher britische IDs, bevor sie im Vereinigten Königreich fliegen.",
+          "Prüfe vor jedem Flug die Beschränkungen an deinem Standort. Die meisten Flughäfen, Flugplätze und Weltraumbahnhöfe haben eine Flugbeschränkungszone (Flight Restriction Zone, FRZ), in der du nie ohne Erlaubnis fliegen darfst. Die von NATS veröffentlichte Karte der Luftraumbeschränkungen ist eine Quelle, die du prüfen kannst. Die CAA weist aber darauf hin, dass sie nicht alles zeigt, besonders nicht kurzfristig eingerichtete Beschränkungen."
+        ],
+        "highlights": [
+          "Flyer ID: erforderlich für Fluggeräte ab 100 g. Du erhältst sie, indem du den Online-Theorietest der CAA bestehst. Es gibt kein Mindestalter, aber Kinder unter 13 Jahren müssen den Test zusammen mit einem Elternteil oder Erziehungsberechtigten ablegen und sich registrieren. Eine Flyer ID gilt fünf Jahre.",
+          "Operator ID: erforderlich für Fluggeräte ab 250 g und für Fluggeräte ab 100 g mit Kamera. Für Fluggeräte zwischen 100 und 250 g ohne Kamera ist sie optional, unter 100 g nicht nötig. Wer sich registriert, muss mindestens 18 Jahre alt sein; die ID wird jedes Jahr erneuert und muss am Fluggerät angebracht sein.",
+          "Fliege nicht höher als 120 m (400 ft) über dem nächstgelegenen Punkt des Bodens und behalte das Fluggerät stets in direkter Sichtweite, mit freiem Blick auf den umgebenden Luftraum. Fliege nie über Menschenansammlungen.",
+          "Halte horizontal mindestens 50 m Abstand zu Personen und fliege nicht über sie, es sei denn, sie sind an deinem Flug beteiligt. Fluggeräte unter 250 g oder mit der Klassenkennzeichnung UK0 oder UK1 dürfen näher an Personen und über sie fliegen, aber nie über Menschenansammlungen. Alle anderen Fluggeräte müssen außerdem mindestens 150 m Abstand zu Wohn-, Freizeit-, Gewerbe- und Industriegebieten halten.",
+          "Seit dem 1. Januar 2026 müssen UK1-, UK2- und UK3-Fluggeräte vor dem Flug mit Remote ID ausgestattet und eingeschaltet sein. Fliege nie ohne Erlaubnis in der Flugbeschränkungszone (FRZ) eines Flughafens, Flugplatzes oder Weltraumbahnhofs."
+        ],
+        "checklist": [
+          "Prüfe, ob deine Flyer ID gültig ist und ob an jedem Fluggerät, das du fliegst, deine Operator ID (nicht die Flyer ID) angebracht ist.",
+          "Sieh auf der Seite der CAA zu den Klassenkennzeichnungen nach, welches Gewicht und welche Klassenkennzeichnung dein Fluggerät hat, damit du weißt, welche Regeln gelten.",
+          "Prüfe vor jedem Flug die NATS-Karte der Luftraumbeschränkungen und die NOTAMs auf Flugbeschränkungszonen und andere Beschränkungen, und denke daran, dass diese Quellen unvollständig sein können. Achte außerdem auf gesperrte Anlagen, zeitweilige Veranstaltungsverbote und Schilder mit örtlichen Satzungen (Byelaws).",
+          "Schalte bei Nachtflügen ein grün blinkendes Licht ein. Eine Versicherung ist für Freizeitflüge mit Fluggeräten unter 20 kg optional, für bezahlte Arbeit und für Fluggeräte ab 20 kg aber Pflicht."
+        ],
+        "links": {
+          "official": "Drohnen-Informationen der CAA",
+          "registration": "Registrierung zum Fliegen (Flyer ID und Operator ID)",
+          "airspaceMap": "NATS-Karten der UAS-Luftraumbeschränkungen"
+        },
+        "metaTitle": "UK Drohnenregeln: Flyer ID, Operator ID & FRZ",
+        "metaDescription": "Drohnenregeln im Vereinigten Königreich (CAA): Flyer ID, Operator ID, 120-m-Höhengrenze, Abstand zu Personen und Prüfung der Flugbeschränkungszonen."
+      },
+      "ca": {
+        "name": "Kanada",
+        "capital": "Ottawa",
+        "authority": "Transport Canada (kanadisches Verkehrsministerium)",
+        "summary": [
+          "In Kanada reguliert Transport Canada Drohnen nach Teil IX der Canadian Aviation Regulations. Die Regeln hängen vom Gewicht der Drohne ab: Mikrodrohnen unter 250 g haben eigene Regeln und brauchen weder Registrierung noch Pilotenzeugnis, Drohnen von 250 g bis 25 kg müssen dagegen registriert sein und von einem zertifizierten Piloten geflogen werden.",
+          "Drohnen werden online im Drone Management Portal von Transport Canada registriert, und die Registrierungsnummer muss auf der Drohne angebracht sein. Für Basic-Operationen ist das Pilotenzeugnis – Basic Operations nötig (Bestehen der Online-Prüfung Small Basic, Mindestalter 14 Jahre). Für Flüge näher an Personen oder in kontrolliertem Luftraum ist das Advanced-Zeugnis nötig (Mindestalter 16 Jahre).",
+          "Zur Planung, wo du fliegen kannst, verweist Transport Canada auf das NRC Drone Site Selection Tool, das verbotene, eingeschränkte und potenziell gefährliche Gebiete zeigt, und auf NAV Drone, mit dem du in dem von NAV CANADA kontrollierten Luftraum eine Erlaubnis beantragst. Ausländische Piloten und Betreiber können in Kanada keine Drohne registrieren und brauchen zur Einhaltung der Regeln ein Special Flight Operations Certificate (SFOC-RPAS); Besucher sollten daher vor der Reise die Hinweise von Transport Canada prüfen."
+        ],
+        "highlights": [
+          "Unter 250 g (Mikrodrohnen): Es sind weder Registrierung noch Pilotenzeugnis nötig, aber die übrigen Regeln gelten weiter, zum Beispiel Abstand zu Einsatzstellen und zu gesperrtem Luftraum. Das Gewicht von allem, was angebracht ist, etwa einer Kamera oder eines Schutzkäfigs, zählt mit; die Fernsteuerung nicht.",
+          "Von 250 g bis 25 kg: Die Drohne muss bei Transport Canada registriert und mit ihrer Registrierungsnummer gekennzeichnet sein. Für das Fliegen einer nicht registrierten oder nicht gekennzeichneten Drohne drohen Strafen.",
+          "Basic-Operationen erfordern das Pilotenzeugnis – Basic Operations (Online-Prüfung Small Basic, Mindestalter 14 Jahre, das Zeugnis läuft nicht ab). Führe das Zeugnis und den Registrierungsnachweis mit. Das Advanced-Zeugnis (Mindestalter 16 Jahre) braucht man für Operationen wie Flüge in kontrolliertem Luftraum oder näher an Personen.",
+          "Um innerhalb der Basic-Operationen zu bleiben, behalte die Drohne stets in Sichtweite, halte horizontal mehr als 30 m Abstand zu jeder Person, fliege nur in nicht kontrolliertem Luftraum und halte mehr als 5,6 km (3 NM) Abstand zu zertifizierten Flughäfen und mehr als 1,9 km (1 NM) zu zertifizierten Hubschrauberlandeplätzen. Innerhalb von 5,6 km um einen Militärflugplatz brauchst du die Erlaubnis des Verteidigungsministeriums (DND).",
+          "Fliege nicht innerhalb des Sicherheitsbereichs eines Rettungs- oder Polizeieinsatzes und nicht innerhalb von 9,3 km (5 NM) um einen Waldbrand. Start und Landung in einem Nationalpark sind nicht erlaubt, außer die Parkleitung genehmigt es. Für Flüge in der Nähe öffentlich angekündigter Veranstaltungen im Freien ist selbst mit Mikrodrohnen ein SFOC nötig."
+        ],
+        "checklist": [
+          "Prüfe das Betriebsgewicht deiner Drohne einschließlich Kamera und anderem Zubehör, um zu klären, ob Registrierung und Pilotenzeugnis gelten.",
+          "Prüfe, ob die Drohne registriert und gekennzeichnet ist, und führe dein Pilotenzeugnis und den Registrierungsnachweis mit.",
+          "Sieh dir das Gelände an und prüfe vor jedem Flug das NRC Drone Site Selection Tool, NAV Drone und die aktuellen NOTAMs. Das NRC-Tool ist nur eine Orientierungshilfe.",
+          "Eine Versicherung ist für Standardoperationen nicht vorgeschrieben, wird aber empfohlen. Höhenbegrenzungen und die Regeln für ausländische Betreiber prüfst du vor dem Flug direkt auf den Seiten von Transport Canada."
+        ],
+        "links": {
+          "official": "Drohnensicherheit bei Transport Canada",
+          "registration": "Drohne registrieren",
+          "airspaceMap": "NRC Drone Site Selection Tool"
+        },
+        "metaTitle": "Kanada Drohnenregeln: Registrierung & Pilotenzeugnis",
+        "metaDescription": "Drohnenregeln in Kanada (Transport Canada): Registrierung ab 250 g, Basic- und Advanced-Zeugnis, Abstände zu Personen und Flughäfen."
+      },
+      "au": {
+        "name": "Australien",
+        "capital": "Canberra",
+        "authority": "CASA (australische Zivilluftfahrt-Sicherheitsbehörde)",
+        "summary": [
+          "In Australien reguliert die Civil Aviation Safety Authority (CASA) Drohnen, und die Drohnen-Sicherheitsregeln der CASA fassen die Vorschriften aus Teil 101 der Civil Aviation Safety Regulations vereinfacht zusammen. Wer zum Spaß fliegt, braucht keine Drohnenregistrierung, keine Lizenz und keine Betreiberakkreditierung, auch nicht mit Mikrodrohnen.",
+          "Flüge für Arbeit oder Geschäft sind anders: Sie erfordern eine Drohnenregistrierung, eine Betreiberakkreditierung oder eine Fernpilotenlizenz und die Einhaltung der Regeln für die jeweilige Art des Betriebs. Die CASA teilt Drohnen nach Gewicht in Micro (bis 250 g), Very small (über 250 g bis 2 kg), Small (über 2 kg bis 25 kg) und Medium (über 25 kg bis 150 kg) ein, und je nach Gewicht kann eine Qualifikation oder Akkreditierung nötig sein. Drohnen über 25 kg brauchen auch für Freizeitflüge eine Genehmigung.",
+          "Vor jedem Flug empfiehlt die CASA, eine von der CASA geprüfte Drohnen-Sicherheits-App zu nutzen, die Luftraumbeschränkungen und örtliche Regeln anzeigt. In Nationalparks, Wildtiergebieten oder auf manchen Privatgrundstücken kann eine Genehmigung nötig sein, und die Regeln unterscheiden sich je nach Bundesstaat und Territorium."
+        ],
+        "highlights": [
+          "Für Freizeitflüge sind weder Registrierung noch Lizenz oder Betreiberakkreditierung nötig, auch nicht mit Mikrodrohnen. Für Flüge zu Arbeits- oder Geschäftszwecken sind eine Drohnenregistrierung sowie eine Betreiberakkreditierung oder eine Fernpilotenlizenz nötig.",
+          "Fliege höchstens 120 m über Grund und behalte die Drohne mit eigenen Augen im Blick, nicht über Bildschirm, Gerät oder Brille. Fliege nicht durch Wolken, Nebel oder Rauch. Fliege nur bei Tageslicht und nur mit einer Drohne gleichzeitig.",
+          "Halte mindestens 30 m Abstand zu anderen Personen und fliege nie über jemanden hinweg. Fliege nicht in belebten Bereichen wie Stränden, Parks, Veranstaltungen oder Sportplätzen während eines Spiels.",
+          "In der Nähe von Flughäfen mit Kontrollturm dürfen Drohnen über 250 g nicht innerhalb von 5,5 km fliegen. Drohnen bis 250 g dürfen innerhalb von 5,5 km bis 45 m hoch fliegen, aber nicht auf dem Flughafengelände und nicht in den An- und Abflugwegen. In der Nähe kleinerer Flugplätze ohne Kontrollturm ist Fliegen innerhalb von 5,5 km erlaubt, aber wenn du ein bemanntes Luftfahrzeug bemerkst, starte nicht oder bringe die Drohne aus dessen Weg und lande so schnell wie möglich. Dasselbe gilt innerhalb von 1,4 km um Hubschrauberlandeplätze.",
+          "Halte Abstand zu Bereichen mit Einsätzen der öffentlichen Sicherheit oder Notfalleinsätzen, etwa von Polizei, Such- und Rettungsdiensten oder Feuerwehr, und respektiere die Privatsphäre anderer. In Nationalparks, Wildtiergebieten oder auf manchen Privatgrundstücken kann eine Genehmigung nötig sein."
+        ],
+        "checklist": [
+          "Prüfe vor jedem Flug deinen Standort in einer von der CASA geprüften Drohnen-Sicherheits-App und beachte die dort angezeigten örtlichen Regeln.",
+          "Prüfe, ob der Ort eine Genehmigung braucht, etwa Nationalparks, Wildtiergebiete und manche Privatgrundstücke, denn die Regeln unterscheiden sich je nach Bundesstaat und Territorium.",
+          "Wenn der Flug für Arbeit oder Geschäft ist, lies vor dem Flug die Seiten der CASA zu Registrierung und zu Betreiberakkreditierung oder Fernpilotenlizenz.",
+          "Prüfe den Abstand zu Flughäfen (5,5 km) und Hubschrauberlandeplätzen (1,4 km) und halte dich von Notfalleinsätzen fern."
+        ],
+        "links": {
+          "official": "Drohnen-Informationen der CASA",
+          "registration": "Drohnenregistrierung (CASA)"
+        },
+        "metaTitle": "Australien Drohnenregeln: CASA-Regeln erklärt",
+        "metaDescription": "Drohnenregeln in Australien (CASA): Freizeit- und gewerbliche Flüge, 120-m-Grenze, 30 m zu Personen, 5,5 km zu Flughäfen und Drohnen-Sicherheits-Apps."
       }
     },
     "relatedGuidesTitle": "Ähnliche Ratgeber",

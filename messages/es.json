@@ -555,7 +555,7 @@
         ],
         "highlights": [
           "Un multicóptero con una masa máxima de despegue superior a 2 kg debe registrarse (신고). También están sujetos al registro los drones usados en una actividad empresarial regulada por la Ley de Negocios de Aviación (alquiler de aeronaves, deportes aéreos de ocio o uso de aeronaves ultraligeras). Que el uso sea empresarial depende de la finalidad real, así que consulta las preguntas frecuentes de registro de Drone OneStop si tienes dudas.",
-          "El certificado de piloto depende de la masa máxima de despegue del dron, no de su finalidad. La clase más baja (Clase 4, de más de 250 g hasta 2 kg) se obtiene con un curso y un examen en línea de la Autoridad de Seguridad del Transporte de Corea (KOTSA). Consulta en KOTSA los requisitos que se aplican a tu dron.",
+          "Que haga falta un certificado de piloto, y de qué clase, puede depender de factores como el tipo y el peso del dron. Consulta los detalles directamente en la página de certificados de piloto de la Korea Transportation Safety Authority (KOTSA).",
           "Volar en estos lugares está restringido y requiere permiso de la oficina regional de aviación o del Ministerio de Defensa: a menos de 9,3 km de un aeródromo (zona de control), zonas de exclusión aérea (cerca de la línea de armisticio y partes del centro de Seúl) y altitudes de 150 m o más. Los drones de más de 25 kg también necesitan aprobación de vuelo. Según Drone OneStop, un dron de 25 kg o menos volado de día por debajo de 150 m fuera de las zonas de control y de exclusión no necesita aprobación de vuelo.",
           "Volar de noche (de la puesta a la salida del sol) o a una distancia a la que no puedas ver el dron a simple vista requiere una aprobación especial de vuelo de la oficina regional de aviación. La aprobación especial es independiente de la aprobación de vuelo ordinaria.",
           "Las normas de conducta del piloto se aplican a todos, sin importar el peso ni la finalidad (artículo 129 de la Ley de Seguridad de la Aviación): no se pueden lanzar objetos, volar de forma peligrosa sobre multitudes o zonas densamente pobladas, volar tan cerca de edificios que haya riesgo de colisión, volar bajo los efectos del alcohol ni volar cuando no se ve el dron. Las infracciones pueden acarrear una multa de hasta 2 millones de wones."
@@ -661,6 +661,95 @@
         },
         "metaTitle": "Drones en Alemania: normativa y DIPUL",
         "metaDescription": "Normativa de drones en Alemania: marco EASA de la UE, registro ante el LBA y cómo consultar las zonas de restricción de vuelo en DIPUL antes de volar."
+      },
+      "gb": {
+        "name": "Reino Unido",
+        "capital": "Londres",
+        "authority": "CAA (Autoridad de Aviación Civil del Reino Unido)",
+        "summary": [
+          "En el Reino Unido, el vuelo de drones lo supervisa la Autoridad de Aviación Civil (CAA). La mayor parte del vuelo recreativo y del vuelo comercial de bajo riesgo entra en la categoría Abierta (Open), y el Código de drones y aeromodelos (Drone and Model Aircraft Code) de la CAA es su principal referencia.",
+          "La mayoría de los vuelos al aire libre exigen un Flyer ID (se obtiene aprobando el examen teórico en línea de la CAA) y un Operator ID (que registra a la persona responsable de la aeronave). Cuál necesitas depende del peso o de la marca de clase de la aeronave y de si lleva cámara. La CAA no reconoce registros ni titulaciones obtenidos en el extranjero, así que los pilotos visitantes necesitan identificadores británicos antes de volar en el Reino Unido.",
+          "Antes de cada vuelo, comprueba las restricciones de tu ubicación. La mayoría de los aeropuertos, aeródromos y puertos espaciales tienen una zona de restricción de vuelo (FRZ) y nunca debes volar en ella sin permiso. El mapa de restricciones del espacio aéreo que publica NATS es una fuente que puedes consultar, pero la CAA advierte de que no muestra todo, sobre todo las restricciones creadas con poca antelación."
+        ],
+        "highlights": [
+          "Flyer ID: obligatorio para aeronaves de 100 g o más. Se obtiene aprobando el examen teórico en línea de la CAA. No hay edad mínima, pero los menores de 13 años deben hacer el examen y registrarse con un padre, madre o tutor. Un Flyer ID dura cinco años.",
+          "Operator ID: obligatorio para aeronaves de 250 g o más y para las de 100 g o más que lleven cámara. Es opcional para aeronaves de 100 a 250 g sin cámara y no hace falta por debajo de 100 g. Quien se registra debe tener 18 años o más, el ID se renueva cada año y debe mostrarse en la aeronave.",
+          "No vueles a más de 120 m (400 ft) sobre el punto del terreno más cercano y mantén la aeronave siempre a la vista, con una vista completa del espacio aéreo circundante. Nunca vueles sobre multitudes.",
+          "Mantén al menos 50 m de distancia horizontal respecto a las personas y no vueles sobre ellas, salvo que participen en tu vuelo. Las aeronaves de menos de 250 g, o con marca de clase UK0 o UK1, pueden volar más cerca de las personas y sobre ellas, pero nunca sobre multitudes. Las demás aeronaves deben mantenerse además a al menos 150 m de zonas residenciales, recreativas, comerciales e industriales.",
+          "Desde el 1 de enero de 2026, las aeronaves UK1, UK2 y UK3 deben llevar la identificación remota (Remote ID) añadida y activada antes del vuelo. No vueles en la zona de restricción de vuelo (FRZ) de un aeropuerto, aeródromo o puerto espacial sin permiso."
+        ],
+        "checklist": [
+          "Comprueba que tu Flyer ID siga vigente y que el Operator ID (no el Flyer ID) esté visible en cada aeronave que uses.",
+          "Consulta el peso y la marca de clase de tu aeronave en la página de marcas de clase de la CAA para saber qué normas se aplican.",
+          "Antes de cada vuelo, consulta el mapa de restricciones del espacio aéreo de NATS y los NOTAM para ver las zonas de restricción de vuelo y otras restricciones, y recuerda que pueden estar incompletos. Fíjate también en los lugares restringidos, las prohibiciones temporales por eventos y los carteles de ordenanzas locales (byelaws).",
+          "Si vuelas de noche, enciende una luz verde intermitente. El seguro es opcional para el vuelo recreativo de aeronaves de menos de 20 kg, pero obligatorio para el trabajo remunerado y para aeronaves de 20 kg o más."
+        ],
+        "links": {
+          "official": "Información sobre drones de la CAA",
+          "registration": "Registro para volar (Flyer ID y Operator ID)",
+          "airspaceMap": "Mapas de restricciones del espacio aéreo UAS de NATS"
+        },
+        "metaTitle": "Normas de drones en Reino Unido: Flyer ID y Operator ID",
+        "metaDescription": "Normas de drones en el Reino Unido (CAA): Flyer ID, Operator ID, límite de 120 m, distancia a las personas y cómo comprobar las zonas FRZ."
+      },
+      "ca": {
+        "name": "Canadá",
+        "capital": "Ottawa",
+        "authority": "Transport Canada (Ministerio de Transporte de Canadá)",
+        "summary": [
+          "En Canadá, Transport Canada regula los drones con arreglo a la Parte IX del Reglamento de Aviación Canadiense (CARs). Las normas dependen del peso del dron: los microdrones de menos de 250 g tienen sus propias normas y no exigen registro ni certificado de piloto, mientras que los drones de 250 g hasta 25 kg deben registrarse y ser pilotados por un piloto certificado.",
+          "Los drones se registran en línea en el Portal de Gestión de Drones (Drone Management Portal) de Transport Canada y el número de registro debe marcarse en el dron. Las operaciones básicas exigen el Certificado de piloto – Operaciones básicas (aprobar el examen en línea Small Basic, con una edad mínima de 14 años). Volar más cerca de las personas o en espacio aéreo controlado exige el certificado Avanzado (edad mínima de 16 años).",
+          "Para planificar dónde volar, Transport Canada remite a la Herramienta de selección de sitios para drones del NRC (Drone Site Selection Tool), que muestra zonas prohibidas, restringidas o potencialmente peligrosas, y a NAV Drone, que sirve para solicitar permiso en el espacio aéreo controlado por NAV CANADA. Los pilotos y operadores extranjeros no pueden registrar un dron en Canadá y necesitan un Certificado de operaciones de vuelo especiales (SFOC-RPAS) para cumplir la normativa, así que los visitantes deben consultar las indicaciones de Transport Canada antes de viajar."
+        ],
+        "highlights": [
+          "Menos de 250 g (microdrones): no se exige registro ni certificado de piloto, pero el resto de las normas siguen aplicándose, como mantenerse alejado de lugares de emergencia y de espacio aéreo restringido. Cuenta el peso de todo lo que lleve acoplado, como una cámara o una jaula de protección; el mando no cuenta.",
+          "De 250 g hasta 25 kg: el dron debe registrarse en Transport Canada y llevar marcado su número de registro. Volar un dron sin registrar o sin marcar conlleva sanciones.",
+          "Las operaciones básicas exigen el Certificado de piloto – Operaciones básicas (examen en línea Small Basic, edad mínima de 14 años, el certificado no caduca). Lleva contigo el certificado y el justificante de registro. El certificado Avanzado (edad mínima de 16 años) hace falta para operaciones como volar en espacio aéreo controlado o más cerca de las personas.",
+          "Para mantenerte dentro de las operaciones básicas, mantén el dron siempre a la vista, a más de 30 m en horizontal de cualquier persona, vuela solo en espacio aéreo no controlado y a más de 5,6 km (3 NM) de los aeropuertos certificados y a más de 1,9 km (1 NM) de los helipuertos certificados. A menos de 5,6 km de un aeródromo militar necesitas el permiso del Departamento de Defensa Nacional (DND).",
+          "No vueles dentro del perímetro de seguridad de una intervención de emergencia ni a menos de 9,3 km (5 NM) de un incendio forestal. El despegue y el aterrizaje dentro de un parque nacional no están permitidos salvo que lo autorice el superintendente del parque. Volar cerca de eventos al aire libre anunciados al público exige un SFOC, incluso con microdrones."
+        ],
+        "checklist": [
+          "Confirma el peso operativo de tu dron, incluidas la cámara u otros accesorios, para saber si se aplican el registro y el certificado de piloto.",
+          "Comprueba que el dron está registrado y marcado, y lleva contigo tu certificado de piloto y el justificante de registro.",
+          "Reconoce la zona y consulta la herramienta de selección de sitios del NRC, NAV Drone y los NOTAM vigentes antes de cada vuelo. La herramienta del NRC es solo una ayuda.",
+          "El seguro no es obligatorio en las operaciones estándar, pero se recomienda. Para los límites de altura y las normas para operadores extranjeros, consulta las páginas de Transport Canada antes de volar."
+        ],
+        "links": {
+          "official": "Seguridad de drones de Transport Canada",
+          "registration": "Registro del dron",
+          "airspaceMap": "Herramienta de selección de sitios para drones del NRC"
+        },
+        "metaTitle": "Normas de drones en Canadá: registro y certificado",
+        "metaDescription": "Normas de drones en Canadá (Transport Canada): registro desde 250 g, certificados Básico y Avanzado, distancias a personas y aeropuertos."
+      },
+      "au": {
+        "name": "Australia",
+        "capital": "Canberra",
+        "authority": "CASA (Autoridad de Seguridad de la Aviación Civil)",
+        "summary": [
+          "En Australia, los drones los regula la Autoridad de Seguridad de la Aviación Civil (CASA), y las normas de seguridad para drones de CASA simplifican la normativa de la Parte 101 de las Civil Aviation Safety Regulations. Volar por diversión no exige registro del dron, licencia ni acreditación de operador, tampoco con microdrones.",
+          "Volar por trabajo o por negocio es distinto: exige registrar el dron, la acreditación de operador o una licencia de piloto remoto, y cumplir las normas de ese tipo de operación. CASA clasifica los drones por peso en micro (250 g o menos), muy pequeños (de más de 250 g a 2 kg), pequeños (de más de 2 kg a 25 kg) y medianos (de más de 25 kg a 150 kg), y según el peso puede hacer falta una cualificación o acreditación. Los drones de más de 25 kg necesitan aprobación incluso para el vuelo recreativo.",
+          "Antes de cada vuelo, CASA recomienda consultar una aplicación de seguridad para drones verificada por CASA, que muestra las restricciones del espacio aéreo y las normas locales. Puede hacer falta aprobación en parques nacionales, zonas de vida silvestre o algunas propiedades privadas, y las normas varían según el estado y el territorio."
+        ],
+        "highlights": [
+          "El vuelo recreativo no exige registro, licencia ni acreditación de operador, tampoco con microdrones. Volar por trabajo o por negocio exige registrar el dron y, además, la acreditación de operador o una licencia de piloto remoto.",
+          "Vuela a 120 m o menos sobre el nivel del suelo y mantén el dron a la vista con tus propios ojos, no a través de una pantalla, un dispositivo o unas gafas. No vueles a través de nubes, niebla o humo. Vuela solo de día y con un solo dron a la vez.",
+          "Mantén al menos 30 m de distancia respecto a otras personas y nunca vueles sobre nadie. No vueles en zonas concurridas como playas, parques, eventos o campos deportivos durante los partidos.",
+          "Cerca de aeropuertos con torre de control, los drones de más de 250 g no pueden volar a menos de 5,5 km. Los de 250 g o menos pueden volar hasta 45 m dentro de esos 5,5 km, pero no dentro del recinto del aeropuerto ni en las trayectorias de aproximación y salida. Cerca de aeropuertos pequeños sin torre de control se permite volar a menos de 5,5 km, pero si te das cuenta de que hay una aeronave tripulada, no despegues, o aparta el dron de su trayectoria y aterriza lo antes posible. Lo mismo se aplica a menos de 1,4 km de los helipuertos.",
+          "Mantente alejado de las zonas con operaciones de seguridad pública o emergencia, como las de policía, búsqueda y rescate o bomberos, y respeta la privacidad de los demás. Puede hacer falta aprobación en parques nacionales, zonas de vida silvestre o algunas propiedades privadas."
+        ],
+        "checklist": [
+          "Comprueba tu ubicación en una aplicación de seguridad para drones verificada por CASA antes de cada vuelo y revisa las normas locales que muestre.",
+          "Comprueba si el lugar necesita aprobación, como los parques nacionales, las zonas de vida silvestre y algunas propiedades privadas, porque las normas varían según el estado y el territorio.",
+          "Si el vuelo es por trabajo o por negocio, consulta antes de volar las páginas de CASA sobre registro y sobre acreditación de operador o licencia de piloto remoto.",
+          "Comprueba la distancia a los aeropuertos (5,5 km) y a los helipuertos (1,4 km), y mantente alejado de las operaciones de emergencia."
+        ],
+        "links": {
+          "official": "Información sobre drones de CASA",
+          "registration": "Registro de drones (CASA)"
+        },
+        "metaTitle": "Normas de drones en Australia: reglas de la CASA",
+        "metaDescription": "Normas de drones en Australia (CASA): vuelo recreativo y comercial, límite de 120 m, 30 m a las personas, 5,5 km a aeropuertos y apps de seguridad."
       }
     },
     "relatedGuidesTitle": "Guías relacionadas",

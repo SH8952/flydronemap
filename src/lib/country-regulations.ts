@@ -20,7 +20,7 @@
  * 반드시 각국 공식 기관에서 최신 규정을 확인하도록 화면에 안내 문구를 둔다.
  */
 
-export type RegulationCountryId = "us" | "kr" | "jp" | "es" | "de";
+export type RegulationCountryId = "us" | "kr" | "jp" | "es" | "de" | "gb" | "ca" | "au";
 
 export type RegulationLinkKey =
   | "official"
@@ -130,6 +130,53 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
       },
     ],
   },
+  {
+    id: "gb",
+    relatedGuideSlugs: ["beginner-drone-preflight-checklist", "do-you-need-drone-insurance-checklist"],
+    hasMapData: false,
+    capital: { latitude: 51.5074, longitude: -0.1278 },
+    links: [
+      { key: "official", url: "https://www.caa.co.uk/drones/" },
+      {
+        key: "registration",
+        url: "https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/registering-to-fly-drones-and-model-aircraft/",
+      },
+      {
+        key: "airspaceMap",
+        url: "https://nats-uk.ead-it.com/cms-nats/opencms/en/uas-restriction-zones/",
+      },
+    ],
+  },
+  {
+    id: "ca",
+    relatedGuideSlugs: ["beginner-drone-preflight-checklist", "do-you-need-drone-insurance-checklist"],
+    hasMapData: false,
+    capital: { latitude: 45.4215, longitude: -75.6972 },
+    links: [
+      { key: "official", url: "https://tc.canada.ca/en/aviation/drone-safety" },
+      {
+        key: "registration",
+        url: "https://tc.canada.ca/en/aviation/drone-safety/registering-your-drone",
+      },
+      {
+        key: "airspaceMap",
+        url: "https://nrc.canada.ca/en/drone-tool/",
+      },
+    ],
+  },
+  {
+    id: "au",
+    relatedGuideSlugs: ["beginner-drone-preflight-checklist", "do-you-need-drone-insurance-checklist"],
+    hasMapData: false,
+    capital: { latitude: -35.2809, longitude: 149.13 },
+    links: [
+      { key: "official", url: "https://www.casa.gov.au/drones" },
+      {
+        key: "registration",
+        url: "https://www.casa.gov.au/knowyourdrone/registration",
+      },
+    ],
+  },
 ];
 
 export function getRegulationCountry(
@@ -172,5 +219,23 @@ export const REGULATION_SOURCES: Record<
   de: [
     { name: "LBA — Betreiberregistrierung", url: "https://www.lba.de/DE/Drohnen/UAS_Betreiberregistrierung/UAS_Betreiberregistrierung_node.html" },
     { name: "LBA — FAQ Drohnen", url: "https://www.lba.de/DE/Drohnen/FAQ/Uebersicht_FAQ_node.html" },
+  ],
+  gb: [
+    { name: "CAA — Registering to fly drones and model aircraft", url: "https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/registering-to-fly-drones-and-model-aircraft/" },
+    { name: "CAA — Where you can fly", url: "https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/where-you-can-fly/" },
+    { name: "CAA — Class marks", url: "https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/class-marks/" },
+    { name: "CAA — The Drone and Model Aircraft Code (March 2026)", url: "https://www.caa.co.uk/media/csmfqbs1/the-drone-code-march-2026.pdf" },
+  ],
+  ca: [
+    { name: "Transport Canada — Basic operations", url: "https://tc.canada.ca/en/aviation/drone-safety/learn-rules-you-fly-your-drone/drone-operation-categories-pilot-certificates/basic-operations" },
+    { name: "Transport Canada — Drone operation categories and pilot certificates", url: "https://tc.canada.ca/en/aviation/drone-safety/learn-rules-you-fly-your-drone/drone-operation-categories-pilot-certificates" },
+    { name: "Transport Canada — Registering your drone", url: "https://tc.canada.ca/en/aviation/drone-safety/registering-your-drone" },
+    { name: "Transport Canada — Where to fly your drone", url: "https://tc.canada.ca/en/aviation/drone-safety/learn-rules-you-fly-your-drone/where-fly-your-drone" },
+  ],
+  au: [
+    { name: "CASA — Drone safety rules", url: "https://www.casa.gov.au/drones/drone-rules/drone-safety-rules" },
+    { name: "CASA — Drone weight categories and requirements", url: "https://www.casa.gov.au/drones/operator-accreditation-certificate/drone-weight-categories-and-requirements" },
+    { name: "CASA — Flying near airports", url: "https://www.casa.gov.au/drones/drone-rules/flying-near-airports" },
+    { name: "CASA — Registration", url: "https://www.casa.gov.au/knowyourdrone/registration" },
   ],
 };
