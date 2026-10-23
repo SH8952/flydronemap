@@ -1,3 +1,13 @@
+## 2026-10-23 — 제목 70자 미만 규칙 적용: 기종별 풍속 페이지 제목 4개 단축
+
+**배경**
+- 제목은 한 줄·70자 미만이어야 한다는 기준으로 content/guides 전체(69편 × 5개 언어) 제목 길이를 점검. 기준을 넘는 것은 정확히 70자인 4건뿐이었음(독일어 3, 스페인어 1).
+
+**변경**
+- de `dji-mavic-3-pro-wind-resistance`, `dji-mini-3-pro-wind-resistance`, `dji-mini-4-pro-wind-resistance`: "…und reale Bedingungen" → "…und Praxis" (각 59자).
+- es `dji-neo-wind-resistance`: "…y condiciones reales" → "…y realidad" (60자, 같은 기종군 es 제목과 어조 통일).
+- 본문·설명·날짜·링크는 변경 없음. 백업: `.backups/제목길이수정전_20261023/`.
+
 ## 2026-10-21 — 백업 폴더 단일화·1주일 초과 백업 삭제·백업 방식 수정 (사이트 동작 변경 없음)
 - 2026-10-14 이전(1주일 경과) 백업 폴더·압축 파일 삭제. 보존: 10-14 이후 백업, 날짜 없는 보조 자료.
 - 루트의 `_backups`(구형)·`.claude-backups`(빈 폴더)를 제거해 `.backups`로 단일화. `automation/apply-seo-task.command`의 백업 위치도 `_backups` → `.backups`로 변경.
