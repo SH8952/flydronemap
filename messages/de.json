@@ -549,22 +549,22 @@
         "capital": "Seoul",
         "authority": "Ministerium für Land, Infrastruktur und Verkehr (MOLIT) · Drone OneStop",
         "summary": [
-          "Je nach Gewicht und Verwendungszweck müssen Sie Ihre Drohne registrieren und über das Portal Drone OneStop vorab eine Flug-/Luftaufnahmegenehmigung einholen.",
-          "Wer in einem genehmigungspflichtigen Gebiet ohne vorherige Genehmigung fliegt, muss laut Drone OneStop bei einem ersten Verstoß ein Bußgeld von 1,5 Mio. KRW zahlen. Seoul und der Großraum Seoul sind als Flugverbots- und Sperrluftraum ausgewiesen, sodass die meisten Flüge dort eine vorherige Genehmigung brauchen; die Stadt Seoul verweist zudem auf Geldstrafen von bis zu 5 Mio. KRW nach Artikel 161 des Luftfahrtsicherheitsgesetzes.",
+          "Je nach Gewicht und Zweck musst du deine Drohne anmelden und über das Portal Drone OneStop vorab eine Flugfreigabe einholen. Bei Foto- und Videoaufnahmen nutzt du den Antrag auf Luftaufnahmen bei Drone OneStop (er ersetzte im Dezember 2022 das frühere Genehmigungssystem), um zu prüfen, ob im Aufnahmegebiet Militär- oder Sicherheitsanlagen mit Aufnahmeverbot liegen.",
+          "Wer ohne die erforderliche Erlaubnis an einem genehmigungspflichtigen Ort fliegt, muss laut Drone OneStop mit Bußgeldern oder Strafen nach dem Flugsicherheitsgesetz rechnen; Verstöße gegen die Verhaltensregeln für Piloten können mit bis zu 2 Millionen Won Bußgeld geahndet werden. Teile der Seouler Innenstadt und Gebiete nahe der Waffenstillstandslinie sind Flugverbotszonen, und im Umkreis von 9,3 km um Flugplätze liegen Kontrollzonen – prüfe vor jedem Flug die Karte von Drone OneStop.",
           "Auf dieser Website werden bei der Auswahl eines Standorts in Südkorea auch Flugverbotszonen, Kontrollzonen und weitere Luftraum-Ebenen farbig auf der Karte angezeigt."
         ],
         "highlights": [
           "Ein Multicopter mit einer maximalen Startmasse über 2 kg muss angemeldet werden (신고). Auch Drohnen, die in einem Gewerbe nach dem Luftfahrtgeschäftsgesetz eingesetzt werden (Fluggeräteverleih, Luftfahrt-Freizeitsport oder Betrieb von Ultraleichtfluggeräten), unterliegen der Anmeldung. Ob die Nutzung gewerblich ist, richtet sich nach dem tatsächlichen Zweck; im Zweifel hilft die Registrierungs-FAQ von Drone OneStop.",
-          "Ab mehr als 250 g maximaler Startmasse ist ein Pilotenzeugnis nötig. Die niedrigste Klasse (Klasse 4, über 250 g bis 2 kg) erwirbst du mit einem Online-Kurs und einer Prüfung der Korea Transportation Safety Authority (KOTSA).",
-          "Eine Fluggenehmigung ist ab 150 m Höhe, für Drohnen über 25 kg sowie in Flugverbotszonen, Sperrgebieten und Kontrollzonen erforderlich. Zivile und militärische Kontrollzonen um Flugplätze haben einen Radius von 9,3 km.",
-          "Seoul und der Großraum sind Flugverbots- und Sperrluftraum, daher brauchen Flüge dort eine vorherige Genehmigung über Drone OneStop, meist 3 bis 5 Tage im Voraus.",
-          "Laut der Stadt Seoul sind Nachtflüge (Sonnenuntergang bis Sonnenaufgang), Flüge über Menschenmengen und Flüge unter Alkoholeinfluss nicht erlaubt."
+          "Das Pilotenzeugnis richtet sich nach der maximalen Startmasse der Drohne, nicht nach dem Verwendungszweck. Die niedrigste Klasse (Klasse 4, über 250 g bis 2 kg) erwirbst du mit einem Online-Kurs und einer Prüfung der Korea Transportation Safety Authority (KOTSA). Welche Anforderungen für deine Drohne gelten, erfährst du bei KOTSA.",
+          "Flüge an folgenden Orten sind eingeschränkt und brauchen die Erlaubnis der regionalen Luftfahrtbehörde oder des Verteidigungsministeriums: im Umkreis von 9,3 km um einen Flugplatz (Kontrollzone), in Flugverbotszonen (nahe der Waffenstillstandslinie und in Teilen der Seouler Innenstadt) und ab 150 m Höhe. Auch Drohnen über 25 kg brauchen eine Flugfreigabe. Laut Drone OneStop braucht eine Drohne bis 25 kg bei Tageslicht unter 150 m außerhalb von Kontroll- und Flugverbotszonen keine Flugfreigabe.",
+          "Flüge bei Nacht (Sonnenuntergang bis Sonnenaufgang) oder in einer Entfernung, in der du die Drohne mit bloßem Auge nicht mehr erkennen kannst, brauchen eine Sonderfreigabe der regionalen Luftfahrtbehörde. Die Sonderfreigabe ist von der normalen Flugfreigabe getrennt.",
+          "Die Verhaltensregeln für Piloten gelten für alle, unabhängig von Gewicht und Zweck (Artikel 129 des Flugsicherheitsgesetzes): keine Gegenstände abwerfen, nicht gefährlich über Menschenmengen oder dicht besiedelten Gebieten fliegen, nicht so nah an Gebäuden fliegen, dass eine Kollision droht, nicht unter Alkoholeinfluss fliegen und nicht fliegen, wenn du die Drohne nicht sehen kannst. Verstöße können mit einem Bußgeld von bis zu 2 Millionen Won geahndet werden."
         ],
         "checklist": [
           "Gleiche die maximale Startmasse deiner Drohne und ihren Verwendungszweck (gewerblich oder nicht) mit der Registrierungs-FAQ von Drone OneStop ab.",
-          "Prüfe deinen Standort auf der Luftraumkarte von Drone OneStop und beantrage die Fluggenehmigung, wo nötig, einige Werktage vorher.",
-          "Fotografiere oder filme keine Militäranlagen oder andere sensible Einrichtungen. Informiere dich vor einem Dreh bei Drone OneStop über den aktuellen Hinweis zu Luftaufnahmen.",
-          "Fliege bei Tageslicht und halte Abstand zu Menschenansammlungen."
+          "Prüfe deinen Standort in der Drone-OneStop-Karte („지도로 확인하기“) und beantrage die Flugfreigabe, wo nötig, rechtzeitig.",
+          "Bei Foto- und Videoaufnahmen prüfst du über den Antrag auf Luftaufnahmen bei Drone OneStop, ob das Aufnahmegebiet Einrichtungen mit Aufnahmeverbot einschließt. Fotografiere oder filme keine Militäranlagen oder andere Einrichtungen mit Aufnahmeverbot.",
+          "Fliege bei Tageslicht, mit Sichtkontakt zur Drohne und mit Abstand zu Menschenansammlungen. An Orten wie Parks, Stränden, Nationalparks oder Kulturdenkmälern sprichst du vorher mit dem Eigentümer oder Verwalter."
         ],
         "links": {
           "official": "Drone-OneStop-Portal",
@@ -572,7 +572,7 @@
           "flightApproval": "Antrag auf Flugfreigabe"
         },
         "metaTitle": "Südkorea: Drohnenregeln & Flugverbotszonen",
-        "metaDescription": "Drohnenregeln in Südkorea: Registrierung und Genehmigung über Drone OneStop, Flugverbots- und Kontrollzonen, Bußgelder (1,5 Mio. KRW beim ersten Verstoß) und Luftraumkarte."
+        "metaDescription": "Drohnenregeln in Südkorea: Anmeldung und Flugfreigabe über Drone OneStop, Flugverbots- und Kontrollzonen, Nachtflug und Verhaltensregeln für Piloten."
       },
       "jp": {
         "name": "Japan",

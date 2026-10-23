@@ -549,22 +549,22 @@
         "capital": "Seúl",
         "authority": "Ministerio de Tierra, Infraestructura y Transporte · Drone OneStop",
         "summary": [
-          "Según el peso y el uso, es necesario registrar el dron y obtener autorización de vuelo o de fotografía aérea a través del portal Drone OneStop.",
-          "Según Drone OneStop, volar en una zona que requiere autorización sin haberla obtenido conlleva una multa de 1.500.000 KRW por la primera infracción. Seúl y su área metropolitana figuran como espacio aéreo de exclusión y restringido, por lo que la mayoría de los vuelos requieren autorización previa; además, el Ayuntamiento de Seúl menciona sanciones de hasta 5.000.000 KRW conforme al artículo 161 de la Ley de Seguridad Aérea.",
+          "Según el peso y la finalidad, debes registrar tu dron y obtener la aprobación de vuelo con antelación a través del portal Drone OneStop. Si vas a tomar fotos o vídeo, usa la solicitud de filmación aérea de Drone OneStop (sustituyó al antiguo sistema de permisos en diciembre de 2022) para comprobar si la zona incluye instalaciones militares o de seguridad donde está prohibido fotografiar.",
+          "Volar sin permiso en un lugar que lo exige puede acarrear multas o sanciones según la Ley de Seguridad de la Aviación, y el incumplimiento de las normas de conducta del piloto puede suponer una multa de hasta 2 millones de wones, según Drone OneStop. Partes del centro de Seúl y las zonas cercanas a la línea de armisticio son zonas de exclusión aérea, y los alrededores de los aeródromos (en un radio de 9,3 km) son zonas de control, así que consulta el mapa de Drone OneStop antes de cada vuelo.",
           "En este sitio, al seleccionar una ubicación en Corea del Sur también se muestran en el mapa, en color, las zonas de exclusión, zonas de control y otras capas de espacio aéreo."
         ],
         "highlights": [
           "Un multicóptero con una masa máxima de despegue superior a 2 kg debe registrarse (신고). También están sujetos al registro los drones usados en una actividad empresarial regulada por la Ley de Negocios de Aviación (alquiler de aeronaves, deportes aéreos de ocio o uso de aeronaves ultraligeras). Que el uso sea empresarial depende de la finalidad real, así que consulta las preguntas frecuentes de registro de Drone OneStop si tienes dudas.",
-          "Por encima de 250 g de masa máxima de despegue se necesita un certificado de piloto. La clase más baja (Clase 4, de más de 250 g hasta 2 kg) se obtiene con un curso y un examen en línea de la Autoridad de Seguridad del Transporte de Corea (KOTSA).",
-          "Se requiere autorización de vuelo a 150 m o más, para drones de más de 25 kg y en zonas prohibidas, zonas restringidas y zonas de control. Las zonas de control civiles y militares alrededor de los aeródromos tienen un radio de 9,3 km.",
-          "Seúl y su área metropolitana son espacio aéreo de exclusión y restringido, por lo que los vuelos allí requieren autorización previa presentada a través de Drone OneStop, normalmente con 3 a 5 días de antelación.",
-          "Según el Ayuntamiento de Seúl, no se permiten los vuelos nocturnos (de la puesta a la salida del sol), los vuelos sobre multitudes ni volar bajo los efectos del alcohol."
+          "El certificado de piloto depende de la masa máxima de despegue del dron, no de su finalidad. La clase más baja (Clase 4, de más de 250 g hasta 2 kg) se obtiene con un curso y un examen en línea de la Autoridad de Seguridad del Transporte de Corea (KOTSA). Consulta en KOTSA los requisitos que se aplican a tu dron.",
+          "Volar en estos lugares está restringido y requiere permiso de la oficina regional de aviación o del Ministerio de Defensa: a menos de 9,3 km de un aeródromo (zona de control), zonas de exclusión aérea (cerca de la línea de armisticio y partes del centro de Seúl) y altitudes de 150 m o más. Los drones de más de 25 kg también necesitan aprobación de vuelo. Según Drone OneStop, un dron de 25 kg o menos volado de día por debajo de 150 m fuera de las zonas de control y de exclusión no necesita aprobación de vuelo.",
+          "Volar de noche (de la puesta a la salida del sol) o a una distancia a la que no puedas ver el dron a simple vista requiere una aprobación especial de vuelo de la oficina regional de aviación. La aprobación especial es independiente de la aprobación de vuelo ordinaria.",
+          "Las normas de conducta del piloto se aplican a todos, sin importar el peso ni la finalidad (artículo 129 de la Ley de Seguridad de la Aviación): no se pueden lanzar objetos, volar de forma peligrosa sobre multitudes o zonas densamente pobladas, volar tan cerca de edificios que haya riesgo de colisión, volar bajo los efectos del alcohol ni volar cuando no se ve el dron. Las infracciones pueden acarrear una multa de hasta 2 millones de wones."
         ],
         "checklist": [
           "Compara la masa máxima de despegue de tu dron y su uso (empresarial o no) con las preguntas frecuentes de registro de Drone OneStop.",
-          "Consulta tu ubicación en el mapa de espacio aéreo de Drone OneStop y solicita la autorización de vuelo con varios días hábiles de antelación cuando haga falta.",
-          "No fotografíes ni grabes instalaciones militares u otras instalaciones sensibles. Consulta en Drone OneStop el aviso vigente sobre filmación aérea antes de grabar.",
-          "Vuela de día y mantente alejado de las multitudes."
+          "Consulta tu ubicación en «지도로 확인하기» (verlo en el mapa) de Drone OneStop y solicita con antelación la aprobación de vuelo donde haga falta.",
+          "Si vas a tomar fotos o vídeo, usa la solicitud de filmación aérea de Drone OneStop para comprobar si la zona de rodaje incluye instalaciones con prohibición de fotografiar. No fotografíes ni grabes instalaciones militares u otras instalaciones con prohibición de fotografiar.",
+          "Vuela de día, con el dron a la vista y lejos de las multitudes. En lugares como parques, playas, parques nacionales o bienes del patrimonio cultural, consulta antes con el propietario o el administrador."
         ],
         "links": {
           "official": "Portal Drone OneStop",
@@ -572,7 +572,7 @@
           "flightApproval": "Solicitud de autorización de vuelo"
         },
         "metaTitle": "Drones en Corea del Sur: normativa y zonas",
-        "metaDescription": "Normativa de drones en Corea del Sur: registro y autorización de vuelo en Drone OneStop, zonas de exclusión, zonas de control, multas y mapa del espacio aéreo."
+        "metaDescription": "Normas de drones en Corea del Sur: registro y aprobación de vuelo en Drone OneStop, zonas de exclusión y control, vuelo nocturno y conducta del piloto."
       },
       "jp": {
         "name": "Japón",

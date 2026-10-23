@@ -549,22 +549,22 @@
         "capital": "Seoul",
         "authority": "Ministry of Land, Infrastructure and Transport (MOLIT) · Drone OneStop",
         "summary": [
-          "Depending on weight and purpose, you must register your drone and obtain flight/aerial-photography approval in advance through the Drone OneStop portal.",
-          "Flying in an approval-required area without prior approval carries a fine of KRW 1.5 million for a first violation, according to Drone OneStop. Seoul and the Seoul metropolitan area are listed as no-fly and restricted airspace, so most flights there need prior approval, and the Seoul city government also cites fines of up to KRW 5 million under Article 161 of the Aviation Safety Act.",
+          "Depending on weight and purpose, you must register your drone and obtain flight approval in advance through the Drone OneStop portal. For photos and video, use Drone OneStop's aerial-filming application (it replaced the old permit system in December 2022) to check whether prohibited-photography facilities, such as military or security facilities, lie in the filming area.",
+          "Flying in a place that needs permission without it can lead to fines or penalties under the Aviation Safety Act, and breaking the pilot conduct rules can bring a fine of up to KRW 2 million, according to Drone OneStop. Parts of central Seoul and areas near the armistice line are no-fly zones, and the surroundings of airfields (within 9.3 km) are control zones, so check the Drone OneStop map before every flight.",
           "On this site, selecting a location in South Korea also shows no-fly zones, control zones, and other airspace layers in color on the map."
         ],
         "highlights": [
           "A multicopter with a maximum takeoff weight over 2 kg must be registered. Drones used in a business under the Aviation Business Act (aircraft rental, aviation leisure sports or ultralight-aircraft use business) are also subject to registration. Whether use counts as business depends on the actual purpose, so check Drone OneStop's registration FAQ if unsure.",
-          "A pilot certificate is needed above 250 g maximum takeoff weight. The lowest class (Class 4, above 250 g up to 2 kg) is earned through an online course and exam run by the Korea Transportation Safety Authority (KOTSA).",
-          "Flight approval is required at 150 m or higher, for drones over 25 kg, and in prohibited zones, restricted zones and control zones. Civil and military control zones around airfields have a radius of 9.3 km.",
-          "Seoul and the capital region are no-fly and restricted airspace, so flights there need prior approval filed through Drone OneStop, usually 3 to 5 days ahead.",
-          "According to the City of Seoul, night flights (sunset to sunrise), flights over crowds and flying while intoxicated are not allowed."
+          "Pilot certificates are tied to the drone's maximum takeoff weight, not to its purpose. The lowest class (Class 4, above 250 g up to 2 kg) is earned through an online course and exam run by the Korea Transportation Safety Authority (KOTSA). Check KOTSA for the requirements that apply to your drone.",
+          "Flying in the following places is restricted and needs permission from the regional aviation office or the Ministry of National Defense: within 9.3 km of an airfield (control zone), no-fly zones (near the armistice line and parts of central Seoul) and altitudes of 150 m or higher. Drones over 25 kg also need flight approval. According to Drone OneStop, a drone of 25 kg or less flown in daytime below 150 m outside control zones and no-fly zones does not need flight approval.",
+          "Flying at night (sunset to sunrise) or beyond the distance where you can see the drone with your own eyes needs a special flight approval from the regional aviation office. Special flight approval is separate from ordinary flight approval.",
+          "Pilot conduct rules apply to everyone regardless of weight or purpose (Aviation Safety Act Article 129): do not drop objects, do not fly in a dangerous way over crowds or densely populated areas, do not fly so close to buildings that you could collide, do not fly under the influence of alcohol, and do not fly when you cannot see the drone. Violations can bring a fine of up to KRW 2 million."
         ],
         "checklist": [
           "Check your drone's maximum takeoff weight and how you use it (business or not) against Drone OneStop's registration FAQ.",
-          "Check your location on the Drone OneStop airspace map and apply for flight approval several working days ahead where it is needed.",
-          "Do not photograph or film military or other sensitive facilities. Check Drone OneStop for the current aerial-filming notice before a shoot.",
-          "Fly in daylight and keep away from crowds."
+          "Check your location on the Drone OneStop map ('지도로 확인하기') and apply in advance for flight approval where it is needed.",
+          "For photos and video, use the aerial-filming application on Drone OneStop to check whether prohibited-photography facilities are in the filming area. Do not film military installations or other prohibited-photography facilities.",
+          "Fly in daylight, with the drone in sight, and keep away from crowds. For places such as parks, beaches, national parks or cultural heritage sites, consult the owner or manager beforehand."
         ],
         "links": {
           "official": "Drone OneStop portal",
@@ -572,7 +572,7 @@
           "flightApproval": "Flight approval application"
         },
         "metaTitle": "South Korea Drone Rules & No-Fly Zone Map",
-        "metaDescription": "South Korea drone rules: register your drone and get flight or aerial-photography approval via Drone OneStop. See no-fly zones, control zones and fines."
+        "metaDescription": "South Korea drone rules: register your drone and get flight approval via Drone OneStop. See no-fly zones, control zones, night flight and conduct rules."
       },
       "jp": {
         "name": "Japan",
