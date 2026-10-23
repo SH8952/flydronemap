@@ -48,8 +48,8 @@
     "hourlyTitle": "24-Hour Flight Conditions",
     "hourlyNow": "Now",
     "hourlyListLabel": "Hourly flight conditions",
-    "hourlyBestGood": "Best window: {start}–{end} (gusts {min}–{max} km/h, local time)",
-    "hourlyBestCaution": "No fully favorable window. Best available: {start}–{end} (gusts {min}–{max} km/h, local time) — fly with caution.",
+    "hourlyBestGood": "Best window: {start}–{end} (gusts {min}–{max} m/s, local time)",
+    "hourlyBestCaution": "No fully favorable window. Best available: {start}–{end} (gusts {min}–{max} m/s, local time) — fly with caution.",
     "hourlyNoWindow": "No suitable flying window in the next 24 hours. Consider postponing your flight.",
     "hourlyModelBasis": "Gust verdicts also account for the {model}.",
     "hourlyRain": "Precipitation",
@@ -75,8 +75,8 @@
       "caution": "Current gusts are at least 50% of the official maximum. The aircraft may be pushed around and the return flight can drain the battery faster.",
       "no-fly": "Current gusts are at least 70% of the official maximum. Consider postponing your flight."
     },
-    "modelRatio": "Current gusts {gust} km/h · official max wind resistance {max} km/h (about {pct}%)",
-    "modelAltitudeNote": "Wind at {altitude} m is {speed} km/h, stronger than the gusts at ground level. You may meet stronger wind as you climb.",
+    "modelRatio": "Current gusts {gust} m/s · official max wind resistance {max} m/s (about {pct}%)",
+    "modelAltitudeNote": "Wind at {altitude} m is {speed} m/s, stronger than the gusts at ground level. You may meet stronger wind as you climb.",
     "modelConservativeNote": "This model lists different maximum wind speeds for takeoff/landing and in flight, so the lower value is used.",
     "modelDisclaimer": "Maximum wind speeds come from official manufacturer specs (checked October 2026); real-world limits can be lower depending on aircraft condition, battery and payload. Verdicts are for reference only and the pilot is responsible for the final decision.",
     "airspaceSectionTitleWithCountry": "Airspace Info ({country})",
@@ -165,10 +165,10 @@
     "gearDisclosure": "As an affiliate, we may earn a commission from qualifying purchases made through these links, at no extra cost to you.",
     "usageSteps": [
       "Search for a city, airport, or landmark, or tap \"Use my location\" to check conditions right where you are. The airspace information and the regulation link you see depend on the country of the selected location.",
-      "Review live wind speed, wind gusts, visibility, and temperature, plus the wind at 10 m, 80 m, and 120 m above ground. Gusts matter more than the average wind speed, and wind is often stronger at higher altitude. The banner at the top combines the gust and the Kp index into one general reading: gusts under 20 km/h are good, 20 km/h up to 35 km/h call for caution, and 35 km/h or more is not recommended.",
+      "Review live wind speed, wind gusts, visibility, and temperature, plus the wind at 10 m, 80 m, and 120 m above ground. Gusts matter more than the average wind speed, and wind is often stronger at higher altitude. The banner at the top combines the gust and the Kp index into one general reading: gusts under 5.6 m/s are good, 5.6 m/s up to 9.7 m/s call for caution, and 9.7 m/s or more is not recommended.",
       "Check the planetary Kp index to see whether geomagnetic activity might affect your GPS lock or compass heading. A Kp below 4 is quiet, 4 up to 5 is unsettled, and 5 or higher is storm level, where GPS accuracy and compass reliability can drop.",
       "Use the airspace card and the airspace layers on the map to see the restricted areas of the selected country, and confirm the latest rules with the official authority through the regulation button. In the US, see the FAA UAS Facility Map altitude ceiling for the area — then confirm authorization through LAANC or FAADroneZone before you fly.",
-      "Use the 24-Hour Flight Conditions forecast to find the best time window. Each hour is rated good, caution, or not recommended from the forecast gusts, precipitation (caution from 0.1 mm per hour, not recommended from 0.5 mm), and visibility (caution under 5 km, not recommended under 1 km). The summary above the cards shows the longest good stretch, in the local time of the selected location. The current reading and the forecast for the current hour may not match exactly, so differences of a few km/h can appear. This rating does not include the Kp index, airspace rules, or night-flying regulations, so check those separately.",
+      "Use the 24-Hour Flight Conditions forecast to find the best time window. Each hour is rated good, caution, or not recommended from the forecast gusts, precipitation (caution from 0.1 mm per hour, not recommended from 0.5 mm), and visibility (caution under 5 km, not recommended under 1 km). The summary above the cards shows the longest good stretch, in the local time of the selected location. The current reading and the forecast for the current hour may not match exactly, so small differences can appear. This rating does not include the Kp index, airspace rules, or night-flying regulations, so check those separately.",
       "In \"Wind Check for Your Drone\", pick your drone model to compare the current gust with the manufacturer's official maximum wind speed. Below 50% of that figure is good, 50% or more calls for caution, and 70% or more is not recommended. Your choice is also applied to the 24-hour forecast and is stored only in this browser.",
       "Treat every rating as a reference only. Aircraft condition, battery, payload, local rules, and night-flying requirements are not included, so the final decision and responsibility remain with the pilot. The guides on this site explain the thresholds and background in more detail."
     ],
@@ -218,7 +218,7 @@
     "airspaceSourcesNote": "Airspace layer sources: FAA UAS Facility Map (US), ENAIRE (ES), DIPUL (DE), VWorld (KR). For reference only — confirm in the official app or map before flying.",
     "modelSpecSource": "Max wind resistance used: {max} m/s, as listed by the manufacturer.",
     "modelSpecLink": "Official {brand} spec page ↗",
-    "thresholdBasis": "How the thresholds are set: gusts under 20 km/h show as good, 20–35 km/h as caution and 35 km/h or more as no-fly. These cut-offs are this site's own rule of thumb, chosen to stay below the 8–12.8 m/s (about 29–46 km/h) maximum wind resistance that manufacturers list for common models — no authority publishes them. For a selected model, 50% of the manufacturer's figure is caution and 70% is not recommended, a conservative choice made by this site. Kp 4 shows as unsettled and Kp 5 or higher as storm: NOAA issues Kp alerts when Kp reaches 4 and rates Kp 5 as a G1 geomagnetic storm. The precipitation (0.1 / 0.5 mm) and visibility (5 / 1 km) cut-offs are also this site's own rules of thumb."
+    "thresholdBasis": "How the thresholds are set: gusts under 5.6 m/s show as good, 5.6–9.7 m/s as caution and 9.7 m/s or more as no-fly. These cut-offs are this site's own rule of thumb, chosen to stay below the 8–12.8 m/s maximum wind resistance that manufacturers list for common models — no authority publishes them. For a selected model, 50% of the manufacturer's figure is caution and 70% is not recommended, a conservative choice made by this site. Kp 4 shows as unsettled and Kp 5 or higher as storm: NOAA issues Kp alerts when Kp reaches 4 and rates Kp 5 as a G1 geomagnetic storm. The precipitation (0.1 / 0.5 mm) and visibility (5 / 1 km) cut-offs are also this site's own rules of thumb."
   },
   "Faq": {
     "title": "Frequently Asked Questions",

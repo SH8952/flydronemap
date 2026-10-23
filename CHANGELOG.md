@@ -1,3 +1,17 @@
+## 2026-10-23 (8) — 대시보드 풍속 표시 단위를 km/h → m/s로 변경(표시 전용)
+
+**요청**: 사용자가 풍속 단위를 m/s로 지정, 적용 범위는 대시보드 표시에만. 소수점·안내 문구 처리는 Claude 제안(소수 첫째 자리, 안내 문구도 m/s)대로 진행하도록 승인.
+
+**변경**
+- `src/lib/wind-units.ts` 신규: `kmhToMs`, `formatWindMs`(km/h → m/s, 소수 첫째 자리·현지 소수점 표기), `formatMs`(기종 공식 최대값 표기, 정수면 소수점 없음).
+- `drone-dashboard.tsx`: 현재 풍속·돌풍·10/80/120 m 고도별 풍속 표시를 m/s로.
+- `hourly-flight-timeline.tsx`: 24시간 타임라인 셀·접근성 라벨·최적 시간대 요약 값을 m/s로.
+- `drone-model-verdict.tsx`: 기종 비교 문구(현재 돌풍·공식 최대 풍속)와 고도별 바람 안내 값을 m/s로. 공식 최대값은 `maxWindMs`를 그대로 표기(12, 10.7, 12.8 등).
+- `messages/{en,ko,ja,es,de}.json`: `hourlyBestGood`·`hourlyBestCaution`·`modelRatio`·`modelAltitudeNote`의 단위, 사용 안내(usageSteps 2개)와 `thresholdBasis`의 판정 기준 문구를 m/s로(돌풍 5.6 m/s 미만 양호 / 5.6~9.7 주의 / 9.7 이상 비권장). 제조사 최대 풍속 옆의 km/h 환산 표기와 "몇 km/h 차이" 표현은 삭제.
+- **바뀌지 않은 것**: 내부 계산·판정 기준(20/35 km/h, 기종 50%/70%)은 km/h 그대로 → 판정 결과 동일. 가이드(MDX)·규정 페이지는 기존 km/h·m/s 병기 유지.
+
+**검증**: tsc 0 오류, eslint 0 오류(기존 경고 3건), 격리 `next build --webpack` 성공(462 페이지), 5개 언어 메시지 JSON 파싱·ICU 포맷 확인, 서식 함수 값 확인(20 km/h → 5.6, 35 → 9.7, 12 m/s → 12). 실제 화면(실시간 날씨 값)은 localhost에서 확인 필요.
+
 ## 2026-10-23 (7) — DJI Mavic 4 Pro 내풍성 가이드 신규 + 기종 선택 목록에 Mavic 4 Pro 추가
 
 **근거**: 사용자가 dji.com/kr/mavic-4-pro/specs 사양 화면 5장을 직접 캡처해 전달 → 화면에 표시된 값만 사실로 반영(최대 내풍 속도 12 m/s 등). 매뉴얼 문구는 영문 사용자 매뉴얼(v1.0)에서 확인한 내용만 사용.

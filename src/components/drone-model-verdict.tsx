@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Plane } from "lucide-react";
 import {
   Select,
@@ -10,10 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { formatMs, formatWindMs } from "@/lib/wind-units";
 import {
   DRONE_MODELS,
   getDroneModel,
-  modelMaxWindKmh,
   modelWindRatio,
   modelWindVerdict,
 } from "@/lib/drone-models";
@@ -44,6 +44,7 @@ export function DroneModelVerdict({
   altitudeLevels?: AltitudeLevel[];
 }) {
   const t = useTranslations("Home");
+  const locale = useLocale();
   const model = getDroneModel(modelId);
 
   let content: React.ReactNode = (
@@ -54,7 +55,6 @@ export function DroneModelVerdict({
     const verdict = modelWindVerdict(model, windGustKmh);
     const VerdictIcon = VERDICT_ICON[verdict];
     const pct = Math.round(modelWindRatio(model, windGustKmh) * 100);
-    const maxKmh = Math.round(modelMaxWindKmh(model));
 
     // 80m/120m 바람이 지표 돌풍보다 강하고, 그 값만으로도 "주의" 이상이면 안내.
     const strongestAltitude = (altitudeLevels ?? [])
@@ -87,8 +87,8 @@ export function DroneModelVerdict({
         </div>
         <p className="text-sm">
           {t("modelRatio", {
-            gust: Math.round(windGustKmh),
-            max: maxKmh,
+            gust: formatWindMs(windGustKmh, locale),
+            max: formatMs(model.maxWindMs, locale),
             pct,
           })}
         </p>
@@ -96,7 +96,7 @@ export function DroneModelVerdict({
           <p className="text-xs text-amber-500">
             {t("modelAltitudeNote", {
               altitude: strongestAltitude.altitudeM,
-              speed: Math.round(strongestAltitude.windSpeedKmh),
+              speed: formatWindMs(strongestAltitude.windSpeedKmh, locale),
             })}
           </p>
         ) : null}

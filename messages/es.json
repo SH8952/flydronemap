@@ -48,8 +48,8 @@
     "hourlyTitle": "Condiciones de vuelo en 24 horas",
     "hourlyNow": "Ahora",
     "hourlyListLabel": "Condiciones de vuelo por hora",
-    "hourlyBestGood": "Mejor franja: {start}–{end} (rachas de {min}–{max} km/h, hora local)",
-    "hourlyBestCaution": "No hay una franja totalmente favorable. La mejor disponible: {start}–{end} (rachas de {min}–{max} km/h, hora local); vuele con precaución.",
+    "hourlyBestGood": "Mejor franja: {start}–{end} (rachas de {min}–{max} m/s, hora local)",
+    "hourlyBestCaution": "No hay una franja totalmente favorable. La mejor disponible: {start}–{end} (rachas de {min}–{max} m/s, hora local); vuele con precaución.",
     "hourlyNoWindow": "No hay ninguna franja adecuada para volar en las próximas 24 horas. Considere posponer el vuelo.",
     "hourlyModelBasis": "La valoración de rachas también tiene en cuenta el {model}.",
     "hourlyRain": "Precipitación",
@@ -75,8 +75,8 @@
       "caution": "Las rachas actuales alcanzan al menos el 50 % del máximo oficial. El dron puede ser zarandeado y el regreso puede consumir más batería.",
       "no-fly": "Las rachas actuales alcanzan al menos el 70 % del máximo oficial. Considere posponer el vuelo."
     },
-    "modelRatio": "Rachas actuales {gust} km/h · resistencia máxima oficial al viento {max} km/h (aprox. {pct} %)",
-    "modelAltitudeNote": "El viento a {altitude} m es de {speed} km/h, más fuerte que las rachas a nivel del suelo. Puede encontrar viento más intenso al ascender.",
+    "modelRatio": "Rachas actuales {gust} m/s · resistencia máxima oficial al viento {max} m/s (aprox. {pct} %)",
+    "modelAltitudeNote": "El viento a {altitude} m es de {speed} m/s, más fuerte que las rachas a nivel del suelo. Puede encontrar viento más intenso al ascender.",
     "modelConservativeNote": "Este modelo indica velocidades máximas de viento distintas para despegue/aterrizaje y en vuelo, por lo que se usa el valor más bajo.",
     "modelDisclaimer": "Las velocidades máximas de viento proceden de las especificaciones oficiales del fabricante (comprobadas en octubre de 2026); el límite real puede ser menor según el estado del dron, la batería y la carga. La valoración es solo orientativa y la decisión final y la responsabilidad corresponden al piloto.",
     "airspaceSectionTitleWithCountry": "Información de espacio aéreo ({country})",
@@ -165,10 +165,10 @@
     "gearDisclosure": "Como afiliados, podemos ganar una comisión por las compras que califiquen realizadas a través de estos enlaces, sin costo adicional para usted.",
     "usageSteps": [
       "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás. El espacio aéreo y el enlace a la normativa que ves dependen del país del lugar seleccionado.",
-      "Revisa la velocidad del viento, las ráfagas, la visibilidad y la temperatura en vivo, además del viento a 10 m, 80 m y 120 m de altura. Las ráfagas importan más que el viento medio, y el viento suele ser más fuerte a mayor altitud. El aviso de la parte superior combina las ráfagas y el índice Kp en una lectura general: menos de 20 km/h es bueno, de 20 a menos de 35 km/h requiere precaución y 35 km/h o más no se recomienda.",
+      "Revisa la velocidad del viento, las ráfagas, la visibilidad y la temperatura en vivo, además del viento a 10 m, 80 m y 120 m de altura. Las ráfagas importan más que el viento medio, y el viento suele ser más fuerte a mayor altitud. El aviso de la parte superior combina las ráfagas y el índice Kp en una lectura general: menos de 5,6 m/s es bueno, de 5,6 a menos de 9,7 m/s requiere precaución y 9,7 m/s o más no se recomienda.",
       "Consulta el índice Kp planetario para ver si la actividad geomagnética podría afectar tu señal GPS o el rumbo de la brújula. Un Kp menor de 4 es tranquilo, de 4 a menos de 5 es inestable y de 5 o más es nivel de tormenta, en el que la precisión del GPS y la fiabilidad de la brújula pueden empeorar.",
       "Usa la tarjeta de espacio aéreo y las capas del mapa para ver las zonas restringidas del país seleccionado, y confirma la normativa vigente con la autoridad oficial mediante el botón de normativa. En EE. UU., consulta el techo de altitud del FAA UAS Facility Map para la zona — y luego confirma la autorización a través de LAANC o FAADroneZone antes de volar.",
-      "Usa las condiciones de vuelo en 24 horas para encontrar el mejor momento. Cada hora se valora como buena, precaución o no recomendada según las ráfagas previstas, la precipitación (precaución desde 0,1 mm por hora, no recomendada desde 0,5 mm) y la visibilidad (precaución por debajo de 5 km, no recomendada por debajo de 1 km). El resumen sobre las tarjetas muestra el tramo bueno más largo, con la hora local del lugar seleccionado. La lectura actual y la previsión de la hora en curso pueden no coincidir exactamente, así que es normal ver diferencias de unos pocos km/h. Esta valoración no incluye el índice Kp, la normativa del espacio aéreo ni las reglas de vuelo nocturno, así que compruébalos aparte.",
+      "Usa las condiciones de vuelo en 24 horas para encontrar el mejor momento. Cada hora se valora como buena, precaución o no recomendada según las ráfagas previstas, la precipitación (precaución desde 0,1 mm por hora, no recomendada desde 0,5 mm) y la visibilidad (precaución por debajo de 5 km, no recomendada por debajo de 1 km). El resumen sobre las tarjetas muestra el tramo bueno más largo, con la hora local del lugar seleccionado. La lectura actual y la previsión de la hora en curso pueden no coincidir exactamente, así que es normal ver pequeñas diferencias. Esta valoración no incluye el índice Kp, la normativa del espacio aéreo ni las reglas de vuelo nocturno, así que compruébalos aparte.",
       "En \"Viento para su dron\" elige tu modelo para comparar la ráfaga actual con la velocidad máxima de viento oficial del fabricante. Por debajo del 50 % de ese valor es bueno, desde el 50 % requiere precaución y desde el 70 % no se recomienda. El modelo elegido también se aplica a la previsión de 24 horas y solo se guarda en este navegador.",
       "Toma todas las valoraciones solo como referencia. El estado del aparato, la batería, la carga, la normativa local y los requisitos de vuelo nocturno no están incluidos, por lo que la decisión final y la responsabilidad son del piloto. Las guías de este sitio explican con más detalle los umbrales y el contexto."
     ],
@@ -218,7 +218,7 @@
     "airspaceSourcesNote": "Fuentes de las capas de espacio aéreo: FAA UAS Facility Map (EE. UU.), ENAIRE (ES), DIPUL (DE), VWorld (KR). Solo orientativo: confirma en la app o el mapa oficial antes de volar.",
     "modelSpecSource": "Resistencia máxima al viento aplicada: {max} m/s, según indica el fabricante.",
     "modelSpecLink": "Ficha técnica oficial de {brand} ↗",
-    "thresholdBasis": "Cómo se fijan los umbrales: las ráfagas por debajo de 20 km/h se muestran como buenas, de 20 a 35 km/h como precaución y de 35 km/h o más como no volar. Estos límites son una regla práctica propia de este sitio, elegida para quedar por debajo de la resistencia máxima al viento que los fabricantes indican para los modelos habituales (8–12,8 m/s, unos 29–46 km/h); ninguna autoridad los publica. Con un modelo seleccionado, el 50 % de la cifra del fabricante es precaución y el 70 % no recomendado, una decisión conservadora de este sitio. Kp 4 se muestra como inestable y Kp 5 o más como tormenta: NOAA emite alertas cuando el Kp llega a 4 y clasifica Kp 5 como tormenta geomagnética G1. Los límites de precipitación (0,1 / 0,5 mm) y visibilidad (5 / 1 km) también son reglas prácticas propias de este sitio."
+    "thresholdBasis": "Cómo se fijan los umbrales: las ráfagas por debajo de 5,6 m/s se muestran como buenas, de 5,6 a 9,7 m/s como precaución y de 9,7 m/s o más como no volar. Estos límites son una regla práctica propia de este sitio, elegida para quedar por debajo de la resistencia máxima al viento que los fabricantes indican para los modelos habituales (8–12,8 m/s); ninguna autoridad los publica. Con un modelo seleccionado, el 50 % de la cifra del fabricante es precaución y el 70 % no recomendado, una decisión conservadora de este sitio. Kp 4 se muestra como inestable y Kp 5 o más como tormenta: NOAA emite alertas cuando el Kp llega a 4 y clasifica Kp 5 como tormenta geomagnética G1. Los límites de precipitación (0,1 / 0,5 mm) y visibilidad (5 / 1 km) también son reglas prácticas propias de este sitio."
   },
   "Faq": {
     "title": "Preguntas Frecuentes",

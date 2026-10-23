@@ -1,8 +1,9 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Clock, Droplets, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { formatWindMs } from "@/lib/wind-units";
 import type { DroneModel } from "@/lib/drone-models";
 import {
   findBestWindow,
@@ -46,6 +47,7 @@ export function HourlyFlightTimeline({
   model: DroneModel | null;
 }) {
   const t = useTranslations("Home");
+  const locale = useLocale();
   const best = findBestWindow(hours, model);
 
   let summary: string;
@@ -57,8 +59,8 @@ export function HourlyFlightTimeline({
     const values = {
       start: hourLabel(hours[best.startIndex].time),
       end: endLabel(hours[best.endIndex].time),
-      min: Math.round(best.minGustKmh),
-      max: Math.round(best.maxGustKmh),
+      min: formatWindMs(best.minGustKmh, locale),
+      max: formatWindMs(best.maxGustKmh, locale),
     };
     summary =
       best.level === "good"
@@ -102,7 +104,7 @@ export function HourlyFlightTimeline({
           return (
             <li
               key={h.time}
-              aria-label={`${hourLabel(h.time)} ${t(`hourlyLegend.${verdict}`)} ${Math.round(h.windGustKmh)} km/h`}
+              aria-label={`${hourLabel(h.time)} ${t(`hourlyLegend.${verdict}`)} ${formatWindMs(h.windGustKmh, locale)} m/s`}
               className={cn(
                 "flex min-w-[64px] shrink-0 flex-col items-center gap-1 rounded-lg border px-2 py-2 text-center",
                 VERDICT_BORDER_COLOR[verdict],
@@ -116,9 +118,9 @@ export function HourlyFlightTimeline({
               </span>
               <Icon className={cn("size-5", VERDICT_TEXT_COLOR[verdict])} />
               <span className="text-xs font-medium">
-                {Math.round(h.windGustKmh)}
+                {formatWindMs(h.windGustKmh, locale)}
                 <span className="ml-0.5 text-[10px] text-muted-foreground">
-                  km/h
+                  m/s
                 </span>
               </span>
               <span className="flex h-4 items-center gap-1 text-muted-foreground">

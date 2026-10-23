@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
+import { formatWindMs } from "@/lib/wind-units";
 import {
   Search,
   MapPin,
@@ -836,7 +837,7 @@ export function DroneDashboard({
                     {t("windSpeed")}
                   </span>
                   <span className="font-medium">
-                    {Math.round(data.weather.windSpeedKmh)} km/h
+                    {formatWindMs(data.weather.windSpeedKmh, locale)} m/s
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -849,7 +850,7 @@ export function DroneDashboard({
                       RISK_COLOR[windRisk(data.weather.windGustKmh)],
                     )}
                   >
-                    {Math.round(data.weather.windGustKmh)} km/h
+                    {formatWindMs(data.weather.windGustKmh, locale)} m/s
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -886,7 +887,7 @@ export function DroneDashboard({
                           {level.altitudeM}m
                         </span>
                         <span className="font-medium">
-                          {Math.round(level.windSpeedKmh)} km/h
+                          {formatWindMs(level.windSpeedKmh, locale)} m/s
                         </span>
                       </div>
                     ))}
