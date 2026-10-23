@@ -554,14 +554,14 @@
           "En este sitio, al seleccionar una ubicación en Corea del Sur también se muestran en el mapa, en color, las zonas de exclusión, zonas de control y otras capas de espacio aéreo."
         ],
         "highlights": [
-          "Los drones de uso empresarial deben registrarse. Según el Ayuntamiento de Seúl, los drones de uso no empresarial de menos de 2 kg no necesitan registro.",
+          "Un multicóptero con una masa máxima de despegue superior a 2 kg debe registrarse (신고). También están sujetos al registro los drones usados en una actividad empresarial regulada por la Ley de Negocios de Aviación (alquiler de aeronaves, deportes aéreos de ocio o uso de aeronaves ultraligeras). Que el uso sea empresarial depende de la finalidad real, así que consulta las preguntas frecuentes de registro de Drone OneStop si tienes dudas.",
           "Por encima de 250 g de masa máxima de despegue se necesita un certificado de piloto. La clase más baja (Clase 4, de más de 250 g hasta 2 kg) se obtiene con un curso y un examen en línea de la Autoridad de Seguridad del Transporte de Corea (KOTSA).",
           "Se requiere autorización de vuelo a 150 m o más, para drones de más de 25 kg y en zonas prohibidas, zonas restringidas y zonas de control. Las zonas de control civiles y militares alrededor de los aeródromos tienen un radio de 9,3 km.",
           "Seúl y su área metropolitana son espacio aéreo de exclusión y restringido, por lo que los vuelos allí requieren autorización previa presentada a través de Drone OneStop, normalmente con 3 a 5 días de antelación.",
           "Según el Ayuntamiento de Seúl, no se permiten los vuelos nocturnos (de la puesta a la salida del sol), los vuelos sobre multitudes ni volar bajo los efectos del alcohol."
         ],
         "checklist": [
-          "Pesa tu dron con la batería y los accesorios para saber si se aplican el registro y el certificado de piloto.",
+          "Compara la masa máxima de despegue de tu dron y su uso (empresarial o no) con las preguntas frecuentes de registro de Drone OneStop.",
           "Consulta tu ubicación en el mapa de espacio aéreo de Drone OneStop y solicita la autorización de vuelo con varios días hábiles de antelación cuando haga falta.",
           "No fotografíes ni grabes instalaciones militares u otras instalaciones sensibles. Consulta en Drone OneStop el aviso vigente sobre filmación aérea antes de grabar.",
           "Vuela de día y mantente alejado de las multitudes."
@@ -584,11 +584,11 @@
           "Los vuelos sobre zonas densamente pobladas (DID), de noche o más allá del alcance visual también son vuelos especiales (Categoría II); el permiso puede no ser necesario si el piloto tiene el certificado de aptitud requerido, la aeronave está certificada y se dispone de un manual de vuelo. Comprueba siempre la normativa más reciente en el sitio oficial antes de volar."
         ],
         "highlights": [
-          "Los drones de 100 g o más que vuelen al aire libre deben registrarse. El registro es válido durante 3 años y volar un dron sin registrar puede suponer una multa de hasta 500.000 yenes o hasta un año de prisión.",
-          "Además de mostrar el identificador de registro en la aeronave, se necesita el equipo de Remote ID, con excepciones limitadas como los drones registrados durante el periodo de preinscripción y los vuelos atados.",
-          "Los vuelos cerca de aeropuertos y a 150 m o más sobre el suelo o el agua están prohibidos en principio, salvo que se coordine con la autoridad y se obtenga aprobación. Alrededor de ocho aeropuertos principales también están prohibidos en principio los vuelos bajo las superficies de aproximación y de transición.",
-          "También se necesita permiso o aprobación para volar sobre zonas densamente pobladas (DID), de noche, más allá del alcance visual, a menos de 30 m de personas u objetos, sobre lugares de eventos, al transportar mercancías peligrosas o lanzar objetos, y con drones de 25 kg o más.",
-          "Desde el 1 de octubre de 2025, los drones de 25 kg o más necesitan un seguro de responsabilidad civil frente a terceros para las nuevas solicitudes de permiso."
+          "Los drones de 100 g o más que vuelen al aire libre deben registrarse. El registro es válido durante 3 años.",
+          "Debes mostrar el identificador de registro en la aeronave y equiparla con Remote ID.",
+          "Los vuelos cerca de aeropuertos y a 150 m o más sobre el suelo o el agua están prohibidos en principio, salvo que se coordine con la autoridad y se obtenga aprobación. Alrededor de ocho aeropuertos principales también están prohibidos en principio los vuelos bajo las superficies de aproximación y de transición y sobre el recinto del aeropuerto.",
+          "También se necesita permiso o aprobación para volar sobre zonas densamente pobladas (DID), de noche, más allá del alcance visual, a menos de 30 m de personas u objetos, sobre lugares de eventos, al transportar mercancías peligrosas o al lanzar objetos. Volar sin el permiso o la aprobación adecuados puede acarrear prisión (拘禁刑) o una multa.",
+          "Los drones con un peso total de 25 kg o más necesitan un seguro de responsabilidad civil frente a terceros cuando solicitan un nuevo permiso o aprobación a partir del 1 de octubre de 2025."
         ],
         "checklist": [
           "Registra el dron, muestra el identificador de registro y configura el Remote ID antes del primer vuelo.",
@@ -616,7 +616,7 @@
           "España aplica la categoría abierta de la UE a la mayoría de los vuelos de ocio: un dron de menos de 25 kg, volado a la vista directa y como máximo a 120 m sobre el suelo, sin autorización previa.",
           "Debes registrarte como operador ante AESA si el dron pesa 250 g o más, puede transferir más de 80 julios de energía en un impacto o lleva cámara o micrófono (salvo que cumpla la Directiva de seguridad de los juguetes). El registro se hace en la sede electrónica de AESA.",
           "Los pilotos necesitan el certificado A1/A3 en línea y gratuito (40 preguntas, 40 minutos, 75 % para aprobar, válido 5 años) para drones C1 (A1) y C2, C3 o C4 (A3). La subcategoría A2 se limita a drones de clase C2 y exige además el examen A2 y la autoformación práctica declarada.",
-          "Las etiquetas de clase fijan los límites: C0 por debajo de 250 g, C1 por debajo de 900 g, C2 por debajo de 4 kg y C3 y C4 por debajo de 25 kg. Un dron comercializado antes del 1 de enero de 2024 sin etiqueta de clase puede volar en A1 si pesa menos de 250 g, o en A3.",
+          "Las etiquetas de clase fijan los límites: C0 por debajo de 250 g, C1 por debajo de 900 g, C2 por debajo de 4 kg y C3 y C4 por debajo de 25 kg. Un dron comercializado antes del 1 de enero de 2024 sin etiqueta de clase no necesita certificado si pesa menos de 250 g (basta conocer el manual del fabricante) y necesita el certificado A3 si pesa 250 g o más.",
           "El registro ante AESA es válido en los Estados miembros de la EASA, pero no autoriza volar en cualquier lugar: siguen aplicándose las restricciones de espacio aéreo de cada país."
         ],
         "checklist": [
@@ -651,7 +651,7 @@
         "checklist": [
           "Comprueba que tu registro ante la LBA esté vigente y que el e-ID esté colocado en el dron.",
           "Asegúrate de que tu seguro de responsabilidad civil cubra los vuelos con drones y lleva el certificado del seguro.",
-          "Lleva tu certificado de competencia (A1/A3 o A2) cuando vueles un dron de 250 g o más.",
+          "Asegúrate de tener el certificado de competencia (A1/A3 o A2) que exige tu dron. Los drones de menos de 250 g no requieren examen.",
           "Consulta el mapa de DIPUL para ver las zonas geográficas antes de cada vuelo, también en otros países de la UE donde las normas pueden diferir."
         ],
         "links": {

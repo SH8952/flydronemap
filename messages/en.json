@@ -554,14 +554,14 @@
           "On this site, selecting a location in South Korea also shows no-fly zones, control zones, and other airspace layers in color on the map."
         ],
         "highlights": [
-          "Business-use drones must be registered. According to the City of Seoul, non-business drones under 2 kg do not need registration.",
+          "A multicopter with a maximum takeoff weight over 2 kg must be registered. Drones used in a business under the Aviation Business Act (aircraft rental, aviation leisure sports or ultralight-aircraft use business) are also subject to registration. Whether use counts as business depends on the actual purpose, so check Drone OneStop's registration FAQ if unsure.",
           "A pilot certificate is needed above 250 g maximum takeoff weight. The lowest class (Class 4, above 250 g up to 2 kg) is earned through an online course and exam run by the Korea Transportation Safety Authority (KOTSA).",
           "Flight approval is required at 150 m or higher, for drones over 25 kg, and in prohibited zones, restricted zones and control zones. Civil and military control zones around airfields have a radius of 9.3 km.",
           "Seoul and the capital region are no-fly and restricted airspace, so flights there need prior approval filed through Drone OneStop, usually 3 to 5 days ahead.",
           "According to the City of Seoul, night flights (sunset to sunrise), flights over crowds and flying while intoxicated are not allowed."
         ],
         "checklist": [
-          "Weigh your drone with its battery and accessories to see whether registration and a pilot certificate apply.",
+          "Check your drone's maximum takeoff weight and how you use it (business or not) against Drone OneStop's registration FAQ.",
           "Check your location on the Drone OneStop airspace map and apply for flight approval several working days ahead where it is needed.",
           "Do not photograph or film military or other sensitive facilities. Check Drone OneStop for the current aerial-filming notice before a shoot.",
           "Fly in daylight and keep away from crowds."
@@ -584,11 +584,11 @@
           "Flights over densely inhabited districts (DID), at night, or beyond visual line of sight are also special flights (Category II); a permit can be waived when the pilot holds the required skill certificate, the aircraft is certified, and a flight manual is in place. Always check the latest rules on the official site before flying."
         ],
         "highlights": [
-          "Drones weighing 100 g or more that are flown outdoors must be registered. Registration is valid for 3 years, and flying an unregistered drone can lead to a fine of up to 500,000 yen or up to one year in prison.",
-          "Remote ID equipment is required in addition to displaying the registration ID on the aircraft, with limited exemptions such as drones registered during the pre-registration period and moored flights.",
-          "Flights near airports and at 150 m or higher above the ground or water are generally prohibited unless you coordinate with the authority and get approval. Around eight major airports, flights under the approach and transitional surfaces are also generally prohibited.",
-          "Permission or approval is also needed for flights over densely inhabited districts (DID), at night, beyond visual line of sight, within 30 m of people or objects, over event sites, when carrying dangerous goods or dropping objects, and for drones of 25 kg or more.",
-          "From 1 October 2025, drones of 25 kg or more need third-party liability insurance for new permission applications."
+          "Drones weighing 100 g or more that are flown outdoors must be registered. Registration is valid for 3 years.",
+          "You must display the registration ID on the aircraft and equip it with Remote ID.",
+          "Flights near airports and at 150 m or higher above the ground or water are generally prohibited unless you coordinate with the authority and get approval. Around eight major airports, flights under the approach and transitional surfaces and above the airport grounds are also generally prohibited.",
+          "Permission or approval is also needed for flights over densely inhabited districts (DID), at night, beyond visual line of sight, within 30 m of people or objects, over event sites, when carrying dangerous goods or when dropping objects. Flying without the proper permission or approval can lead to imprisonment (拘禁刑) or a fine.",
+          "Drones with a total weight of 25 kg or more need third-party liability insurance when they apply for new permission or approval on or after 1 October 2025."
         ],
         "checklist": [
           "Register the drone, display the registration ID and set up Remote ID before the first flight.",
@@ -616,7 +616,7 @@
           "Spain applies the EU Open category to most hobby flights: a drone under 25 kg, flown within visual line of sight and at most 120 m above the ground, with no prior authorization.",
           "You must register as an operator with AESA if the drone weighs 250 g or more, can transfer more than 80 joules of energy on impact, or has a camera or microphone (unless it complies with the Toy Safety Directive). Registration is done through AESA's electronic headquarters.",
           "Pilots need the free online A1/A3 certificate (40 questions, 40 minutes, 75% to pass, valid for 5 years) for C1 drones (A1) and C2, C3 or C4 drones (A3). The A2 subcategory is limited to class C2 drones and also needs the A2 exam and declared practical self-training.",
-          "Class labels set the limits: C0 under 250 g, C1 under 900 g, C2 under 4 kg, and C3 and C4 under 25 kg. A drone placed on the market before 1 January 2024 without a class label may be flown in A1 if it is under 250 g, or in A3.",
+          "Class labels set the limits: C0 under 250 g, C1 under 900 g, C2 under 4 kg, and C3 and C4 under 25 kg. A drone placed on the market before 1 January 2024 without a class label needs no certificate if it is under 250 g (only familiarity with the manufacturer's manual), and the A3 certificate if it is 250 g or more.",
           "Registration with AESA is valid across the EASA member states, but it does not authorize a flight anywhere: national airspace restrictions still apply."
         ],
         "checklist": [
@@ -651,7 +651,7 @@
         "checklist": [
           "Check that your LBA registration is current and the e-ID is attached to the drone.",
           "Make sure your liability insurance covers drone flights, and carry the insurance certificate.",
-          "Carry your competence certificate (A1/A3 or A2) when you fly a drone of 250 g or more.",
+          "Make sure you hold the competence certificate (A1/A3 or A2) that your drone requires. Drones under 250 g need no exam.",
           "Check the DIPUL map for geographical zones before every flight, also in other EU countries where the rules can differ."
         ],
         "links": {
