@@ -64,17 +64,23 @@ export function GuideCategorySection({
     }
   };
   const hasMore = items.length > initialVisibleCount;
-  const visibleItems = expanded ? items : items.slice(0, initialVisibleCount);
+  // 접힌 상태에서도 모든 글의 링크를 HTML에 남겨 둔다(화면에서만 숨김).
+  // 예전에는 slice()로 잘라 렌더링해서 4번째 이후 글은 크롤러가 따라갈
+  // 내부 링크가 없었다(2026-10-23 색인 점검에서 확인).
 
   return (
     <section className="flex flex-col gap-4">
       <h2 className="text-xl font-semibold tracking-tight">{categoryLabel}</h2>
       <div className="grid gap-4 sm:grid-cols-2">
-        {visibleItems.map((item) => (
+        {items.map((item, index) => (
           <Link
             key={item.slug}
             href={`/guides/${item.slug}`}
-            className="flex flex-col gap-1 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+            className={
+              !expanded && index >= initialVisibleCount
+                ? "hidden"
+                : "flex flex-col gap-1 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+            }
           >
             <h3 className="text-lg font-semibold tracking-tight">
               {item.title}

@@ -82,7 +82,7 @@ export default async function GuidePage({
   const compiled = await compileGuide(locale as Locale, slug);
   if (!compiled) notFound();
   const { Content, meta, headings } = compiled;
-  const relatedGuides = getRelatedGuides(locale as Locale, slug);
+  const relatedGuides = getRelatedGuides(locale as Locale, slug, 6);
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
     year: "numeric",
