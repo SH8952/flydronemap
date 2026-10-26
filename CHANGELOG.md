@@ -1,3 +1,15 @@
+## 2026-10-26 (9) — 애드센스 ads.txt 점검 + Vercel에 게시자 ID 환경변수 등록
+
+**배경**: 애드센스 사이트 화면에서 flydronemap.com의 ads.txt 상태가 "찾을 수 없음"으로 표시(검토 요청은 이미 제출된 상태).
+
+**점검 결과**: `flydronemap.com/ads.txt`·`www.flydronemap.com/ads.txt` 모두 `google.com, pub-0042120343274941, DIRECT, f08c47fec0942fa0` 정상 응답. 도메인은 `flydronemap.com`이 본 주소이고 `www`는 308 리다이렉트. robots.txt는 전체 허용(`/api/`만 제외), 미들웨어 matcher는 점(.)이 있는 경로를 제외하며, Vercel 방화벽 규칙 없음 → 서버 측 문제 없음.
+
+**조치**
+- 발견: Vercel 프로젝트에 `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID`가 없어 `layout.tsx`의 adsbygoogle 스크립트가 로드되지 않고 있었음.
+- Vercel 환경변수 `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID=pub-0042120343274941` 등록(Production 전용, 코드 변경 없음). `layout.tsx`가 `ca-` 접두어를 붙여 스크립트를 로드.
+- 같은 커밋(935b0fb)으로 프로덕션 재배포 → READY, flydronemap.com 별칭 연결 확인. 배포 HTML에서 `adsbygoogle.js?client=ca-pub-0042120343274941` 확인.
+- 광고 박스(`AdZone`)는 `ADSENSE_APPROVED = false`라 계속 화면에 렌더링되지 않음(승인 전 빈 박스 노출 방지 정책 유지).
+
 ## 2026-10-23 (8) — 대시보드 풍속 표시 단위를 km/h → m/s로 변경(표시 전용)
 
 **요청**: 사용자가 풍속 단위를 m/s로 지정, 적용 범위는 대시보드 표시에만. 소수점·안내 문구 처리는 Claude 제안(소수 첫째 자리, 안내 문구도 m/s)대로 진행하도록 승인.
