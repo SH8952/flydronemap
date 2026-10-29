@@ -1,3 +1,21 @@
+## 2026-10-29 (11) — 보안 업데이트: Next.js 16.3.2 → 16.4.2 + 의존성 취약점 정리
+
+**배경**: `npm audit` 8건(심각 1·높음 5·보통 2). Next.js 16.0.0~16.4.0 범위에 심각 취약점(윈도 서버 RCE, 이미지 최적화 API AVIF/SVG RCE, next/og ImageResponse RCE, 이미지 최적화 SSRF, 캐시 오염 등)이 보고됨. 이 사이트는 Vercel(리눅스)에서 서비스되고 `next/og`를 쓰지 않아 직접 영향은 낮다고 판단하지만 공식 수정 버전이 있어 업그레이드. ExifLens에서 같은 업그레이드를 먼저 검증·적용(2026-10-24).
+
+**변경**
+- `next`, `eslint-config-next`: 16.3.2 → 16.4.2 (정확한 버전 고정).
+- `npm audit fix`(강제 없음)로 잠금 파일의 sharp, source-map-js, zod 등 높음 등급 3건 정리. `package.json`의 다른 항목 변경 없음.
+- 남은 2건(보통): `@tailwindcss/typography → postcss-selector-parser`. 빌드 시점 도구이고 수정하려면 호환성이 깨지는 다운그레이드(0.5.4)가 필요해 보류.
+
+**검증(맥 폴더와 분리된 격리 사본, 실제 폴더의 `node_modules`·`.next` 미변경)**: `tsc --noEmit` 오류 0, `eslint src` 오류 0(기존 경고 3건 그대로), `next build` 성공(정적 페이지 462개), `next start` 후 `/en`·`/ko`·가이드·한국 규정 페이지·사이트맵·robots·ads.txt·`/api/geo` 모두 200. `/api/dashboard`는 검증 환경이 외부 날씨 서버에 접속할 수 없어 확인하지 못했으므로 맥의 localhost에서 확인 필요.
+
+**주의/후속**
+- 맥의 `node_modules`는 아직 이전 버전이므로 `rm -rf node_modules && npm ci` 후 localhost에서 홈(검색·지도·카드)을 확인한 다음 푸시.
+- 기존 `next.config.ts`의 폴리필 치환 설정은 Next.js 버전 변경 시 PageSpeed의 "레거시 JavaScript" 진단 재확인이 필요하다고 명시되어 있음 → 배포 후 확인.
+- 롤백: 백업 `.backups/backup_20261029_053809_보안업데이트전`의 `package.json`·`package-lock.json` 복원 후 `npm ci`.
+
+**남은 보안 항목(미적용)**: 공개 API 요청 횟수 제한, HTTP 보안 헤더(광고 스크립트 영향으로 승인 후), 계정 2단계 인증·GitHub 공개 범위/브랜치 보호·Vercel 방화벽 알림(본인 직접 확인).
+
 ## 2026-10-29 (10) — CTR 개선: 검색 노출 페이지 설명문(description) 재작성 (메타데이터만 변경)
 
 **배경**: 서치콘솔 28일 데이터는 노출 19건뿐이라 페이지별 CTR 판단이 어려워, 노출이 쌓여 있는 Bing 페이지 리포트(10/1~10/24)를 기준으로 삼음. Bing 순위 3~7위인데 클릭 0인 가이드 4편(fria-explained 40회, firmware-updates 18회, compass-calibration 9회, gimbal-maintenance 6회)과, 설명문이 길어 검색 결과에서 잘리는 영어·스페인어·독일어 홈이 대상. 가이드 설명문 355건 중 103건이 155자를 초과하는 상태.
