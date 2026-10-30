@@ -1,3 +1,7 @@
+## 2026-10-30 (1) — 푸시할 때 IndexNow 자동 알림 추가
+
+- `automation/indexnow-push-hook.py`·`automation/push-and-notify.sh` 신규(firelic·ExifLens 와 동일 구조). push 후 바뀐 가이드·페이지 주소만 배포 확인 뒤 IndexNow 로 전송, 같은 주소 24시간 내 재전송 안 함, 실패해도 push 영향 없음. 규정 국가별 같은 동적 데이터 경로는 자동 변환 대상이 아니라 `indexnow-submit.py --urls` 로 직접 알림. 기존 스크립트 변경 없음. 백업 `.backups/backup_20261030_063518_indexnow-hook`.
+
 ## 2026-10-29 (11) — 보안 업데이트: Next.js 16.3.2 → 16.4.2 + 의존성 취약점 정리
 
 **배경**: `npm audit` 8건(심각 1·높음 5·보통 2). Next.js 16.0.0~16.4.0 범위에 심각 취약점(윈도 서버 RCE, 이미지 최적화 API AVIF/SVG RCE, next/og ImageResponse RCE, 이미지 최적화 SSRF, 캐시 오염 등)이 보고됨. 이 사이트는 Vercel(리눅스)에서 서비스되고 `next/og`를 쓰지 않아 직접 영향은 낮다고 판단하지만 공식 수정 버전이 있어 업그레이드. ExifLens에서 같은 업그레이드를 먼저 검증·적용(2026-10-24).

@@ -152,3 +152,6 @@ git 이력에는 없음)로 재검증한 결과 팝업 없이 3초 후 정상적
 이 순서는 더블클릭 중복 실행 경합 문제도 함께 완화한다 — 먼저 지워버리면 설령 두 인스턴스가 동시에
 실행되더라도 두 번째 인스턴스는 이미 없는 파일을 지우려 시도할 뿐이라(`|| true`로 에러 없이 넘어감)
 문제가 되지 않는다.
+
+## 푸시할 때 IndexNow 자동 알림 (2026-10-30 확정)
+일회용 push `.command` 스크립트를 만들 때 `git push origin HEAD` 대신 `bash automation/push-and-notify.sh` 를 호출한다. push 성공 후 이번에 올라간 커밋에서 바뀐 페이지 주소(`content/guides|blog/<언어>/*.mdx`, `src/app/[locale]/**/page.tsx`)만 IndexNow 에 알린다(백그라운드 분리, 같은 주소 24시간 내 재전송 안 함, 실패해도 push 에 영향 없음). 동적 데이터 경로나 컴포넌트만 바뀐 경우는 주소가 정해지지 않아 `python3 automation/indexnow-submit.py --urls <경로>` 로 직접 알린다. `git add -A` 는 쓰지 않는다.
