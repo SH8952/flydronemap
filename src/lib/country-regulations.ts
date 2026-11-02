@@ -20,7 +20,17 @@
  * 반드시 각국 공식 기관에서 최신 규정을 확인하도록 화면에 안내 문구를 둔다.
  */
 
-export type RegulationCountryId = "us" | "kr" | "jp" | "es" | "de" | "gb" | "ca" | "au";
+export type RegulationCountryId =
+  | "us"
+  | "kr"
+  | "jp"
+  | "es"
+  | "de"
+  | "fr"
+  | "ch"
+  | "gb"
+  | "ca"
+  | "au";
 
 export type RegulationLinkKey =
   | "official"
@@ -131,6 +141,51 @@ export const REGULATION_COUNTRIES: RegulationCountryDef[] = [
     ],
   },
   {
+    id: "fr",
+    relatedGuideSlugs: [
+      "france-drone-regulations-and-dgac-restriction-map-explained",
+      "eu-easa-drone-regulations-basics",
+    ],
+    hasMapData: true,
+    capital: { latitude: 48.8566, longitude: 2.3522 },
+    links: [
+      {
+        key: "official",
+        url: "https://www.ecologie.gouv.fr/politiques-publiques/exploitation-drones-categorie-ouverte",
+      },
+      // DGAC 공식 페이지가 직접 링크한 AlphaTango 포털(운영자 등록).
+      {
+        key: "registration",
+        url: "https://alphatango.aviation-civile.gouv.fr/login.jsp",
+      },
+      {
+        key: "airspaceMap",
+        url: "https://www.geoportail.gouv.fr/donnees/restrictions-uas-categorie-ouverte-et-aeromodelisme",
+      },
+    ],
+  },
+  {
+    id: "ch",
+    relatedGuideSlugs: [
+      "switzerland-drone-regulations-and-foca-drone-map-explained",
+      "eu-easa-drone-regulations-basics",
+    ],
+    hasMapData: true,
+    capital: { latitude: 46.948, longitude: 7.4474 },
+    links: [
+      { key: "official", url: "https://www.bazl.admin.ch/de/drohnen" },
+      {
+        key: "registration",
+        url: "https://bazl.admin.ch/en/registration-drone-operator",
+      },
+      // BAZL 지리적 비행 제한 페이지가 직접 링크한 연방 드론 지도(map.geo.admin.ch).
+      {
+        key: "airspaceMap",
+        url: "https://map.geo.admin.ch/#/map?lang=en&topic=aviation&layers=ch.bazl.einschraenkungen-drohnen&bgLayer=ch.swisstopo.pixelkarte-grau",
+      },
+    ],
+  },
+  {
     id: "gb",
     relatedGuideSlugs: ["beginner-drone-preflight-checklist", "do-you-need-drone-insurance-checklist"],
     hasMapData: false,
@@ -192,6 +247,23 @@ export function getRegulationCountry(
  */
 export const REGULATIONS_VERIFIED_ON = "2026-10-23";
 
+/**
+ * 국가별 확인일 — 여기에 있는 국가는 위 전역 확인일 대신 이 날짜를 화면에 표시한다.
+ * 전역 확인일을 올리면 다른 국가도 그날 재확인한 것처럼 보이므로, 새로 추가·재확인한
+ * 국가만 이 목록에 따로 적는다(2026-11-02: 프랑스·스위스는 DGAC·BAZL 공식 페이지를
+ * 이 날짜에 직접 열어 확인하고 작성).
+ */
+export const REGULATIONS_VERIFIED_ON_BY_COUNTRY: Partial<
+  Record<RegulationCountryId, string>
+> = {
+  fr: "2026-11-02",
+  ch: "2026-11-02",
+};
+
+export function getRegulationVerifiedOn(id: RegulationCountryId): string {
+  return REGULATIONS_VERIFIED_ON_BY_COUNTRY[id] ?? REGULATIONS_VERIFIED_ON;
+}
+
 export const REGULATION_SOURCES: Record<
   RegulationCountryId,
   { name: string; url: string }[]
@@ -219,6 +291,19 @@ export const REGULATION_SOURCES: Record<
   de: [
     { name: "LBA — Betreiberregistrierung", url: "https://www.lba.de/DE/Drohnen/UAS_Betreiberregistrierung/UAS_Betreiberregistrierung_node.html" },
     { name: "LBA — FAQ Drohnen", url: "https://www.lba.de/DE/Drohnen/FAQ/Uebersicht_FAQ_node.html" },
+  ],
+  fr: [
+    { name: "DGAC — Exploitation de drones en catégorie ouverte", url: "https://www.ecologie.gouv.fr/politiques-publiques/exploitation-drones-categorie-ouverte" },
+    { name: "DGAC — Formation catégorie ouverte UAS", url: "https://www.ecologie.gouv.fr/politiques-publiques/formation-categorie-ouverte-uas" },
+    { name: "Géoportail — Restrictions UAS catégorie ouverte et aéromodélisme", url: "https://www.geoportail.gouv.fr/donnees/restrictions-uas-categorie-ouverte-et-aeromodelisme" },
+    { name: "SIA — Données zones géographiques UAS (ED-269)", url: "https://www.sia.aviation-civile.gouv.fr/produits-numeriques-en-libre-disposition/donnees-zones-geographiques-uas.html" },
+  ],
+  ch: [
+    { name: "BAZL — Flugregeln für Drohnen", url: "https://www.bazl.admin.ch/de/flugregeln-drohnen" },
+    { name: "BAZL — Registration as a drone operator", url: "https://bazl.admin.ch/en/registration-drone-operator" },
+    { name: "BAZL — Ausbildung und Zertifikate für Fernpiloten", url: "https://www.bazl.admin.ch/de/fernpiloten" },
+    { name: "BAZL — Geografische Flugeinschränkungen", url: "https://www.bazl.admin.ch/de/geografische-flugeinschraenkungen" },
+    { name: "BAZL — Häufig gestellte Fragen zu Drohnen (FAQ)", url: "https://www.bazl.admin.ch/de/faq-drohnen" },
   ],
   gb: [
     { name: "CAA — Registering to fly drones and model aircraft", url: "https://www.caa.co.uk/drones/open-category/getting-started-with-drones-and-model-aircraft/registering-to-fly-drones-and-model-aircraft/" },

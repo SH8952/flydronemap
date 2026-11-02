@@ -456,7 +456,7 @@
         "heading": "De dónde salen los datos",
         "body": [
           "El tiempo (viento, ráfagas, visibilidad y temperatura) procede de Open-Meteo. El índice Kp planetario procede del Centro de Predicción del Clima Espacial de la NOAA (SWPC).",
-          "Las capas de espacio aéreo proceden de servicios públicos oficiales: el FAA UAS Facility Map y los datos de espacio aéreo de EE. UU., VWorld para Corea del Sur, las zonas geográficas UAS de ENAIRE para España y DIPUL para Alemania. Para Japón, de momento solo enlazamos las páginas oficiales del MLIT."
+          "Las capas de espacio aéreo proceden de servicios públicos oficiales: el FAA UAS Facility Map y los datos de espacio aéreo de EE. UU., VWorld para Corea del Sur, las zonas geográficas UAS de ENAIRE para España DIPUL para Alemania, el mapa de drones de la FOCA para Suiza y el mapa de restricciones de la DGAC para Francia. Para Japón, de momento solo enlazamos las páginas oficiales del MLIT."
         ]
       },
       {
@@ -689,6 +689,66 @@
         },
         "metaTitle": "Drones en Alemania: normativa y DIPUL",
         "metaDescription": "Normativa de drones en Alemania: marco EASA de la UE, registro ante el LBA y cómo consultar las zonas de restricción de vuelo en DIPUL antes de volar."
+      },
+      "fr": {
+        "name": "Francia",
+        "capital": "París",
+        "authority": "DGAC (Dirección General de Aviación Civil de Francia)",
+        "summary": [
+          "Francia aplica el marco de la UE para drones (Reglamento de Ejecución 2019/947) y añade normas nacionales por encima. La categoría abierta cubre operaciones de bajo riesgo, de ocio y profesionales, y la propia DGAC aconseja comprobar las particularidades nacionales de cada Estado miembro de la UE.",
+          "Un operador debe registrarse en el portal AlphaTango antes de volar si el dron pesa más de 250 g, o si no es un juguete y lleva un sensor que puede recoger datos personales, como una cámara o un micrófono. Los pilotos remotos de las subcategorías A1/A3 completan una formación y un examen de 40 preguntas, la A2 añade formación práctica y un examen de 30 preguntas, y la edad mínima es de 14 años.",
+          "En la categoría abierta Francia prohíbe el vuelo nocturno y el vuelo en espacio público dentro de zonas urbanas, y la altura máxima es de 120 m. Antes de cada vuelo, consulta el mapa de restricciones de la DGAC para tu ubicación y el sitio web del SIA para las zonas temporales. La DGAC indica que el mapa tiene lagunas, por ejemplo los helipuertos privados y las prohibiciones temporales de la época de cría."
+        ],
+        "highlights": [
+          "Regístrate como operador europeo de UAS en AlphaTango si tu dron pesa más de 250 g, o si no es un juguete y lleva una cámara, un micrófono u otro sensor que pueda recoger datos personales. Tras el registro, la DGAC indica que el vuelo en la categoría abierta no requiere declaración ni autorización previa, pero debe cumplir los reglamentos europeos y las órdenes nacionales.",
+          "Para la A1/A3 completas la formación y apruebas un examen de 40 preguntas, y para la A2 se añaden formación práctica y un examen de 30 preguntas, con un 75 % de respuestas correctas esperado en ambos. La DGAC afirma que los certificados se reconocen en todos los Estados miembros de la UE. La edad mínima en Francia es de 14 años.",
+          "Volar sobre aglomeraciones de personas nunca está permitido en la categoría abierta. En la A2 el sobrevuelo está prohibido y la DGAC indica 5 m de las personas en modo de baja velocidad y 30 m en caso contrario. En la A3 el sobrevuelo está prohibido y la tabla de la DGAC indica 150 m respecto a las personas.",
+          "En la categoría abierta están prohibidos el vuelo nocturno y el vuelo en espacio público dentro de zonas urbanas, y la altura máxima es de 120 m. El prefecto puede conceder excepciones a la prohibición nocturna, y la DGAC indica que la solicitud debe enviarse al menos 30 días antes de los vuelos.",
+          "Según la normativa francesa, los drones de más de 800 g deben emitir una señal electrónica, con algunas exenciones indicadas. La cifra de 800 g es distinta de la regla de registro de 250 g, y la descripción que hace la DGAC de las sanciones por falta de formación o de registro se refiere a drones de 800 g o más."
+        ],
+        "checklist": [
+          "Regístrate en AlphaTango si tu dron pesa más de 250 g o lleva cámara o micrófono, y comprueba que tienes el certificado adecuado (A1/A3 o A2) y que tienes al menos 14 años.",
+          "Antes de cada vuelo, consulta el mapa de restricciones de la DGAC para la ubicación exacta y el sitio web del SIA para zonas temporales. El mapa no muestra los helipuertos privados ni las prohibiciones temporales de la época de cría.",
+          "No planifiques en la categoría abierta vuelos nocturnos, vuelos en espacio público dentro de zonas urbanas ni vuelos por encima de 120 m.",
+          "Si visitas Francia desde el extranjero, lee las normas de la DGAC para visitantes: los operadores de la UE necesitan su registro de la UE, y los de Estados ajenos a la EASA deben registrarse como operadores europeos y obtener las cualificaciones europeas."
+        ],
+        "links": {
+          "official": "Información de la DGAC sobre la categoría abierta",
+          "registration": "Registro de operador en AlphaTango",
+          "airspaceMap": "Mapa de restricciones de la DGAC (Géoportail)"
+        },
+        "metaTitle": "Drones en Francia: DGAC, registro y mapa",
+        "metaDescription": "Normativa de drones en Francia según la DGAC: registro en AlphaTango, formación A1/A3 y A2, prohibiciones nocturnas y urbanas y mapa de restricciones."
+      },
+      "ch": {
+        "name": "Suiza",
+        "capital": "Berna",
+        "authority": "FOCA (Oficina Federal de Aviación Civil de Suiza)",
+        "summary": [
+          "Suiza no es miembro de la UE, pero la Oficina Federal de Aviación Civil (FOCA, en alemán BAZL) afirma que en principio se aplican las mismas normas que en los demás Estados miembros de la EASA: los Estados de la UE, Noruega, Islandia y Liechtenstein. Los vuelos sin autorización de la FOCA deben seguir las reglas de la categoría abierta, y los vuelos complejos necesitan una autorización de la categoría específica.",
+          "Los operadores se registran en la FOCA a través de la plataforma dLIS, salvo que el dron pese menos de 250 g y no tenga cámara ni otro sensor que pueda registrar datos personales. Los operadores de drones de 250 g o más necesitan un seguro de responsabilidad civil con una suma garantizada de al menos 1 millón de francos, y los pilotos remotos necesitan un certificado (A1/A3 o A2), salvo en la A1 con drones de clase C0 y drones ligeros heredados o de fabricación propia.",
+          "Antes de cada vuelo, la FOCA exige consultar el mapa de drones con las restricciones nacionales y cantonales y el Boletín Diario del Espacio Aéreo de Suiza (DABS). El permiso para una zona restringida lo concede el organismo competente de esa zona, no la FOCA."
+        ],
+        "highlights": [
+          "Regístrate como operador en dLIS salvo que tu dron pese menos de 250 g y no tenga cámara, micrófono ni otro sensor de datos personales. Necesitas una cuenta eIAM (AGOV o CH-Login). La FOCA indica una edad mínima de 12 años para el registro, con el nombre de un representante legal para los menores de 16, y el registro es válido por tiempo ilimitado.",
+          "Muestra la primera parte de tu número de operador de UAS (CHE más 13 caracteres) de forma bien visible en cada dron antes de cada vuelo; no hacerlo es sancionable. Los tres últimos caracteres solo sirven para activar el Remote ID y la FOCA aconseja tratarlos como una contraseña.",
+          "Antes de operar drones de 250 g o más se necesita un seguro de responsabilidad civil con una suma garantizada de al menos 1 millón de francos, y la FOCA recomienda asegurar también los drones más ligeros. Si no estás asegurado, debes esperar una multa.",
+          "En todas las subcategorías la altura máxima es de 120 m sobre el suelo, hay que volar dentro de la línea de visión, está prohibido volar sobre aglomeraciones, la aviación tripulada tiene prioridad y el Remote ID debe estar activado. En la A2 la distancia a las personas ajenas es la mayor entre 30 m (5 m en modo de baja velocidad) y la altura de vuelo, y la A3 exige 150 m de zonas residenciales, comerciales, industriales y recreativas.",
+          "Los certificados son válidos cinco años en todos los Estados miembros de la EASA, y los emitidos en Estados de la EASA valen en Suiza, mientras que los de otros Estados no se reconocen. La edad mínima es de 12 años en la categoría abierta (los menores solo bajo la supervisión directa de una persona de 16 años o más) y de 14 en la categoría específica."
+        ],
+        "checklist": [
+          "Comprueba que tu registro de operador está en regla, que cada dron lleva la parte visible de tu número de operador y que tu seguro de responsabilidad civil cubre los drones de 250 g o más.",
+          "Asegúrate de tener el certificado que exige tu vuelo (A1/A3 o A2) y de poder mostrarlo durante el vuelo.",
+          "Antes de cada vuelo, consulta el mapa de drones, el DABS vigente y las zonas con mayor riesgo de colisión, y solicita un permiso al organismo competente si se aplica una restricción.",
+          "Vuela dentro de la línea de visión y por debajo de 120 m, respeta las distancias de tu subcategoría y activa el Remote ID."
+        ],
+        "links": {
+          "official": "Información de la FOCA sobre drones",
+          "registration": "Registro de operador (FOCA)",
+          "airspaceMap": "Mapa federal de drones (map.geo.admin.ch)"
+        },
+        "metaTitle": "Drones en Suiza: FOCA, dLIS y mapa de drones",
+        "metaDescription": "Normativa de drones en Suiza según la FOCA: registro en dLIS, distancias A1/A2/A3, límite de 120 m y comprobación del mapa y del DABS antes de volar."
       },
       "gb": {
         "name": "Reino Unido",

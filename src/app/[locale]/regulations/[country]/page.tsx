@@ -10,7 +10,7 @@ import { RegulationRelatedGuides } from "@/components/regulation-related-guides"
 import {
   REGULATION_COUNTRIES,
   REGULATION_SOURCES,
-  REGULATIONS_VERIFIED_ON,
+  getRegulationVerifiedOn,
   getRegulationCountry,
 } from "@/lib/country-regulations";
 
@@ -190,7 +190,7 @@ export default async function RegulationCountryPage({
             date: new Intl.DateTimeFormat(locale, {
               dateStyle: "long",
               timeZone: "UTC",
-            }).format(new Date(`${REGULATIONS_VERIFIED_ON}T00:00:00Z`)),
+            }).format(new Date(`${getRegulationVerifiedOn(country.id)}T00:00:00Z`)),
           })}
         </p>
         <ul className="flex flex-col gap-0.5">

@@ -73,8 +73,6 @@ export type WmsAirspaceCountryDef = {
   /** country-coder(src/lib/country-info.ts)가 돌려주는 ISO 3166-1 alpha-2 코드들.
    * 프랑스는 해외 영토(레위니옹 등)를 별도 코드로 돌려주므로 여러 개다. */
   countryCodes: string[];
-  /** 국가 선택 드롭다운에 표시할 이름용 ISO 코드(Intl.DisplayNames 입력). */
-  pickerCountryCode: string;
   /** 지도 타일(GetMap)용 WMS 주소와 레이어 이름. */
   wmsUrl: string;
   wmsLayers: string;
@@ -86,19 +84,12 @@ export type WmsAirspaceCountryDef = {
   officialMapUrl: string;
   /** 범례 이미지(있는 나라만). */
   legendUrl?: string;
-  /** 국가 선택 드롭다운에서 고르면 이동할 수도 좌표와 로케일별 이름. */
-  capital: {
-    latitude: number;
-    longitude: number;
-    names: Record<string, string>;
-  };
 };
 
 export const WMS_AIRSPACE_COUNTRIES: WmsAirspaceCountryDef[] = [
   {
     id: "ch",
     countryCodes: ["CH"],
-    pickerCountryCode: "CH",
     wmsUrl: "https://wms.geo.admin.ch/",
     wmsLayers: "ch.bazl.einschraenkungen-drohnen",
     attribution:
@@ -106,18 +97,12 @@ export const WMS_AIRSPACE_COUNTRIES: WmsAirspaceCountryDef[] = [
     sourceName: "FOCA / swisstopo",
     officialMapUrl:
       "https://map.geo.admin.ch/#/map?lang=en&topic=aviation&layers=ch.bazl.einschraenkungen-drohnen&bgLayer=ch.swisstopo.pixelkarte-grau",
-    capital: {
-      latitude: 46.948,
-      longitude: 7.4474,
-      names: { en: "Bern", ko: "베른", ja: "ベルン", es: "Berna", de: "Bern" },
-    },
   },
   {
     id: "fr",
     // 레이어 메타데이터상 본토·기아나·앤틸리스·생피에르미클롱·마요트·레위니옹을
     // 포함한다. 레위니옹은 실제 조회로 확인했고 나머지는 메타데이터 기준이다.
     countryCodes: ["FR", "RE", "GP", "MQ", "GF", "YT", "PM"],
-    pickerCountryCode: "FR",
     wmsUrl: "https://data.geopf.fr/wms-r/wms",
     wmsLayers: "TRANSPORTS.DRONES.RESTRICTIONS",
     attribution:
@@ -127,11 +112,6 @@ export const WMS_AIRSPACE_COUNTRIES: WmsAirspaceCountryDef[] = [
       "https://www.geoportail.gouv.fr/donnees/restrictions-uas-categorie-ouverte-et-aeromodelisme",
     legendUrl:
       "https://data.geopf.fr/annexes/ressources/legendes/TRANSPORTS.DRONES.RESTRICTIONS-legend.png",
-    capital: {
-      latitude: 48.8566,
-      longitude: 2.3522,
-      names: { en: "Paris", ko: "파리", ja: "パリ", es: "París", de: "Paris" },
-    },
   },
 ];
 

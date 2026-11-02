@@ -456,7 +456,7 @@
         "heading": "Woher die Daten stammen",
         "body": [
           "Wetterdaten (Wind, Böen, Sichtweite, Temperatur) stammen von Open-Meteo, der planetare Kp-Index vom Space Weather Prediction Center (SWPC) der NOAA.",
-          "Die Luftraumebenen stammen aus öffentlichen amtlichen Diensten: FAA UAS Facility Map und Luftraumdaten für die USA, VWorld für Südkorea, die UAS-Geozonen von ENAIRE für Spanien und DIPUL für Deutschland. Für Japan verlinken wir derzeit nur die offiziellen Seiten des MLIT."
+          "Die Luftraumebenen stammen aus öffentlichen amtlichen Diensten: FAA UAS Facility Map und Luftraumdaten für die USA, VWorld für Südkorea, die UAS-Geozonen von ENAIRE für Spanien DIPUL für Deutschland, die BAZL-Drohnenkarte für die Schweiz und die DGAC-Beschränkungskarte für Frankreich. Für Japan verlinken wir derzeit nur die offiziellen Seiten des MLIT."
         ]
       },
       {
@@ -689,6 +689,66 @@
         },
         "metaTitle": "Deutschland: Drohnenregeln & DIPUL-Karte",
         "metaDescription": "Drohnenregeln in Deutschland: EU-EASA-Rahmen mit drei Kategorien, Registrierung beim LBA und Prüfung von Flugbeschränkungs- und Kontrollzonen über DIPUL."
+      },
+      "fr": {
+        "name": "Frankreich",
+        "capital": "Paris",
+        "authority": "DGAC (Französische Generaldirektion für Zivilluftfahrt)",
+        "summary": [
+          "Frankreich wendet den EU-Rahmen für Drohnen (Durchführungsverordnung 2019/947) an und legt nationale Regeln darüber. Die offene Kategorie (Open) umfasst risikoarme Einsätze für Freizeit und Beruf, und die DGAC selbst rät, die nationalen Besonderheiten in jedem EU-Mitgliedstaat zu prüfen.",
+          "Ein Betreiber muss sich vor dem Flug auf dem Portal AlphaTango registrieren, wenn die Drohne mehr als 250 g wiegt oder wenn sie kein Spielzeug ist und einen Sensor trägt, der personenbezogene Daten erfassen kann, etwa eine Kamera oder ein Mikrofon. Fernpiloten der Unterkategorien A1/A3 absolvieren eine Schulung und eine Prüfung mit 40 Fragen, bei A2 kommen eine praktische Schulung und eine Prüfung mit 30 Fragen hinzu, und das Mindestalter beträgt 14 Jahre.",
+          "In der Open-Kategorie verbietet Frankreich den Nachtflug und den Flug im öffentlichen Raum von Ortschaften, und die maximale Höhe beträgt 120 m. Prüfen Sie vor jedem Flug die DGAC-Beschränkungskarte für Ihren Standort und die SIA-Website für befristete Zonen. Die DGAC weist darauf hin, dass die Karte Lücken hat, zum Beispiel private Hubschrauberlandeplätze und befristete Verbote während der Brutzeit."
+        ],
+        "highlights": [
+          "Registrieren Sie sich auf AlphaTango als europäischer UAS-Betreiber, wenn Ihre Drohne mehr als 250 g wiegt oder wenn sie kein Spielzeug ist und eine Kamera, ein Mikrofon oder einen anderen Sensor trägt, der personenbezogene Daten erfassen kann. Nach der Registrierung braucht der Flug in der Open-Kategorie laut DGAC weder eine Anmeldung noch eine vorherige Genehmigung, muss aber die europäischen Verordnungen und die nationalen Erlasse einhalten.",
+          "Für A1/A3 absolvieren Sie eine Schulung und bestehen eine Prüfung mit 40 Fragen, für A2 kommen eine praktische Schulung und eine Prüfung mit 30 Fragen hinzu, jeweils mit erwarteten 75 Prozent richtigen Antworten. Die DGAC sagt, die Zeugnisse würden in allen EU-Mitgliedstaaten anerkannt. Das Mindestalter in Frankreich beträgt 14 Jahre.",
+          "Das Überfliegen von Menschenansammlungen ist in der Open-Kategorie nie erlaubt. In A2 ist der Überflug verboten, und die DGAC nennt 5 m zu Personen im Langsamflugmodus und sonst 30 m. In A3 ist der Überflug verboten, und die Tabelle der DGAC nennt 150 m zu Personen.",
+          "In der Open-Kategorie sind Nachtflüge und Flüge im öffentlichen Raum von Ortschaften verboten, und die maximale Höhe beträgt 120 m. Vom Nachtflugverbot kann der Präfekt Ausnahmen erteilen, und die DGAC gibt an, dass der Antrag mindestens 30 Tage vor den Flügen eingereicht werden muss.",
+          "Nach französischem Recht müssen Drohnen über 800 g ein elektronisches Signal aussenden, mit einigen genannten Ausnahmen. Die Zahl 800 g ist von der Registrierungsregel ab 250 g getrennt, und auch die Beschreibung der Strafen für fehlende Schulung oder Registrierung bezieht sich bei der DGAC auf Drohnen ab 800 g."
+        ],
+        "checklist": [
+          "Registrieren Sie sich auf AlphaTango, wenn Ihre Drohne über 250 g wiegt oder eine Kamera oder ein Mikrofon trägt, und stellen Sie sicher, dass Sie das passende Zeugnis (A1/A3 oder A2) besitzen und mindestens 14 Jahre alt sind.",
+          "Sehen Sie vor jedem Flug auf der DGAC-Beschränkungskarte für den genauen Standort nach und prüfen Sie auf der SIA-Website befristete Zonen. Die Karte zeigt weder private Hubschrauberlandeplätze noch befristete Verbote während der Brutzeit.",
+          "Planen Sie in der Open-Kategorie keine Nachtflüge, keine Flüge im öffentlichen Raum von Ortschaften und keine Flüge über 120 m.",
+          "Wenn Sie aus dem Ausland anreisen, lesen Sie die Regeln der DGAC für Besucher: EU-Betreiber brauchen ihre EU-Registrierung, und Betreiber aus Staaten außerhalb der EASA müssen sich als europäische Betreiber registrieren und europäische Qualifikationen erwerben."
+        ],
+        "links": {
+          "official": "Informationen der DGAC zur Open-Kategorie",
+          "registration": "Betreiberregistrierung auf AlphaTango",
+          "airspaceMap": "DGAC-Beschränkungskarte (Géoportail)"
+        },
+        "metaTitle": "Drohnenregeln Frankreich: DGAC, Registrierung, Karte",
+        "metaDescription": "Drohnenregeln in Frankreich laut DGAC: Registrierung auf AlphaTango, A1/A3- und A2-Schulung, Nacht- und Ortschaftsverbote und Beschränkungskarte."
+      },
+      "ch": {
+        "name": "Schweiz",
+        "capital": "Bern",
+        "authority": "BAZL (Bundesamt für Zivilluftfahrt)",
+        "summary": [
+          "Die Schweiz ist kein EU-Mitglied, doch das Bundesamt für Zivilluftfahrt (BAZL) erklärt, dass grundsätzlich dieselben Regeln gelten wie in den anderen EASA-Mitgliedstaaten: den EU-Staaten, Norwegen, Island und Liechtenstein. Flüge ohne Bewilligung des BAZL müssen die Regeln der offenen Kategorie einhalten, komplexe Einsätze brauchen eine Bewilligung in der speziellen Kategorie.",
+          "Betreiber registrieren sich beim BAZL auf der Plattform dLIS, es sei denn, die Drohne wiegt weniger als 250 g und hat keine Kamera oder keinen anderen Sensor, der personenbezogene Daten erfassen kann. Betreiber von Drohnen ab 250 g brauchen eine Haftpflichtversicherung mit einer Garantiesumme von mindestens 1 Million Franken, und Fernpiloten brauchen ein Zertifikat (A1/A3 oder A2), ausser in A1 mit Drohnen der Klasse C0 sowie leichten Legacy- oder privat hergestellten Drohnen.",
+          "Vor jedem Flug verlangt das BAZL, die Drohnenkarte mit den nationalen und kantonalen Einschränkungen und das Daily Airspace Bulletin Switzerland (DABS) zu prüfen. Die Bewilligung für ein eingeschränktes Gebiet erteilt die für das Gebiet zuständige Stelle, nicht das BAZL."
+        ],
+        "highlights": [
+          "Registrieren Sie sich auf dLIS als Betreiber, es sei denn, Ihre Drohne wiegt unter 250 g und hat keine Kamera, kein Mikrofon und keinen anderen Sensor für personenbezogene Daten. Sie brauchen ein eIAM-Konto (AGOV oder CH-Login). Das BAZL nennt für die Registrierung ein Mindestalter von 12 Jahren, wobei bei Kindern unter 16 Jahren der Name einer gesetzlichen Vertretung anzugeben ist, und die Registrierung ist unbefristet gültig.",
+          "Bringen Sie den ersten Teil Ihrer UAS-Betreibernummer (CHE plus 13 Zeichen) vor jedem Flug gut sichtbar an jeder Drohne an, das Unterlassen ist strafbar. Die drei letzten Zeichen dienen nur dazu, die Fernidentifikation (Remote ID) zu aktivieren, und das BAZL rät, sie wie ein Passwort zu behandeln.",
+          "Eine Haftpflichtversicherung mit einer Garantiesumme von mindestens 1 Million Franken ist erforderlich, bevor Sie Drohnen ab 250 g betreiben, und das BAZL empfiehlt, auch leichtere Drohnen zu versichern. Wer nicht versichert ist, muss mit einer Busse rechnen.",
+          "In jeder Unterkategorie beträgt die maximale Flughöhe 120 m über Grund, es darf nur auf Sichtweite geflogen werden, der Überflug von Menschenansammlungen ist verboten, die bemannte Luftfahrt hat Vortritt, und die Remote ID muss eingeschaltet sein. In A2 ist der Abstand zu unbeteiligten Personen der grössere von 30 m (5 m im Langsamflugmodus) und der Flughöhe, und A3 verlangt 150 m zu Wohn-, Gewerbe-, Industrie- und Erholungsgebieten.",
+          "Zertifikate gelten fünf Jahre in allen EASA-Mitgliedstaaten, in EASA-Staaten ausgestellte Zertifikate sind in der Schweiz gültig, Zertifikate aus anderen Staaten werden nicht anerkannt. Das Mindestalter beträgt in der offenen Kategorie 12 Jahre (jüngere Kinder nur unter direkter Aufsicht einer mindestens 16 Jahre alten Person) und in der speziellen Kategorie 14 Jahre."
+        ],
+        "checklist": [
+          "Prüfen Sie, ob Ihre Betreiberregistrierung besteht, jede Drohne den sichtbaren Teil Ihrer Betreibernummer trägt und Ihre Haftpflichtversicherung Drohnen ab 250 g abdeckt.",
+          "Stellen Sie sicher, dass Sie das für Ihren Flug nötige Zertifikat (A1/A3 oder A2) besitzen und es bei Flügen vorweisen können.",
+          "Prüfen Sie vor jedem Flug die Drohnenkarte, das aktuelle DABS und die Gebiete mit erhöhtem Kollisionsrisiko, und beantragen Sie bei der zuständigen Stelle eine Bewilligung, wenn eine Einschränkung gilt.",
+          "Fliegen Sie auf Sichtweite und unter 120 m, halten Sie die Abstände Ihrer Unterkategorie ein und schalten Sie die Remote ID ein."
+        ],
+        "links": {
+          "official": "BAZL-Informationen zu Drohnen",
+          "registration": "Betreiberregistrierung (BAZL)",
+          "airspaceMap": "Drohnenkarte des Bundes (map.geo.admin.ch)"
+        },
+        "metaTitle": "Drohnenregeln Schweiz: BAZL, dLIS & Drohnenkarte",
+        "metaDescription": "Drohnenregeln in der Schweiz laut BAZL: Betreiberregistrierung über dLIS, Abstände A1/A2/A3, 120-m-Grenze sowie Drohnenkarte und DABS vor jedem Flug."
       },
       "gb": {
         "name": "Vereinigtes Königreich",

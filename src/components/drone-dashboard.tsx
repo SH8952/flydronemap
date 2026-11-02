@@ -71,11 +71,7 @@ import {
   fetchDeAirspaceZones,
   type DeAirspaceZones,
 } from "@/lib/de-airspace-lookup-client";
-import {
-  getWmsAirspaceCountry,
-  WMS_AIRSPACE_COUNTRIES,
-  type WmsAirspaceCountryId,
-} from "@/lib/wms-airspace-countries";
+import { getWmsAirspaceCountry } from "@/lib/wms-airspace-countries";
 import {
   fetchWmsAirspaceZones,
   type WmsAirspaceZones,
@@ -442,28 +438,6 @@ export function DroneDashboard({
     loadDashboard(loc.latitude, loc.longitude);
   }
 
-  /** 스위스·프랑스 — 규정 카탈로그(country-regulations.ts)에는 없는 나라라서
-   * 이름은 Intl.DisplayNames, 수도명은 wms-airspace-countries.ts의 로케일별
-   * 이름을 쓴다. 이후 흐름은 selectCountryCapital과 동일하다. */
-  function selectWmsCountryCapital(id: WmsAirspaceCountryId) {
-    userActedRef.current = true;
-    const country = WMS_AIRSPACE_COUNTRIES.find((c) => c.id === id);
-    if (!country) return;
-    const capitalName =
-      country.capital.names[locale] ?? country.capital.names.en;
-    const countryName = getCountryDisplayName(country.pickerCountryCode, locale);
-    const loc: GeocodeResult = {
-      name: capitalName,
-      country: countryName,
-      latitude: country.capital.latitude,
-      longitude: country.capital.longitude,
-    };
-    setSelected(loc);
-    setSuggestions([]);
-    setQuery(`${capitalName}, ${countryName}`);
-    loadDashboard(loc.latitude, loc.longitude);
-  }
-
   function useMyLocation() {
     userActedRef.current = true;
     if (!navigator.geolocation) {
@@ -567,7 +541,7 @@ export function DroneDashboard({
   }
 
   // 선택된 위치의 국가에 따라 공역 정보 박스의 제목/설명/링크를 결정한다.
-  // 4개 우선 지원국(미국/한국/일본/스페인)은 country-regulations.ts에
+  // 규정 카탈로그를 갖춘 우선 지원국(미국/한국/일본/스페인/독일/프랑스/스위스 등)은 country-regulations.ts에
   // 정리된 국가명·공식 링크를 그대로 재사용하고, 그 외 국가는
   // Intl.DisplayNames로 국가명만 표시하며(링크 없음), 국가를 아예 판별할
   // 수 없는 좌표(공해상 등)는 국가 정보 없이 일반적인 문구로 대체한다.
@@ -634,12 +608,7 @@ export function DroneDashboard({
         <Select
           value={countryPickerValue}
           onValueChange={(id) => {
-            // "wms:" 접두사 값은 스위스·프랑스(규정 카탈로그 밖의 지도 지원국).
-            if (id.startsWith("wms:")) {
-              selectWmsCountryCapital(id.slice(4) as WmsAirspaceCountryId);
-            } else {
-              selectCountryCapital(id as RegulationCountryId);
-            }
+            selectCountryCapital(id as RegulationCountryId);
             setCountryPickerValue("");
           }}
         >
@@ -654,11 +623,6 @@ export function DroneDashboard({
             {REGULATION_COUNTRIES.filter((c) => c.hasMapData).map((c) => (
               <SelectItem key={c.id} value={c.id}>
                 {tReg(`countries.${c.id}.name`)}
-              </SelectItem>
-            ))}
-            {WMS_AIRSPACE_COUNTRIES.map((c) => (
-              <SelectItem key={c.id} value={`wms:${c.id}`}>
-                {getCountryDisplayName(c.pickerCountryCode, locale)}
               </SelectItem>
             ))}
           </SelectContent>
