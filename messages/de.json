@@ -215,7 +215,35 @@
     "weatherModelNote": "modellbasierte Momentanwerte",
     "kpFeedNote": "geschätzter planetarer K-Index",
     "kpStaleWarning": "Der letzte Kp-Wert ist älter als 3 Stunden und spiegelt die aktuelle Lage möglicherweise nicht wider. Bitte später erneut prüfen.",
-    "airspaceSourcesNote": "Quellen der Luftraumebenen: FAA UAS Facility Map (USA), ENAIRE (ES), DIPUL (DE), VWorld (KR). Nur zur Orientierung – vor dem Flug in der offiziellen App oder Karte prüfen.",
+    "airspaceSourcesNote": "Quellen der Luftraumebenen: FAA UAS Facility Map (USA), ENAIRE (ES), DIPUL (DE), BAZL/swisstopo (CH), DGAC/IGN (FR), VWorld (KR). Nur zur Orientierung – vor dem Flug in der offiziellen App oder Karte prüfen.",
+    "wmsAirspaceCategories": {
+      "chZone": "Drohnen-Einschränkungsgebiet",
+      "frProhibited": "Flug verboten *",
+      "frMaxHeight": "Maximale Flughöhe {height} m *",
+      "frAbove": "Flug über {height} m verboten *",
+      "frNotify": "Meldepflicht für Fluggeräte über {weight} g *"
+    },
+    "wmsAirspaceReasons": {
+      "AIR_TRAFFIC": "Flugverkehr",
+      "SENSITIVE": "Sensibler Standort",
+      "PRIVACY": "Privatsphäre",
+      "POPULATION": "Bevölkerung",
+      "NATURE": "Naturschutz",
+      "NOISE": "Lärm",
+      "FOREIGN_STATE": "Ausländischer Staat",
+      "EMERGENCY": "Notfall",
+      "OTHER": "Sonstiges"
+    },
+    "wmsAirspaceReasonLabel": "Grund: {reason}",
+    "wmsAirspaceTemporaryNote": "Zeitlich befristete Einschränkung – die Gültigkeitsdauer steht in der offiziellen Karte.",
+    "wmsAirspaceAuthorityLabel": "Kontakt für Ausnahmen:",
+    "wmsAirspaceNotes": {
+      "ch": "Zonennamen und Regeln werden so angezeigt, wie sie das Schweizer Bundesamt für Zivilluftfahrt (BAZL) veröffentlicht – auf der deutschen Seite auf Deutsch, sonst auf Englisch. Vorübergehende oder lokale Einschränkungen sind möglicherweise nicht enthalten; prüfen Sie vor dem Flug die offizielle Karte.",
+      "fr": "* Nach der französischen „espaces“-Verordnung vom 3. Dezember 2020 können Ausnahmen gelten. Vorübergehende Sperrungen sind nicht enthalten, manche Verbote sind nur teilweise abgebildet; prüfen Sie vor dem Flug die offizielle Karte."
+    },
+    "wmsAirspaceLegendTitle": "Legende der offiziellen Karte",
+    "airspaceDisclaimerWmsCountry": "Referenzinformation auf Basis offizieller offener Daten, keine Rechtsberatung. Prüfen Sie vor jedem Flug die Regeln bei der Luftfahrtbehörde von {country} und in der offiziellen Drohnenkarte.",
+    "airspaceOfficialMapButton": "Offizielle Drohnenkarte {country} öffnen",
     "modelSpecSource": "Verwendete maximale Windbeständigkeit: {max} m/s laut Herstellerangabe.",
     "modelSpecLink": "Offizielle {brand}-Spezifikationsseite ↗",
     "thresholdBasis": "So werden die Schwellenwerte festgelegt: Böen unter 5,6 m/s gelten als gut, 5,6–9,7 m/s als Vorsicht und ab 9,7 m/s als nicht fliegen. Diese Grenzen sind eine eigene Faustregel dieser Website; sie liegen bewusst unter der vom Hersteller angegebenen maximalen Windbeständigkeit gängiger Modelle (8–12,8 m/s) und werden von keiner Behörde veröffentlicht. Bei einem gewählten Modell gelten 50 % der Herstellerangabe als Vorsicht und 70 % als nicht empfohlen – eine bewusst vorsichtige Festlegung dieser Website. Kp 4 wird als unruhig und Kp 5 oder mehr als Sturm angezeigt: NOAA gibt Kp-Warnungen aus, wenn der Kp-Wert 4 erreicht, und stuft Kp 5 als geomagnetischen G1-Sturm ein. Auch die Grenzen für Niederschlag (0,1 / 0,5 mm) und Sicht (5 / 1 km) sind eigene Faustregeln dieser Website."

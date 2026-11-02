@@ -71,6 +71,15 @@ import {
   fetchDeAirspaceZones,
   type DeAirspaceZones,
 } from "@/lib/de-airspace-lookup-client";
+import {
+  getWmsAirspaceCountry,
+  WMS_AIRSPACE_COUNTRIES,
+  type WmsAirspaceCountryId,
+} from "@/lib/wms-airspace-countries";
+import {
+  fetchWmsAirspaceZones,
+  type WmsAirspaceZones,
+} from "@/lib/wms-airspace-lookup-client";
 
 // WMS 타일 방식으로 전환되어 레이어별 fetch/로딩 상태가 없으므로 항상 빈 집합.
 const NO_LOADING_LAYER_IDS: Set<string> = new Set();
@@ -178,6 +187,9 @@ type DashboardData = {
   // 독일 지점의 DIPUL(비행제한구역/관제구역 등) 조회 결과 — 위와 동일한 이유로
   // 별개 필드로 병렬 저장한다. src/app/api/de-airspace-lookup/route.ts 참고.
   deAirspaceZones: DeAirspaceZones;
+  // 스위스·프랑스(src/lib/wms-airspace-countries.ts) 지점 조회 결과 — 위와 동일한
+  // 이유로 별개 필드로 병렬 저장한다. src/app/api/{ch,fr}-airspace-lookup/route.ts 참고.
+  wmsAirspaceZones: WmsAirspaceZones;
 };
 
 function windRisk(gustKmh: number): "low" | "moderate" | "high" {
@@ -343,21 +355,28 @@ export function DroneDashboard({
       const inKorea = isInSouthKorea(lat, lon);
       const inSpain = isInSpain(lat, lon);
       const inGermany = isInGermany(lat, lon);
-      const [res, krZone, usZones, esZones, deZones] = await Promise.all([
-        fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
-        inKorea ? fetchKoreaAirspaceZones(lat, lon) : Promise.resolve(null),
-        // 미국 지점의 클릭 시점 공역 조회도 같은 방식으로 병렬 요청한다 —
-        // src/app/api/us-airspace-lookup/route.ts 참고. 한국·스페인·독일은
-        // 각자 전용 데이터 소스가 있으므로 여기서 제외한다(무의미한 외부
-        // 호출 방지).
-        inKorea || inSpain || inGermany
-          ? Promise.resolve(null)
-          : fetchUsAirspaceZones(lat, lon),
-        // 스페인 지점의 ENAIRE ZGUAS 조회 — src/app/api/es-airspace-lookup/route.ts 참고.
-        inSpain ? fetchEsAirspaceZones(lat, lon) : Promise.resolve(null),
-        // 독일 지점의 DIPUL 조회 — src/app/api/de-airspace-lookup/route.ts 참고.
-        inGermany ? fetchDeAirspaceZones(lat, lon) : Promise.resolve(null),
-      ]);
+      // 스위스·프랑스 — 해당하면 그 나라 정의, 아니면 undefined.
+      const wmsCountry = getWmsAirspaceCountry(lat, lon);
+      const [res, krZone, usZones, esZones, deZones, wmsZones] =
+        await Promise.all([
+          fetch(`/api/dashboard?lat=${lat}&lon=${lon}`),
+          inKorea ? fetchKoreaAirspaceZones(lat, lon) : Promise.resolve(null),
+          // 미국 지점의 클릭 시점 공역 조회도 같은 방식으로 병렬 요청한다 —
+          // src/app/api/us-airspace-lookup/route.ts 참고. 한국·스페인·독일·
+          // 스위스·프랑스는 각자 전용 데이터 소스가 있으므로 여기서 제외한다
+          // (무의미한 외부 호출 방지).
+          inKorea || inSpain || inGermany || wmsCountry
+            ? Promise.resolve(null)
+            : fetchUsAirspaceZones(lat, lon),
+          // 스페인 지점의 ENAIRE ZGUAS 조회 — src/app/api/es-airspace-lookup/route.ts 참고.
+          inSpain ? fetchEsAirspaceZones(lat, lon) : Promise.resolve(null),
+          // 독일 지점의 DIPUL 조회 — src/app/api/de-airspace-lookup/route.ts 참고.
+          inGermany ? fetchDeAirspaceZones(lat, lon) : Promise.resolve(null),
+          // 스위스·프랑스 지점 조회 — src/app/api/{ch,fr}-airspace-lookup/route.ts 참고.
+          wmsCountry
+            ? fetchWmsAirspaceZones(wmsCountry, lat, lon, locale)
+            : Promise.resolve(null),
+        ]);
       if (!res.ok) throw new Error("failed");
       const json = (await res.json()) as DashboardData;
       if (krZone) {
@@ -367,6 +386,7 @@ export function DroneDashboard({
       json.usAirspaceZones = usZones;
       json.esAirspaceZones = esZones;
       json.deAirspaceZones = deZones;
+      json.wmsAirspaceZones = wmsZones;
       setData(json);
     } catch {
       setError(t("errorText"));
@@ -410,6 +430,28 @@ export function DroneDashboard({
     if (!country) return;
     const capitalName = tReg(`countries.${id}.capital`);
     const countryName = tReg(`countries.${id}.name`);
+    const loc: GeocodeResult = {
+      name: capitalName,
+      country: countryName,
+      latitude: country.capital.latitude,
+      longitude: country.capital.longitude,
+    };
+    setSelected(loc);
+    setSuggestions([]);
+    setQuery(`${capitalName}, ${countryName}`);
+    loadDashboard(loc.latitude, loc.longitude);
+  }
+
+  /** 스위스·프랑스 — 규정 카탈로그(country-regulations.ts)에는 없는 나라라서
+   * 이름은 Intl.DisplayNames, 수도명은 wms-airspace-countries.ts의 로케일별
+   * 이름을 쓴다. 이후 흐름은 selectCountryCapital과 동일하다. */
+  function selectWmsCountryCapital(id: WmsAirspaceCountryId) {
+    userActedRef.current = true;
+    const country = WMS_AIRSPACE_COUNTRIES.find((c) => c.id === id);
+    if (!country) return;
+    const capitalName =
+      country.capital.names[locale] ?? country.capital.names.en;
+    const countryName = getCountryDisplayName(country.pickerCountryCode, locale);
     const loc: GeocodeResult = {
       name: capitalName,
       country: countryName,
@@ -540,6 +582,10 @@ export function DroneDashboard({
         (l) => l.key === "official",
       )?.url
     : undefined;
+  // 스위스·프랑스 — 선택 위치가 이 나라들이면 지도 오버레이/안내 문구에 쓴다.
+  const selectedWmsCountry = selected
+    ? getWmsAirspaceCountry(selected.latitude, selected.longitude)
+    : undefined;
   const prioritySummary = priorityRegulationId
     ? (
         tReg.raw(`countries.${priorityRegulationId}.summary`) as
@@ -588,7 +634,12 @@ export function DroneDashboard({
         <Select
           value={countryPickerValue}
           onValueChange={(id) => {
-            selectCountryCapital(id as RegulationCountryId);
+            // "wms:" 접두사 값은 스위스·프랑스(규정 카탈로그 밖의 지도 지원국).
+            if (id.startsWith("wms:")) {
+              selectWmsCountryCapital(id.slice(4) as WmsAirspaceCountryId);
+            } else {
+              selectCountryCapital(id as RegulationCountryId);
+            }
             setCountryPickerValue("");
           }}
         >
@@ -603,6 +654,11 @@ export function DroneDashboard({
             {REGULATION_COUNTRIES.filter((c) => c.hasMapData).map((c) => (
               <SelectItem key={c.id} value={c.id}>
                 {tReg(`countries.${c.id}.name`)}
+              </SelectItem>
+            ))}
+            {WMS_AIRSPACE_COUNTRIES.map((c) => (
+              <SelectItem key={c.id} value={`wms:${c.id}`}>
+                {getCountryDisplayName(c.pickerCountryCode, locale)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -718,7 +774,17 @@ export function DroneDashboard({
                       wmsLayers: getDeQualifiedLayerName(layer),
                       wmsUrl: DE_WMS_URL,
                     }))
-                  : undefined
+                  : selectedWmsCountry
+                    ? [
+                        {
+                          id: selectedWmsCountry.id,
+                          label: selectedWmsCountry.sourceName,
+                          wmsLayers: selectedWmsCountry.wmsLayers,
+                          wmsUrl: selectedWmsCountry.wmsUrl,
+                          attribution: selectedWmsCountry.attribution,
+                        },
+                      ]
+                    : undefined
           }
           mapOverlay={
             <>
@@ -1042,7 +1108,8 @@ export function DroneDashboard({
             {!data.airspace &&
             !data.usAirspaceZones &&
             !data.esAirspaceZones &&
-            !data.deAirspaceZones ? (
+            !data.deAirspaceZones &&
+            !data.wmsAirspaceZones ? (
               <p className="text-sm text-muted-foreground">
                 {t("airspaceNoData")}
               </p>
@@ -1146,15 +1213,94 @@ export function DroneDashboard({
                 {t("krNoRestriction")}
               </div>
             ) : null}
+
+            {/* 스위스·프랑스(src/lib/wms-airspace-countries.ts) — 구역 이름/제한
+                문구는 출처 데이터 원문을 그대로 보여주고, 번역은 분류명·사유 코드
+                같은 고정 문구에만 쓴다. */}
+            {data.wmsAirspaceZones && data.wmsAirspaceZones.restricted ? (
+              <div className="mt-3 flex flex-col gap-3 border-t border-border pt-3">
+                {data.wmsAirspaceZones.matches.map((m, i) => (
+                  <div
+                    key={`${m.categoryId}-${m.title ?? ""}-${i}`}
+                    className="flex flex-col gap-0.5"
+                  >
+                    <div
+                      className="flex items-center gap-1.5 text-base font-bold"
+                      style={{ color: m.color }}
+                    >
+                      <span
+                        className="inline-block size-2.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: m.color }}
+                      />
+                      {m.title ??
+                        (t.has(`wmsAirspaceCategories.${m.categoryId}`)
+                          ? t(`wmsAirspaceCategories.${m.categoryId}`, m.params ?? {})
+                          : m.categoryId)}
+                    </div>
+                    {m.labels.map((label) => (
+                      <p key={label} className="pl-4 text-xs text-muted-foreground">
+                        {label}
+                      </p>
+                    ))}
+                    {m.reasonId ? (
+                      <p className="pl-4 text-xs text-muted-foreground">
+                        {t("wmsAirspaceReasonLabel", {
+                          reason: t.has(`wmsAirspaceReasons.${m.reasonId}`)
+                            ? t(`wmsAirspaceReasons.${m.reasonId}`)
+                            : m.reasonId,
+                        })}
+                      </p>
+                    ) : null}
+                    {m.temporary ? (
+                      <p className="pl-4 text-xs text-amber-600 dark:text-amber-400">
+                        {t("wmsAirspaceTemporaryNote")}
+                      </p>
+                    ) : null}
+                    {m.authority ? (
+                      <p className="pl-4 text-xs text-muted-foreground">
+                        {t("wmsAirspaceAuthorityLabel")}{" "}
+                        {m.authority.url ? (
+                          <a
+                            href={m.authority.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline underline-offset-2"
+                          >
+                            {m.authority.name}
+                          </a>
+                        ) : (
+                          m.authority.name
+                        )}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            {data.wmsAirspaceZones && !data.wmsAirspaceZones.restricted ? (
+              <div className="mt-3 border-t border-border pt-3 text-sm text-emerald-500">
+                {t("krNoRestriction")}
+              </div>
+            ) : null}
             <p className="mt-3 text-xs text-muted-foreground">
               {priorityRegulationId && prioritySummary
                 ? `${prioritySummary} ${t("airspaceDisclaimerPrioritySuffix")}`
-                : countryDisplayName
-                  ? t("airspaceDisclaimerGeneric", {
+                : selectedWmsCountry && countryDisplayName
+                  ? t("airspaceDisclaimerWmsCountry", {
                       country: countryDisplayName,
                     })
-                  : t("airspaceDisclaimerUnknownLocation")}
+                  : countryDisplayName
+                    ? t("airspaceDisclaimerGeneric", {
+                        country: countryDisplayName,
+                      })
+                    : t("airspaceDisclaimerUnknownLocation")}
             </p>
+            {selectedWmsCountry ? (
+              <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+                {t(`wmsAirspaceNotes.${selectedWmsCountry.id}`)}
+              </p>
+            ) : null}
             <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
               {t("airspaceSourcesNote")}
             </p>
@@ -1170,6 +1316,40 @@ export function DroneDashboard({
                   })}
                 </a>
               </Button>
+            ) : null}
+
+            {selectedWmsCountry ? (
+              <Button variant="outline" size="sm" className="mt-3" asChild>
+                <a
+                  href={selectedWmsCountry.officialMapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("airspaceOfficialMapButton", {
+                    country: countryDisplayName ?? "",
+                  })}
+                </a>
+              </Button>
+            ) : null}
+
+            {/* 범례 이미지가 있는 나라(프랑스)만 — 지도 색이 무엇을 뜻하는지 공식
+                범례(고도 제한 구간별 색)를 그대로 보여준다. */}
+            {selectedWmsCountry?.legendUrl ? (
+              <div className="mt-3 flex flex-col gap-1.5 border-t border-border pt-3">
+                <p className="text-xs font-medium text-muted-foreground">
+                  {t("wmsAirspaceLegendTitle")}
+                </p>
+                {/* eslint-disable-next-line @next/next/no-img-element -- 외부 공식 범례 이미지(고정 크기 작은 PNG), next/image 도메인 등록 불필요 */}
+                <img
+                  src={selectedWmsCountry.legendUrl}
+                  alt={t("wmsAirspaceLegendTitle")}
+                  loading="lazy"
+                  decoding="async"
+                  width={454}
+                  height={454}
+                  className="h-auto w-56 max-w-full rounded-md bg-white p-1"
+                />
+              </div>
             ) : null}
 
             {/* VWorld의 좌표 클릭 조회(GetFeatureInfo)는 서버 측 Referer 제한으로

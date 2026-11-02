@@ -54,6 +54,9 @@ export type AirspaceOverlayLayer = {
    * this to point at a different country's WMS service (e.g. ENAIRE's,
    * which needs no API key at all). */
   wmsUrl?: string;
+  /** 지도 우하단에 표시할 데이터 출처 표기(HTML, Leaflet attribution 형식) —
+   * 스위스·프랑스처럼 출처 표기가 필요한 공개 데이터용. 생략하면 표시하지 않는다. */
+  attribution?: string;
 };
 
 type FlightMapProps = {
@@ -167,6 +170,7 @@ export function FlightMap({
               transparent
               version="1.3.0"
               uppercase
+              attribution={layer.attribution}
             />
           );
         })}

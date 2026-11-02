@@ -215,7 +215,35 @@
     "weatherModelNote": "model-based current conditions",
     "kpFeedNote": "estimated planetary K-index",
     "kpStaleWarning": "The latest Kp reading is more than 3 hours old and may not reflect current conditions. Check again later.",
-    "airspaceSourcesNote": "Airspace layer sources: FAA UAS Facility Map (US), ENAIRE (ES), DIPUL (DE), VWorld (KR). For reference only — confirm in the official app or map before flying.",
+    "airspaceSourcesNote": "Airspace layer sources: FAA UAS Facility Map (US), ENAIRE (ES), DIPUL (DE), FOCA/swisstopo (CH), DGAC/IGN (FR), VWorld (KR). For reference only — confirm in the official app or map before flying.",
+    "wmsAirspaceCategories": {
+      "chZone": "Drone restriction zone",
+      "frProhibited": "Flight prohibited *",
+      "frMaxHeight": "Maximum flight height {height} m *",
+      "frAbove": "Flight prohibited above {height} m *",
+      "frNotify": "Notification required for aircraft over {weight} g *"
+    },
+    "wmsAirspaceReasons": {
+      "AIR_TRAFFIC": "Air traffic",
+      "SENSITIVE": "Sensitive site",
+      "PRIVACY": "Privacy",
+      "POPULATION": "Population",
+      "NATURE": "Nature protection",
+      "NOISE": "Noise",
+      "FOREIGN_STATE": "Foreign state",
+      "EMERGENCY": "Emergency",
+      "OTHER": "Other"
+    },
+    "wmsAirspaceReasonLabel": "Reason: {reason}",
+    "wmsAirspaceTemporaryNote": "Time-limited restriction — check the official map for the validity period.",
+    "wmsAirspaceAuthorityLabel": "Exemption contact:",
+    "wmsAirspaceNotes": {
+      "ch": "Zone names and rules are shown exactly as published by the Swiss Federal Office of Civil Aviation (FOCA/BAZL) — in German on the German site, otherwise in English. Temporary or local restrictions may not be included, so check the official map before flying.",
+      "fr": "* Exceptions may apply under the French “espaces” order of 3 December 2020. Temporary restrictions are not included and some prohibitions are only partially reflected, so check the official map before flying."
+    },
+    "wmsAirspaceLegendTitle": "Official map legend",
+    "airspaceDisclaimerWmsCountry": "Based on official open data, for reference only — not legal advice. Always check {country}'s aviation authority and the official drone map before flying.",
+    "airspaceOfficialMapButton": "Open the official {country} drone map",
     "modelSpecSource": "Max wind resistance used: {max} m/s, as listed by the manufacturer.",
     "modelSpecLink": "Official {brand} spec page ↗",
     "thresholdBasis": "How the thresholds are set: gusts under 5.6 m/s show as good, 5.6–9.7 m/s as caution and 9.7 m/s or more as no-fly. These cut-offs are this site's own rule of thumb, chosen to stay below the 8–12.8 m/s maximum wind resistance that manufacturers list for common models — no authority publishes them. For a selected model, 50% of the manufacturer's figure is caution and 70% is not recommended, a conservative choice made by this site. Kp 4 shows as unsettled and Kp 5 or higher as storm: NOAA issues Kp alerts when Kp reaches 4 and rates Kp 5 as a G1 geomagnetic storm. The precipitation (0.1 / 0.5 mm) and visibility (5 / 1 km) cut-offs are also this site's own rules of thumb."

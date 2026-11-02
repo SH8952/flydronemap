@@ -215,7 +215,35 @@
     "weatherModelNote": "予報モデルに基づく現在値",
     "kpFeedNote": "推定惑星K指数",
     "kpStaleWarning": "最新のKp観測から3時間以上経過しており、現在の状況と異なる可能性があります。しばらくしてから再確認してください。",
-    "airspaceSourcesNote": "空域レイヤーの出典: FAA UAS Facility Map(米国)、ENAIRE(スペイン)、DIPUL(ドイツ)、VWorld(韓国)。参考情報です。飛行前に公式アプリ・地図で必ず確認してください。",
+    "airspaceSourcesNote": "空域レイヤーの出典: FAA UAS Facility Map(米国)、ENAIRE(スペイン)、DIPUL(ドイツ)、FOCA/swisstopo(スイス)、DGAC/IGN(フランス)、VWorld(韓国)。参考情報です。飛行前に公式アプリ・地図で必ず確認してください。",
+    "wmsAirspaceCategories": {
+      "chZone": "ドローン飛行制限区域",
+      "frProhibited": "飛行禁止 *",
+      "frMaxHeight": "最大飛行高度 {height} m *",
+      "frAbove": "{height} m 超の飛行禁止 *",
+      "frNotify": "{weight} g 超の機体は事前通知が必要 *"
+    },
+    "wmsAirspaceReasons": {
+      "AIR_TRAFFIC": "航空交通",
+      "SENSITIVE": "重要施設",
+      "PRIVACY": "プライバシー保護",
+      "POPULATION": "人口密集",
+      "NATURE": "自然保護",
+      "NOISE": "騒音",
+      "FOREIGN_STATE": "外国政府関連施設",
+      "EMERGENCY": "緊急対応",
+      "OTHER": "その他"
+    },
+    "wmsAirspaceReasonLabel": "理由: {reason}",
+    "wmsAirspaceTemporaryNote": "期間限定の制限です。有効期間は公式地図でご確認ください。",
+    "wmsAirspaceAuthorityLabel": "例外許可の問い合わせ先:",
+    "wmsAirspaceNotes": {
+      "ch": "区域名とルールはスイス連邦民間航空局(FOCA/BAZL)が公開した原文のままで、ドイツ語画面ではドイツ語、それ以外は英語で表示されます。臨時・地域限定の制限は含まれない場合があるため、飛行前に公式地図でご確認ください。",
+      "fr": "* 2020年12月3日付のフランス「空域(espaces)」省令に基づく例外が適用される場合があります。臨時の禁止区域は含まれず、一部の禁止は部分的にしか反映されていません。飛行前に公式地図でご確認ください。"
+    },
+    "wmsAirspaceLegendTitle": "公式地図の凡例",
+    "airspaceDisclaimerWmsCountry": "公的なオープンデータに基づく参考情報であり、法的助言ではありません。飛行前には必ず{country}の航空当局と公式ドローン地図で最新の規制をご確認ください。",
+    "airspaceOfficialMapButton": "{country}の公式ドローン地図を開く",
     "modelSpecSource": "適用した最大耐風速度: {max} m/s(メーカー公式表記)。",
     "modelSpecLink": "{brand} 公式スペックページ ↗",
     "thresholdBasis": "判定基準について: 突風が5.6 m/s未満は良好、5.6〜9.7 m/sは注意、9.7 m/s以上は飛行非推奨と表示します。この境界値は、一般的な機種のメーカー公称最大耐風速度(8〜12.8 m/s)を下回るように設定した当サイト独自の目安であり、公的機関が定めた値ではありません。機種を選択した場合は、メーカー公称値の50%から注意、70%から非推奨と判定します。これも当サイトが安全側に設定した割合です。Kp 4は不安定、Kp 5以上は嵐と表示します。NOAAはKpが4に達するとアラートを発令し、Kp 5をG1地磁気嵐に分類しています。降水量(0.1 / 0.5mm)と視程(5 / 1km)の境界値も当サイト独自の目安です。"

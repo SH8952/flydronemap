@@ -3,6 +3,7 @@
  * ready to pass to a Leaflet <Polygon positions={...}> for a single polygon,
  * or grouped one level deeper for a multi-polygon. */
 import { getCountryCode } from "./country-info";
+import { getWmsAirspaceCountry } from "./wms-airspace-countries";
 
 export type LatLngRing = [number, number][];
 
@@ -176,6 +177,11 @@ export async function fetchAirspaceCeiling(
   }
   if (isInGermany(latitude, longitude)) {
     // 독일 지점도 마찬가지로 /api/de-airspace-lookup(DIPUL)이 별도로 수행한다.
+    return null;
+  }
+  if (getWmsAirspaceCountry(latitude, longitude)) {
+    // 스위스·프랑스도 마찬가지로 /api/{ch,fr}-airspace-lookup이 별도로 수행한다
+    // (src/lib/wms-airspace-countries.ts) — 지리적으로 무관한 FAA 호출 방지.
     return null;
   }
   return fetchFaaAirspaceCeiling(latitude, longitude);

@@ -215,7 +215,35 @@
     "weatherModelNote": "예보 모델 기반 현재 값",
     "kpFeedNote": "행성 K지수 추정값",
     "kpStaleWarning": "마지막 Kp 관측이 3시간 이상 지나 현재 상태와 다를 수 있습니다. 잠시 후 다시 확인하세요.",
-    "airspaceSourcesNote": "공역 레이어 출처: FAA UAS Facility Map(미국), ENAIRE(스페인), DIPUL(독일), VWorld(한국). 참고용이며 비행 전 공식 앱·지도에서 반드시 확인하세요.",
+    "airspaceSourcesNote": "공역 레이어 출처: FAA UAS Facility Map(미국), ENAIRE(스페인), DIPUL(독일), FOCA/swisstopo(스위스), DGAC/IGN(프랑스), VWorld(한국). 참고용이며 비행 전 공식 앱·지도에서 반드시 확인하세요.",
+    "wmsAirspaceCategories": {
+      "chZone": "드론 비행 제한구역",
+      "frProhibited": "비행 금지 *",
+      "frMaxHeight": "최대 비행 고도 {height}m *",
+      "frAbove": "{height}m 초과 비행 금지 *",
+      "frNotify": "{weight}g 초과 기체는 사전 통지 필요 *"
+    },
+    "wmsAirspaceReasons": {
+      "AIR_TRAFFIC": "항공 교통",
+      "SENSITIVE": "민감 시설",
+      "PRIVACY": "사생활 보호",
+      "POPULATION": "인구 밀집",
+      "NATURE": "자연 보호",
+      "NOISE": "소음",
+      "FOREIGN_STATE": "외국 정부 시설",
+      "EMERGENCY": "긴급 상황",
+      "OTHER": "기타"
+    },
+    "wmsAirspaceReasonLabel": "사유: {reason}",
+    "wmsAirspaceTemporaryNote": "기간이 한정된 제한입니다. 유효 기간은 공식 지도에서 확인하세요.",
+    "wmsAirspaceAuthorityLabel": "예외 허가 문의:",
+    "wmsAirspaceNotes": {
+      "ch": "구역 이름과 규칙은 스위스 연방민간항공청(FOCA/BAZL)이 공개한 원문 그대로이며, 독일어 화면에서는 독일어, 그 외에는 영어로 표시됩니다. 임시·지역 제한은 포함되지 않을 수 있으니 비행 전 공식 지도에서 확인하세요.",
+      "fr": "* 2020년 12월 3일자 프랑스 ‘공역(espaces)’ 고시에 따라 예외가 적용될 수 있습니다. 임시 금지구역은 포함되지 않고 일부 금지는 부분적으로만 반영되므로 비행 전 공식 지도에서 확인하세요."
+    },
+    "wmsAirspaceLegendTitle": "공식 지도 범례",
+    "airspaceDisclaimerWmsCountry": "공식 공개 데이터를 바탕으로 한 참고 정보이며 법적 자문이 아닙니다. 비행 전 반드시 {country}의 항공당국과 공식 드론 지도에서 최신 규정을 확인하세요.",
+    "airspaceOfficialMapButton": "{country} 공식 드론 지도 열기",
     "modelSpecSource": "적용한 최대 풍속 저항: {max} m/s (제조사 공식 표기).",
     "modelSpecLink": "{brand} 공식 스펙 페이지 ↗",
     "thresholdBasis": "판정 기준 안내: 돌풍 5.6 m/s 미만은 양호, 5.6~9.7 m/s는 주의, 9.7 m/s 이상은 비행 비권장으로 표시합니다. 이 경계값은 일반 기종의 제조사 공식 최대 풍속 저항(8~12.8 m/s)보다 낮게 잡은 이 사이트 자체의 경험적 기준이며, 공인 기관이 정한 값이 아닙니다. 기종을 선택하면 제조사 공식 값의 50%부터 주의, 70%부터 비권장으로 판정하며, 이 역시 이 사이트가 보수적으로 정한 비율입니다. Kp 4는 불안정, Kp 5 이상은 폭풍으로 표시합니다. NOAA는 Kp가 4에 도달하면 경보(Alert)를 발령하고 Kp 5를 G1 지자기 폭풍으로 분류합니다. 강수(0.1 / 0.5mm)와 가시거리(5 / 1km) 경계값도 이 사이트 자체의 경험적 기준입니다."

@@ -215,7 +215,35 @@
     "weatherModelNote": "valores actuales basados en modelos",
     "kpFeedNote": "índice K planetario estimado",
     "kpStaleWarning": "La última lectura de Kp tiene más de 3 horas y puede no reflejar las condiciones actuales. Vuelve a comprobarlo más tarde.",
-    "airspaceSourcesNote": "Fuentes de las capas de espacio aéreo: FAA UAS Facility Map (EE. UU.), ENAIRE (ES), DIPUL (DE), VWorld (KR). Solo orientativo: confirma en la app o el mapa oficial antes de volar.",
+    "airspaceSourcesNote": "Fuentes de las capas de espacio aéreo: FAA UAS Facility Map (EE. UU.), ENAIRE (ES), DIPUL (DE), FOCA/swisstopo (CH), DGAC/IGN (FR), VWorld (KR). Solo orientativo: confirma en la app o el mapa oficial antes de volar.",
+    "wmsAirspaceCategories": {
+      "chZone": "Zona de restricción para drones",
+      "frProhibited": "Vuelo prohibido *",
+      "frMaxHeight": "Altura máxima de vuelo {height} m *",
+      "frAbove": "Vuelo prohibido por encima de {height} m *",
+      "frNotify": "Notificación obligatoria para aeronaves de más de {weight} g *"
+    },
+    "wmsAirspaceReasons": {
+      "AIR_TRAFFIC": "Tráfico aéreo",
+      "SENSITIVE": "Instalación sensible",
+      "PRIVACY": "Privacidad",
+      "POPULATION": "Población",
+      "NATURE": "Protección de la naturaleza",
+      "NOISE": "Ruido",
+      "FOREIGN_STATE": "Estado extranjero",
+      "EMERGENCY": "Emergencia",
+      "OTHER": "Otro"
+    },
+    "wmsAirspaceReasonLabel": "Motivo: {reason}",
+    "wmsAirspaceTemporaryNote": "Restricción temporal: consulta el mapa oficial para ver el período de validez.",
+    "wmsAirspaceAuthorityLabel": "Contacto para exenciones:",
+    "wmsAirspaceNotes": {
+      "ch": "Los nombres de las zonas y las normas se muestran tal como los publica la Oficina Federal de Aviación Civil de Suiza (FOCA/BAZL): en alemán en la versión alemana y en inglés en las demás. Puede que no incluya restricciones temporales o locales, así que consulta el mapa oficial antes de volar.",
+      "fr": "* Pueden aplicarse excepciones según la orden francesa «espaces» del 3 de diciembre de 2020. No se incluyen las restricciones temporales y algunas prohibiciones solo se reflejan parcialmente, así que consulta el mapa oficial antes de volar."
+    },
+    "wmsAirspaceLegendTitle": "Leyenda del mapa oficial",
+    "airspaceDisclaimerWmsCountry": "Información de referencia basada en datos abiertos oficiales; no constituye asesoramiento jurídico. Antes de volar, consulta siempre a la autoridad de aviación de {country} y el mapa oficial de drones.",
+    "airspaceOfficialMapButton": "Abrir el mapa oficial de drones de {country}",
     "modelSpecSource": "Resistencia máxima al viento aplicada: {max} m/s, según indica el fabricante.",
     "modelSpecLink": "Ficha técnica oficial de {brand} ↗",
     "thresholdBasis": "Cómo se fijan los umbrales: las ráfagas por debajo de 5,6 m/s se muestran como buenas, de 5,6 a 9,7 m/s como precaución y de 9,7 m/s o más como no volar. Estos límites son una regla práctica propia de este sitio, elegida para quedar por debajo de la resistencia máxima al viento que los fabricantes indican para los modelos habituales (8–12,8 m/s); ninguna autoridad los publica. Con un modelo seleccionado, el 50 % de la cifra del fabricante es precaución y el 70 % no recomendado, una decisión conservadora de este sitio. Kp 4 se muestra como inestable y Kp 5 o más como tormenta: NOAA emite alertas cuando el Kp llega a 4 y clasifica Kp 5 como tormenta geomagnética G1. Los límites de precipitación (0,1 / 0,5 mm) y visibilidad (5 / 1 km) también son reglas prácticas propias de este sitio."

@@ -1,3 +1,26 @@
+## 2026-11-02 (1) — 공역 지도 국가 추가: 스위스·프랑스 (무료 공개 WMS, 키 불필요)
+
+**배경**: 지도 지원국이 미국·한국·독일·스페인 4개국뿐이라 확장 후보를 조사. 유료 API 없이, 기존 방식(WMS 오버레이 + 서버 지점 조회)을 따를 수 있는 나라를 실서버 호출로 검증해 스위스·프랑스를 선정. 네덜란드는 PDOK의 LVNL 드론 금지구역 API가 전부 404(서비스 제거)라 제외, 이탈리아(D-Flight 로그인 필요)·오스트리아·호주·캐나다는 무료 공개 API 미확인, 일본·영국·핀란드는 형식이 달라 후속 과제.
+
+**변경**
+- 신규 `src/lib/wms-airspace-countries.ts`: 두 나라 카탈로그(WMS 주소·레이어·출처 표기·공식 지도 링크·수도). 나라가 늘면 이 파일에 항목만 추가하면 되며, 대시보드에 국가별 if 분기를 새로 만들지 않도록 공통 구조로 처리. `getWmsAirspaceCountry(lat, lon)`는 country-coder(국경 폴리곤)로 판별(프랑스는 해외 영토 코드 포함).
+- 신규 `src/app/api/ch-airspace-lookup/route.ts`: geo.admin.ch REST `identify`로 지점 조회. WMS GetFeatureInfo의 JSON 형식은 서버 오류(OGR GEOJSON)라 사용 불가(실측). 구역명·제한 문구가 독/불/이/영 4개 언어로 오며, 사이트 언어 de는 독일어·그 외는 영어를 표시.
+- 신규 `src/app/api/fr-airspace-lookup/route.ts`: IGN WMS `GetFeatureInfo`(text/plain, 약 400바이트). JSON은 경계 폴리곤 포함 최대 1.4MB라 제외. `FORMAT` 파라미터 필수(없으면 400). 최대 고도 30/50/100m 구간과 비행 금지 분류를 실데이터로 확인.
+- 신규 `src/lib/fetch-with-retry.ts`: 일시 오류(5xx·네트워크·IGN이 실측에서 한 번 준 일시적 404)만 1회 재시도. 재시도 후에도 실패하면 502 → 화면에서 "데이터 없음"(제한 없음으로 오해시키지 않음).
+- 신규 `src/lib/wms-airspace-lookup-client.ts`, `src/lib/airspace.ts`(두 나라는 FAA 고도 조회 생략), `src/components/flight-map.tsx`(WMS 레이어별 `attribution` 옵션), `src/components/drone-dashboard.tsx`(`wmsAirspaceZones` 필드·공통 카드 블록·국가 선택 드롭다운 항목·공식 지도 버튼·프랑스 범례 이미지).
+- `messages/{en,ko,ja,es,de}.json`의 Home에 번역 키 추가(`wmsAirspace*`, `airspaceDisclaimerWmsCountry`, `airspaceOfficialMapButton`)와 `airspaceSourcesNote`에 두 나라 출처 추가. 기존 한국·독일·스페인·미국 동작과 규정 페이지(`/regulations`)는 변경 없음.
+- 레이어가 하나뿐이라 레이어 토글 패널 없이 항상 표시.
+
+**검증(클라우드 세션, 실서버 호출)**: `tsc --noEmit` 오류 0, `eslint src` 오류 0(기존 경고 3건 그대로), `next build` 성공. `next start` 후 스위스(취리히 공항 3구역·제네바 3구역·베른 2구역·알프스 0구역)와 프랑스(파리·크뢰즈·레위니옹 금지, 공항 주변 30/50/100m 제한, 제한 없는 지점은 빈 결과) 조회 확인. Playwright로 국가 선택 → 공역 카드(en/ko/de) 렌더링, 지도 WMS 타일 요청 URL이 실제 PNG를 반환함을 확인. 클라우드 환경이 날씨/Kp 서버를 막아 `/api/dashboard`는 빈 응답으로 대체해 테스트했으므로(스페인 좌표도 동일하게 500) 맥의 localhost에서 홈 전체 동작을 한 번 확인 필요.
+
+**주의/후속**
+- 라이선스: 두 서비스 모두 메타데이터에 이용료 없음이나 출처 표기 조건 전문은 미확인 — 프랑스는 https://cartes.gouv.fr/cgu 확인 필요. 지도 우하단과 하단 출처 문구로 출처는 표기함.
+- 프랑스 데이터 자체 공지: 임시 금지구역 미포함, 일부 금지는 부분 반영 → 화면에 안내 문구 포함. 지도를 1:17,000보다 크게 확대하면 타일이 비어 보일 수 있음(레이어 MinScaleDenominator).
+- 스위스 제한 문구는 ko/ja/es 화면에서 영어로 표시됨(공식 문구를 직접 번역하지 않음).
+- 두 나라의 국가별 규정 페이지(요약·공식 링크, 5개 언어)는 이번 범위에 포함하지 않음 — 국가 선택 드롭다운에는 Intl 국가명으로 노출.
+- 백업: `.backups/backup_20261102_151910_스위스프랑스지도추가전` (make-backup.sh는 이 환경에 rsync가 없어 tar로 동일 제외 규칙 적용).
+- 롤백: 위 백업의 `src/`·`messages/`를 복원하고 신규 파일 5개 삭제.
+
 ## 2026-10-30 (1) — 푸시할 때 IndexNow 자동 알림 추가
 
 - `automation/indexnow-push-hook.py`·`automation/push-and-notify.sh` 신규(firelic·ExifLens 와 동일 구조). push 후 바뀐 가이드·페이지 주소만 배포 확인 뒤 IndexNow 로 전송, 같은 주소 24시간 내 재전송 안 함, 실패해도 push 영향 없음. 규정 국가별 같은 동적 데이터 경로는 자동 변환 대상이 아니라 `indexnow-submit.py --urls` 로 직접 알림. 기존 스크립트 변경 없음. 백업 `.backups/backup_20261030_063518_indexnow-hook`.
