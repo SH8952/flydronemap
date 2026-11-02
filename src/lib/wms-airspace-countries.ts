@@ -105,7 +105,7 @@ export const WMS_AIRSPACE_COUNTRIES: WmsAirspaceCountryDef[] = [
       '&copy; <a href="https://www.bazl.admin.ch/" target="_blank" rel="noopener noreferrer">FOCA (BAZL)</a> / <a href="https://www.swisstopo.admin.ch/" target="_blank" rel="noopener noreferrer">swisstopo</a>',
     sourceName: "FOCA / swisstopo",
     officialMapUrl:
-      "https://map.geo.admin.ch/?layers=ch.bazl.einschraenkungen-drohnen&lang=en",
+      "https://map.geo.admin.ch/#/map?lang=en&topic=aviation&layers=ch.bazl.einschraenkungen-drohnen&bgLayer=ch.swisstopo.pixelkarte-grau",
     capital: {
       latitude: 46.948,
       longitude: 7.4474,
@@ -123,7 +123,8 @@ export const WMS_AIRSPACE_COUNTRIES: WmsAirspaceCountryDef[] = [
     attribution:
       '&copy; <a href="https://www.ign.fr/" target="_blank" rel="noopener noreferrer">IGN</a> / DGAC',
     sourceName: "DGAC / IGN",
-    officialMapUrl: "https://www.geoportail.gouv.fr/",
+    officialMapUrl:
+      "https://www.geoportail.gouv.fr/donnees/restrictions-uas-categorie-ouverte-et-aeromodelisme",
     legendUrl:
       "https://data.geopf.fr/annexes/ressources/legendes/TRANSPORTS.DRONES.RESTRICTIONS-legend.png",
     capital: {

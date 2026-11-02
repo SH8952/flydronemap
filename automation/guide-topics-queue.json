@@ -502,5 +502,23 @@
     "titleEn": "Comparing Drone License Requirements by Country",
     "published": false,
     "publishedDate": null
+  },
+  {
+    "order": 57,
+    "slug": "france-drone-regulations-and-dgac-restriction-map-explained",
+    "category": "international-regulations",
+    "titleKo": "프랑스 드론 규정과 DGAC 제한구역 지도 이해하기",
+    "titleEn": "France Drone Regulations and the DGAC Restriction Map Explained",
+    "published": true,
+    "publishedDate": "2026-11-02"
+  },
+  {
+    "order": 58,
+    "slug": "switzerland-drone-regulations-and-foca-drone-map-explained",
+    "category": "international-regulations",
+    "titleKo": "스위스 드론 규정과 FOCA 드론 지도 이해하기",
+    "titleEn": "Switzerland Drone Regulations and the FOCA Drone Map Explained",
+    "published": true,
+    "publishedDate": "2026-11-02"
   }
 ]
