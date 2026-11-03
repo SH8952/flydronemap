@@ -1,3 +1,11 @@
+## 2026-11-03 (2) — 홈 화면 장비 추천(쿠팡·알리)·관련 도구를 원래 위치로 복구
+
+**변경 사항**
+- `src/app/[locale]/page.tsx`: 2026-10-04에 홈 맨 아래(FAQ 아래)로 옮겼던 `GearRecommendationSection`과 `CrossLinkExifLens`(관련 도구)를 원래 위치(대시보드 바로 아래, 광고 `mid-content` 앞)로 되돌림. 순서: 대시보드 → 장비 추천 → 관련 도구 → 광고 → 이용 방법 → 가이드 → FAQ.
+- 위치만 복구함. 2026-10-04에 없앤 "대시보드 결과 표시와 연결된 구조"(prop/콜백)는 되살리지 않았고, 장비 추천은 이전처럼 항상 표시되는 서버 렌더링 구조 그대로. `src/components/home-dashboard-section.tsx`는 주석만 갱신.
+
+**검증**: `tsc --noEmit`·eslint 통과. 사용자 요청으로 진행(결정: 관련 도구도 함께 복구, 위치만 되돌리기). 백업: `.backups/backup_20261103_105704_gear_restore_original_position`.
+
 ## 2026-11-03 (1) — 프랑스·스위스 2차 검증 후속 수정 (SEO 길이·스위스 보험 문구·조건 보강·API 입력 검증)
 
 **배경**: 프랑스·스위스 추가분(a1c7a27·4074c68·d057e2f)을 2차 검증한 결과 치명적 이상은 없었고, 아래 4건이 개선 항목으로 나와 사용자 승인 후 수정했다(검증 보고서: 프로젝트 문서 `claude/flydronemap-france-switzerland-second-verification-2026-11-03.md`).

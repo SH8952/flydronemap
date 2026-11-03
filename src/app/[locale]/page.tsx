@@ -41,6 +41,12 @@ export default async function HomePage({
 
       <HomeDashboardSection />
 
+      {/* 장비 추천 → 관련 도구(ExifLens): 2026-11-03 원래 위치(대시보드 바로 아래, 광고 위)로 복구.
+          2026-10-04에 애드센스 심사 대응으로 홈 최하단(FAQ 아래)으로 옮겼던 것을 되돌림. */}
+      <GearRecommendationSection locale={locale} />
+
+      <CrossLinkExifLens />
+
       <AdZone
         id="mid-content"
         label="Ad"
@@ -65,13 +71,6 @@ export default async function HomePage({
 
       {/* FAQ 하이라이트 — 위와 같은 이유로 2026-09-27 신설 */}
       <HomeFaqHighlights />
-
-      {/* 관련 도구 → 장비 추천: 2026-10-04 홈 최하단(FAQ 아래)으로 이동.
-          광고·제휴 영역이 위쪽에 있으면 정보 제공보다 수익 목적이 강해 보일 수
-          있다는 판단(exifnd.com과 동일 순서). */}
-      <CrossLinkExifLens />
-
-      <GearRecommendationSection locale={locale} />
     </div>
   );
 }
