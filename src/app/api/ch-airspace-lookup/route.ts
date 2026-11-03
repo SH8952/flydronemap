@@ -126,13 +126,19 @@ function severity(restrictionId: string): number {
   return idx === -1 ? RESTRICTION_ORDER.length : idx;
 }
 
+function parseCoord(value: string | null): number {
+  if (value === null || value.trim() === "") return NaN;
+  return Number(value);
+}
+
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  const lat = Number(params.get("lat"));
-  const lon = Number(params.get("lon"));
+  // 빈 값("")은 Number("")가 0이 되어 (0,0)을 조회하므로 먼저 걸러내고, 좌표 범위도 검사한다.
+  const lat = parseCoord(params.get("lat"));
+  const lon = parseCoord(params.get("lon"));
   const lang = pickLang(params.get("lang"));
 
-  if (!Number.isFinite(lat) || !Number.isFinite(lon)) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) {
     return NextResponse.json({ error: "lat/lon required" }, { status: 400 });
   }
 
