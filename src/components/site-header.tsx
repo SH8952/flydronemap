@@ -5,6 +5,7 @@ import { Wind, Menu, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { ThemeToggle } from "@/components/theme-toggle";
 import type { Locale } from "@/i18n/routing";
 
 const navLinkClass =
@@ -49,12 +50,14 @@ export function SiteHeader({
             {t("faqNav")}
           </Link>
           <LanguageSwitcher guideLocales={guideLocales} />
+          <ThemeToggle />
         </nav>
 
         {/* Mobile: not enough width for 3 text links + language select without
             wrapping onto two lines, so they collapse into a hamburger menu */}
         <div className="flex items-center gap-2 sm:hidden">
           <LanguageSwitcher guideLocales={guideLocales} />
+          <ThemeToggle />
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}

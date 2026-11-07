@@ -6,7 +6,9 @@
     "aboutNav": "Über uns",
     "faqNav": "FAQ",
     "openMenu": "Menü öffnen",
-    "closeMenu": "Menü schließen"
+    "closeMenu": "Menü schließen",
+    "toLightMode": "Zum hellen Modus wechseln",
+    "toDarkMode": "Zum dunklen Modus wechseln"
   },
   "Home": {
     "title": "FlyDroneMap — Live-Wetter für Drohnenflüge & Kp-Index",

@@ -6,7 +6,9 @@
     "aboutNav": "サイトについて",
     "faqNav": "FAQ",
     "openMenu": "メニューを開く",
-    "closeMenu": "メニューを閉じる"
+    "closeMenu": "メニューを閉じる",
+    "toLightMode": "ライトモードに切り替え",
+    "toDarkMode": "ダークモードに切り替え"
   },
   "Home": {
     "title": "FlyDroneMap — リアルタイム ドローン気象・Kp指数",

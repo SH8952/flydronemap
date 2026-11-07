@@ -1,3 +1,17 @@
+## 2026-11-07 — 라이트/다크 전환 버튼 추가 + 시그니처 색상 앰버 → 스카이 블루 변경
+
+**배경**: ExifLens와 시그니처 색(앰버 #e38d3d)·파비콘이 똑같아 사이트별 구분이 안 됨. 네 사이트(ExifLens 바이올렛 / FlyDroneMap 스카이 블루 / firelic 그린 / lifehub 앰버)가 겹치지 않도록 FlyDroneMap을 스카이 블루로 확정. 이번 작업은 FlyDroneMap만 진행.
+
+**변경 사항**
+- 모드: 기본값은 기존과 같은 다크 유지(`defaultTheme="dark"`, 시스템 설정 미추종). 헤더(데스크톱·모바일)에 해/달 전환 버튼 `ThemeToggle`(`src/components/theme-toggle.tsx`) 추가, 선택은 next-themes가 브라우저에 저장. 버튼 문구 `Header.toLightMode`·`toDarkMode`를 ko/en/ja/es/de 5개 언어에 추가.
+- 색상: `globals.css`의 `--primary`를 라이트 `oklch(0.500 0.119 242.7)`(#0369A1, 흰 배경 대비 5.9:1), 다크 `oklch(0.754 0.139 232.7)`(#38BDF8, 어두운 배경 대비 9.2:1)로 교체.
+- 비행 판정색은 그대로: `verdict-style.ts`·`drone-dashboard.tsx`·`drone-model-verdict.tsx`의 앰버(주의/보통), 에메랄드(가능), 레드(금지)는 브랜드색이 아니라 판정 의미색이라 변경하지 않음. 브랜드색이 앰버에서 빠지면서 앰버가 "주의" 표시로만 쓰여 의미가 더 분명해짐. 공역 레이어 API 색(`ch-/fr-airspace-lookup`)도 변경 없음.
+- 파비콘: `src/app/icon.png`·`apple-icon.png`·`favicon.ico`(16·32·48·256)를 어두운 네이비 배경(#0C4A6E)+밝은 스카이 마크(#38BDF8)로 재생성(모양은 그대로, 색만 치환). `public/og-default.png`의 앰버 포인트(부제·로고·하단 줄)를 스카이 블루로 치환, 검은 배경과 글자는 유지.
+
+**검증**: tsc 0 오류, 변경 파일 eslint 0 경고. 5개 언어 번역 키 일치 확인. 하드코딩된 흰색/검정은 버튼·대시보드 각 1곳뿐이며 의미색. 이 작업 환경(리눅스 arm64)은 맥용 node_modules의 SWC가 없어 build·dev 실행 불가 → 로컬 `npm run dev` 확인 필요.
+**주의**: 소셜 미리보기·브라우저 탭 아이콘은 캐시 때문에 새 색이 늦게 보일 수 있음. 지도 타일은 모드와 무관하게 동일(변경 없음).
+**백업**: `.backups/backup_20261107_110759_theme_toggle_skyblue_signature`
+
 ## 2026-11-03 (2) — 홈 화면 장비 추천(쿠팡·알리)·관련 도구를 원래 위치로 복구
 
 **변경 사항**

@@ -6,7 +6,9 @@
     "aboutNav": "소개",
     "faqNav": "FAQ",
     "openMenu": "메뉴 열기",
-    "closeMenu": "메뉴 닫기"
+    "closeMenu": "메뉴 닫기",
+    "toLightMode": "라이트 모드로 전환",
+    "toDarkMode": "다크 모드로 전환"
   },
   "Home": {
     "title": "FlyDroneMap — 실시간 드론 비행 날씨·Kp지수",

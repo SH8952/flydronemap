@@ -6,7 +6,9 @@
     "aboutNav": "Sobre nosotros",
     "faqNav": "FAQ",
     "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "toLightMode": "Cambiar a modo claro",
+    "toDarkMode": "Cambiar a modo oscuro"
   },
   "Home": {
     "title": "FlyDroneMap: Clima de Vuelo en Vivo y Índice Kp",

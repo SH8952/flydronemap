@@ -6,7 +6,9 @@
     "aboutNav": "About",
     "faqNav": "FAQ",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "toLightMode": "Switch to light mode",
+    "toDarkMode": "Switch to dark mode"
   },
   "Home": {
     "title": "FlyDroneMap — Live Drone Weather & Kp Index",

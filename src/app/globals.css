@@ -12,7 +12,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  /* 시그니처 색상: 스카이 블루 (2026-11-07) — 라이트 #0369A1 / 다크 #38BDF8. 흰 배경 대비 5.9:1, 어두운 배경 대비 9.2:1.
+     비행 판정 색(에메랄드·앰버·레드)과 겹치지 않도록 브랜드색은 블루 계열로 둔다. */
+  --primary: oklch(0.500 0.119 242.7);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -33,7 +35,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.72 0.14 60);
+  --primary: oklch(0.754 0.139 232.7);
   --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
