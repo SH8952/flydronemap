@@ -4,7 +4,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ExternalLink, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import {
+  SITE_URL,
+  languageAlternates,
+  ogLocale,
+  DEFAULT_OG_IMAGE,
+  breadcrumbJsonLd,
+} from "@/lib/seo";
 import { ShareButton } from "@/components/share-button";
 import { RegulationRelatedGuides } from "@/components/regulation-related-guides";
 import {
@@ -75,8 +81,22 @@ export default async function RegulationCountryPage({
   const highlights = Array.isArray(rawHighlights) ? (rawHighlights as string[]) : [];
   const checklist = Array.isArray(rawChecklist) ? (rawChecklist as string[]) : [];
 
+  // 탐색경로(BreadcrumbList) 구조화 데이터: Home › 국가별 규정 › 국가
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", url: `${SITE_URL}/${locale}` },
+    { name: t("title"), url: `${SITE_URL}/${locale}/regulations` },
+    {
+      name: t(`countries.${country.id}.name`),
+      url: `${SITE_URL}/${locale}/regulations/${country.id}`,
+    },
+  ]);
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
+      />
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-3">
           <Link

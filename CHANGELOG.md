@@ -1,3 +1,17 @@
+## 2026-11-10 — 규정 페이지 탐색경로(BreadcrumbList) 추가 + 사이트 전용 404 화면 (구글 SEO 기본 가이드 점검 후속)
+
+**배경**: 구글 SEO 기본 가이드를 4개 사이트와 대조한 결과, FlyDroneMap은 (1) 탐색경로 구조화 데이터가 가이드 페이지에만 있고 국가별 규정 페이지에는 없었고, (2) 사이트 전용 404 화면이 없어 없는 주소에서 기본 영어 404가 나왔다. 사용자 요청("1,2,3번 바로 진행")으로 수정. 색인 요청과는 무관한 작업.
+
+**변경 사항**
+- `src/app/[locale]/regulations/page.tsx`: `Home › 국가별 규정` BreadcrumbList JSON-LD 추가.
+- `src/app/[locale]/regulations/[country]/page.tsx`: `Home › 국가별 규정 › 국가명` BreadcrumbList JSON-LD 추가. 기존 `breadcrumbJsonLd()`(`src/lib/seo.ts`)를 그대로 사용했고 가이드 페이지와 같은 형식(첫 항목 "Home").
+- `src/app/[locale]/not-found.tsx` 신규: 사이트 전용 404 화면(홈·가이드·국가별 규정·FAQ 바로가기). 헤더·푸터는 `[locale]/layout`이 그대로 감싼다. 응답 상태 코드는 404 유지.
+- `src/app/[locale]/[...rest]/page.tsx` 신규: 정의되지 않은 주소를 위 404 화면으로 보내는 캐치올(`notFound()` 호출만 함). 실제 라우트가 항상 먼저 매칭된다.
+- `messages/{ko,en,ja,es,de}.json`: `NotFound` 네임스페이스 추가(제목·설명·홈·가이드·국가별 규정·FAQ). 기존 키는 변경 없음(추가만).
+
+**검증**: `tsc --noEmit` 0 오류. 5개 언어에 `NotFound` 키 일치, JSON 유효. 이 작업 환경(리눅스 arm64)에는 이 프로젝트의 Next용 SWC가 없어 dev 서버를 띄우지 못함 → **로컬 `npm run dev`로 확인 필요**: `/en/regulations`·`/ko/regulations/south-korea` 페이지 소스에 BreadcrumbList가 있는지, `/ko/없는-주소`가 404 화면(상태 코드 404)으로 나오는지.
+**백업**: `_backups/breadcrumb-404_20261110_062207`
+
 ## 2026-11-07 — 라이트/다크 전환 버튼 추가 + 시그니처 색상 앰버 → 스카이 블루 변경
 
 **배경**: ExifLens와 시그니처 색(앰버 #e38d3d)·파비콘이 똑같아 사이트별 구분이 안 됨. 네 사이트(ExifLens 바이올렛 / FlyDroneMap 스카이 블루 / firelic 그린 / lifehub 앰버)가 겹치지 않도록 FlyDroneMap을 스카이 블루로 확정. 이번 작업은 FlyDroneMap만 진행.

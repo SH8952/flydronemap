@@ -880,5 +880,13 @@
     "copyLink": "Link kopieren",
     "copied": "Kopiert",
     "viewOnWeb": "Im Web ansehen"
+  },
+  "NotFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Adresse hat sich möglicherweise geändert oder die Seite existiert nicht mehr. Probieren Sie einen der Bereiche unten.",
+    "home": "Startseite",
+    "guides": "Ratgeber",
+    "regulations": "Drohnenregeln nach Land",
+    "faq": "Häufige Fragen"
   }
 }

@@ -880,5 +880,13 @@
     "copyLink": "Copiar enlace",
     "copied": "Copiado",
     "viewOnWeb": "Ver en la web"
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "Es posible que la dirección haya cambiado o que la página ya no exista. Prueba una de las secciones siguientes.",
+    "home": "Inicio",
+    "guides": "Guías",
+    "regulations": "Normativa de drones por país",
+    "faq": "Preguntas frecuentes"
   }
 }

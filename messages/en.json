@@ -880,5 +880,13 @@
     "copyLink": "Copy link",
     "copied": "Copied",
     "viewOnWeb": "View on web"
+  },
+  "NotFound": {
+    "title": "Page not found",
+    "description": "The address may have changed or the page may no longer exist. Try one of the sections below.",
+    "home": "Home",
+    "guides": "Guides",
+    "regulations": "Drone regulations by country",
+    "faq": "FAQ"
   }
 }
