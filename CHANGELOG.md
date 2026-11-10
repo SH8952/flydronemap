@@ -1,3 +1,26 @@
+## 2026-11-10 (3) — 도구 2순위 5종 추가 (GSD / 밀도고도 / 가시거리 / 비행 전 점검표 / EU 등급 판정) + 도구 대표 이미지 개발자 관리 패널
+
+**배경**: 도구 1순위 4종 배포 후 사용자 요청("2순위 후보 5~9 모두 진행해줘", "도구 페이지에도 개발자 전용 이미지 관리 도구 추가해줘")으로 구현. 5개 언어(ko/en/ja/es/de) 모두 제공. 이미지가 없으면 화면은 기존과 동일(사용자 선택).
+
+**변경 사항**
+- 도구 5종 추가(모두 브라우저에서 계산, 서버 비용 없음):
+  1. `/tools/gsd-calculator` — 고도 → GSD, 목표 GSD → 필요 고도, 센서 규격 프리셋, 촬영 범위·촬영 간 거리·비행 라인 간격·촬영 간격(초). 필요 고도가 120m를 넘으면 안내.
+  2. `/tools/density-altitude-calculator` — 해발고도·기온·QNH → 밀도고도·기압고도·공기 밀도 비율·호버링 출력 변화(이론값, 습도 미반영 명시).
+  3. `/tools/line-of-sight-calculator` — 고도 → 가시/전파 도달 거리, 거리 → 필요 고도(4/3 지구 모델). 이론 한계이며 육안 시야(VLOS) 규정을 별도로 안내.
+  4. `/tools/preflight-checklist` — 6개 그룹 31개 항목 체크·진행률·초기화·인쇄. 체크 상태는 브라우저(localStorage)에만 저장, 서버 전송 없음.
+  5. `/tools/eu-drone-category-check` — C0~C4/무라벨/자작/C5·C6 + 무게 → A1·A2·A3, 교육, 운영자 등록, Remote ID. EASA FAQ·독일 uas-betrieb·스페인 AESA 안내를 2026년 11월 교차 확인한 내용만 사용, 공식 출처 링크와 확인 시점 표기.
+- 개발자 전용 도구 이미지 관리 패널(`npm run dev`에서만 보임, 운영에서는 API가 403): `src/components/dev/tool-image-dev-panel.tsx`, `src/lib/dev/tool-image-tool.ts`, `src/app/api/dev/tool-image-{apply,upload}/route.ts`. Unsplash 검색·선택 또는 직접 업로드 → `public/tools/images/{slug}.*` 저장 + `src/lib/tool-images.json` 갱신. 기존 가이드 이미지 도구(`guide-image-tool.ts`)는 수정하지 않고 재사용만 함. 이미지가 있는 도구에만 상단 대표 이미지(저작자 표기)·허브 카드 썸네일·OG 이미지가 나타남. `tool-images.json`은 현재 `{}`(이미지 없음).
+- `src/lib/tools.ts`: 도구 5개 등록(총 9개), 이미지 검색어(`imageQuery`) 추가. `tool-page.tsx`: 관련 도구를 4개(목록 순환)로 표시, 아이콘 추가. `tool-metadata.ts`: 대표 이미지가 있으면 OG 이미지로 사용. `/tools` 허브: 소개 문구를 전체 도구 기준으로 일반화.
+- `messages/{ko,en,ja,es,de}.json`: `Tools` 블록에 도구 5종과 허브 항목 추가(기존 키 변경 없음). 5개 언어 키 880개 일치.
+- 가이드 → 도구 내부 링크: 가이드 글 하단(CTA 아래, 관련 가이드 위)에 "함께 써 보면 좋은 도구" 카드(`src/components/guides/guide-related-tools.tsx`)를 추가. `TOOLS[].guides`(도구별 관련 가이드)를 거꾸로 찾아 자동 연결하므로 mdx 본문은 수정하지 않았고, 연결된 도구가 없는 가이드에는 아무것도 표시되지 않음. `src/app/[locale]/guides/[slug]/page.tsx`에 1줄 추가, `messages/*.json`의 `Guides.relatedTools` 키 추가(5개 언어 키 881개 일치). 가이드 9개 × 5개 언어 45개 화면에서 도구 연결·누락·가로 넘침을 확인(독일어 `best-time-of-day-to-fly-a-drone`의 표가 모바일에서 넘치는 것은 기존 본문 표 때문이며 이번 변경과 무관).
+- 홈 화면 "드론 도구" 섹션: 가이드 하이라이트 바로 위에 형제 사이트 ExifLens 홈의 도구 섹션과 같은 형태(제목+소개, 도구 카드 3열 그리드, "도구 전체 보기" 링크)로 도구 9종을 표시(`src/components/home-tools-highlights.tsx`, `src/app/[locale]/page.tsx`에 1줄 추가). `TOOLS` 목록을 그대로 읽으므로 도구가 늘면 자동 반영되고, 대표 이미지가 지정된 도구에만 썸네일이 붙음(현재 없음). `Home.toolsHighlightsTitle/Subtitle/Cta` 키 추가(5개 언어 키 884개 일치). 5개 언어 × (1280px·390px) 10개 화면에서 도구 섹션이 가이드 위에 위치·링크 9개·"전체 보기" 링크·가로 넘침 없음·문구 누락 없음 확인.
+- 색인 요청 목록(저장소 밖 `~/Desktop/AdSense Affiliate Marketing/flydronemap-색인요청목록.html`): 허브 + 도구 9종 × 5개 언어 = 50개 주소를 국가 규정 페이지 뒤, 가이드 앞(5~10일차)에 추가해 총 269개·27일치로 재생성. 생성기 `gsc-index-list-builder.py`의 `fly_rank` 규칙만 패치. 백업 `_backups/gsc-helper_<시각>_pre-flydronemap-tools/`. **5일차 요청 전에 이 변경을 push해야 새 도구 주소가 404가 되지 않음.**
+- `src/app/sitemap.ts`는 도구 목록을 읽으므로 수정 없이 `/tools` + 9개 도구 × 5개 언어 = 50개 주소가 자동 포함됨.
+
+**검증**: `tsc --noEmit` 0 오류, `eslint src` 오류 0(기존 drone-dashboard 경고 3건 외 없음), `next build` 성공. 프로덕션 서버에서 허브+도구 9종 × 5개 언어 × (1280px·390px) 100개 화면 점검 — 상태 200, 메시지 누락 없음, 가로 넘침 없음, 제목 70자 이하, hreflang 5개 존재. 메타 설명 150자 이하. 체크리스트 체크·새로고침 유지·언어 전환 유지·초기화·인쇄 CSS, EU 등급별 결과·무게 경계값(250g/25kg/0), 단위·모드 전환 점검. 이미지 패널은 이미지 설정 시 노출·미설정 시 기존과 동일, 운영 빌드에서 패널 비노출·API 403 확인.
+**남은 확인(사용자)**: 로컬 `npm run dev`로 `/ko/tools`와 새 도구 화면 확인 → 이미지 패널을 쓰려면 `.env.local`의 `UNSPLASH_ACCESS_KEY`(가이드 패널과 동일) 필요 → 이상 없으면 `도구5종_이미지패널_Push_실행.command` 실행.
+**백업**: `.backups/backup_20261110_081552_tools-image-panel-before`, `.backups/backup_20261110_084529_tools-2nd-batch-before`, `.backups/backup_20261110_092646_guide-tool-links-before`, `.backups/backup_20261110_101834_home-tools-section-before`
+
 ## 2026-11-10 (2) — "도구" 메뉴·허브 신설 + 드론 도구 4종 추가 (ND 필터 / 비행시간 / 배터리 기내 반입 / 골든아워)
 
 **배경**: 형제 사이트에는 기능형 도구가 여럿 있지만 FlyDroneMap에는 도구 페이지가 없었다. 조사한 후보 중 1순위 4개를 사용자 요청("가이드와 규정안내 사이에 도구 페이지를 만들고 1순위 후보 4개를 순차적으로 진행")으로 구현. 5개 언어(ko/en/ja/es/de) 모두 제공.

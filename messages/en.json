@@ -178,6 +178,9 @@
     "guideHighlightsTitle": "Explore the Guides",
     "guideHighlightsSubtitle": "Practical guides on flight safety, weather judgment, and drone regulations.",
     "guideHighlightsCta": "Browse all guides →",
+    "toolsHighlightsTitle": "Drone tools",
+    "toolsHighlightsSubtitle": "Free tools you can use right away for pre-flight calculations and checks.",
+    "toolsHighlightsCta": "Browse all tools →",
     "faqHighlightsTitle": "Frequently Asked Questions",
     "faqHighlightsSubtitle": "Quick answers about our data sources, the Kp index, and how to use FlyDroneMap.",
     "faqHighlightsCta": "See all FAQs →",
@@ -520,6 +523,7 @@
     "showLess": "Show less",
     "backToGuides": "← Back to Guides",
     "relatedGuides": "Related Guides",
+    "relatedTools": "Tools that go with this guide",
     "categories": {
       "weather-safety": "Weather & Safety",
       "space-weather-gps": "Space Weather & GPS",
@@ -893,10 +897,10 @@
   },
   "Tools": {
     "hub": {
-      "metaTitle": "Drone Tools: ND Filter, Flight Time & Golden Hour",
-      "metaDescription": "Free calculators for planning drone shoots and flights: ND filter strength, flight time, carry-on battery watt-hours and sunrise or golden hour times.",
+      "metaTitle": "Drone Tools: Calculators & Preflight Checklist",
+      "metaDescription": "Free drone tools: ND filter, flight time, battery Wh, golden hour, GSD, density altitude, line of sight, preflight checklist and EU class check.",
       "title": "Drone Tools",
-      "subtitle": "From camera settings to batteries and sunset times, the calculations you need before a drone flight in one place.",
+      "subtitle": "From camera settings, batteries and sunset times to mapping resolution, a preflight checklist and EU rules, the tools you need before a drone flight in one place.",
       "notice": "Results are estimates for reference. Always check your manufacturer's manual, local regulations and the actual weather before flying.",
       "openTool": "Open tool →"
     },
@@ -930,6 +934,31 @@
         "name": "Golden Hour Planner",
         "short": "Sunrise, sunset and golden hour times",
         "description": "Get sunrise, sunset, golden hour and blue hour times and the sun's direction for any location and date to plan your shoot."
+      },
+      "gsd": {
+        "name": "GSD Calculator",
+        "short": "Ground resolution and shot spacing",
+        "description": "Get the ground size of one pixel (GSD), the photo footprint and the shot spacing for your overlap from altitude, sensor and focal length, or the altitude for a target GSD."
+      },
+      "densityAltitude": {
+        "name": "Density Altitude Calculator",
+        "short": "Check hot-and-high performance",
+        "description": "Calculate density altitude, air density ratio and the extra hover power needed from elevation, temperature and pressure to judge performance on hot days and at altitude."
+      },
+      "lineOfSight": {
+        "name": "Line of Sight & Radio Horizon",
+        "short": "Horizon and radio range by altitude",
+        "description": "Find the distance to the horizon and the theoretical radio range from drone altitude and pilot eye height, or the altitude needed to reach a chosen distance."
+      },
+      "checklist": {
+        "name": "Preflight Checklist",
+        "short": "A tick-off, printable checklist",
+        "description": "A step-by-step preflight checklist covering rules, weather, aircraft, batteries, takeoff site and in-flight checks that you can tick off and print."
+      },
+      "euCategory": {
+        "name": "EU Drone Class Checker",
+        "short": "Check C0–C4 and A1/A2/A3",
+        "description": "Use your drone's C-class label and weight to see its EU open-category subcategory, the training needed, operator registration and Remote ID."
       }
     },
     "ndFilter": {
@@ -1258,6 +1287,405 @@
         {
           "q": "No times appear at high latitudes.",
           "a": "In summer the sun may not set (midnight sun) and in winter it may not rise (polar night), so there is no sunrise or sunset. In that case you get a note plus the day timeline showing how the light changes."
+        }
+      ]
+    },
+    "gsd": {
+      "metaTitle": "Drone GSD Calculator – Ground Resolution by Altitude",
+      "metaDescription": "Find a drone photo's GSD (cm per pixel), ground footprint and shot spacing from altitude, sensor and focal length, or the altitude for a target GSD.",
+      "title": "Drone GSD Calculator",
+      "subtitle": "From your altitude and camera specs, find how much ground one pixel covers (GSD), the footprint of each photo and the shot spacing for your overlap.",
+      "modeLabel": "Calculate",
+      "modeGsd": "Altitude → GSD",
+      "modeAltitude": "Target GSD → altitude",
+      "unitLabel": "Units",
+      "unitMetric": "Metric (m, cm)",
+      "unitImperial": "Imperial (ft, in)",
+      "altitudeLabelM": "Flight altitude (m)",
+      "altitudeLabelFt": "Flight altitude (ft)",
+      "altitudeHelp": "Height above ground level (AGL).",
+      "targetLabelCm": "Target GSD (cm/pixel)",
+      "targetLabelIn": "Target GSD (in/pixel)",
+      "cameraTitle": "Camera",
+      "presetLabel": "Sensor format",
+      "presetCustom": "Custom",
+      "preset_full": "Full frame",
+      "sensorWidthLabel": "Sensor width (mm)",
+      "sensorHeightLabel": "Sensor height (mm)",
+      "focalLabel": "Actual focal length (mm)",
+      "focalHelp": "The lens's real focal length, not the 35 mm equivalent. Use the \"actual\" value from the spec sheet.",
+      "imageWidthLabel": "Image width (pixels)",
+      "imageHeightLabel": "Image height (pixels)",
+      "overlapTitle": "Overlap and speed",
+      "frontLabel": "Forward overlap (%)",
+      "sideLabel": "Side overlap (%)",
+      "speedLabel": "Flight speed (m/s, optional)",
+      "speedHelp": "Enter it to also get the shot interval in seconds.",
+      "resultTitle": "Results",
+      "invalid": "Please enter valid values (every field must be a number greater than 0).",
+      "invalidOverlap": "Enter overlap values from 0 up to less than 100.",
+      "resultGsd": "GSD",
+      "resultAltitude": "Altitude",
+      "footprintWidth": "Footprint width (one photo)",
+      "footprintHeight": "Footprint length (one photo)",
+      "gsdValueCm": "{value} cm/pixel",
+      "gsdValueIn": "{value} in/pixel",
+      "lengthValue": "{value} {unit}",
+      "secondsValue": "{value} s",
+      "warnAltitude": "The altitude is above about 120 m (400 ft). Many regions cap flight height at that level, so check local rules or consider a longer lens or a higher-resolution camera.",
+      "photoDistance": "Distance between shots",
+      "lineSpacing": "Flight line spacing",
+      "interval": "Shot interval",
+      "orientationNote": "Assumes the image's short side points along the flight direction. If you shoot with the camera rotated 90 degrees, swap width and height.",
+      "howToSteps": [
+        "Choose \"Altitude → GSD\" and enter your altitude, or choose \"Target GSD → altitude\" and enter the resolution you want.",
+        "Tap a sensor format or type the sensor size, then enter the lens's actual focal length and the image size in pixels.",
+        "Set forward and side overlap to get the distance between shots and the flight line spacing. Add a speed to get the shot interval in seconds.",
+        "Check that the resulting altitude is within your local maximum flight height, and adjust the target or camera if needed."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "GSD (cm/pixel) = altitude (m) × sensor width (mm) ÷ (focal length (mm) × image width in pixels) × 100. For example a 1-inch sensor (13.2 mm), 10.3 mm lens and 5472 pixels flown at 100 m gives about 2.3 cm/pixel.",
+        "The footprint is GSD times the pixel count. Distance between shots is footprint length × (1 − forward overlap) and line spacing is footprint width × (1 − side overlap). Sensor sizes are typical values per format and can differ slightly from the manufacturer's spec."
+      ],
+      "faq": [
+        {
+          "q": "Is a smaller GSD always better?",
+          "a": "A smaller GSD means each pixel covers less ground, so you see more detail. But covering the same area needs a lower altitude and more photos, which costs flight time and battery. Choose only as fine as your purpose needs."
+        },
+        {
+          "q": "Which focal length should I enter?",
+          "a": "Enter the lens's actual focal length (for example 10.3 mm), not the 35 mm equivalent. If you only know the equivalent, divide it by the crop factor to get the actual value."
+        },
+        {
+          "q": "How much overlap is enough?",
+          "a": "For mapping, about 70–80% forward and 60–70% side overlap is common. Low-texture ground such as forest or water usually calls for more."
+        },
+        {
+          "q": "Does this guarantee survey accuracy?",
+          "a": "No. It is a theoretical figure for photo resolution. Real survey accuracy depends on ground control, position correction, lens distortion correction and terrain relief."
+        }
+      ],
+      "preset_1_2_3": "1/2.3\"",
+      "preset_1": "1\"",
+      "preset_4_3": "4/3\"",
+      "preset_aps_c": "APS-C"
+    },
+    "densityAltitude": {
+      "metaTitle": "Drone Density Altitude Calculator – Hot & High Flying",
+      "metaDescription": "Calculate density altitude, air density ratio and extra hover power from elevation, temperature and QNH to judge drone performance when hot or high.",
+      "title": "Drone Density Altitude Calculator",
+      "subtitle": "From elevation, temperature and pressure, see how thin the air really is (density altitude) and how much more power a hover takes.",
+      "unitLabel": "Units",
+      "unitMetric": "Metres · °C · hPa",
+      "unitImperial": "Feet · °F · inHg",
+      "elevationLabelM": "Takeoff elevation (m)",
+      "elevationLabelFt": "Takeoff elevation (ft)",
+      "elevationHelp": "Height above sea level. The elevation shown in a map app is fine.",
+      "tempLabelC": "Air temperature (°C)",
+      "tempLabelF": "Air temperature (°F)",
+      "qnhLabelHpa": "Sea-level pressure QNH (hPa)",
+      "qnhLabelInHg": "Sea-level pressure QNH (inHg)",
+      "qnhHelp": "The sea-level pressure (QNH) from a weather app. Standard is 1013 hPa (29.92 inHg).",
+      "resultTitle": "Results",
+      "invalid": "Please enter valid values (elevation −1,500 to 30,000 ft, temperature −60 to 60 °C, pressure 850–1090 hPa).",
+      "densityAltitude": "Density altitude",
+      "densityAltitudeSub": "{value} from your actual elevation",
+      "pressureAltitude": "Pressure altitude",
+      "densityRatio": "Air density ratio",
+      "densityRatioSub": "Compared with standard sea-level air (100%)",
+      "hoverPower": "Hover power change",
+      "hoverPowerSub": "Theoretical extra power versus standard air",
+      "altFtValue": "{value} ft",
+      "altMValue": "{value} m ({ft} ft)",
+      "percentValue": "{value}%",
+      "signedPercentValue": "{value}%",
+      "isaLine": "Standard temperature at this altitude is {isa}{unit}; today is {dev}{unit} from standard.",
+      "levelSmall": "Density altitude is close to your real elevation, so expect near-normal performance.",
+      "levelNoticeable": "The air is noticeably thinner than standard. Propeller efficiency and climb rate drop and motors work harder, so plan battery margins generously.",
+      "levelLarge": "The air is much thinner. Climb and hover performance can fall sharply and motors and batteries run hotter. Reduce payload and check the manufacturer's maximum operating altitude and temperature.",
+      "howToSteps": [
+        "Pick your units and enter the takeoff site's elevation above sea level.",
+        "Enter the air temperature. Midday ground temperature is the worst case, so use the forecast for your flight time.",
+        "Enter the sea-level pressure (QNH) from a weather app or airport report. Leave the standard value if you do not know it.",
+        "Read the density altitude and hover power change. If they are large, re-check payload, flight time and operating limits."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "Pressure altitude = elevation + (1013.25 − QNH) × 27 ft, and the standard temperature is 15 °C − 1.98 °C per 1,000 ft of pressure altitude. Density altitude is approximated as pressure altitude + 118.8 × (actual − standard temperature) ft, while the air density ratio comes from the International Standard Atmosphere (ISA) model.",
+        "Hover power is assumed to scale with the inverse square root of the air density ratio (a theoretical figure). Humidity is not included, so on a humid day the air is a little thinner than shown. Real performance varies by aircraft, so follow the manufacturer's specifications first."
+      ],
+      "faq": [
+        {
+          "q": "What is density altitude?",
+          "a": "It restates today's air density as the altitude where standard air has the same density. Heat, low pressure and high ground all raise it, and the propellers then produce less lift."
+        },
+        {
+          "q": "Does it matter at sea level on a summer afternoon?",
+          "a": "Yes. Even at sea level, air 15–20 °C above the 15 °C standard raises density altitude by roughly 1,500–2,000 ft. In heat, also check battery performance and temperature."
+        },
+        {
+          "q": "Is the hover power change exact?",
+          "a": "No, it is a rough theoretical figure. Propeller design, speed and payload change the real result, so use it only as a comparison."
+        },
+        {
+          "q": "What if I do not know the QNH?",
+          "a": "Leaving the standard 1013 hPa (29.92 inHg) still gives a rough result. For better accuracy, enter the sea-level pressure from a weather app."
+        }
+      ]
+    },
+    "lineOfSight": {
+      "metaTitle": "Drone Line-of-Sight & Radio Horizon Calculator",
+      "metaDescription": "Find the horizon distance and radio line-of-sight range from drone altitude and pilot eye height, or the altitude needed for a target distance.",
+      "title": "Drone Line-of-Sight & Radio Horizon Calculator",
+      "subtitle": "From flight altitude and pilot position, find how far the horizon is given the Earth's curvature and the theoretical range a radio link can reach.",
+      "modeLabel": "Calculate",
+      "modeDistance": "Altitude → range",
+      "modeAltitude": "Distance → required altitude",
+      "unitLabel": "Units",
+      "unitMetric": "Metres · kilometres",
+      "unitImperial": "Feet · miles",
+      "altitudeLabel": "Drone altitude ({unit})",
+      "altitudeHelp": "Height of the drone above the ground, not above the pilot.",
+      "distanceLabel": "Target distance ({unit})",
+      "pilotLabel": "Pilot eye height ({unit})",
+      "pilotHelp": "About 1.6 m standing on flat ground; add the height if you are on a hill or building.",
+      "resultTitle": "Results",
+      "invalid": "Please enter valid values (altitude and distance must be greater than 0, eye height 0 or more).",
+      "geoDistance": "Distance to the visual horizon",
+      "geoDistanceSub": "Where the Earth's curvature hides the drone below the horizon (ignoring atmospheric refraction)",
+      "radioDistance": "Radio line-of-sight (theoretical)",
+      "radioDistanceSub": "Standard model with atmospheric refraction (4/3 Earth), about 15% farther",
+      "pilotHorizon": "Pilot-side horizon",
+      "pilotHorizonSub": "Distance to the horizon from the pilot's eye height alone",
+      "geoAltitude": "Required altitude (visual)",
+      "geoAltitudeSub": "Minimum height for the drone to sit above the horizon at the target distance",
+      "radioAltitude": "Required altitude (radio)",
+      "radioAltitudeSub": "Minimum height for a straight radio path at the target distance",
+      "vlosNote": "These figures consider Earth's curvature only. Trees, buildings, terrain, interference and transmit power are not included, and in most countries you must keep the drone within visual line of sight (VLOS). The distance at which you can actually see a small drone is far shorter.",
+      "distanceValue": "{value} {unit}",
+      "heightValue": "{value} {unit}",
+      "howToSteps": [
+        "Choose a mode: \"Altitude → range\" to see the reach from a height, or \"Distance → required altitude\" to see the height needed for a distance.",
+        "Enter the drone's altitude (or the target distance).",
+        "Enter the pilot's eye height. Add the height of any hill or building you stand on.",
+        "Compare the visual and radio ranges, and plan the actual flight within visual line of sight and your local maximum altitude."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "With Earth radius R = 6,371 km, the horizon from height h (m) is √(2·R·h). Adding the horizon distances of the pilot and the drone gives the greatest distance at which the two can be joined by a straight line. A drone at 120 m with a pilot eye height of 1.6 m gives roughly 39–40 km.",
+        "Radio waves bend slightly with the atmosphere, so the standard model uses 4/3 of the Earth's radius, which lengthens the distance by about 15%. This is an upper bound with no obstacles at all; real video-link range is usually far shorter because of interference, power, antennas and terrain."
+      ],
+      "faq": [
+        {
+          "q": "Can I fly out to the calculated distance?",
+          "a": "No. The figure is a theoretical limit based on Earth's curvature alone. In most countries you must keep the drone in visual line of sight (VLOS), and a small drone is usually only recognizable by eye at a few hundred metres."
+        },
+        {
+          "q": "Why is the radio range longer than the visual horizon?",
+          "a": "Air density changes with height, which bends radio waves slightly along the surface. The standard model treats the Earth as 4/3 of its radius, so the horizon is about 15% farther."
+        },
+        {
+          "q": "How much does more altitude extend the range?",
+          "a": "Distance scales with the square root of height, so quadrupling altitude doubles the horizon distance. But regulations cap altitude (for example 120 m), so check local rules first."
+        },
+        {
+          "q": "Are transmit power and antennas included?",
+          "a": "No. This calculator shows only the geometric limit. Actual range depends on power, antennas, the radio environment and obstacles."
+        }
+      ]
+    },
+    "checklist": {
+      "metaTitle": "Drone Preflight Checklist – Check Off and Print",
+      "metaDescription": "Drone preflight checklist covering rules, weather, aircraft, batteries, takeoff site and in-flight checks. Tick items off and print it for the field.",
+      "title": "Drone Preflight Checklist",
+      "subtitle": "Run through rules, weather, aircraft, batteries and the takeoff site in one place before every flight, and print it if you want a paper copy.",
+      "progress": "{done} of {total} items done",
+      "reset": "Reset",
+      "print": "Print",
+      "printTitle": "Drone Preflight Checklist - FlyDroneMap",
+      "allDone": "Every item is checked. Take one last look at local rules and the aircraft, then fly safely.",
+      "storageNote": "Your ticks are saved only in this browser and never sent to a server. Use Reset to clear them at any time.",
+      "groups": [
+        {
+          "title": "1. Rules and permissions",
+          "items": [
+            "I checked that the site is not a no-fly or restricted zone (airports, military sites, parks, events)",
+            "Any required authorization is in hand and has not expired",
+            "Aircraft and operator registration and insurance are valid",
+            "I know the maximum altitude (e.g. 120 m) and the visual line of sight (VLOS) rules",
+            "I know the required distances from people, vehicles and buildings",
+            "I checked privacy and local filming rules for any recording"
+          ]
+        },
+        {
+          "title": "2. Weather and environment",
+          "items": [
+            "I checked wind and gust forecasts for my flight window (within the aircraft's limit)",
+            "I checked precipitation and visibility (rain, snow, fog)",
+            "Temperature is within the battery's recommended range (not too cold or hot)",
+            "I checked the Kp index and GPS satellite status",
+            "I checked sunrise and sunset and set a time to finish"
+          ]
+        },
+        {
+          "title": "3. Aircraft",
+          "items": [
+            "Propellers have no cracks, bends or chips and are firmly mounted",
+            "Frame, arms and folding joints show no damage or looseness",
+            "Motors spin smoothly without binding or debris",
+            "Gimbal cover is removed and the lens is clean",
+            "Vision sensors (forward and downward) are clean",
+            "Firmware and app are up to date with no warnings"
+          ]
+        },
+        {
+          "title": "4. Batteries and controller",
+          "items": [
+            "The flight battery is fully charged and not swollen or damaged",
+            "Controller and phone or tablet have enough charge",
+            "A memory card is inserted with enough free space",
+            "Spare batteries and propellers are packed",
+            "The controller link and video feed are working"
+          ]
+        },
+        {
+          "title": "5. Takeoff site",
+          "items": [
+            "The takeoff spot is flat, firm and clear of obstacles",
+            "I checked overhead trees, wires and buildings",
+            "No people, animals or vehicles are close by",
+            "I avoided magnetic interference (steel structures, power equipment, buried metal)",
+            "The home point is recorded correctly and return altitude clears nearby obstacles"
+          ]
+        },
+        {
+          "title": "6. Just after takeoff and in flight",
+          "items": [
+            "I hovered at 1–2 m to check control response and unusual vibration",
+            "I keep watching battery level and the margin needed to return",
+            "I keep the aircraft in sight and know its position and heading",
+            "I know the emergency steps to land or return immediately if something goes wrong"
+          ]
+        }
+      ],
+      "howToSteps": [
+        "Go through the items from the top before you fly, tapping each one to tick it off.",
+        "Items that do not apply can be left or ticked as you like; the progress count is only a guide.",
+        "Press Print if you want a paper copy to use in the field.",
+        "After the flight, press Reset to clear the ticks and reuse the list next time."
+      ],
+      "formulaTitle": "How the list is organised",
+      "formulaBody": [
+        "The checklist follows the order of a flight: rules, weather, aircraft, batteries, takeoff site, then flight. Check the rules before choosing a site, and look at the aircraft and the takeoff area once you arrive.",
+        "It is a reference list of general safety practice and does not cover every situation. The manufacturer's manual and your local aviation authority's rules always come first. Add or skip items to suit your own flying."
+      ],
+      "faq": [
+        {
+          "q": "How were the items chosen?",
+          "a": "They are the rules, weather, aircraft, battery, takeoff-site and in-flight checks beginners most often miss, drawn from general safety practice. They do not replace the manufacturer's manual or local rules."
+        },
+        {
+          "q": "Where are my ticks stored?",
+          "a": "Only in this device's browser. Nothing is sent to a server, and clearing browser data or pressing Reset removes them."
+        },
+        {
+          "q": "Do the ticks appear when I print?",
+          "a": "Yes, the page prints as it currently looks. To print a blank list, press Reset first."
+        },
+        {
+          "q": "Can I add my own items?",
+          "a": "Not at the moment; the list is fixed. We suggest writing any extra items on the printed copy."
+        }
+      ]
+    },
+    "euCategory": {
+      "metaTitle": "EU Drone Class (C0–C4) & A1/A2/A3 Subcategory Checker",
+      "metaDescription": "Pick your drone's C-class label and weight to see its EU open-category subcategory (A1, A2, A3), training, registration and Remote ID.",
+      "title": "EU Drone Class & Subcategory Checker",
+      "subtitle": "Choose your drone's class label (C0–C4) and weight to see which EU open-category subcategory (A1, A2, A3) applies, and what training and registration you need.",
+      "classLabel": "Drone class / type",
+      "class_C0": "C0 (under 250 g)",
+      "class_C1": "C1 (under 900 g)",
+      "class_C2": "C2 (under 4 kg)",
+      "class_C3": "C3 (under 25 kg)",
+      "class_C4": "C4 (under 25 kg)",
+      "class_legacy": "No class label (sold before 2024)",
+      "class_private": "Privately built",
+      "class_C5C6": "C5 / C6",
+      "classHelp_C0": "A drone carrying the C0 label, under 250 g. Most small camera drones fall here.",
+      "classHelp_C1": "A drone carrying the C1 label, under 900 g, with built-in Remote ID.",
+      "classHelp_C2": "A drone carrying the C2 label, under 4 kg. It can be flown closer to people in subcategory A2.",
+      "classHelp_C3": "A drone carrying the C3 label, under 25 kg. It is flown only in A3, away from people.",
+      "classHelp_C4": "A drone carrying the C4 label, under 25 kg, mostly model-aircraft types, flown in A3.",
+      "classHelp_legacy": "A drone without a class label that was placed on the market before 1 January 2024. Unlabelled drones sold after that date fall in the specific category.",
+      "classHelp_private": "A drone you built yourself. Enter its take-off mass.",
+      "classHelp_C5C6": "Drones with a C5 or C6 label are for the specific category only.",
+      "massLabel": "Maximum take-off mass (g)",
+      "massHelp": "Enter the maximum take-off mass (MTOM) from the spec sheet, including camera and battery.",
+      "cameraLabel": "Does it have a camera or data-gathering sensor?",
+      "cameraYes": "Yes",
+      "cameraNo": "No",
+      "resultTitle": "Result",
+      "invalidMass": "Enter the take-off mass in grams as a number greater than 0.",
+      "tooHeavy": "25 kg or more is outside the open category. The specific category, which needs operational authorisation, applies.",
+      "specific": "C5 and C6 drones can only be flown in the specific category, which needs an operational authorisation or standard scenario procedure.",
+      "subcategoriesLabel": "Subcategories you can fly in",
+      "sub_A1_title": "A1 – close to people",
+      "sub_A1_rule": "You may fly close to people but never over assemblies of people, and you should avoid flying over uninvolved people.",
+      "sub_A2_title": "A2 – safe distance from people",
+      "sub_A2_rule": "Keep 30 m horizontally from uninvolved people (reducible to 5 m in a C2 low-speed mode).",
+      "sub_A3_title": "A3 – far from people",
+      "sub_A3_rule": "Fly at least 150 m from residential, commercial, industrial or recreational areas, where no uninvolved people are at risk.",
+      "trainingLabel": "Training",
+      "training_manual": "Read the manufacturer's user manual.",
+      "training_a1a3": "Pass the A1/A3 online training and exam.",
+      "training_a2": "A1/A3 training, plus practical self-training and the A2 exam (A2 certificate).",
+      "training_none": "No remote pilot certificate is required (check national rules).",
+      "registrationLabel": "Operator registration",
+      "registration_yes": "Required.",
+      "registration_ifCamera_yes": "Required because it has a camera or sensor (unless it is a toy).",
+      "registration_ifCamera_no": "Usually not required for a drone under 250 g without a camera or sensor.",
+      "remoteIdLabel": "Remote ID",
+      "remoteId_required": "Direct Remote ID must be built into the drone.",
+      "remoteId_check": "Direct Remote ID is not required by this class. Check your country's requirements.",
+      "massLimitLabel": "Mass limit",
+      "massLimitValue": "Under {kg, number} kg",
+      "legacyNote": "Drones without a label follow the transitional rules based on when they were placed on the market. Under 250 g they fly in A1 (A3 also allowed); from 250 g to under 25 kg only in A3. No sticker is needed.",
+      "generalLimits": "Open category basics: keep visual line of sight (some exceptions), fly at most 120 m above ground, carry no dangerous goods and drop nothing, never fly over assemblies of people, and keep the drone under 25 kg.",
+      "nationalNote": "Minimum age, insurance and registration details differ by country and extra rules may apply. Check your national aviation authority before flying.",
+      "sourcesTitle": "Official sources",
+      "sourceEasa": "EASA – Open category (low-risk civil drones)",
+      "sourceEasaFaq": "EASA FAQ – drone categories",
+      "sourceDe": "Germany uas-betrieb.bund.de – C-classified drones",
+      "verified": "Cross-checked against official EASA, German and Spanish guidance in November 2026. Rules can change, so check the latest guidance before you fly.",
+      "howToSteps": [
+        "Find the class label (C0–C4) on your drone and pick the same option. With no label, choose \"No class label\" or \"Privately built\".",
+        "For an unlabelled or home-built drone, enter its maximum take-off mass in grams.",
+        "For drones under 250 g, say whether it has a camera or sensor.",
+        "Read the subcategories, training, registration and Remote ID in the result, then confirm the latest rules through the official links."
+      ],
+      "formulaTitle": "How the result is decided",
+      "formulaBody": [
+        "The EU open category divides flying by the drone's class label and mass. C0 (under 250 g) and C1 (under 900 g) fly in A1 and A3, C2 (under 4 kg) in A2 and A3, and C3 and C4 (under 25 kg) in A3. C5 and C6 are for the specific category only.",
+        "Existing drones without a label are sorted by weight: under 250 g in A1 (A3 included), 250 g to under 25 kg in A3, and 25 kg or more falls outside the open category. This checker summarises the key points of official guidance such as EASA's; it is a reference, not legal advice."
+      ],
+      "faq": [
+        {
+          "q": "Where do I find the class label?",
+          "a": "Drones sold in the EU from 2024 carry a C0–C4 label on the aircraft and its packaging. It also appears in the user manual and the manufacturer's declaration of conformity."
+        },
+        {
+          "q": "Are drones under 250 g free of rules?",
+          "a": "No. Even under 250 g, a drone with a camera or sensor (other than a toy) needs operator registration, and the open-category basics, such as the 120 m limit and no flights over assemblies of people, plus national rules still apply."
+        },
+        {
+          "q": "When is A2 used?",
+          "a": "When you want to fly a C2 drone closer to people (30 m horizontally, 5 m in low-speed mode). It needs an A2 certificate, which involves training and an exam."
+        },
+        {
+          "q": "Does this apply outside the EU?",
+          "a": "These rules apply in EU member states, and some other European countries use similar frameworks. The UK and other countries have their own rules, so check the national aviation authority."
         }
       ]
     }

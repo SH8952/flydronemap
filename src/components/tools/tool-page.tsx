@@ -1,17 +1,37 @@
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Aperture, BatteryCharging, ChevronDown, Sunrise, Timer, ArrowRight } from "lucide-react";
+import {
+  Aperture,
+  ArrowRight,
+  BatteryCharging,
+  ChevronDown,
+  ClipboardCheck,
+  Mountain,
+  Ruler,
+  Scale,
+  Sunrise,
+  Telescope,
+  Timer,
+} from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { ShareButton } from "@/components/share-button";
 import { SITE_URL, breadcrumbJsonLd } from "@/lib/seo";
 import { getGuideMeta } from "@/lib/guides";
 import type { Locale } from "@/i18n/routing";
 import { TOOLS, getTool, type ToolKey } from "@/lib/tools";
+import { getToolImage } from "@/lib/tool-images";
+import { ToolImageDevPanel } from "@/components/dev/tool-image-dev-panel";
 
 const ICONS = {
   ndFilter: Aperture,
   flightTime: Timer,
   batteryCheck: BatteryCharging,
   goldenHour: Sunrise,
+  gsd: Ruler,
+  densityAltitude: Mountain,
+  lineOfSight: Telescope,
+  checklist: ClipboardCheck,
+  euCategory: Scale,
 } as const;
 
 export function ToolIcon({ toolKey, className }: { toolKey: ToolKey; className?: string }) {
@@ -51,6 +71,10 @@ export async function ToolPage({
     .filter((g): g is NonNullable<typeof g> => g !== null)
     .slice(0, 3);
 
+  // 목록에서 현재 도구 다음 순서의 도구 4개(끝에 닿으면 처음부터)를 보여 준다.
+  const at = TOOLS.findIndex((o) => o.key === toolKey);
+  const relatedTools = Array.from({ length: Math.min(4, TOOLS.length - 1) }, (_, k) => TOOLS[(at + 1 + k) % TOOLS.length]);
+  const heroImage = getToolImage(tool.slug);
   const url = `${SITE_URL}/${locale}/tools/${tool.slug}`;
   const breadcrumbs = breadcrumbJsonLd([
     { name: "Home", url: `${SITE_URL}/${locale}` },
@@ -77,6 +101,38 @@ export async function ToolPage({
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{t("title")}</h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">{t("subtitle")}</p>
       </header>
+
+      {heroImage ? (
+        <figure className="flex flex-col gap-1.5">
+          <div className="relative aspect-[16/7] w-full overflow-hidden rounded-lg">
+            <Image
+              src={heroImage.image}
+              alt={t("title")}
+              fill
+              sizes="(min-width: 896px) 896px, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+          {heroImage.imageCredit && heroImage.imageCreditUrl ? (
+            <figcaption className="text-xs text-muted-foreground">
+              Photo by{" "}
+              <a href={heroImage.imageCreditUrl} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                {heroImage.imageCredit}
+              </a>{" "}
+              on{" "}
+              <a
+                href="https://unsplash.com/?utm_source=FlyDroneMap&utm_medium=referral"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-foreground"
+              >
+                Unsplash
+              </a>
+            </figcaption>
+          ) : null}
+        </figure>
+      ) : null}
 
       {children}
 
@@ -152,8 +208,8 @@ export async function ToolPage({
 
       <section className="flex flex-col gap-3">
         <h2 className="text-xl font-semibold tracking-tight">{c("relatedToolsTitle")}</h2>
-        <ul className="grid gap-3 sm:grid-cols-3">
-          {TOOLS.filter((o) => o.key !== toolKey).map((o) => (
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {relatedTools.map((o) => (
             <li key={o.key}>
               <Link
                 href={`/tools/${o.slug}`}
@@ -169,6 +225,20 @@ export async function ToolPage({
           ))}
         </ul>
       </section>
+
+      {process.env.NODE_ENV === "development" ? (
+        <ToolImageDevPanel
+          items={[
+            {
+              slug: tool.slug,
+              label: items(`${toolKey}.name`),
+              query: tool.imageQuery,
+              currentImage: heroImage?.image,
+              currentImageCredit: heroImage?.imageCredit,
+            },
+          ]}
+        />
+      ) : null}
     </div>
   );
 }

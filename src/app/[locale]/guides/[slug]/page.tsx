@@ -18,6 +18,7 @@ import {
 } from "@/lib/guides";
 import { GuideImageDevPanel } from "@/components/dev/guide-image-dev-panel";
 import { GuideToolCta } from "@/components/guide-tool-cta";
+import { GuideRelatedTools } from "@/components/guides/guide-related-tools";
 import { ShareButton } from "@/components/share-button";
 import { GuideToc } from "@/components/guides/guide-toc";
 import { GuideFloatingToc } from "@/components/guides/guide-floating-toc";
@@ -212,6 +213,8 @@ export default async function GuidePage({
       </article>
 
       <GuideToolCta />
+
+      <GuideRelatedTools slug={slug} />
 
       {relatedGuides.length > 0 ? (
         <nav

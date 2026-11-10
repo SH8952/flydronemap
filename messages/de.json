@@ -178,6 +178,9 @@
     "guideHighlightsTitle": "Ratgeber entdecken",
     "guideHighlightsSubtitle": "Praktische Ratgeber zu Flugsicherheit, Wettereinschätzung und Drohnenvorschriften.",
     "guideHighlightsCta": "Alle Ratgeber ansehen →",
+    "toolsHighlightsTitle": "Drohnen-Tools",
+    "toolsHighlightsSubtitle": "Kostenlose Tools für Berechnungen und Kontrollen vor dem Flug.",
+    "toolsHighlightsCta": "Alle Tools ansehen →",
     "faqHighlightsTitle": "Häufig gestellte Fragen",
     "faqHighlightsSubtitle": "Kurze Antworten zu unseren Datenquellen, dem Kp-Index und der Nutzung von FlyDroneMap.",
     "faqHighlightsCta": "Alle Fragen ansehen →",
@@ -520,6 +523,7 @@
     "showLess": "Weniger anzeigen",
     "backToGuides": "← Zurück zu den Ratgebern",
     "relatedGuides": "Ähnliche Ratgeber",
+    "relatedTools": "Passende Tools zu diesem Ratgeber",
     "categories": {
       "weather-safety": "Wetter & Sicherheit",
       "space-weather-gps": "Weltraumwetter & GPS",
@@ -893,10 +897,10 @@
   },
   "Tools": {
     "hub": {
-      "metaTitle": "Drohnen-Tools: ND-Filter, Flugzeit, Akku & mehr",
-      "metaDescription": "Kostenlose Rechner für Drohnenflug und Aufnahmeplanung: ND-Filter, Flugzeit, Akku-Wattstunden fürs Handgepäck sowie Sonnenaufgang und Goldene Stunde.",
+      "metaTitle": "Drohnen-Tools: Rechner und Checkliste vor dem Flug",
+      "metaDescription": "Kostenlose Tools für Drohnenflüge: ND-Filter, Flugzeit, Akku-Wh, Goldene Stunde, GSD, Dichtehöhe, Sichtweite, Checkliste und EU-Klassen-Check.",
       "title": "Drohnen-Tools",
-      "subtitle": "Von den Kameraeinstellungen über Akkus bis zur Sonnenuntergangszeit: alle Berechnungen vor dem Drohnenflug an einem Ort.",
+      "subtitle": "Von Kameraeinstellungen, Akkus und Sonnenuntergang bis zu Kartierungsauflösung, Checkliste und EU-Regeln: die Tools, die Sie vor einem Drohnenflug brauchen, an einem Ort.",
       "notice": "Die Ergebnisse sind Schätzwerte zur Orientierung. Prüfen Sie vor dem Flug stets das Handbuch des Herstellers, die örtlichen Vorschriften und das tatsächliche Wetter.",
       "openTool": "Tool öffnen →"
     },
@@ -930,6 +934,31 @@
         "name": "Goldene-Stunde-Planer",
         "short": "Sonnenauf-/untergang und Goldene Stunde",
         "description": "Zeigt Sonnenaufgang, Sonnenuntergang, Goldene und Blaue Stunde sowie die Sonnenrichtung für jeden Ort und jedes Datum."
+      },
+      "gsd": {
+        "name": "GSD-Rechner",
+        "short": "Bodenauflösung und Auslöseabstand",
+        "description": "Berechnen Sie aus Höhe, Sensor und Brennweite die Bodengröße eines Pixels (GSD), die Bildfläche und den Auslöseabstand je Überlappung – oder die Höhe für eine Ziel-GSD."
+      },
+      "densityAltitude": {
+        "name": "Dichtehöhenrechner",
+        "short": "Leistung bei Hitze und Höhe",
+        "description": "Berechnen Sie Dichtehöhe, Luftdichteverhältnis und den Mehrbedarf an Schwebeleistung aus Höhe, Temperatur und Luftdruck, um Heiß- und Höheneinsätze einzuschätzen."
+      },
+      "lineOfSight": {
+        "name": "Sichtweite & Funkhorizont",
+        "short": "Horizont und Funkreichweite nach Höhe",
+        "description": "Ermitteln Sie Horizontentfernung und theoretische Funkreichweite aus Drohnenhöhe und Augenhöhe des Piloten – oder die Höhe für eine gewählte Entfernung."
+      },
+      "checklist": {
+        "name": "Checkliste vor dem Flug",
+        "short": "Zum Abhaken und Drucken",
+        "description": "Schritt-für-Schritt-Checkliste zu Regeln, Wetter, Fluggerät, Akkus, Startplatz und Kontrollen im Flug – zum Abhaken und Ausdrucken."
+      },
+      "euCategory": {
+        "name": "EU-Drohnenklassen-Check",
+        "short": "C0–C4 und A1/A2/A3 prüfen",
+        "description": "Prüfen Sie mit dem C-Klassen-Label und dem Gewicht Ihrer Drohne die Unterkategorie der offenen EU-Kategorie, die nötige Schulung, Registrierung und Remote ID."
       }
     },
     "ndFilter": {
@@ -1258,6 +1287,405 @@
         {
           "q": "In hohen Breiten erscheinen keine Zeiten.",
           "a": "Im Sommer geht die Sonne eventuell nicht unter (Mitternachtssonne), im Winter nicht auf (Polarnacht); dann gibt es keinen Sonnenauf- oder -untergang. Sie erhalten dann einen Hinweis und den Tagesverlauf, der die Lichtänderung zeigt."
+        }
+      ]
+    },
+    "gsd": {
+      "metaTitle": "Drohnen-GSD-Rechner – Bodenauflösung nach Flughöhe",
+      "metaDescription": "GSD (cm pro Pixel), Bildfläche und Auslöseabstand aus Flughöhe, Sensor und Brennweite berechnen – oder die Höhe für eine Ziel-GSD ermitteln.",
+      "title": "Drohnen-GSD-Rechner",
+      "subtitle": "Aus Flughöhe und Kameradaten ermitteln Sie, wie viel Boden ein Pixel abdeckt (GSD), die Bildfläche jedes Fotos und den Auslöseabstand für Ihre Überlappung.",
+      "modeLabel": "Berechnen",
+      "modeGsd": "Höhe → GSD",
+      "modeAltitude": "Ziel-GSD → Höhe",
+      "unitLabel": "Einheiten",
+      "unitMetric": "Metrisch (m, cm)",
+      "unitImperial": "Imperial (ft, in)",
+      "altitudeLabelM": "Flughöhe (m)",
+      "altitudeLabelFt": "Flughöhe (ft)",
+      "altitudeHelp": "Höhe über Grund (AGL).",
+      "targetLabelCm": "Ziel-GSD (cm/Pixel)",
+      "targetLabelIn": "Ziel-GSD (in/Pixel)",
+      "cameraTitle": "Kamera",
+      "presetLabel": "Sensorformat",
+      "presetCustom": "Eigene Werte",
+      "preset_full": "Vollformat",
+      "sensorWidthLabel": "Sensorbreite (mm)",
+      "sensorHeightLabel": "Sensorhöhe (mm)",
+      "focalLabel": "Tatsächliche Brennweite (mm)",
+      "focalHelp": "Die echte Brennweite des Objektivs, nicht das Kleinbild-Äquivalent. Nutzen Sie den „tatsächlichen“ Wert aus dem Datenblatt.",
+      "imageWidthLabel": "Bildbreite (Pixel)",
+      "imageHeightLabel": "Bildhöhe (Pixel)",
+      "overlapTitle": "Überlappung und Geschwindigkeit",
+      "frontLabel": "Längsüberlappung (%)",
+      "sideLabel": "Querüberlappung (%)",
+      "speedLabel": "Fluggeschwindigkeit (m/s, optional)",
+      "speedHelp": "Wenn Sie sie angeben, wird auch der Auslöseabstand in Sekunden berechnet.",
+      "resultTitle": "Ergebnis",
+      "invalid": "Bitte gültige Werte eingeben (alle Felder müssen Zahlen größer als 0 sein).",
+      "invalidOverlap": "Geben Sie Überlappungen von 0 bis unter 100 ein.",
+      "resultGsd": "GSD",
+      "resultAltitude": "Flughöhe",
+      "footprintWidth": "Bildbreite am Boden (ein Foto)",
+      "footprintHeight": "Bildlänge am Boden (ein Foto)",
+      "gsdValueCm": "{value} cm/Pixel",
+      "gsdValueIn": "{value} in/Pixel",
+      "lengthValue": "{value} {unit}",
+      "secondsValue": "{value} s",
+      "warnAltitude": "Die Höhe liegt über etwa 120 m (400 ft). In vielen Regionen ist die maximale Flughöhe darauf begrenzt – prüfen Sie die örtlichen Regeln oder erwägen Sie ein Objektiv mit längerer Brennweite oder eine höher auflösende Kamera.",
+      "photoDistance": "Abstand zwischen Aufnahmen",
+      "lineSpacing": "Abstand der Fluglinien",
+      "interval": "Auslöseintervall",
+      "orientationNote": "Es wird angenommen, dass die kurze Bildseite in Flugrichtung zeigt. Wenn Sie die Kamera um 90 Grad gedreht einsetzen, vertauschen Sie Breite und Höhe.",
+      "howToSteps": [
+        "Wählen Sie „Höhe → GSD“ und geben Sie Ihre Flughöhe ein, oder „Ziel-GSD → Höhe“ und geben Sie die gewünschte Auflösung ein.",
+        "Tippen Sie auf ein Sensorformat oder geben Sie die Sensorgröße ein, dann die tatsächliche Brennweite und die Bildgröße in Pixeln.",
+        "Legen Sie Längs- und Querüberlappung fest, um Auslöseabstand und Fluglinienabstand zu erhalten. Mit einer Geschwindigkeit erscheint auch das Intervall in Sekunden.",
+        "Prüfen Sie, ob die berechnete Höhe innerhalb der örtlichen Maximalhöhe liegt, und passen Sie Ziel oder Kamera bei Bedarf an."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "GSD (cm/Pixel) = Flughöhe (m) × Sensorbreite (mm) ÷ (Brennweite (mm) × Bildbreite in Pixeln) × 100. Beispiel: 1-Zoll-Sensor (13,2 mm), 10,3 mm Brennweite und 5472 Pixel in 100 m Höhe ergeben etwa 2,3 cm/Pixel.",
+        "Die Bildfläche ist GSD mal Pixelanzahl. Der Auslöseabstand ist Bildlänge × (1 − Längsüberlappung), der Fluglinienabstand Bildbreite × (1 − Querüberlappung). Sensorgrößen sind typische Werte je Format und können leicht von den Herstellerangaben abweichen."
+      ],
+      "faq": [
+        {
+          "q": "Ist eine kleinere GSD immer besser?",
+          "a": "Eine kleinere GSD heißt, dass jedes Pixel weniger Boden abdeckt und Sie mehr Details sehen. Für dieselbe Fläche brauchen Sie dann aber eine geringere Höhe und mehr Fotos, was Flugzeit und Akku kostet. Wählen Sie nur so fein, wie Ihr Zweck es verlangt."
+        },
+        {
+          "q": "Welche Brennweite muss ich eingeben?",
+          "a": "Die tatsächliche Brennweite des Objektivs (z. B. 10,3 mm), nicht das Kleinbild-Äquivalent. Kennen Sie nur das Äquivalent, teilen Sie es durch den Crop-Faktor."
+        },
+        {
+          "q": "Wie viel Überlappung reicht aus?",
+          "a": "Für Kartierung sind etwa 70–80 % Längs- und 60–70 % Querüberlappung üblich. Bei kontrastarmem Gelände wie Wald oder Wasser ist meist mehr nötig."
+        },
+        {
+          "q": "Garantiert das Vermessungsgenauigkeit?",
+          "a": "Nein. Es ist ein theoretischer Wert für die Fotoauflösung. Die tatsächliche Genauigkeit hängt von Passpunkten, Positionskorrektur, Verzeichnungskorrektur und Geländerelief ab."
+        }
+      ],
+      "preset_1_2_3": "1/2.3\"",
+      "preset_1": "1\"",
+      "preset_4_3": "4/3\"",
+      "preset_aps_c": "APS-C"
+    },
+    "densityAltitude": {
+      "metaTitle": "Drohnen-Dichtehöhenrechner – Hitze und Höhe",
+      "metaDescription": "Dichtehöhe, Luftdichteverhältnis und Mehrbedarf an Schwebeleistung aus Höhe, Temperatur und QNH berechnen – für heiße, hohe Einsätze.",
+      "title": "Drohnen-Dichtehöhenrechner",
+      "subtitle": "Aus Geländehöhe, Temperatur und Luftdruck sehen Sie, wie dünn die Luft tatsächlich ist (Dichtehöhe) und wie viel mehr Leistung der Schwebeflug braucht.",
+      "unitLabel": "Einheiten",
+      "unitMetric": "Meter · °C · hPa",
+      "unitImperial": "Fuß · °F · inHg",
+      "elevationLabelM": "Starthöhe über NN (m)",
+      "elevationLabelFt": "Starthöhe über NN (ft)",
+      "elevationHelp": "Höhe über dem Meeresspiegel. Der Wert aus einer Karten-App genügt.",
+      "tempLabelC": "Lufttemperatur (°C)",
+      "tempLabelF": "Lufttemperatur (°F)",
+      "qnhLabelHpa": "Luftdruck auf Meereshöhe QNH (hPa)",
+      "qnhLabelInHg": "Luftdruck auf Meereshöhe QNH (inHg)",
+      "qnhHelp": "Der auf Meereshöhe bezogene Luftdruck (QNH) aus einer Wetter-App. Standard sind 1013 hPa (29,92 inHg).",
+      "resultTitle": "Ergebnis",
+      "invalid": "Bitte gültige Werte eingeben (Höhe −1.500 bis 30.000 ft, Temperatur −60 bis 60 °C, Druck 850–1090 hPa).",
+      "densityAltitude": "Dichtehöhe",
+      "densityAltitudeSub": "Abweichung von Ihrer tatsächlichen Höhe: {value}",
+      "pressureAltitude": "Druckhöhe",
+      "densityRatio": "Luftdichteverhältnis",
+      "densityRatioSub": "Verglichen mit Standardluft auf Meereshöhe (100 %)",
+      "hoverPower": "Änderung der Schwebeleistung",
+      "hoverPowerSub": "Theoretischer Mehrbedarf gegenüber Standardluft",
+      "altFtValue": "{value} ft",
+      "altMValue": "{value} m ({ft} ft)",
+      "percentValue": "{value} %",
+      "signedPercentValue": "{value} %",
+      "isaLine": "Die Standardtemperatur in dieser Höhe beträgt {isa}{unit}; heute liegt sie {dev}{unit} vom Standard entfernt.",
+      "levelSmall": "Die Dichtehöhe liegt nahe an Ihrer tatsächlichen Höhe – es ist nahezu normale Leistung zu erwarten.",
+      "levelNoticeable": "Die Luft ist spürbar dünner als im Standard. Propellerwirkungsgrad und Steigrate sinken, die Motoren arbeiten mehr – planen Sie die Akkureserve großzügig.",
+      "levelLarge": "Die Luft ist deutlich dünner. Steig- und Schwebeleistung können stark abfallen, Motoren und Akkus werden heißer. Verringern Sie die Zuladung und prüfen Sie die maximale Einsatzhöhe und -temperatur des Herstellers.",
+      "howToSteps": [
+        "Wählen Sie die Einheiten und geben Sie die Höhe des Startplatzes über dem Meeresspiegel ein.",
+        "Geben Sie die Lufttemperatur ein. Die Bodentemperatur mittags ist der ungünstigste Fall – nutzen Sie die Vorhersage für Ihre Flugzeit.",
+        "Geben Sie den Luftdruck auf Meereshöhe (QNH) aus einer Wetter-App oder einer Flughafenmeldung ein. Ohne Angabe lassen Sie den Standardwert.",
+        "Lesen Sie Dichtehöhe und Leistungsänderung ab. Fallen sie groß aus, prüfen Sie Zuladung, Flugzeit und Einsatzgrenzen erneut."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Druckhöhe = Höhe + (1013,25 − QNH) × 27 ft; die Standardtemperatur beträgt 15 °C − 1,98 °C je 1.000 ft Druckhöhe. Die Dichtehöhe wird als Druckhöhe + 118,8 × (tatsächliche − Standardtemperatur) ft angenähert, das Luftdichteverhältnis stammt aus dem Modell der Internationalen Standardatmosphäre (ISA).",
+        "Die Schwebeleistung wird als umgekehrt proportional zur Wurzel des Luftdichteverhältnisses angenommen (theoretischer Wert). Luftfeuchtigkeit ist nicht berücksichtigt, an feuchten Tagen ist die Luft etwas dünner als angezeigt. Die tatsächliche Leistung hängt vom Fluggerät ab – maßgeblich sind die Herstellerangaben."
+      ],
+      "faq": [
+        {
+          "q": "Was ist die Dichtehöhe?",
+          "a": "Sie gibt die heutige Luftdichte als die Höhe an, in der Standardluft dieselbe Dichte hat. Hitze, niedriger Druck und hohes Gelände erhöhen sie, und die Propeller erzeugen weniger Auftrieb."
+        },
+        {
+          "q": "Spielt das auf Meereshöhe an einem Sommernachmittag eine Rolle?",
+          "a": "Ja. Auch auf Meereshöhe erhöht Luft, die 15–20 °C über dem Standard von 15 °C liegt, die Dichtehöhe um etwa 1.500–2.000 ft. Prüfen Sie bei Hitze auch Akkuleistung und -temperatur."
+        },
+        {
+          "q": "Ist die Änderung der Schwebeleistung exakt?",
+          "a": "Nein, sie ist ein grober theoretischer Wert. Propellerdesign, Geschwindigkeit und Zuladung verändern das reale Ergebnis – nutzen Sie ihn nur als Vergleichswert."
+        },
+        {
+          "q": "Was, wenn ich das QNH nicht kenne?",
+          "a": "Der Standardwert 1013 hPa (29,92 inHg) liefert trotzdem ein grobes Ergebnis. Für mehr Genauigkeit geben Sie den Druck auf Meereshöhe aus einer Wetter-App ein."
+        }
+      ]
+    },
+    "lineOfSight": {
+      "metaTitle": "Drohnen-Sichtweiten- und Funkhorizont-Rechner",
+      "metaDescription": "Horizontentfernung und Funk-Sichtweite aus Drohnenhöhe und Augenhöhe des Piloten berechnen – oder die Höhe, die für eine Zielentfernung nötig ist.",
+      "title": "Drohnen-Sichtweiten- und Funkhorizont-Rechner",
+      "subtitle": "Aus Flughöhe und Pilotenposition ermitteln Sie, wie weit der Horizont aufgrund der Erdkrümmung entfernt ist und welche theoretische Reichweite eine Funkverbindung hat.",
+      "modeLabel": "Berechnen",
+      "modeDistance": "Höhe → Reichweite",
+      "modeAltitude": "Entfernung → nötige Höhe",
+      "unitLabel": "Einheiten",
+      "unitMetric": "Meter · Kilometer",
+      "unitImperial": "Fuß · Meilen",
+      "altitudeLabel": "Drohnenhöhe ({unit})",
+      "altitudeHelp": "Höhe der Drohne über Grund, nicht über dem Piloten.",
+      "distanceLabel": "Zielentfernung ({unit})",
+      "pilotLabel": "Augenhöhe des Piloten ({unit})",
+      "pilotHelp": "Etwa 1,6 m im Stehen auf ebenem Boden; addieren Sie die Höhe, wenn Sie auf einem Hügel oder Gebäude stehen.",
+      "resultTitle": "Ergebnis",
+      "invalid": "Bitte gültige Werte eingeben (Höhe und Entfernung größer als 0, Augenhöhe 0 oder mehr).",
+      "geoDistance": "Entfernung zum sichtbaren Horizont",
+      "geoDistanceSub": "Wo die Erdkrümmung die Drohne unter dem Horizont verschwinden lässt (ohne atmosphärische Brechung)",
+      "radioDistance": "Funk-Sichtweite (theoretisch)",
+      "radioDistanceSub": "Standardmodell mit atmosphärischer Brechung (4/3-Erde), etwa 15 % weiter",
+      "pilotHorizon": "Horizont auf Pilotenseite",
+      "pilotHorizonSub": "Entfernung zum Horizont allein aus der Augenhöhe des Piloten",
+      "geoAltitude": "Nötige Höhe (sichtbar)",
+      "geoAltitudeSub": "Mindesthöhe, damit die Drohne in der Zielentfernung über dem Horizont steht",
+      "radioAltitude": "Nötige Höhe (Funk)",
+      "radioAltitudeSub": "Mindesthöhe für einen geradlinigen Funkweg in der Zielentfernung",
+      "vlosNote": "Diese Werte berücksichtigen nur die Erdkrümmung. Bäume, Gebäude, Gelände, Störungen und Sendeleistung sind nicht enthalten, und in den meisten Ländern muss die Drohne in Sichtweite (VLOS) bleiben. Die Entfernung, in der Sie eine kleine Drohne tatsächlich sehen, ist viel kürzer.",
+      "distanceValue": "{value} {unit}",
+      "heightValue": "{value} {unit}",
+      "howToSteps": [
+        "Wählen Sie einen Modus: „Höhe → Reichweite“, um die Reichweite aus einer Höhe zu sehen, oder „Entfernung → nötige Höhe“, um die Höhe für eine Entfernung zu ermitteln.",
+        "Geben Sie die Drohnenhöhe (oder die Zielentfernung) ein.",
+        "Geben Sie die Augenhöhe des Piloten ein. Addieren Sie die Höhe eines Hügels oder Gebäudes, auf dem Sie stehen.",
+        "Vergleichen Sie Sicht- und Funkreichweite und planen Sie den tatsächlichen Flug innerhalb der Sichtweite und der örtlichen Maximalhöhe."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Bei einem Erdradius R = 6.371 km beträgt der Horizont aus der Höhe h (m) √(2·R·h). Addiert man die Horizontentfernungen von Pilot und Drohne, erhält man die größte Entfernung, über die beide durch eine Gerade verbunden werden können. Eine Drohne in 120 m Höhe und 1,6 m Augenhöhe des Piloten ergibt etwa 39–40 km.",
+        "Funkwellen werden durch die Atmosphäre leicht gebeugt, weshalb das Standardmodell 4/3 des Erdradius ansetzt – die Entfernung wächst um rund 15 %. Das ist eine Obergrenze ganz ohne Hindernisse; die reale Videoreichweite ist wegen Störungen, Leistung, Antennen und Gelände meist deutlich kürzer."
+      ],
+      "faq": [
+        {
+          "q": "Darf ich bis zur berechneten Entfernung fliegen?",
+          "a": "Nein. Der Wert ist eine theoretische Grenze allein aus der Erdkrümmung. In den meisten Ländern muss die Drohne in Sichtweite (VLOS) bleiben, und eine kleine Drohne erkennt man mit bloßem Auge meist nur auf einige hundert Meter."
+        },
+        {
+          "q": "Warum ist die Funkreichweite größer als der sichtbare Horizont?",
+          "a": "Die Luftdichte ändert sich mit der Höhe und beugt Funkwellen leicht entlang der Erdoberfläche. Das Standardmodell setzt 4/3 des Erdradius an, sodass der Horizont etwa 15 % weiter entfernt liegt."
+        },
+        {
+          "q": "Wie viel bringt mehr Höhe?",
+          "a": "Die Entfernung wächst mit der Wurzel der Höhe: Vervierfacht man die Höhe, verdoppelt sich die Horizontentfernung. Die Vorschriften begrenzen die Höhe aber (z. B. 120 m) – prüfen Sie zuerst die örtlichen Regeln."
+        },
+        {
+          "q": "Sind Sendeleistung und Antennen berücksichtigt?",
+          "a": "Nein. Dieser Rechner zeigt nur die geometrische Grenze. Die tatsächliche Reichweite hängt von Leistung, Antennen, Funkumgebung und Hindernissen ab."
+        }
+      ]
+    },
+    "checklist": {
+      "metaTitle": "Drohnen-Checkliste vor dem Flug – abhaken und drucken",
+      "metaDescription": "Checkliste vor dem Drohnenflug zu Regeln, Wetter, Fluggerät, Akkus, Startplatz und Kontrollen im Flug. Punkte abhaken und für den Einsatz ausdrucken.",
+      "title": "Drohnen-Checkliste vor dem Flug",
+      "subtitle": "Gehen Sie vor jedem Flug Regeln, Wetter, Fluggerät, Akkus und Startplatz an einer Stelle durch – und drucken Sie die Liste bei Bedarf aus.",
+      "progress": "{done} von {total} Punkten erledigt",
+      "reset": "Zurücksetzen",
+      "print": "Drucken",
+      "printTitle": "Drohnen-Checkliste vor dem Flug - FlyDroneMap",
+      "allDone": "Alle Punkte sind abgehakt. Werfen Sie noch einen letzten Blick auf die örtlichen Regeln und das Fluggerät – und fliegen Sie sicher.",
+      "storageNote": "Ihre Häkchen werden nur in diesem Browser gespeichert und nicht an einen Server gesendet. Mit „Zurücksetzen“ löschen Sie sie jederzeit.",
+      "groups": [
+        {
+          "title": "1. Regeln und Genehmigungen",
+          "items": [
+            "Ich habe geprüft, dass der Ort keine Flugverbots- oder Sperrzone ist (Flughäfen, Militäranlagen, Schutzgebiete, Veranstaltungen)",
+            "Erforderliche Genehmigungen liegen vor und sind nicht abgelaufen",
+            "Registrierung von Fluggerät und Betreiber sowie die Versicherung sind gültig",
+            "Ich kenne die Maximalhöhe (z. B. 120 m) und die Regeln zur Sichtweite (VLOS)",
+            "Ich kenne die nötigen Abstände zu Personen, Fahrzeugen und Gebäuden",
+            "Ich habe Datenschutz und örtliche Regeln für Aufnahmen geprüft"
+          ]
+        },
+        {
+          "title": "2. Wetter und Umgebung",
+          "items": [
+            "Ich habe Wind- und Böenvorhersage für mein Flugfenster geprüft (innerhalb der Grenze des Geräts)",
+            "Ich habe Niederschlag und Sicht (Regen, Schnee, Nebel) geprüft",
+            "Die Temperatur liegt im empfohlenen Bereich des Akkus (nicht zu kalt oder heiß)",
+            "Ich habe den Kp-Index und den GPS-Satellitenstatus geprüft",
+            "Ich habe Sonnenauf- und -untergang geprüft und eine Endzeit festgelegt"
+          ]
+        },
+        {
+          "title": "3. Fluggerät",
+          "items": [
+            "Propeller haben keine Risse, Verbiegungen oder Ausbrüche und sitzen fest",
+            "Rahmen, Arme und Klappgelenke zeigen keine Schäden oder Spiel",
+            "Die Motoren drehen leichtgängig, ohne Schleifen oder Fremdkörper",
+            "Der Gimbal-Schutz ist entfernt und das Objektiv sauber",
+            "Die Vision-Sensoren (vorn und unten) sind sauber",
+            "Firmware und App sind aktuell, es gibt keine Warnungen"
+          ]
+        },
+        {
+          "title": "4. Akkus und Fernsteuerung",
+          "items": [
+            "Der Flugakku ist vollständig geladen und weder aufgebläht noch beschädigt",
+            "Fernsteuerung und Smartphone bzw. Tablet sind ausreichend geladen",
+            "Eine Speicherkarte mit genügend freiem Platz ist eingesetzt",
+            "Ersatzakkus und Ersatzpropeller sind eingepackt",
+            "Verbindung zur Fernsteuerung und Videobild funktionieren"
+          ]
+        },
+        {
+          "title": "5. Startplatz",
+          "items": [
+            "Der Startplatz ist eben, fest und frei von Hindernissen",
+            "Ich habe Bäume, Leitungen und Gebäude über mir geprüft",
+            "In der Nähe sind keine Personen, Tiere oder Fahrzeuge",
+            "Ich habe magnetische Störungen vermieden (Stahlkonstruktionen, Stromanlagen, Metall im Boden)",
+            "Der Home-Punkt ist korrekt gesetzt und die Rückkehrhöhe liegt über den Hindernissen"
+          ]
+        },
+        {
+          "title": "6. Nach dem Start und im Flug",
+          "items": [
+            "Ich habe in 1–2 m Höhe geschwebt und Steuerreaktion und ungewöhnliche Vibrationen geprüft",
+            "Ich behalte Akkustand und die für die Rückkehr nötige Reserve im Blick",
+            "Ich behalte das Fluggerät im Blick und kenne Position und Flugrichtung",
+            "Ich kenne die Notfallschritte, um bei Problemen sofort zu landen oder zurückzukehren"
+          ]
+        }
+      ],
+      "howToSteps": [
+        "Gehen Sie vor dem Flug die Punkte von oben durch und tippen Sie jeden an, um ihn abzuhaken.",
+        "Nicht zutreffende Punkte können Sie offen lassen oder nach Belieben abhaken; der Fortschritt ist nur ein Anhaltspunkt.",
+        "Drücken Sie auf Drucken, wenn Sie eine Papierkopie für den Einsatz möchten.",
+        "Setzen Sie nach dem Flug die Häkchen mit „Zurücksetzen“ zurück und nutzen Sie die Liste erneut."
+      ],
+      "formulaTitle": "Aufbau der Liste",
+      "formulaBody": [
+        "Die Liste folgt dem Ablauf eines Fluges: Regeln, Wetter, Fluggerät, Akkus, Startplatz, Flug. Die Regeln prüfen Sie vor der Wahl des Ortes, Fluggerät und Startbereich nach Ihrer Ankunft.",
+        "Sie ist eine Orientierungsliste allgemeiner Sicherheitspraxis und deckt nicht jede Situation ab. Die Bedienungsanleitung des Herstellers und die Vorschriften der örtlichen Luftfahrtbehörde haben stets Vorrang. Ergänzen oder streichen Sie Punkte passend zu Ihrem Fliegen."
+      ],
+      "faq": [
+        {
+          "q": "Nach welchen Kriterien wurden die Punkte gewählt?",
+          "a": "Sie fassen Kontrollen zu Regeln, Wetter, Fluggerät, Akku, Startplatz und Flug zusammen, die Einsteiger oft übersehen, und folgen allgemeiner Sicherheitspraxis. Sie ersetzen weder die Herstelleranleitung noch örtliche Vorschriften."
+        },
+        {
+          "q": "Wo werden meine Häkchen gespeichert?",
+          "a": "Nur im Browser dieses Geräts. Es wird nichts an einen Server gesendet; sie verschwinden beim Löschen der Browserdaten oder mit „Zurücksetzen“."
+        },
+        {
+          "q": "Werden die Häkchen mitgedruckt?",
+          "a": "Ja, gedruckt wird der aktuelle Stand. Für eine leere Liste drücken Sie zuvor auf „Zurücksetzen“."
+        },
+        {
+          "q": "Kann ich eigene Punkte hinzufügen?",
+          "a": "Derzeit nicht; die Liste ist fest. Notieren Sie zusätzliche Punkte am besten handschriftlich auf dem Ausdruck."
+        }
+      ]
+    },
+    "euCategory": {
+      "metaTitle": "EU-Drohnenklasse (C0–C4) & Unterkategorie A1/A2/A3",
+      "metaDescription": "Mit C-Klassen-Label und Gewicht Ihrer Drohne die EU-Unterkategorie (A1, A2, A3), nötige Schulung, Registrierung und Remote ID prüfen.",
+      "title": "EU-Drohnenklasse & Unterkategorie prüfen",
+      "subtitle": "Wählen Sie Klassen-Label (C0–C4) und Gewicht Ihrer Drohne, um zu sehen, welche Unterkategorie der offenen EU-Kategorie (A1, A2, A3) gilt und welche Schulung und Registrierung nötig sind.",
+      "classLabel": "Drohnenklasse / Typ",
+      "class_C0": "C0 (unter 250 g)",
+      "class_C1": "C1 (unter 900 g)",
+      "class_C2": "C2 (unter 4 kg)",
+      "class_C3": "C3 (unter 25 kg)",
+      "class_C4": "C4 (unter 25 kg)",
+      "class_legacy": "Kein Klassen-Label (vor 2024 verkauft)",
+      "class_private": "Selbstgebaut",
+      "class_C5C6": "C5 / C6",
+      "classHelp_C0": "Drohne mit C0-Label, unter 250 g. Die meisten kleinen Kameradrohnen gehören hierher.",
+      "classHelp_C1": "Drohne mit C1-Label, unter 900 g, mit integrierter Remote ID.",
+      "classHelp_C2": "Drohne mit C2-Label, unter 4 kg. In der Unterkategorie A2 darf sie näher an Personen fliegen.",
+      "classHelp_C3": "Drohne mit C3-Label, unter 25 kg. Sie fliegt nur in A3, weit weg von Personen.",
+      "classHelp_C4": "Drohne mit C4-Label, unter 25 kg, meist Modellflugzeug-Typen, die in A3 fliegen.",
+      "classHelp_legacy": "Drohne ohne Klassen-Label, die vor dem 1. Januar 2024 in Verkehr gebracht wurde. Nach diesem Datum verkaufte Drohnen ohne Label fallen in die spezielle Kategorie.",
+      "classHelp_private": "Eine selbstgebaute Drohne. Geben Sie die Startmasse ein.",
+      "classHelp_C5C6": "Drohnen mit C5- oder C6-Label sind nur für die spezielle Kategorie.",
+      "massLabel": "Maximale Startmasse (g)",
+      "massHelp": "Geben Sie die maximale Startmasse (MTOM) aus dem Datenblatt ein, einschließlich Kamera und Akku.",
+      "cameraLabel": "Hat sie eine Kamera oder einen datenerfassenden Sensor?",
+      "cameraYes": "Ja",
+      "cameraNo": "Nein",
+      "resultTitle": "Ergebnis",
+      "invalidMass": "Geben Sie die Startmasse in Gramm als Zahl größer als 0 ein.",
+      "tooHeavy": "Ab 25 kg liegt die Drohne außerhalb der offenen Kategorie. Es gilt die spezielle Kategorie, die eine Betriebsgenehmigung erfordert.",
+      "specific": "C5- und C6-Drohnen dürfen nur in der speziellen Kategorie fliegen, die eine Betriebsgenehmigung oder ein Standardszenario erfordert.",
+      "subcategoriesLabel": "Unterkategorien, in denen Sie fliegen dürfen",
+      "sub_A1_title": "A1 – nahe an Personen",
+      "sub_A1_rule": "Sie dürfen nahe an Personen fliegen, aber nie über Menschenansammlungen, und sollten Überflüge unbeteiligter Personen vermeiden.",
+      "sub_A2_title": "A2 – sicherer Abstand zu Personen",
+      "sub_A2_rule": "Halten Sie 30 m horizontalen Abstand zu unbeteiligten Personen (bei C2 im Langsamflugmodus auf 5 m reduzierbar).",
+      "sub_A3_title": "A3 – weit weg von Personen",
+      "sub_A3_rule": "Fliegen Sie mindestens 150 m entfernt von Wohn-, Gewerbe-, Industrie- und Erholungsgebieten, wo keine unbeteiligten Personen gefährdet sind.",
+      "trainingLabel": "Schulung",
+      "training_manual": "Es genügt, die Bedienungsanleitung des Herstellers zu lesen.",
+      "training_a1a3": "Online-Schulung und Prüfung A1/A3 bestehen.",
+      "training_a2": "A1/A3-Schulung sowie praktisches Selbststudium und die A2-Prüfung (A2-Zeugnis).",
+      "training_none": "Ein Fernpilotenzeugnis ist nicht erforderlich (nationale Regeln prüfen).",
+      "registrationLabel": "Betreiberregistrierung",
+      "registration_yes": "Erforderlich.",
+      "registration_ifCamera_yes": "Erforderlich, da sie eine Kamera oder einen Sensor hat (außer bei Spielzeug).",
+      "registration_ifCamera_no": "Bei einer Drohne unter 250 g ohne Kamera oder Sensor meist nicht erforderlich.",
+      "remoteIdLabel": "Remote ID",
+      "remoteId_required": "Die direkte Remote ID muss in die Drohne integriert sein.",
+      "remoteId_check": "Für diese Klasse ist keine direkte Remote ID vorgeschrieben. Prüfen Sie die Anforderungen Ihres Landes.",
+      "massLimitLabel": "Massegrenze",
+      "massLimitValue": "Unter {kg, number} kg",
+      "legacyNote": "Drohnen ohne Label unterliegen den Übergangsregeln nach dem Zeitpunkt des Inverkehrbringens. Unter 250 g fliegen sie in A1 (A3 ebenfalls erlaubt), von 250 g bis unter 25 kg nur in A3. Ein Aufkleber ist nicht nötig.",
+      "generalLimits": "Grundregeln der offenen Kategorie: Sichtverbindung halten (mit Ausnahmen), höchstens 120 m über Grund fliegen, keine gefährlichen Güter transportieren und nichts abwerfen, nie über Menschenansammlungen fliegen und die Drohne unter 25 kg halten.",
+      "nationalNote": "Mindestalter, Versicherung und Registrierung unterscheiden sich je nach Land, und es können weitere Regeln gelten. Prüfen Sie vor dem Flug die Hinweise der nationalen Luftfahrtbehörde.",
+      "sourcesTitle": "Offizielle Quellen",
+      "sourceEasa": "EASA – Offene Kategorie (zivile Drohnen mit geringem Risiko)",
+      "sourceEasaFaq": "EASA FAQ – Drohnenkategorien",
+      "sourceDe": "Deutschland uas-betrieb.bund.de – Drohnen mit C-Klasse",
+      "verified": "Im November 2026 mit den offiziellen Hinweisen der EASA, Deutschlands und Spaniens abgeglichen. Regeln können sich ändern – prüfen Sie vor dem Flug die aktuellen Hinweise.",
+      "howToSteps": [
+        "Suchen Sie das Klassen-Label (C0–C4) an Ihrer Drohne und wählen Sie dieselbe Option. Ohne Label wählen Sie „Kein Klassen-Label“ oder „Selbstgebaut“.",
+        "Bei Drohnen ohne Label oder Eigenbauten geben Sie die maximale Startmasse in Gramm ein.",
+        "Bei Drohnen unter 250 g geben Sie an, ob sie eine Kamera oder einen Sensor hat.",
+        "Lesen Sie im Ergebnis Unterkategorien, Schulung, Registrierung und Remote ID und prüfen Sie über die offiziellen Links die aktuellen Regeln."
+      ],
+      "formulaTitle": "So wird entschieden",
+      "formulaBody": [
+        "Die offene EU-Kategorie teilt das Fliegen nach Klassen-Label und Masse der Drohne ein. C0 (unter 250 g) und C1 (unter 900 g) fliegen in A1 und A3, C2 (unter 4 kg) in A2 und A3, C3 und C4 (unter 25 kg) in A3. C5 und C6 sind nur für die spezielle Kategorie.",
+        "Bestehende Drohnen ohne Label werden nach Gewicht eingeordnet: unter 250 g in A1 (A3 eingeschlossen), 250 g bis unter 25 kg in A3, ab 25 kg außerhalb der offenen Kategorie. Dieses Tool fasst die wichtigsten Punkte offizieller Hinweise wie der EASA zusammen; es ist eine Orientierung und keine Rechtsberatung."
+      ],
+      "faq": [
+        {
+          "q": "Wo finde ich das Klassen-Label?",
+          "a": "Seit 2024 in der EU verkaufte Drohnen tragen ein C0–C4-Label auf dem Gerät und der Verpackung. Es steht auch in der Bedienungsanleitung und in der Konformitätserklärung des Herstellers."
+        },
+        {
+          "q": "Gibt es für Drohnen unter 250 g keine Regeln?",
+          "a": "Doch. Auch unter 250 g braucht eine Drohne mit Kamera oder Sensor (kein Spielzeug) eine Betreiberregistrierung, und die Grundregeln der offenen Kategorie wie das 120-m-Limit und das Überflugverbot über Menschenansammlungen sowie nationale Vorschriften gelten weiter."
+        },
+        {
+          "q": "Wann wird A2 genutzt?",
+          "a": "Wenn Sie eine C2-Drohne näher an Personen fliegen möchten (30 m horizontal, 5 m im Langsamflugmodus). Dafür ist ein A2-Zeugnis mit Schulung und Prüfung nötig."
+        },
+        {
+          "q": "Gilt das auch außerhalb der EU?",
+          "a": "Diese Regeln gelten in den EU-Mitgliedstaaten, und einige weitere europäische Länder nutzen ähnliche Rahmen. Das Vereinigte Königreich und andere Länder haben eigene Regeln – prüfen Sie die nationale Luftfahrtbehörde."
         }
       ]
     }

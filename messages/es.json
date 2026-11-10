@@ -178,6 +178,9 @@
     "guideHighlightsTitle": "Explora las guías",
     "guideHighlightsSubtitle": "Guías prácticas sobre seguridad de vuelo, condiciones climáticas y normativas de drones.",
     "guideHighlightsCta": "Ver todas las guías →",
+    "toolsHighlightsTitle": "Herramientas para dron",
+    "toolsHighlightsSubtitle": "Herramientas gratuitas para calcular y revisar todo antes de volar.",
+    "toolsHighlightsCta": "Ver todas las herramientas →",
     "faqHighlightsTitle": "Preguntas frecuentes",
     "faqHighlightsSubtitle": "Respuestas rápidas sobre nuestras fuentes de datos, el índice Kp y cómo usar FlyDroneMap.",
     "faqHighlightsCta": "Ver todas las preguntas →",
@@ -520,6 +523,7 @@
     "showLess": "Ver menos",
     "backToGuides": "← Volver a Guías",
     "relatedGuides": "Guías relacionadas",
+    "relatedTools": "Herramientas relacionadas con esta guía",
     "categories": {
       "weather-safety": "Clima y seguridad",
       "space-weather-gps": "Clima espacial y GPS",
@@ -893,10 +897,10 @@
   },
   "Tools": {
     "hub": {
-      "metaTitle": "Herramientas para drones: ND, autonomía y más",
-      "metaDescription": "Calculadoras gratuitas para planificar vuelos y grabaciones con dron: filtro ND, autonomía, vatios-hora de baterías para cabina y hora dorada.",
+      "metaTitle": "Herramientas para dron: calculadoras y lista previa",
+      "metaDescription": "Herramientas gratis para dron: filtro ND, tiempo de vuelo, Wh de batería, hora dorada, GSD, altitud de densidad, línea de visión y clase UE.",
       "title": "Herramientas para drones",
-      "subtitle": "Desde los ajustes de cámara hasta las baterías y la hora del atardecer: los cálculos que necesitas antes de volar, en un solo lugar.",
+      "subtitle": "Desde los ajustes de cámara, las baterías y la hora del ocaso hasta la resolución cartográfica, la lista previa al vuelo y la normativa de la UE: todo lo que necesitas antes de volar.",
       "notice": "Los resultados son estimaciones orientativas. Antes de volar, consulta siempre el manual del fabricante, la normativa local y el tiempo real.",
       "openTool": "Abrir herramienta →"
     },
@@ -930,6 +934,31 @@
         "name": "Planificador de hora dorada",
         "short": "Amanecer, atardecer y hora dorada",
         "description": "Obtén las horas de amanecer, atardecer, hora dorada y hora azul y la dirección del sol para cualquier lugar y fecha."
+      },
+      "gsd": {
+        "name": "Calculadora GSD",
+        "short": "Resolución en suelo y espaciado",
+        "description": "Obtén el tamaño en suelo de un píxel (GSD), la huella de cada foto y el espaciado según el solape a partir de la altura, el sensor y la focal, o la altura para un GSD objetivo."
+      },
+      "densityAltitude": {
+        "name": "Altitud de densidad",
+        "short": "Rendimiento con calor y altura",
+        "description": "Calcula la altitud de densidad, la relación de densidad del aire y la potencia extra en estacionario con elevación, temperatura y presión para valorar el vuelo con calor y en altura."
+      },
+      "lineOfSight": {
+        "name": "Línea de visión y horizonte radio",
+        "short": "Horizonte y alcance radio por altura",
+        "description": "Calcula la distancia al horizonte y el alcance radio teórico con la altura del dron y la del piloto, o la altura necesaria para una distancia elegida."
+      },
+      "checklist": {
+        "name": "Lista previa al vuelo",
+        "short": "Lista para marcar e imprimir",
+        "description": "Lista previa al vuelo paso a paso con normas, clima, dron, baterías, zona de despegue y comprobaciones en vuelo, que puedes marcar e imprimir."
+      },
+      "euCategory": {
+        "name": "Clase de dron en la UE",
+        "short": "Comprueba C0–C4 y A1/A2/A3",
+        "description": "Con la etiqueta de clase C y el peso de tu dron, consulta su subcategoría abierta en la UE, la formación necesaria, el registro de operador y el Remote ID."
       }
     },
     "ndFilter": {
@@ -1258,6 +1287,405 @@
         {
           "q": "No aparecen horas en latitudes altas.",
           "a": "En verano el sol puede no ponerse (sol de medianoche) y en invierno no salir (noche polar), de modo que no hay amanecer ni atardecer. En ese caso verás un aviso y la línea del día con el cambio de luz."
+        }
+      ]
+    },
+    "gsd": {
+      "metaTitle": "Calculadora GSD de dron – resolución por altura de vuelo",
+      "metaDescription": "Calcula el GSD (cm por píxel), la huella en el suelo y el intervalo entre fotos con la altura, el sensor y la focal, o la altura para un GSD objetivo.",
+      "title": "Calculadora GSD para dron",
+      "subtitle": "Con tu altura de vuelo y las especificaciones de la cámara, obtén cuánto terreno cubre un píxel (GSD), la huella de cada foto y el espaciado entre disparos según el solape.",
+      "modeLabel": "Calcular",
+      "modeGsd": "Altura → GSD",
+      "modeAltitude": "GSD objetivo → altura",
+      "unitLabel": "Unidades",
+      "unitMetric": "Métrico (m, cm)",
+      "unitImperial": "Imperial (ft, in)",
+      "altitudeLabelM": "Altura de vuelo (m)",
+      "altitudeLabelFt": "Altura de vuelo (ft)",
+      "altitudeHelp": "Altura sobre el suelo (AGL).",
+      "targetLabelCm": "GSD objetivo (cm/píxel)",
+      "targetLabelIn": "GSD objetivo (in/píxel)",
+      "cameraTitle": "Cámara",
+      "presetLabel": "Formato de sensor",
+      "presetCustom": "Personalizado",
+      "preset_full": "Pleno formato",
+      "sensorWidthLabel": "Ancho del sensor (mm)",
+      "sensorHeightLabel": "Alto del sensor (mm)",
+      "focalLabel": "Distancia focal real (mm)",
+      "focalHelp": "La focal real del objetivo, no el equivalente en 35 mm. Usa el valor «real» de la ficha técnica.",
+      "imageWidthLabel": "Ancho de imagen (píxeles)",
+      "imageHeightLabel": "Alto de imagen (píxeles)",
+      "overlapTitle": "Solape y velocidad",
+      "frontLabel": "Solape frontal (%)",
+      "sideLabel": "Solape lateral (%)",
+      "speedLabel": "Velocidad de vuelo (m/s, opcional)",
+      "speedHelp": "Si la introduces, también se calcula el intervalo entre disparos en segundos.",
+      "resultTitle": "Resultados",
+      "invalid": "Introduce valores válidos (todos los campos deben ser números mayores que 0).",
+      "invalidOverlap": "Introduce solapes desde 0 hasta menos de 100.",
+      "resultGsd": "GSD",
+      "resultAltitude": "Altura",
+      "footprintWidth": "Ancho de la huella (una foto)",
+      "footprintHeight": "Largo de la huella (una foto)",
+      "gsdValueCm": "{value} cm/píxel",
+      "gsdValueIn": "{value} in/píxel",
+      "lengthValue": "{value} {unit}",
+      "secondsValue": "{value} s",
+      "warnAltitude": "La altura supera unos 120 m (400 ft). En muchas regiones la altura máxima de vuelo se limita a ese valor; consulta la normativa local o valora un objetivo con más focal o una cámara de mayor resolución.",
+      "photoDistance": "Distancia entre disparos",
+      "lineSpacing": "Separación entre líneas de vuelo",
+      "interval": "Intervalo entre disparos",
+      "orientationNote": "Se supone que el lado corto de la imagen apunta en la dirección de vuelo. Si disparas con la cámara girada 90 grados, intercambia ancho y alto.",
+      "howToSteps": [
+        "Elige «Altura → GSD» e introduce tu altura, o «GSD objetivo → altura» e introduce la resolución que quieres.",
+        "Pulsa un formato de sensor o escribe su tamaño, e introduce la focal real del objetivo y el tamaño de imagen en píxeles.",
+        "Fija los solapes frontal y lateral para obtener la distancia entre disparos y la separación entre líneas. Añade una velocidad para ver el intervalo en segundos.",
+        "Comprueba que la altura resultante no supera el máximo permitido en tu zona y ajusta el objetivo o la cámara si hace falta."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "GSD (cm/píxel) = altura (m) × ancho del sensor (mm) ÷ (focal (mm) × ancho de imagen en píxeles) × 100. Por ejemplo, un sensor de 1 pulgada (13,2 mm), focal de 10,3 mm y 5472 píxeles a 100 m da unos 2,3 cm/píxel.",
+        "La huella es el GSD por el número de píxeles. La distancia entre disparos es el largo de la huella × (1 − solape frontal) y la separación entre líneas es el ancho × (1 − solape lateral). Los tamaños de sensor son valores típicos por formato y pueden diferir un poco de la ficha del fabricante."
+      ],
+      "faq": [
+        {
+          "q": "¿Un GSD menor es siempre mejor?",
+          "a": "Un GSD menor significa que cada píxel cubre menos terreno y ves más detalle. Pero cubrir la misma zona exige volar más bajo y hacer más fotos, lo que gasta tiempo de vuelo y batería. Elige solo el detalle que necesitas."
+        },
+        {
+          "q": "¿Qué distancia focal debo introducir?",
+          "a": "La focal real del objetivo (por ejemplo, 10,3 mm), no el equivalente en 35 mm. Si solo conoces el equivalente, divídelo por el factor de recorte para obtener la real."
+        },
+        {
+          "q": "¿Cuánto solape es suficiente?",
+          "a": "En cartografía se suele usar un 70–80 % de solape frontal y un 60–70 % lateral. Los terrenos con poca textura, como bosque o agua, suelen requerir más."
+        },
+        {
+          "q": "¿Garantiza esto la precisión topográfica?",
+          "a": "No. Es un valor teórico de la resolución de la foto. La precisión real depende de los puntos de control, la corrección de posición, la corrección de distorsión del objetivo y el relieve."
+        }
+      ],
+      "preset_1_2_3": "1/2.3\"",
+      "preset_1": "1\"",
+      "preset_4_3": "4/3\"",
+      "preset_aps_c": "APS-C"
+    },
+    "densityAltitude": {
+      "metaTitle": "Calculadora de altitud de densidad – calor y altura",
+      "metaDescription": "Calcula la altitud de densidad, la densidad relativa del aire y la potencia extra en estacionario con elevación, temperatura y QNH.",
+      "title": "Calculadora de altitud de densidad para dron",
+      "subtitle": "Con la elevación, la temperatura y la presión, comprueba lo fino que está el aire (altitud de densidad) y cuánta potencia extra exige mantenerse en el aire.",
+      "unitLabel": "Unidades",
+      "unitMetric": "Metros · °C · hPa",
+      "unitImperial": "Pies · °F · inHg",
+      "elevationLabelM": "Elevación del despegue (m)",
+      "elevationLabelFt": "Elevación del despegue (ft)",
+      "elevationHelp": "Altura sobre el nivel del mar. Sirve la elevación que muestra una app de mapas.",
+      "tempLabelC": "Temperatura del aire (°C)",
+      "tempLabelF": "Temperatura del aire (°F)",
+      "qnhLabelHpa": "Presión a nivel del mar QNH (hPa)",
+      "qnhLabelInHg": "Presión a nivel del mar QNH (inHg)",
+      "qnhHelp": "La presión a nivel del mar (QNH) de una app del tiempo. El valor estándar es 1013 hPa (29,92 inHg).",
+      "resultTitle": "Resultados",
+      "invalid": "Introduce valores válidos (elevación de −1.500 a 30.000 ft, temperatura de −60 a 60 °C, presión de 850 a 1090 hPa).",
+      "densityAltitude": "Altitud de densidad",
+      "densityAltitudeSub": "Diferencia con tu elevación real: {value}",
+      "pressureAltitude": "Altitud de presión",
+      "densityRatio": "Relación de densidad del aire",
+      "densityRatioSub": "Frente al aire estándar a nivel del mar (100 %)",
+      "hoverPower": "Cambio de potencia en estacionario",
+      "hoverPowerSub": "Potencia extra teórica frente al aire estándar",
+      "altFtValue": "{value} ft",
+      "altMValue": "{value} m ({ft} ft)",
+      "percentValue": "{value} %",
+      "signedPercentValue": "{value} %",
+      "isaLine": "La temperatura estándar a esta altitud es {isa}{unit}; hoy está {dev}{unit} respecto al estándar.",
+      "levelSmall": "La altitud de densidad es cercana a tu elevación real, así que cabe esperar un rendimiento casi normal.",
+      "levelNoticeable": "El aire es claramente más fino que el estándar. Bajan la eficiencia de las hélices y la velocidad de ascenso y los motores trabajan más, así que deja un margen amplio de batería.",
+      "levelLarge": "El aire es mucho más fino. El ascenso y el vuelo estacionario pueden empeorar mucho, y motores y baterías se calientan más. Reduce la carga y consulta la altitud y temperatura máximas de operación del fabricante.",
+      "howToSteps": [
+        "Elige las unidades e introduce la elevación del punto de despegue sobre el nivel del mar.",
+        "Introduce la temperatura del aire. La del suelo a mediodía es el peor caso, así que usa la previsión para tu hora de vuelo.",
+        "Introduce la presión a nivel del mar (QNH) de una app del tiempo o de un parte de aeropuerto. Si no la conoces, deja el valor estándar.",
+        "Lee la altitud de densidad y el cambio de potencia. Si son grandes, revisa la carga, el tiempo de vuelo y los límites de operación."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "Altitud de presión = elevación + (1013,25 − QNH) × 27 ft, y la temperatura estándar es 15 °C − 1,98 °C por cada 1.000 ft de altitud de presión. La altitud de densidad se aproxima como altitud de presión + 118,8 × (temperatura real − estándar) ft, y la relación de densidad sale del modelo de atmósfera estándar internacional (ISA).",
+        "Se supone que la potencia en estacionario crece con la inversa de la raíz cuadrada de la relación de densidad (valor teórico). No se incluye la humedad, así que en un día húmedo el aire es algo más fino de lo indicado. El rendimiento real varía según la aeronave; prevalecen las especificaciones del fabricante."
+      ],
+      "faq": [
+        {
+          "q": "¿Qué es la altitud de densidad?",
+          "a": "Es la densidad del aire de hoy expresada como la altitud a la que el aire estándar tiene esa misma densidad. El calor, la baja presión y el terreno elevado la aumentan, y las hélices generan menos sustentación."
+        },
+        {
+          "q": "¿Importa a nivel del mar en una tarde de verano?",
+          "a": "Sí. Incluso a nivel del mar, con el aire 15–20 °C por encima del estándar de 15 °C, la altitud de densidad sube unos 1.500–2.000 ft. Con calor, revisa también el rendimiento y la temperatura de la batería."
+        },
+        {
+          "q": "¿Es exacto el cambio de potencia en estacionario?",
+          "a": "No, es una cifra teórica aproximada. El diseño de la hélice, la velocidad y la carga cambian el resultado real, así que úsala solo como comparación."
+        },
+        {
+          "q": "¿Y si no conozco el QNH?",
+          "a": "Dejar el estándar de 1013 hPa (29,92 inHg) da igualmente un resultado aproximado. Para más precisión, introduce la presión a nivel del mar de una app del tiempo."
+        }
+      ]
+    },
+    "lineOfSight": {
+      "metaTitle": "Calculadora de línea de visión y horizonte radio",
+      "metaDescription": "Calcula la distancia al horizonte y el alcance radio con la altura del dron y la del piloto, o la altura necesaria para una distancia.",
+      "title": "Calculadora de línea de visión y horizonte radio",
+      "subtitle": "Con la altura de vuelo y la posición del piloto, averigua a qué distancia queda el horizonte por la curvatura terrestre y el alcance teórico de un enlace de radio.",
+      "modeLabel": "Calcular",
+      "modeDistance": "Altura → alcance",
+      "modeAltitude": "Distancia → altura necesaria",
+      "unitLabel": "Unidades",
+      "unitMetric": "Metros · kilómetros",
+      "unitImperial": "Pies · millas",
+      "altitudeLabel": "Altura del dron ({unit})",
+      "altitudeHelp": "Altura del dron sobre el suelo, no sobre el piloto.",
+      "distanceLabel": "Distancia objetivo ({unit})",
+      "pilotLabel": "Altura de los ojos del piloto ({unit})",
+      "pilotHelp": "Unos 1,6 m de pie en terreno llano; suma la altura si estás en una colina o un edificio.",
+      "resultTitle": "Resultados",
+      "invalid": "Introduce valores válidos (la altura y la distancia deben ser mayores que 0, la altura de los ojos 0 o más).",
+      "geoDistance": "Distancia al horizonte visual",
+      "geoDistanceSub": "Donde la curvatura terrestre oculta el dron bajo el horizonte (sin refracción atmosférica)",
+      "radioDistance": "Línea de visión radio (teórica)",
+      "radioDistanceSub": "Modelo estándar con refracción atmosférica (Tierra de 4/3), un 15 % más lejos",
+      "pilotHorizon": "Horizonte del lado del piloto",
+      "pilotHorizonSub": "Distancia al horizonte solo desde la altura de los ojos del piloto",
+      "geoAltitude": "Altura necesaria (visual)",
+      "geoAltitudeSub": "Altura mínima para que el dron quede sobre el horizonte a la distancia objetivo",
+      "radioAltitude": "Altura necesaria (radio)",
+      "radioAltitudeSub": "Altura mínima para un trayecto radio en línea recta a la distancia objetivo",
+      "vlosNote": "Estas cifras solo tienen en cuenta la curvatura terrestre. No incluyen árboles, edificios, relieve, interferencias ni potencia de transmisión, y en la mayoría de los países el dron debe mantenerse al alcance de la vista (VLOS). La distancia a la que realmente se ve un dron pequeño es mucho menor.",
+      "distanceValue": "{value} {unit}",
+      "heightValue": "{value} {unit}",
+      "howToSteps": [
+        "Elige un modo: «Altura → alcance» para ver el alcance desde una altura, o «Distancia → altura necesaria» para saber qué altura hace falta para una distancia.",
+        "Introduce la altura del dron (o la distancia objetivo).",
+        "Introduce la altura de los ojos del piloto. Suma la altura de la colina o el edificio en que te encuentres.",
+        "Compara los alcances visual y radio, y planifica el vuelo real dentro de la línea de visión y de la altura máxima local."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "Con un radio terrestre R = 6.371 km, el horizonte desde una altura h (m) es √(2·R·h). Sumando los horizontes del piloto y del dron se obtiene la mayor distancia a la que ambos pueden unirse en línea recta. Un dron a 120 m con el piloto a 1,6 m de altura de ojos da unos 39–40 km.",
+        "Las ondas de radio se curvan algo con la atmósfera, así que el modelo estándar usa 4/3 del radio terrestre, lo que alarga la distancia un 15 %. Es un máximo sin ningún obstáculo; el alcance real del enlace de vídeo suele ser mucho menor por interferencias, potencia, antenas y relieve."
+      ],
+      "faq": [
+        {
+          "q": "¿Puedo volar hasta la distancia calculada?",
+          "a": "No. La cifra es un límite teórico basado solo en la curvatura terrestre. En la mayoría de los países hay que mantener el dron a la vista (VLOS), y un dron pequeño solo se reconoce a simple vista a unos cientos de metros."
+        },
+        {
+          "q": "¿Por qué el alcance radio es mayor que el horizonte visual?",
+          "a": "La densidad del aire cambia con la altura y curva ligeramente las ondas a lo largo de la superficie. El modelo estándar toma la Tierra como 4/3 de su radio, de modo que el horizonte queda un 15 % más lejos."
+        },
+        {
+          "q": "¿Cuánto amplía el alcance subir más?",
+          "a": "La distancia crece con la raíz cuadrada de la altura: cuadruplicar la altura duplica la distancia al horizonte. Pero la normativa limita la altura (por ejemplo 120 m), así que consulta primero las reglas locales."
+        },
+        {
+          "q": "¿Se incluyen la potencia y las antenas?",
+          "a": "No. Esta calculadora muestra solo el límite geométrico. El alcance real depende de la potencia, las antenas, el entorno radioeléctrico y los obstáculos."
+        }
+      ]
+    },
+    "checklist": {
+      "metaTitle": "Lista de comprobación previa al vuelo de dron",
+      "metaDescription": "Lista previa al vuelo con normas, clima, dron, baterías, despegue y comprobaciones en vuelo. Marca cada punto e imprímela para llevarla al campo.",
+      "title": "Lista de comprobación previa al vuelo",
+      "subtitle": "Repasa normas, clima, dron, baterías y zona de despegue en un solo lugar antes de cada vuelo, e imprímela si prefieres tenerla en papel.",
+      "progress": "{done} de {total} puntos completados",
+      "reset": "Reiniciar",
+      "print": "Imprimir",
+      "printTitle": "Lista previa al vuelo de dron - FlyDroneMap",
+      "allDone": "Has marcado todos los puntos. Echa un último vistazo a la normativa local y al dron, y vuela con seguridad.",
+      "storageNote": "Tus marcas se guardan solo en este navegador y no se envían a ningún servidor. Usa Reiniciar para borrarlas cuando quieras.",
+      "groups": [
+        {
+          "title": "1. Normas y permisos",
+          "items": [
+            "He comprobado que el lugar no es zona de exclusión ni restringida (aeropuertos, instalaciones militares, parques, eventos)",
+            "Tengo las autorizaciones necesarias y no han caducado",
+            "El registro del dron y del operador y el seguro están en vigor",
+            "Conozco la altura máxima (p. ej. 120 m) y las reglas de línea de vista (VLOS)",
+            "Sé qué distancias debo mantener con personas, vehículos y edificios",
+            "He revisado la privacidad y las normas locales si voy a grabar"
+          ]
+        },
+        {
+          "title": "2. Clima y entorno",
+          "items": [
+            "He consultado el viento y las rachas previstas para mi franja de vuelo (dentro del límite del dron)",
+            "He comprobado precipitaciones y visibilidad (lluvia, nieve, niebla)",
+            "La temperatura está en el rango recomendado de la batería (ni demasiado frío ni calor)",
+            "He revisado el índice Kp y el estado de los satélites GPS",
+            "He consultado el amanecer y el ocaso y fijado una hora para terminar"
+          ]
+        },
+        {
+          "title": "3. Dron",
+          "items": [
+            "Las hélices no tienen grietas, dobleces ni muescas y están bien montadas",
+            "El chasis, los brazos y las articulaciones plegables no tienen daños ni holguras",
+            "Los motores giran con suavidad, sin roces ni suciedad",
+            "He quitado el protector del gimbal y la lente está limpia",
+            "Los sensores de visión (frontal e inferior) están limpios",
+            "El firmware y la app están actualizados y sin avisos"
+          ]
+        },
+        {
+          "title": "4. Baterías y mando",
+          "items": [
+            "La batería de vuelo está cargada y sin hinchazón ni daños",
+            "El mando y el móvil o la tableta tienen carga suficiente",
+            "Hay una tarjeta de memoria con espacio libre suficiente",
+            "Llevo baterías y hélices de repuesto",
+            "El enlace con el mando y la imagen en vivo funcionan"
+          ]
+        },
+        {
+          "title": "5. Zona de despegue",
+          "items": [
+            "El punto de despegue es llano, firme y está libre de obstáculos",
+            "He revisado árboles, cables y edificios por encima",
+            "No hay personas, animales ni vehículos cerca",
+            "He evitado interferencias magnéticas (estructuras de acero, equipos eléctricos, metal enterrado)",
+            "El punto de origen está bien registrado y la altura de regreso supera los obstáculos cercanos"
+          ]
+        },
+        {
+          "title": "6. Tras el despegue y en vuelo",
+          "items": [
+            "Me he mantenido a 1–2 m para comprobar la respuesta de los mandos y vibraciones raras",
+            "Vigilo la batería y el margen necesario para volver",
+            "Mantengo el dron a la vista y sé su posición y rumbo",
+            "Conozco los pasos de emergencia para aterrizar o volver de inmediato si algo falla"
+          ]
+        }
+      ],
+      "howToSteps": [
+        "Antes de volar, recorre los puntos desde arriba y toca cada uno para marcarlo.",
+        "Los puntos que no apliquen puedes dejarlos o marcarlos; el avance es solo orientativo.",
+        "Pulsa Imprimir si quieres una copia en papel para el campo.",
+        "Al terminar el vuelo, pulsa Reiniciar para borrar las marcas y reutilizar la lista."
+      ],
+      "formulaTitle": "Cómo está organizada la lista",
+      "formulaBody": [
+        "La lista sigue el orden de un vuelo: normas, clima, dron, baterías, zona de despegue y vuelo. Se consulta la normativa antes de elegir el lugar y, al llegar, se revisan el dron y la zona de despegue.",
+        "Es una lista orientativa de buenas prácticas generales y no cubre todas las situaciones. El manual del fabricante y las normas de la autoridad aeronáutica local siempre prevalecen. Añade o descarta puntos según tu forma de volar."
+      ],
+      "faq": [
+        {
+          "q": "¿Con qué criterio se eligieron los puntos?",
+          "a": "Reúnen las comprobaciones de normas, clima, dron, batería, despegue y vuelo que los principiantes suelen olvidar, según buenas prácticas generales. No sustituyen el manual del fabricante ni la normativa local."
+        },
+        {
+          "q": "¿Dónde se guardan mis marcas?",
+          "a": "Solo en el navegador de este dispositivo. No se envía nada a ningún servidor, y se borran al limpiar los datos del navegador o al pulsar Reiniciar."
+        },
+        {
+          "q": "¿Salen las marcas al imprimir?",
+          "a": "Sí, se imprime tal como se ve ahora. Para imprimir la lista en blanco, pulsa Reiniciar antes."
+        },
+        {
+          "q": "¿Puedo añadir mis propios puntos?",
+          "a": "Por ahora no; la lista es fija. Te sugerimos escribir los puntos extra a mano en la copia impresa."
+        }
+      ]
+    },
+    "euCategory": {
+      "metaTitle": "Clase de dron UE (C0–C4) y subcategoría A1/A2/A3",
+      "metaDescription": "Elige la etiqueta C y el peso de tu dron para ver su subcategoría abierta en la UE (A1, A2, A3), la formación, el registro y el Remote ID.",
+      "title": "Comprobador de clase y subcategoría de dron en la UE",
+      "subtitle": "Elige la etiqueta de clase (C0–C4) y el peso de tu dron para saber qué subcategoría abierta de la UE (A1, A2, A3) se aplica y qué formación y registro necesitas.",
+      "classLabel": "Clase / tipo de dron",
+      "class_C0": "C0 (menos de 250 g)",
+      "class_C1": "C1 (menos de 900 g)",
+      "class_C2": "C2 (menos de 4 kg)",
+      "class_C3": "C3 (menos de 25 kg)",
+      "class_C4": "C4 (menos de 25 kg)",
+      "class_legacy": "Sin etiqueta de clase (vendido antes de 2024)",
+      "class_private": "Construido por uno mismo",
+      "class_C5C6": "C5 / C6",
+      "classHelp_C0": "Dron con etiqueta C0, de menos de 250 g. La mayoría de los drones pequeños con cámara entran aquí.",
+      "classHelp_C1": "Dron con etiqueta C1, de menos de 900 g, con identificación remota integrada.",
+      "classHelp_C2": "Dron con etiqueta C2, de menos de 4 kg. Puede volar más cerca de las personas en la subcategoría A2.",
+      "classHelp_C3": "Dron con etiqueta C3, de menos de 25 kg. Solo vuela en A3, lejos de las personas.",
+      "classHelp_C4": "Dron con etiqueta C4, de menos de 25 kg, sobre todo tipo aeromodelo, que vuela en A3.",
+      "classHelp_legacy": "Dron sin etiqueta de clase comercializado antes del 1 de enero de 2024. Los drones sin etiqueta vendidos después de esa fecha pasan a la categoría específica.",
+      "classHelp_private": "Un dron construido por ti. Introduce su masa de despegue.",
+      "classHelp_C5C6": "Los drones con etiqueta C5 o C6 son solo para la categoría específica.",
+      "massLabel": "Masa máxima de despegue (g)",
+      "massHelp": "Introduce la masa máxima de despegue (MTOM) de la ficha técnica, con cámara y batería.",
+      "cameraLabel": "¿Tiene cámara o sensor de recogida de datos?",
+      "cameraYes": "Sí",
+      "cameraNo": "No",
+      "resultTitle": "Resultado",
+      "invalidMass": "Introduce la masa de despegue en gramos como un número mayor que 0.",
+      "tooHeavy": "A partir de 25 kg queda fuera de la categoría abierta. Se aplica la categoría específica, que exige autorización operacional.",
+      "specific": "Los drones C5 y C6 solo pueden volar en la categoría específica, que exige autorización operacional o un escenario estándar.",
+      "subcategoriesLabel": "Subcategorías en las que puedes volar",
+      "sub_A1_title": "A1 – cerca de las personas",
+      "sub_A1_rule": "Puedes volar cerca de las personas, pero nunca sobre aglomeraciones, y debes evitar sobrevolar a personas ajenas a la operación.",
+      "sub_A2_title": "A2 – distancia segura de las personas",
+      "sub_A2_rule": "Mantén 30 m en horizontal respecto a personas ajenas (reducible a 5 m en modo de baja velocidad de un C2).",
+      "sub_A3_title": "A3 – lejos de las personas",
+      "sub_A3_rule": "Vuela al menos a 150 m de zonas residenciales, comerciales, industriales o recreativas, donde no haya personas ajenas en riesgo.",
+      "trainingLabel": "Formación",
+      "training_manual": "Basta con leer el manual del fabricante.",
+      "training_a1a3": "Superar la formación en línea y el examen A1/A3.",
+      "training_a2": "Formación A1/A3, más autoformación práctica y el examen A2 (certificado A2).",
+      "training_none": "No se exige certificado de piloto remoto (consulta la normativa nacional).",
+      "registrationLabel": "Registro de operador",
+      "registration_yes": "Obligatorio.",
+      "registration_ifCamera_yes": "Obligatorio porque tiene cámara o sensor (salvo que sea un juguete).",
+      "registration_ifCamera_no": "Normalmente no es necesario para un dron de menos de 250 g sin cámara ni sensor.",
+      "remoteIdLabel": "Identificación remota",
+      "remoteId_required": "El dron debe llevar integrada la identificación remota directa.",
+      "remoteId_check": "Esta clase no exige la identificación remota directa. Consulta los requisitos de tu país.",
+      "massLimitLabel": "Límite de masa",
+      "massLimitValue": "Menos de {kg, number} kg",
+      "legacyNote": "Los drones sin etiqueta siguen las normas transitorias según cuándo se comercializaron. Por debajo de 250 g vuelan en A1 (también se permite A3); de 250 g a menos de 25 kg, solo en A3. No hace falta pegatina.",
+      "generalLimits": "Básicos de la categoría abierta: mantener la línea de vista (con algunas excepciones), volar como máximo a 120 m sobre el suelo, no llevar mercancías peligrosas ni lanzar objetos, no sobrevolar aglomeraciones y mantener el dron por debajo de 25 kg.",
+      "nationalNote": "La edad mínima, el seguro y el registro varían según el país y pueden aplicarse normas adicionales. Consulta a la autoridad aeronáutica de tu país antes de volar.",
+      "sourcesTitle": "Fuentes oficiales",
+      "sourceEasa": "EASA – Categoría abierta (drones civiles de bajo riesgo)",
+      "sourceEasaFaq": "EASA FAQ – categorías de drones",
+      "sourceDe": "Alemania uas-betrieb.bund.de – drones con clase C",
+      "verified": "Contrastado en noviembre de 2026 con la información oficial de EASA, Alemania y España. Las normas pueden cambiar; consulta la información más reciente antes de volar.",
+      "howToSteps": [
+        "Busca la etiqueta de clase (C0–C4) de tu dron y elige la misma opción. Si no tiene etiqueta, elige «Sin etiqueta de clase» o «Construido por uno mismo».",
+        "Si no tiene etiqueta o es de fabricación propia, introduce su masa máxima de despegue en gramos.",
+        "En drones de menos de 250 g, indica si tiene cámara o sensor.",
+        "Lee en el resultado las subcategorías, la formación, el registro y la identificación remota, y confirma las normas vigentes en los enlaces oficiales."
+      ],
+      "formulaTitle": "Cómo se decide el resultado",
+      "formulaBody": [
+        "La categoría abierta de la UE divide el vuelo según la etiqueta de clase y la masa del dron. C0 (menos de 250 g) y C1 (menos de 900 g) vuelan en A1 y A3, C2 (menos de 4 kg) en A2 y A3, y C3 y C4 (menos de 25 kg) en A3. C5 y C6 son solo para la categoría específica.",
+        "Los drones existentes sin etiqueta se clasifican por peso: menos de 250 g en A1 (incluye A3), de 250 g a menos de 25 kg en A3, y 25 kg o más queda fuera de la categoría abierta. Este comprobador resume lo esencial de la información oficial, como la de EASA; es una referencia, no asesoramiento jurídico."
+      ],
+      "faq": [
+        {
+          "q": "¿Dónde veo la etiqueta de clase?",
+          "a": "Los drones vendidos en la UE desde 2024 llevan una etiqueta C0–C4 en la aeronave y en el embalaje. También figura en el manual y en la declaración de conformidad del fabricante."
+        },
+        {
+          "q": "¿Los drones de menos de 250 g están libres de normas?",
+          "a": "No. Incluso por debajo de 250 g, un dron con cámara o sensor (que no sea un juguete) necesita registro de operador, y se aplican los básicos de la categoría abierta, como el límite de 120 m y no sobrevolar aglomeraciones, además de las normas nacionales."
+        },
+        {
+          "q": "¿Cuándo se usa A2?",
+          "a": "Cuando quieres volar un dron C2 más cerca de las personas (30 m en horizontal, 5 m en modo de baja velocidad). Requiere un certificado A2, con formación y examen."
+        },
+        {
+          "q": "¿Se aplica fuera de la UE?",
+          "a": "Estas normas se aplican en los Estados miembros de la UE, y algunos otros países europeos usan marcos similares. Reino Unido y otros países tienen sus propias normas; consulta a la autoridad aeronáutica nacional."
         }
       ]
     }

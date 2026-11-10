@@ -4,6 +4,7 @@ import { GearRecommendationSection } from "@/components/gear-recommendation-sect
 import { HomeDashboardSection } from "@/components/home-dashboard-section";
 import { webApplicationJsonLd } from "@/lib/seo";
 import { HomeGuideHighlights } from "@/components/home-guide-highlights";
+import { HomeToolsHighlights } from "@/components/home-tools-highlights";
 import { HomeFaqHighlights } from "@/components/home-faq-highlights";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 
@@ -65,6 +66,9 @@ export default async function HomePage({
           ))}
         </ol>
       </section>
+
+      {/* 드론 도구 하이라이트 — 형제 사이트 ExifLens 홈의 도구 섹션과 같은 형태. 가이드 바로 위에 모든 도구를 소개 (2026-11-10) */}
+      <HomeToolsHighlights />
 
       {/* 가이드 아티클 하이라이트 — 홈페이지 텍스트/링크 풍부화 (AdSense 재심사 대응) */}
       <HomeGuideHighlights locale={locale} />
