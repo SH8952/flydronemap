@@ -3,6 +3,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL, languageAlternates } from "@/lib/seo";
 import { getAllGuidesMeta, getGuideLocales } from "@/lib/guides";
 import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
+import { TOOLS } from "@/lib/tools";
 
 /**
  * Every static route currently in the app, per Google AdSense/SEO checklist
@@ -24,6 +25,8 @@ const STATIC_PATHS = [
   "/guides",
   "/faq",
   "/regulations",
+  "/tools",
+  ...TOOLS.map((tool) => `/tools/${tool.slug}`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -34,7 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = STATIC_PATHS.flatMap((path) => {
     const changeFrequency: "weekly" | "monthly" =
       path === "" || path === "/guides" ? "weekly" : "monthly";
-    const priority = path === "" ? 1 : path === "/guides" ? 0.7 : 0.3;
+    const isTool = path.startsWith("/tools");
+    const priority = path === "" ? 1 : path === "/guides" ? 0.7 : isTool ? 0.6 : 0.3;
 
     return routing.locales.map((locale) => ({
       url: `${SITE_URL}/${locale}${path}`,

@@ -2,6 +2,7 @@
   "Header": {
     "tagline": "Drone Flight Weather & Kp Index",
     "guidesNav": "Guides",
+    "toolsNav": "Tools",
     "regulationsNav": "Regulations",
     "aboutNav": "About",
     "faqNav": "FAQ",
@@ -320,6 +321,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
     "guides": "Guides",
+    "tools": "Tools",
     "about": "About",
     "disclosure": "Affiliate Disclosure",
     "contact": "Contact"
@@ -888,5 +890,376 @@
     "guides": "Guides",
     "regulations": "Drone regulations by country",
     "faq": "FAQ"
+  },
+  "Tools": {
+    "hub": {
+      "metaTitle": "Drone Tools: ND Filter, Flight Time & Golden Hour",
+      "metaDescription": "Free calculators for planning drone shoots and flights: ND filter strength, flight time, carry-on battery watt-hours and sunrise or golden hour times.",
+      "title": "Drone Tools",
+      "subtitle": "From camera settings to batteries and sunset times, the calculations you need before a drone flight in one place.",
+      "notice": "Results are estimates for reference. Always check your manufacturer's manual, local regulations and the actual weather before flying.",
+      "openTool": "Open tool →"
+    },
+    "common": {
+      "estimateNote": "Results are based on your inputs and general assumptions, for reference only. Before a flight or trip, check the manufacturer's manual, your airline's guidance and local regulations.",
+      "howToTitle": "How to use",
+      "faqTitle": "Frequently asked questions",
+      "relatedGuidesTitle": "Guides worth reading next",
+      "relatedToolsTitle": "More tools",
+      "dashboardTitle": "Check weather and Kp before you fly",
+      "dashboardText": "Once you have your numbers, check wind, temperature and the Kp index for your flight area on the dashboard.",
+      "dashboardButton": "Open the dashboard"
+    },
+    "items": {
+      "ndFilter": {
+        "name": "ND Filter Calculator",
+        "short": "ND strength for your target shutter",
+        "description": "Work out the ND strength you need from your current shutter and frame rate (180-degree rule) or a target shutter, and see the resulting shutter speed."
+      },
+      "flightTime": {
+        "name": "Flight Time Calculator",
+        "short": "Real flight time with wind and cold",
+        "description": "Start from the rated flight time or battery specs, then factor in wind, temperature, flying style and battery health to estimate usable flight time and a safe turnaround point."
+      },
+      "batteryCheck": {
+        "name": "Carry-on Battery Check",
+        "short": "Convert mAh to Wh and check the class",
+        "description": "Convert battery capacity (mAh) and voltage to watt-hours and see which airline carry-on class (100 Wh / 160 Wh) it falls into."
+      },
+      "goldenHour": {
+        "name": "Golden Hour Planner",
+        "short": "Sunrise, sunset and golden hour times",
+        "description": "Get sunrise, sunset, golden hour and blue hour times and the sun's direction for any location and date to plan your shoot."
+      }
+    },
+    "ndFilter": {
+      "metaTitle": "Drone ND Filter Calculator – Pick the Right ND Strength",
+      "metaDescription": "Enter your shutter speed and frame rate (180-degree rule) or a target shutter to get the ND strength you need and the resulting shutter.",
+      "title": "Drone ND Filter Calculator",
+      "subtitle": "Enter the shutter speed your camera picks without a filter and the shutter you want. We show the stops of light to cut and the closest ND filter.",
+      "modeLabel": "Shooting type",
+      "modeVideo": "Video (180-degree shutter rule)",
+      "modePhoto": "Photo / long exposure (enter target shutter)",
+      "baseShutterLabel": "Current shutter speed (no filter)",
+      "baseShutterHelp": "Use the value your drone app picks in auto exposure. Example: 1/1000 or 0.001",
+      "fpsLabel": "Frame rate (fps)",
+      "angleLabel": "Shutter angle",
+      "angleHelp": "180° gives the most natural motion blur. Target shutter = angle ÷ (360 × fps).",
+      "targetLabel": "Target shutter speed",
+      "targetHelp": "Enter a fraction (1/4) or seconds as a number (0.25, 2, 30).",
+      "invalid": "Please enter valid values (shutter must be greater than 0).",
+      "resultTitle": "Result",
+      "targetShutter": "Target shutter",
+      "stopsNeeded": "Light reduction needed",
+      "stopsValue": "{value} stops",
+      "recommended": "Recommended ND filter",
+      "noFilter": "No ND filter needed. Your current shutter is already equal to or slower than the target.",
+      "resultShutter": "Shutter with this filter",
+      "offsetFaster": "about {value} stops faster than target",
+      "offsetSlower": "about {value} stops slower than target",
+      "offsetExact": "almost exactly on target",
+      "alternativesTitle": "Alternatives",
+      "lighter": "One step weaker",
+      "stronger": "One step stronger",
+      "exceeds": "The reduction needed is beyond ND1000 (about 10 stops). Stacking filters can cause vignetting, so shoot in dimmer light or choose a faster target shutter.",
+      "tableTitle": "ND strengths at a glance",
+      "tableCaption": "Shutter speed with each filter, based on a current shutter of {shutter}",
+      "colFilter": "Filter",
+      "colStops": "Stops",
+      "colLight": "Light passed",
+      "colShutter": "Shutter",
+      "howToSteps": [
+        "Before fitting a filter, read the shutter speed your drone app picks in auto exposure.",
+        "For video choose your frame rate (for example 30 fps); for photos or long exposures enter the shutter you want.",
+        "Fit the recommended filter and check the shutter shown on screen. If the light changes, move one step up or down.",
+        "For video, lock the shutter (manual exposure) and adjust brightness with ISO so motion blur stays consistent."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "An ND filter of N stops cuts the light to 1 ÷ 2^N. To keep the same brightness the shutter must be 2^N times longer, so the stops needed are log₂(target shutter ÷ current shutter).",
+        "The 180-degree rule sets the shutter to half the frame interval: 1 ÷ (2 × fps). At 30 fps that is 1/60 s; at 60 fps, 1/120 s. ND4 is 2 stops, ND8 is 3 stops … ND1000 is about 10 stops (2¹⁰ = 1024)."
+      ],
+      "faq": [
+        {
+          "q": "Does a bigger ND number mean darker?",
+          "a": "Yes. ND8 cuts light to 1/8 (3 stops) and ND64 to 1/64 (6 stops). Every time the number multiplies by 2 you lose one more stop."
+        },
+        {
+          "q": "The shutter on screen differs slightly from the result.",
+          "a": "Standard ND filters come in whole stops, so a small gap is normal. Check the difference in the result card, pick the closest filter and fine-tune with ISO."
+        },
+        {
+          "q": "Can I stack several ND filters?",
+          "a": "Stops add up (ND8 + ND16 = 7 stops), but image quality drops and vignetting risk rises with every extra filter. Use a single filter when you can."
+        },
+        {
+          "q": "Do I need ND filters for photos too?",
+          "a": "They help for long-exposure shots in daylight, such as smooth water or streaking clouds. Use the photo / long exposure mode and enter your target shutter."
+        }
+      ]
+    },
+    "flightTime": {
+      "metaTitle": "Drone Flight Time Calculator – Wind and Cold Adjusted",
+      "metaDescription": "Start from rated flight time or battery specs, add wind, temperature, flying style and battery health, and estimate usable time and a safe turnaround.",
+      "title": "Drone Flight Time Calculator",
+      "subtitle": "Start from the rated flight time (or battery specs) and factor in wind, temperature and flying style to estimate how long you can really fly and when to head back.",
+      "baseModeLabel": "How to get the base time",
+      "baseRated": "From rated flight time",
+      "baseSpec": "From battery specs",
+      "ratedLabel": "Rated flight time (min)",
+      "ratedHelp": "The maximum flight time published by the manufacturer. Example: 34",
+      "capacityLabel": "Battery capacity (mAh)",
+      "voltsLabel": "Battery voltage (V)",
+      "voltsHelp": "The nominal voltage on the battery label. Example: 7.7, 11.4, 15.4",
+      "weightLabel": "Takeoff weight (g)",
+      "weightHelp": "Aircraft, battery and any accessories combined.",
+      "powerLabel": "Power draw (W/kg)",
+      "powerHelp": "Power needed to hold 1 kg in the air. Omni Calculator uses 170 by default (120 for a lower case). It varies by aircraft.",
+      "baseTimeLabel": "Base time (ideal hover)",
+      "conditionsTitle": "Flight conditions",
+      "windLabel": "Wind speed (m/s)",
+      "windHelp": "1 m/s ≈ 3.6 km/h",
+      "tempLabel": "Temperature (°C)",
+      "styleLabel": "Flying style",
+      "styleSmooth": "Smooth (cinematic)",
+      "styleNormal": "Typical shooting",
+      "styleSporty": "Sporty / aggressive",
+      "healthLabel": "Battery health (%)",
+      "healthHelp": "100 for a new battery; 80–90 if it has seen a lot of use.",
+      "reserveLabel": "Landing reserve (%)",
+      "reserveHelp": "Assumes you land with this much charge left. Landing with 20–30% left is a common safe margin.",
+      "speedLabel": "Cruise speed (km/h, optional)",
+      "speedHelp": "If entered, the maximum out-and-back radius is calculated too.",
+      "invalid": "Please enter valid values (all numbers must be greater than 0 and not empty).",
+      "resultTitle": "Result",
+      "totalTime": "Estimated total flight time",
+      "usableTime": "Usable time after landing reserve",
+      "turnaround": "Turnaround point (out-and-back)",
+      "turnaroundHelp": "Start heading back once this much time has passed.",
+      "radius": "Maximum one-way radius",
+      "minutesValue": "about {value} min",
+      "kmValue": "about {value} km",
+      "factorsTitle": "Adjustments applied",
+      "factorBase": "Base time",
+      "factorStyle": "Flying style",
+      "factorWind": "Wind",
+      "factorTemp": "Temperature",
+      "factorHealth": "Battery health",
+      "factorTotal": "Estimated total flight time",
+      "tableTitle": "Adjustment factor tables (planning assumptions)",
+      "tableNote": "These are rule-of-thumb assumptions, not manufacturer figures; values between rows are interpolated. Real numbers differ by aircraft and battery.",
+      "tableWind": "Wind (m/s) → factor",
+      "tableTemp": "Temperature (°C) → factor",
+      "warnWind": "Wind of 10 m/s or more can be close to or beyond the wind resistance of many small drones. Check your manual's limit and don't fly if unsure.",
+      "warnCold": "Below 5°C, keep the battery warm until takeoff and hover briefly after launch. Low-voltage warnings may appear earlier than calculated.",
+      "warnHot": "Above 35°C, watch battery and electronics temperature. Overheating safety matters more than flight time.",
+      "howToSteps": [
+        "Choose the base time. If you know the rated flight time, enter it; otherwise pick the battery-specs method and enter capacity, voltage and weight.",
+        "Enter the wind speed and temperature for your flight area, your flying style and the battery's health. You can check wind and temperature on the FlyDroneMap dashboard.",
+        "Read the estimated total flight time and the usable time after the landing reserve.",
+        "For out-and-back flights, start returning at the turnaround point, and earlier if part of the way back is into the wind."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "Estimated total time = base time × flying-style factor × wind factor × temperature factor × battery health. Usable time subtracts the landing reserve, and the out-and-back turnaround is half of the usable time.",
+        "In the battery-specs method the base time is the ideal hover time: battery energy (Wh = Ah × V) times an 80% usable discharge, divided by power draw (weight × W/kg). Rated times are also measured in ideal conditions, so we apply the rule of thumb that typical shooting flights use about 75% of them (flying-style factor 0.75)."
+      ],
+      "faq": [
+        {
+          "q": "Why is the result shorter than the manufacturer's number?",
+          "a": "Rated flight time is measured in ideal conditions with no wind and steady speed. In real flights wind, acceleration, temperature and battery age add up. This tool corrects for that to give a planning figure."
+        },
+        {
+          "q": "Can't I fly the battery down to 0%?",
+          "a": "It is not recommended. The aircraft needs spare charge for low-battery warnings and automatic return, and in wind or cold the voltage can sag earlier than the displayed percentage suggests. Landing with 20–30% left is a common safety margin."
+        },
+        {
+          "q": "How much does cold reduce flight time?",
+          "a": "Manufacturers don't publish a percentage; they only say capacity drops significantly. This tool assumes a 15–25% reduction around 0–5°C as a planning value. Check real behavior on a short first flight and adjust."
+        },
+        {
+          "q": "Can I trust the result as-is?",
+          "a": "No. It is a planning estimate only. The aircraft's remaining-charge display, low-battery warnings and return-to-home settings always come first, and you should keep extra margin at unfamiliar sites."
+        }
+      ]
+    },
+    "batteryCheck": {
+      "metaTitle": "Drone Battery Carry-on Check – Convert mAh to Wh",
+      "metaDescription": "Convert drone battery mAh and voltage to Wh and see the airline carry-on class (up to 100 Wh, 100–160 Wh, over 160 Wh) and if approval is needed.",
+      "title": "Drone Battery Carry-on Check",
+      "subtitle": "Convert battery capacity (mAh) and voltage to watt-hours and see which airline carry-on class each battery falls into.",
+      "modeLabel": "Input method",
+      "modeMah": "mAh + voltage (V)",
+      "modeWh": "Wh printed on the label",
+      "capacityLabel": "Capacity (mAh)",
+      "voltsLabel": "Voltage (V)",
+      "voltsHelp": "The nominal voltage on the battery label.",
+      "whLabel": "Capacity (Wh)",
+      "whHelp": "The Wh rating printed on the battery label.",
+      "qtyLabel": "Quantity",
+      "rowTitle": "Battery {n}",
+      "addRow": "Add another battery type",
+      "removeRow": "Remove",
+      "invalid": "Please enter valid values (capacity, voltage and quantity must be numbers greater than 0).",
+      "resultTitle": "Result",
+      "perBattery": "{value} Wh each",
+      "classStandard": "Up to 100 Wh",
+      "classApproval": "Over 100 Wh to 160 Wh",
+      "classForbidden": "Over 160 Wh",
+      "descStandard": "Falls in the standard carry-on class. Spare batteries must travel in carry-on, not checked baggage, and quantity limits vary by airline.",
+      "descApproval": "Airline approval is required. Spare batteries are limited to two per person and must travel in carry-on.",
+      "descForbidden": "This capacity cannot be carried on a passenger aircraft.",
+      "totalWh": "Total capacity",
+      "totalQty": "Total quantity",
+      "totalWhValue": "{value} Wh",
+      "totalQtyValue": "{value} pcs",
+      "warnApprovalQty": "You have {count} batteries in the approval range (100–160 Wh). Two per person is the usual limit, so check with your airline first.",
+      "warnForbidden": "One or more batteries exceed 160 Wh and cannot be carried as passenger baggage.",
+      "tableTitle": "Rules at a glance (spare batteries)",
+      "colClass": "Class",
+      "colCarryOn": "Carry-on",
+      "colChecked": "Checked bag",
+      "colApproval": "Airline approval",
+      "colQuantity": "Quantity",
+      "yes": "Allowed",
+      "no": "Not allowed",
+      "needed": "Required",
+      "notNeeded": "Not required",
+      "notAllowed": "Not allowed",
+      "perAirline": "Varies by airline",
+      "perPerson2": "2 per person",
+      "protectTitle": "Prevent short circuits",
+      "protectBody": "Cover the battery terminals (+/−) with insulating tape, or keep each battery in a battery case, protective pouch or its original packaging.",
+      "installedNote": "How the rules apply to a battery left installed in the aircraft can differ by airline, so check with your airline before flying.",
+      "sourcesTitle": "Official guidance",
+      "sourceFaa": "FAA PackSafe – Lithium batteries",
+      "sourceIata": "IATA – Passengers travelling with lithium batteries (PDF)",
+      "verified": "Checked against FAA and IATA passenger guidance as of November 2026. Rules can change and differ by country and airline, so confirm with your airline before you travel.",
+      "howToSteps": [
+        "Find the Wh rating on the battery label. If it is there, pick \"Wh printed on the label\" and enter it.",
+        "If there is no Wh, enter capacity (mAh) and voltage (V). If you carry batteries of different capacities, add them as separate types.",
+        "Check each battery's class (up to 100 Wh / 100–160 Wh / over 160 Wh) and the total quantity.",
+        "Before you travel, read your airline's lithium battery guidance, insulate the terminals and carry the batteries in the cabin."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "Wh = voltage (V) × capacity (Ah), and mAh is divided by 1000 to get Ah. For example a 5000 mAh, 15.4 V battery is 5 × 15.4 = 77 Wh. FAA and IATA both give this same formula.",
+        "The classes follow FAA and IATA passenger guidance: up to 100 Wh is standard carry-on, over 100 Wh up to 160 Wh needs airline approval (two spares per person), and over 160 Wh cannot go on a passenger aircraft. Spare batteries must always travel in the cabin."
+      ],
+      "faq": [
+        {
+          "q": "My battery has no Wh printed on it.",
+          "a": "Calculate it from the label's voltage (V) and capacity (mAh): Wh = V × mAh ÷ 1000. Example: 5000 mAh × 15.4 V ÷ 1000 = 77 Wh. Lithium-ion batteries normally carry a Wh rating, so look at the label first."
+        },
+        {
+          "q": "Can I put drone batteries in checked baggage?",
+          "a": "FAA and IATA both say spare (loose) lithium batteries must be carried in carry-on baggage, not checked baggage. The same applies to drone batteries."
+        },
+        {
+          "q": "Can't I take a battery over 100 Wh?",
+          "a": "Over 100 Wh up to 160 Wh can go in the cabin with airline approval, limited to two spares per person. Anything over 160 Wh cannot be carried on a passenger aircraft."
+        },
+        {
+          "q": "Are the rules the same as for power banks?",
+          "a": "No. Power banks are seeing separate, stricter airline limits on quantity and use. Treat drone batteries under the spare-battery rules above, and check your airline's latest guidance."
+        }
+      ]
+    },
+    "goldenHour": {
+      "noPlace": "Choose a location and the results will appear here.",
+      "metaTitle": "Golden Hour & Sunrise Sunset Planner for Drone Shoots",
+      "metaDescription": "Enter a city or coordinates and a date to get sunrise, sunset, golden hour and blue hour times plus sun direction for planning aerial drone shoots.",
+      "title": "Golden Hour & Sunrise/Sunset Planner",
+      "subtitle": "Pick a location and a date to see sunrise, sunset, golden hour and blue hour times, and the direction the sun rises and sets.",
+      "searchLabel": "Search a city or place",
+      "searchPlaceholder": "e.g. Lisbon, Tokyo, Reykjavik",
+      "searchButton": "Search",
+      "searching": "Searching...",
+      "noResults": "No results. Try another name or enter coordinates manually.",
+      "searchError": "Search failed. Try again in a moment or enter coordinates manually.",
+      "useMyLocation": "Use my location",
+      "locating": "Locating...",
+      "geoUnavailable": "Location is not available in this browser.",
+      "geoDenied": "Location permission was not granted. Search for a place or enter coordinates.",
+      "manualToggle": "Enter coordinates manually",
+      "latLabel": "Latitude (-90 to 90)",
+      "lonLabel": "Longitude (-180 to 180)",
+      "dateLabel": "Date",
+      "today": "Today",
+      "placeLabel": "Location used",
+      "placeCoords": "Lat {lat}, Lon {lon}",
+      "customPlace": "Custom coordinates",
+      "myPlace": "My location",
+      "tzLabel": "Time zone: {tz}",
+      "tzFallback": "The time zone for this location could not be determined, so times use this device's time zone ({tz}). They may differ from local time.",
+      "invalidPlace": "Please enter a valid latitude (-90 to 90) and longitude (-180 to 180).",
+      "invalidDate": "Please choose a date.",
+      "resultTitle": "Results",
+      "sunrise": "Sunrise",
+      "sunset": "Sunset",
+      "dayLength": "Day length",
+      "dayLengthValue": "{h}h {m}m",
+      "solarNoon": "Solar noon",
+      "maxElevation": "Max elevation",
+      "degreesValue": "{value}°",
+      "azimuthValue": "{dir} {deg}°",
+      "windowsTitle": "Shooting windows",
+      "morningGolden": "Morning golden hour",
+      "eveningGolden": "Evening golden hour",
+      "morningBlue": "Morning blue hour",
+      "eveningBlue": "Evening blue hour",
+      "windowRange": "{start} – {end}",
+      "noWindow": "Not applicable",
+      "dayBarTitle": "Day timeline",
+      "legendNight": "Night",
+      "legendBlue": "Blue hour",
+      "legendGolden": "Golden hour",
+      "legendDay": "Daylight",
+      "polarDay": "At this location the sun does not set on this date (midnight sun), so there is no sunrise or sunset time.",
+      "polarNight": "At this location the sun does not rise on this date (polar night), so there is no sunrise or sunset time.",
+      "droneTitle": "Before you fly",
+      "droneBody": "Flying before sunrise or after sunset is treated differently by country and region. Check night-flight permission, lighting requirements and visibility conditions on our regulations page and with your local aviation authority.",
+      "regulationsLink": "View regulations",
+      "serverNote": "Only the place-name search goes through our server; the sun calculation from coordinates and date runs in your browser.",
+      "compass": [
+        "N",
+        "NE",
+        "E",
+        "SE",
+        "S",
+        "SW",
+        "W",
+        "NW"
+      ],
+      "howToSteps": [
+        "Search for a city or place and pick a result, or use \"Use my location\" or enter coordinates manually.",
+        "Choose a date. It defaults to today and you can change it to your planned shoot day.",
+        "Read the sunrise and sunset times and directions, and the morning and evening golden hour and blue hour windows.",
+        "Arrive at least 30 minutes early to check the aircraft and batteries, and look at weather and KP index on the dashboard."
+      ],
+      "formulaTitle": "How it is calculated",
+      "formulaBody": [
+        "The tool uses the NOAA solar position algorithm to get the sun's elevation and azimuth for a date and place, then scans the day minute by minute for the moments the sun crosses each reference elevation. Sunrise and sunset use −0.833° (refraction and the sun's radius).",
+        "Golden hour is calculated as a solar elevation of about −4° to +6°, and blue hour as about −8° to −4°. These are common photographic conventions and sources differ slightly. Terrain, buildings and cloud change the real light."
+      ],
+      "faq": [
+        {
+          "q": "When is golden hour?",
+          "a": "It is the period just after sunrise and just before sunset when the sun is low and the light is soft and warm. Its length depends on location and season, so enter your place and date above to get the exact times."
+        },
+        {
+          "q": "How is blue hour different from golden hour?",
+          "a": "Blue hour is the bluish twilight just after sunset (or before sunrise). The sky is still bright while city lights come on, which suits cityscape shots. Night-flight rules differ by country, so check them first."
+        },
+        {
+          "q": "The times differ by a minute or two from another app.",
+          "a": "Differences of a minute or two can come from the reference elevation (refraction) and whether terrain elevation is included. Near mountains the time you actually see sunlight can be earlier or later than calculated."
+        },
+        {
+          "q": "No times appear at high latitudes.",
+          "a": "In summer the sun may not set (midnight sun) and in winter it may not rise (polar night), so there is no sunrise or sunset. In that case you get a note plus the day timeline showing how the light changes."
+        }
+      ]
+    }
   }
 }

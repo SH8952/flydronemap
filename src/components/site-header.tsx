@@ -36,12 +36,15 @@ export function SiteHeader({
         </Link>
 
         {/* Desktop nav: full width is available, so every link stays on one line */}
-        <nav className="hidden items-center gap-4 sm:flex">
+        <nav className="hidden items-center gap-2.5 sm:flex md:gap-4">
           <Link href="/about" className={navLinkClass}>
             {t("aboutNav")}
           </Link>
           <Link href="/guides" className={navLinkClass}>
             {t("guidesNav")}
+          </Link>
+          <Link href="/tools" className={navLinkClass}>
+            {t("toolsNav")}
           </Link>
           <Link href="/regulations" className={navLinkClass}>
             {t("regulationsNav")}
@@ -89,6 +92,13 @@ export function SiteHeader({
             onClick={() => setMenuOpen(false)}
           >
             {t("guidesNav")}
+          </Link>
+          <Link
+            href="/tools"
+            className={`${navLinkClass} py-2.5`}
+            onClick={() => setMenuOpen(false)}
+          >
+            {t("toolsNav")}
           </Link>
           <Link
             href="/regulations"

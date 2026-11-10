@@ -21,6 +21,9 @@ export function SiteFooter() {
         <p>© {year} FlyDroneMap. {t("rights")}</p>
         <VisitorCounter />
         <nav className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/tools" className="hover:text-foreground">
+            {t("tools")}
+          </Link>
           <Link href="/privacy" className="hover:text-foreground">
             {t("privacy")}
           </Link>

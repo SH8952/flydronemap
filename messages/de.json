@@ -2,6 +2,7 @@
   "Header": {
     "tagline": "Wetter für Drohnenflüge & Kp-Index",
     "guidesNav": "Ratgeber",
+    "toolsNav": "Tools",
     "regulationsNav": "Vorschriften",
     "aboutNav": "Über uns",
     "faqNav": "FAQ",
@@ -320,6 +321,7 @@
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
     "guides": "Ratgeber",
+    "tools": "Tools",
     "about": "Über uns",
     "disclosure": "Affiliate-Offenlegung",
     "contact": "Kontakt"
@@ -888,5 +890,376 @@
     "guides": "Ratgeber",
     "regulations": "Drohnenregeln nach Land",
     "faq": "Häufige Fragen"
+  },
+  "Tools": {
+    "hub": {
+      "metaTitle": "Drohnen-Tools: ND-Filter, Flugzeit, Akku & mehr",
+      "metaDescription": "Kostenlose Rechner für Drohnenflug und Aufnahmeplanung: ND-Filter, Flugzeit, Akku-Wattstunden fürs Handgepäck sowie Sonnenaufgang und Goldene Stunde.",
+      "title": "Drohnen-Tools",
+      "subtitle": "Von den Kameraeinstellungen über Akkus bis zur Sonnenuntergangszeit: alle Berechnungen vor dem Drohnenflug an einem Ort.",
+      "notice": "Die Ergebnisse sind Schätzwerte zur Orientierung. Prüfen Sie vor dem Flug stets das Handbuch des Herstellers, die örtlichen Vorschriften und das tatsächliche Wetter.",
+      "openTool": "Tool öffnen →"
+    },
+    "common": {
+      "estimateNote": "Die Ergebnisse beruhen auf Ihren Eingaben und allgemeinen Annahmen und dienen nur der Orientierung. Prüfen Sie vor Flug oder Reise das Herstellerhandbuch, die Hinweise Ihrer Airline und die örtlichen Vorschriften.",
+      "howToTitle": "So geht's",
+      "faqTitle": "Häufige Fragen",
+      "relatedGuidesTitle": "Weiterlesen",
+      "relatedToolsTitle": "Weitere Tools",
+      "dashboardTitle": "Wetter und Kp-Index vor dem Flug prüfen",
+      "dashboardText": "Haben Sie Ihre Werte, prüfen Sie im Dashboard Wind, Temperatur und Kp-Index für Ihr Fluggebiet.",
+      "dashboardButton": "Dashboard öffnen"
+    },
+    "items": {
+      "ndFilter": {
+        "name": "ND-Filter-Rechner",
+        "short": "ND-Stufe für die Ziel-Verschlusszeit",
+        "description": "Berechnet die nötige ND-Stufe aus aktueller Verschlusszeit und Bildrate (180-Grad-Regel) oder einer Ziel-Verschlusszeit und zeigt die resultierende Verschlusszeit."
+      },
+      "flightTime": {
+        "name": "Flugzeit-Rechner",
+        "short": "Echte Flugzeit bei Wind und Kälte",
+        "description": "Ausgehend von der Nennflugzeit oder den Akku-Daten werden Wind, Temperatur, Flugstil und Akkuzustand berücksichtigt – für nutzbare Flugzeit und einen sicheren Umkehrpunkt."
+      },
+      "batteryCheck": {
+        "name": "Akku-Check fürs Handgepäck",
+        "short": "mAh in Wh umrechnen und einordnen",
+        "description": "Rechnet Akkukapazität (mAh) und Spannung in Wattstunden um und zeigt, in welche Handgepäck-Klasse (100 Wh / 160 Wh) der Akku fällt."
+      },
+      "goldenHour": {
+        "name": "Goldene-Stunde-Planer",
+        "short": "Sonnenauf-/untergang und Goldene Stunde",
+        "description": "Zeigt Sonnenaufgang, Sonnenuntergang, Goldene und Blaue Stunde sowie die Sonnenrichtung für jeden Ort und jedes Datum."
+      }
+    },
+    "ndFilter": {
+      "metaTitle": "ND-Filter-Rechner für Drohnen – passende Stufe finden",
+      "metaDescription": "Verschlusszeit und Bildrate (180-Grad-Regel) oder Ziel-Verschlusszeit eingeben und die nötige ND-Stufe samt Ergebnis-Verschlusszeit erhalten.",
+      "title": "ND-Filter-Rechner für Drohnen",
+      "subtitle": "Geben Sie die Verschlusszeit ohne Filter und Ihre Wunschzeit ein. Wir zeigen die nötigen Blendenstufen und den passenden ND-Filter.",
+      "modeLabel": "Aufnahmeart",
+      "modeVideo": "Video (180-Grad-Verschlussregel)",
+      "modePhoto": "Foto / Langzeitbelichtung (Zielzeit eingeben)",
+      "baseShutterLabel": "Aktuelle Verschlusszeit (ohne Filter)",
+      "baseShutterHelp": "Nehmen Sie den Wert, den die Drohnen-App in der Belichtungsautomatik wählt. Beispiel: 1/1000 oder 0.001",
+      "fpsLabel": "Bildrate (fps)",
+      "angleLabel": "Verschlusswinkel",
+      "angleHelp": "180° ergibt die natürlichste Bewegungsunschärfe. Ziel-Verschlusszeit = Winkel ÷ (360 × fps).",
+      "targetLabel": "Ziel-Verschlusszeit",
+      "targetHelp": "Als Bruch (1/4) oder Sekunden als Zahl (0.25, 2, 30) eingeben.",
+      "invalid": "Bitte gültige Werte eingeben (Verschlusszeit größer als 0).",
+      "resultTitle": "Ergebnis",
+      "targetShutter": "Ziel-Verschlusszeit",
+      "stopsNeeded": "Nötige Lichtreduzierung",
+      "stopsValue": "{value} Blendenstufen",
+      "recommended": "Empfohlener ND-Filter",
+      "noFilter": "Kein ND-Filter nötig. Ihre aktuelle Verschlusszeit ist bereits gleich lang oder länger als das Ziel.",
+      "resultShutter": "Verschlusszeit mit diesem Filter",
+      "offsetFaster": "etwa {value} Stufen schneller als das Ziel",
+      "offsetSlower": "etwa {value} Stufen langsamer als das Ziel",
+      "offsetExact": "nahezu exakt am Ziel",
+      "alternativesTitle": "Alternativen",
+      "lighter": "Eine Stufe schwächer",
+      "stronger": "Eine Stufe stärker",
+      "exceeds": "Die nötige Reduzierung liegt über ND1000 (etwa 10 Stufen). Gestapelte Filter können Vignettierung verursachen – besser bei weniger Licht aufnehmen oder eine kürzere Ziel-Verschlusszeit wählen.",
+      "tableTitle": "ND-Stufen im Überblick",
+      "tableCaption": "Verschlusszeit mit dem jeweiligen Filter, ausgehend von einer aktuellen Zeit von {shutter}",
+      "colFilter": "Filter",
+      "colStops": "Stufen",
+      "colLight": "Lichtdurchlass",
+      "colShutter": "Verschlusszeit",
+      "howToSteps": [
+        "Lesen Sie vor dem Aufsetzen des Filters in der Drohnen-App die Verschlusszeit der Belichtungsautomatik ab.",
+        "Bei Video die Bildrate wählen (z. B. 30 fps); bei Foto oder Langzeitbelichtung die gewünschte Verschlusszeit eingeben.",
+        "Den empfohlenen Filter aufsetzen und die Verschlusszeit auf dem Bildschirm prüfen. Ändert sich das Licht, eine Stufe höher oder tiefer wählen.",
+        "Bei Video die Verschlusszeit festsetzen (manuelle Belichtung) und die Helligkeit über den ISO-Wert anpassen, damit die Bewegungsunschärfe gleich bleibt."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Ein ND-Filter mit N Stufen reduziert das Licht auf 1 ÷ 2^N. Für gleiche Helligkeit muss die Verschlusszeit 2^N-mal länger sein; die nötigen Stufen ergeben sich aus log₂(Ziel-Verschlusszeit ÷ aktuelle Verschlusszeit).",
+        "Die 180-Grad-Regel setzt die Verschlusszeit auf die Hälfte des Bildabstands: 1 ÷ (2 × fps). Bei 30 fps sind das 1/60 s, bei 60 fps 1/120 s. ND4 entspricht 2 Stufen, ND8 3 Stufen … ND1000 etwa 10 Stufen (2¹⁰ = 1024)."
+      ],
+      "faq": [
+        {
+          "q": "Bedeutet eine größere ND-Zahl dunkler?",
+          "a": "Ja. ND8 reduziert das Licht auf 1/8 (3 Stufen), ND64 auf 1/64 (6 Stufen). Mit jeder Verdopplung der Zahl geht eine weitere Stufe verloren."
+        },
+        {
+          "q": "Die Verschlusszeit auf dem Bildschirm weicht leicht vom Ergebnis ab.",
+          "a": "Standard-ND-Filter gibt es nur in ganzen Stufen, eine kleine Abweichung ist normal. Prüfen Sie die Differenz im Ergebnisfeld, wählen Sie den nächstliegenden Filter und justieren Sie mit dem ISO-Wert."
+        },
+        {
+          "q": "Kann ich mehrere ND-Filter stapeln?",
+          "a": "Die Stufen addieren sich (ND8 + ND16 = 7 Stufen), aber mit jedem zusätzlichen Filter sinkt die Bildqualität und das Vignettierungsrisiko steigt. Nach Möglichkeit einen einzelnen Filter verwenden."
+        },
+        {
+          "q": "Brauche ich ND-Filter auch für Fotos?",
+          "a": "Sie helfen bei Langzeitbelichtungen bei Tageslicht, etwa für seidiges Wasser oder ziehende Wolken. Nutzen Sie den Foto-/Langzeitmodus und geben Sie Ihre Ziel-Verschlusszeit ein."
+        }
+      ]
+    },
+    "flightTime": {
+      "metaTitle": "Drohnen-Flugzeit-Rechner – mit Wind und Kälte",
+      "metaDescription": "Nennflugzeit oder Akku-Daten plus Wind, Temperatur, Flugstil und Akkuzustand: So schätzen Sie nutzbare Flugzeit und einen sicheren Umkehrpunkt.",
+      "title": "Drohnen-Flugzeit-Rechner",
+      "subtitle": "Ausgehend von der Nennflugzeit des Herstellers (oder den Akku-Daten) werden Wind, Temperatur und Flugstil berücksichtigt – so sehen Sie, wie lange Sie wirklich fliegen können und wann Sie umkehren sollten.",
+      "baseModeLabel": "Basiszeit ermitteln",
+      "baseRated": "Aus der Nennflugzeit",
+      "baseSpec": "Aus den Akku-Daten",
+      "ratedLabel": "Nennflugzeit (Min.)",
+      "ratedHelp": "Die vom Hersteller angegebene maximale Flugzeit. Beispiel: 34",
+      "capacityLabel": "Akkukapazität (mAh)",
+      "voltsLabel": "Akkuspannung (V)",
+      "voltsHelp": "Die Nennspannung auf dem Akku-Etikett. Beispiel: 7.7, 11.4, 15.4",
+      "weightLabel": "Startgewicht (g)",
+      "weightHelp": "Drohne, Akku und Zubehör zusammen.",
+      "powerLabel": "Leistungsaufnahme (W/kg)",
+      "powerHelp": "Leistung, die nötig ist, um 1 kg in der Luft zu halten. Omni Calculator nutzt standardmäßig 170 (niedriger 120). Sie hängt vom Fluggerät ab.",
+      "baseTimeLabel": "Basiszeit (idealer Schwebeflug)",
+      "conditionsTitle": "Flugbedingungen",
+      "windLabel": "Windgeschwindigkeit (m/s)",
+      "windHelp": "1 m/s ≈ 3,6 km/h",
+      "tempLabel": "Temperatur (°C)",
+      "styleLabel": "Flugstil",
+      "styleSmooth": "Sanft (filmisch)",
+      "styleNormal": "Übliche Aufnahmen",
+      "styleSporty": "Sportlich / aggressiv",
+      "healthLabel": "Akkuzustand (%)",
+      "healthHelp": "100 bei neuem Akku; 80–90 bei stark genutztem Akku.",
+      "reserveLabel": "Landereserve (%)",
+      "reserveHelp": "Nimmt an, dass Sie mit dieser Restladung landen. Eine Landung mit 20–30 % Rest ist ein üblicher Sicherheitspuffer.",
+      "speedLabel": "Reisegeschwindigkeit (km/h, optional)",
+      "speedHelp": "Wenn angegeben, wird auch der maximale Radius für Hin- und Rückflug berechnet.",
+      "invalid": "Bitte gültige Werte eingeben (alle Zahlen müssen größer als 0 und ausgefüllt sein).",
+      "resultTitle": "Ergebnis",
+      "totalTime": "Geschätzte Gesamtflugzeit",
+      "usableTime": "Nutzbare Zeit nach Landereserve",
+      "turnaround": "Umkehrpunkt (Hin- und Rückflug)",
+      "turnaroundHelp": "Kehren Sie um, sobald diese Zeit verstrichen ist.",
+      "radius": "Maximaler Radius (einfache Strecke)",
+      "minutesValue": "ca. {value} Min.",
+      "kmValue": "ca. {value} km",
+      "factorsTitle": "Angewendete Korrekturen",
+      "factorBase": "Basiszeit",
+      "factorStyle": "Flugstil",
+      "factorWind": "Wind",
+      "factorTemp": "Temperatur",
+      "factorHealth": "Akkuzustand",
+      "factorTotal": "Geschätzte Gesamtflugzeit",
+      "tableTitle": "Korrekturfaktoren (Planungsannahmen)",
+      "tableNote": "Dies sind Faustregel-Annahmen, keine Herstellerangaben; zwischen den Zeilen wird linear interpoliert. Die tatsächlichen Werte unterscheiden sich je nach Fluggerät und Akku.",
+      "tableWind": "Wind (m/s) → Faktor",
+      "tableTemp": "Temperatur (°C) → Faktor",
+      "warnWind": "Wind ab 10 m/s kann nahe an oder über der Windfestigkeit vieler kleiner Drohnen liegen. Prüfen Sie die Grenze im Handbuch und fliegen Sie nicht, wenn Sie unsicher sind.",
+      "warnCold": "Unter 5 °C den Akku bis zum Start warm halten und nach dem Abheben kurz schweben. Warnungen wegen niedriger Spannung können früher kommen als berechnet.",
+      "warnHot": "Über 35 °C auf die Temperatur von Akku und Elektronik achten. Schutz vor Überhitzung ist wichtiger als Flugzeit.",
+      "howToSteps": [
+        "Basiszeit festlegen: Kennen Sie die Nennflugzeit, geben Sie sie ein; sonst wählen Sie die Akku-Methode und tragen Kapazität, Spannung und Gewicht ein.",
+        "Wind und Temperatur Ihres Fluggebiets, Flugstil und Akkuzustand eingeben. Wind und Temperatur finden Sie im FlyDroneMap-Dashboard.",
+        "Geschätzte Gesamtflugzeit und die nutzbare Zeit nach der Landereserve ablesen.",
+        "Bei Hin- und Rückflügen am Umkehrpunkt zurückkehren – früher, wenn ein Teil des Rückwegs gegen den Wind führt."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Geschätzte Gesamtzeit = Basiszeit × Flugstil-Faktor × Windfaktor × Temperaturfaktor × Akkuzustand. Die nutzbare Zeit zieht die Landereserve ab; der Umkehrpunkt beim Hin- und Rückflug ist die Hälfte davon.",
+        "Bei der Akku-Methode ist die Basiszeit die ideale Schwebezeit: Akkuenergie (Wh = Ah × V) mal 80 % nutzbare Entladung, geteilt durch die Leistungsaufnahme (Gewicht × W/kg). Auch Nennflugzeiten werden unter Idealbedingungen gemessen; daher gilt die Faustregel, dass übliche Aufnahmeflüge rund 75 % davon nutzen (Flugstil-Faktor 0,75)."
+      ],
+      "faq": [
+        {
+          "q": "Warum ist das Ergebnis kürzer als die Herstellerangabe?",
+          "a": "Die Nennflugzeit wird unter Idealbedingungen ohne Wind und bei konstanter Geschwindigkeit gemessen. Im echten Flug kommen Wind, Beschleunigung, Temperatur und Akkualter hinzu. Dieses Tool gleicht das aus und liefert einen Planungswert."
+        },
+        {
+          "q": "Darf ich den Akku nicht bis 0 % leer fliegen?",
+          "a": "Das wird nicht empfohlen. Die Drohne braucht Restladung für Warnungen und automatische Rückkehr, und bei Wind oder Kälte kann die Spannung früher einbrechen, als die Prozentanzeige vermuten lässt. Eine Landung mit 20–30 % Rest ist ein üblicher Sicherheitspuffer."
+        },
+        {
+          "q": "Wie stark verringert Kälte die Flugzeit?",
+          "a": "Hersteller nennen keinen Prozentwert, sondern sagen nur, dass die Kapazität deutlich sinkt. Dieses Tool nimmt als Planungswert 15–25 % weniger bei etwa 0–5 °C an. Prüfen Sie das tatsächliche Verhalten bei einem kurzen ersten Flug und passen Sie an."
+        },
+        {
+          "q": "Kann ich dem Ergebnis blind vertrauen?",
+          "a": "Nein. Es ist nur eine Planungsschätzung. Restladungsanzeige, Warnungen und Rückkehr-Einstellungen der Drohne haben immer Vorrang; an unbekannten Orten planen Sie zusätzlichen Puffer ein."
+        }
+      ]
+    },
+    "batteryCheck": {
+      "metaTitle": "Drohnen-Akku im Handgepäck – mAh in Wh umrechnen",
+      "metaDescription": "Akku-mAh und Spannung in Wh umrechnen und die Handgepäck-Klasse (bis 100 Wh, 100–160 Wh, über 160 Wh) samt Genehmigungspflicht prüfen.",
+      "title": "Drohnen-Akku im Handgepäck",
+      "subtitle": "Rechnen Sie Akkukapazität (mAh) und Spannung in Wattstunden um und sehen Sie, in welche Handgepäck-Klasse jeder Akku fällt.",
+      "modeLabel": "Eingabeart",
+      "modeMah": "mAh + Spannung (V)",
+      "modeWh": "Wh-Angabe auf dem Etikett",
+      "capacityLabel": "Kapazität (mAh)",
+      "voltsLabel": "Spannung (V)",
+      "voltsHelp": "Die Nennspannung auf dem Akku-Etikett.",
+      "whLabel": "Kapazität (Wh)",
+      "whHelp": "Die auf dem Akku-Etikett aufgedruckten Wh.",
+      "qtyLabel": "Anzahl",
+      "rowTitle": "Akku {n}",
+      "addRow": "Weiteren Akkutyp hinzufügen",
+      "removeRow": "Entfernen",
+      "invalid": "Bitte gültige Werte eingeben (Kapazität, Spannung und Anzahl müssen Zahlen größer als 0 sein).",
+      "resultTitle": "Ergebnis",
+      "perBattery": "je {value} Wh",
+      "classStandard": "Bis 100 Wh",
+      "classApproval": "Über 100 Wh bis 160 Wh",
+      "classForbidden": "Über 160 Wh",
+      "descStandard": "Fällt in die übliche Handgepäck-Klasse. Ersatzakkus müssen ins Handgepäck, nicht in den aufgegebenen Koffer; Mengenbegrenzungen unterscheiden sich je nach Airline.",
+      "descApproval": "Die Genehmigung der Airline ist erforderlich. Ersatzakkus sind auf zwei pro Person begrenzt und gehören ins Handgepäck.",
+      "descForbidden": "Diese Kapazität darf nicht in einem Passagierflugzeug befördert werden.",
+      "totalWh": "Gesamtkapazität",
+      "totalQty": "Gesamtanzahl",
+      "totalWhValue": "{value} Wh",
+      "totalQtyValue": "{value} Stk.",
+      "warnApprovalQty": "Sie haben {count} Akkus im genehmigungspflichtigen Bereich (100–160 Wh). Üblich sind höchstens zwei pro Person – fragen Sie vorher Ihre Airline.",
+      "warnForbidden": "Mindestens ein Akku überschreitet 160 Wh und darf nicht als Passagiergepäck befördert werden.",
+      "tableTitle": "Regeln im Überblick (Ersatzakkus)",
+      "colClass": "Klasse",
+      "colCarryOn": "Handgepäck",
+      "colChecked": "Aufgegebenes Gepäck",
+      "colApproval": "Genehmigung der Airline",
+      "colQuantity": "Anzahl",
+      "yes": "Erlaubt",
+      "no": "Nicht erlaubt",
+      "needed": "Erforderlich",
+      "notNeeded": "Nicht erforderlich",
+      "notAllowed": "Nicht erlaubt",
+      "perAirline": "Je nach Airline",
+      "perPerson2": "2 pro Person",
+      "protectTitle": "Kurzschluss vermeiden",
+      "protectBody": "Decken Sie die Akkupole (+/−) mit Isolierband ab oder bewahren Sie jeden Akku in einer Akkubox, einer Schutzhülle oder der Originalverpackung auf.",
+      "installedNote": "Wie die Regeln für einen in der Drohne eingesetzten Akku gelten, kann je nach Airline unterschiedlich sein – klären Sie das vor dem Flug mit Ihrer Airline.",
+      "sourcesTitle": "Offizielle Hinweise",
+      "sourceFaa": "FAA PackSafe – Lithiumbatterien",
+      "sourceIata": "IATA – Passagiere mit Lithiumbatterien (PDF)",
+      "verified": "Abgeglichen mit den Passagierhinweisen von FAA und IATA, Stand November 2026. Regeln können sich ändern und unterscheiden sich nach Land und Airline – bestätigen Sie sie vor der Reise bei Ihrer Airline.",
+      "howToSteps": [
+        "Suchen Sie die Wh-Angabe auf dem Akku-Etikett. Ist sie vorhanden, wählen Sie „Wh-Angabe auf dem Etikett“ und geben Sie sie ein.",
+        "Fehlt die Wh-Angabe, geben Sie Kapazität (mAh) und Spannung (V) ein. Akkus mit unterschiedlicher Kapazität fügen Sie als eigene Typen hinzu.",
+        "Prüfen Sie die Klasse jedes Akkus (bis 100 Wh / 100–160 Wh / über 160 Wh) und die Gesamtanzahl.",
+        "Lesen Sie vor der Reise die Lithiumbatterie-Hinweise Ihrer Airline, isolieren Sie die Pole und nehmen Sie die Akkus mit in die Kabine."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Wh = Spannung (V) × Kapazität (Ah); mAh werden durch 1000 geteilt, um Ah zu erhalten. Ein Akku mit 5000 mAh und 15,4 V hat also 5 × 15,4 = 77 Wh. FAA und IATA nennen dieselbe Formel.",
+        "Die Klassen folgen den Passagierhinweisen von FAA und IATA: Bis 100 Wh ist übliches Handgepäck, über 100 Wh bis 160 Wh braucht die Genehmigung der Airline (zwei Ersatzakkus pro Person), über 160 Wh darf nicht in ein Passagierflugzeug. Ersatzakkus gehören immer in die Kabine."
+      ],
+      "faq": [
+        {
+          "q": "Auf meinem Akku steht keine Wh-Angabe.",
+          "a": "Rechnen Sie mit Spannung (V) und Kapazität (mAh) vom Etikett: Wh = V × mAh ÷ 1000. Beispiel: 5000 mAh × 15,4 V ÷ 1000 = 77 Wh. Lithium-Ionen-Akkus tragen normalerweise eine Wh-Angabe – schauen Sie zuerst aufs Etikett."
+        },
+        {
+          "q": "Darf ich Drohnen-Akkus in den aufgegebenen Koffer packen?",
+          "a": "FAA und IATA sagen übereinstimmend, dass lose Ersatz-Lithiumakkus im Handgepäck und nicht im aufgegebenen Gepäck mitgeführt werden müssen. Das gilt auch für Drohnen-Akkus."
+        },
+        {
+          "q": "Darf ich keinen Akku über 100 Wh mitnehmen?",
+          "a": "Über 100 Wh bis 160 Wh sind mit Genehmigung der Airline in der Kabine möglich, höchstens zwei Ersatzakkus pro Person. Alles über 160 Wh darf nicht in ein Passagierflugzeug."
+        },
+        {
+          "q": "Gelten dieselben Regeln wie für Powerbanks?",
+          "a": "Nein. Für Powerbanks gelten gesonderte, strengere Airline-Grenzen bei Anzahl und Nutzung. Behandeln Sie Drohnen-Akkus nach den Ersatzakku-Regeln oben und prüfen Sie die aktuellen Hinweise Ihrer Airline."
+        }
+      ]
+    },
+    "goldenHour": {
+      "noPlace": "Wählen Sie einen Ort, dann erscheint das Ergebnis hier.",
+      "metaTitle": "Goldene Stunde & Sonnenauf-/untergang – Drohnenplanung",
+      "metaDescription": "Stadt oder Koordinaten und Datum eingeben: Sonnenaufgang, -untergang, Goldene und Blaue Stunde samt Sonnenrichtung für Drohnenaufnahmen planen.",
+      "title": "Goldene Stunde & Sonnenauf-/untergang",
+      "subtitle": "Wählen Sie Ort und Datum und sehen Sie Sonnenauf- und -untergang, Goldene und Blaue Stunde sowie die Richtung, in der die Sonne auf- und untergeht.",
+      "searchLabel": "Stadt oder Ort suchen",
+      "searchPlaceholder": "z. B. München, Tokio, Reykjavik",
+      "searchButton": "Suchen",
+      "searching": "Suche läuft...",
+      "noResults": "Keine Treffer. Versuchen Sie einen anderen Namen oder geben Sie Koordinaten ein.",
+      "searchError": "Die Suche ist fehlgeschlagen. Versuchen Sie es gleich noch einmal oder geben Sie Koordinaten ein.",
+      "useMyLocation": "Meinen Standort verwenden",
+      "locating": "Standort wird ermittelt...",
+      "geoUnavailable": "Die Standortfunktion ist in diesem Browser nicht verfügbar.",
+      "geoDenied": "Die Standortfreigabe fehlt. Suchen Sie einen Ort oder geben Sie Koordinaten ein.",
+      "manualToggle": "Koordinaten eingeben",
+      "latLabel": "Breite (-90 bis 90)",
+      "lonLabel": "Länge (-180 bis 180)",
+      "dateLabel": "Datum",
+      "today": "Heute",
+      "placeLabel": "Verwendeter Ort",
+      "placeCoords": "Breite {lat}, Länge {lon}",
+      "customPlace": "Eigene Koordinaten",
+      "myPlace": "Mein Standort",
+      "tzLabel": "Zeitzone: {tz}",
+      "tzFallback": "Die Zeitzone dieses Ortes konnte nicht ermittelt werden, daher gelten die Zeiten der Zeitzone dieses Geräts ({tz}). Sie können von der Ortszeit abweichen.",
+      "invalidPlace": "Bitte eine gültige Breite (-90 bis 90) und Länge (-180 bis 180) eingeben.",
+      "invalidDate": "Bitte ein Datum wählen.",
+      "resultTitle": "Ergebnis",
+      "sunrise": "Sonnenaufgang",
+      "sunset": "Sonnenuntergang",
+      "dayLength": "Tageslänge",
+      "dayLengthValue": "{h} Std. {m} Min.",
+      "solarNoon": "Sonnenhöchststand",
+      "maxElevation": "Maximale Höhe",
+      "degreesValue": "{value}°",
+      "azimuthValue": "{dir} {deg}°",
+      "windowsTitle": "Aufnahmefenster",
+      "morningGolden": "Goldene Stunde morgens",
+      "eveningGolden": "Goldene Stunde abends",
+      "morningBlue": "Blaue Stunde morgens",
+      "eveningBlue": "Blaue Stunde abends",
+      "windowRange": "{start} – {end}",
+      "noWindow": "Nicht zutreffend",
+      "dayBarTitle": "Tagesverlauf",
+      "legendNight": "Nacht",
+      "legendBlue": "Blaue Stunde",
+      "legendGolden": "Goldene Stunde",
+      "legendDay": "Tageslicht",
+      "polarDay": "An diesem Ort geht die Sonne an diesem Datum nicht unter (Mitternachtssonne); es gibt keine Zeiten für Sonnenaufgang und -untergang.",
+      "polarNight": "An diesem Ort geht die Sonne an diesem Datum nicht auf (Polarnacht); es gibt keine Zeiten für Sonnenaufgang und -untergang.",
+      "droneTitle": "Vor dem Flug",
+      "droneBody": "Flüge vor Sonnenaufgang oder nach Sonnenuntergang werden je nach Land und Region unterschiedlich geregelt. Prüfen Sie Nachtflug-Erlaubnis, Beleuchtungspflicht und Sichtbedingungen auf unserer Regelungsseite und bei der örtlichen Luftfahrtbehörde.",
+      "regulationsLink": "Vorschriften ansehen",
+      "serverNote": "Nur die Ortssuche läuft über unseren Server; die Sonnenberechnung aus Koordinaten und Datum erfolgt in Ihrem Browser.",
+      "compass": [
+        "N",
+        "NO",
+        "O",
+        "SO",
+        "S",
+        "SW",
+        "W",
+        "NW"
+      ],
+      "howToSteps": [
+        "Suchen Sie eine Stadt oder einen Ort und wählen Sie einen Treffer, oder nutzen Sie „Meinen Standort verwenden“ bzw. die Koordinateneingabe.",
+        "Wählen Sie ein Datum. Standard ist heute; ändern Sie es auf Ihren geplanten Drehtag.",
+        "Lesen Sie Zeiten und Richtungen von Sonnenauf- und -untergang sowie die Fenster der Goldenen und Blauen Stunde morgens und abends ab.",
+        "Seien Sie mindestens 30 Minuten früher vor Ort, um Drohne und Akkus zu prüfen, und schauen Sie im Dashboard auf Wetter und KP-Index."
+      ],
+      "formulaTitle": "So wird gerechnet",
+      "formulaBody": [
+        "Das Tool nutzt den NOAA-Algorithmus für den Sonnenstand, um Höhe und Azimut der Sonne für Datum und Ort zu bestimmen, und durchläuft den Tag im Minutentakt, um die Zeitpunkte zu finden, an denen die Sonne die jeweilige Bezugshöhe kreuzt. Sonnenauf- und -untergang verwenden −0,833° (Refraktion und Sonnenradius).",
+        "Die Goldene Stunde wird mit einer Sonnenhöhe von etwa −4° bis +6° berechnet, die Blaue Stunde mit etwa −8° bis −4°. Das sind in der Fotografie übliche Konventionen; Quellen weichen leicht voneinander ab. Gelände, Gebäude und Wolken verändern das tatsächliche Licht."
+      ],
+      "faq": [
+        {
+          "q": "Wann ist die Goldene Stunde?",
+          "a": "Es ist die Zeit kurz nach Sonnenaufgang und kurz vor Sonnenuntergang, wenn die Sonne tief steht und das Licht weich und warm ist. Die Dauer hängt von Ort und Jahreszeit ab – geben Sie oben Ort und Datum ein, um die genauen Zeiten zu sehen."
+        },
+        {
+          "q": "Worin unterscheidet sich die Blaue von der Goldenen Stunde?",
+          "a": "Die Blaue Stunde ist die bläuliche Dämmerung direkt nach Sonnenuntergang (oder vor Sonnenaufgang). Der Himmel ist noch hell, während die Stadtbeleuchtung angeht – ideal für Stadtaufnahmen. Nachtflugregeln unterscheiden sich je nach Land, prüfen Sie sie also vorher."
+        },
+        {
+          "q": "Die Zeiten weichen um ein bis zwei Minuten von einer anderen App ab.",
+          "a": "Abweichungen von ein bis zwei Minuten können von der Bezugshöhe (Refraktion) und davon kommen, ob die Geländehöhe berücksichtigt wird. In der Nähe von Bergen kann der tatsächlich sichtbare Sonnenschein früher oder später einsetzen als berechnet."
+        },
+        {
+          "q": "In hohen Breiten erscheinen keine Zeiten.",
+          "a": "Im Sommer geht die Sonne eventuell nicht unter (Mitternachtssonne), im Winter nicht auf (Polarnacht); dann gibt es keinen Sonnenauf- oder -untergang. Sie erhalten dann einen Hinweis und den Tagesverlauf, der die Lichtänderung zeigt."
+        }
+      ]
+    }
   }
 }

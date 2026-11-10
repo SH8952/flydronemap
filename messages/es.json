@@ -2,6 +2,7 @@
   "Header": {
     "tagline": "Clima de vuelo para drones e índice Kp",
     "guidesNav": "Guías",
+    "toolsNav": "Herramientas",
     "regulationsNav": "Normativas",
     "aboutNav": "Sobre nosotros",
     "faqNav": "FAQ",
@@ -320,6 +321,7 @@
     "privacy": "Política de privacidad",
     "terms": "Términos de servicio",
     "guides": "Guías",
+    "tools": "Herramientas",
     "about": "Sobre nosotros",
     "disclosure": "Divulgación de afiliados",
     "contact": "Contacto"
@@ -888,5 +890,376 @@
     "guides": "Guías",
     "regulations": "Normativa de drones por país",
     "faq": "Preguntas frecuentes"
+  },
+  "Tools": {
+    "hub": {
+      "metaTitle": "Herramientas para drones: ND, autonomía y más",
+      "metaDescription": "Calculadoras gratuitas para planificar vuelos y grabaciones con dron: filtro ND, autonomía, vatios-hora de baterías para cabina y hora dorada.",
+      "title": "Herramientas para drones",
+      "subtitle": "Desde los ajustes de cámara hasta las baterías y la hora del atardecer: los cálculos que necesitas antes de volar, en un solo lugar.",
+      "notice": "Los resultados son estimaciones orientativas. Antes de volar, consulta siempre el manual del fabricante, la normativa local y el tiempo real.",
+      "openTool": "Abrir herramienta →"
+    },
+    "common": {
+      "estimateNote": "Los resultados se basan en tus datos y en supuestos generales, y son solo orientativos. Antes de volar o viajar, consulta el manual del fabricante, las indicaciones de tu aerolínea y la normativa local.",
+      "howToTitle": "Cómo se usa",
+      "faqTitle": "Preguntas frecuentes",
+      "relatedGuidesTitle": "Guías para seguir leyendo",
+      "relatedToolsTitle": "Más herramientas",
+      "dashboardTitle": "Consulta el tiempo y el Kp antes de volar",
+      "dashboardText": "Cuando tengas tus cálculos, mira el viento, la temperatura y el índice Kp de tu zona en el panel.",
+      "dashboardButton": "Abrir el panel"
+    },
+    "items": {
+      "ndFilter": {
+        "name": "Calculadora de filtro ND",
+        "short": "ND para tu velocidad objetivo",
+        "description": "Calcula el ND que necesitas a partir de tu velocidad actual y los fps (regla de 180°) o de una velocidad objetivo, y ve la velocidad resultante."
+      },
+      "flightTime": {
+        "name": "Calculadora de autonomía",
+        "short": "Autonomía real con viento y frío",
+        "description": "Parte de la autonomía nominal o de las especificaciones de la batería y aplica viento, temperatura, estilo de vuelo y estado de la batería para estimar el tiempo útil y el punto de retorno seguro."
+      },
+      "batteryCheck": {
+        "name": "Baterías en cabina",
+        "short": "De mAh a Wh y categoría de equipaje",
+        "description": "Convierte la capacidad (mAh) y el voltaje a vatios-hora y comprueba en qué categoría de equipaje de cabina (100 Wh / 160 Wh) entra."
+      },
+      "goldenHour": {
+        "name": "Planificador de hora dorada",
+        "short": "Amanecer, atardecer y hora dorada",
+        "description": "Obtén las horas de amanecer, atardecer, hora dorada y hora azul y la dirección del sol para cualquier lugar y fecha."
+      }
+    },
+    "ndFilter": {
+      "metaTitle": "Calculadora de filtro ND para dron – elige tu ND",
+      "metaDescription": "Indica tu velocidad de obturación y fps (regla de 180°) o una velocidad objetivo y obtén el ND necesario y la velocidad resultante.",
+      "title": "Calculadora de filtros ND para dron",
+      "subtitle": "Indica la velocidad que elige la cámara sin filtro y la que quieres lograr. Te mostramos los pasos de luz a reducir y el filtro ND más cercano.",
+      "modeLabel": "Tipo de toma",
+      "modeVideo": "Vídeo (regla del obturador de 180°)",
+      "modePhoto": "Foto / larga exposición (velocidad objetivo)",
+      "baseShutterLabel": "Velocidad actual (sin filtro)",
+      "baseShutterHelp": "Usa el valor que elige la app del dron en exposición automática. Ejemplo: 1/1000 o 0.001",
+      "fpsLabel": "Fotogramas por segundo (fps)",
+      "angleLabel": "Ángulo del obturador",
+      "angleHelp": "180° da el desenfoque de movimiento más natural. Velocidad objetivo = ángulo ÷ (360 × fps).",
+      "targetLabel": "Velocidad de obturación objetivo",
+      "targetHelp": "Escribe una fracción (1/4) o segundos como número (0.25, 2, 30).",
+      "invalid": "Introduce valores válidos (la velocidad debe ser mayor que 0).",
+      "resultTitle": "Resultado",
+      "targetShutter": "Velocidad objetivo",
+      "stopsNeeded": "Reducción de luz necesaria",
+      "stopsValue": "{value} pasos",
+      "recommended": "Filtro ND recomendado",
+      "noFilter": "No necesitas filtro ND. Tu velocidad actual ya es igual o más lenta que la objetivo.",
+      "resultShutter": "Velocidad con este filtro",
+      "offsetFaster": "unos {value} pasos más rápida que el objetivo",
+      "offsetSlower": "unos {value} pasos más lenta que el objetivo",
+      "offsetExact": "casi igual que el objetivo",
+      "alternativesTitle": "Alternativas",
+      "lighter": "Un paso más suave",
+      "stronger": "Un paso más fuerte",
+      "exceeds": "La reducción necesaria supera el ND1000 (unos 10 pasos). Apilar filtros puede causar viñeteo; es mejor grabar con menos luz o elegir una velocidad objetivo más rápida.",
+      "tableTitle": "Los ND de un vistazo",
+      "tableCaption": "Velocidad con cada filtro, partiendo de una velocidad actual de {shutter}",
+      "colFilter": "Filtro",
+      "colStops": "Pasos",
+      "colLight": "Luz que pasa",
+      "colShutter": "Velocidad",
+      "howToSteps": [
+        "Antes de poner el filtro, mira la velocidad de obturación que elige la app del dron en exposición automática.",
+        "En vídeo elige los fps (por ejemplo 30); en foto o larga exposición escribe la velocidad que quieres.",
+        "Coloca el filtro recomendado y comprueba la velocidad en pantalla. Si cambia la luz, sube o baja un paso.",
+        "En vídeo, fija la velocidad (exposición manual) y ajusta el brillo con el ISO para mantener el movimiento uniforme."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "Un filtro ND de N pasos reduce la luz a 1 ÷ 2^N. Para mantener el brillo, la velocidad debe ser 2^N veces más lenta, así que los pasos necesarios son log₂(velocidad objetivo ÷ velocidad actual).",
+        "La regla de 180 grados fija la velocidad en la mitad del intervalo entre fotogramas: 1 ÷ (2 × fps). A 30 fps son 1/60 s; a 60 fps, 1/120 s. ND4 son 2 pasos, ND8 son 3 … ND1000 son unos 10 pasos (2¹⁰ = 1024)."
+      ],
+      "faq": [
+        {
+          "q": "¿Un número ND mayor oscurece más?",
+          "a": "Sí. ND8 reduce la luz a 1/8 (3 pasos) y ND64 a 1/64 (6 pasos). Cada vez que el número se duplica, pierdes un paso más."
+        },
+        {
+          "q": "La velocidad en pantalla difiere un poco del resultado.",
+          "a": "Los ND estándar vienen en pasos enteros, así que una pequeña diferencia es normal. Mira la diferencia en la tarjeta de resultado, elige el filtro más cercano y ajusta con el ISO."
+        },
+        {
+          "q": "¿Puedo apilar varios filtros ND?",
+          "a": "Los pasos se suman (ND8 + ND16 = 7 pasos), pero con cada filtro extra baja la calidad y aumenta el riesgo de viñeteo. Usa uno solo cuando puedas."
+        },
+        {
+          "q": "¿Necesito filtros ND también para fotos?",
+          "a": "Sirven para fotos de larga exposición con luz de día, como agua sedosa o nubes en movimiento. Usa el modo foto / larga exposición e indica la velocidad objetivo."
+        }
+      ]
+    },
+    "flightTime": {
+      "metaTitle": "Calculadora de autonomía de dron – con viento y frío",
+      "metaDescription": "Parte de la autonomía nominal o de la batería, suma viento, temperatura, estilo de vuelo y estado de la batería y estima el tiempo útil y el retorno.",
+      "title": "Calculadora de autonomía de dron",
+      "subtitle": "Parte de la autonomía nominal del fabricante (o de las especificaciones de la batería) y aplica viento, temperatura y estilo de vuelo para estimar cuánto puedes volar de verdad y cuándo volver.",
+      "baseModeLabel": "Cómo obtener el tiempo base",
+      "baseRated": "A partir de la autonomía nominal",
+      "baseSpec": "A partir de la batería",
+      "ratedLabel": "Autonomía nominal (min)",
+      "ratedHelp": "El tiempo máximo de vuelo que publica el fabricante. Ejemplo: 34",
+      "capacityLabel": "Capacidad de la batería (mAh)",
+      "voltsLabel": "Voltaje de la batería (V)",
+      "voltsHelp": "El voltaje nominal que figura en la etiqueta de la batería. Ejemplo: 7.7, 11.4, 15.4",
+      "weightLabel": "Peso al despegue (g)",
+      "weightHelp": "Aeronave, batería y accesorios en conjunto.",
+      "powerLabel": "Consumo (W/kg)",
+      "powerHelp": "Potencia necesaria para mantener 1 kg en el aire. Omni Calculator usa 170 por defecto (120 en un caso más bajo). Varía según la aeronave.",
+      "baseTimeLabel": "Tiempo base (vuelo estacionario ideal)",
+      "conditionsTitle": "Condiciones de vuelo",
+      "windLabel": "Velocidad del viento (m/s)",
+      "windHelp": "1 m/s ≈ 3,6 km/h",
+      "tempLabel": "Temperatura (°C)",
+      "styleLabel": "Estilo de vuelo",
+      "styleSmooth": "Suave (cinematográfico)",
+      "styleNormal": "Grabación habitual",
+      "styleSporty": "Deportivo / agresivo",
+      "healthLabel": "Estado de la batería (%)",
+      "healthHelp": "100 si es nueva; entre 80 y 90 si ha tenido mucho uso.",
+      "reserveLabel": "Reserva de aterrizaje (%)",
+      "reserveHelp": "Supone que aterrizas con esta carga restante. Aterrizar con un 20–30 % es un margen de seguridad habitual.",
+      "speedLabel": "Velocidad de crucero (km/h, opcional)",
+      "speedHelp": "Si la introduces, también se calcula el radio máximo de ida y vuelta.",
+      "invalid": "Introduce valores válidos (todos los números deben ser mayores que 0 y no estar vacíos).",
+      "resultTitle": "Resultado",
+      "totalTime": "Autonomía total estimada",
+      "usableTime": "Tiempo útil tras la reserva",
+      "turnaround": "Punto de retorno (ida y vuelta)",
+      "turnaroundHelp": "Empieza a volver cuando haya pasado este tiempo.",
+      "radius": "Radio máximo de ida",
+      "minutesValue": "unos {value} min",
+      "kmValue": "unos {value} km",
+      "factorsTitle": "Ajustes aplicados",
+      "factorBase": "Tiempo base",
+      "factorStyle": "Estilo de vuelo",
+      "factorWind": "Viento",
+      "factorTemp": "Temperatura",
+      "factorHealth": "Estado de la batería",
+      "factorTotal": "Autonomía total estimada",
+      "tableTitle": "Tablas de factores (supuestos de planificación)",
+      "tableNote": "Son supuestos basados en reglas empíricas, no cifras del fabricante; entre filas se interpola. Los valores reales varían según la aeronave y la batería.",
+      "tableWind": "Viento (m/s) → factor",
+      "tableTemp": "Temperatura (°C) → factor",
+      "warnWind": "Un viento de 10 m/s o más puede acercarse o superar la resistencia al viento de muchos drones pequeños. Consulta el límite de tu manual y no vueles si dudas.",
+      "warnCold": "Por debajo de 5 °C, mantén la batería caliente hasta el despegue y mantente unos segundos en estacionario. Los avisos de batería baja pueden aparecer antes de lo calculado.",
+      "warnHot": "Por encima de 35 °C, vigila la temperatura de la batería y la electrónica. La seguridad ante el sobrecalentamiento importa más que el tiempo de vuelo.",
+      "howToSteps": [
+        "Elige el tiempo base. Si conoces la autonomía nominal, introdúcela; si no, usa el método por batería e indica capacidad, voltaje y peso.",
+        "Introduce el viento y la temperatura de tu zona, tu estilo de vuelo y el estado de la batería. Puedes consultar viento y temperatura en el panel de FlyDroneMap.",
+        "Lee la autonomía total estimada y el tiempo útil tras la reserva de aterrizaje.",
+        "En vuelos de ida y vuelta, empieza a volver en el punto de retorno, y antes si parte del regreso es con viento de cara."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "Autonomía total estimada = tiempo base × factor de estilo × factor de viento × factor de temperatura × estado de la batería. El tiempo útil resta la reserva de aterrizaje y el punto de retorno de ida y vuelta es la mitad del tiempo útil.",
+        "En el método por batería, el tiempo base es el vuelo estacionario ideal: la energía de la batería (Wh = Ah × V) por un 80 % de descarga útil, dividida por el consumo (peso × W/kg). Las autonomías nominales también se miden en condiciones ideales, así que aplicamos la regla empírica de que un vuelo de grabación habitual aprovecha cerca del 75 % (factor de estilo 0,75)."
+      ],
+      "faq": [
+        {
+          "q": "¿Por qué sale menos que la cifra del fabricante?",
+          "a": "La autonomía nominal se mide en condiciones ideales, sin viento y a velocidad constante. En un vuelo real se suman viento, aceleraciones, temperatura y desgaste de la batería. Esta herramienta corrige esa diferencia para dar una cifra de planificación."
+        },
+        {
+          "q": "¿No puedo gastar la batería hasta el 0 %?",
+          "a": "No se recomienda. La aeronave necesita carga de reserva para los avisos de batería baja y el retorno automático, y con viento o frío el voltaje puede caer antes de lo que indica el porcentaje. Aterrizar con un 20–30 % es un margen de seguridad habitual."
+        },
+        {
+          "q": "¿Cuánto reduce el frío la autonomía?",
+          "a": "Los fabricantes no publican un porcentaje; solo dicen que la capacidad baja de forma notable. Esta herramienta supone una reducción del 15–25 % cerca de 0–5 °C como valor de planificación. Comprueba el comportamiento real en un primer vuelo corto y ajusta."
+        },
+        {
+          "q": "¿Puedo fiarme del resultado tal cual?",
+          "a": "No. Es solo una estimación de planificación. Lo que marca la aeronave (carga restante, avisos de batería baja y retorno automático) siempre va primero, y en lugares desconocidos deja más margen."
+        }
+      ]
+    },
+    "batteryCheck": {
+      "metaTitle": "Baterías de dron en cabina – de mAh a Wh",
+      "metaDescription": "Convierte mAh y voltios de la batería del dron a Wh y comprueba la categoría en cabina (hasta 100 Wh, 100–160 Wh, más de 160 Wh) y si exige permiso.",
+      "title": "Baterías de dron en cabina",
+      "subtitle": "Convierte la capacidad (mAh) y el voltaje a vatios-hora y comprueba en qué categoría de equipaje de cabina entra cada batería.",
+      "modeLabel": "Forma de introducir los datos",
+      "modeMah": "mAh + voltaje (V)",
+      "modeWh": "Wh de la etiqueta",
+      "capacityLabel": "Capacidad (mAh)",
+      "voltsLabel": "Voltaje (V)",
+      "voltsHelp": "El voltaje nominal de la etiqueta de la batería.",
+      "whLabel": "Capacidad (Wh)",
+      "whHelp": "Los Wh impresos en la etiqueta de la batería.",
+      "qtyLabel": "Cantidad",
+      "rowTitle": "Batería {n}",
+      "addRow": "Añadir otro tipo de batería",
+      "removeRow": "Quitar",
+      "invalid": "Introduce valores válidos (capacidad, voltaje y cantidad deben ser números mayores que 0).",
+      "resultTitle": "Resultado",
+      "perBattery": "{value} Wh cada una",
+      "classStandard": "Hasta 100 Wh",
+      "classApproval": "Más de 100 Wh hasta 160 Wh",
+      "classForbidden": "Más de 160 Wh",
+      "descStandard": "Entra en la categoría habitual de equipaje de cabina. Las baterías de repuesto deben ir en cabina, no en la maleta facturada, y los límites de cantidad varían según la aerolínea.",
+      "descApproval": "Se requiere autorización de la aerolínea. Las baterías de repuesto se limitan a dos por persona y deben ir en cabina.",
+      "descForbidden": "Esta capacidad no se puede llevar en un avión de pasajeros.",
+      "totalWh": "Capacidad total",
+      "totalQty": "Cantidad total",
+      "totalWhValue": "{value} Wh",
+      "totalQtyValue": "{value} uds.",
+      "warnApprovalQty": "Tienes {count} baterías en el rango que requiere autorización (100–160 Wh). Lo habitual es un máximo de dos por persona; consúltalo antes con tu aerolínea.",
+      "warnForbidden": "Alguna batería supera los 160 Wh y no puede transportarse como equipaje de pasajero.",
+      "tableTitle": "Normas de un vistazo (baterías de repuesto)",
+      "colClass": "Categoría",
+      "colCarryOn": "Cabina",
+      "colChecked": "Equipaje facturado",
+      "colApproval": "Autorización",
+      "colQuantity": "Cantidad",
+      "yes": "Permitido",
+      "no": "No permitido",
+      "needed": "Necesaria",
+      "notNeeded": "No necesaria",
+      "notAllowed": "No permitido",
+      "perAirline": "Según la aerolínea",
+      "perPerson2": "2 por persona",
+      "protectTitle": "Evita cortocircuitos",
+      "protectBody": "Cubre los terminales (+/−) con cinta aislante o guarda cada batería en su estuche, una funda protectora o su embalaje original.",
+      "installedNote": "La aplicación de las normas a una batería que se deja instalada en la aeronave puede variar según la aerolínea; consúltalo antes de viajar.",
+      "sourcesTitle": "Información oficial",
+      "sourceFaa": "FAA PackSafe – Baterías de litio",
+      "sourceIata": "IATA – Pasajeros que viajan con baterías de litio (PDF)",
+      "verified": "Contrastado con las indicaciones para pasajeros de la FAA y la IATA en noviembre de 2026. Las normas pueden cambiar y varían según el país y la aerolínea, así que confirma con tu aerolínea antes de viajar.",
+      "howToSteps": [
+        "Busca los Wh en la etiqueta de la batería. Si aparecen, elige «Wh de la etiqueta» e introdúcelos.",
+        "Si no hay Wh, introduce la capacidad (mAh) y el voltaje (V). Si llevas baterías de capacidades distintas, añádelas como tipos separados.",
+        "Comprueba la categoría de cada batería (hasta 100 Wh / 100–160 Wh / más de 160 Wh) y la cantidad total.",
+        "Antes de viajar, lee las indicaciones de tu aerolínea sobre baterías de litio, aísla los terminales y lleva las baterías en cabina."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "Wh = voltaje (V) × capacidad (Ah), y los mAh se dividen entre 1000 para obtener Ah. Por ejemplo, una batería de 5000 mAh y 15,4 V son 5 × 15,4 = 77 Wh. La FAA y la IATA dan esta misma fórmula.",
+        "Las categorías siguen las indicaciones para pasajeros de la FAA y la IATA: hasta 100 Wh es equipaje de cabina habitual, de más de 100 Wh hasta 160 Wh requiere autorización de la aerolínea (dos de repuesto por persona) y más de 160 Wh no puede ir en un avión de pasajeros. Las baterías de repuesto siempre deben ir en cabina."
+      ],
+      "faq": [
+        {
+          "q": "Mi batería no tiene los Wh impresos.",
+          "a": "Calcúlalos con el voltaje (V) y la capacidad (mAh) de la etiqueta: Wh = V × mAh ÷ 1000. Ejemplo: 5000 mAh × 15,4 V ÷ 1000 = 77 Wh. Las baterías de iones de litio suelen llevar los Wh indicados, así que mira primero la etiqueta."
+        },
+        {
+          "q": "¿Puedo meter las baterías del dron en la maleta facturada?",
+          "a": "La FAA y la IATA coinciden en que las baterías de litio de repuesto (sueltas) deben ir en el equipaje de cabina, no en el facturado. Lo mismo vale para las baterías de dron."
+        },
+        {
+          "q": "¿No puedo llevar una batería de más de 100 Wh?",
+          "a": "De más de 100 Wh hasta 160 Wh pueden ir en cabina con autorización de la aerolínea, con un máximo de dos de repuesto por persona. Lo que supere los 160 Wh no puede llevarse en un avión de pasajeros."
+        },
+        {
+          "q": "¿Son las mismas normas que para las baterías externas (power banks)?",
+          "a": "No. Las baterías externas están sujetas a límites distintos y más estrictos de las aerolíneas en cantidad y uso. Trata las baterías del dron según las normas de baterías de repuesto anteriores y consulta las últimas indicaciones de tu aerolínea."
+        }
+      ]
+    },
+    "goldenHour": {
+      "noPlace": "Elige un lugar y los resultados aparecerán aquí.",
+      "metaTitle": "Hora dorada, amanecer y atardecer – Planifica el dron",
+      "metaDescription": "Introduce ciudad o coordenadas y fecha para ver amanecer, atardecer, hora dorada y hora azul, y la dirección del sol al planificar tomas con dron.",
+      "title": "Hora dorada y amanecer/atardecer",
+      "subtitle": "Elige un lugar y una fecha para ver las horas de amanecer, atardecer, hora dorada y hora azul, y la dirección por la que sale y se pone el sol.",
+      "searchLabel": "Buscar una ciudad o lugar",
+      "searchPlaceholder": "Ej.: Sevilla, Tokio, Reikiavik",
+      "searchButton": "Buscar",
+      "searching": "Buscando...",
+      "noResults": "Sin resultados. Prueba con otro nombre o introduce las coordenadas.",
+      "searchError": "La búsqueda ha fallado. Inténtalo de nuevo en un momento o introduce las coordenadas.",
+      "useMyLocation": "Usar mi ubicación",
+      "locating": "Localizando...",
+      "geoUnavailable": "La ubicación no está disponible en este navegador.",
+      "geoDenied": "No se concedió el permiso de ubicación. Busca un lugar o introduce las coordenadas.",
+      "manualToggle": "Introducir coordenadas",
+      "latLabel": "Latitud (-90 a 90)",
+      "lonLabel": "Longitud (-180 a 180)",
+      "dateLabel": "Fecha",
+      "today": "Hoy",
+      "placeLabel": "Ubicación utilizada",
+      "placeCoords": "Lat. {lat}, long. {lon}",
+      "customPlace": "Coordenadas propias",
+      "myPlace": "Mi ubicación",
+      "tzLabel": "Zona horaria: {tz}",
+      "tzFallback": "No se pudo determinar la zona horaria de este lugar, así que las horas usan la de este dispositivo ({tz}). Pueden diferir de la hora local.",
+      "invalidPlace": "Introduce una latitud (-90 a 90) y una longitud (-180 a 180) válidas.",
+      "invalidDate": "Elige una fecha.",
+      "resultTitle": "Resultados",
+      "sunrise": "Amanecer",
+      "sunset": "Atardecer",
+      "dayLength": "Duración del día",
+      "dayLengthValue": "{h} h {m} min",
+      "solarNoon": "Mediodía solar",
+      "maxElevation": "Altura máxima",
+      "degreesValue": "{value}°",
+      "azimuthValue": "{dir} {deg}°",
+      "windowsTitle": "Franjas para grabar",
+      "morningGolden": "Hora dorada de la mañana",
+      "eveningGolden": "Hora dorada de la tarde",
+      "morningBlue": "Hora azul de la mañana",
+      "eveningBlue": "Hora azul de la tarde",
+      "windowRange": "{start} – {end}",
+      "noWindow": "No aplica",
+      "dayBarTitle": "Línea del día",
+      "legendNight": "Noche",
+      "legendBlue": "Hora azul",
+      "legendGolden": "Hora dorada",
+      "legendDay": "Luz diurna",
+      "polarDay": "En este lugar el sol no se pone en esta fecha (sol de medianoche), por lo que no hay hora de amanecer ni de atardecer.",
+      "polarNight": "En este lugar el sol no sale en esta fecha (noche polar), por lo que no hay hora de amanecer ni de atardecer.",
+      "droneTitle": "Antes de volar",
+      "droneBody": "Volar antes del amanecer o después del atardecer se regula de forma distinta según el país y la región. Consulta el permiso para vuelo nocturno, la iluminación exigida y las condiciones de visibilidad en nuestra página de normativa y con la autoridad aeronáutica local.",
+      "regulationsLink": "Ver normativa",
+      "serverNote": "Solo la búsqueda por nombre de lugar pasa por nuestro servidor; el cálculo del sol a partir de coordenadas y fecha se hace en tu navegador.",
+      "compass": [
+        "N",
+        "NE",
+        "E",
+        "SE",
+        "S",
+        "SO",
+        "O",
+        "NO"
+      ],
+      "howToSteps": [
+        "Busca una ciudad o lugar y elige un resultado, o usa «Usar mi ubicación» o introduce coordenadas.",
+        "Elige una fecha. Por defecto es hoy y puedes cambiarla por el día de tu grabación.",
+        "Consulta las horas y direcciones del amanecer y el atardecer, y las franjas de hora dorada y hora azul de la mañana y la tarde.",
+        "Llega al menos 30 minutos antes para revisar el dron y las baterías, y mira el tiempo y el índice KP en el panel."
+      ],
+      "formulaTitle": "Cómo se calcula",
+      "formulaBody": [
+        "La herramienta usa el algoritmo de posición solar de la NOAA para obtener la altura y el acimut del sol en una fecha y un lugar, y recorre el día minuto a minuto para hallar cuándo el sol cruza cada altura de referencia. Amanecer y atardecer usan −0,833° (refracción y radio del sol).",
+        "La hora dorada se calcula con una altura solar de unos −4° a +6° y la hora azul de unos −8° a −4°. Son convenciones habituales en fotografía y las fuentes difieren un poco. El relieve, los edificios y las nubes cambian la luz real."
+      ],
+      "faq": [
+        {
+          "q": "¿Cuándo es la hora dorada?",
+          "a": "Es el periodo justo después del amanecer y justo antes del atardecer, cuando el sol está bajo y la luz es suave y cálida. Su duración depende del lugar y la estación; introduce tu lugar y fecha arriba para ver las horas exactas."
+        },
+        {
+          "q": "¿En qué se diferencia la hora azul de la hora dorada?",
+          "a": "La hora azul es el crepúsculo azulado justo después del atardecer (o antes del amanecer). El cielo aún está claro mientras se encienden las luces de la ciudad, algo ideal para paisajes urbanos. Las normas de vuelo nocturno varían según el país, así que consúltalas antes."
+        },
+        {
+          "q": "Las horas difieren uno o dos minutos de otra aplicación.",
+          "a": "Una diferencia de uno o dos minutos puede venir de la altura de referencia (refracción) y de si se incluye la elevación del terreno. Cerca de montañas, la hora en que realmente ves la luz del sol puede ser anterior o posterior a la calculada."
+        },
+        {
+          "q": "No aparecen horas en latitudes altas.",
+          "a": "En verano el sol puede no ponerse (sol de medianoche) y en invierno no salir (noche polar), de modo que no hay amanecer ni atardecer. En ese caso verás un aviso y la línea del día con el cambio de luz."
+        }
+      ]
+    }
   }
 }
