@@ -902,7 +902,12 @@
       "title": "Drone Tools",
       "subtitle": "From camera settings, batteries and sunset times to mapping resolution, a preflight checklist and EU rules, the tools you need before a drone flight in one place.",
       "notice": "Results are estimates for reference. Always check your manufacturer's manual, local regulations and the actual weather before flying.",
-      "openTool": "Open tool →"
+      "openTool": "Open tool →",
+      "categories": {
+        "planning": "Shot Planning",
+        "performance": "Performance & Range",
+        "prep": "Preparation & Rules"
+      }
     },
     "common": {
       "estimateNote": "Results are based on your inputs and general assumptions, for reference only. Before a flight or trip, check the manufacturer's manual, your airline's guidance and local regulations.",

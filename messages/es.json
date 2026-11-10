@@ -902,7 +902,12 @@
       "title": "Herramientas para drones",
       "subtitle": "Desde los ajustes de cámara, las baterías y la hora del ocaso hasta la resolución cartográfica, la lista previa al vuelo y la normativa de la UE: todo lo que necesitas antes de volar.",
       "notice": "Los resultados son estimaciones orientativas. Antes de volar, consulta siempre el manual del fabricante, la normativa local y el tiempo real.",
-      "openTool": "Abrir herramienta →"
+      "openTool": "Abrir herramienta →",
+      "categories": {
+        "planning": "Planificación de tomas",
+        "performance": "Rendimiento y alcance",
+        "prep": "Preparación y normativa"
+      }
     },
     "common": {
       "estimateNote": "Los resultados se basan en tus datos y en supuestos generales, y son solo orientativos. Antes de volar o viajar, consulta el manual del fabricante, las indicaciones de tu aerolínea y la normativa local.",

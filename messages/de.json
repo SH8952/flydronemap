@@ -902,7 +902,12 @@
       "title": "Drohnen-Tools",
       "subtitle": "Von Kameraeinstellungen, Akkus und Sonnenuntergang bis zu Kartierungsauflösung, Checkliste und EU-Regeln: die Tools, die Sie vor einem Drohnenflug brauchen, an einem Ort.",
       "notice": "Die Ergebnisse sind Schätzwerte zur Orientierung. Prüfen Sie vor dem Flug stets das Handbuch des Herstellers, die örtlichen Vorschriften und das tatsächliche Wetter.",
-      "openTool": "Tool öffnen →"
+      "openTool": "Tool öffnen →",
+      "categories": {
+        "planning": "Aufnahmeplanung",
+        "performance": "Flugleistung & Reichweite",
+        "prep": "Vorbereitung & Vorschriften"
+      }
     },
     "common": {
       "estimateNote": "Die Ergebnisse beruhen auf Ihren Eingaben und allgemeinen Annahmen und dienen nur der Orientierung. Prüfen Sie vor Flug oder Reise das Herstellerhandbuch, die Hinweise Ihrer Airline und die örtlichen Vorschriften.",

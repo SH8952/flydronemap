@@ -14,8 +14,15 @@ export type ToolKey =
   | "checklist"
   | "euCategory";
 
+export type ToolCategory = "planning" | "performance" | "prep";
+
+/** 도구 허브(/tools)에서 보여 줄 카테고리 순서 */
+export const TOOL_CATEGORIES: readonly ToolCategory[] = ["planning", "performance", "prep"];
+
 export type ToolDef = {
   key: ToolKey;
+  /** 도구 허브의 카테고리(홈 화면 섹션에는 영향 없음) */
+  category: ToolCategory;
   slug: string;
   /** 함께 읽을 가이드 slug (해당 언어에 번역본이 있는 것만 보여 준다) */
   guides: string[];
@@ -26,12 +33,14 @@ export type ToolDef = {
 export const TOOLS: readonly ToolDef[] = [
   {
     key: "ndFilter",
+    category: "planning",
     slug: "nd-filter-calculator",
     guides: ["nd-filter-guide-for-drone-cinematography", "best-time-of-day-to-fly-a-drone"],
     imageQuery: "drone aerial sunset long exposure",
   },
   {
     key: "flightTime",
+    category: "performance",
     slug: "flight-time-calculator",
     guides: [
       "how-to-extend-drone-flight-time",
@@ -42,24 +51,28 @@ export const TOOLS: readonly ToolDef[] = [
   },
   {
     key: "batteryCheck",
+    category: "prep",
     slug: "battery-airline-check",
     guides: ["packing-a-drone-travel-bag-checklist", "drone-battery-care-and-lifespan-tips"],
     imageQuery: "drone travel backpack battery",
   },
   {
     key: "goldenHour",
+    category: "planning",
     slug: "golden-hour-planner",
     guides: ["best-time-of-day-to-fly-a-drone", "what-weather-data-to-check-before-flying-a-drone"],
     imageQuery: "golden hour aerial landscape",
   },
   {
     key: "gsd",
+    category: "planning",
     slug: "gsd-calculator",
     guides: ["nd-filter-guide-for-drone-cinematography"],
     imageQuery: "drone mapping aerial survey",
   },
   {
     key: "densityAltitude",
+    category: "performance",
     slug: "density-altitude-calculator",
     guides: [
       "temperature-and-drone-battery-performance",
@@ -70,12 +83,14 @@ export const TOOLS: readonly ToolDef[] = [
   },
   {
     key: "lineOfSight",
+    category: "performance",
     slug: "line-of-sight-calculator",
     guides: ["vlos-bvlos-explained", "visibility-and-safe-drone-flight-standards"],
     imageQuery: "drone horizon landscape distance",
   },
   {
     key: "checklist",
+    category: "prep",
     slug: "preflight-checklist",
     guides: [
       "beginner-drone-preflight-checklist",
@@ -86,6 +101,7 @@ export const TOOLS: readonly ToolDef[] = [
   },
   {
     key: "euCategory",
+    category: "prep",
     slug: "eu-drone-category-check",
     guides: ["eu-easa-drone-regulations-basics", "remote-id-requirements-explained"],
     imageQuery: "drone europe city aerial",
