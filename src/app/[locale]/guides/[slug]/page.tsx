@@ -208,7 +208,7 @@ export default async function GuidePage({
 
       <GuideFloatingToc headings={headings} title={t("toc.title")} />
 
-      <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-a:text-primary">
+      <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-a:text-primary prose-th:hyphens-auto prose-td:hyphens-auto max-sm:prose-table:block max-sm:prose-table:overflow-x-auto">
         <Content />
       </article>
 

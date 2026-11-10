@@ -1,3 +1,17 @@
+## 2026-11-10 (5) — 가이드 표 모바일 가로 넘침 수정 (독일어 best-time-of-day-to-fly-a-drone)
+
+**배경**: 도구 작업 검증 중 발견한 기존 문제(독일어 표가 390px 화면에서 21px, 360px에서 51px 넘침)를 사용자 요청으로 수정. 긴 독일어 합성어(Antikollisionslichter 등) 때문에 표 최소 폭이 395px였음.
+
+**변경 사항**
+- `src/app/[locale]/guides/[slug]/page.tsx` (article 클래스 1줄): `prose-th:hyphens-auto prose-td:hyphens-auto`(`<html lang>` 기준 자동 하이픈) + `max-sm:prose-table:block max-sm:prose-table:overflow-x-auto`(좁은 화면에서만 표 내부 가로 스크롤).
+- 단어는 잘리지 않고 페이지 전체 가로 넘침 0. 640px 이상(데스크톱·태블릿) 표는 변경 없음. 콘텐츠(mdx) 수정 없음.
+
+**검증**: tsc/eslint 에러 0, next build 성공, 전체 가이드 365페이지(5개 언어) × 390px 가로 넘침 0건(표 355개), 독일어 360px도 0. 영어 표 모양은 변화 없음.
+**참고**: `UNSPLASH_ACCESS_KEY`는 flydronemap `.env.local`에 이미 설정(43자, firelic과 동일 값)되어 있어 변경 없음. 키 유효성은 `npm run dev`의 도구 이미지 패널에서 확인.
+**백업**: `.backups/backup_20261110_120705_unsplash-key-and-de-table-before`
+
+---
+
 ## 2026-11-10 (4) — 도구 허브(/tools) 카테고리별 분류 표시 (형제 사이트 exifnd.com 스타일)
 
 **배경**: 사용자 요청("도구별로 카테고리를 나눠서 보일수도 있을까?" → 범위: 도구 허브만). 홈 화면의 "드론 도구" 섹션은 기존처럼 9개 전체를 한 줄 그리드로 유지.
