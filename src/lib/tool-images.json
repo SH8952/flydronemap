@@ -1,1 +1,47 @@
-{}
+{
+  "nd-filter-calculator": {
+    "image": "/tools/images/nd-filter-calculator.webp",
+    "imageCredit": "Tyler Casey",
+    "imageCreditUrl": "https://unsplash.com/@tylercaseyprod?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "flight-time-calculator": {
+    "image": "/tools/images/flight-time-calculator.webp",
+    "imageCredit": "Surya Devarakonda",
+    "imageCreditUrl": "https://unsplash.com/@suryadevarakonda?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "battery-airline-check": {
+    "image": "/tools/images/battery-airline-check.webp",
+    "imageCredit": "Zac Gudakov",
+    "imageCreditUrl": "https://unsplash.com/@zacgudakov?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "golden-hour-planner": {
+    "image": "/tools/images/golden-hour-planner.webp",
+    "imageCredit": "Sorasak",
+    "imageCreditUrl": "https://unsplash.com/@boontohhgraphy?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "gsd-calculator": {
+    "image": "/tools/images/gsd-calculator.webp",
+    "imageCredit": "Christopher Burns",
+    "imageCreditUrl": "https://unsplash.com/@christopher__burns?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "density-altitude-calculator": {
+    "image": "/tools/images/density-altitude-calculator.webp",
+    "imageCredit": "Dion Tavenier",
+    "imageCreditUrl": "https://unsplash.com/@diotav?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "line-of-sight-calculator": {
+    "image": "/tools/images/line-of-sight-calculator.webp",
+    "imageCredit": "Nicolas Luna",
+    "imageCreditUrl": "https://unsplash.com/@nicolaslunaq?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "preflight-checklist": {
+    "image": "/tools/images/preflight-checklist.webp",
+    "imageCredit": "Aaron Burden",
+    "imageCreditUrl": "https://unsplash.com/@aaronburden?utm_source=FlyDroneMap&utm_medium=referral"
+  },
+  "eu-drone-category-check": {
+    "image": "/tools/images/eu-drone-category-check.webp",
+    "imageCredit": "david henrichs",
+    "imageCreditUrl": "https://unsplash.com/@davidhenrichs?utm_source=FlyDroneMap&utm_medium=referral"
+  }
+}
