@@ -967,6 +967,7 @@
       }
     },
     "ndFilter": {
+      "shareText": "Obturador base {base} → objetivo {target}: {stops} pasos necesarios · {needsFilter, select, yes {filtro ND recomendado {filter}} other {no hace falta filtro ND}}",
       "metaTitle": "Calculadora de filtro ND para dron – elige tu ND",
       "metaDescription": "Indica tu velocidad de obturación y fps (regla de 180°) o una velocidad objetivo y obtén el ND necesario y la velocidad resultante.",
       "title": "Calculadora de filtros ND para dron",
@@ -1033,6 +1034,7 @@
       ]
     },
     "flightTime": {
+      "shareText": "Base {base} · viento {wind} m/s · {temp}°C → tiempo de vuelo estimado {total} ({usable} utilizables tras la reserva)",
       "metaTitle": "Calculadora de autonomía de dron – con viento y frío",
       "metaDescription": "Parte de la autonomía nominal o de la batería, suma viento, temperatura, estilo de vuelo y estado de la batería y estima el tiempo útil y el retorno.",
       "title": "Calculadora de autonomía de dron",
@@ -1296,6 +1298,7 @@
       ]
     },
     "gsd": {
+      "shareText": "Altitud {altitude} → GSD {gsd}, huella {width} × {height}",
       "metaTitle": "Calculadora GSD de dron – resolución por altura de vuelo",
       "metaDescription": "Calcula el GSD (cm por píxel), la huella en el suelo y el intervalo entre fotos con la altura, el sensor y la focal, o la altura para un GSD objetivo.",
       "title": "Calculadora GSD para dron",
@@ -1377,6 +1380,7 @@
       "preset_aps_c": "APS-C"
     },
     "densityAltitude": {
+      "shareText": "Elevación {elevation} · {temp} · presión {qnh} → altitud de densidad {density}",
       "metaTitle": "Calculadora de altitud de densidad – calor y altura",
       "metaDescription": "Calcula la altitud de densidad, la densidad relativa del aire y la potencia extra en estacionario con elevación, temperatura y QNH.",
       "title": "Calculadora de altitud de densidad para dron",
@@ -1440,6 +1444,7 @@
       ]
     },
     "lineOfSight": {
+      "shareText": "{kind, select, distance {Altura de ojos del piloto {pilot} · altitud del dron {altitude} → horizonte visual {geo}, alcance de radio {radio}} other {Altura de ojos del piloto {pilot} · distancia objetivo {distance} → altitud necesaria {geo} (visual), {radio} (radio)}}",
       "metaTitle": "Calculadora de línea de visión y horizonte radio",
       "metaDescription": "Calcula la distancia al horizonte y el alcance radio con la altura del dron y la del piloto, o la altura necesaria para una distancia.",
       "title": "Calculadora de línea de visión y horizonte radio",

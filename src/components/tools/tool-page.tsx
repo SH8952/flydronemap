@@ -14,7 +14,7 @@ import {
   Timer,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { ShareButton } from "@/components/share-button";
+import { ResultShare } from "@/components/result-share";
 import { SITE_URL, breadcrumbJsonLd } from "@/lib/seo";
 import { getGuideMeta } from "@/lib/guides";
 import type { Locale } from "@/i18n/routing";
@@ -94,7 +94,7 @@ export async function ToolPage({
           <span aria-hidden="true"> › </span>
           <span>{t("title")}</span>
         </nav>
-        <ShareButton title={t("title")} text={t("subtitle")} url={url} />
+        <ResultShare path={`/tools/${tool.slug}`} title={t("title")} text={t("subtitle")} />
       </div>
 
       <header className="flex flex-col gap-2 text-center">

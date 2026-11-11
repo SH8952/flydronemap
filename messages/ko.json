@@ -967,6 +967,7 @@
       }
     },
     "ndFilter": {
+      "shareText": "기본 셔터 {base} → 목표 {target} · {stops}스톱 필요 · {needsFilter, select, yes {추천 ND 필터 {filter}} other {ND 필터 불필요}}",
       "metaTitle": "드론 ND 필터 계산기 – 영상·장노출 셔터 스피드별 ND 단계",
       "metaDescription": "현재 셔터 스피드와 프레임레이트(180도 규칙) 또는 목표 셔터만 입력하면 필요한 ND 단계와 필터 사용 후 셔터 스피드를 바로 계산해 드립니다.",
       "title": "드론 ND 필터 계산기",
@@ -1033,6 +1034,7 @@
       ]
     },
     "flightTime": {
+      "shareText": "기준 {base} · 바람 {wind}m/s · {temp}°C → 예상 비행시간 {total} (여유분 제외 {usable})",
       "metaTitle": "드론 비행시간 계산기 – 바람·기온 반영 실비행 시간",
       "metaDescription": "공칭 비행시간이나 배터리 사양에 바람, 기온, 비행 방식, 배터리 상태를 반영해 실제 비행 가능 시간과 안전한 복귀 시점을 추정합니다.",
       "title": "드론 비행시간 계산기",
@@ -1296,6 +1298,7 @@
       ]
     },
     "gsd": {
+      "shareText": "고도 {altitude} → GSD {gsd}, 촬영 범위 {width} × {height}",
       "metaTitle": "드론 GSD 계산기 – 촬영 고도별 지상 해상도 계산",
       "metaDescription": "촬영 고도, 센서 크기, 초점거리로 드론 사진의 GSD(cm/픽셀)와 촬영 범위, 촬영 간격을 계산하고 목표 해상도에 필요한 고도도 구합니다.",
       "title": "드론 GSD 계산기",
@@ -1377,6 +1380,7 @@
       "preset_aps_c": "APS-C"
     },
     "densityAltitude": {
+      "shareText": "표고 {elevation} · 기온 {temp} · 기압 {qnh} → 밀도 고도 {density}",
       "metaTitle": "드론 밀도고도 계산기 – 고온·고지대 비행 성능",
       "metaDescription": "해발고도, 기온, 기압(QNH)으로 밀도고도와 공기 밀도 비율, 호버링에 필요한 출력 증가율을 계산해 고온·고지대 비행 성능을 가늠합니다.",
       "title": "드론 밀도고도 계산기",
@@ -1440,6 +1444,7 @@
       ]
     },
     "lineOfSight": {
+      "shareText": "{kind, select, distance {조종자 눈높이 {pilot} · 드론 고도 {altitude} → 가시 수평선 {geo}, 전파 도달 {radio}} other {조종자 눈높이 {pilot} · 목표 거리 {distance} → 필요 고도 {geo}(가시), {radio}(전파)}}",
       "metaTitle": "드론 가시거리·전파 도달거리 계산기 – 고도별 수평선",
       "metaDescription": "드론 비행 고도와 조종자 눈높이로 지평선까지의 거리, 전파 도달 거리(라디오 호라이즌)를 계산하고 원하는 거리에 필요한 고도를 구합니다.",
       "title": "드론 가시거리·전파 도달거리 계산기",

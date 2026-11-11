@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useSharePublish } from "@/lib/use-share-publish";
+import { parseStringChoice, parseNumberChoice, readSharedParams } from "@/lib/shared-params";
 import { Input } from "@/components/ui/input";
 import { Chip, Field, Notice, SegmentedControl, Stat } from "@/components/tools/tool-ui";
 import { parseShutter } from "@/lib/drone-tools/parse";
@@ -33,10 +35,48 @@ export function NdFilterCalculator() {
   const [angle, setAngle] = useState(180);
   const [target, setTarget] = useState("2");
 
+  // 공유 링크로 들어온 경우 입력값을 채운다. 서버 렌더링 결과(기본값)와 첫 화면을 맞추기 위해
+  // 마운트 직후 한 번만 읽고, 허용 범위·목록 밖의 값은 무시한다.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    const q = readSharedParams();
+    if (!q) return;
+    const m = parseStringChoice(q.get("m"), ["video", "photo"] as const);
+    const b = q.get("b");
+    const tg = q.get("tg");
+    const f = parseNumberChoice(q.get("f"), FPS_OPTIONS);
+    const a = parseNumberChoice(q.get("a"), ANGLE_OPTIONS);
+    if (m !== null) setMode(m);
+    if (b !== null && /^[0-9./]{1,12}$/.test(b) && parseShutter(b) > 0) setBase(b);
+    if (tg !== null && /^[0-9./]{1,12}$/.test(tg) && parseShutter(tg) > 0) setTarget(tg);
+    if (f !== null) setFps(f);
+    if (a !== null) setAngle(a);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
+
   const baseSec = parseShutter(base);
   const targetSec = mode === "video" ? shutterFromFps(fps, angle) : parseShutter(target);
   const valid = baseSec > 0 && targetSec > 0;
   const rec = useMemo(() => (valid ? recommendNd(baseSec, targetSec) : null), [valid, baseSec, targetSec]);
+
+  // 페이지 상단 공유 버튼이 쓸 현재 입력값(링크)과 결과 요약(문구)을 올린다.
+  const shareQuery = new URLSearchParams({
+    m: mode,
+    b: base,
+    f: String(fps),
+    a: String(angle),
+    tg: target,
+  }).toString();
+  const shareText = rec
+    ? t("shareText", {
+        base,
+        target: formatShutter(targetSec),
+        stops: nf.format(rec.stops),
+        needsFilter: rec.needsFilter && rec.best ? "yes" : "no",
+        filter: rec.best ? rec.best.filter.name : "",
+      })
+    : null;
+  useSharePublish("/tools/nd-filter-calculator", shareQuery, shareText);
 
   const offsetText = (s: NdSuggestion) => {
     const abs = Math.abs(s.offsetStops);

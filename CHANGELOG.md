@@ -1,3 +1,36 @@
+## 2026-11-11 (1) — 공유 강화 이식(ExifLens 1~3단계 → FlyDroneMap): 공유 측정·언어별 채널·카카오 미리보기 카드·결과 공유 링크
+
+**배경**: 사용자 요청. ExifLens에서 완료·검증한 공유 강화를 형제 프로젝트에 동일하게 적용(FlyDroneMap → firelic → lifehub 순). FlyDroneMap의 공유 버튼은 ExifLens의 강화 전 버전과 동일해 같은 구조로 이식.
+
+**변경 사항**
+- (1단계) `src/components/share-button.tsx` 교체: GA4 권장 이벤트 `share`(method·content_type·item_id) 전송, 공유 링크 UTM(`utm_source=share&utm_medium=<채널>&utm_campaign=<tool|blog|guide|page>`), 언어별 공유 채널(ko: 카카오·밴드·X·페이스북 / en: X·페이스북·WhatsApp·텔레그램 / ja: LINE·X·페이스북 / es·de: WhatsApp·텔레그램·X·페이스북), 카카오 링크 미리보기 카드. 신규 `src/lib/share-links.ts`(독일어 de 추가).
+- (2단계) 카카오 일반 공유는 `sendScrap`(페이지 OG 정보로 큰 이미지·제목·설명·도메인 카드), 결과 공유는 결과 문구 피드 카드(`scrapImage`로 이미지를 카카오 서버에 올려 표시). `src/lib/tool-metadata.ts`에 `twitter` 카드 항목 추가(도구 이미지가 있으면 그 이미지, 없으면 기본 이미지). ※ FlyDroneMap은 `tool-images.json`이 비어 있어(도구 대표 이미지 미선정) ExifLens처럼 도구별 OG JPEG은 만들지 않음 — 대표 이미지를 고르면 기존 로직(og:image)이 그대로 적용됨.
+- (3단계) 결과 공유 링크: `ToolPage`의 공유 버튼을 `ResultShare`로 교체(도구 9종 공통 틀). 계산기형 5종(ND 필터·비행시간·GSD·밀도 고도·가시거리)이 현재 입력값(`?m=video&b=1/1000…`)과 결과 요약 문구를 올리며, 링크로 열면 같은 입력값이 채워짐(허용 범위·목록 밖의 값은 무시). 신규 `src/components/result-share.tsx`, `src/lib/share-state.ts`, `src/lib/shared-params.ts`(문자열 입력칸용 `parseNumberText` 추가), `src/lib/use-share-publish.ts`. 5개 언어(ko/en/ja/es/de) `shareText` 키 추가.
+- 제외: 배터리 기내 반입 점검(여러 행 입력), 골든아워 플래너(위치·날짜 입력 — 개인 위치가 링크에 담김), 비행 전 점검표(체크 상태), EU 등급 판정(질문 응답)은 결과 링크화하지 않고 기존처럼 기본 주소·설명 공유. 메인 대시보드(날씨·KP)에는 공유 버튼이 없어 변경 없음.
+- 색인 영향 없음: canonical·본문·주소 변경 없음(공유 링크의 쿼리는 새 색인 대상이 아님).
+
+**검증**: tsc 0 오류, eslint(src/components·src/lib·tools 페이지) 신규 경고 없음, 5개 언어 shareText ICU 해석 검사 통과(변수명 일치 확인), messages 5개 JSON 유효. 이 환경은 `next dev`·`next build` 불가 → 푸시 후 실제 사이트에서 확인.
+**알아둘 점**: 카카오 카드가 동작하려면 Vercel에 `NEXT_PUBLIC_KAKAO_JS_KEY`가 등록돼 있고 카카오 개발자 콘솔 웹 도메인에 flydronemap.com이 등록돼 있어야 함(사용자 확인 필요). 환경변수는 빌드에 포함되므로 변경 시 재배포 필요.
+**상태**: 코드 수정 완료, 커밋·푸시 전(사용자가 `공유강화이식_Push.command` 직접 실행).
+**백업**: `_backups/flydronemap_backup_20261111_080428_공유강화이식_사전`
+
+---
+
+## 2026-11-10 (6) — `이미지변경사항_Push.command` 도구 대표 이미지 지원 추가
+
+**배경**: 사용자 요청. 가이드 이미지 변경용 상시 스크립트를 도구 대표 이미지(/tools) 변경 후에도 함께 쓰도록 확장.
+
+**변경 사항** (`이미지변경사항_Push.command`, 저장소에는 포함되지 않는 로컬 도구)
+- 대상 경로: `content/guides`, `public/guides/images`(기존) + `public/tools/images`, `src/lib/tool-images.json`(추가). 배열로 관리해 **지정 경로만** `git add -- ...` (`git add -A` 사용 안 함, 경로 밖 파일은 커밋되지 않음).
+- `git status -uall`로 새 폴더(`public/tools/images/`)도 파일 단위로 감지.
+- 화면에 "변경된 가이드 글" / "변경된 도구 이미지" 구분 출력, 커밋 메시지는 `가이드: …` / `도구: …` 자동 구성(둘 다 변경 시 함께 표기). 커밋 attribution을 현재 세션 값으로 갱신.
+- 상시 도구이므로 자동 삭제 없음, 완료 후 터미널 자동 닫힘·아이콘 적용·실패 시 창 유지 동작은 그대로.
+
+**검증**: `bash -n` 통과, 임시 저장소(원격 포함)에서 4가지 경우(변경 없음 / 도구만 / 가이드만 / 둘 다) 실제 실행 시험 — 올바른 파일만 커밋·푸시, 경로 밖 파일 미포함. 실제 저장소·운영 사이트는 건드리지 않음.
+**백업**: `.backups/backup_20261110_225724_image-push-script-before`, 원본 스크립트 `.backups/이미지변경사항_Push.command.before-tools-20261110`
+
+---
+
 ## 2026-11-10 (5) — 가이드 표 모바일 가로 넘침 수정 (독일어 best-time-of-day-to-fly-a-drone)
 
 **배경**: 도구 작업 검증 중 발견한 기존 문제(독일어 표가 390px 화면에서 21px, 360px에서 51px 넘침)를 사용자 요청으로 수정. 긴 독일어 합성어(Antikollisionslichter 등) 때문에 표 최소 폭이 395px였음.

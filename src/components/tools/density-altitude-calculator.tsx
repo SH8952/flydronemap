@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useSharePublish } from "@/lib/use-share-publish";
+import { parseNumberText, parseStringChoice, readSharedParams } from "@/lib/shared-params";
 import { Input } from "@/components/ui/input";
 import { Field, Notice, SegmentedControl, Stat } from "@/components/tools/tool-ui";
 import { parseNumber } from "@/lib/drone-tools/parse";
@@ -19,6 +21,23 @@ export function DensityAltitudeCalculator() {
   const [elevation, setElevation] = useState("0");
   const [temp, setTemp] = useState("30");
   const [qnh, setQnh] = useState("1013");
+
+  // 공유 링크로 들어온 경우 입력값을 채운다. 서버 렌더링 결과(기본값)와 첫 화면을 맞추기 위해
+  // 마운트 직후 한 번만 읽고, 허용 범위·목록 밖의 값은 무시한다.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    const q = readSharedParams();
+    if (!q) return;
+    const un = parseStringChoice(q.get("un"), ["metric", "imperial"] as const);
+    const e = parseNumberText(q.get("e"), -2000, 40000);
+    const tp = parseNumberText(q.get("tp"), -80, 140);
+    const qn = parseNumberText(q.get("q"), 20, 1100);
+    if (un !== null) setUnits(un);
+    if (e !== null) setElevation(e);
+    if (tp !== null) setTemp(tp);
+    if (qn !== null) setQnh(qn);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
   const imperial = units === "imperial";
 
   function changeUnits(next: Units) {
@@ -57,6 +76,23 @@ export function DensityAltitudeCalculator() {
       : t("altMValue", { value: nf0.format(ft / FT_PER_M), ft: nf0.format(ft) });
 
   const level = !calc ? null : calc.delta < 1000 ? "Small" : calc.delta < 3000 ? "Noticeable" : "Large";
+
+  // 페이지 상단 공유 버튼이 쓸 현재 입력값(링크)과 결과 요약(문구)을 올린다.
+  const shareQuery = new URLSearchParams({
+    un: units,
+    e: elevation,
+    tp: temp,
+    q: qnh,
+  }).toString();
+  const shareText = calc
+    ? t("shareText", {
+        elevation: alt(calc.elevFt),
+        temp: `${temp}°${imperial ? "F" : "C"}`,
+        qnh: `${qnh} ${imperial ? "inHg" : "hPa"}`,
+        density: alt(calc.r.densityAltitudeFt),
+      })
+    : null;
+  useSharePublish("/tools/density-altitude-calculator", shareQuery, shareText);
 
   return (
     <div className="flex flex-col gap-6">

@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useSharePublish } from "@/lib/use-share-publish";
+import { parseNumberText, parseStringChoice, readSharedParams } from "@/lib/shared-params";
 import { Input } from "@/components/ui/input";
 import { Chip, Field, Notice, SegmentedControl, Stat } from "@/components/tools/tool-ui";
 import { parseNumber } from "@/lib/drone-tools/parse";
@@ -34,6 +36,39 @@ export function FlightTimeCalculator() {
   const [health, setHealth] = useState("100");
   const [reserve, setReserve] = useState("25");
   const [speed, setSpeed] = useState("");
+
+  // 공유 링크로 들어온 경우 입력값을 채운다. 서버 렌더링 결과(기본값)와 첫 화면을 맞추기 위해
+  // 마운트 직후 한 번만 읽고, 허용 범위·목록 밖의 값은 무시한다.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    const q = readSharedParams();
+    if (!q) return;
+    const bm = parseStringChoice(q.get("bm"), ["rated", "spec"] as const);
+    const rt = parseNumberText(q.get("rt"), 1, 1000);
+    const cp = parseNumberText(q.get("cp"), 100, 100000);
+    const vl = parseNumberText(q.get("vl"), 1, 100);
+    const wt = parseNumberText(q.get("wt"), 1, 100000);
+    const pw = parseNumberText(q.get("pw"), 1, 1000);
+    const wn = parseNumberText(q.get("wn"), 0, 60);
+    const tp = parseNumberText(q.get("tp"), -60, 80);
+    const st = parseStringChoice(q.get("st"), ["smooth", "normal", "sporty"] as const);
+    const hl = parseNumberText(q.get("hl"), 1, 100);
+    const rs = parseNumberText(q.get("rs"), 0, 99);
+    const sp = parseNumberText(q.get("sp"), 1, 300);
+    if (bm !== null) setBaseMode(bm);
+    if (rt !== null) setRated(rt);
+    if (cp !== null) setCapacity(cp);
+    if (vl !== null) setVolts(vl);
+    if (wt !== null) setWeight(wt);
+    if (pw !== null) setPower(pw);
+    if (wn !== null) setWind(wn);
+    if (tp !== null) setTemp(tp);
+    if (st !== null) setStyle(st);
+    if (hl !== null) setHealth(hl);
+    if (rs !== null) setReserve(rs);
+    if (sp !== null) setSpeed(sp);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const calc = useMemo(() => {
     const windMps = parseNumber(wind);
@@ -70,6 +105,32 @@ export function FlightTimeCalculator() {
   }, [baseMode, rated, capacity, volts, weight, power, wind, temp, style, health, reserve, speed]);
 
   const minutes = (v: number) => t("minutesValue", { value: nf0.format(v) });
+
+  // 페이지 상단 공유 버튼이 쓸 현재 입력값(링크)과 결과 요약(문구)을 올린다.
+  const shareQuery = new URLSearchParams({
+    bm: baseMode,
+    rt: rated,
+    cp: capacity,
+    vl: volts,
+    wt: weight,
+    pw: power,
+    wn: wind,
+    tp: temp,
+    st: style,
+    hl: health,
+    rs: reserve,
+    sp: speed,
+  }).toString();
+  const shareText = calc
+    ? t("shareText", {
+        base: minutes(calc.baseMinutes),
+        wind: nf1.format(calc.windMps),
+        temp: nf1.format(calc.tempC),
+        total: minutes(calc.est.totalMinutes),
+        usable: minutes(calc.est.usableMinutes),
+      })
+    : null;
+  useSharePublish("/tools/flight-time-calculator", shareQuery, shareText);
   const textInput = (
     id: string,
     value: string,

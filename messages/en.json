@@ -967,6 +967,7 @@
       }
     },
     "ndFilter": {
+      "shareText": "Base shutter {base} → target {target}: {stops} stops needed · {needsFilter, select, yes {recommended ND filter {filter}} other {no ND filter needed}}",
       "metaTitle": "Drone ND Filter Calculator – Pick the Right ND Strength",
       "metaDescription": "Enter your shutter speed and frame rate (180-degree rule) or a target shutter to get the ND strength you need and the resulting shutter.",
       "title": "Drone ND Filter Calculator",
@@ -1033,6 +1034,7 @@
       ]
     },
     "flightTime": {
+      "shareText": "Base {base} · wind {wind} m/s · {temp}°C → estimated flight time {total} ({usable} usable after reserve)",
       "metaTitle": "Drone Flight Time Calculator – Wind and Cold Adjusted",
       "metaDescription": "Start from rated flight time or battery specs, add wind, temperature, flying style and battery health, and estimate usable time and a safe turnaround.",
       "title": "Drone Flight Time Calculator",
@@ -1296,6 +1298,7 @@
       ]
     },
     "gsd": {
+      "shareText": "Altitude {altitude} → GSD {gsd}, footprint {width} × {height}",
       "metaTitle": "Drone GSD Calculator – Ground Resolution by Altitude",
       "metaDescription": "Find a drone photo's GSD (cm per pixel), ground footprint and shot spacing from altitude, sensor and focal length, or the altitude for a target GSD.",
       "title": "Drone GSD Calculator",
@@ -1377,6 +1380,7 @@
       "preset_aps_c": "APS-C"
     },
     "densityAltitude": {
+      "shareText": "Elevation {elevation} · {temp} · pressure {qnh} → density altitude {density}",
       "metaTitle": "Drone Density Altitude Calculator – Hot & High Flying",
       "metaDescription": "Calculate density altitude, air density ratio and extra hover power from elevation, temperature and QNH to judge drone performance when hot or high.",
       "title": "Drone Density Altitude Calculator",
@@ -1440,6 +1444,7 @@
       ]
     },
     "lineOfSight": {
+      "shareText": "{kind, select, distance {Pilot eye height {pilot} · drone altitude {altitude} → visual horizon {geo}, radio range {radio}} other {Pilot eye height {pilot} · target distance {distance} → required altitude {geo} (visual), {radio} (radio)}}",
       "metaTitle": "Drone Line-of-Sight & Radio Horizon Calculator",
       "metaDescription": "Find the horizon distance and radio line-of-sight range from drone altitude and pilot eye height, or the altitude needed for a target distance.",
       "title": "Drone Line-of-Sight & Radio Horizon Calculator",

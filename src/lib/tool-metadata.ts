@@ -29,5 +29,12 @@ export async function toolMetadata(locale: string, key: ToolKey): Promise<Metada
       description,
       url: `${SITE_URL}/${locale}${path}`,
     },
+    // 트위터(X) 카드도 같은 이미지를 쓰도록 명시(없으면 레이아웃의 기본 이미지가 적용됨).
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [hero ? `${SITE_URL}${hero.image}` : DEFAULT_OG_IMAGE.url],
+    },
   };
 }

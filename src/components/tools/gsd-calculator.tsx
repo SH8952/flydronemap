@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useSharePublish } from "@/lib/use-share-publish";
+import { parseNumberText, parseStringChoice, readSharedParams } from "@/lib/shared-params";
 import { Input } from "@/components/ui/input";
 import { Chip, Field, Notice, SegmentedControl, Stat } from "@/components/tools/tool-ui";
 import { parseNumber } from "@/lib/drone-tools/parse";
@@ -38,6 +40,41 @@ export function GsdCalculator() {
   const [front, setFront] = useState("80");
   const [side, setSide] = useState("70");
   const [speed, setSpeed] = useState("");
+
+  // 공유 링크로 들어온 경우 입력값을 채운다. 서버 렌더링 결과(기본값)와 첫 화면을 맞추기 위해
+  // 마운트 직후 한 번만 읽고, 허용 범위·목록 밖의 값은 무시한다.
+  /* eslint-disable react-hooks/set-state-in-effect */
+  useEffect(() => {
+    const q = readSharedParams();
+    if (!q) return;
+    const md = parseStringChoice(q.get("md"), ["gsd", "altitude"] as const);
+    const un = parseStringChoice(q.get("un"), ["metric", "imperial"] as const);
+    const al = parseNumberText(q.get("al"), 0.1, 100000);
+    const tg = parseNumberText(q.get("tg"), 0.01, 1000);
+    const pr = parseStringChoice(q.get("pr"), [...SENSOR_PRESETS.map((s) => s.id), "custom"]);
+    const sw = parseNumberText(q.get("sw"), 0.1, 200);
+    const sh = parseNumberText(q.get("sh"), 0.1, 200);
+    const fl = parseNumberText(q.get("fl"), 0.1, 2000);
+    const iw = parseNumberText(q.get("iw"), 1, 100000);
+    const ih = parseNumberText(q.get("ih"), 1, 100000);
+    const fr = parseNumberText(q.get("fr"), 0, 99.9);
+    const sd = parseNumberText(q.get("sd"), 0, 99.9);
+    const sp = parseNumberText(q.get("sp"), 0.1, 500);
+    if (md !== null) setMode(md);
+    if (un !== null) setUnits(un);
+    if (al !== null) setAltitude(al);
+    if (tg !== null) setTargetGsd(tg);
+    if (pr !== null) setPreset(pr);
+    if (sw !== null) setSensorW(sw);
+    if (sh !== null) setSensorH(sh);
+    if (fl !== null) setFocal(fl);
+    if (iw !== null) setImgW(iw);
+    if (ih !== null) setImgH(ih);
+    if (fr !== null) setFront(fr);
+    if (sd !== null) setSide(sd);
+    if (sp !== null) setSpeed(sp);
+  }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const imperial = units === "imperial";
   const mFromInput = (v: number) => (imperial ? v / FEET_PER_METER : v);
@@ -94,6 +131,32 @@ export function GsdCalculator() {
   const gsdText = (cm: number) =>
     imperial ? t("gsdValueIn", { value: nf2.format(cm * INCHES_PER_CM) }) : t("gsdValueCm", { value: nf2.format(cm) });
   const lenText = (m: number) => t("lengthValue", { value: nf1.format(lenOut(m)), unit: lenUnit });
+
+  // 페이지 상단 공유 버튼이 쓸 현재 입력값(링크)과 결과 요약(문구)을 올린다.
+  const shareQuery = new URLSearchParams({
+    md: mode,
+    un: units,
+    al: altitude,
+    tg: targetGsd,
+    pr: preset,
+    sw: sensorW,
+    sh: sensorH,
+    fl: focal,
+    iw: imgW,
+    ih: imgH,
+    fr: front,
+    sd: side,
+    sp: speed,
+  }).toString();
+  const shareText = calc
+    ? t("shareText", {
+        altitude: t("lengthValue", { value: nf0.format(lenOut(calc.altitudeM)), unit: lenUnit }),
+        gsd: gsdText(calc.gsdCm),
+        width: lenText(calc.fp.widthM),
+        height: lenText(calc.fp.heightM),
+      })
+    : null;
+  useSharePublish("/tools/gsd-calculator", shareQuery, shareText);
 
   return (
     <div className="flex flex-col gap-6">

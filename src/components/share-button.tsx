@@ -1,10 +1,25 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
-import { Share2, Link2, Check } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  Share2,
+  Link2,
+  Check,
+  MessageCircle,
+  Send,
+  Users,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import {
+  buildChannelUrl,
+  getShareChannels,
+  getShareContentType,
+  stripLocalePath,
+  withShareUtm,
+  type ShareChannel,
+} from "@/lib/share-links";
 
 const KAKAO_SDK_SRC = "https://t1.kakaocdn.net/kakao_js_sdk/2.8.1/kakao.min.js";
 const KAKAO_SDK_INTEGRITY =
@@ -12,11 +27,16 @@ const KAKAO_SDK_INTEGRITY =
 
 declare global {
   interface Window {
+    gtag?: (...args: unknown[]) => void;
     Kakao?: {
       init: (key: string) => void;
       isInitialized: () => boolean;
       Share: {
         sendDefault: (options: Record<string, unknown>) => void;
+        sendScrap: (options: Record<string, unknown>) => void;
+        scrapImage: (options: {
+          imageUrl: string;
+        }) => Promise<{ infos?: { original?: { url?: string } } }>;
       };
     };
   }
@@ -65,6 +85,58 @@ function loadKakaoSdk(): Promise<void> {
   return kakaoSdkPromise;
 }
 
+/** 공유 사용 현황을 GA4 권장 이벤트(share)로 보냅니다. gtag가 없으면 조용히 건너뜁니다. */
+function trackShare(method: string) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  try {
+    const path = window.location.pathname;
+    window.gtag("event", "share", {
+      method,
+      content_type: getShareContentType(path),
+      item_id: stripLocalePath(path),
+    });
+  } catch {
+    // 분석 전송 실패는 공유 동작에 영향을 주지 않습니다.
+  }
+}
+
+const ITEM_CLASS =
+  "flex items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground";
+
+const CHANNEL_LABEL: Record<ShareChannel, string> = {
+  kakao: "KakaoTalk",
+  band: "BAND",
+  line: "LINE",
+  whatsapp: "WhatsApp",
+  telegram: "Telegram",
+  x: "X (Twitter)",
+  facebook: "Facebook",
+};
+
+function ChannelIcon({
+  channel,
+  className,
+}: {
+  channel: ShareChannel;
+  className?: string;
+}) {
+  switch (channel) {
+    case "kakao":
+      return <KakaoIcon className={className} />;
+    case "facebook":
+      return <FacebookIcon className={className} />;
+    case "x":
+      return <XIcon className={className} />;
+    case "telegram":
+      return <Send className={className} />;
+    case "band":
+      return <Users className={className} />;
+    default:
+      // line, whatsapp
+      return <MessageCircle className={className} />;
+  }
+}
+
 type ShareButtonProps = {
   /** Page/content title, used by navigator.share, X/Kakao share text, and as a11y label. */
   title: string;
@@ -74,6 +146,9 @@ type ShareButtonProps = {
   url: string;
   /** Absolute image URL for the Kakao feed-style preview card. Omit to fall back to a text-only Kakao message. */
   image?: string;
+  /** true면 "계산 결과 요약"을 공유하는 것이므로 카카오톡에서 결과 문구가 담긴 카드로 보냅니다.
+   *  false(기본)이면 페이지의 OG 정보(큰 이미지·제목·설명·도메인)로 만든 링크 미리보기 카드로 보냅니다. */
+  isResult?: boolean;
   className?: string;
   variant?: "default" | "outline" | "secondary" | "ghost";
   size?: "default" | "sm" | "lg" | "icon";
@@ -88,12 +163,15 @@ export function ShareButton({
   text,
   url,
   image,
+  isResult = false,
   className,
   variant = "outline",
   size = "sm",
   menuPlacement = "bottom",
 }: ShareButtonProps) {
   const t = useTranslations("Share");
+  const locale = useLocale();
+  const channels = getShareChannels(locale);
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   // Detected on mount only (never during SSR) — navigator.share isn't
@@ -127,13 +205,25 @@ export function ShareButton({
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, [menuOpen]);
 
+  // 카카오 SDK는 공유 메뉴를 연 방문자에게만, 메뉴가 열릴 때 미리 불러옵니다(페이지 로드 시에는 불러오지 않음).
+  // 미리 받아 두면 카카오톡을 누른 뒤 지연이 줄어 공유창이 팝업 차단에 걸릴 가능성도 낮아집니다.
+  const hasKakao = channels.includes("kakao");
+  React.useEffect(() => {
+    if (menuOpen && hasKakao) loadKakaoSdk().catch(() => {});
+  }, [menuOpen, hasKakao]);
+
   const handleShareClick = () => {
     setMenuOpen((open) => !open);
   };
 
+  // 클릭 시점의 경로로 콘텐츠 종류를 정하고, 채널별 UTM을 붙인 공유 주소를 만듭니다.
+  const linkFor = (channel: string) =>
+    withShareUtm(url, channel, getShareContentType(window.location.pathname));
+
   const handleNativeShare = async () => {
     try {
-      await navigator.share({ title, text, url });
+      await navigator.share({ title, text, url: linkFor("native") });
+      trackShare("native");
     } catch {
       // Visitor cancelled the native share sheet, or the browser refused
       // the request — nothing useful to fall back to here.
@@ -143,7 +233,8 @@ export function ShareButton({
 
   const handleCopyLink = async () => {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(linkFor("copy"));
+      trackShare("copy");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -152,45 +243,62 @@ export function ShareButton({
     }
   };
 
-  const handleShareX = () => {
-    const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+  const handleShareWindow = (channel: Exclude<ShareChannel, "kakao">) => {
+    const intent = buildChannelUrl(channel, {
       title,
-    )}&url=${encodeURIComponent(url)}`;
+      text,
+      url: linkFor(channel),
+    });
     window.open(intent, "_blank", "noopener,noreferrer,width=550,height=420");
-    setMenuOpen(false);
-  };
-
-  const handleShareFacebook = () => {
-    const intent = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-      url,
-    )}`;
-    window.open(intent, "_blank", "noopener,noreferrer,width=550,height=420");
+    trackShare(channel);
     setMenuOpen(false);
   };
 
   const handleShareKakao = async () => {
     try {
       await loadKakaoSdk();
-      if (image) {
-        window.Kakao?.Share.sendDefault({
-          objectType: "feed",
-          content: {
-            title,
-            description: text ?? "",
-            imageUrl: image,
-            link: { mobileWebUrl: url, webUrl: url },
-          },
-          buttons: [
-            { title: t("viewOnWeb"), link: { mobileWebUrl: url, webUrl: url } },
-          ],
-        });
-      } else {
-        window.Kakao?.Share.sendDefault({
-          objectType: "text",
-          text: text ? `${title}\n${text}` : title,
-          link: { mobileWebUrl: url, webUrl: url },
-        });
+      const link = linkFor("kakao");
+
+      // 1) 일반 페이지 공유: 페이지의 OG 정보로 만든 링크 미리보기 카드(큰 이미지 + 제목 + 설명 + 도메인).
+      if (!isResult) {
+        try {
+          window.Kakao?.Share.sendScrap({ requestUrl: link });
+          trackShare("kakao");
+          setMenuOpen(false);
+          return;
+        } catch {
+          // 스크랩 공유를 쓸 수 없으면 아래 피드 카드로 대신 보냅니다.
+        }
       }
+
+      // 2) 결과 공유(또는 스크랩 실패 시): 결과 문구가 담긴 피드 카드.
+      //    카카오 메시지의 이미지는 카카오 서버에 올린 주소를 써야 하므로 먼저 이미지를 올려 주소를 받습니다.
+      //    실패하면 원래 주소를 그대로 넘깁니다(이미지가 안 보일 수 있을 뿐 공유는 됩니다).
+      const ogImage = document.querySelector<HTMLMetaElement>(
+        'meta[property="og:image"]',
+      )?.content;
+      const rawImage =
+        image ?? ogImage ?? `${new URL(link).origin}/og-default.png`;
+      let imageUrl = rawImage;
+      try {
+        const res = await window.Kakao?.Share.scrapImage({ imageUrl: rawImage });
+        imageUrl = res?.infos?.original?.url ?? rawImage;
+      } catch {
+        // 이미지 업로드 실패 — 원래 주소로 진행
+      }
+      window.Kakao?.Share.sendDefault({
+        objectType: "feed",
+        content: {
+          title,
+          description: text ?? "",
+          imageUrl,
+          link: { mobileWebUrl: link, webUrl: link },
+        },
+        buttons: [
+          { title: t("viewOnWeb"), link: { mobileWebUrl: link, webUrl: link } },
+        ],
+      });
+      trackShare("kakao");
     } catch {
       // Kakao SDK failed to load/init (blocked script, offline, etc.) — the
       // other share channels remain usable, so we fail silently here.
@@ -241,33 +349,22 @@ export function ShareButton({
             )}
             {copied ? t("copied") : t("copyLink")}
           </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={handleShareX}
-            className="flex items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground"
-          >
-            <XIcon className="size-4" />
-            X (Twitter)
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={handleShareFacebook}
-            className="flex items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground"
-          >
-            <FacebookIcon className="size-4" />
-            Facebook
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={handleShareKakao}
-            className="flex items-center gap-2 rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground"
-          >
-            <KakaoIcon className="size-4" />
-            KakaoTalk
-          </button>
+          {channels.map((channel) => (
+            <button
+              key={channel}
+              type="button"
+              role="menuitem"
+              onClick={() =>
+                channel === "kakao"
+                  ? handleShareKakao()
+                  : handleShareWindow(channel)
+              }
+              className={ITEM_CLASS}
+            >
+              <ChannelIcon channel={channel} className="size-4" />
+              {CHANNEL_LABEL[channel]}
+            </button>
+          ))}
         </div>
       ) : null}
     </div>

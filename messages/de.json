@@ -967,6 +967,7 @@
       }
     },
     "ndFilter": {
+      "shareText": "Basis-Verschlusszeit {base} → Ziel {target}: {stops} Blendenstufen nötig · {needsFilter, select, yes {empfohlener ND-Filter {filter}} other {kein ND-Filter nötig}}",
       "metaTitle": "ND-Filter-Rechner für Drohnen – passende Stufe finden",
       "metaDescription": "Verschlusszeit und Bildrate (180-Grad-Regel) oder Ziel-Verschlusszeit eingeben und die nötige ND-Stufe samt Ergebnis-Verschlusszeit erhalten.",
       "title": "ND-Filter-Rechner für Drohnen",
@@ -1033,6 +1034,7 @@
       ]
     },
     "flightTime": {
+      "shareText": "Basis {base} · Wind {wind} m/s · {temp}°C → geschätzte Flugzeit {total} ({usable} nutzbar nach Reserve)",
       "metaTitle": "Drohnen-Flugzeit-Rechner – mit Wind und Kälte",
       "metaDescription": "Nennflugzeit oder Akku-Daten plus Wind, Temperatur, Flugstil und Akkuzustand: So schätzen Sie nutzbare Flugzeit und einen sicheren Umkehrpunkt.",
       "title": "Drohnen-Flugzeit-Rechner",
@@ -1296,6 +1298,7 @@
       ]
     },
     "gsd": {
+      "shareText": "Flughöhe {altitude} → GSD {gsd}, Bildausschnitt {width} × {height}",
       "metaTitle": "Drohnen-GSD-Rechner – Bodenauflösung nach Flughöhe",
       "metaDescription": "GSD (cm pro Pixel), Bildfläche und Auslöseabstand aus Flughöhe, Sensor und Brennweite berechnen – oder die Höhe für eine Ziel-GSD ermitteln.",
       "title": "Drohnen-GSD-Rechner",
@@ -1377,6 +1380,7 @@
       "preset_aps_c": "APS-C"
     },
     "densityAltitude": {
+      "shareText": "Höhe {elevation} · {temp} · Luftdruck {qnh} → Dichtehöhe {density}",
       "metaTitle": "Drohnen-Dichtehöhenrechner – Hitze und Höhe",
       "metaDescription": "Dichtehöhe, Luftdichteverhältnis und Mehrbedarf an Schwebeleistung aus Höhe, Temperatur und QNH berechnen – für heiße, hohe Einsätze.",
       "title": "Drohnen-Dichtehöhenrechner",
@@ -1440,6 +1444,7 @@
       ]
     },
     "lineOfSight": {
+      "shareText": "{kind, select, distance {Augenhöhe des Piloten {pilot} · Drohnenhöhe {altitude} → sichtbarer Horizont {geo}, Funkreichweite {radio}} other {Augenhöhe des Piloten {pilot} · Zieldistanz {distance} → nötige Höhe {geo} (Sicht), {radio} (Funk)}}",
       "metaTitle": "Drohnen-Sichtweiten- und Funkhorizont-Rechner",
       "metaDescription": "Horizontentfernung und Funk-Sichtweite aus Drohnenhöhe und Augenhöhe des Piloten berechnen – oder die Höhe, die für eine Zielentfernung nötig ist.",
       "title": "Drohnen-Sichtweiten- und Funkhorizont-Rechner",

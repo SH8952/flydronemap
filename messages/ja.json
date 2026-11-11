@@ -967,6 +967,7 @@
       }
     },
     "ndFilter": {
+      "shareText": "基準シャッター {base} → 目標 {target} · {stops}段必要 · {needsFilter, select, yes {推奨NDフィルター {filter}} other {NDフィルター不要}}",
       "metaTitle": "ドローン用NDフィルター計算機 – シャッタースピード別ND段数",
       "metaDescription": "現在のシャッタースピードとフレームレート(180度ルール)または目標シャッターを入力するだけで、必要なNDの段数とフィルター使用後のシャッタースピードを計算します。",
       "title": "ドローン用NDフィルター計算機",
@@ -1033,6 +1034,7 @@
       ]
     },
     "flightTime": {
+      "shareText": "基準 {base} · 風 {wind}m/s · {temp}°C → 想定飛行時間 {total}（予備を除く {usable}）",
       "metaTitle": "ドローン飛行時間計算機 – 風・気温を反映した実飛行時間",
       "metaDescription": "公称飛行時間やバッテリー仕様に、風・気温・飛ばし方・バッテリーの状態を反映して、実際に飛べる時間と安全な折り返し時点を推定します。",
       "title": "ドローン飛行時間計算機",
@@ -1296,6 +1298,7 @@
       ]
     },
     "gsd": {
+      "shareText": "高度 {altitude} → GSD {gsd}、撮影範囲 {width} × {height}",
       "metaTitle": "ドローンGSD計算機 – 撮影高度ごとの地上解像度",
       "metaDescription": "撮影高度・センサーサイズ・焦点距離からドローン写真のGSD(cm/ピクセル)、撮影範囲、撮影間隔を計算し、目標解像度に必要な高度も求められます。",
       "title": "ドローンGSD計算機",
@@ -1377,6 +1380,7 @@
       "preset_aps_c": "APS-C"
     },
     "densityAltitude": {
+      "shareText": "標高 {elevation} · 気温 {temp} · 気圧 {qnh} → 密度高度 {density}",
       "metaTitle": "ドローン密度高度計算機 – 高温・高地での飛行性能",
       "metaDescription": "標高・気温・気圧(QNH)から密度高度、空気密度比、ホバリングに必要な出力の増加率を計算し、高温・高地での飛行性能の目安を確認できます。",
       "title": "ドローン密度高度計算機",
@@ -1440,6 +1444,7 @@
       ]
     },
     "lineOfSight": {
+      "shareText": "{kind, select, distance {操縦者の目線 {pilot} · ドローン高度 {altitude} → 目視の地平線 {geo}、電波到達 {radio}} other {操縦者の目線 {pilot} · 目標距離 {distance} → 必要高度 {geo}（目視）、{radio}（電波）}}",
       "metaTitle": "ドローン見通し距離・電波到達距離計算機",
       "metaDescription": "ドローンの飛行高度と操縦者の目の高さから、地平線までの距離と電波の見通し距離を計算し、目標の距離に必要な高度も求められます。",
       "title": "ドローン見通し距離・電波到達距離計算機",
