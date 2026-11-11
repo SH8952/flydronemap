@@ -42,6 +42,11 @@ export default async function HomePage({
 
       <HomeDashboardSection />
 
+      {/* 사용법 — 단계 카드 + 판정 기준 칩 (2026-11-11). 기존 긴 설명은 카드 안 "자세히 보기"에 그대로 둠.
+          2026-11-12 사용자 결정: 대시보드(지도·판정 패널) 바로 아래로 이동 — 판정 기준 수치를 읽는 설명이 바로 따라오도록.
+          장비 추천·ExifLens 연결·광고는 그 아래로 한 칸씩 내려감. */}
+      <HomeUsageSection />
+
       {/* 장비 추천 → 관련 도구(ExifLens): 2026-11-03 원래 위치(대시보드 바로 아래, 광고 위)로 복구.
           2026-10-04에 애드센스 심사 대응으로 홈 최하단(FAQ 아래)으로 옮겼던 것을 되돌림. */}
       <GearRecommendationSection locale={locale} />
@@ -54,9 +59,6 @@ export default async function HomePage({
         size="300×250"
         className="max-w-[300px]"
       />
-
-      {/* 사용법 — 단계 카드 + 판정 기준 칩 (2026-11-11). 기존 긴 설명은 카드 안 "자세히 보기"에 그대로 둠 */}
-      <HomeUsageSection />
 
       {/* 드론 도구 하이라이트 — 형제 사이트 ExifLens 홈의 도구 섹션과 같은 형태. 가이드 바로 위에 모든 도구를 소개 (2026-11-10) */}
       <HomeToolsHighlights />
