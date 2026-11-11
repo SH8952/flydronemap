@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SITE_URL, languageAlternates, ogLocale, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { BackLink } from "@/components/back-link";
 
 type FaqItem = { question: string; answer: string };
 
@@ -61,6 +62,7 @@ export default async function FaqPage({
 
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-8 px-4 py-10">
+      <BackLink to="home" className="-mb-4" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

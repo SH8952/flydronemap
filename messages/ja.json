@@ -1,4 +1,8 @@
 {
+  "BackNav": {
+    "toHome": "← ホームに戻る",
+    "toTools": "← ツール一覧に戻る"
+  },
   "Header": {
     "tagline": "ドローン飛行天気 & Kp指数",
     "guidesNav": "ガイド",

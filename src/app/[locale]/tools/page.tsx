@@ -9,6 +9,7 @@ import { ToolIcon } from "@/components/tools/tool-page";
 import { TOOLS, TOOL_CATEGORIES } from "@/lib/tools";
 import { getToolImage } from "@/lib/tool-images";
 import { ToolImageDevPanel } from "@/components/dev/tool-image-dev-panel";
+import { BackLink } from "@/components/back-link";
 
 export async function generateMetadata({
   params,
@@ -55,6 +56,7 @@ export default async function ToolsIndexPage({
 
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-4 py-10">
+      <BackLink to="home" className="-mb-4" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <div className="flex justify-end">
         <ShareButton title={t("title")} text={t("subtitle")} url={`${SITE_URL}/${locale}/tools`} />

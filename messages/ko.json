@@ -1,4 +1,8 @@
 {
+  "BackNav": {
+    "toHome": "← 홈으로",
+    "toTools": "← 도구 목록으로"
+  },
   "Header": {
     "tagline": "드론 비행 날씨 & KP 지수",
     "guidesNav": "가이드",

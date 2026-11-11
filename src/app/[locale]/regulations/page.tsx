@@ -10,6 +10,7 @@ import {
 } from "@/lib/seo";
 import { ShareButton } from "@/components/share-button";
 import { REGULATION_COUNTRIES } from "@/lib/country-regulations";
+import { BackLink } from "@/components/back-link";
 
 export async function generateMetadata({
   params,
@@ -57,6 +58,7 @@ export default async function RegulationsIndexPage({
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 px-4 py-10">
+      <BackLink to="home" className="-mb-4" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}

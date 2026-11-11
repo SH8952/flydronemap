@@ -8,6 +8,7 @@ import {
   ogLocale, DEFAULT_OG_IMAGE, } from "@/lib/seo";
 import { getGuidesByCategory } from "@/lib/guides";
 import { GuideCategorySection } from "@/components/guides/guide-category-section";
+import { BackLink } from "@/components/back-link";
 
 export async function generateMetadata({
   params,
@@ -61,6 +62,7 @@ export default async function GuidesIndexPage({
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-4 py-10">
+      <BackLink to="home" className="-mb-5" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}

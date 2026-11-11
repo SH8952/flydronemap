@@ -1,4 +1,8 @@
 {
+  "BackNav": {
+    "toHome": "← Zur Startseite",
+    "toTools": "← Zu den Tools"
+  },
   "Header": {
     "tagline": "Wetter für Drohnenflüge & Kp-Index",
     "guidesNav": "Ratgeber",

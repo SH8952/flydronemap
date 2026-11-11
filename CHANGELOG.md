@@ -1,3 +1,17 @@
+## 2026-11-12 (1) — 상위 페이지로 돌아가는 "← 홈으로" 뒤로가기 버튼 추가 (ExifLens 방식, 5개 언어)
+
+**배경**: 사용자 요청. ExifLens의 뒤로가기 버튼(페이지 상단 왼쪽, 고정된 상위 페이지로 이동)을 FlyDroneMap에도 적용.
+
+**변경 사항**
+- 신규 `src/components/back-link.tsx`(`<BackLink to="home|tools" />`): 가이드 글의 기존 "← 가이드 목록으로"와 같은 모양(`text-sm text-muted-foreground hover:text-foreground`). 브라우저 기록이 아니라 고정된 상위 페이지(홈 `/`, 도구 `/tools`)로 이동.
+- 적용: 도구 허브(`/tools`), 가이드 목록, 규정 목록, FAQ, 그리고 소개·문의·개인정보·약관·면책(공용 `LegalPage` 한 곳) 상단에 "← 홈으로".
+- 적용하지 않음: 홈 화면. 도구 9종 페이지는 상단에 이미 "도구 모음 › 도구명" 탐색경로(도구 목록 링크 포함)가 있어 중복을 피해 제외. 가이드 상세("← 가이드 목록으로")·국가별 규정 상세("← 국가 목록으로")는 기존 버튼 유지.
+- 문구: `messages/{ko,en,ja,es,de}.json`에 새 `BackNav`(toHome·toTools) 추가.
+- 색인 영향 없음(주소·canonical·본문 구조 변경 없음, 링크 한 줄 추가).
+- 검증: tsc 0 오류, 변경 파일 eslint 무경고, 5개 언어 JSON 유효. 이 작업 환경은 맥용 SWC 가 없어 build·dev 실행 불가 → 푸시 후 실사이트 확인 예정.
+- 상태: 코드 수정 완료, 커밋·푸시 전.
+- 백업: `.backups/backup_20261111_150616_뒤로가기_사전`. 롤백: `git revert <이번 커밋>`.
+
 ## 2026-11-11 (1) — 공유 강화 이식(ExifLens 1~3단계 → FlyDroneMap): 공유 측정·언어별 채널·카카오 미리보기 카드·결과 공유 링크
 
 **배경**: 사용자 요청. ExifLens에서 완료·검증한 공유 강화를 형제 프로젝트에 동일하게 적용(FlyDroneMap → firelic → lifehub 순). FlyDroneMap의 공유 버튼은 ExifLens의 강화 전 버전과 동일해 같은 구조로 이식.

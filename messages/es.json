@@ -1,4 +1,8 @@
 {
+  "BackNav": {
+    "toHome": "← Volver al inicio",
+    "toTools": "← Volver a Herramientas"
+  },
   "Header": {
     "tagline": "Clima de vuelo para drones e índice Kp",
     "guidesNav": "Guías",

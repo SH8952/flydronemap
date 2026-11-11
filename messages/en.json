@@ -1,4 +1,8 @@
 {
+  "BackNav": {
+    "toHome": "← Back to Home",
+    "toTools": "← Back to Tools"
+  },
   "Header": {
     "tagline": "Drone Flight Weather & Kp Index",
     "guidesNav": "Guides",
