@@ -11,7 +11,7 @@
 
 **검증**: tsc 0 오류, eslint(src/components·src/lib·tools 페이지) 신규 경고 없음, 5개 언어 shareText ICU 해석 검사 통과(변수명 일치 확인), messages 5개 JSON 유효. 이 환경은 `next dev`·`next build` 불가 → 푸시 후 실제 사이트에서 확인.
 **알아둘 점**: 카카오 카드가 동작하려면 Vercel에 `NEXT_PUBLIC_KAKAO_JS_KEY`가 등록돼 있고 카카오 개발자 콘솔 웹 도메인에 flydronemap.com이 등록돼 있어야 함(사용자 확인 필요). 환경변수는 빌드에 포함되므로 변경 시 재배포 필요.
-**상태**: 코드 수정 완료, 커밋·푸시 전(사용자가 `공유강화이식_Push.command` 직접 실행).
+**상태**: 푸시·배포 완료(053464e). 실사이트 확인: ND 필터 `?m=photo&b=1/500&tg=2` 입력값 복원, 잘못된 값 기본값 유지, 독일어 GSD 링크 복원 정상, canonical 파라미터 없음, twitter:card=summary_large_image, 카카오 SDK 초기화·카드 정상(사용자 확인). 이어서 도구 9종 대표 이미지 교체(e507366) 후 도구별 공유 이미지(og:image·twitter:image) 9개 모두 정상 확인.
 **백업**: `_backups/flydronemap_backup_20261111_080428_공유강화이식_사전`
 
 ---
