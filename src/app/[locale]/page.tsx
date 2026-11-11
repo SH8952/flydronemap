@@ -4,6 +4,7 @@ import { GearRecommendationSection } from "@/components/gear-recommendation-sect
 import { HomeDashboardSection } from "@/components/home-dashboard-section";
 import { webApplicationJsonLd } from "@/lib/seo";
 import { HomeGuideHighlights } from "@/components/home-guide-highlights";
+import { HomeUsageSection } from "@/components/home-usage-section";
 import { HomeToolsHighlights } from "@/components/home-tools-highlights";
 import { HomeFaqHighlights } from "@/components/home-faq-highlights";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
@@ -21,7 +22,6 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("Home");
-  const usageSteps = t.raw("usageSteps") as string[];
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10">
@@ -55,17 +55,8 @@ export default async function HomePage({
         className="max-w-[300px]"
       />
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-xl font-semibold">{t("usageTitle")}</h2>
-        <ol className="flex flex-col gap-2 text-sm text-muted-foreground">
-          {usageSteps.map((step, i) => (
-            <li key={i} className="flex gap-2">
-              <span className="font-semibold text-foreground">{i + 1}.</span>
-              <span>{step}</span>
-            </li>
-          ))}
-        </ol>
-      </section>
+      {/* 사용법 — 단계 카드 + 판정 기준 칩 (2026-11-11). 기존 긴 설명은 카드 안 "자세히 보기"에 그대로 둠 */}
+      <HomeUsageSection />
 
       {/* 드론 도구 하이라이트 — 형제 사이트 ExifLens 홈의 도구 섹션과 같은 형태. 가이드 바로 위에 모든 도구를 소개 (2026-11-10) */}
       <HomeToolsHighlights />

@@ -171,14 +171,89 @@
     "gearSectionHint": "Hier erscheinen empfohlene Drohnenausrüstung für Piloten.",
     "gearDisclosure": "Als Partner erhalten wir möglicherweise eine Provision für qualifizierte Käufe über diese Links — ohne zusätzliche Kosten für Sie.",
     "usageSteps": [
-      "Suchen Sie eine Stadt, einen Flughafen oder eine Sehenswürdigkeit, oder tippen Sie auf „Meinen Standort verwenden“, um die Bedingungen genau dort zu prüfen, wo Sie sich befinden. Luftraumangaben und der Link zu den Vorschriften richten sich nach dem Land des gewählten Ortes.",
-      "Prüfen Sie aktuelle Windgeschwindigkeit, Windböen, Sichtweite und Temperatur sowie den Wind in 10 m, 80 m und 120 m Höhe. Böen sind wichtiger als der mittlere Wind, und der Wind wird mit der Höhe oft stärker. Das Banner ganz oben fasst Böen und Kp-Index zu einer allgemeinen Einschätzung zusammen: Böen unter 5,6 m/s gelten als gut, von 5,6 bis unter 9,7 m/s ist Vorsicht geboten, ab 9,7 m/s wird vom Flug abgeraten.",
-      "Prüfen Sie den planetarischen Kp-Index, um zu sehen, ob geomagnetische Aktivität Ihre GPS-Verbindung oder Kompassausrichtung beeinträchtigen könnte. Ein Kp unter 4 gilt als ruhig, von 4 bis unter 5 als unruhig und ab 5 als Sturmniveau, bei dem GPS-Genauigkeit und Kompasszuverlässigkeit nachlassen können.",
-      "Nutzen Sie die Luftraum-Informationen und die Luftraum-Ebenen auf der Karte, um die Beschränkungen im gewählten Land zu sehen, und prüfen Sie die aktuellen Vorschriften über die Schaltfläche zur offiziellen Stelle. In den USA sehen Sie die Höhenbeschränkung aus der FAA UAS Facility Map für das Gebiet — bestätigen Sie die Freigabe anschließend über LAANC oder FAADroneZone, bevor Sie fliegen.",
-      "Finden Sie mit der Vorhersage der Flugbedingungen der nächsten 24 Stunden das beste Zeitfenster. Jede Stunde wird anhand der vorhergesagten Böen, des Niederschlags (Vorsicht ab 0,1 mm pro Stunde, nicht empfohlen ab 0,5 mm) und der Sichtweite (Vorsicht unter 5 km, nicht empfohlen unter 1 km) als gut, Vorsicht oder nicht empfohlen eingestuft. Die Zusammenfassung über den Karten zeigt den längsten guten Abschnitt in der Ortszeit des gewählten Ortes. Der aktuelle Messwert und die Vorhersage für die laufende Stunde stimmen nicht immer exakt überein, daher können kleine Unterschiede auftreten. Kp-Index, Luftraumregeln und Vorschriften für Nachtflüge sind in dieser Einstufung nicht enthalten und müssen separat geprüft werden.",
-      "Wählen Sie unter „Windcheck für Ihre Drohne“ Ihr Modell, um die aktuelle Böe mit der offiziellen Höchstwindgeschwindigkeit des Herstellers zu vergleichen. Unter 50 % dieses Werts gilt als gut, ab 50 % ist Vorsicht geboten, ab 70 % wird vom Flug abgeraten. Das gewählte Modell fließt auch in die 24-Stunden-Vorhersage ein und wird nur in diesem Browser gespeichert.",
-      "Verstehen Sie alle Einstufungen nur als Orientierung. Zustand des Geräts, Akku, Zuladung, örtliche Vorschriften und Nachtflug-Anforderungen sind nicht berücksichtigt; die endgültige Entscheidung und die Verantwortung liegen beim Piloten. Die Ratgeber auf dieser Seite erläutern Schwellenwerte und Hintergründe ausführlicher."
+      {
+        "title": "Ort suchen",
+        "summary": "Suchen Sie eine Stadt, einen Flughafen oder eine Sehenswürdigkeit oder tippen Sie auf „Meinen Standort verwenden“, um die Bedingungen sofort zu sehen.",
+        "body": "Suchen Sie eine Stadt, einen Flughafen oder eine Sehenswürdigkeit, oder tippen Sie auf „Meinen Standort verwenden“, um die Bedingungen genau dort zu prüfen, wo Sie sich befinden. Luftraumangaben und der Link zu den Vorschriften richten sich nach dem Land des gewählten Ortes."
+      },
+      {
+        "title": "Wind und Böen prüfen",
+        "summary": "Böen sind wichtiger als der mittlere Wind. Prüfen Sie auch den Wind in 10 m, 80 m und 120 m Höhe.",
+        "body": "Prüfen Sie aktuelle Windgeschwindigkeit, Windböen, Sichtweite und Temperatur sowie den Wind in 10 m, 80 m und 120 m Höhe. Böen sind wichtiger als der mittlere Wind, und der Wind wird mit der Höhe oft stärker. Das Banner ganz oben fasst Böen und Kp-Index zu einer allgemeinen Einschätzung zusammen: Böen unter 5,6 m/s gelten als gut, von 5,6 bis unter 9,7 m/s ist Vorsicht geboten, ab 9,7 m/s wird vom Flug abgeraten.",
+        "chips": {
+          "label": "Böen (m/s)",
+          "items": [
+            { "level": "ok", "text": "Gut < 5,6" },
+            { "level": "wn", "text": "Vorsicht 5,6–9,7" },
+            { "level": "bd", "text": "Nicht empfohlen ≥ 9,7" }
+          ]
+        }
+      },
+      {
+        "title": "Kp-Index prüfen",
+        "summary": "Sehen Sie nach, ob geomagnetische Aktivität Ihre GPS-Verbindung oder Kompassausrichtung beeinträchtigen könnte.",
+        "body": "Prüfen Sie den planetarischen Kp-Index, um zu sehen, ob geomagnetische Aktivität Ihre GPS-Verbindung oder Kompassausrichtung beeinträchtigen könnte. Ein Kp unter 4 gilt als ruhig, von 4 bis unter 5 als unruhig und ab 5 als Sturmniveau, bei dem GPS-Genauigkeit und Kompasszuverlässigkeit nachlassen können.",
+        "chips": {
+          "label": "Kp-Index",
+          "items": [
+            { "level": "ok", "text": "Ruhig < 4" },
+            { "level": "wn", "text": "Unruhig 4–5" },
+            { "level": "bd", "text": "Sturm ≥ 5" }
+          ]
+        }
+      },
+      {
+        "title": "Luftraum und Vorschriften prüfen",
+        "summary": "Sehen Sie auf den Luftraum-Ebenen der Karte die Beschränkungen und prüfen Sie die aktuellen Vorschriften bei der offiziellen Stelle.",
+        "body": "Nutzen Sie die Luftraum-Informationen und die Luftraum-Ebenen auf der Karte, um die Beschränkungen im gewählten Land zu sehen, und prüfen Sie die aktuellen Vorschriften über die Schaltfläche zur offiziellen Stelle. In den USA sehen Sie die Höhenbeschränkung aus der FAA UAS Facility Map für das Gebiet — bestätigen Sie die Freigabe anschließend über LAANC oder FAADroneZone, bevor Sie fliegen.",
+        "chips": {
+          "label": "In den USA",
+          "items": [
+            { "level": "tag", "text": "FAA UAS Facility Map" },
+            { "level": "tag", "text": "LAANC" },
+            { "level": "tag", "text": "FAADroneZone" }
+          ]
+        }
+      },
+      {
+        "title": "Passendes Zeitfenster finden",
+        "summary": "Jede Stunde wird nach Böen, Niederschlag und Sichtweite eingestuft; die Zusammenfassung zeigt das längste gute Zeitfenster.",
+        "body": "Finden Sie mit der Vorhersage der Flugbedingungen der nächsten 24 Stunden das beste Zeitfenster. Jede Stunde wird anhand der vorhergesagten Böen, des Niederschlags (Vorsicht ab 0,1 mm pro Stunde, nicht empfohlen ab 0,5 mm) und der Sichtweite (Vorsicht unter 5 km, nicht empfohlen unter 1 km) als gut, Vorsicht oder nicht empfohlen eingestuft. Die Zusammenfassung über den Karten zeigt den längsten guten Abschnitt in der Ortszeit des gewählten Ortes. Der aktuelle Messwert und die Vorhersage für die laufende Stunde stimmen nicht immer exakt überein, daher können kleine Unterschiede auftreten. Kp-Index, Luftraumregeln und Vorschriften für Nachtflüge sind in dieser Einstufung nicht enthalten und müssen separat geprüft werden.",
+        "chips": {
+          "label": "Niederschlag (mm/h) · Sichtweite (km)",
+          "items": [
+            { "level": "wn", "text": "Niederschlag ≥ 0,1" },
+            { "level": "bd", "text": "Niederschlag ≥ 0,5" },
+            { "level": "wn", "text": "Sichtweite < 5" },
+            { "level": "bd", "text": "Sichtweite < 1" }
+          ]
+        }
+      },
+      {
+        "title": "Windcheck für Ihre Drohne",
+        "summary": "Wählen Sie Ihr Modell, um die aktuelle Böe mit der Höchstwindgeschwindigkeit des Herstellers zu vergleichen. Die Auswahl wird nur in diesem Browser gespeichert.",
+        "body": "Wählen Sie unter „Windcheck für Ihre Drohne“ Ihr Modell, um die aktuelle Böe mit der offiziellen Höchstwindgeschwindigkeit des Herstellers zu vergleichen. Unter 50 % dieses Werts gilt als gut, ab 50 % ist Vorsicht geboten, ab 70 % wird vom Flug abgeraten. Das gewählte Modell fließt auch in die 24-Stunden-Vorhersage ein und wird nur in diesem Browser gespeichert.",
+        "chips": {
+          "label": "Anteil der offiziellen Höchstwindgeschwindigkeit",
+          "items": [
+            { "level": "ok", "text": "Gut < 50 %" },
+            { "level": "wn", "text": "Vorsicht ≥ 50 %" },
+            { "level": "bd", "text": "Nicht empfohlen ≥ 70 %" }
+          ]
+        }
+      },
+      {
+        "title": "Verstehen Sie alle Einstufungen nur als Orientierung",
+        "summary": "Zustand des Geräts, Akku, Zuladung, örtliche Vorschriften und Nachtflug-Anforderungen sind nicht berücksichtigt; die endgültige Entscheidung und die Verantwortung liegen beim Piloten. Die Ratgeber auf dieser Seite erläutern Schwellenwerte und Hintergründe ausführlicher."
+      }
     ],
+    "usagePhases": [
+      "Ort wählen",
+      "Bedingungen prüfen",
+      "Entscheiden"
+    ],
+    "usageMore": "Details ansehen",
+    "usageRelated": "Dazu",
     "guideHighlightsTitle": "Ratgeber entdecken",
     "guideHighlightsSubtitle": "Praktische Ratgeber zu Flugsicherheit, Wettereinschätzung und Drohnenvorschriften.",
     "guideHighlightsCta": "Alle Ratgeber ansehen →",

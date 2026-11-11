@@ -171,14 +171,89 @@
     "gearSectionHint": "Aquí aparecerá el equipo recomendado para pilotos de drones.",
     "gearDisclosure": "Como afiliados, podemos ganar una comisión por las compras que califiquen realizadas a través de estos enlaces, sin costo adicional para usted.",
     "usageSteps": [
-      "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás. El espacio aéreo y el enlace a la normativa que ves dependen del país del lugar seleccionado.",
-      "Revisa la velocidad del viento, las ráfagas, la visibilidad y la temperatura en vivo, además del viento a 10 m, 80 m y 120 m de altura. Las ráfagas importan más que el viento medio, y el viento suele ser más fuerte a mayor altitud. El aviso de la parte superior combina las ráfagas y el índice Kp en una lectura general: menos de 5,6 m/s es bueno, de 5,6 a menos de 9,7 m/s requiere precaución y 9,7 m/s o más no se recomienda.",
-      "Consulta el índice Kp planetario para ver si la actividad geomagnética podría afectar tu señal GPS o el rumbo de la brújula. Un Kp menor de 4 es tranquilo, de 4 a menos de 5 es inestable y de 5 o más es nivel de tormenta, en el que la precisión del GPS y la fiabilidad de la brújula pueden empeorar.",
-      "Usa la tarjeta de espacio aéreo y las capas del mapa para ver las zonas restringidas del país seleccionado, y confirma la normativa vigente con la autoridad oficial mediante el botón de normativa. En EE. UU., consulta el techo de altitud del FAA UAS Facility Map para la zona — y luego confirma la autorización a través de LAANC o FAADroneZone antes de volar.",
-      "Usa las condiciones de vuelo en 24 horas para encontrar el mejor momento. Cada hora se valora como buena, precaución o no recomendada según las ráfagas previstas, la precipitación (precaución desde 0,1 mm por hora, no recomendada desde 0,5 mm) y la visibilidad (precaución por debajo de 5 km, no recomendada por debajo de 1 km). El resumen sobre las tarjetas muestra el tramo bueno más largo, con la hora local del lugar seleccionado. La lectura actual y la previsión de la hora en curso pueden no coincidir exactamente, así que es normal ver pequeñas diferencias. Esta valoración no incluye el índice Kp, la normativa del espacio aéreo ni las reglas de vuelo nocturno, así que compruébalos aparte.",
-      "En \"Viento para su dron\" elige tu modelo para comparar la ráfaga actual con la velocidad máxima de viento oficial del fabricante. Por debajo del 50 % de ese valor es bueno, desde el 50 % requiere precaución y desde el 70 % no se recomienda. El modelo elegido también se aplica a la previsión de 24 horas y solo se guarda en este navegador.",
-      "Toma todas las valoraciones solo como referencia. El estado del aparato, la batería, la carga, la normativa local y los requisitos de vuelo nocturno no están incluidos, por lo que la decisión final y la responsabilidad son del piloto. Las guías de este sitio explican con más detalle los umbrales y el contexto."
+      {
+        "title": "Buscar una ubicación",
+        "summary": "Busca una ciudad, aeropuerto o punto de referencia, o toca «Usar mi ubicación» para ver al instante las condiciones de vuelo.",
+        "body": "Busca una ciudad, aeropuerto o punto de referencia, o toca \"Usar mi ubicación\" para comprobar las condiciones justo donde estás. El espacio aéreo y el enlace a la normativa que ves dependen del país del lugar seleccionado."
+      },
+      {
+        "title": "Revisar viento y ráfagas",
+        "summary": "Las ráfagas importan más que el viento medio. Mira también el viento a 10 m, 80 m y 120 m de altura.",
+        "body": "Revisa la velocidad del viento, las ráfagas, la visibilidad y la temperatura en vivo, además del viento a 10 m, 80 m y 120 m de altura. Las ráfagas importan más que el viento medio, y el viento suele ser más fuerte a mayor altitud. El aviso de la parte superior combina las ráfagas y el índice Kp en una lectura general: menos de 5,6 m/s es bueno, de 5,6 a menos de 9,7 m/s requiere precaución y 9,7 m/s o más no se recomienda.",
+        "chips": {
+          "label": "Ráfagas (m/s)",
+          "items": [
+            { "level": "ok", "text": "Bueno < 5,6" },
+            { "level": "wn", "text": "Precaución 5,6–9,7" },
+            { "level": "bd", "text": "No recomendado ≥ 9,7" }
+          ]
+        }
+      },
+      {
+        "title": "Consultar el índice Kp",
+        "summary": "Comprueba si la actividad geomagnética podría afectar a tu señal GPS o al rumbo de la brújula.",
+        "body": "Consulta el índice Kp planetario para ver si la actividad geomagnética podría afectar tu señal GPS o el rumbo de la brújula. Un Kp menor de 4 es tranquilo, de 4 a menos de 5 es inestable y de 5 o más es nivel de tormenta, en el que la precisión del GPS y la fiabilidad de la brújula pueden empeorar.",
+        "chips": {
+          "label": "Índice Kp",
+          "items": [
+            { "level": "ok", "text": "Tranquilo < 4" },
+            { "level": "wn", "text": "Inestable 4–5" },
+            { "level": "bd", "text": "Tormenta ≥ 5" }
+          ]
+        }
+      },
+      {
+        "title": "Comprobar espacio aéreo y normativa",
+        "summary": "Usa las capas del mapa para ver las zonas restringidas y confirma la normativa vigente con la autoridad oficial.",
+        "body": "Usa la tarjeta de espacio aéreo y las capas del mapa para ver las zonas restringidas del país seleccionado, y confirma la normativa vigente con la autoridad oficial mediante el botón de normativa. En EE. UU., consulta el techo de altitud del FAA UAS Facility Map para la zona — y luego confirma la autorización a través de LAANC o FAADroneZone antes de volar.",
+        "chips": {
+          "label": "En EE. UU.",
+          "items": [
+            { "level": "tag", "text": "FAA UAS Facility Map" },
+            { "level": "tag", "text": "LAANC" },
+            { "level": "tag", "text": "FAADroneZone" }
+          ]
+        }
+      },
+      {
+        "title": "Encontrar el mejor momento",
+        "summary": "Cada hora se valora según ráfagas, precipitación y visibilidad, y el resumen muestra el tramo bueno más largo.",
+        "body": "Usa las condiciones de vuelo en 24 horas para encontrar el mejor momento. Cada hora se valora como buena, precaución o no recomendada según las ráfagas previstas, la precipitación (precaución desde 0,1 mm por hora, no recomendada desde 0,5 mm) y la visibilidad (precaución por debajo de 5 km, no recomendada por debajo de 1 km). El resumen sobre las tarjetas muestra el tramo bueno más largo, con la hora local del lugar seleccionado. La lectura actual y la previsión de la hora en curso pueden no coincidir exactamente, así que es normal ver pequeñas diferencias. Esta valoración no incluye el índice Kp, la normativa del espacio aéreo ni las reglas de vuelo nocturno, así que compruébalos aparte.",
+        "chips": {
+          "label": "Precipitación (mm/h) · Visibilidad (km)",
+          "items": [
+            { "level": "wn", "text": "Precipitación ≥ 0,1" },
+            { "level": "bd", "text": "Precipitación ≥ 0,5" },
+            { "level": "wn", "text": "Visibilidad < 5" },
+            { "level": "bd", "text": "Visibilidad < 1" }
+          ]
+        }
+      },
+      {
+        "title": "Viento para tu dron",
+        "summary": "Elige tu modelo para comparar la ráfaga actual con la velocidad máxima de viento oficial. La elección solo se guarda en este navegador.",
+        "body": "En \"Viento para su dron\" elige tu modelo para comparar la ráfaga actual con la velocidad máxima de viento oficial del fabricante. Por debajo del 50 % de ese valor es bueno, desde el 50 % requiere precaución y desde el 70 % no se recomienda. El modelo elegido también se aplica a la previsión de 24 horas y solo se guarda en este navegador.",
+        "chips": {
+          "label": "Respecto al viento máximo oficial",
+          "items": [
+            { "level": "ok", "text": "Bueno < 50 %" },
+            { "level": "wn", "text": "Precaución ≥ 50 %" },
+            { "level": "bd", "text": "No recomendado ≥ 70 %" }
+          ]
+        }
+      },
+      {
+        "title": "Toma todas las valoraciones solo como referencia",
+        "summary": "El estado del aparato, la batería, la carga, la normativa local y los requisitos de vuelo nocturno no están incluidos, por lo que la decisión final y la responsabilidad son del piloto. Las guías de este sitio explican con más detalle los umbrales y el contexto."
+      }
     ],
+    "usagePhases": [
+      "Elegir ubicación",
+      "Revisar condiciones",
+      "Decidir"
+    ],
+    "usageMore": "Ver detalles",
+    "usageRelated": "Relacionado",
     "guideHighlightsTitle": "Explora las guías",
     "guideHighlightsSubtitle": "Guías prácticas sobre seguridad de vuelo, condiciones climáticas y normativas de drones.",
     "guideHighlightsCta": "Ver todas las guías →",
