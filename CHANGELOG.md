@@ -7,7 +7,7 @@
 - 홈은 KV·외부 `no-store` 호출 때문에 정적화 불가 → `force-dynamic` 유지.
 - 검증(클라우드 `next build`, 변경 전/후 비교): 프리렌더 HTML 507개 페이지 보이는 텍스트 전부 동일, 정적 HTML 용량 약 51% 감소, Playwright 콘솔 오류·번역키 노출 0건, 프록시 동작 표(`?dev=` 포함) 확인.
 - 동작 차이: 새 클라이언트 컴포넌트에서 `useTranslations("X")` 를 쓰면 해당 폴더 `layout.tsx`(또는 루트 `LAYOUT_NAMESPACES`)에 "X" 를 추가해야 함.
-- 상태: 푸시·배포 완료(커밋 해시는 푸시 후 갱신).
+- 상태: 푸시·배포 완료(f55b7cc). 실사이트 확인: `/ko/tools/gsd-calculator` HTML 200KB→100KB, 도구·가이드 페이지 정상(PRERENDER), `rss.xml` 정상.
 - 백업: `.backups/backup_20261113_062424_vercel-slim-before`. 롤백: `git revert <이번 커밋>`.
 
 ## 2026-11-12 (3) — 홈 "FlyDroneMap 사용법" 위치 이동 (대시보드 바로 아래)
