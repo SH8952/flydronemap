@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { pickMessages } from "@/i18n/client-messages";
 import { routing } from "@/i18n/routing";
 import { CONSENT_REGION_CODES } from "@/lib/consent";
 import { ConsentBanner } from "@/components/consent-banner";
@@ -13,6 +14,10 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AdZone } from "@/components/ad-zone";
 import "../globals.css";
+
+// 2026-11-13 Vercel 사용량 최적화: 모든 페이지가 공통으로 쓰는 클라이언트 번역만 브라우저로 전달한다.
+// (헤더·푸터·동의 배너·공유 등). 페이지별 번역은 각 폴더의 layout.tsx 에서 추가한다.
+const LAYOUT_NAMESPACES = ["Consent", "Footer", "Header", "Home", "Share"];
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -98,6 +103,7 @@ export default async function LocaleLayout({
   }
 
   setRequestLocale(locale);
+  const messages = await getMessages({ locale });
 
   // 이전에는 여기서 headers()로 x-vercel-ip-country를 읽어 동의 배너 필요 여부를
   // 계산했다. headers()는 요청 시점 API라서 이 레이아웃 아래 모든 페이지가
@@ -148,7 +154,7 @@ export default async function LocaleLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>
+          <NextIntlClientProvider messages={pickMessages(messages, LAYOUT_NAMESPACES)}>
             <SiteHeader guideLocales={getPartialGuideLocales()} />
             <div className="w-full px-4 py-3">
               <AdZone

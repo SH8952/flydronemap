@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ClientMessages } from "@/i18n/client-messages";
 import { AdZone } from "@/components/ad-zone";
 import { GearRecommendationSection } from "@/components/gear-recommendation-section";
 import { HomeDashboardSection } from "@/components/home-dashboard-section";
@@ -23,7 +24,9 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations("Home");
 
+  // 2026-11-13 사용량 최적화: 홈의 클라이언트 컴포넌트가 쓰는 번역만 브라우저로 전달(Regulations 포함).
   return (
+    <ClientMessages locale={locale} namespaces={["Home", "Regulations"]}>
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-10">
       <script
         type="application/ld+json"
@@ -69,5 +72,6 @@ export default async function HomePage({
       {/* FAQ 하이라이트 — 위와 같은 이유로 2026-09-27 신설 */}
       <HomeFaqHighlights />
     </div>
+    </ClientMessages>
   );
 }

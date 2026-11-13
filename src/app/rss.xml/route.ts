@@ -70,6 +70,8 @@ export async function GET() {
   return new Response(xml, {
     headers: {
       "Content-Type": "application/rss+xml; charset=utf-8",
+      // 2026-11-13 Vercel 사용량 최적화: CDN 에 1시간 캐시(피드 내용은 배포 때만 바뀜).
+      "Cache-Control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
     },
   });
 }
