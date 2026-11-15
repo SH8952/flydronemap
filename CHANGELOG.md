@@ -5,7 +5,7 @@
 - 쇼핑 추천 초기 상품: `src/lib/gear-recommendation-ssr.ts` 가 Redis 에 이미 저장된 결과만 5분 캐시로 읽도록 변경(`peekCachedCoupangProducts`·`peekCachedAliexpressProducts` 신규 추가, 기존 함수·API 라우트 변경 없음). API 호출·Redis 쓰기 없음 → 쿠팡 시간당 한도(ExifLens 와 공유) 영향 없음. 저장된 결과가 없으면 기존처럼 클라이언트 위젯이 채움.
 - 검증(클라우드 `next build` 전/후 + `next start`): 홈 4개 언어가 정적(●)으로 생성, `Cache-Control: s-maxage=300, stale-while-revalidate`, geo-country 쿠키 정상, 만료 후 첫 요청 STALE→다음 요청에서 카드 묶음 교체 확인, 4개 언어 Playwright 콘솔 오류·번역키 노출 0건, 홈 섹션 구성 동일, tsc 0 오류. 가짜 Redis 로 초기 HTML 에 상품이 실리고 쓰기 0건임을 확인.
 - 동작 차이: 홈의 무작위 카드가 5분마다 바뀜. 초기 HTML 의 쇼핑 상품은 Redis 에 값이 있을 때만 포함(없으면 위젯이 로드 후 채움).
-- 상태: 푸시·배포 완료(커밋 해시는 푸시 후 갱신).
+- 상태: 푸시·배포 완료(17270d5). 실사이트 확인: /ko 캐시 HIT(정적), 재접속 0.2~0.3초대.
 - 백업: `.backups/backup_20261115_064642_home-static-before`. 롤백: `git revert <이번 커밋>`.
 
 ## 2026-11-13 — Vercel 사용량 최적화(번역 슬림화·rss 캐시·프록시 축소)
