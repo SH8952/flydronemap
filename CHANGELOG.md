@@ -4,7 +4,7 @@
 - 변경: `src/app/[locale]/layout.tsx` — gtag 스크립트 주소와 `gtag('config', …)` 2곳의 ID 교체.
 - 새 속성: `FlyDroneMap (flydronemap.com)` (시간대 대한민국, 통화 USD) / 웹 스트림 `FlyDroneMap` / 측정 ID `G-72LNX62QM6` (이전 `G-QFT36DH8YR`).
 - 동작 차이: 새 속성은 0부터 수집을 시작한다(이전 기록은 기존 속성에 그대로 남음, 이어지지 않음). 애드센스·서치 콘솔 연결은 새 속성에서 따로 설정해야 한다.
-- 상태: 푸시 대기(푸시·실사이트 수집 확인 후 갱신).
+- 상태: 푸시·배포 완료(7e17a83). 실사이트 확인: 홈 HTML 의 측정 ID 가 새 ID 로 바뀜, GA 실시간 보고서에서 새 속성이 page_view·first_visit 수집 확인.
 - 백업: `_backups/flydronemap_backup_20261115_131253_ga분리_사전`. 롤백: `git revert <이번 커밋>`.
 
 ## 2026-11-15 — 홈 정적화(ISR 5분): 첫 접속 지연(콜드 스타트) 해소
