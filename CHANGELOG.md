@@ -1,3 +1,11 @@
+## 2026-11-16 — GA4 개발자 제외 강화: 제외 대상에서는 gtag.js 파일 자체를 로드하지 않음
+
+- 배경: 기존 코드는 `gtag('config')` 호출만 `dev_exclude=1` 쿠키로 막고 `gtag/js?id=...` 파일은 항상 로드했다. ExifLens 에서 이 파일이 로드되면 config 호출 없이도 page_view 가 자동 전송되는 것이 확인되어(g/collect 요청·`_ga_<ID>` 쿠키), 같은 구조인 FlyDroneMap 에도 동일 수정을 적용.
+- 변경: `src/app/[locale]/layout.tsx` — 정적 gtag.js `<Script>` 제거. 인라인 스크립트에서 제외 대상(쿠키 또는 localhost/127.0.0.1/[::1])이면 `window['ga-disable-G-72LNX62QM6']=true` 로 두고 gtag.js 를 로드하지 않음. 일반 방문자는 gtag.js 동적 로드 + `gtag('config')` 로 기존과 동일. `gtag()`·dataLayer·consent default 는 항상 정의(동의 배너·공유 이벤트 호출 유지).
+- 검증: `tsc --noEmit`·eslint 통과. 같은 스크립트를 Playwright 로 확인 — 일반 방문자는 gtag.js 1회 요청·config 1, 관리자 쿠키/localhost 는 gtag.js 요청 0·config 0·ga-disable=true.
+- 상태: 푸시 대기(`flydronemap_ga제외_Push.command`). 배포 후 `?dev=<토큰>` 접속 상태에서 GA 실시간에 본인 접속이 사라지는지 확인(이미 기록된 과거 접속은 남음).
+- 백업: `_backups/flydronemap_backup_20261115_194545_ga제외강화_사전`. 롤백: `git revert <이번 커밋>`.
+
 ## 2026-11-15 — GA4 속성 분리: FlyDroneMap (flydronemap.com) 전용 속성·새 측정 ID 적용
 
 - 배경: 3개 사이트(ExifLens·FlyDroneMap·firelic)가 GA4 속성 1개("경제적 자유를 찾아 떠나자 - GA4")에 스트림으로 같이 들어 있어 애널리틱스 홈에서 한꺼번에 보였다. 스트림은 다른 속성으로 옮길 수 없어, 사이트별 새 속성을 만들고 측정 ID 를 교체하는 방식으로 분리.
