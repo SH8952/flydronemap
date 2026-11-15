@@ -1,6 +1,6 @@
 import { resolveAffiliateProvider } from "@/lib/affiliate";
-import { searchCoupangProducts, type CoupangProduct } from "@/lib/coupang";
-import { searchAliexpressProducts, type AliexpressProduct } from "@/lib/aliexpress";
+import { peekCachedCoupangProducts, type CoupangProduct } from "@/lib/coupang";
+import { peekCachedAliexpressProducts, type AliexpressProduct } from "@/lib/aliexpress";
 
 /**
  * AdSense 재심사 대응 (2026-09-19, 공통 대화방 "홈 빈 콘텐츠" 작업).
@@ -34,6 +34,11 @@ const LOCALE_TO_ALIEXPRESS: Record<string, { currency: string; language: string 
 };
 const DEFAULT_ALIEXPRESS_LOCALE = { currency: "USD", language: "EN" };
 
+/**
+ * 2026-11-15 홈 정적화(ISR): 홈이 5분마다 새로 만들어지는 정적 페이지가 되면서, 이 조회는 Redis 에 이미 저장된
+ * 결과만 5분 캐시로 읽는다(API 호출·쓰기 없음 → 쿠팡 시간당 한도 영향 없음). 저장된 결과가 없으면 null 이 되어
+ * 기존처럼 클라이언트 위젯이 상품을 채운다(방문자가 위젯을 한 번 열면 Redis 가 채워져 다음 갱신부터 초기 HTML 에 포함).
+ */
 export type InitialGearData =
   | { provider: "coupang"; products: CoupangProduct[] }
   | { provider: "aliexpress"; products: AliexpressProduct[] };
@@ -45,16 +50,17 @@ export async function fetchInitialGearProducts(
 
   try {
     if (provider === "coupang") {
-      const products = await searchCoupangProducts(SSR_COUPANG_KEYWORD, 2);
+      const products = (await peekCachedCoupangProducts(SSR_COUPANG_KEYWORD, 2)) ?? [];
       return products.length > 0 ? { provider: "coupang", products } : null;
     }
 
     if (provider === "aliexpress") {
       const target = LOCALE_TO_ALIEXPRESS[locale] ?? DEFAULT_ALIEXPRESS_LOCALE;
-      const products = await searchAliexpressProducts(SSR_ALIEXPRESS_KEYWORD, 2, {
-        targetCurrency: target.currency,
-        targetLanguage: target.language,
-      });
+      const products =
+        (await peekCachedAliexpressProducts(SSR_ALIEXPRESS_KEYWORD, 2, {
+          targetCurrency: target.currency,
+          targetLanguage: target.language,
+        })) ?? [];
       return products.length > 0 ? { provider: "aliexpress", products } : null;
     }
 

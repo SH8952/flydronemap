@@ -329,3 +329,32 @@ export async function searchCoupangProducts(
   await setCachedProducts(cacheKey, products, CACHE_TTL_SECONDS);
   return products;
 }
+
+
+/**
+ * 홈(ISR) 전용: Redis 에 이미 저장된 결과만 읽는다(2026-11-15 홈 정적화).
+ * - Coupang API 를 호출하지 않고 Redis 에 아무것도 쓰지 않는다 → 시간당 호출 한도에 영향 없음.
+ * - 요청마다 가져오는 `no-store` 대신 5분 캐시(next.revalidate)로 읽어, 홈이 정적(ISR) 페이지로 만들어질 수 있게 한다.
+ * - 저장된 결과가 없거나 읽기에 실패하면 null → 클라이언트 위젯이 기존처럼 직접 채운다.
+ * 캐시 키는 searchCoupangProducts 와 동일하게 만든다.
+ */
+export async function peekCachedCoupangProducts(
+  keyword: string,
+  limit = 5,
+): Promise<CoupangProduct[] | null> {
+  if (!KV_URL || !KV_TOKEN) return null;
+  const clampedLimit = Math.min(Math.max(limit, 1), 10);
+  const cacheKey = `${CACHE_PREFIX}${keyword}:${clampedLimit}`;
+  try {
+    const res = await fetch(`${KV_URL}/get/${encodeURIComponent(cacheKey)}`, {
+      headers: { Authorization: `Bearer ${KV_TOKEN}` },
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { result: string | null };
+    if (!data.result) return null;
+    return JSON.parse(data.result) as CoupangProduct[];
+  } catch {
+    return null;
+  }
+}

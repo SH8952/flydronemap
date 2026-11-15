@@ -270,3 +270,32 @@ function parseProductQueryResponse(json: Record<string, unknown>): AliexpressPro
     })
     .filter((p): p is AliexpressProduct => p !== null);
 }
+
+
+/**
+ * 홈(ISR) 전용: Redis 에 이미 저장된 결과만 읽는다(2026-11-15 홈 정적화).
+ * AliExpress API 를 호출하지 않고 Redis 에 쓰지 않으며, 5분 캐시(next.revalidate)로 읽는다.
+ * 저장된 결과가 없거나 읽기에 실패하면 null → 클라이언트 위젯이 기존처럼 직접 채운다.
+ * 캐시 키는 searchAliexpressProducts 와 동일하게 만든다.
+ */
+export async function peekCachedAliexpressProducts(
+  keyword: string,
+  limit: number,
+  { targetCurrency, targetLanguage }: ProductQueryOptions,
+): Promise<AliexpressProduct[] | null> {
+  if (!KV_URL || !KV_TOKEN) return null;
+  const clampedLimit = Math.min(Math.max(limit, 1), 50);
+  const cacheKey = `${CACHE_PREFIX}${keyword}:${clampedLimit}:${targetCurrency}:${targetLanguage}`;
+  try {
+    const res = await fetch(`${KV_URL}/get/${encodeURIComponent(cacheKey)}`, {
+      headers: { Authorization: `Bearer ${KV_TOKEN}` },
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { result: string | null };
+    if (!data.result) return null;
+    return JSON.parse(data.result) as AliexpressProduct[];
+  } catch {
+    return null;
+  }
+}

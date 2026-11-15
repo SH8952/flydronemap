@@ -1,3 +1,13 @@
+## 2026-11-15 — 홈 정적화(ISR 5분): 첫 접속 지연(콜드 스타트) 해소
+
+- 배경: 홈이 요청마다 서버에서 만들어지는 구조라, 한동안 접속이 없으면 첫 접속이 1~2초 느렸다(함수 콜드 스타트; 모바일 북마크 접속에서 2~3초). 10/18 최적화로 다른 페이지가 정적이 된 뒤 홈만 함수로 처리되며 서버가 자주 잠들게 된 것이 원인.
+- 변경: `src/app/[locale]/page.tsx` `export const dynamic = "force-dynamic"` → `export const revalidate = 300`(5분마다 새로 만들어 CDN 캐시에서 즉시 응답, 만료 후 첫 요청도 이전 캐시를 즉시 내주고 뒤에서 갱신). 무작위 가이드/FAQ 카드: "요청마다" → "5분마다" 바뀜(노출 FAQ 항목과 FAQPage 구조화 데이터는 항상 같은 묶음).
+- 쇼핑 추천 초기 상품: `src/lib/gear-recommendation-ssr.ts` 가 Redis 에 이미 저장된 결과만 5분 캐시로 읽도록 변경(`peekCachedCoupangProducts`·`peekCachedAliexpressProducts` 신규 추가, 기존 함수·API 라우트 변경 없음). API 호출·Redis 쓰기 없음 → 쿠팡 시간당 한도(ExifLens 와 공유) 영향 없음. 저장된 결과가 없으면 기존처럼 클라이언트 위젯이 채움.
+- 검증(클라우드 `next build` 전/후 + `next start`): 홈 4개 언어가 정적(●)으로 생성, `Cache-Control: s-maxage=300, stale-while-revalidate`, geo-country 쿠키 정상, 만료 후 첫 요청 STALE→다음 요청에서 카드 묶음 교체 확인, 4개 언어 Playwright 콘솔 오류·번역키 노출 0건, 홈 섹션 구성 동일, tsc 0 오류. 가짜 Redis 로 초기 HTML 에 상품이 실리고 쓰기 0건임을 확인.
+- 동작 차이: 홈의 무작위 카드가 5분마다 바뀜. 초기 HTML 의 쇼핑 상품은 Redis 에 값이 있을 때만 포함(없으면 위젯이 로드 후 채움).
+- 상태: 푸시·배포 완료(커밋 해시는 푸시 후 갱신).
+- 백업: `.backups/backup_20261115_064642_home-static-before`. 롤백: `git revert <이번 커밋>`.
+
 ## 2026-11-13 — Vercel 사용량 최적화(번역 슬림화·rss 캐시·프록시 축소)
 
 - 배경: Vercel Hobby 한도 초과(Fluid Active CPU 4h39m/4h, ISR 읽기 816K/1M, Fast Origin Transfer 7.84GB/10GB) 대응. 원인은 모든 페이지 HTML에 번역 전체(약 100KB)가 중복으로 실려 ISR 읽기·전송량이 커진 것과, 매 요청 실행되는 서버 코드(CPU). 사이트가 보여주는 내용·기능은 그대로 두고 전송량·CPU만 줄이는 방향.

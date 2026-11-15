@@ -10,10 +10,10 @@ import { HomeToolsHighlights } from "@/components/home-tools-highlights";
 import { HomeFaqHighlights } from "@/components/home-faq-highlights";
 import { CrossLinkExifLens } from "@/components/cross-link/cross-link-exiflens";
 
-// 이 페이지는 요청 시점에 따라 결과가 달라지는 동작(무작위 가이드/FAQ 카드, 서버에서 가져오는 쇼핑 추천 상품)을
-// 가지고 있어 항상 요청마다 렌더링한다. 레이아웃에서 headers()를 걷어낸 뒤에도
-// 기존 동작이 그대로 유지되도록 명시한다.
-export const dynamic = "force-dynamic";
+// 2026-11-15 홈 정적화(ISR): 홈이 요청마다 서버에서 만들어지면서 한동안 접속이 없을 때 첫 접속이 1~2초 느렸다(함수 콜드 스타트).
+// 이제 5분(300초)마다 새로 만들어 CDN 캐시에서 바로 응답한다. 무작위 가이드/FAQ 카드는 새로 만들 때마다 다시 뽑히므로
+// "요청마다"가 아니라 "5분마다" 바뀐다(노출되는 FAQ 항목과 FAQPage 구조화 데이터는 항상 같은 묶음으로 함께 갱신).
+export const revalidate = 300;
 
 export default async function HomePage({
   params,
