@@ -117,7 +117,7 @@ export default async function LocaleLayout({
         <Script
           async
           strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-QFT36DH8YR"
+          src="https://www.googletagmanager.com/gtag/js?id=G-72LNX62QM6"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
@@ -134,7 +134,7 @@ export default async function LocaleLayout({
             gtag('js', new Date());
             if (!/(?:^|; )dev_exclude=1(?:;|$)/.test(document.cookie) &&
               ['localhost', '127.0.0.1', '[::1]'].indexOf(location.hostname) === -1) {
-              gtag('config', 'G-QFT36DH8YR');
+              gtag('config', 'G-72LNX62QM6');
             }
           `}
         </Script>
