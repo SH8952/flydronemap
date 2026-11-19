@@ -8,8 +8,8 @@
 - 사실관계: 기존 글에 이미 있던 NOAA·GFZ·NASA·기상청(BoM)·연구 수치만 사용(새 수치·1인칭 체험담 추가 없음). frontmatter 키·이미지·slug 불변, `updatedAt`만 2026-11-19로 갱신.
 - 검증: 세 파일 모두 `@mdx-js/mdx` + remark-gfm(`singleTilde:false`) 컴파일 통과, 내부 링크 대상 파일 전부 존재, 물결표(`~`) 없음. 변경 파일은 mdx 3개뿐.
 - 색인 요청 목록: `flydronemap-색인요청목록.html` 최상단(1일차)에 위 5개 주소 추가 → 252개·26일치(백업 `_backups/gsc-helper_*_pre-flydronemap-space-weather-top5`).
-- 상태: 푸시 대기(`flydronemap_우주날씨가이드3편_Push.command`). **배포 후** 재작성한 3개 주소를 먼저 색인 요청(내용 변경 없는 2개는 언제든 가능).
-- 백업: `.backups/backup_20261119_123653_space-weather-guides-before`. 롤백: `git revert <이번 커밋>`.
+- 상태: 푸시 완료(513e804). **배포 후** 재작성한 3개 주소를 먼저 색인 요청(내용 변경 없는 2개는 언제든 가능).
+- 백업: `.backups/backup_20261119_123653_space-weather-guides-before`. 롤백: `git revert 513e804`. 7일 지난 `.backups`(11/10~11/11분 13개, 약 234MB)와 임시 검사 파일 정리 완료.
 
 ## 2026-11-16 — GA4 개발자 제외 강화: 제외 대상에서는 gtag.js 파일 자체를 로드하지 않음
 
