@@ -1,3 +1,16 @@
+## 2026-11-19 — 우주날씨 가이드 3편 재작성(주제 겹침 해소·자연스러운 문체)
+
+- 배경: 구글 서치 콘솔(11/19)에서 색인됐던 가이드 5개가 "크롤링됨 - 현재 색인이 생성되지 않음"으로 내려갔다. 그중 KP·우주날씨 계열 3편(en `kp-index-effect-on-gps-compass-reliability`, en `how-solar-flares-affect-drone-navigation`, ja `avoid-flying-during-geomagnetic-storms`)은 형제 가이드(KP 지수 입문·장거리 KP 조건·NOAA 스케일·태양풍·섬광)와 다루는 내용이 크게 겹쳐 있었다. 나머지 2개(en `faa-part-107-explained`, ja `dew-point-and-drone-lens-fogging`)는 겹침이 없어 내용 변경 없이 색인 재요청만 한다.
+- 변경(각 글이 던지는 고유한 질문으로 시작하도록 재구성, 반복되던 "핵심 요약·흔한 실수·체크리스트" 골격 정리, 형제 글과 겹치던 설명은 링크로 대체, 문체를 덜 기계적으로):
+  - en `kp-index-effect-on-gps-compass-reliability`: "이게 폭풍 탓인가?" — GPS와 나침반이 폭풍에 닿는 두 경로, 먼저 배제할 평범한 원인, 증상·KP별 읽는 표. 제목·설명 변경.
+  - en `how-solar-flares-affect-drone-navigation`: 플레어(분 단위)와 지자기 폭풍(시간 단위)은 시계가 다르다는 점 중심. NOAA R스케일 표·태양풍 내용은 링크로 넘기고 GNSS 연구 수치·플레어/폭풍 구분 표 유지.
+  - ja `avoid-flying-during-geomagnetic-storms`: 비행 종류별(목시 내 호버링·수동 근거리·자동 웨이포인트·장거리/목시외·고정밀 측량) 연기 판단표 중심. 제목·설명 변경.
+- 사실관계: 기존 글에 이미 있던 NOAA·GFZ·NASA·기상청(BoM)·연구 수치만 사용(새 수치·1인칭 체험담 추가 없음). frontmatter 키·이미지·slug 불변, `updatedAt`만 2026-11-19로 갱신.
+- 검증: 세 파일 모두 `@mdx-js/mdx` + remark-gfm(`singleTilde:false`) 컴파일 통과, 내부 링크 대상 파일 전부 존재, 물결표(`~`) 없음. 변경 파일은 mdx 3개뿐.
+- 색인 요청 목록: `flydronemap-색인요청목록.html` 최상단(1일차)에 위 5개 주소 추가 → 252개·26일치(백업 `_backups/gsc-helper_*_pre-flydronemap-space-weather-top5`).
+- 상태: 푸시 대기(`flydronemap_우주날씨가이드3편_Push.command`). **배포 후** 재작성한 3개 주소를 먼저 색인 요청(내용 변경 없는 2개는 언제든 가능).
+- 백업: `.backups/backup_20261119_123653_space-weather-guides-before`. 롤백: `git revert <이번 커밋>`.
+
 ## 2026-11-16 — GA4 개발자 제외 강화: 제외 대상에서는 gtag.js 파일 자체를 로드하지 않음
 
 - 배경: 기존 코드는 `gtag('config')` 호출만 `dev_exclude=1` 쿠키로 막고 `gtag/js?id=...` 파일은 항상 로드했다. ExifLens 에서 이 파일이 로드되면 config 호출 없이도 page_view 가 자동 전송되는 것이 확인되어(g/collect 요청·`_ga_<ID>` 쿠키), 같은 구조인 FlyDroneMap 에도 동일 수정을 적용.

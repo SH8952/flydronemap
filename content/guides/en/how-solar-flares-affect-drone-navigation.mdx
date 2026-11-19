@@ -1,8 +1,8 @@
 ---
 title: "How Solar Flares Affect Drone Navigation"
-description: "Why a strong solar flare can degrade your drone's GPS within minutes even while the Kp index stays calm, and how to tell it apart from a geomagnetic storm."
+description: "A flare works on a minutes-long clock, not the hours-long clock of a geomagnetic storm. What that means for drone GPS, and which chart to open when Kp looks calm."
 publishedAt: "2026-09-04"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-19"
 tags: ["solar-flare", "gps", "space-weather", "navigation"]
 category: "space-weather-gps"
 image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
@@ -10,88 +10,61 @@ imageCredit: "Ivana Cajina"
 imageCreditUrl: "https://unsplash.com/@von_co?utm_source=FlyDroneMap&utm_medium=referral"
 ---
 
-Imagine a precision mapping flight where GPS position hold degrades for a while even though the Kp index still reads a calm 2. One thing worth checking in that situation is NOAA's X-ray flux plot. A strong solar flare acts on the sunlit side of Earth's atmosphere within minutes, which is a different clock from the slower geomagnetic storms that most drone weather tools are built to track.
+Most drone weather tools watch the Kp index, and Kp is built to describe geomagnetic storms. A solar flare is a different event on a different schedule. The radiation from a flare reaches Earth in about 8 minutes, and NOAA says its effect on the sunlit side of the upper atmosphere happens at the same time the flare is observed. So on a day when Kp reads a calm 2, the flare question can still be open, and the place to answer it is NOAA's X-ray flux plot, not the Kp gauge.
 
-## Key takeaways
+This guide is about that gap: what a flare does, how much of it we can actually attach to a drone, and how to tell a flare problem from a storm problem.
 
-- A solar flare's radiation reaches Earth in about 8 minutes, and NOAA says its effect on the sunlit side of the upper atmosphere occurs at the same time the event is observed.
-- The effects that NOAA documents for flares are HF radio blackouts (3 to 30 MHz) and degraded low-frequency navigation signals. NOAA's R-scale mentions increased satellite navigation errors only at R5.
-- Research on strong flares has measured increased ionospheric electron content and larger errors in precise GNSS positioning. No source reviewed here quantifies the effect on a consumer drone's position hold.
-- Rare solar radio bursts can also disturb GPS reception for minutes.
-- Kp tells you about geomagnetic storms, not flares. Live X-ray flux is the relevant data for flares.
+## Flares and storms run on different clocks
 
-## Flares and CMEs are not the same thing
+People say "solar storm" for two separate things. A flare is a burst of radiation, X-rays and extreme ultraviolet, and it arrives with the light. A coronal mass ejection (CME) is a cloud of charged plasma thrown off the Sun, and it takes much longer. NOAA gives as little as 15 to 18 hours for the fastest Earth-directed ones and several days for slower ones. CMEs are what drive geomagnetic storms, so they are what show up in Kp.
 
-People often use "solar storm" for both, but they behave differently.
+The two often travel together. NOAA notes that CMEs typically occur with flares, and NASA says the strongest flares are almost always correlated with CMEs. That is why a major flare is frequently followed a day or so later by a geomagnetic storm. It is also why a flare does not guarantee one: a flare can happen without an Earth-directed CME.
 
-| | Solar flare | Coronal mass ejection (CME) |
-|---|---|---|
-| What it is | A burst of radiation (X-rays and extreme ultraviolet) | A cloud of charged plasma thrown out from the Sun |
-| Time to reach Earth | About 8 minutes, the travel time of light | NOAA: as little as 15 to 18 hours for the fastest Earth-directed ones, several days for slower ones |
-| Where it acts | The sunlit side of Earth's atmosphere | Earth's magnetic environment and ionosphere, with the strongest effects at high latitudes |
-| Related scale | R (Radio Blackouts) | G (Geomagnetic Storms), through Kp |
-| Duration | Minutes to hours | A resulting storm can last hours or longer |
+## What a flare does to the sky above you
 
-NOAA notes that CMEs typically occur together with flares, and NASA says the strongest flares are almost always correlated with CMEs. That is why a major flare is often followed by a geomagnetic storm a day or more later, but a flare can also happen without an Earth-directed CME.
+NOAA's explanation is that the extra X-rays and extreme ultraviolet ionize the lower layers of the ionosphere on the sunlit side of Earth. The best-known result is a radio blackout, mainly in the 3 to 30 MHz HF band, which NASA says can last minutes or, in the worst cases, hours.
 
-## How a flare disturbs the ionosphere
+NOAA scales this by the flare's peak X-ray class. The length of the HF effect grows with the class: tens of minutes at R2 (M5), about an hour at R3 (X1), and one to two hours at R4 (X10). Low-frequency navigation signals follow a similar pattern, degraded for brief intervals at R1, tens of minutes at R2 and about an hour at R3. Increased satellite navigation errors only appear in the table at R5 (X20). The full table is in the guide to [NOAA's space weather scales](/en/guides/understanding-noaa-space-weather-scales).
 
-NOAA explains that the increased X-ray and extreme ultraviolet radiation from a flare ionizes the lower layers of the ionosphere on the sunlit side of Earth. That produces a radio blackout: the absence of HF communication, primarily in the 3 to 30 MHz band. NASA describes the result as radio signal blackouts that can last for minutes or, in the worst cases, hours.
+One detail that is easy to miss: this only happens on the sunlit side. Whether a particular flight is exposed depends on where the Sun is over your location at that moment.
 
-NOAA's R-scale ties severity to the flare's peak X-ray class, and the duration of HF effects grows with the class: tens of minutes at R2 (M5), about an hour at R3 (X1), and one to two hours at R4 (X10). The same table lists low-frequency navigation signals as degraded for brief intervals at R1, tens of minutes at R2, about an hour at R3, and mentions increased satellite navigation errors only at R5 (X20). See [the NOAA scales explained](/en/guides/understanding-noaa-space-weather-scales) for the full table.
+## What the GNSS research shows, and what it does not
 
-Only the sunlit hemisphere is exposed to this effect. Whether a given flight is affected therefore depends on where the Sun is relative to the flight location at the time.
+Satellite navigation signals cross the ionosphere, so anything that changes its electron content changes their travel time. A study of the very active period of October 2014 measured typical midday total electron content of 30 to 40 TECU, with peaks above 50. On X-class flare days it was about 10 TECU higher than on the quiet days before. In the same period, coordinate deviations at three European stations were at least twice as large as in a calmer stretch, with vertical variations in precise point positioning running from millimeters to about 12 cm.
 
-## What research says about GNSS
+Those are results from fixed, high-precision stations. They are a good reason to be careful with centimeter-level work such as RTK or PPP mapping. They are not an error figure for a consumer drone's position hold, and none of the sources reviewed for this guide gives one. If someone quotes you a number for how many meters a flare will move a hobby drone, ask where it comes from.
 
-Satellite navigation signals pass through the ionosphere, and anything that changes its electron content changes the signal's travel time. A study of the very active period of October 2014 measured typical midday total electron content of 30 to 40 TECU, with peaks above 50 TECU, and about 10 TECU of additional increase during X-class flare days compared with preceding quiet days. In the same period, coordinate deviations at three European stations were at least twice as large as in a quieter period. The reported vertical variations in precise point positioning were in the range of millimeters to about 12 cm.
+## Radio bursts, briefly
 
-These figures come from high-precision positioning at fixed stations. They show that flares and active periods can matter for centimeter-level work such as RTK or PPP mapping. They do not translate directly into an error number for a consumer drone's position hold, and no source reviewed for this guide gives one.
+Separately from the ionosphere, a flare can emit a burst of radio noise at the frequencies GPS uses. Australia's Bureau of Meteorology space weather service expects this only a few times per solar cycle, for a few minutes each time. It can reduce signal-to-noise ratio while a receiver is acquiring signals, though an established lock is rarely lost. It does describe one 2006 event that caused loss of lock with GPS satellites for around two hours at a single observatory. For how solar activity relates to the control link itself, see [solar wind and drone communication interference](/en/guides/solar-wind-and-drone-communication-interference).
 
-## Solar radio bursts
+## Flare or storm: reading the clues
 
-Separately from the ionospheric effect, a flare can produce a burst of radio noise at the frequencies GPS uses. The Australian Bureau of Meteorology's space weather service says such interference is expected only a few times per solar cycle and only for a few minutes each time. It can reduce signal-to-noise ratio during signal acquisition, though an established lock is rarely lost, and it describes a 2006 event that caused loss of lock with GPS satellites for around two hours at one observatory. This is rare, and it is not a reason to expect trouble on every flare day.
-
-## Flare or geomagnetic storm: how to tell
+If your GPS misbehaves and you want to know which of the two you are dealing with, the timing is the best clue.
 
 | Clue | Flare-driven | Storm-driven |
 |---|---|---|
 | Timing | Starts when the flare peaks, within minutes | Builds over hours, often a day or more after the eruption |
-| Kp | Often still low | Rising, 5 or more indicates a storm |
-| Location | Sunlit side | Strongest at high latitudes, can reach lower latitudes in major storms |
-| Where to look | GOES X-ray flux, R-scale alerts | Kp, G-scale, aurora forecasts |
-| Typical length | Tens of minutes to a few hours | Hours or longer |
+| Kp | Often still low | Rising; 5 or more is a storm |
+| Where | Sunlit side | Strongest at high latitudes, reaching lower latitudes in major storms |
+| What to open | GOES X-ray flux, R-scale alerts | Kp, G-scale, aurora forecasts |
+| How long | Tens of minutes to a few hours | Hours or longer |
 
-For storms and their effects at high latitude, see [aurora season and high-latitude navigation anomalies](/en/guides/aurora-season-and-high-latitude-drone-navigation-anomalies). The related guide on ionospheric scintillation covers that mechanism in more depth.
+For the storm side at high latitude, see [aurora season and high-latitude navigation anomalies](/en/guides/aurora-season-and-high-latitude-drone-navigation-anomalies).
 
-## What to watch before and during a flight
+## What to check before a precision flight
 
-NOAA's GOES X-ray plots contain 1-minute averages in two passbands and update every minute. NOAA sends space weather alerts at the M5 level. The 3-day forecast is issued every 12 hours, with forecast and observed information broken down for each of the three scale categories. Because a flare's effect occurs at the same time it is observed, the live plot is the useful preflight check; a forecast helps with the days ahead.
+NOAA's GOES X-ray plots carry 1-minute averages in two passbands and update every minute, and NOAA sends alerts when a flare reaches M5. The 3-day forecast, issued every 12 hours, breaks out forecast and observed activity for each of the three scale categories. Because a flare's effect arrives as it is observed, the live plot is the useful preflight check, and the forecast is for planning the days ahead.
 
-## Common mistakes
+Keep it in proportion, too. NOAA's table counts roughly 2,000 R1 events per solar cycle, about 175 at R3 and about 8 at R4. A flare day is not automatically a dangerous flight day, and the sources do not quantify drone-level effects.
 
-- Using Kp as a complete space weather check.
-- Blaming a radio link or a drone fault without considering other causes. Many things degrade positioning: obstructions, multipath, a low satellite count, and local interference.
-- Assuming any flare day means a dangerous flight. NOAA's table counts roughly 2,000 R1 events per solar cycle but only about 175 at R3 and about 8 at R4, and the available sources do not quantify drone-level effects.
-- Forgetting that the effect is on the sunlit side only.
-
-## Checklist
-
-- Before precision work, look at the live GOES X-ray flux and any active R-scale alert, in addition to Kp.
-- If GPS becomes unstable during a precise mission, consider a recent flare as one possible cause, along with the usual ones.
-- If you suspect a flare effect, wait and observe. Documented HF effects last from tens of minutes to a couple of hours, depending on the level.
-- Keep a manual fallback ready. See [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak).
-- Use the [FlyDroneMap dashboard](/en) for Kp, but remember that it does not replace the X-ray plot for flares.
+For ordinary flying, a glance at the X-ray plot next to Kp is enough. If GPS does turn unstable in the middle of a precise mission and a recent flare is on the plot, count it as one possible cause alongside the usual ones, wait it out as the documented HF effects last tens of minutes to a couple of hours, and keep a manual fallback ready, as described in [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak). The [FlyDroneMap dashboard](/en) covers Kp but does not replace the X-ray plot.
 
 ## FAQ
 
 ### Does a solar flare jam my drone's radio link?
 
-The documented flare effects are on HF radio, low-frequency navigation, and, in research, on GNSS accuracy. None of the sources reviewed for this guide describes flares jamming 2.4 GHz or 5.8 GHz control links.
-
-### How quickly does a flare affect the atmosphere?
-
-NOAA says the effect on the sunlit side happens at the same time the event is observed. NASA gives the light travel time from the Sun as about 8 minutes.
+The documented flare effects are on HF radio, on low-frequency navigation and, in research, on GNSS accuracy. None of the sources reviewed here describes flares jamming 2.4 GHz or 5.8 GHz control links.
 
 ### Why is Kp calm during a flare?
 
@@ -99,7 +72,7 @@ Kp measures geomagnetic disturbance, which depends on charged particles and magn
 
 ### Do I need to stop flying every time there is a flare?
 
-The sources do not give a rule for drones. Check the flare class and the status of your aircraft's positioning, and decide based on your mission and local regulations.
+The sources give no rule for drones. Look at the flare class and at how your aircraft's positioning is behaving, then decide based on your mission and local regulations.
 
 ## Sources and further reading
 
