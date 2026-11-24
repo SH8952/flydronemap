@@ -2,7 +2,7 @@
 title: "EU EASAドローン規制の基礎"
 description: "EASAの共通ルールと各国当局の役割、Open・Specific・Certifiedの3区分、C0〜C6クラスの意味、登録が飛行許可ではない理由を整理しました。"
 publishedAt: "2026-10-02"
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-24"
 tags: ["eu", "easa", "regulations"]
 category: "international-regulations"
 image: "/guides/images/eu-easa-drone-regulations-basics.webp"
@@ -19,6 +19,8 @@ EUの枠組みでは、すべての飛行がOpen、Specific、Certifiedのいず
 Specificは、Openの制限を超えるところから始まります。EASAは例として、120mを超える飛行、目視外飛行(BVLOS)、25kgを超える機体、そして4kgを超える機体や適切なCEクラスラベルのない機体での市街地飛行を挙げています。この区分では、リスク評価に基づく国の当局の運航承認か、標準シナリオの場合は宣言(Declaration)のどちらかが必要です。
 
 Certifiedは、有人航空に匹敵するリスクを伴う運航を想定した区分です。実施規則2019/947では、たとえば一定の条件下での群衆の上空の飛行や、人の輸送がこれに当たります。また、機体と運航者の認証なしではリスクを十分に下げられないと当局が判断した場合も、その運航をCertifiedに分類することがあります。手続きは、従来型の航空機のものに近くなります。
+
+<DiagramStairs title={"EUの3つの区分(リスクが上がる順)"} steps={[{"label": "Open", "sub": "低リスク。事前の承認は不要"}, {"label": "Specific", "sub": "リスク評価に基づく承認か、標準シナリオの宣言"}, {"label": "Certified", "sub": "有人航空に匹敵するリスクの運航"}]} />
 
 ## C0〜C6クラスは、重量以外のことも決めます
 
@@ -44,22 +46,22 @@ Openに収まらない運航には、複数の道があります。標準シナ�
 
 U-spaceとは、規則(EU)2021/664に基づいて加盟国が指定する空域で、特定のデジタルサービスを利用した場合にのみドローンを運航できる空域のことです。そこでは、少なくともネットワーク識別、ジオ・アウェアネス、ドローンの飛行承認(Flight Authorisation)、交通情報が義務づけられています。飛行の前に飛行承認を申請し、離陸前にそれを有効にする必要があります。どの区域をU-spaceに指定するかは、各加盟国が自分で決めます。したがって、今あなたの地域にU-spaceがないからといって、今後もそのままとは限りません。飛行の前に、所管する国の当局に問い合わせてください。
 
-## よくある間違い
+## 実践チェックリスト
+
+1. 居住国の当局での運航者登録が有効かを確認し、登録番号を手元に用意してください。EASAによれば、この登録は他のEASA加盟国でも有効です。
+2. どのサブカテゴリー(A1、A2、A3)が適用されるかを決める前に、機体のクラスラベル(C0〜C6)を確認してください。ラベルのない機体では、重量と市場に出された時期で決まります。第20条を参照してください。
+3. 計画している飛行がOpenに収まるのか、それともSpecificで標準シナリオやリスク評価に基づく運航承認が必要なのかを、先に整理してください。
+4. STS-01またはSTS-02の宣言を行う前に、すべての条件を一つずつ飛行計画と照らし合わせてください。
+5. 最新の要件、空域地図、U-spaceの区域は、必ずEASAと目的地の国の当局で確認してください。この記事はあくまで目安であり、飛行許可や法的助言の代わりにはなりません。
+
+関連するテーマについては、[VLOSとBVLOSの解説](/ja/guides/vlos-bvlos-explained)、[Remote IDの解説](/ja/guides/remote-id-requirements-explained)、[スペインの規則とENAIREの区域の解説](/ja/guides/spain-drone-regulations-and-enaire-zguas-explained)、[フランスの規則とDGACの制限区域マップの解説](/ja/guides/france-drone-regulations-and-dgac-restriction-map-explained)、[スイスの規則とFOCAドローンマップの解説](/ja/guides/switzerland-drone-regulations-and-foca-drone-map-explained)もご覧ください。
+
+## 避けたい落とし穴
 
 - EASAの規則だけで全体像がわかったつもりになり、目的地の国の当局が出している空域地図や地域の手続きを確認しない
 - クラスラベルのない旧型機は、ラベル付きの機体と自動的に同じ権利があると考えたり、逆に自動的に対象外になると考えたりする。決め手になるのは、重量、2024年1月1日より前に市場に出されたかどうか、そして経過措置である
 - 記載された条件を実際に計画している飛行と照らし合わせずに、標準シナリオを宣言する
 - EU全域で有効な登録番号があれば、現地の制限を確認せずにEUのどこでも飛ばせると考える
-
-## 実践チェックリスト
-
-- 居住国の当局での運航者登録が有効かを確認し、登録番号を手元に用意してください。EASAによれば、この登録は他のEASA加盟国でも有効です。
-- どのサブカテゴリー(A1、A2、A3)が適用されるかを決める前に、機体のクラスラベル(C0〜C6)を確認してください。ラベルのない機体では、重量と市場に出された時期で決まります。第20条を参照してください。
-- 計画している飛行がOpenに収まるのか、それともSpecificで標準シナリオやリスク評価に基づく運航承認が必要なのかを、先に整理してください。
-- STS-01またはSTS-02の宣言を行う前に、すべての条件を一つずつ飛行計画と照らし合わせてください。
-- 最新の要件、空域地図、U-spaceの区域は、必ずEASAと目的地の国の当局で確認してください。この記事はあくまで目安であり、飛行許可や法的助言の代わりにはなりません。
-
-関連するテーマについては、[VLOSとBVLOSの解説](/ja/guides/vlos-bvlos-explained)、[Remote IDの解説](/ja/guides/remote-id-requirements-explained)、[スペインの規則とENAIREの区域の解説](/ja/guides/spain-drone-regulations-and-enaire-zguas-explained)、[フランスの規則とDGACの制限区域マップの解説](/ja/guides/france-drone-regulations-and-dgac-restriction-map-explained)、[スイスの規則とFOCAドローンマップの解説](/ja/guides/switzerland-drone-regulations-and-foca-drone-map-explained)もご覧ください。
 
 ## 出典・参考資料
 

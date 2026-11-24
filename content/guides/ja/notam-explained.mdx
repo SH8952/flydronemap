@@ -2,7 +2,7 @@
 title: "NOTAMとは？航空情報通報をわかりやすく解説"
 description: "NOTAMとは何か、TFRとの関係、ドローン操縦者が飛行前に確認すべき理由と知っておくべきことを簡潔に解説します。"
 publishedAt: "2026-09-28"
-updatedAt: "2026-10-23"
+updatedAt: "2026-11-24"
 tags: ["notam", "airspace", "regulations", "glossary"]
 category: "glossary"
 ---
@@ -20,7 +20,7 @@ NOTAMは世界で使われている仕組みですが、このページの例と
 
 ## NOTAMとは何か
 
-ICAO(国際民間航空機関)による国際的な定義では、NOTAMは、飛行運用に関わる人員にとって適時に知ることが不可欠な、航空施設・業務・手順・危険の設定、状態、変更に関する情報を含み、電気通信手段で配布される通報とされています。米国の制度も同じ考え方に基づいています。
+ICAO(国際民間航空機関)による国際的な定義では、NOTAMは電気通信手段で配布される通報です。内容は、飛行運用に関わる人員にとって適時に知ることが不可欠な、航空施設・業務・手順・危険の設定、状態、変更に関する情報とされています。米国の制度も同じ考え方に基づいています。
 
 FAAでの名称は、Notice to AirmenからNotice to Air Missionsに変更されました。略称は変わっていません。
 
@@ -37,6 +37,8 @@ FAAでの名称は、Notice to AirmenからNotice to Air Missionsに変更され
 
 TFRは、NOTAMを通じてパイロットに伝えられます。FAAのUASのページによると、ドローンの運用者は、FAAのTFR一覧、LAANC、B4UFLYアプリで、有効なTFRを確認できます。TFRの詳細は[TFRの解説](/ja/guides/temporary-flight-restrictions-tfr-explained)を参照してください。
 
+<DiagramCompare title={"NOTAMとTFR"} left={{"head": "NOTAM", "items": ["一時的で、時間的に緊急性のある航空情報", "ほとんどのNOTAMはドローンと無関係"]}} right={{"head": "TFR", "items": ["NOTAMの一種", "すべてのTFRはNOTAM"]}} />
+
 ## ドローン操縦者が知っておくべきこと
 
 - FAAは、連邦NOTAMシステムの一部であるNOTAM Searchを提供しており、フライトサービスステーションからもNOTAMを入手できます。
@@ -45,14 +47,7 @@ TFRは、NOTAMを通じてパイロットに伝えられます。FAAのUASのペ
 - FAAのパイロット向けガイダンスは、NOTAMやTFRは主に有人航空機の必要性を前提に設計されていると述べています。NOTAMが出ていないからといって、その場所に危険がない証拠にはなりません。
 - NOTAMは専門的な航空の略語で書かれていることが多くあります。使いこなせる必要はありません。自分の場所、高度、時間帯と、何が制限または閉鎖されているかを示す言葉を探してください。
 
-## 簡単な確認手順
-
-1. 飛行する場所の近くの空港や地点で検索します。
-2. 日時を見て、自分の飛行がその範囲に含まれるかを確認します。
-3. 空港に関する項目(滑走路、誘導路)と、空域の制限(TFR、一時的な特別使用空域)を区別します。
-4. 離陸直前にもう一度確認します。NOTAMは時間的に緊急性のある一時的な情報のために発行されるためです。
-
-## よくある質問
+## 気になる疑問に答えます
 
 ### NOTAMは何の略ですか?
 Notice to Air Missionsの略です。以前はNotice to Airmenでしたが、略称は変わっていません。
@@ -66,7 +61,14 @@ FAAのFAQによれば、Part 107の飛行では必要ありません。運用許
 ### 米国ではNOTAMをどこで調べられますか?
 FAAのNOTAM Search、フライトサービスステーション、そしてTFRについてはFAAのTFR一覧、LAANC、B4UFLYで確認できます。
 
-## 出典・参考資料
+## 簡単な確認手順
+
+1. 飛行する場所の近くの空港や地点で検索します。
+2. 日時を見て、自分の飛行がその範囲に含まれるかを確認します。
+3. 空港に関する項目(滑走路、誘導路)と、空域の制限(TFR、一時的な特別使用空域)を区別します。
+4. 離陸直前にもう一度確認します。NOTAMは時間的に緊急性のある一時的な情報のために発行されるためです。
+
+## 出典
 
 - [FAA — Aeronautical Information Manual, Chapter 5, Section 1: NOTAM System](https://www.faa.gov/air_traffic/publications/atpubs/aim_html/chap5_section_1.html)
 - [FAA — Temporary Flight Restrictions (TFRs)](https://www.faa.gov/uas/getting_started/temporary_flight_restrictions)

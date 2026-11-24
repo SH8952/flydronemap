@@ -2,7 +2,7 @@
 title: "霧の中でドローンを飛ばす安全ガイド"
 description: "霧が単なる視界の問題ではない理由と、飛行できる条件かどうかを見極める方法を解説します。"
 publishedAt: "2026-08-26"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["fog", "visibility", "safety"]
 category: "weather-safety"
 image: "/guides/images/flying-in-fog-safety-guide.webp"
@@ -25,6 +25,8 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 ほとんどのドローン規定では、パイロットが常に機体との目視内飛行(VLOS)を維持することが求められています。米国では14 CFR 107.51が、管制地点から観測した最低飛行視程3statute mileを求め、14 CFR 107.31が飛行中ずっと機体を視認できることを求めています。霧は水平視程を数百メートル以下にまで低下させることがあり、これはドローンが理論上の到達範囲を外れるよりずっと前に、すでにVLOS要件を満たさなくなるレベルです。
 
 数字を見ると、その差の大きさが分かります。NWSの用語集は、霧を地表付近の空気中に浮かぶ水滴と説明し、視程が1/4マイル以下になると危険であることが多いとしています。航空気象の報告では、視程が5/8statute mile未満のときに霧、5/8から6statute mileのときにもや(mist)が使われます。3statute mileは約4.8kmなので、薄いもやでも米国の最低基準を下回ることがあります。全体の関係は[視程と安全なドローン飛行基準](/ja/guides/visibility-and-safe-drone-flight-standards)のガイドで解説しています。国によって規則は異なるため、日本の規則は[日本のドローン規制ページ](/ja/regulations/jp)を、飛行する国の規制当局の案内とあわせて確認してください。
+
+<DiagramScale title={"視程の目安"} bands={[{"label": "1/4マイル以下", "range": "NWSが危険であることが多いとする視程"}, {"label": "5/8 statute mile未満", "range": "航空気象の報告で霧とされる視程"}, {"label": "3 statute mile", "range": "米国のPart 107が求める視程", "note": "霧はこれをはるかに下回る"}]} />
 
 ## 霧は予報が更新される速度より速く発生します
 
@@ -55,7 +57,7 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 
 一般的な予報だけでなく、飛行直前にその場所の現在の視程を確認しましょう。[FlyDroneMapのダッシュボード](/ja)や、[飛行前に確認すべき気象データ](/ja/guides/what-weather-data-to-check-before-flying-a-drone)も役立ちます。霧が出ていたり、明らかに近づいてきている場合は待ちましょう。放射霧であれば日の出後に地面が温まると薄れることが多い一方、移流霧は一日中続くこともあるため、待つ場合も現在の観測値で確認し直してください。飛行中に霧が発生した場合は、記憶や勘で地形を頼りに飛行を続けず、安全が確保でき次第すぐに着陸してください。霧の中を飛んだ後は、保管する前にジンバルを含めて機体を乾かしましょう。
 
-## よくある間違い
+## つまずきやすいポイント
 
 - 頭上の空が明るいからといって離陸すること。霧は浅いこともあり、重要なのは水平方向の見通しです。
 - 前夜の予報に頼り、現在の観測を確認しないこと。
@@ -63,7 +65,7 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 - 遠くまで飛ばし、映像画面だけを頼りに戻ろうとすること。これは目視内飛行の要件を満たしません。
 - 短く近い飛行なら自動的に問題ないと考えること。機体が見えないなら、要件は満たされていません。
 
-## よくある質問
+## 気になる疑問に答えます
 
 ### 霧の中でドローンを飛ばすことは合法で安全ですか?
 
@@ -81,7 +83,7 @@ imageCreditUrl: "https://unsplash.com/@markusspiske?utm_source=FlyDroneMap&utm_m
 
 当てにしないでください。これらのシステムはコントラストと反射光に依存しており、霧の中では低下するため、視程が低いときは信頼できないものと考えてください。
 
-## 出典・参考資料
+## 情報源と参考リンク
 
 - [NOAA National Weather Service — Glossary: Fog](https://forecast.weather.gov/glossary.php?word=FOG)
 - [NOAA National Weather Service Houston — Fog guide (types and formation)](https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf)
