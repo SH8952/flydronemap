@@ -2,13 +2,14 @@
 title: "DJI Mini 3 Error Messages and Warnings: What They Mean and What to Do"
 description: "The warnings DJI documents for the Mini 3 in its manual and safety guidelines: status light patterns, battery LED codes, flight prompts, with meaning and action."
 publishedAt: "2026-10-17"
+updatedAt: "2026-11-24"
 tags: ["dji-mini-3", "error-messages", "warnings", "troubleshooting"]
 category: "gear-flight-tips"
 ---
 
 When the DJI Mini 3 shows a blinking light, a beep or a prompt in the DJI Fly app, the quickest answer is in DJI's own documents. This page collects the warnings that appear in the official DJI Mini 3 User Manual (v1.2, 2024.01), the Safety Guidelines and the Quick Start Guide, rephrases what DJI says each one means, and notes the action DJI gives. Where the manual gives only a meaning and no action, this page says so instead of guessing.
 
-## Key takeaways
+**Before you read on:**
 
 - The aircraft status light uses fixed patterns: slow red means low battery, fast red means critically low battery, periodic red means IMU error, solid red means critical error, and alternating red and yellow means compass calibration is required.
 - For a low-battery or high-wind warning, DJI's safety guidelines say to land in a safe location. They also say not to fly in wind over 10.7 m/s (38.5 km/h).
@@ -46,6 +47,8 @@ The Safety Guidelines add that buildings, mountains and trees can block GNSS sig
 
 ## Battery and temperature
 
+<DiagramScale title={"Charging temperature, per the manual"} bands={[{"label": "Below 5 °C", "range": "Too low", "note": "LED4 blinks twice per second; wait until the temperature is back in range"}, {"label": "5 to 40 °C", "range": "Charging possible"}, {"label": "Above 40 °C", "range": "Too high", "note": "LED4 blinks three times per second; wait until the temperature is back in range"}]} />
+
 Charging faults are reported by the battery LEDs. These codes are from the manual's battery protection table.
 
 | Message or symptom | Meaning (per manufacturer) | What to do |
@@ -75,6 +78,8 @@ These are prompts rather than light patterns. The manual describes when they app
 | Landing prompt at 0.5 m | If Landing Protection is not operating, DJI Fly shows a landing prompt at 0.5 m above the ground | Confirm landing, or push the throttle down |
 | Height 30 m and range 50 m limit | Without being connected or logged in, flight is restricted to 30 m height and 50 m range | Connect and log in to DJI Fly |
 
+<DiagramFlow title={"When the remote controller signal is lost"} steps={[{"label": "Status light blinks yellow quickly"}, {"label": "Signal lost for more than 11 seconds"}, {"label": "Failsafe Return to Home starts", "sub": "If that is the failsafe action you set"}]} />
+
 ## Gimbal, camera and propellers
 
 | Message or symptom | Meaning (per manufacturer) | What to do |
@@ -93,19 +98,19 @@ These are prompts rather than light patterns. The manual describes when they app
 
 ## FAQ
 
-### Is it safe to keep flying after a compass warning?
+**Is it safe to keep flying after a compass warning?**
 
 The manual only states that compass calibration is required and does not say whether you can continue. Follow the prompts in DJI Fly and the current manual. DJI also says the aircraft can enter ATTI mode when the compass has interference, with RTH unavailable.
 
-### Where do I find the full list of DJI Mini 3 warnings?
+**Where do I find the full list of DJI Mini 3 warnings?**
 
 In the User Manual and Safety Guidelines on DJI's Mini 3 download page. This page covers only what those documents describe; the app can show prompts that are not listed.
 
-### What should I do on a low-battery or high-wind warning?
+**What should I do on a low-battery or high-wind warning?**
 
 DJI's safety guidelines say to land in a safe location. They also advise not to fly in wind over 10.7 m/s (38.5 km/h), snow, rain, fog, hail or lightning.
 
-### Should I update the firmware first?
+**Is it worth updating the firmware first?**
 
 The Safety Guidelines say to update the DJI Fly app and the aircraft firmware to the latest version, and the manual says to update when the app prompts you.
 

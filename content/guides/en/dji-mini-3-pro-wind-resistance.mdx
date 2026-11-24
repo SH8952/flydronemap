@@ -2,16 +2,17 @@
 title: "DJI Mini 3 Pro Wind Resistance: Official Limit and Real Conditions"
 description: "DJI lists the Mini 3 Pro at 10.7 m/s (38.5 km/h) maximum wind resistance. See the official specs and how to judge real gusts with a safety margin."
 publishedAt: "2026-10-17"
+updatedAt: "2026-11-24"
 tags: ["wind", "dji", "mini-3-pro", "specs"]
 category: "weather-safety"
 ---
 
 DJI gives the Mini 3 Pro a maximum wind speed resistance of 10.7 m/s, which is about 38.5 km/h. That figure is a ceiling set by the manufacturer, not a comfortable working speed, and a very light aircraft feels gusts earlier than the number suggests. This page lists the official specs, explains how FlyDroneMap turns the figure into a good, caution and not-recommended check, and shows what to look at before you launch.
 
-## Key takeaways
+## At a glance
 
 - DJI's support page lists the Mini 3 Pro at 10.7 m/s (Level 5), which is 38.5 km/h. The user manual (v1.6) says not to operate the aircraft in severe weather including wind speeds exceeding 10.7 m/s.
-- On FlyDroneMap, gusts under about 19 km/h count as good for this model, caution starts at about 19 km/h, and not recommended starts at about 27 km/h. These are the site's own thresholds, not an official standard.
+- On FlyDroneMap, gusts under about 19 km/h count as good for this model, caution starts at about 19 km/h, and not recommended starts at about 27 km/h. Treat those cut-offs as the site's own rule of thumb, not an official standard.
 - The manual notes that the aircraft may not be able to return to the Home Point when the wind speed is too high, and that low temperatures reduce wind resistance.
 - Wind at 80–120 m is usually stronger than the forecast value at 10 m, so check the wind at altitude too.
 
@@ -29,6 +30,8 @@ The values below come from DJI's Mini 3 Pro support page and user manual v1.6. S
 | Operating temperature | -10 to 40 °C |
 | Positioning | GPS, Galileo and BeiDou |
 | Obstacle sensing | Forward, backward and downward vision sensors |
+
+<DiagramCompare title={"Mini 3 Pro: standard battery versus Plus battery"} left={{"head": "Standard battery", "items": ["Under 249 g takeoff weight", "34 minutes of flight time at 21.6 km/h in windless conditions", "4000 m service ceiling"]}} right={{"head": "Plus battery", "items": ["About 290 g takeoff weight", "47 minutes of flight time", "3000 m service ceiling"]}} />
 
 The support page gives no separate takeoff or landing wind figure and no extra test condition for the 10.7 m/s value. The manual adds a few wind notes: the aircraft may not be able to return to the Home Point when the wind speed is too high, strong winds disable the leftward and rightward restriction to improve wind resistance, and reduced battery capacity in the cold reduces wind speed resistance.
 
@@ -54,7 +57,7 @@ DJI states a maximum under its own test conditions. Real flights add several thi
 - Light airframe. A drone under 249 g has little mass to resist a sudden push, so drift and gimbal movement show up sooner. This is general physics, not a DJI statement.
 - Cold. DJI says reduced battery capacity in low temperatures reduces wind speed resistance, so the margin shrinks on cold days. See [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance).
 
-## Before you launch
+## Your routine at the launch site
 
 1. Open the [FlyDroneMap dashboard](/en), select the Mini 3 Pro and read the gust, not only the average wind.
 2. Compare the gust with the table above. If it is in the caution band, keep the flight short and close.
@@ -62,7 +65,7 @@ DJI states a maximum under its own test conditions. Real flights add several thi
 4. Plan the return with extra battery, and review [return-to-home settings](/en/guides/return-to-home-settings-explained) before relying on automatic return.
 5. Land early if the gusts rise. For a comparison with other models see [drone wind resistance by model](/en/guides/drone-wind-resistance-by-model).
 
-## Common mistakes
+## Where pilots slip up
 
 - Treating 10.7 m/s as a target rather than a ceiling.
 - Reading the average wind and ignoring the gust figure.
@@ -70,23 +73,12 @@ DJI states a maximum under its own test conditions. Real flights add several thi
 - Forgetting that a cold battery reduces the margin.
 - Assuming the Plus battery changes nothing; it adds weight and lowers the listed service ceiling, so check DJI's figures for your setup.
 
-## FAQ
+## Questions and answers
 
-### What is the wind limit of the DJI Mini 3 Pro?
-
-DJI lists a maximum wind speed resistance of 10.7 m/s (Level 5), about 38.5 km/h. The manual says not to operate the aircraft in severe weather including wind speeds exceeding 10.7 m/s.
-
-### Can I fly the Mini 3 Pro in 30 km/h wind?
-
-30 km/h is about 8.3 m/s, which is about 78% of the official maximum. Under FlyDroneMap's criteria that is in the not-recommended range, and a gust at that level leaves little margin for the return flight.
-
-### Why does the site say caution before the official limit?
-
-The official figure is a maximum under test conditions. Gusts, stronger wind at altitude, a headwind return and cold batteries all reduce the real margin, so the site starts warning at 50% of the maximum.
-
-### Does the Plus battery change the wind rating?
-
-DJI's support page lists one wind figure for the aircraft. It does list a higher weight and a lower service ceiling with the Plus battery, so check DJI's pages for your exact setup.
+- **What is the wind limit of the DJI Mini 3 Pro?** DJI lists a maximum wind speed resistance of 10.7 m/s (Level 5), about 38.5 km/h. The manual says not to operate the aircraft in severe weather including wind speeds exceeding 10.7 m/s.
+- **Can I fly the Mini 3 Pro in 30 km/h wind?** 30 km/h is about 8.3 m/s, which is about 78% of the official maximum. Under FlyDroneMap's criteria that is in the not-recommended range, and a gust at that level leaves little margin for the return flight.
+- **Why does the dashboard warn at about 19 km/h when the rating is 38.5 km/h?** The 10.7 m/s figure is a maximum under DJI's test conditions, and gusts, wind at altitude, a headwind return and a cold battery all reduce the real margin. Half of the rating is where FlyDroneMap starts to warn.
+- **Does the Plus battery change the wind rating?** DJI's support page lists one wind figure for the aircraft. It does list a higher weight and a lower service ceiling with the Plus battery, so check DJI's pages for your exact setup.
 
 ## Sources and further reading
 

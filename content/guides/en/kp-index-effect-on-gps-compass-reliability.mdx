@@ -2,7 +2,7 @@
 title: "Is It the Storm? How Kp Relates to Drone GPS Drift and Compass Warnings"
 description: "Your drone drifts or throws a compass warning while Kp is high. Here is how a storm actually reaches the GPS and the compass, and how to rule out the everyday causes first."
 publishedAt: "2026-08-26"
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-24"
 tags: ["kp-index", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/kp-index-effect-on-gps-compass-reliability.webp"
@@ -35,6 +35,8 @@ How the flight controller reacts to a nudge like that depends on its firmware, a
 
 The practical point is the scale. Reinforced concrete, a parked car or a metal fence beside the takeoff spot are the usual local sources of magnetic interference, so a compass warning on a calm day points to the ground first and the sky second.
 
+<DiagramCompare title={"How a storm reaches each instrument"} left={{"head": "GPS", "items": ["Relies on radio signals crossing the ionosphere", "A disturbed ionosphere delays or flickers the signals", "Kp tracks it only loosely, since Kp is measured on the ground"]}} right={{"head": "Compass", "items": ["Relies on the local magnetic field at the aircraft", "The field the compass reads is itself pushed around", "Kp tracks it more closely, since Kp is built from ground magnetic readings"]}} />
+
 ## Rule out the boring causes first
 
 When something odd happens, work through these before you look at Kp:
@@ -52,31 +54,31 @@ A quick way to read the situation:
 | Compass warning that was absent yesterday at the same spot | Check for new metal nearby and recalibrate away from it | Storm is possible, though the sources only describe a few degrees at high latitudes |
 | Return-to-home circling | Usually a fix or compass problem | Same, with extra reason to land manually |
 
+## Common questions
+
+**Does a low Kp mean my GPS is fine?**
+
+No. Kp describes disturbance measured on the ground. Scintillation near the geomagnetic equator can upset GPS after sunset whatever the Kp value is.
+
+**Will my compass fail at Kp 5?**
+
+There is no official threshold that says so. The figure GFZ gives is a few degrees at high latitudes in strong storms, so local magnetic interference is the first thing to check.
+
+**Is dual-frequency GPS immune to storms?**
+
+No. NOAA says dual-frequency receivers are normally accurate to centimeters but can become unreliable when they cannot lock onto the satellite signal.
+
+**Should I land if the drone starts drifting?**
+
+If position hold does not recover after you switch to manual or attitude control as your manual describes, land early. Do not wait for return-to-home to fix it.
+
 ## If you decide it probably is the storm
 
 Take it as a reason to shorten the flight, not to push on. Keep the aircraft close and in sight, know how to drop into manual or attitude mode (your manual describes it), and land early if position hold does not settle. Return-to-home draws on the same GPS and compass data, so it is a poor escape hatch while those are in question.
 
 Before the next flight, check the live Kp and NOAA's 3-day forecast on the [dashboard](/en), and wait at the site for a steady fix with a healthy satellite count. Do not rely on a single check at launch if you will be out for a while, since Kp is reported in 3-hour periods and can change in between.
 
-## FAQ
-
-### Does a low Kp mean my GPS is fine?
-
-No. Kp describes disturbance measured on the ground. Scintillation near the geomagnetic equator can upset GPS after sunset whatever the Kp value is.
-
-### Will my compass fail at Kp 5?
-
-There is no official threshold that says so. The figure GFZ gives is a few degrees at high latitudes in strong storms, so local magnetic interference is the first thing to check.
-
-### Is dual-frequency GPS immune to storms?
-
-No. NOAA says dual-frequency receivers are normally accurate to centimeters but can become unreliable when they cannot lock onto the satellite signal.
-
-### Should I land if the drone starts drifting?
-
-If position hold does not recover after you switch to manual or attitude control as your manual describes, land early. Do not wait for return-to-home to fix it.
-
-## Sources and further reading
+## References
 
 - [NOAA SWPC — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)
 - [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)

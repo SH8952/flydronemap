@@ -2,13 +2,14 @@
 title: "DJI Air 3 Error Messages and Warnings: What They Mean and What to Do"
 description: "A guide to the DJI Air 3 warnings, voice prompts and status-light patterns listed in DJI's own manual, with what each one means and what the manufacturer says to do."
 publishedAt: "2026-10-17"
+updatedAt: "2026-11-24"
 tags: ["dji", "air-3", "warnings", "troubleshooting"]
 category: "gear-flight-tips"
 ---
 
 The DJI Air 3 tells you about problems through three channels: prompts in the DJI Fly app, voice prompts, and the colour pattern of the aircraft status light. This guide collects the ones that are described in DJI's official User Manual (v1.6) and Safety Guidelines, explains them in plain language and repeats the action the manufacturer gives. It does not cover numeric error codes, because the official documents do not list them.
 
-## Key takeaways
+## At a glance
 
 - Treat any prompt in DJI Fly as an instruction to read, not to dismiss. DJI's manual says the motors can be started when DJI Fly shows no irregular warning after the self-diagnostics.
 - Red lights deserve attention: slow red means takeoff is disabled, fast red means critically low battery, and solid red is listed as a critical error with no recovery steps in the manual.
@@ -50,6 +51,8 @@ The manual also explains what weak satellite reception does. If the GNSS signal 
 | Battery cell damage warning | A damaged cell has been detected | Follow the prompt and check the battery; the manual gives no further steps |
 | No LEDs when the power button is pressed | The battery may be in hibernation after sitting at low charge | Charge it to wake it |
 
+<DiagramFlow title={"What a low-battery prompt leads to"} steps={[{"label": "Low-battery prompt in DJI Fly", "sub": "Charge is only enough for a return flight"}, {"label": "Countdown, then automatic return", "sub": "If you do nothing"}, {"label": "Automatic landing", "sub": "Charge is only enough to descend; it cannot be cancelled"}]} />
+
 Temperature matters too. The manual gives -10 to 40 degrees C as the operating temperature, says batteries cannot be used below -10 degrees C, and says to end the flight as soon as the low-battery warning appears in cold conditions. Charging is specified at 5 to 40 degrees C, and the battery should not be charged straight after a flight while it is hot. See [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance).
 
 Return to home has limits. The manual warns that the aircraft may not be able to return to the Home Point when the wind speed is too high, and that automatic return without working vision systems cannot sense obstacles. [Return-to-home settings explained](/en/guides/return-to-home-settings-explained) shows what to set before you fly.
@@ -86,7 +89,7 @@ The manual only says that a red and yellow alternating light means compass calib
 
 In the official User Manual and Safety Guidelines on DJI's Air 3 downloads page. This page covers only the messages described there, and the manual is the authority.
 
-### Should I update the firmware first?
+### Should I update the firmware before flying?
 
 DJI says to keep the app and aircraft firmware up to date, and DJI Fly shows a prompt when an update is available. Apply updates when you are not about to fly.
 

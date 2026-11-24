@@ -2,7 +2,7 @@
 title: "Aurora Season and High-Latitude Drone Navigation Anomalies"
 description: "Why GPS and compass behavior gets shakier the further north (or south) you fly, and what changes once the aurora is actually overhead."
 publishedAt: "2026-09-24"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["aurora", "high-latitude", "gps", "compass"]
 category: "space-weather-gps"
 image: "/guides/images/aurora-season-and-high-latitude-drone-navigation-anomalies.webp"
@@ -32,6 +32,8 @@ NOAA's page on space weather and GPS says that geomagnetic storms create large d
 
 Scintillation, the rapid fluctuation of a radio signal passing through ionospheric irregularities, behaves differently by region. A 2018 study found that at high latitudes phase fluctuations dominate while amplitude effects are modest, and that precise positioning could continue even during intense scintillation, whereas at low latitudes frequent cycle slips caused larger degradation. The takeaway is not that high latitude is safe. It is that the effect depends on the receiver and processing method, and a consumer drone's receiver was not the subject of that study. See [ionospheric scintillation and drone GPS](/en/guides/ionospheric-scintillation-and-drone-gps) for the basics.
 
+<DiagramFlow title={"From the aurora oval to a weaker GNSS fix"} steps={[{"label": "Space weather activity rises", "sub": "The auroral oval extends toward the equator"}, {"label": "Ionospheric disturbances grow at auroral latitudes"}, {"label": "GNSS accuracy can degrade", "sub": "Mostly at high latitudes"}, {"label": "Check your manual for polar-region limits"}]} />
+
 ## The compass near the magnetic poles
 
 A drone's compass reads the direction of Earth's magnetic field, and the horizontal part of that field gets weaker as you approach a magnetic pole. NOAA's World Magnetic Model defines Blackout Zones around the poles, where the horizontal intensity is below 2000 nT and "compasses are not accurate and should not be relied on for navigation". Around them is a caution zone where the horizontal intensity is between 2000 and 6000 nT and compasses should be used with caution. The model describes the main field only and does not include the effects of the ionosphere and magnetosphere, so storm disturbances come on top of what the model gives.
@@ -42,7 +44,7 @@ Magnetic and electromagnetic interference near the ground also matters. See [com
 
 ## What a manufacturer manual says
 
-The DJI Mavic 3 Pro manual states in its flight environment requirements that GNSS cannot be used on the aircraft in polar regions and to use the vision system instead. It also says the aircraft changes to Attitude (ATTI) mode when vision systems are unavailable and GNSS is weak or the compass experiences interference, and that in ATTI mode the aircraft may be more easily affected by its surroundings. For return to home, the manual says the Home Point is recorded at the first location with a strong to moderately strong GNSS signal, that failsafe RTH activates when the Home Point has been recorded and the compass is working normally, and that the aircraft may not return normally if GNSS is weak or unavailable.
+The DJI Mavic 3 Pro manual states in its flight environment requirements that GNSS cannot be used on the aircraft in polar regions and to use the vision system instead. It also says the aircraft changes to Attitude (ATTI) mode when vision systems are unavailable and GNSS is weak or the compass experiences interference, and that in ATTI mode the aircraft may be more easily affected by its surroundings. For return to home, the manual says that the Home Point is recorded at the first location with a strong to moderately strong GNSS signal. Failsafe RTH activates once the Home Point has been recorded and the compass is working normally. If GNSS is weak or unavailable, the aircraft may not return normally.
 
 Other models and manufacturers differ. Read the manual for your own aircraft, and see [return-to-home settings explained](/en/guides/return-to-home-settings-explained) for how RTH depends on position data.
 
@@ -54,7 +56,7 @@ Other models and manufacturers differ. Read the manual for your own aircraft, an
 - Use vision-based positioning aids if your aircraft supports them and your manual allows it.
 - Decide your manual fallback in advance: what you will do if GNSS drops or the compass warns.
 
-## Common mistakes
+## Mistakes to watch for
 
 - Trusting an old Kp reading. Storm levels can change during a long night.
 - Treating strange drift as a hardware fault without considering the region, the compass zone, and the manual's limits.
@@ -64,23 +66,23 @@ Other models and manufacturers differ. Read the manual for your own aircraft, an
 
 ## FAQ
 
-### Does the aurora itself interfere with my drone?
+**Does the aurora itself interfere with my drone?**
 
 The aurora is light, so it does not interfere in itself. It is a visible sign of geomagnetic activity, which NOAA says can disturb the ionosphere and degrade GPS.
 
-### Is high-latitude flying always unsafe for GPS?
+**Is high-latitude flying always unsafe for GPS?**
 
 No. Effects vary with conditions and equipment, and one study found precise positioning could continue under intense high-latitude scintillation. But the risk is higher during storms, and your manual may set limits.
 
-### What is the compass blackout zone?
+**What is the compass blackout zone?**
 
 It is an area around a magnetic pole where NOAA's World Magnetic Model says the horizontal magnetic field is under 2000 nT and compasses should not be relied on for navigation.
 
-### What should I do if GPS and the picture disagree?
+**What should I do if GPS and the picture disagree?**
 
 Be ready to take manual control and bring the aircraft back while it is within sight. Your manual describes how your model behaves when GNSS is weak.
 
-## Sources and further reading
+## Source material
 
 - [NOAA Space Weather Prediction Center — Aurora](https://www.spaceweather.gov/phenomena/aurora)
 - [NOAA Space Weather Prediction Center — Space Weather and GPS Systems](https://www.spaceweather.gov/impacts/space-weather-and-gps-systems)

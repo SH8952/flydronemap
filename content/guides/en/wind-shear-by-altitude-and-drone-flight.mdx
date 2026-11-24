@@ -2,7 +2,7 @@
 title: "Wind Shear by Altitude and Drone Flight"
 description: "Why the wind at your feet often differs from what your drone meets at 120m, how the boundary layer, nocturnal jets, and terrain change wind with height."
 publishedAt: "2026-09-21"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["wind", "wind-shear", "altitude"]
 category: "weather-safety"
 image: "/guides/images/wind-shear-by-altitude-and-drone-flight.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@markkoenig?utm_source=FlyDroneMap&utm_med
 
 Checking a weather app, seeing 8 km/h, and launching with confidence answers the wrong question. What matters isn't how windy it is at your feet — it's how windy it will be once the aircraft reaches 120 m (400 ft), and those two numbers can differ by a wide margin. That gap is what wind shear describes, and it's one of the more common reasons a flight that looked calm on the ground turns into an unexpected fight for control once the drone climbs.
 
-## Key takeaways
+## What to know first
 
 - Wind shear is a change in wind speed or direction with distance, here mainly with height. The surface reading and the wind at 120 m can differ a lot.
 - Friction slows wind near the ground. Under typical open-land conditions wind at 120 m is often around 1.4 times the 10 m value, but the real ratio depends on stability, terrain and surface roughness.
@@ -31,6 +31,8 @@ Wind engineers describe the average increase with height using a power law. The 
 
 Direction changes with height too. Friction acts on direction as well as speed, so the wind aloft is generally not blowing from exactly the same direction as at the surface. This guide does not give a fixed angle because it varies from day to day; read the forecast direction at altitude if your source provides it.
 
+<DiagramBars title={"A typical open-land profile, relative to the 10 m wind"} items={[{"label": "Wind at 10 m", "value": 1, "text": "reference"}, {"label": "Wind at 120 m, often", "value": 1.4, "text": "around 1.4", "highlight": true}]} caption={"The real ratio depends on stability, terrain and surface roughness."} />
+
 ## The nocturnal jet: when calm ground air misleads
 
 At night the ground cools and the lowest layer of air can become stable, forming a temperature inversion. The FAA advisory circular illustrates wind shear in a zone between relatively calm wind below an inversion and strong wind above it. The NWS glossary describes the nocturnal jet as a wind speed maximum that occurs just above the nocturnal inversion at night, typically found in the south central United States in the late spring and summer months.
@@ -38,6 +40,8 @@ At night the ground cools and the lowest layer of air can become stable, forming
 A study in the journal Drones, using drone-based measurements, defines a low-level jet as a pronounced local maximum in wind speed, typically within 100–500 m above ground level. In its case study the jet core sat at 210–250 m, with an inversion of about 4 °C in the lowest 400 m. A jet core can therefore sit above the 120 m (400 ft) ceiling that applies in many places, yet a layer with strong wind above an inversion implies shear in the air beneath it. The NWS entry notes the nocturnal jet is typical of one region and season, so how often you meet it depends on where you fly.
 
 The practical lesson is cautious rather than alarming. A very calm early-morning or late-evening ground reading does not tell you what the wind is at 80 or 120 m, so check wind at altitude before you commit.
+
+<DiagramFlow title={"Why a calm launch site can mislead"} steps={[{"label": "A calm, clear night or early morning"}, {"label": "A temperature inversion forms"}, {"label": "The surface stays almost still", "sub": "Stronger wind blows higher up"}, {"label": "Check the wind at altitude before you commit"}]} />
 
 ## Buildings, cliffs and ridgelines
 
@@ -58,7 +62,7 @@ The strongest low-level shear comes from thunderstorms. The same FAA guide descr
 - Watch live telemetry as you climb. It is the only reading that reflects the air the drone is in at that moment.
 - Compare altitude wind with your model's rating in the [wind resistance by model](/en/guides/drone-wind-resistance-by-model) table, and apply the habits in the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight).
 
-## Common mistakes
+## Things that trip people up
 
 - Using the 10 m surface value as the wind at 120 m.
 - Reading a calm morning as proof that the whole column of air is calm.
@@ -66,21 +70,21 @@ The strongest low-level shear comes from thunderstorms. The same FAA guide descr
 - Planning return-to-home and loiter paths from surface wind direction only.
 - Climbing straight to working altitude without a pause at lower heights.
 
-## FAQ
+## Common questions
 
-### Is wind always stronger at 120 m than at ground level?
+**Is wind always stronger at 120 m than at ground level?**
 
 Usually, but not always, and the ratio varies. Typical land-based conditions suggest around 1.4 times the 10 m value, while terrain, stability and surface roughness change it.
 
-### Why can a calm morning be risky?
+**Why can a calm morning be risky?**
 
 On clear nights a temperature inversion can decouple the still surface air from stronger wind above, so a low ground reading says little about wind at 80–120 m.
 
-### Does the wind direction change with height?
+**Does the wind direction change with height?**
 
 Yes. Friction affects direction as well as speed, so the wind aloft is generally not from exactly the same direction as at the surface.
 
-### Is the surface wind from a weather station measured at drone height?
+**Is the surface wind from a weather station measured at drone height?**
 
 No. Standard wind observations are made at 10 m above ground, which is well below a typical 120 m flight altitude.
 

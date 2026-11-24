@@ -2,7 +2,7 @@
 title: "Compass Calibration and Magnetic Interference"
 description: "Why a drone's compass drifts near rebar and parked cars, how to tell local interference from a geomagnetic storm, and how to calibrate it correctly."
 publishedAt: "2026-09-05"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["compass", "calibration", "magnetic-interference", "gps"]
 category: "space-weather-gps"
 image: "/guides/images/compass-calibration-and-magnetic-interference.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@rocinante_11?utm_source=FlyDroneMap&utm_m
 
 If your drone has ever taken off in a lazy, uncommanded spiral, the so-called toilet bowl effect, right after a calibration you thought went fine, the cause is often the spot where you calibrated rather than the calibration procedure itself. Compass problems and magnetic interference are easy to mistake for a firmware bug or a bad GPS lock, when the real problem can be a magnetic field distorted by something metal nearby.
 
-## Key takeaways
+**Before you read on:**
 
 - A drone's compass measures the local magnetic field to get heading. Anything that distorts that field near the aircraft, such as steel in the ground or a phone in your pocket, distorts the heading.
 - DJI tells pilots not to calibrate near strong magnetic fields or large metal structures, naming examples such as parking structures, steel-reinforced basements and bridges.
@@ -28,7 +28,9 @@ This is different from magnetic declination, the angle between magnetic north an
 
 ## When manufacturers say to calibrate
 
-DJI's Mini 4K manual says to calibrate when flying at a location more than 31 miles (50 km) from where the aircraft was last flown, when the aircraft has not been flown for more than 30 days, or when a compass interference warning appears in the app or the status light alternates red and yellow. DJI's online compass guide says the app prompts calibration during flight or after the aircraft has been idle for a long period, and that the battery should be at least 50 percent. These numbers come from DJI and vary by model; ArduPilot takes the opposite view for its own platform. Follow the guidance for your aircraft.
+DJI's Mini 4K manual says to calibrate when you fly at a location more than 31 miles (50 km) from where the aircraft was last flown, or when it has not been flown for more than 30 days. It also says to calibrate when a compass interference warning appears in the app or the status light alternates red and yellow. DJI's online compass guide says the app prompts calibration during flight or after the aircraft has been idle for a long period, and that the battery should be at least 50 percent. These numbers come from DJI and vary by model; ArduPilot takes the opposite view for its own platform. Follow the guidance for your aircraft.
+
+<DiagramCompare title={"DJI Mini 4K: when to calibrate and where not to"} left={{"head": "Calibrate when", "items": ["You are more than 31 miles (50 km) from where the aircraft last flew", "It has not flown for more than 30 days", "A compass interference warning appears"]}} right={{"head": "Not near", "items": ["Parking structures", "Steel-reinforced basements", "Bridges"]}} />
 
 ## Interference near the calibration site
 
@@ -48,15 +50,7 @@ A badly calibrated compass and a geomagnetic storm can both appear as heading dr
 
 DJI's Mini 4K manual says that if the aircraft status indicator blinks red and yellow alternately after calibration, the current location is not suitable for flying; a plain red blink means the calibration failed. In that case, move to a different place and try again rather than launching. DJI's guide also advises not touching the screen during calibration, because that can exit the calibration page, and says that if calibration keeps failing you should restart the device and try again, then contact DJI. Other brands use different indicators.
 
-## Common mistakes
-
-- Calibrating at the exact spot you plan to launch from without checking that spot, so any buried steel gets baked into the result.
-- Calibrating with a phone, metal-cased controller or tools close to the aircraft. DJI tells pilots not to carry ferromagnetic objects near the aircraft during calibration.
-- Launching despite an on-screen compass interference alert, assuming it will clear up in the air.
-- Recalibrating over and over in the same bad location instead of moving.
-- Blaming a storm when the warning appears only at one particular spot.
-
-## Practical checklist
+## Before you head out
 
 - Calibrate away from vehicles, metal fences, manhole covers and any structure with steel in or under it, and on open ground.
 - Remove phones, keys and other metal items from your pockets and keep them away from the aircraft.
@@ -65,7 +59,15 @@ DJI's Mini 4K manual says that if the aircraft status indicator blinks red and y
 - Do not assume a calm Kp index rules out compass trouble.
 - Review the rest of your launch routine in the [beginner preflight checklist](/en/guides/beginner-drone-preflight-checklist).
 
-## FAQ
+## Common mistakes
+
+- Calibrating at the exact spot you plan to launch from without checking that spot, so any buried steel gets baked into the result.
+- Calibrating with a phone, metal-cased controller or tools close to the aircraft. DJI tells pilots not to carry ferromagnetic objects near the aircraft during calibration.
+- Launching despite an on-screen compass interference alert, assuming it will clear up in the air.
+- Recalibrating over and over in the same bad location instead of moving.
+- Blaming a storm when the warning appears only at one particular spot.
+
+## Quick answers
 
 ### How often should I calibrate the compass?
 

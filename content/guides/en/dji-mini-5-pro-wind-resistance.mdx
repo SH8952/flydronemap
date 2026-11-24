@@ -2,22 +2,36 @@
 title: "DJI Mini 5 Pro Wind Resistance: Official vs Real"
 description: "DJI lists 12 m/s (43.2 km/h) as the Mini 5 Pro's maximum wind speed resistance. See the official specs and how FlyDroneMap judges real wind and gusts."
 publishedAt: "2026-10-23"
+updatedAt: "2026-11-24"
 tags: ["wind", "dji", "mini-5-pro", "gear", "gusts"]
 category: "weather-safety"
 ---
 
-DJI lists the Mini 5 Pro's maximum wind speed resistance as 12 m/s, which is 43.2 km/h. That is the manufacturer's ceiling for a very light aircraft, not a speed at which every flight will feel comfortable. This page shows the official figures, explains how FlyDroneMap turns them into a good, caution or not-recommended verdict, and lists what to check before you launch.
+DJI's specs page lists the Mini 5 Pro, which weighs 249.9 g, with a maximum wind speed resistance of 12 m/s (43.2 km/h). That is the manufacturer's ceiling for a very small aircraft, not a promise that a windy day will be pleasant. Below: what DJI says about wind, how the Plus battery changes the other specs, and how FlyDroneMap grades gusts for this model.
 
 ## Key takeaways
 
-- DJI's spec page gives the Mini 5 Pro a maximum wind speed resistance of 12 m/s (43.2 km/h).
-- DJI's manual says not to fly in severe weather such as strong winds, snow, rain and fog. In the parts we read, it gives no numeric wind limit for flight.
-- On FlyDroneMap, gusts under 21.6 km/h count as good for this model, 21.6 km/h and above as caution, and 30.2 km/h and above as not recommended. These are the site's own thresholds, not an official standard.
-- Judge by gusts and by the wind at flight height, not only by the average ground reading.
+- DJI's specs page lists a maximum wind speed resistance of 12 m/s (43.2 km/h) for the Mini 5 Pro.
+- DJI's manual says not to fly in severe weather such as strong winds, snow, rain and fog, and not on rainy or windy days. In the parts we read it states no numeric wind limit for flight.
+- For this model FlyDroneMap rates gusts under 21.6 km/h as good, 21.6 km/h and above as caution and 30.2 km/h and above as not recommended. Those lines belong to the site.
+- Gusts and wind at flight height are the numbers to read.
 
-## Official specifications
+## What the manual says about wind
 
-The values below come from DJI's Mini 5 Pro specs page. Only rows that the page lists are included. DJI states that the flight time figures were measured in no-wind conditions at sea level, and that the Sport-mode speeds were measured in a wind tunnel and are reference values.
+Six points matter here.
+
+- Do not fly in severe weather such as strong winds, snow, rain and fog, or on rainy or windy days.
+- In strong wind the aircraft may be unable to return to the Home Point.
+- During Return-to-Home it adjusts its flight speed on its own, according to wind speed, wind direction and obstacles.
+- The one numeric wind figure we found is for Return-to-Home when satellite positioning was unavailable at takeoff: environmental wind speed should be below 3 m/s.
+- In high wind, flight speed is limited further, and the gimbal may vibrate while recording in strong wind.
+- Reduced battery capacity at low temperatures lowers the aircraft's wind speed resistance.
+
+<DiagramFlow title={"How Return-to-Home treats wind, per the manual"} steps={[{"label":"Return-to-Home starts","sub":"The aircraft flies back on its own"},{"label":"Speed is adjusted automatically","sub":"By wind speed, wind direction and obstacles"},{"label":"High wind limits speed further"},{"label":"Wind too strong","sub":"The aircraft may not reach the Home Point"}]} />
+
+## Two batteries, two sets of figures
+
+DJI's page gives different figures depending on the battery, and says the flight time numbers were measured without wind at sea level. Sport-mode speeds were measured in a wind tunnel and are reference values.
 
 | Item | Value |
 |---|---|
@@ -30,20 +44,11 @@ The values below come from DJI's Mini 5 Pro specs page. Only rows that the page 
 | Obstacle sensing | Omnidirectional dual-vision system, a forward LiDAR and a downward infrared sensor |
 | Satellite positioning | GPS, Galileo and BeiDou |
 
-The Plus battery changes some of these figures. Rules that depend on weight differ by country and by your exact configuration, so check the actual weight of your setup against your national regulator.
+Fitting the Plus battery changes several of these numbers. Rules that depend on weight differ by country and by your exact configuration, so check your setup against your national regulator.
 
-## What DJI's manual says about wind
+## Reading a forecast against 43.2 km/h
 
-- The manual says not to fly in severe weather conditions such as strong winds, snow, rain and fog, and not to fly on rainy or windy days.
-- It warns that the aircraft may not be able to return to the Home Point if the wind speed is too high.
-- During Return-to-Home, the aircraft adjusts its flight speed automatically according to wind speed, wind direction and obstacles.
-- The only numeric wind figure we found is for Return-to-Home when satellite positioning was not available at takeoff: the manual says the environmental wind speed should be less than 3 m/s.
-- In high wind, flight speed is further limited, and the gimbal may vibrate while recording in strong wind.
-- Reduced battery capacity in low temperatures reduces the aircraft's wind speed resistance.
-
-## How FlyDroneMap judges this model
-
-The dashboard compares the forecast gust speed with the official maximum. The thresholds are the site's own rule of thumb: good when the gust is under 50% of the official maximum, caution from 50%, and not recommended from 70%. For the Mini 5 Pro they work out as follows.
+FlyDroneMap compares the forecast gust with the official maximum: good below 50%, caution from 50%, not recommended from 70%.
 
 | Verdict | Share of 43.2 km/h | Gust speed |
 |---|---|---|
@@ -51,50 +56,41 @@ The dashboard compares the forecast gust speed with the official maximum. The th
 | Caution | 50% to under 70% | 21.6 to under 30.2 km/h |
 | Not recommended | 70% or more | 30.2 km/h and above |
 
-The dashboard also rates gust risk on its own scale: low under 20 km/h, moderate from 20 to under 35 km/h, and high at 35 km/h and above. The two scales answer different questions. One compares the wind with your aircraft, the other describes how rough the air is in general.
+The gust-risk scale on the dashboard is separate. It runs low under 20 km/h, moderate from 20 to under 35 km/h and high from 35 km/h, and it describes the air rather than the aircraft.
 
-## Why the official number is not your working limit
+## Small aircraft, short margins
 
-The manufacturer's figure is a maximum. A few practical reasons to stay well below it:
+A light aircraft feels every gust as a push, and the official maximum says little about how that feels in the sticks. Forecast wind is usually given 10 m above ground, and at 80–120 m it may be much stronger; see [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight). Fighting a headwind costs battery, so a tailwind outbound leaves you with the hard part on the way home. Cold shrinks both the battery and the wind margin.
 
-- Gusts are short peaks above the average, and a light aircraft meets them as sudden pushes.
-- Forecast wind is usually given at 10 m above the ground. At 80–120 m it can be noticeably stronger. See [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight) for why.
-- Fighting a headwind costs battery. A flight out with a tailwind means a return into a headwind, so you need more reserve than the outbound leg suggests.
-- Cold lowers battery capacity, and DJI states this reduces wind resistance.
+## Checklist before takeoff
 
-## Before you launch
-
-1. Open the [FlyDroneMap dashboard](/en), choose the Mini 5 Pro and read the gust figure, not just the average.
+1. Choose the Mini 5 Pro on the [FlyDroneMap dashboard](/en) and read the gust figure instead of the average.
 2. Look at the wind at 80 and 120 m as well as the surface value.
-3. Run through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight), including direction and nearby obstacles.
-4. Plan the return so you finish the flight with the wind helping, or with a generous battery reserve.
-5. Compare other models in the [wind resistance by model](/en/guides/drone-wind-resistance-by-model) guide if you fly more than one aircraft.
+3. Work through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight), including direction and nearby obstacles.
+4. Plan to end the flight with the wind behind you, or with a generous battery reserve.
+5. Compare other aircraft in [wind resistance by model](/en/guides/drone-wind-resistance-by-model).
 
-## Common mistakes
+## Pitfalls
 
-- Reading 12 m/s as a safe flying speed instead of a maximum.
-- Checking only the average wind and ignoring the gust number.
+- Reading 12 m/s as a comfortable cruising wind.
+- Checking the average and skipping the gusts.
 - Forgetting that the surface forecast does not describe the wind at flight height.
-- Launching in cold weather with a partly cold battery and expecting full wind performance.
-- Flying far downwind without calculating the way back.
+- Launching with a cold battery and expecting full wind performance.
+- Drifting far downwind without working out the return.
 
 ## FAQ
 
 ### What is the wind limit of the DJI Mini 5 Pro?
 
-DJI's spec page lists a maximum wind speed resistance of 12 m/s (43.2 km/h). DJI's manual also advises against flying in severe weather such as strong winds.
+DJI's specs page lists a maximum wind speed resistance of 12 m/s (43.2 km/h), and its manual advises against flying in severe weather such as strong winds.
 
 ### Can I fly the Mini 5 Pro in 25 km/h wind?
 
-25 km/h is about 58% of the 43.2 km/h maximum, so FlyDroneMap rates it as caution. Check that the figure is a gust and not an average, and check the wind at flight height.
+25 km/h is about 58% of 43.2 km/h, which FlyDroneMap rates as caution. Check whether the figure is a gust or an average and what the wind is at flight height.
 
-### Why does the site say caution before the official limit?
+### Does cold weather change the wind limit?
 
-Because the official figure is a maximum, and real conditions add gusts, height and battery effects. The site starts caution at 50% of the maximum to leave a margin. This is the site's own criterion, not DJI's.
-
-### Does the wind limit change in cold weather?
-
-DJI's manual states that the reduced battery capacity in low temperatures reduces the aircraft's wind speed resistance. It does not give a number, so treat cold days as having a smaller margin.
+DJI's manual says reduced battery capacity in the cold lowers the aircraft's wind speed resistance but gives no number, so allow for a smaller margin.
 
 ## Sources and further reading
 

@@ -2,7 +2,7 @@
 title: "Return-to-Home Settings Explained"
 description: "How return-to-home works on DJI aircraft such as the Mini 4 Pro: three triggers, RTH altitude, home point recording, low battery and signal loss, and boat launches."
 publishedAt: "2026-09-19"
-updatedAt: "2026-10-19"
+updatedAt: "2026-11-24"
 tags: ["return-to-home", "rth", "safety", "gps"]
 category: "gear-flight-tips"
 image: "/guides/images/return-to-home-settings-explained.webp"
@@ -34,6 +34,8 @@ The Mini 4 Pro manual says the first location where the aircraft receives a stro
 
 ## Signal loss
 
+<DiagramFlow title={"What happens when the control signal drops"} steps={[{"label": "The link between controller and aircraft is lost"}, {"label": "Still lost after more than six seconds"}, {"label": "Failsafe RTH starts", "sub": "If the home point is registered and the compass works normally"}]} caption={"In the safety settings you can instead choose landing or hovering."} />
+
 In the safety settings you can set what the aircraft does when the controller signal is lost: RTH, land or hover. If it is set to RTH, the home point is registered and the compass works normally, failsafe RTH starts after the signal has been lost for more than six seconds. In low light the same third-party guide says that after failsafe RTH the aircraft flies backward 50 meters and obstacle sensing is not available, so the altitude you set matters even more. Think about which action suits your site before you fly. Over water, forests or crowded areas the right choice may differ.
 
 ## Do not take off from moving objects
@@ -46,32 +48,32 @@ RTH depends on satellite positioning. When GNSS quality is poor, the home point 
 
 ## Practical checklist
 
-- Set the maximum altitude and the RTH altitude for the site before takeoff, with the tallest obstacle in mind.
-- Wait for the home point to be recorded and confirm it in the app.
-- Choose the signal-loss action deliberately: RTH, land or hover.
-- Know that a low-battery warning can be canceled but that the final automatic landing cannot.
-- Do not take off from moving vehicles, boats or aircraft.
-- Read your own model's manual, because behavior varies, and keep visual line of sight.
+1. Set the maximum altitude and the RTH altitude for the site before takeoff, with the tallest obstacle in mind.
+2. Wait for the home point to be recorded and confirm it in the app.
+3. Choose the signal-loss action deliberately: RTH, land or hover.
+4. Know that a low-battery warning can be canceled but that the final automatic landing cannot.
+5. Do not take off from moving vehicles, boats or aircraft.
+6. Read your own model's manual, because behavior varies, and keep visual line of sight.
 
 ## FAQ
 
-### What is the default RTH altitude?
+**What is the default RTH altitude?**
 
 The manual passages we could read do not state it, so check your own aircraft's settings and set the value yourself.
 
-### When does the aircraft return by itself?
+**When does the aircraft return by itself?**
 
 When the pilot triggers RTH, when the battery is low and no action is taken after the countdown, and when the control signal is lost, depending on the signal-loss action you set.
 
-### Can I cancel RTH?
+**Can I cancel RTH?**
 
 For pilot-triggered and low-battery RTH, the manual says you can cancel with the RTH or pause button. The final automatic landing cannot be canceled.
 
-### Is RTH enough on its own?
+**Is RTH enough on its own?**
 
 No. It is a backup. Keep the aircraft in sight and plan a manual return.
 
-## Sources and further reading
+## Where this comes from
 
 - [DJI — Mini 4 Pro downloads and user manuals](https://www.dji.com/downloads/products/mini-4-pro)
 - [DJI — Mini 4 Pro user manual, Dutch edition (PDF)](https://dl.djicdn.com/downloads/DJI_Mini_4_Pro/20240627/DJI_Mini_4_Pro_User_Manual_NL.pdf)

@@ -2,7 +2,7 @@
 title: "Understanding NOAA Space Weather Scales: G, S, and R Explained"
 description: "Why NOAA's three space weather scales cover more than the Kp index alone, and which one actually matters for your next drone flight."
 publishedAt: "2026-09-02"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
 category: "space-weather-gps"
 image: "/guides/images/understanding-noaa-space-weather-scales.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=re
 
 If you have only ever watched the Kp index before a flight, you are following one of three scales that NOAA's Space Weather Prediction Center publishes. NOAA runs three separate scales, each rated 1 to 5 — G, S, and R — and a quiet Kp reading does not tell you whether the other two are quiet as well.
 
-## Key takeaways
+**In brief:**
 
 - NOAA's G, S, and R scales measure three different things: geomagnetic storms (Kp), solar radiation storms (high-energy protons), and radio blackouts (solar X-ray flares).
 - Only the G-scale maps onto Kp: G1 is Kp 5 and G5 is Kp 9.
@@ -64,13 +64,22 @@ Other research on strong flares has measured changes in GNSS total electron cont
 
 NOAA notes that the effect of a flare on the sunlit side of the atmosphere occurs at the same time the event is observed, because the energy travels at the speed of light. A geomagnetic storm, by contrast, usually depends on a coronal mass ejection or a high-speed solar wind stream. NOAA states that the fastest Earth-directed CMEs can arrive in 15 to 18 hours, and slower ones take several days. So a high R-scale value and a high Kp value often do not coincide in time.
 
-## Common mistakes
+<DiagramTimeline title={"Flare first, storm later"} points={[{"when": "The moment a flare is seen", "label": "R-scale effects begin", "sub": "Its light reaches Earth at the speed of light"}, {"when": "15 hours to several days later", "label": "A geomagnetic storm may follow", "sub": "After a coronal mass ejection"}]} />
+
+## Where pilots slip up
 
 - Treating Kp as the whole picture. A calm Kp tells you nothing about a flare that happened in the last hour.
 - Treating the scales as a combined score. G, S, and R are independent.
 - Assuming a high G or R number means the drone's control link will fail. NOAA's scales do not describe effects on 2.4 GHz or 5.8 GHz links.
 - Assuming the numbers are forecasts of drone problems. They describe general impacts across many technologies and regions.
 - Ignoring the aircraft's own warnings because the space weather numbers look calm. Weak GNSS, compass errors, and local radio interference have many non-solar causes.
+
+## Frequently asked questions
+
+- **Is the Kp index the same as the G-scale?** Not exactly, but they are linked. The G-scale is a five-step rating derived from Kp: Kp 5 is G1 and Kp 9 is G5.
+- **Which scale matters most for drone GPS?** NOAA's tables tie satellite navigation effects mainly to the G-scale (G3 and above) and, at the extreme end, to R5. For ordinary flights, G-scale values of 3 or higher are the clearest warning in NOAA's own wording.
+- **Does an R-scale event affect my drone's control link?** NOAA describes R-scale blackouts as affecting HF radio (3 to 30 MHz) and low-frequency navigation signals. It does not list the 2.4 GHz or 5.8 GHz bands that most consumer drones use for control and video.
+- **Can I rely on these scales alone to decide whether to fly?** No. They describe general space weather impacts, not conditions at your site. Combine them with your aircraft's status, local weather, and the rules where you fly.
 
 ## Pre-flight checklist
 
@@ -79,24 +88,6 @@ NOAA notes that the effect of a flare on the sunlit side of the atmosphere occur
 - Read NOAA's 3-day forecast, which is issued every 12 hours and is broken down for each of the three scale categories.
 - Decide in advance what you will do if GPS satellite count drops or the compass warns: land, switch to manual control, or wait.
 - Follow your aircraft manual and local regulations; space weather information does not replace either.
-
-## FAQ
-
-### Is the Kp index the same as the G-scale?
-
-Not exactly, but they are linked. The G-scale is a five-step rating derived from Kp: Kp 5 is G1 and Kp 9 is G5.
-
-### Which scale matters most for drone GPS?
-
-NOAA's tables tie satellite navigation effects mainly to the G-scale (G3 and above) and, at the extreme end, to R5. For ordinary flights, G-scale values of 3 or higher are the clearest warning in NOAA's own wording.
-
-### Does an R-scale event affect my drone's control link?
-
-NOAA describes R-scale blackouts as affecting HF radio (3 to 30 MHz) and low-frequency navigation signals. It does not list the 2.4 GHz or 5.8 GHz bands that most consumer drones use for control and video.
-
-### Can I rely on these scales alone to decide whether to fly?
-
-No. They describe general space weather impacts, not conditions at your site. Combine them with your aircraft's status, local weather, and the rules where you fly.
 
 ## Sources and further reading
 

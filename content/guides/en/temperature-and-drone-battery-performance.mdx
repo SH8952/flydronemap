@@ -2,7 +2,7 @@
 title: "Why Cold Weather Shortens Drone Flight Time and How to Plan"
 description: "Does cold weather really drain your drone battery faster? Here's the science below 10°C (50°F), and how much shorter your flights get in freezing conditions."
 publishedAt: "2026-08-26"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["battery", "cold-weather", "temperature"]
 category: "weather-safety"
 image: "/guides/images/temperature-and-drone-battery-performance.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@thomholmes?utm_source=FlyDroneMap&utm_med
 
 Lithium-polymer (LiPo) batteries, used in nearly all consumer drones, are chemically sensitive to temperature — and cold is the more common problem pilots underestimate.
 
-## Key takeaways
+## Quick summary
 
 - Cold slows the chemical reactions inside the cell, which raises internal resistance and lowers the capacity and voltage you can actually draw.
 - DJI's own manuals describe capacity as "significantly reduced" in the cold and give model-specific temperature limits, so check the manual for your aircraft.
@@ -22,6 +22,8 @@ Lithium-polymer (LiPo) batteries, used in nearly all consumer drones, are chemic
 ## Why cold hurts LiPo batteries
 
 Inside a battery, current is produced by chemical reactions that slow down as the cell gets colder. The practical result is higher internal resistance: the battery can deliver less capacity, and its voltage sags more when the motors demand power. DJI's winter-operations guidance for its enterprise aircraft puts the threshold for this at 15°C (59°F): below it, a battery's internal resistance increases and its discharge capacity falls, and DJI warns that a single cell dropping under 3 V causes power problems.
+
+<DiagramFlow title={"What cold does inside the pack"} steps={[{"label": "Cold slows the chemical reactions in the cell"}, {"label": "Internal resistance rises"}, {"label": "The capacity and voltage you can draw fall"}, {"label": "Flights run shorter than the rated time"}]} />
 
 ## What manufacturers say about temperature limits
 
@@ -42,7 +44,7 @@ A battery that shows 100% at takeoff in cold weather can trigger a critical low-
 
 ## How much shorter will the flight be?
 
-None of the manufacturer pages cited here converts the loss into a percentage. They say "significantly reduced" and leave the rest to the pilot. The 20–30% sometimes quoted as a rule of thumb is therefore best read as a conservative planning margin: if the aircraft is rated for a given flight time, plan the mission as if you will get noticeably less, and let the real battery behavior in your first short flight correct the plan. How much you actually lose depends on the model, the battery's age, the wind and how warm the pack was when you launched.
+None of the manufacturer pages cited here converts the loss into a percentage. They say "significantly reduced" and leave the rest to the pilot. The 20–30% sometimes quoted as a rule of thumb is therefore best read as a conservative planning margin. If the aircraft is rated for a given flight time, plan the mission as if you will get noticeably less, and let the real battery behavior in your first short flight correct the plan. How much you actually lose depends on the model, the battery's age, the wind and how warm the pack was when you launched.
 
 ## A practical cold-weather battery routine
 
@@ -53,7 +55,7 @@ None of the manufacturer pages cited here converts the loss into a percentage. T
 5. Land with more margin than usual. Do not count on the last part of the indicated charge in cold conditions.
 6. After landing, let the battery return to a moderate temperature before charging it, and charge only inside the allowed charging range.
 
-## Common mistakes
+## Where pilots slip up
 
 - Trusting the percentage alone. A cold battery can look full and still sag when you climb or fight wind.
 - Flying a battery straight out of a cold vehicle or a trunk.

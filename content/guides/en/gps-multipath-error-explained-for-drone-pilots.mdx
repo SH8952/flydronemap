@@ -2,7 +2,7 @@
 title: "GPS Multipath Error Explained for Drone Pilots"
 description: "Why your drone's GPS can drift near buildings and water even under a calm Kp index, and how to tell multipath error apart from space weather."
 publishedAt: "2026-09-03"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["gps", "multipath", "urban-flight", "accuracy"]
 category: "space-weather-gps"
 image: "/guides/images/gps-multipath-error-explained-for-drone-pilots.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@davidhenrichs?utm_source=FlyDroneMap&utm_
 
 If your drone has ever drifted sideways while hovering next to a glass office tower or over a calm lake, with a clean satellite lock and a quiet Kp index, the cause probably wasn't space weather at all. It was multipath error, a GPS problem that is easy to misdiagnose because the symptoms can look just like ionospheric interference.
 
-## Key takeaways
+**Before you read on:**
 
 - Multipath happens when reflected copies of a satellite signal reach the antenna along with the direct one. It is a local, physical effect, so it has nothing to do with the Kp index.
 - The typical fingerprint is repeatability: the same drift at the same spot, on quiet days as well as stormy ones, often while the satellite count still looks healthy.
@@ -29,6 +29,8 @@ A GPS signal travels in a straight line from satellite to receiver, but reflecti
 Many guides quote dramatic numbers, so it helps to keep the sources in view. Navipedia explains that the theoretical maximum for code multipath on the GPS civil signal is very large (hundreds of meters), but that values above 15 meters are difficult to observe in practice and the typical error is under 2 to 3 meters. It also notes that code multipath is usually worst when the satellite is low above the horizon, because signals from low-elevation satellites are the most exposed to nearby reflecting structures.
 
 For context, GPS.gov reports that high-quality single-frequency receivers reach a horizontal accuracy of roughly 2.2 meters or better 95 percent of the time, and it names three main things that degrade what users actually see: atmospheric effects, sky blockage and receiver quality. A small consumer drone's antenna and receiver are not the same as a survey-grade setup, so your own numbers will differ. The useful lesson is that a few meters of wobble near a reflector is plausible, while a drone that suddenly jumps by tens of meters deserves a second look at other causes.
+
+<DiagramBars title={"Multipath error, per ESA Navipedia (meters)"} items={[{"label": "Typical code multipath error, upper end", "value": 3, "text": "under 2–3 m"}, {"label": "Values difficult to observe", "value": 15, "text": "above 15 m", "highlight": true}]} />
 
 ## Where multipath is most likely
 
@@ -50,7 +52,7 @@ For context, GPS.gov reports that high-quality single-frequency receivers reach 
 
 The distinguishing clue between multipath and space weather is location and repeatability. Ionosphere-driven trouble affects a wide area and follows a time window; multipath is tied to a fixed spot. If your drone drifts at the same corner of a parking structure every time you fly there, regardless of the day's Kp reading, multipath is the likelier cause. To see what space weather is doing, check the [live dashboard](/en) and read the guide on [how the Kp index affects GPS and compass reliability](/en/guides/kp-index-effect-on-gps-compass-reliability).
 
-## Common mistakes
+## Where pilots slip up
 
 - Launching directly beside the reflective surface itself, such as from a rooftop pad ringed by glass railings or a dock at the edge of open water, because that is where reflections are strongest relative to the direct signal.
 - Trusting position hold between two tall buildings. Reflections from both facades combine with partially blocked sky, and the spread of visible satellites that GPS accuracy depends on gets worse.
@@ -70,25 +72,25 @@ The distinguishing clue between multipath and space weather is location and repe
 
 Multipath is one of several reasons a drone can lose precision without any space weather at all. When your satellite count is low or the signal drops entirely, read [what to do when your drone's GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak). If the problem appears only near the geomagnetic equator after dark, see the separate guide on ionospheric scintillation and drone GPS. A preflight routine should always include a look at the launch location itself.
 
-## FAQ
+## Reader questions
 
-### Can multipath error happen when the Kp index is low?
+**Can multipath error happen when the Kp index is low?**
 
 Yes. Multipath is caused by reflections near the aircraft, not by the ionosphere, so it happens just as easily on geomagnetically quiet days.
 
-### Will my drone warn me about multipath?
+**Will my drone warn me about multipath?**
 
 Not necessarily. The satellite count and signal indicator can look normal because the satellites are still being tracked. Behavior, such as unexpected drift at one spot, is often the better clue.
 
-### Is a bigger satellite count a cure for multipath?
+**Is a bigger satellite count a cure for multipath?**
 
 No. More satellites can help the geometry, but reflections from a nearby wall or water surface can still pull the solution toward the reflector.
 
-### Does multipath only affect small drones?
+**Does multipath only affect small drones?**
 
 No. It affects any GNSS receiver. Navipedia notes that better antennas and moving away from reflecting objects are the standard remedies, which is why survey crews also pay attention to antenna sites.
 
-## Sources and further reading
+## Source material
 
 - [ESA Navipedia — Multipath](https://gssc.esa.int/navipedia/index.php/Multipath)
 - [GPS.gov — GPS Accuracy](https://www.gps.gov/systems/gps/performance/accuracy/)

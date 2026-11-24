@@ -2,7 +2,7 @@
 title: "ND Filter Guide for Drone Cinematography"
 description: "Why bright light forces ND filters on drone video, how to calculate the strength you need from stops, the limits of variable ND, and what DJI says about filter choice."
 publishedAt: "2026-09-14"
-updatedAt: "2026-10-19"
+updatedAt: "2026-11-24"
 tags: ["nd-filter", "camera", "cinematography", "gear"]
 category: "gear-flight-tips"
 image: "/guides/images/nd-filter-guide-for-drone-cinematography.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@jordymunoz?utm_source=FlyDroneMap&utm_med
 
 In bright daylight, a video shutter speed that looks natural is often impossible to reach without cutting light. A neutral-density (ND) filter does that cutting. This guide explains the rule behind the choice, shows how to calculate a strength instead of guessing, and uses published DJI pages and photography references. We do not give a table that claims to match every light condition, because the right strength depends on your camera, the scene and the time of day.
 
-## Key takeaways
+## The short version
 
 - The 180-degree shutter rule says the shutter speed should be about twice the frame rate: 1/48 second at 24 fps, usually set to 1/50, and 1/60 second at 30 fps.
 - An ND filter number is a light-reduction factor: ND2 is 1 stop, ND4 is 2 stops, and every doubling adds one stop, so ND16 is 4 stops, ND32 is 5 and ND64 is 6.
@@ -32,6 +32,8 @@ Work in stops. First set your frame rate and the shutter speed from the rule, fo
 
 An ND factor describes how much light is blocked: ND4 passes one quarter of the light, which is 2 stops. Photographers also use optical density, where 0.3 is 1 stop and 0.6 is 2 stops. Manufacturers sometimes print different labels, so read the packaging and convert to stops yourself. DJI sells an ND 16/64/256 set for the Mini 4 Pro, which spans roughly 4, 6 and 8 stops. A set with spread-out values leaves gaps, so check the exposure after every swap.
 
+<DiagramBars title={"Light reduction in stops"} items={[{"label": "ND2", "value": 1, "text": "1 stop"}, {"label": "ND4", "value": 2, "text": "2 stops"}, {"label": "ND16", "value": 4, "text": "4 stops"}, {"label": "ND32", "value": 5, "text": "5 stops"}, {"label": "ND64", "value": 6, "text": "6 stops"}]} />
+
 ## Where variable ND filters fall short
 
 A variable ND filter combines two polarizing layers that rotate against each other. Near the maximum density the light passes unevenly, which produces dark diagonal bands, often called the X pattern. A guide by KF Concept says it is most likely near the Max setting and mainly on wide-angle lenses, and that it is most visible in uniform areas such as clear sky, water and snow. Its suggested fixes are to turn the ring back toward the minimum, to use a longer focal length, to avoid stacking a polarizer, and to use a fixed ND for more reduction. Because most drone lenses are wide, a fixed filter that you swap as the light changes is usually the safer choice, but test your own filter before an important job.
@@ -44,7 +46,7 @@ DJI recommends official ND filters for its aircraft because they are designed to
 
 Some filters add a color cast, so record a short test clip and set the white balance manually if you see one. A fingerprint or dust on a filter can show up as flare or softness in bright highlights, so store each filter in its own slot of a case and clean it with a microfiber cloth. Our [gimbal and lens cleaning guide](/en/guides/drone-gimbal-maintenance-and-cleaning-guide) describes a safe order for cleaning a lens.
 
-## Practical checklist
+## Checklist to keep handy
 
 - Set the frame rate first and the shutter speed to about twice that, such as 1/50 at 24 fps.
 - Work out the stops you need, choose the nearest ND value and check the exposure in the app.
@@ -56,23 +58,23 @@ Some filters add a color cast, so record a short test clip and set the white bal
 
 ## FAQ
 
-### Why do I need an ND filter at all?
+**Why do I need an ND filter at all?**
 
 Bright light forces a fast shutter speed, which makes video look choppy. An ND filter lets you keep a slower shutter that matches the frame rate.
 
-### Which ND number should I buy?
+**Which ND number should I buy?**
 
 It depends on your camera and the light. Calculate the stops you need as shown above, and start with a small set that covers your usual conditions.
 
-### Is a variable ND filter a good idea for a drone?
+**Is a variable ND filter a good idea for a drone?**
 
 It is convenient, but near its strongest setting it can show an X pattern on wide lenses. A fixed set is the safer default.
 
-### Do I need official filters?
+**Do I need official filters?**
 
 DJI says official filters are designed for the gimbal camera's center of gravity. If you use others, check that the gimbal moves freely.
 
-## Sources and further reading
+## References
 
 - [DJI Store — ND filters for your drone and camera](https://store.dji.com/content/drone-nd-filters-work-and-use)
 - [DJI Store — Mini 4 Pro ND filter set (ND16/64/256)](https://store.dji.com/product/dji-mini-4-pro-nd-filters-set-16-256)

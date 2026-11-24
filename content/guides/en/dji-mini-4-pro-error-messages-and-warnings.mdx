@@ -2,13 +2,14 @@
 title: "DJI Mini 4 Pro Error Messages and Warnings: Meaning and Action"
 description: "What the DJI Mini 4 Pro status light patterns and DJI Fly warnings mean according to DJI's own documents, and what the manufacturer says to do about each one."
 publishedAt: "2026-10-17"
+updatedAt: "2026-11-24"
 tags: ["dji", "mini-4-pro", "warnings", "troubleshooting"]
 category: "gear-flight-tips"
 ---
 
 When the DJI Mini 4 Pro blinks an unfamiliar color or the app shows a warning, it helps to know whether you are looking at a harmless status or a reason to stay on the ground. This page collects the warnings that DJI describes in its own documents for this aircraft, explains them in plain words and says what the manufacturer recommends. It is not a complete error list and it is not a substitute for the manual.
 
-## Key takeaways
+## The short version
 
 - The aircraft status lights are the quickest check on the ground. Yellow and green patterns mostly describe normal states, while solid or blinking red, fast yellow and alternating red and yellow mean something needs attention.
 - A slowly blinking red light with takeoff disabled means you should read the warning in DJI Fly before doing anything else.
@@ -23,6 +24,8 @@ Two things to keep in mind. First, the status lights show the state of the fligh
 
 ## Aircraft status lights
 
+<DiagramCompare title={"Reading the status lights at a glance"} left={{"head": "Mostly normal states", "items": ["Yellow and green patterns"]}} right={{"head": "Needs attention", "items": ["Solid or blinking red", "Fast yellow", "Alternating red and yellow"]}} />
+
 The following table covers the warning patterns in the manual's status indicator list.
 
 | Message or symptom | Meaning (per manufacturer) | What to do |
@@ -33,9 +36,11 @@ The following table covers the warning patterns in the manual's status indicator
 | Red and yellow alternate | Compass calibration is required | Calibrate the compass as DJI Fly instructs, away from metal structures and interference. See our [compass calibration guide](/en/guides/compass-calibration-and-magnetic-interference) |
 | Yellow blinks quickly | The remote controller signal is lost | Restore the link if you can. The aircraft may start failsafe Return to Home, described below |
 
-For comparison, the manual lists these as normal states: alternating red, yellow and green while powering on and running self-diagnostics, four yellow blinks while warming up, a slow green blink when GNSS is active, two green blinks repeating when the vision systems are active, and a slow yellow blink when GNSS and the vision systems are both off and the aircraft is in ATTI mode.
+For comparison, the manual lists these as normal states: alternating red, yellow and green while powering on and running self-diagnostics; four yellow blinks while warming up; a slow green blink when GNSS is active; two green blinks repeating when the vision systems are active; and a slow yellow blink when GNSS and the vision systems are both off and the aircraft is in ATTI mode.
 
 ## Battery and Return to Home warnings
+
+<DiagramCompare title={"After the low-battery warning"} left={{"head": "Let it run", "items": ["The app counts down", "If you do nothing, the aircraft flies back to the Home Point"]}} right={{"head": "Cancel the return", "items": ["The battery may no longer hold enough charge to land safely", "Avoid it unless you are certain you can land quickly"]}} />
 
 | Message or symptom | Meaning (per manufacturer) | What to do |
 |---|---|---|
@@ -72,7 +77,7 @@ The manual also says that obstacle avoidance is off in Sport mode and when the o
 
 Check the status lights after power-on, confirm in DJI Fly that there are no warnings and that the gimbal and camera work normally, and read the current conditions on the [FlyDroneMap dashboard](/en). Low temperatures and heat both affect batteries, so see [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance). DJI states an operating range of minus 10 to 40 degrees Celsius for the product.
 
-## FAQ
+## Frequently asked questions
 
 ### Is it safe to keep flying after a compass warning?
 

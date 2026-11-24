@@ -2,22 +2,31 @@
 title: "DJI Mavic 4 Pro Wind Resistance: Official vs Real"
 description: "DJI lists 12 m/s (43.2 km/h) as the Mavic 4 Pro's maximum wind speed resistance. See the official specs and how FlyDroneMap judges real wind."
 publishedAt: "2026-10-23"
+updatedAt: "2026-11-24"
 tags: ["wind", "dji", "mavic-4-pro", "gear", "gusts"]
 category: "weather-safety"
 ---
 
-DJI lists the Mavic 4 Pro's maximum wind speed resistance as 12 m/s, which is 43.2 km/h. That is the manufacturer's ceiling, not a speed at which every flight will feel comfortable. This page shows the official figures, explains how FlyDroneMap turns them into a good, caution or not-recommended verdict, and lists what to check before you launch.
+DJI gives the Mavic 4 Pro a maximum wind speed resistance of 12 m/s, or 43.2 km/h. That is where the manufacturer's rating stops, and a day with wind anywhere near it will not feel like the spec sheet. Below is what DJI documents, how FlyDroneMap grades a forecast gust against that figure, and a short routine for the last few minutes before takeoff.
 
-## Key takeaways
+## The short version
 
-- DJI's spec page gives the Mavic 4 Pro a maximum wind speed resistance of 12 m/s (43.2 km/h).
-- DJI's manual says not to fly in severe weather such as strong winds, snow, rain and fog. In the parts we read, it gives no numeric wind limit for flight.
-- On FlyDroneMap, gusts under 21.6 km/h count as good for this model, 21.6 km/h and above as caution, and 30.2 km/h and above as not recommended. These are the site's own thresholds, not an official standard.
-- Judge by gusts and by the wind at flight height, not only by the average ground reading.
+- DJI's specs page lists a maximum wind speed resistance of 12 m/s (43.2 km/h) for the Mavic 4 Pro.
+- DJI's manual advises against flying in severe weather such as strong winds, snow, rain and fog. In the sections we read there is no numeric wind limit for flight.
+- FlyDroneMap grades gusts for this model as good below 21.6 km/h, caution from 21.6 km/h and not recommended from 30.2 km/h. Those cut-offs are the site's own, not DJI's.
+- Read the gust at the height you will fly, not the average at ground level.
 
-## Official specifications
+## Three lines on the gust scale
 
-The values below come from DJI's Mavic 4 Pro specs page. Only rows that the page lists are included. DJI attaches test conditions to some figures, such as speed and flight time, so read the footnotes on that page before comparing them with your own flights.
+Everything below hangs on three figures, all in km/h: 21.6, where FlyDroneMap's caution begins; 30.2, where not recommended begins; and 43.2, where DJI's rating ends. They are 50%, 70% and 100% of the official maximum. A forecast gust of 25 km/h is about 58% of the ceiling, so it lands in caution, while 32 km/h is about 74% and lands in not recommended.
+
+<DiagramStairs title={"Gust speed against the Mavic 4 Pro's rating"} steps={[{"label":"Under 21.6 km/h","sub":"Good (under 50% of the maximum)"},{"label":"21.6 km/h","sub":"Caution begins"},{"label":"30.2 km/h","sub":"Not recommended begins"},{"label":"43.2 km/h","sub":"DJI's maximum wind speed resistance"}]} />
+
+The dashboard also keeps a separate gust-risk scale: low under 20 km/h, moderate from 20 to under 35 km/h and high from 35 km/h. The two answer different questions. One compares the wind with this aircraft; the other describes how rough the air is for anything that flies.
+
+## What the specs page lists
+
+These rows come from DJI's Mavic 4 Pro specs page, and only rows the page lists are included. Several figures carry test conditions in DJI's footnotes, so read those before setting them beside your own flights.
 
 | Item | Value |
 |---|---|
@@ -34,69 +43,50 @@ The values below come from DJI's Mavic 4 Pro specs page. Only rows that the page
 | EU class | C2 |
 | Battery | 332 g, 95.3 Wh |
 
-Rules that depend on weight differ by country and by your exact configuration, so check the actual weight of your setup against your national regulator.
+Weight-based rules differ between countries and depend on your exact setup, so check your own configuration against your national regulator.
 
-## What DJI's manual says about wind
+## Wind in the manual
 
-- The manual says not to fly in severe weather conditions such as strong winds, snow, rain and fog.
-- It warns that the aircraft may not be able to return to the Home Point if the wind speed is too high.
-- The only numeric wind figure we found is for Return-to-Home when satellite positioning was not available at takeoff: the manual says the environmental wind speed should be less than 3 m/s.
-- Reduced battery capacity in low temperatures reduces the aircraft's wind speed resistance.
+Four statements in DJI's manual bear on wind:
 
-## How FlyDroneMap judges this model
+- Do not fly in severe weather such as strong winds, snow, rain and fog.
+- If the wind is too strong, the aircraft may be unable to return to the Home Point.
+- The one numeric wind figure we found applies to Return-to-Home when satellite positioning was unavailable at takeoff: the environmental wind speed should be below 3 m/s.
+- A battery with reduced capacity in the cold lowers the aircraft's wind speed resistance. DJI gives no number for how much.
 
-The dashboard compares the forecast gust speed with the official maximum. The thresholds are the site's own rule of thumb: good when the gust is under 50% of the official maximum, caution from 50%, and not recommended from 70%. For the Mavic 4 Pro they work out as follows.
+## Why a heavy aircraft still needs a margin
 
-| Verdict | Share of 43.2 km/h | Gust speed |
-|---|---|---|
-| Good | Under 50% | Under 21.6 km/h (6.0 m/s) |
-| Caution | 50% to under 70% | 21.6 to under 30.2 km/h |
-| Not recommended | 70% or more | 30.2 km/h and above |
+A rating of 12 m/s is a maximum, and a few things eat into it before you get there. Gusts arrive as short pushes above the average. Forecast wind is normally given at 10 m above ground, while you may fly at 80 to 120 m, where it can be noticeably stronger; [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight) explains why. A headwind costs battery too, and if you flew out with a tailwind, the way home is the hard part. Cold, finally, takes capacity from the battery and so from the wind rating.
 
-The dashboard also rates gust risk on its own scale: low under 20 km/h, moderate from 20 to under 35 km/h, and high at 35 km/h and above. The two scales answer different questions. One compares the wind with your aircraft, the other describes how rough the air is in general.
+## Three minutes before takeoff
 
-## Why the official number is not your working limit
+1. Open the [FlyDroneMap dashboard](/en), choose the Mavic 4 Pro and read the gust figure rather than the average.
+2. Check the wind at 80 and 120 m next to the surface value.
+3. Go through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight) for direction and nearby obstacles.
+4. Plan the flight so that the return leg has the wind behind you, or carry a generous battery reserve.
+5. If you fly several aircraft, compare them in [wind resistance by model](/en/guides/drone-wind-resistance-by-model).
 
-The manufacturer's figure is a maximum. A few practical reasons to stay well below it:
+## Easy ways to get it wrong
 
-- Gusts are short peaks above the average, and the aircraft feels them as sudden pushes.
-- Forecast wind is usually given at 10 m above the ground. At 80–120 m it can be noticeably stronger. See [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight) for why.
-- Fighting a headwind costs battery. A flight out with a tailwind means a return into a headwind, so you need more reserve than the outbound leg suggests.
-- Cold lowers battery capacity, and DJI states this reduces wind resistance.
+- Taking 12 m/s as a comfortable speed rather than a maximum.
+- Looking at the average and skipping the gust figure.
+- Assuming the surface forecast describes the air at flight height.
+- Launching on a cold morning with a cold battery and expecting full wind performance.
+- Drifting far downwind without working out the way back.
 
-## Before you launch
-
-1. Open the [FlyDroneMap dashboard](/en), choose the Mavic 4 Pro and read the gust figure, not just the average.
-2. Look at the wind at 80 and 120 m as well as the surface value.
-3. Run through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight), including direction and nearby obstacles.
-4. Plan the return so you finish the flight with the wind helping, or with a generous battery reserve.
-5. Compare other models in the [wind resistance by model](/en/guides/drone-wind-resistance-by-model) guide if you fly more than one aircraft.
-
-## Common mistakes
-
-- Reading 12 m/s as a safe flying speed instead of a maximum.
-- Checking only the average wind and ignoring the gust number.
-- Forgetting that the surface forecast does not describe the wind at flight height.
-- Launching in cold weather with a partly cold battery and expecting full wind performance.
-- Flying far downwind without calculating the way back.
-
-## FAQ
+## Questions and answers
 
 ### What is the wind limit of the DJI Mavic 4 Pro?
 
-DJI's spec page lists a maximum wind speed resistance of 12 m/s (43.2 km/h). DJI's manual also advises against flying in severe weather such as strong winds.
+DJI's specs page lists a maximum wind speed resistance of 12 m/s (43.2 km/h). Its manual also advises against flying in severe weather such as strong winds.
 
 ### Can I fly the Mavic 4 Pro in 25 km/h wind?
 
-25 km/h is about 58% of the 43.2 km/h maximum, so FlyDroneMap rates it as caution. Check that the figure is a gust and not an average, and check the wind at flight height.
+25 km/h is about 58% of the 43.2 km/h maximum, which FlyDroneMap rates as caution. First check whether 25 km/h is a gust or an average, and what the wind is doing at flight height.
 
-### Why does the site say caution before the official limit?
+### Does cold weather change the wind limit?
 
-Because the official figure is a maximum, and real conditions add gusts, height and battery effects. The site starts caution at 50% of the maximum to leave a margin. This is the site's own criterion, not DJI's.
-
-### Does the wind limit change in cold weather?
-
-DJI's manual states that the reduced battery capacity in low temperatures reduces the aircraft's wind speed resistance. It does not give a number, so treat cold days as having a smaller margin.
+DJI's manual says reduced battery capacity at low temperatures lowers the aircraft's wind speed resistance. It gives no figure, so treat a cold day as one with a thinner margin.
 
 ## Sources and further reading
 

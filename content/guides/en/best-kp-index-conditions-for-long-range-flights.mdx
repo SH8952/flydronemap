@@ -2,7 +2,7 @@
 title: "Best Kp Index Conditions for Long-Range Drone Flights"
 description: "Why long-range and BVLOS missions need a stricter Kp threshold than a backyard flight, with numeric guidance and a mid-mission storm scenario."
 publishedAt: "2026-09-06"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["kp-index", "long-range", "mission-planning", "gps"]
 category: "space-weather-gps"
 image: "/guides/images/best-kp-index-conditions-for-long-range-flights.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@jerrykavan?utm_source=FlyDroneMap&utm_med
 
 A quiet Kp reading at launch doesn't mean the same thing for a 4 km pipeline survey that it means for a five-minute hover over your backyard. Distance is exactly where geomagnetic disturbance is felt most: it can eat into GPS accuracy and return-to-home reliability, and those are the two systems a long-range mission depends on most.
 
-## Key takeaways
+## In brief
 
 - On long-range and BVLOS flights there is no visual backstop, so plan with a stricter Kp margin than for a short local flight.
 - The thresholds below are conservative planning limits, not official rules. NOAA lists no satellite navigation effects at Kp 5–6 and intermittent problems from Kp 7.
@@ -51,9 +51,11 @@ Kp is reported in 3-hour windows, and a single pre-flight check only tells you t
 
 ## A better practice: watch the trend, not just the number
 
-For any mission running longer than one Kp reporting window, pull NOAA's 3-day geomagnetic forecast before you commit to a launch time, and re-check the live value immediately before takeoff even if you reviewed the forecast the night before. Real-time solar wind data from the DSCOVR and ACE satellites, when available through your weather source, can give roughly 15-60 minutes of extra warning before a shock arrives at Earth, which is sometimes enough time to bring a long-range aircraft home, but it is not a guarantee and a coronal mass ejection can arrive hours to days after it is first seen.
+For any mission running longer than one Kp reporting window, pull NOAA's 3-day geomagnetic forecast before you commit to a launch time, and re-check the live value immediately before takeoff even if you reviewed the forecast the night before. Real-time solar wind data from the DSCOVR and ACE satellites, when your weather source offers it, can give roughly 15-60 minutes of extra warning before a shock arrives at Earth. That is sometimes enough time to bring a long-range aircraft home, but it is not a guarantee, and a coronal mass ejection can arrive hours to days after it is first seen.
 
 ## A planning timeline
+
+<DiagramTimeline title={"When to look at Kp on a long-range mission"} points={[{"when": "2–3 days ahead", "label": "NOAA 3-day forecast", "sub": "Issued every 12 hours"}, {"when": "The evening before", "label": "Updated forecast and any storm watch"}, {"when": "Morning of the flight", "label": "Live Kp and the trend"}, {"when": "Just before launch", "label": "Live Kp, solar wind data, fix quality"}, {"when": "In flight", "label": "Drift and satellite count"}]} />
 
 | When | What to check | Why |
 |---|---|---|
@@ -62,15 +64,6 @@ For any mission running longer than one Kp reporting window, pull NOAA's 3-day g
 | Morning of the flight | Live Kp and the trend | Confirm the forecast |
 | Immediately before launch | Live Kp, solar wind data and fix quality at the site | Final go or no-go |
 | In flight | Telemetry map, drift and satellite count | Detect trouble early and shorten the mission if needed |
-
-## Practical checklist for long-range flights
-
-- Check the full 3-day Kp/G-scale forecast for your entire mission window, not just the launch-time value.
-- If any 3-hour segment during your planned flight is forecast at Kp 5 or higher, reschedule or shorten the mission range.
-- Treat forecast Kp 4 as your ceiling for BVLOS or multi-kilometer missions, not Kp 5.
-- Build in a return margin: define a distance or time threshold at which you trigger a manual RTH check rather than trusting the automated one blindly (see [return-to-home settings explained](/en/guides/return-to-home-settings-explained)).
-- Re-check the live Kp reading immediately before launch, even for a mission planned and forecast-checked the night before.
-- Check the [dashboard](/en) for the current Kp together with wind and other conditions.
 
 ## FAQ
 
@@ -90,7 +83,16 @@ Spacecraft at the L1 point typically give 15 to 60 minutes of lead time before a
 
 Treat it with caution, because it relies on the same GPS and compass data. Set a return margin and be ready to take manual control.
 
-## Sources and further reading
+## Practical checklist for long-range flights
+
+- Check the full 3-day Kp/G-scale forecast for your entire mission window, not just the launch-time value.
+- If any 3-hour segment during your planned flight is forecast at Kp 5 or higher, reschedule or shorten the mission range.
+- Treat forecast Kp 4 as your ceiling for BVLOS or multi-kilometer missions, not Kp 5.
+- Build in a return margin: define a distance or time threshold at which you trigger a manual RTH check rather than trusting the automated one blindly (see [return-to-home settings explained](/en/guides/return-to-home-settings-explained)).
+- Re-check the live Kp reading immediately before launch, even for a mission planned and forecast-checked the night before.
+- Check the [dashboard](/en) for the current Kp together with wind and other conditions.
+
+## References
 
 - [NOAA SWPC — 3-Day Forecast](https://www.spaceweather.gov/products/3-day-forecast)
 - [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)

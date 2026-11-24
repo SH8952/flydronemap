@@ -2,7 +2,7 @@
 title: "Best Time of Day to Fly a Drone"
 description: "Wind, light, wildlife, and battery behavior all shift across the day — how to pick a launch window for your specific mission instead of guessing by the clock."
 publishedAt: "2026-08-31"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["timing", "golden-hour", "flight-planning"]
 category: "weather-safety"
 image: "/guides/images/best-time-of-day-to-fly-a-drone.webp"
@@ -12,6 +12,12 @@ imageCreditUrl: "https://unsplash.com/@thomasbormans?utm_source=FlyDroneMap&utm_
 
 There is no single "best" time to fly — a mapping mission, a cinematic shoot, and a quick recreational flight each want a different hour of the day. What matters is knowing how wind, light, wildlife activity, and even sensor performance shift from sunrise to sunset, so you can choose a launch window on purpose.
 
+## Wind: usually lighter in the morning, but check the hour
+
+Research on global surface winds by Dai and Deser at NCAR found that surface wind speed over most land areas peaks in the early afternoon, around 14:00 local solar time, and suggests that stronger downward mixing of momentum during the day is one of the main causes. Heating of the ground during the day stirs the lower atmosphere, so faster-moving air from higher up is brought toward the surface. The average size of this daily swing in that study was modest, 0.6 to 1.1 m/s over land, and it was largest over high terrain and in summer.
+
+The practical reading is a tendency, not a promise. A frontal passage, a sea breeze, or a mountain setting can produce a very different daily pattern, and wind higher up than the surface behaves differently from wind at the ground (see [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight)). Instead of assuming "early is calm", open the hour-by-hour wind and gust forecast for your site. The FlyDroneMap [dashboard](/en) shows a 24-hour hourly timeline and a best flying window for a location, which makes this comparison quick.
+
 ## Key takeaways
 
 - Near-surface wind speed over land peaks, on average, in the early afternoon and is usually lighter earlier in the day, but terrain and weather systems can override the pattern, so read the hourly forecast.
@@ -20,21 +26,15 @@ There is no single "best" time to fly — a mapping mission, a cinematic shoot, 
 - Twilight and night have their own legal requirements. In the US, Part 107 treats the 30 minutes before sunrise and after sunset as civil twilight and requires anti-collision lighting then and at night.
 - Calm, clear nights favor fog near valleys and water, so a still dawn is not automatically a good dawn.
 
-## Wind: usually lighter in the morning, but check the hour
-
-Research on global surface winds by Dai and Deser at NCAR found that surface wind speed over most land areas peaks in the early afternoon, around 14:00 local solar time, and suggests that stronger downward mixing of momentum during the day is one of the main causes. Heating of the ground during the day stirs the lower atmosphere, so faster-moving air from higher up is brought toward the surface. The average size of this daily swing in that study was modest, 0.6 to 1.1 m/s over land, and it was largest over high terrain and in summer.
-
-The practical reading is a tendency, not a promise. A frontal passage, a sea breeze, or a mountain setting can produce a very different daily pattern, and wind higher up than the surface behaves differently from wind at the ground (see [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight)). Instead of assuming "early is calm", open the hour-by-hour wind and gust forecast for your site. The FlyDroneMap [dashboard](/en) shows a 24-hour hourly timeline and a best flying window for a location, which makes this comparison quick.
-
 ## Light: golden hour looks good but challenges the sensors
 
-The hour after sunrise and before sunset is popular because the low sun gives long shadows, warm color and soft contrast. For the aircraft the picture is more mixed. DJI's Air 3S manual says the vision system cannot work properly near surfaces where lighting is too weak or too strong, lists extremely dark (under 1 lux) and extremely bright (over 40,000 lux) surfaces among the degrading conditions, and states that the vision system becomes unavailable when flying at night. Low sun can create both problems at once: glare when you face it and deep shadow on the surfaces the sensors look at.
+The hour after sunrise and before sunset is popular because the low sun gives long shadows, warm color and soft contrast. For the aircraft the picture is more mixed. DJI's Air 3S manual says the vision system cannot work properly near surfaces where lighting is too weak or too strong. It lists extremely dark (under 1 lux) and extremely bright (over 40,000 lux) surfaces among the degrading conditions, and states that the vision system becomes unavailable when flying at night. Low sun can create both problems at once: glare when you face it and deep shadow on the surfaces the sensors look at.
 
 Practical steps: know whether your obstacle avoidance is active and what its limits are, keep a larger margin from obstacles when the sun is low, and plan the shot so you are not relying on the sensors to save you. If you use ND filters for video,
 
 ## Inspection and mapping: some jobs need the sun
 
-Time of day also depends on the task. For aerial thermal inspection of photovoltaic plants, the IEA PVPS report on qualification of PV power plants states that imaging should take place when there is good, stable illumination of at least 600 W per square metre in the plane of the module, on a sunny, cloudless and clear day, and that inspections should take place in the morning or afternoon when the angle of incidence is lower. The same report says wind speed should not exceed 4 m/s during such an inspection. That is the opposite of the idea that thermal work should avoid sunlight. Other inspection and mapping tasks have their own conditions, so check the standard or client specification for your job rather than relying on a general rule.
+Time of day also depends on the task. For aerial thermal inspection of photovoltaic plants, the IEA PVPS report on qualification of PV power plants asks for good, stable illumination of at least 600 W per square metre in the plane of the module, on a sunny, cloudless and clear day. It adds that inspections should take place in the morning or afternoon, when the angle of incidence is lower. The same report says wind speed should not exceed 4 m/s during such an inspection. That is the opposite of the idea that thermal work should avoid sunlight. Other inspection and mapping tasks have their own conditions, so check the standard or client specification for your job rather than relying on a general rule.
 
 ## Temperature through the day
 
@@ -47,6 +47,8 @@ A 2017 systematic review of unmanned aircraft and wildlife (Mulero-Pázmány and
 ## Twilight and night flight
 
 In the United States, 14 CFR 107.29 allows night operation only if the remote pilot has completed the required training or knowledge test updated after April 6, 2021 and the aircraft has anti-collision lighting visible for at least 3 statute miles. The rule defines civil twilight as the period from 30 minutes before official sunrise until sunrise, and from official sunset until 30 minutes after sunset, and also requires anti-collision lighting during those periods. Rules differ in other countries, and many are daylight-only unless you hold a specific authorization, so check your own regulator; the US regulations page gives the US overview and the guide on [night flying rules](/en/guides/night-flying-rules-for-drone-pilots) goes further. Low light also reduces your own ability to judge distance and attitude, so a twilight flight deserves its own planning.
+
+<DiagramTimeline title={"Part 107 and the light of the day"} points={[{"when": "30 min before sunrise", "label": "Civil twilight begins", "sub": "Anti-collision lighting required"}, {"when": "Sunrise to sunset", "label": "Daytime"}, {"when": "30 min after sunset", "label": "Civil twilight again", "sub": "Anti-collision lighting required"}, {"when": "Night", "label": "Lighting and the other night rules apply"}]} />
 
 ## Common mistake: chasing quiet hours into fog
 
@@ -70,25 +72,14 @@ Early morning is popular for calm air and fewer people. But NWS fog guidance des
 - Check dew point spread and fog risk before an early flight.
 - Confirm local twilight and night rules before flying near sunrise or sunset.
 
-## FAQ
+## Common questions
 
-### What is the best time of day for the calmest wind?
+- **What is the best time of day for the calmest wind?** On average, near-surface wind over land is lighter in the morning than in the early afternoon. Because local terrain and weather can change this, check the hourly forecast for your own site.
+- **Is golden hour safe for drones?** It can be, but the low sun may degrade vision-based obstacle sensing and cause glare. Keep a larger safety margin from obstacles and do not depend on avoidance systems.
+- **Is midday bad for flying?** Not by itself. Surface winds are on average strongest in the early afternoon, but some tasks, such as solar-panel thermal inspection, specifically require strong sunlight.
+- **Can I fly in civil twilight?** It depends on your country. Under the US rule, civil twilight is 30 minutes before sunrise and after sunset, and flights then require anti-collision lighting. Check your own regulator.
 
-On average, near-surface wind over land is lighter in the morning than in the early afternoon. Because local terrain and weather can change this, check the hourly forecast for your own site.
-
-### Is golden hour safe for drones?
-
-It can be, but the low sun may degrade vision-based obstacle sensing and cause glare. Keep a larger safety margin from obstacles and do not depend on avoidance systems.
-
-### Is midday bad for flying?
-
-Not by itself. Surface winds are on average strongest in the early afternoon, but some tasks, such as solar-panel thermal inspection, specifically require strong sunlight.
-
-### Can I fly in civil twilight?
-
-It depends on your country. Under the US rule, civil twilight is 30 minutes before sunrise and after sunset, and flights then require anti-collision lighting. Check your own regulator.
-
-## Sources and further reading
+## Where this comes from
 
 - [NCAR — Dai and Deser: Diurnal and semidiurnal variations in global surface wind and divergence fields](https://staff.cgd.ucar.edu/cdeser/docs/dai.diurnalvariations_wind.jgr99.pdf)
 - [DJI — Air 3S User Manual (PDF)](https://dl.djicdn.com/downloads/DJI_Air_3S/UM/DJI_Air_3S_User_Manual_v1.0_en.pdf)

@@ -2,7 +2,7 @@
 title: "Best Practices for Drone Firmware Updates"
 description: "When to update drone firmware, why stable power matters, which settings to re-check, and what to do if an update stalls, per manufacturer guidance."
 publishedAt: "2026-09-17"
-updatedAt: "2026-10-19"
+updatedAt: "2026-11-24"
 tags: ["firmware", "maintenance", "updates"]
 category: "gear-flight-tips"
 image: "/guides/images/best-practices-for-drone-firmware-updates.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@brechtcorbeel?utm_source=FlyDroneMap&utm_
 
 Many pilots tap update as soon as a notification appears, the same way they would with a phone app. Firmware is different because it runs the aircraft itself, so an interrupted update is a bigger problem than a failed app update. This guide gives general habits, and it relies on your manufacturer's instructions for anything model-specific. We cite DJI's published pages as an example because they are widely used, and they do not apply to every brand.
 
-## Key takeaways
+## At a glance
 
 - DJI says the DJI Fly app prompts you for firmware updates when the aircraft is connected to the remote controller, and its manual tells you to update whenever prompted.
 - The requirements for battery level and process differ by model, so follow what the app and the manufacturer's release notes say for your aircraft.
@@ -36,6 +36,8 @@ When more than one update is offered, for the aircraft, the controller and the a
 
 An update can change defaults, move menu items or add features. After any update, walk through the safety settings you rely on: the return-to-home altitude, the action on signal loss, height and distance limits and obstacle sensing. Compare them with what you used before the update, using your notes or a screenshot you took earlier. If the release notes mention a calibration, do it as described, in an open area away from metal and cables, and finish with a short hover test before a real flight. Our [return-to-home guide](/en/guides/return-to-home-settings-explained) explains why those settings matter.
 
+<DiagramFlow title={"A calm way through a firmware update"} steps={[{"label": "DJI Fly prompts for an update", "sub": "Aircraft connected to the remote controller"}, {"label": "Pick a quiet moment", "sub": "Not right before a flight that matters"}, {"label": "Keep power and connections stable until it finishes"}, {"label": "Check your settings and fly a short test"}]} />
+
 ## Updating more than one aircraft
 
 If you operate several aircraft, update one first, test it and then update the others. A problem in a new release then affects one unit, not the whole fleet. Keep a note of the version each aircraft has and of the date you updated it.
@@ -53,25 +55,14 @@ Do not repeatedly switch the aircraft off and on if the progress indicator seems
 - Calibrate only as the app or release notes tell you, then do a short test flight.
 - If something goes wrong, stop and use the manufacturer's recovery page or support.
 
-## FAQ
+## Quick answers
 
-### Should I always install the newest firmware?
+- **Should I always install the newest firmware?** DJI's manual recommends updating whenever you are prompted. Timing and testing are up to you, so avoid the day before an important flight.
+- **What battery level is needed?** It depends on the model, and the sources we checked do not state one. Follow the app and the manufacturer's notes for your aircraft.
+- **Can an update change my settings?** It can change defaults or add options, so check your safety settings after each update.
+- **What if the update gets stuck?** Do not retry blindly. Use the manufacturer's recovery procedure for your model, or contact support.
 
-DJI's manual recommends updating whenever you are prompted. Timing and testing are up to you, so avoid the day before an important flight.
-
-### What battery level is needed?
-
-It depends on the model, and the sources we checked do not state one. Follow the app and the manufacturer's notes for your aircraft.
-
-### Can an update change my settings?
-
-It can change defaults or add options, so check your safety settings after each update.
-
-### What if the update gets stuck?
-
-Do not retry blindly. Use the manufacturer's recovery procedure for your model, or contact support.
-
-## Sources and further reading
+## Further reading
 
 - [DJI — Mini 4 Pro support](https://www.dji.com/support/product/mini-4-pro)
 - [DJI — Mini 4 Pro downloads and user manuals](https://www.dji.com/downloads/products/mini-4-pro)

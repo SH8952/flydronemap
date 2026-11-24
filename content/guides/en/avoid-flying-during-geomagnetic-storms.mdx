@@ -2,7 +2,7 @@
 title: "Why You Should Avoid Flying During Geomagnetic Storms"
 description: "Why GPS drift, compass instability, and communication interference compound during geomagnetic storms, and how to turn that into one practical pre-flight rule."
 publishedAt: "2026-08-26"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["geomagnetic-storm", "safety", "kp-index"]
 category: "space-weather-gps"
 image: "/guides/images/avoid-flying-during-geomagnetic-storms.webp"
@@ -36,6 +36,8 @@ It helps to be honest about the evidence. NOAA ties satellite navigation problem
 | 7 | G3 | Intermittent satellite navigation problems may occur | Postpone if possible |
 | 8–9 | G4–G5 | Degraded for hours (G4) or possibly days (G5) | Postpone |
 
+<DiagramScale title={"Planning approach by Kp level"} bands={[{"label": "Kp 0–4", "range": "Below storm level", "note": "Normal precautions"}, {"label": "Kp 5", "range": "G1", "note": "Fly conservatively"}, {"label": "Kp 6", "range": "G2", "note": "Consider postponing non-essential flights"}, {"label": "Kp 7", "range": "G3", "note": "Postpone if possible"}, {"label": "Kp 8–9", "range": "G4–G5", "note": "Postpone"}]} />
+
 The practical reasoning: Kp 7+ (G3-G5 storm) events are rare. NOAA's scale page puts G3 at roughly 130 days per 11-year solar cycle, G4 at roughly 60 days and G5 at roughly 4 days, so postponing a flight is usually practical. How long a storm lasts varies, so re-check the forecast instead of assuming that a few hours will be enough.
 
 ## Before you postpone: a quick decision routine
@@ -63,7 +65,7 @@ NOAA's Space Weather Prediction Center publishes the planetary Kp index continuo
 
 Treat the Kp index the same way you'd treat a wind or rain forecast: a routine, five-second check before every flight, not an afterthought reserved for aurora season.
 
-## Common mistakes
+## Mistakes to watch for
 
 - Waiting to see an aurora before taking space weather seriously. Aurora is a night-side phenomenon and can be hidden by daylight or cloud.
 - Treating a low Kp as proof of good GPS. Always check the satellite count and fix quality.
@@ -72,23 +74,12 @@ Treat the Kp index the same way you'd treat a wind or rain forecast: a routine, 
 
 ## FAQ
 
-### At what Kp should I stop flying my drone?
+- **At what Kp should I stop flying my drone?** No official drone threshold is cited here. A cautious approach is normal precautions up to Kp 4, extra care at Kp 5–6 and postponing at Kp 7 and above, especially for automated or long-range flights.
+- **Can I fly during a G1 storm?** Many short, line-of-sight flights are reasonable, since NOAA lists no satellite navigation effect at G1. Keep the drone close, watch for drift and be ready to take manual control.
+- **How long does a geomagnetic storm last?** It varies. NOAA notes that storms caused by coronal mass ejections and by high-speed solar wind streams behave differently, with the latter often producing less intense but longer-lasting storms, so follow the forecast.
+- **Does being far from the poles mean I can ignore storms?** Not entirely. NOAA says major storms can produce large ionospheric electron-density enhancements at mid-latitudes, although the effects are more common at high latitudes. Check the live level before you fly.
 
-No official drone threshold is cited here. A cautious approach is normal precautions up to Kp 4, extra care at Kp 5–6 and postponing at Kp 7 and above, especially for automated or long-range flights.
-
-### Can I fly during a G1 storm?
-
-Many short, line-of-sight flights are reasonable, since NOAA lists no satellite navigation effect at G1. Keep the drone close, watch for drift and be ready to take manual control.
-
-### How long does a geomagnetic storm last?
-
-It varies. NOAA notes that storms caused by coronal mass ejections and by high-speed solar wind streams behave differently, with the latter often producing less intense but longer-lasting storms, so follow the forecast.
-
-### Does being far from the poles mean I can ignore storms?
-
-Not entirely. NOAA says major storms can produce large ionospheric electron-density enhancements at mid-latitudes, although the effects are more common at high latitudes. Check the live level before you fly.
-
-## Sources and further reading
+## Sources
 
 - [NOAA SWPC — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
 - [NOAA SWPC — Planetary K-index](https://www.spaceweather.gov/products/planetary-k-index)

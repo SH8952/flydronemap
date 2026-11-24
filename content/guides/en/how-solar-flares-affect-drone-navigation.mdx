@@ -2,7 +2,7 @@
 title: "How Solar Flares Affect Drone Navigation"
 description: "A flare works on a minutes-long clock, not the hours-long clock of a geomagnetic storm. What that means for drone GPS, and which chart to open when Kp looks calm."
 publishedAt: "2026-09-04"
-updatedAt: "2026-11-19"
+updatedAt: "2026-11-24"
 tags: ["solar-flare", "gps", "space-weather", "navigation"]
 category: "space-weather-gps"
 image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
@@ -19,6 +19,8 @@ This guide is about that gap: what a flare does, how much of it we can actually 
 People say "solar storm" for two separate things. A flare is a burst of radiation, X-rays and extreme ultraviolet, and it arrives with the light. A coronal mass ejection (CME) is a cloud of charged plasma thrown off the Sun, and it takes much longer. NOAA gives as little as 15 to 18 hours for the fastest Earth-directed ones and several days for slower ones. CMEs are what drive geomagnetic storms, so they are what show up in Kp.
 
 The two often travel together. NOAA notes that CMEs typically occur with flares, and NASA says the strongest flares are almost always correlated with CMEs. That is why a major flare is frequently followed a day or so later by a geomagnetic storm. It is also why a flare does not guarantee one: a flare can happen without an Earth-directed CME.
+
+<DiagramTimeline title={"Flare effects and storm effects on the clock"} points={[{"when": "Within minutes", "label": "A flare peaks and effects start on the sunlit side"}, {"when": "Tens of minutes to a few hours", "label": "Flare-driven effects fade"}, {"when": "A day or more later", "label": "Storm effects build over hours, strongest at high latitudes"}]} />
 
 ## What a flare does to the sky above you
 
@@ -58,23 +60,15 @@ NOAA's GOES X-ray plots carry 1-minute averages in two passbands and update ever
 
 Keep it in proportion, too. NOAA's table counts roughly 2,000 R1 events per solar cycle, about 175 at R3 and about 8 at R4. A flare day is not automatically a dangerous flight day, and the sources do not quantify drone-level effects.
 
-For ordinary flying, a glance at the X-ray plot next to Kp is enough. If GPS does turn unstable in the middle of a precise mission and a recent flare is on the plot, count it as one possible cause alongside the usual ones, wait it out as the documented HF effects last tens of minutes to a couple of hours, and keep a manual fallback ready, as described in [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak). The [FlyDroneMap dashboard](/en) covers Kp but does not replace the X-ray plot.
+For ordinary flying, a glance at the X-ray plot next to Kp is enough. If GPS does turn unstable in the middle of a precise mission and a recent flare is on the plot, count it as one possible cause alongside the usual ones. Wait it out, since the documented HF effects last tens of minutes to a couple of hours, and keep a manual fallback ready, as described in [what to do when drone GPS signal is weak](/en/guides/what-to-do-when-drone-gps-signal-is-weak). The [FlyDroneMap dashboard](/en) covers Kp but does not replace the X-ray plot.
 
-## FAQ
+## Quick answers
 
-### Does a solar flare jam my drone's radio link?
+- **Does a solar flare jam my drone's radio link?** The documented flare effects are on HF radio, on low-frequency navigation and, in research, on GNSS accuracy. None of the sources reviewed here describes flares jamming 2.4 GHz or 5.8 GHz control links.
+- **Why is Kp calm during a flare?** Kp measures geomagnetic disturbance, which depends on charged particles and magnetic fields arriving from the Sun. A flare's radiation arrives in minutes, while a CME takes at least about 15 hours.
+- **Do I need to stop flying every time there is a flare?** The sources give no rule for drones. Look at the flare class and at how your aircraft's positioning is behaving, then decide based on your mission and local regulations.
 
-The documented flare effects are on HF radio, on low-frequency navigation and, in research, on GNSS accuracy. None of the sources reviewed here describes flares jamming 2.4 GHz or 5.8 GHz control links.
-
-### Why is Kp calm during a flare?
-
-Kp measures geomagnetic disturbance, which depends on charged particles and magnetic fields arriving from the Sun. A flare's radiation arrives in minutes, while a CME takes at least about 15 hours.
-
-### Do I need to stop flying every time there is a flare?
-
-The sources give no rule for drones. Look at the flare class and at how your aircraft's positioning is behaving, then decide based on your mission and local regulations.
-
-## Sources and further reading
+## Further reading
 
 - [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)
 - [NASA Science — Solar Flares FAQs](https://science.nasa.gov/blogs/solar-cycle-25/2022/06/10/solar-flares-faqs/)

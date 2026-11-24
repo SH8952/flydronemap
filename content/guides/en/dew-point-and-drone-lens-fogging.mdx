@@ -2,7 +2,7 @@
 title: "Dew Point and Drone Lens Fogging"
 description: "Why humidity percentage alone can't predict lens or gimbal fogging, and how checking the temperature-dew point spread lets you actually anticipate it."
 publishedAt: "2026-09-01"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["dew-point", "fog", "lens", "condensation"]
 category: "weather-safety"
 image: "/guides/images/dew-point-and-drone-lens-fogging.webp"
@@ -11,14 +11,6 @@ imageCreditUrl: "https://unsplash.com/@gustaf_vz?utm_source=FlyDroneMap&utm_medi
 ---
 
 If you've ever checked a 60% humidity forecast, decided it looked fine, and then watched your lens fog over the moment you powered on, the real culprit probably wasn't humidity at all. It was the dew point. The same relative humidity reading means very different amounts of actual moisture depending on temperature, so predicting fogging requires looking at the temperature-dew point spread, not the humidity percentage.
-
-## Key takeaways
-
-- Relative humidity is a ratio that depends on temperature; the dew point is the temperature to which air must be cooled to reach saturation (NWS definitions).
-- The closer the air temperature is to the dew point, the closer the air is to condensing. One NWS training guide describes fog forming as the spread falls below 5°F (about 3°C).
-- A lens fogs when its surface is colder than the dew point of the air touching it, which is why moving a cold drone into warm, humid air is the classic trigger.
-- Let the drone acclimate, keep gear dry, and never launch with a fogged lens.
-- Fog on the inside of the gimbal glass or moisture inside the housing is a reason to land and dry the aircraft, not to push on.
 
 ## Why the temperature-dew point spread matters more than humidity %
 
@@ -33,6 +25,16 @@ Illustrative readings (not a safety standard):
 | 20°C | 8°C | 12°C | Large margin; surface condensation is unlikely unless a surface is much colder than the air |
 | 14°C | 11°C | 3°C | Close; fog and condensation become plausible, especially at night |
 | 14°C | 13°C | 1°C | Very close; treat lens fogging and fog as likely |
+
+<DiagramBars title={"Spread between air temperature and dew point (°C)"} items={[{"label": "20°C air, 8°C dew point", "value": 12, "text": "12°C"}, {"label": "14°C air, 11°C dew point", "value": 3, "text": "3°C"}, {"label": "14°C air, 13°C dew point", "value": 1, "text": "1°C", "highlight": true}]} />
+
+## What to know first
+
+- Relative humidity is a ratio that depends on temperature; the dew point is the temperature to which air must be cooled to reach saturation (NWS definitions).
+- The closer the air temperature is to the dew point, the closer the air is to condensing. One NWS training guide describes fog forming as the spread falls below 5°F (about 3°C).
+- A lens fogs when its surface is colder than the dew point of the air touching it, which is why moving a cold drone into warm, humid air is the classic trigger.
+- Let the drone acclimate, keep gear dry, and never launch with a fogged lens.
+- Fog on the inside of the gimbal glass or moisture inside the housing is a reason to land and dry the aircraft, not to push on.
 
 ## Why the lens and gimbal glass fog up before anything else
 
@@ -61,25 +63,14 @@ Continuing to shoot through a fogged lens gets you nothing but hazy footage, and
 
 The same dew point logic that fogs a lens is what produces fog in the air. Read the guide on [flying in fog](/en/guides/flying-in-fog-safety-guide) for the visibility and line-of-sight side, and [how humidity affects drone electronics](/en/guides/how-humidity-affects-drone-electronics) for condensation on circuit boards. For cold-weather versions of this problem, see snow and cold weather tips. Add the dew point to your regular checks from [what weather data to check before flying](/en/guides/what-weather-data-to-check-before-flying-a-drone), and use the [FlyDroneMap dashboard](/en) for live conditions.
 
-## FAQ
+## Questions and answers
 
-### Is relative humidity useless for predicting lens fog?
+- **Is relative humidity useless for predicting lens fog?** Not useless, but incomplete. It is a ratio that depends on temperature, so the dew point and the temperature-dew point spread give a more direct view of condensation risk.
+- **What dew point spread should worry me?** NWS training material describes fog forming when the spread falls below about 5°F (roughly 3°C), so treat anything near or under that as a real fogging risk, and remember a cold lens can fog even with a wider spread.
+- **Why does my lens fog when I take the drone out of the car?** If the lens is colder than the dew point of the outside air, water vapor condenses on it. Letting the drone adjust to the outdoor temperature before powering on reduces the temperature difference.
+- **Can I fly if the gimbal glass is foggy on the inside?** No. Internal moisture will not wipe away, so land and let the aircraft dry fully in a dry place before the next flight.
 
-Not useless, but incomplete. It is a ratio that depends on temperature, so the dew point and the temperature-dew point spread give a more direct view of condensation risk.
-
-### What dew point spread should worry me?
-
-NWS training material describes fog forming when the spread falls below about 5°F (roughly 3°C), so treat anything near or under that as a real fogging risk, and remember a cold lens can fog even with a wider spread.
-
-### Why does my lens fog when I take the drone out of the car?
-
-If the lens is colder than the dew point of the outside air, water vapor condenses on it. Letting the drone adjust to the outdoor temperature before powering on reduces the temperature difference.
-
-### Can I fly if the gimbal glass is foggy on the inside?
-
-No. Internal moisture will not wipe away, so land and let the aircraft dry fully in a dry place before the next flight.
-
-## Sources and further reading
+## Further reading
 
 - [NOAA National Weather Service — Glossary: Dew Point](https://forecast.weather.gov/glossary.php?word=DEW%20POINT)
 - [NOAA National Weather Service — Glossary: Relative Humidity](https://forecast.weather.gov/glossary.php?word=RELATIVE%20HUMIDITY)

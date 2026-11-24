@@ -2,7 +2,7 @@
 title: "What Weather Data to Check Before Flying a Drone"
 description: "The weather numbers that decide whether a drone flight is safe: wind and gusts, precipitation, visibility, temperature, dew point, cloud ceiling, space weather."
 publishedAt: "2026-09-22"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["preflight-checklist", "weather-data", "wind"]
 category: "weather-safety"
 image: "/guides/images/what-weather-data-to-check-before-flying-a-drone.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@z734923105?utm_source=FlyDroneMap&utm_med
 
 Most weather apps compress the whole day into a single word — "clear," "cloudy," "rain" — but the numbers that matter to a drone pilot are hiding behind that summary. "Clear" at 5 m/s and "clear" at 15 m/s are two completely different flights, and "partly cloudy" with a low cloud base can change what you are allowed to do under the rules of your country. Here is a practical rundown of what to check, and in what order.
 
-## Key takeaways
+## Main points
 
 - Look at the gust figure, not only the average wind. The US National Weather Service (NWS) defines a gust as a rapid fluctuation of wind speed with variations of 10 knots (about 5 m/s) or more between peaks and lulls.
 - A "30% chance of rain" is a probability of measurable rain at a point, not a statement about how heavy it will be. Check intensity and timing as well, and treat thunderstorms as a separate no-fly signal.
@@ -36,6 +36,8 @@ The NWS defines probability of precipitation (PoP) as the chance of at least 0.0
 
 For drone flying, look for the expected intensity and the hour in which precipitation is most likely, then compare with your aircraft's rating. Many consumer aircraft are not rated for water, and manufacturer safety guidelines, for example DJI's, list rain among the conditions in which not to fly. If any thunderstorm is in the forecast for your window, treat that as a reason to move the flight: see [lightning and thunderstorm safety](/en/guides/lightning-and-thunderstorm-drone-safety).
 
+<DiagramCompare title={"\"30% chance of rain\" and what it leaves out"} left={{"head": "What it says", "items": ["A probability of measurable rain at a point"]}} right={{"head": "What it does not say", "items": ["How heavy the rain will be", "Check intensity and timing as well"]}} />
+
 ## Visibility and cloud base are legal limits
 
 In the United States, 14 CFR 107.51 says the minimum flight visibility, observed from the location of the control station, must be at least 3 statute miles (about 4.8 km), and the aircraft must stay at least 500 feet below clouds and at least 2,000 feet horizontally from clouds. Other countries set their own figures, so check the regulator for the country where you fly.
@@ -56,6 +58,8 @@ Ground weather says nothing about space weather. NOAA's Space Weather Prediction
 
 ## A simple order of checks
 
+<DiagramFlow title={"The order that saves time"} steps={[{"label": "Thunderstorm risk", "sub": "Overrides everything else"}, {"label": "Gusts for the flight window"}, {"label": "Precipitation timing and intensity"}, {"label": "Visibility and cloud base"}, {"label": "Temperature and dew point"}, {"label": "Kp index"}]} />
+
 | Step | What to look at | Why |
 |---|---|---|
 | 1 | Thunderstorm risk | Overrides everything else |
@@ -65,7 +69,7 @@ Ground weather says nothing about space weather. NOAA's Space Weather Prediction
 | 5 | Temperature and dew point | Battery performance and fogging |
 | 6 | Kp index | Navigation reliability on longer flights |
 
-## Common mistakes
+## Where pilots slip up
 
 - Using one forecast number for the whole day. Look at the hours you will actually fly.
 - Reading the average wind as the safe number when gusts are much higher.
@@ -73,16 +77,7 @@ Ground weather says nothing about space weather. NOAA's Space Weather Prediction
 - Using a generic temperature range instead of the one in your aircraft's manual.
 - Checking the forecast the night before and not again at the launch site.
 
-## Preflight checklist
-
-- Gusts for the whole window are below your aircraft's stated wind limit with margin.
-- No thunderstorms forecast; precipitation timing and intensity checked.
-- Visibility and cloud base meet your local legal minimums, checked for takeoff and landing time.
-- Temperature is inside your manual's limits; battery warmed if it is cold.
-- Temperature-dew point spread checked for fog or lens condensation.
-- Kp index checked for longer flights.
-
-## FAQ
+## Quick answers
 
 ### Which single number matters most?
 
@@ -100,7 +95,16 @@ It depends on the country. In the US, Part 107 requires the aircraft to stay at 
 
 NOAA's Kp is a global indicator of geomagnetic activity. It is most relevant for longer flights or flights that depend heavily on GPS and automatic return-to-home. A quick look takes seconds.
 
-## Sources and further reading
+## Preflight checklist
+
+- Gusts for the whole window are below your aircraft's stated wind limit with margin.
+- No thunderstorms forecast; precipitation timing and intensity checked.
+- Visibility and cloud base meet your local legal minimums, checked for takeoff and landing time.
+- Temperature is inside your manual's limits; battery warmed if it is cold.
+- Temperature-dew point spread checked for fog or lens condensation.
+- Kp index checked for longer flights.
+
+## Where this comes from
 
 - [National Weather Service — Probability of Precipitation (PoP) explained](https://www.weather.gov/media/pah/WeatherEducation/pop.pdf)
 - [National Weather Service — Glossary: Gust](https://forecast.weather.gov/glossary.php?word=gust)

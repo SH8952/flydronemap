@@ -2,7 +2,7 @@
 title: "What to Do When Your Drone's GPS Signal Is Weak"
 description: "How to recognize a weak GPS lock, the common causes beyond geomagnetic activity, and the safest way to respond mid-flight and after landing."
 publishedAt: "2026-08-26"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["gps", "troubleshooting", "safety"]
 category: "gear-flight-tips"
 image: "/guides/images/what-to-do-when-drone-gps-signal-is-weak.webp"
@@ -12,7 +12,7 @@ imageCreditUrl: "https://unsplash.com/@byshanesmith?utm_source=FlyDroneMap&utm_m
 
 A weak or unstable GPS signal changes how your drone behaves, and knowing the warning signs before you are mid-flight matters. This guide covers how to recognise a weak lock, the usual causes, and a calm sequence of actions in the air and on the ground. Behavior differs by manufacturer and model, so treat your own manual as the final word.
 
-## Key takeaways
+**Before you read on:**
 
 - Do not take off with a GPS warning on the display. Wait, move to open ground, or fly another day.
 - Most weak-GPS cases come from the site, such as sky blockage and reflections, not from space weather. GPS.gov names atmospheric effects, sky blockage and receiver quality as the main factors behind real-world accuracy.
@@ -45,15 +45,17 @@ Causes are listed roughly in the order worth checking.
 
 GPS.gov lists atmospheric effects, sky blockage and receiver quality as the three main factors behind the accuracy users actually experience. For each of them, your own site is the part you can change. For space-weather conditions in your area, check the [FlyDroneMap dashboard](/en).
 
-## Before takeoff
+## Before you launch
 
-- Power on in the open and wait for the app to confirm a usable GPS status and a recorded home point. DJI's Return-to-Home documentation lists a successfully recorded home point among the conditions for automatic return.
-- Do not take off from under a roof, between buildings, or close to a glass wall.
-- Keep metal and strong magnetic sources away; if a compass warning appears, see [compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference).
-- Check the home point location on the map. If it is clearly wrong, restart in a better spot instead of flying.
-- Run through a full preflight routine rather than checking only the GPS status.
+1. Power on in the open and wait for the app to confirm a usable GPS status and a recorded home point. DJI's Return-to-Home documentation lists a successfully recorded home point among the conditions for automatic return.
+2. Do not take off from under a roof, between buildings, or close to a glass wall.
+3. Keep metal and strong magnetic sources away; if a compass warning appears, see [compass calibration and magnetic interference](/en/guides/compass-calibration-and-magnetic-interference).
+4. Check the home point location on the map. If it is clearly wrong, restart in a better spot instead of flying.
+5. Run through a full preflight routine rather than checking only the GPS status.
 
 ## What to do if it happens mid-flight
+
+<DiagramFlow title={"When GPS weakens in the air"} steps={[{"label": "Keep the drone in sight"}, {"label": "Reduce speed"}, {"label": "Move toward open sky, if it is safe"}, {"label": "Land at the nearest safe open spot"}]} />
 
 1. Stay calm and keep the drone in sight. Look at the aircraft first, then at the screen.
 2. Reduce speed and avoid sudden inputs. Without satellite positioning the drone may not hold against wind. DJI's Mini 4K manual says that in ATTI mode wind can cause horizontal shifting.
@@ -69,11 +71,7 @@ RTH uses satellite position. DJI's RTH documentation says a strong GPS signal an
 
 Some drones have a downward vision system that helps hold position at low altitude. DJI's Mini 4K manual says it cannot work properly over surfaces without clear patterns or in weak light, and that it works best at an altitude of 0.5 to 10 m. So over water, snow, dark ground or at night it may not help, and above 10 m that system should not be assumed to help. Check your own model's limits.
 
-## After landing
-
-If a weak signal recurs at the same place on different days, treat it as a site-specific issue, such as nearby structures or reflections, and plan around it. If it follows the drone to different places, check firmware, antenna condition and the manufacturer's support pages. Note the time and place; that information is useful if the cause turns out to be interference or a regional disturbance.
-
-## FAQ
+## Frequently asked questions
 
 ### How many satellites do I need?
 
@@ -91,7 +89,11 @@ No. Most weak-GPS cases come from the site. Space weather can degrade GPS, but g
 
 Keep the aircraft in sight, stop climbing, and land as soon as it is safe, then work out the cause on the ground.
 
-## Sources and further reading
+## After landing
+
+If a weak signal recurs at the same place on different days, treat it as a site-specific issue, such as nearby structures or reflections, and plan around it. If it follows the drone to different places, check firmware, antenna condition and the manufacturer's support pages. Note the time and place; that information is useful if the cause turns out to be interference or a regional disturbance.
+
+## Sources
 
 - [GPS.gov — GPS Accuracy](https://www.gps.gov/systems/gps/performance/accuracy/)
 - [DJI — DJI Mini 4K User Manual](https://dl.djicdn.com/downloads/DJI_Mini_4K/DJI_Mini_4K_User_Manual_v1.0_EN.pdf)

@@ -2,22 +2,23 @@
 title: "DJI Mini 3 Wind Resistance: Official Limit vs. Real Conditions"
 description: "DJI rates the Mini 3 for 10.7 m/s (38.5 km/h) of wind. See the official specs and how FlyDroneMap turns that figure into good, caution and no-go gust levels."
 publishedAt: "2026-10-17"
+updatedAt: "2026-11-24"
 tags: ["wind", "dji", "mini-3", "gear"]
 category: "weather-safety"
 ---
 
-DJI lists a maximum wind speed resistance of 10.7 m/s for the Mini 3, about 38.5 km/h. For an aircraft that weighs 248 g, that is a ceiling set by the manufacturer, not a speed at which flying is comfortable. This page shows the official figure next to the other key specs, what DJI's documents say about wind, and how FlyDroneMap's own criteria turn the figure into practical gust levels.
+At 248 g, the DJI Mini 3 is light enough that wind deserves a close look before every flight. DJI lists a maximum wind speed resistance of 10.7 m/s, about 38.5 km/h, and labels it Level 5. This page puts that number next to the rest of the specs, collects what DJI's documents say about wind, and shows where FlyDroneMap draws its own gust lines.
 
-## Key takeaways
+## What stands out
 
-- DJI's spec page lists a max wind speed resistance of 10.7 m/s (38.5 km/h), labelled Level 5, with no test conditions given.
+- The specs page gives 10.7 m/s (38.5 km/h), Level 5, with no test conditions.
 - DJI's safety guidelines say not to use the aircraft in severe weather including heavy wind exceeding 10.7 m/s, and to land in a safe place when a high wind warning appears.
-- DJI's manual warns that the aircraft may not be able to return to its home point when the wind speed is too high, and that a cold battery reduces the aircraft's wind resistance performance.
-- On FlyDroneMap, gusts under 19.3 km/h are good for this model, 19.3 km/h and above are caution, and 27.0 km/h and above are not recommended. These are the site's own thresholds, not an official standard.
+- The manual warns that the aircraft may be unable to return to its home point when the wind is too strong, and that a cold battery lowers wind resistance.
+- On FlyDroneMap, gusts under 19.3 km/h are good for the Mini 3, 19.3 km/h and above are caution and 27.0 km/h and above are not recommended. The site chose these thresholds itself.
 
-## Official specs
+## Specs from DJI's page
 
-The values below come from DJI's Mini 3 specs page. Only rows that the page lists are included.
+Only rows that the specs page lists are shown. The flight time and speed figures were measured without wind, so real flights in a breeze will not match them.
 
 | Item | Value |
 |---|---|
@@ -31,19 +32,17 @@ The values below come from DJI's Mini 3 specs page. Only rows that the page list
 | Satellite positioning | GPS + GLONASS + Galileo |
 | Vision sensing | Downward vision system with a precise hovering range of 0.5–10 m; the page lists no obstacle sensing in other directions |
 
-Note that the flight time and speed figures were measured without wind. Real flights in wind will not match them.
+## How DJI talks about wind
 
-## What DJI says about wind
+Three DJI sources touch the topic, each from a slightly different angle.
 
-- The safety guidelines say not to use the aircraft in severe weather conditions including heavy wind exceeding 10.7 m/s.
-- They also say to land the aircraft in a safe location when there is a low battery or high wind warning.
-- The user manual says the aircraft may not be able to return to its home point when the wind speed is too high.
-- In its low-temperature battery warning, the manual states that cold reduces the aircraft's wind speed resistance performance. See [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance) for background.
-- The Mini 3 FAQ says slight vibration is expected in strong wind because the drone is lightweight, and that the gimbal adjusts automatically to keep footage steady.
+The safety guidelines are the strictest: severe weather, including heavy wind above 10.7 m/s, is off limits, and a low battery or high wind warning means landing in a safe place. The user manual is about consequences. It says the aircraft may be unable to return to its home point in strong wind, and it states in its low-temperature battery warning that cold reduces wind speed resistance; see [temperature and drone battery performance](/en/guides/temperature-and-drone-battery-performance) for background. The FAQ is the gentlest. Because the drone is light, slight vibration is expected in strong wind, and the gimbal keeps adjusting to hold the picture steady.
 
-## How FlyDroneMap judges this model
+## Where FlyDroneMap draws the lines
 
-FlyDroneMap compares the current gust speed with the model's official maximum. This is the site's own method, set more cautiously than the manufacturer's limit: good when the gust is under 50% of the official maximum, caution from 50%, and not recommended from 70%.
+The dashboard compares the current gust with the model's official maximum. Good means under 50% of it, caution starts at 50% and not recommended starts at 70%. For a ceiling of 38.5 km/h that gives 19.3 and 27.0 km/h.
+
+<DiagramBars title={"Mini 3 gust lines (km/h)"} items={[{"label":"Caution begins (50%)","value":19.3,"text":"19.3"},{"label":"Not recommended begins (70%)","value":27.0,"text":"27.0"},{"label":"Gust-risk scale turns high","value":35,"text":"35"},{"label":"DJI maximum wind speed resistance","value":38.5,"text":"38.5","highlight":true}]} />
 
 | Verdict | Share of the official maximum | Gust speed for the Mini 3 |
 |---|---|---|
@@ -51,50 +50,41 @@ FlyDroneMap compares the current gust speed with the model's official maximum. T
 | Caution | 50% to under 70% | 19.3 to under 27.0 km/h |
 | Not recommended | 70% or more | 27.0 km/h and above (about 7.5 m/s) |
 
-The dashboard also rates gust risk on its own scale: low under 20 km/h, moderate from 20 to under 35 km/h, and high at 35 km/h and above. The two scales answer different questions. The model check asks how close a gust is to this aircraft's rating; the gust scale describes how rough the air is in general. For a Mini 3, 35 km/h is already about 91% of the official maximum.
+The dashboard's separate gust-risk scale is low under 20 km/h, moderate from 20 to under 35 km/h and high from 35 km/h. The model check asks how close a gust is to this aircraft's rating, whereas the gust scale says how rough the air is in general. For a Mini 3, 35 km/h is already about 91% of the official maximum.
 
-## Why the official maximum is not a working speed
+## What the 10.7 m/s figure leaves out
 
-The 10.7 m/s figure is a maximum stated by the manufacturer. Several things reduce the real margin:
+The number is the manufacturer's maximum, and a light aircraft meets gusts as sudden pushes, so the sustained reading says little on its own. Forecast wind refers to 10 m above ground, and at 80–120 m the air can move faster; see [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight). A drone that goes out on a tailwind comes home into a headwind, which takes more power. DJI itself warns that return may fail in high wind, so keep a generous reserve and read [return-to-home settings explained](/en/guides/return-to-home-settings-explained). A cold battery narrows the margin further.
 
-- Gusts are short peaks above the average, and a light aircraft meets them as sudden pushes. Check the gust figure, not just the sustained wind.
-- Forecast wind is usually given for a height of 10 m. At 80–120 m the air can move faster; see [wind shear by altitude](/en/guides/wind-shear-by-altitude-and-drone-flight).
-- A drone that flies out with a tailwind returns into a headwind, which takes more power and battery. DJI itself warns that return may fail in high wind, so keep a generous reserve and read [return-to-home settings explained](/en/guides/return-to-home-settings-explained).
-- A cold battery lowers the margin, according to the manual. In cold weather, treat the thresholds above as even more conservative.
-
-## Before you launch
+## Before the props spin
 
 1. Open the [FlyDroneMap dashboard](/en) and read gusts for your location, plus the wind at 80 and 120 m.
-2. Compare the gust with the table above: under 19.3 km/h is good, 19.3 km/h and above deserves caution.
-3. Work through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight), including direction, obstacles and the way home.
-4. Compare other aircraft in the [wind resistance by model](/en/guides/drone-wind-resistance-by-model) overview if you fly more than one.
-5. Re-check right before takeoff, and land early if gusts increase or a high wind warning appears.
+2. Compare the gust with the bands above: under 19.3 km/h is good, from 19.3 km/h take care.
+3. Go through the [wind and gust checklist](/en/guides/wind-gust-checklist-before-drone-flight) for direction, obstacles and the way home.
+4. Use [wind resistance by model](/en/guides/drone-wind-resistance-by-model) if you fly more than one aircraft.
+5. Check again just before takeoff, and land early if gusts increase or a high wind warning appears.
 
 ## Common mistakes
 
-- Treating 10.7 m/s as a target instead of a ceiling.
+- Treating 10.7 m/s as a target.
 - Reading the average wind and ignoring gusts.
-- Expecting the advertised flight time in wind, when it was measured without wind.
-- Starting the return flight late or with too little battery for a headwind.
+- Expecting the advertised flight time in wind, when it was measured without any.
+- Starting the return late or with too little battery for a headwind.
 - Flying in the cold without allowing for a weaker battery.
 
-## FAQ
+## Questions and answers
 
 ### What is the wind limit of the DJI Mini 3?
 
-DJI's spec page lists a max wind speed resistance of 10.7 m/s (Level 5), about 38.5 km/h. DJI's safety guidelines say not to use the aircraft in heavy wind exceeding 10.7 m/s.
+DJI's specs page lists 10.7 m/s (Level 5), about 38.5 km/h, and its safety guidelines say not to use the aircraft in heavy wind exceeding 10.7 m/s.
 
 ### Can I fly the Mini 3 in 30 km/h wind?
 
-30 km/h is about 8.3 m/s, roughly 78% of the official maximum. By FlyDroneMap's criteria that is in the not recommended range, which starts at 27.0 km/h. If that figure is a gust, or the wind is stronger at altitude, the margin is smaller still.
-
-### Why does the site say caution before the official limit?
-
-The official figure is a ceiling under the manufacturer's conditions. FlyDroneMap starts caution at 50% of it so there is room for gusts, wind at altitude and a headwind return.
+30 km/h is about 8.3 m/s, roughly 78% of the official maximum, which puts it in FlyDroneMap's not-recommended range that starts at 27.0 km/h. If that is a gust, or the wind is stronger up high, the margin is smaller still.
 
 ### Does cold weather change the wind margin?
 
-According to DJI's manual, a cold battery reduces the aircraft's wind speed resistance performance. The manual does not give a number, so allow extra margin in cold weather.
+According to DJI's manual, a cold battery reduces the aircraft's wind speed resistance. No number is given, so allow extra margin in cold weather.
 
 ## Sources and further reading
 

@@ -2,7 +2,7 @@
 title: "EU EASA Drone Regulations: The Basics"
 description: "How EASA's EU rules work with national authorities: the Open, Specific, and Certified categories, C0-C6 class marks, and why registration is not a permit."
 publishedAt: "2026-10-02"
-updatedAt: "2026-11-02"
+updatedAt: "2026-11-24"
 tags: ["eu", "easa", "regulations"]
 category: "international-regulations"
 image: "/guides/images/eu-easa-drone-regulations-basics.webp"
@@ -24,7 +24,9 @@ Certified is intended for operations with a risk comparable to manned aviation. 
 
 Drones placed on the EU market since the class marking was introduced carry a class label. According to the notice from Spain's AESA: C0 stands for under 250 g, C1 for under 900 g (or under 80 joules of impact energy), C2 for under 4 kg, and C3 and C4 for under 25 kg. C5 and C6 are intended for the standard scenarios STS-01 and STS-02. This label, and not only the number on the scale, helps decide in which Open subcategory a drone may fly.
 
-Transitional rules exist for older drones without a class label. Under Article 20 of Regulation 2019/947, drones that do not comply with Delegated Regulation 2019/945 but were placed on the market before 1 January 2024 and are not self-built may continue to be operated: in subcategory A1 if the takeoff mass including payload is under 250 g, and in A3 if it is under 25 kg. An older, unmarked drone under 250 g can therefore fly in A1. A heavier drone without a label remains restricted to A3. Self-built drones under 250 g takeoff mass and with a maximum speed under 19 m/s are likewise permitted in A1. If in doubt, always check the label and the manufacturer's information.
+<DiagramStairs title={"EU class labels by weight"} steps={[{"label": "C0", "sub": "Under 250 g"}, {"label": "C1", "sub": "Under 900 g, or under 80 joules"}, {"label": "C2", "sub": "Under 4 kg"}, {"label": "C3 and C4", "sub": "Under 25 kg"}]} />
+
+Transitional rules exist for older drones without a class label. Under Article 20 of Regulation 2019/947, drones that do not comply with Delegated Regulation 2019/945, were placed on the market before 1 January 2024 and are not self-built may continue to be operated. They may fly in subcategory A1 if the takeoff mass including payload is under 250 g, and in A3 if it is under 25 kg. An older, unmarked drone under 250 g can therefore fly in A1. A heavier drone without a label remains restricted to A3. Self-built drones under 250 g takeoff mass and with a maximum speed under 19 m/s are likewise permitted in A1. If in doubt, always check the label and the manufacturer's information.
 
 ## Registration is EU-wide, but it is not a flight permit
 
@@ -40,6 +42,8 @@ The more common mistake is not ignorance of the scenario but the assumption that
 
 If the operation fits no standard scenario, an operational authorization from the national authority is needed. The basis is a risk assessment under Article 11 of Regulation 2019/947. According to EASA, the SORA method (Specific Operations Risk Assessment) is suitable for this: it takes into account the concept of operations, the area overflown, the airspace and the characteristics of the drone, sets safety objectives and mitigation measures, and assigns a safety level value (SAIL). This route takes longer but suits operations that fit no standard scenario.
 
+<DiagramCompare title={"The two standard scenarios"} left={{"head": "STS-01", "items": ["VLOS over a controlled ground area in a populated environment", "Class C5 drone", "Below 120 m"]}} right={{"head": "STS-02", "items": ["BVLOS with airspace observers", "Controlled ground area in a sparsely populated environment", "Class C6 drone", "Up to 1 km from the pilot, or 2 km with observers"]}} />
+
 ## U-space exists, but not everywhere
 
 According to Regulation (EU) 2021/664, U-space is an airspace designated by the member states in which drone operations are possible only with certain digital services. The minimum required there are network identification, geo-awareness, flight authorization for drones (Flight Authorisation) and traffic information. A flight authorization must be requested before each flight and activated before takeoff. Each member state decides for itself which areas are designated as U-space. That no U-space applies in your area today therefore does not mean it will stay that way. Ask the responsible national authority before flying.
@@ -51,7 +55,7 @@ According to Regulation (EU) 2021/664, U-space is an airspace designated by the 
 - Declaring a standard scenario without comparing every listed condition with the flight actually planned.
 - Believing that an EU-wide valid registration number allows flights anywhere in the EU without checking local restrictions.
 
-## Practical checklist
+## Checklist to keep handy
 
 - Check that your operator registration with the authority of your state of residence is current, and keep the number at hand. According to EASA, it is also valid in the other EASA member states.
 - Check your drone's class label (C0–C6) before deciding which subcategory, A1, A2 or A3, applies. For drones without a label, it depends on weight and placing on the market, see Article 20.
@@ -61,7 +65,7 @@ According to Regulation (EU) 2021/664, U-space is an airspace designated by the 
 
 You can find more on related topics in our guides to [VLOS and BVLOS](/en/guides/vlos-bvlos-explained), [Remote ID](/en/guides/remote-id-requirements-explained), the [Spanish rules and ENAIRE zones](/en/guides/spain-drone-regulations-and-enaire-zguas-explained), the [French rules and the DGAC restriction map](/en/guides/france-drone-regulations-and-dgac-restriction-map-explained) and the [Swiss rules and the FOCA drone map](/en/guides/switzerland-drone-regulations-and-foca-drone-map-explained).
 
-## Sources and further reading
+## References
 
 - [EUR-Lex — Implementing Regulation (EU) 2019/947, consolidated version](https://eur-lex.europa.eu/eli/reg_impl/2019/947/2025-05-01/eng/pdf)
 - [EUR-Lex — Implementing Regulation (EU) 2021/664 on U-space](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32021R0664)
