@@ -2,7 +2,7 @@
 title: "NOAA 우주기상 등급 이해하기: G·S·R 지수 완벽 설명"
 description: "Kp지수 하나만으로는 알 수 없는 NOAA의 세 가지 우주기상 등급과, 드론 비행 전 실제로 확인해야 할 지수가 무엇인지 설명합니다."
 publishedAt: "2026-09-02"
-updatedAt: "2026-10-04"
+updatedAt: "2026-11-24"
 tags: ["noaa", "space-weather", "kp-index", "radio-blackout"]
 category: "space-weather-gps"
 image: "/guides/images/understanding-noaa-space-weather-scales.webp"
@@ -30,6 +30,8 @@ imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=re
 
 ## G 척도: 지자기 폭풍과 Kp
 
+<DiagramScale title={"G 척도는 Kp와 이렇게 대응합니다"} bands={[{"label": "G1", "range": "Kp 5"}, {"label": "G2", "range": "Kp 6"}, {"label": "G3", "range": "Kp 7"}, {"label": "G4", "range": "Kp 8"}, {"label": "G5", "range": "Kp 9"}]} />
+
 G 척도는 [Kp지수](/ko/guides/what-is-the-kp-index)와 직접 이어집니다. G1은 Kp 5, G2는 Kp 6, G3는 Kp 7, G4는 Kp 8(9 마이너스 포함), G5는 Kp 9입니다. NOAA는 Kp지수가 지상 자력계 측정값에서 산출된다고 설명하며, 지수 안내 페이지에서 5 이상이면 지자기 폭풍을 뜻한다고 밝힙니다.
 
 항법과 관련해 G 척도표가 제시하는 영향은 다음과 같습니다.
@@ -56,6 +58,8 @@ R 척도는 태양 플레어의 최대 X선 등급과 연결됩니다.
 | R4(심각) | X10 | 낮 쪽 대부분에서 1~2시간 두절 |
 | R5(극심) | X20 | 낮 쪽 전체에서 단파 무선 완전 두절, 수 시간 지속 |
 
+<DiagramStairs title={"R 척도와 플레어 등급"} steps={[{"label": "R1", "sub": "M1"}, {"label": "R2", "sub": "M5"}, {"label": "R3", "sub": "X1"}, {"label": "R4", "sub": "X10"}, {"label": "R5", "sub": "X20"}]} />
+
 같은 표는 모든 단계에서 저주파 항법 신호가 저하된다고 적고, 위성 항법 오차 증가는 R5에서만 언급합니다. NOAA의 전파 장애 안내 페이지는 이 두절이 주로 3~30MHz 대역의 단파 통신에 영향을 주며, X선과 극자외선이 낮 쪽 전리층 아래층을 이온화해서 생긴다고 설명합니다.
 
 강한 플레어를 다룬 다른 연구에서는 전리층 전자 총량과 GNSS 위치 정확도의 변화가 측정되었습니다. 예를 들어 M급과 X급 플레어가 많았던 2014년 10월의 매우 활발한 시기를 다룬 연구에서는 유럽 관측소 세 곳의 좌표 편차가 더 조용한 시기보다 컸습니다. 이 연구는 정밀 측위를 다룬 것이지 소비자용 드론의 위치 유지를 다룬 것이 아니며, NOAA의 R 척도는 R2~R4에 GPS 영향을 지정하지 않습니다. 플레어로 인한 GPS 교란은 가능성이 있는 일이지, 특정 R 단계의 확정적 결과가 아니라고 보시기 바랍니다. 그 원리는 [태양 플레어가 드론 항법에 미치는 영향](/ko/guides/how-solar-flares-affect-drone-navigation)에서 더 자세히 설명합니다.
@@ -64,7 +68,7 @@ R 척도는 태양 플레어의 최대 X선 등급과 연결됩니다.
 
 NOAA는 플레어의 에너지가 빛의 속도로 이동하기 때문에, 대기 낮 쪽에 미치는 영향이 사건이 관측되는 것과 동시에 일어난다고 설명합니다. 반면 지자기 폭풍은 보통 코로나 질량 방출이나 빠른 태양풍 흐름에 좌우됩니다. NOAA에 따르면 지구를 향한 가장 빠른 CME는 15~18시간 만에 도달할 수 있고, 느린 것은 며칠이 걸립니다. 그래서 R 척도가 높은 시점과 Kp가 높은 시점은 종종 일치하지 않습니다.
 
-## 흔한 실수
+## 다시 확인할 함정
 
 - Kp지수만 보고 전체 상황을 안다고 생각하는 것. Kp가 잠잠해도 최근 한 시간 안에 일어난 플레어는 알 수 없습니다.
 - 세 척도를 하나의 종합 점수처럼 취급하는 것. G, S, R은 서로 독립적입니다.
@@ -80,25 +84,23 @@ NOAA는 플레어의 에너지가 빛의 속도로 이동하기 때문에, 대�
 - GPS 위성 수가 줄거나 나침반 경고가 뜰 때 어떻게 할지 미리 정해 두세요. 착륙, 수동 조종 전환, 대기 중 하나입니다.
 - 기체 매뉴얼과 현지 규정을 따르세요. 우주기상 정보가 둘 중 어느 것도 대신하지 못합니다.
 
-## 자주 묻는 질문
+## 독자들이 자주 묻는 것
 
 ### Kp지수와 G 척도는 같은 것인가요?
 
 정확히 같지는 않지만 연결되어 있습니다. G 척도는 Kp에서 도출한 5단계 등급으로, Kp 5가 G1이고 Kp 9가 G5입니다.
 
+
 ### 드론 GPS에는 어느 척도가 가장 중요한가요?
 
 NOAA 표는 위성 항법 영향을 주로 G 척도(G3 이상)와, 극단적인 경우 R5에 연결합니다. 일반적인 비행에서는 NOAA의 표현상 G3 이상이 가장 분명한 경고 신호입니다.
+
 
 ### R 척도 사건이 제 드론의 조종 링크에 영향을 주나요?
 
 NOAA는 R 척도의 두절을 단파 무선(3~30MHz)과 저주파 항법 신호에 대한 영향으로 설명합니다. 대부분의 소비자용 드론이 조종과 영상에 쓰는 2.4GHz, 5.8GHz 대역은 언급되지 않습니다.
 
-### 이 척도만으로 비행 여부를 결정해도 되나요?
-
-그렇지 않습니다. 이 척도들은 비행 장소의 조건이 아니라 우주기상의 일반적 영향을 설명합니다. 기체 상태, 현지 날씨, 비행 지역의 규정과 함께 판단하세요.
-
-## 출처 및 참고 자료
+## 참고한 자료
 
 - [NOAA Space Weather Prediction Center — NOAA Space Weather Scales](https://www.spaceweather.gov/noaa-scales-explanation)
 - [NOAA Space Weather Prediction Center — Solar Flares (Radio Blackouts)](https://www.spaceweather.gov/phenomena/solar-flares-radio-blackouts)

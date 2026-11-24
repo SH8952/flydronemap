@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -21,6 +22,7 @@ import { GuideToolCta } from "@/components/guide-tool-cta";
 import { GuideRelatedTools } from "@/components/guides/guide-related-tools";
 import { ShareButton } from "@/components/share-button";
 import { GuideToc } from "@/components/guides/guide-toc";
+import { guideDiagrams } from "@/components/guides/diagrams";
 import { GuideFloatingToc } from "@/components/guides/guide-floating-toc";
 
 // 가이드 작성자 필명(화면 표시 + Article JSON-LD author).
@@ -82,6 +84,8 @@ export default async function GuidePage({
   const compiled = await compileGuide(locale as Locale, slug);
   if (!compiled) notFound();
   const { Content, meta, headings } = compiled;
+  // MDX 본문이 도식 컴포넌트(<DiagramBars /> 등)를 쓸 수 있도록 components 를 넘깁니다.
+  const GuideContent = Content as unknown as ComponentType<{ components?: object }>;
   const relatedGuides = getRelatedGuides(locale as Locale, slug, 6);
 
   const dateFormatter = new Intl.DateTimeFormat(locale, {
@@ -209,7 +213,7 @@ export default async function GuidePage({
       <GuideFloatingToc headings={headings} title={t("toc.title")} />
 
       <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-a:text-primary prose-th:hyphens-auto prose-td:hyphens-auto max-sm:prose-table:block max-sm:prose-table:overflow-x-auto">
-        <Content />
+        <GuideContent components={guideDiagrams} />
       </article>
 
       <GuideToolCta />
