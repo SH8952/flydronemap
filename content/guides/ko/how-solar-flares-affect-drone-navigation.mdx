@@ -9,7 +9,6 @@ image: "/guides/images/how-solar-flares-affect-drone-navigation.webp"
 imageCredit: "Ivana Cajina"
 imageCreditUrl: "https://unsplash.com/@von_co?utm_source=FlyDroneMap&utm_medium=referral"
 ---
-
 정밀 매핑 비행 중에 Kp지수는 여전히 잠잠한 2인데도 GPS 위치 유지가 한동안 흔들린다고 가정해 보겠습니다. 이럴 때 확인해 볼 만한 것이 NOAA의 X선 플럭스 그래프입니다. 강한 태양 플레어는 몇 분 안에 지구 대기의 낮 쪽에 작용하며, 이는 대부분의 드론 날씨 도구가 추적하도록 만들어진 더 느린 지자기 폭풍과는 다른 시계로 움직입니다.
 
 ## 이 글의 요점
@@ -32,9 +31,9 @@ imageCreditUrl: "https://unsplash.com/@von_co?utm_source=FlyDroneMap&utm_medium=
 | 관련 척도 | R(전파 장애) | G(지자기 폭풍), Kp를 통해 확인 |
 | 지속 시간 | 수 분~수 시간 | 이어지는 폭풍은 몇 시간 이상 지속될 수 있음 |
 
-NOAA는 CME가 보통 플레어와 함께 일어난다고 설명하고, NASA는 가장 강한 플레어는 거의 항상 CME와 상관관계가 있다고 말합니다. 그래서 큰 플레어 뒤에는 하루 이상 지나 지자기 폭풍이 이어지는 경우가 많지만, 지구를 향하는 CME 없이 플레어만 일어날 수도 있습니다.
-
 <DiagramBars title={"지구에 닿는 데 걸리는 시간"} items={[{"label": "태양 플레어(복사)", "value": 8, "text": "약 8분"}, {"label": "코로나 질량 방출(CME), 가장 빠른 것", "value": 900, "text": "15~18시간", "note": "느린 것은 며칠 (NOAA)"}]} caption={"막대 길이는 시간에 비례합니다(8분 대 15시간)."} />
+
+NOAA는 CME가 보통 플레어와 함께 일어난다고 설명하고, NASA는 가장 강한 플레어는 거의 항상 CME와 상관관계가 있다고 말합니다. 그래서 큰 플레어 뒤에는 하루 이상 지나 지자기 폭풍이 이어지는 경우가 많지만, 지구를 향하는 CME 없이 플레어만 일어날 수도 있습니다.
 
 ## 플레어가 전리층을 교란하는 방식
 
@@ -77,6 +76,8 @@ NOAA의 GOES X선 그래프는 두 파장대의 1분 평균값을 담고 있으�
 3. 플레어 영향이 의심되면 기다리며 지켜보세요. 기록된 단파 영향은 단계에 따라 수십 분에서 한두 시간 지속됩니다.
 4. 수동 조종이라는 대안을 준비해 두세요. [드론 GPS 신호가 약할 때 대처법](/ko/guides/what-to-do-when-drone-gps-signal-is-weak)을 참고하세요.
 5. Kp는 [FlyDroneMap 대시보드](/ko)에서 확인하되, 플레어에 관해서는 X선 그래프를 대신하지 못한다는 점을 기억하세요.
+
+<DiagramFlow title={"플레어가 의심될 때"} steps={[{"label": "GOES X선 플럭스와 R 척도 경보 확인"}, {"label": "GPS 불안정 시 최근 플레어도 원인으로 고려"}, {"label": "기다리며 지켜보기"}, {"label": "수동 조종 준비"}]} />
 
 ## 이런 실수는 피하세요
 

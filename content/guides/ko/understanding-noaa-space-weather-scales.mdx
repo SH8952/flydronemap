@@ -9,7 +9,6 @@ image: "/guides/images/understanding-noaa-space-weather-scales.webp"
 imageCredit: "NASA"
 imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=referral"
 ---
-
 비행 전에 Kp지수만 확인해 왔다면, NOAA 우주기상예측센터(SWPC)가 발표하는 세 가지 척도 중 하나만 보고 계신 셈입니다. NOAA는 G, S, R이라는 서로 독립적인 1~5단계 척도 세 가지를 운영하며, Kp지수가 잠잠하다고 해서 나머지 두 척도도 잠잠하다는 뜻은 아닙니다.
 
 ## 핵심 요약
@@ -30,11 +29,11 @@ imageCreditUrl: "https://unsplash.com/@nasa?utm_source=FlyDroneMap&utm_medium=re
 
 ## G 척도: 지자기 폭풍과 Kp
 
-<DiagramScale title={"G 척도는 Kp와 이렇게 대응합니다"} bands={[{"label": "G1", "range": "Kp 5"}, {"label": "G2", "range": "Kp 6"}, {"label": "G3", "range": "Kp 7"}, {"label": "G4", "range": "Kp 8"}, {"label": "G5", "range": "Kp 9"}]} />
-
 G 척도는 [Kp지수](/ko/guides/what-is-the-kp-index)와 직접 이어집니다. G1은 Kp 5, G2는 Kp 6, G3는 Kp 7, G4는 Kp 8(9 마이너스 포함), G5는 Kp 9입니다. NOAA는 Kp지수가 지상 자력계 측정값에서 산출된다고 설명하며, 지수 안내 페이지에서 5 이상이면 지자기 폭풍을 뜻한다고 밝힙니다.
 
 항법과 관련해 G 척도표가 제시하는 영향은 다음과 같습니다.
+
+<DiagramScale title={"G 척도는 Kp와 이렇게 대응합니다"} bands={[{"label": "G1", "range": "Kp 5"}, {"label": "G2", "range": "Kp 6"}, {"label": "G3", "range": "Kp 7"}, {"label": "G4", "range": "Kp 8"}, {"label": "G5", "range": "Kp 9"}]} />
 
 - G2: 고위도에서 단파 무선 전파가 약해질 수 있습니다.
 - G3: 위성 항법과 저주파 무선 항법에 간헐적인 문제가 생깁니다.
@@ -90,11 +89,9 @@ NOAA는 플레어의 에너지가 빛의 속도로 이동하기 때문에, 대�
 
 정확히 같지는 않지만 연결되어 있습니다. G 척도는 Kp에서 도출한 5단계 등급으로, Kp 5가 G1이고 Kp 9가 G5입니다.
 
-
 ### 드론 GPS에는 어느 척도가 가장 중요한가요?
 
 NOAA 표는 위성 항법 영향을 주로 G 척도(G3 이상)와, 극단적인 경우 R5에 연결합니다. 일반적인 비행에서는 NOAA의 표현상 G3 이상이 가장 분명한 경고 신호입니다.
-
 
 ### R 척도 사건이 제 드론의 조종 링크에 영향을 주나요?
 

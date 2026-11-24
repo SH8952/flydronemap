@@ -6,7 +6,6 @@ updatedAt: "2026-11-24"
 tags: ["wind", "dji", "neo", "specs"]
 category: "weather-safety"
 ---
-
 DJI Neo는 아주 작고 가벼운 카메라 드론이며, DJI는 최대 풍속 저항을 8 m/s, 약 28.8 km/h로 안내합니다. FlyDroneMap이 다루는 기종 중 가장 낮은 수치이고, 사용설명서에도 풍속이 8 m/s를 넘으면 Neo를 조종하지 말라고 분명히 적혀 있습니다. 이 글에서는 공식 수치를 정리하고, 사이트의 판정이 이 기종에서 어떻게 작동하는지, 바람 부는 날 어떤 순서로 확인하면 좋은지 설명합니다.
 
 ## 먼저 알아둘 것
@@ -29,6 +28,8 @@ DJI Neo는 아주 작고 가벼운 카메라 드론이며, DJI는 최대 풍속 
 | 최대 이륙 고도 | 2000 m |
 | 작동 온도 | -10 °C – 40 °C |
 | 표기된 위치 센서 | 하방 비전 포지셔닝, 정밀 호버링 범위 0.5–10 m |
+
+<DiagramBars title={"Neo의 속도와 풍속 저항(m/s)"} items={[{"label": "일반 모드 최고 속도", "value": 6, "text": "6"}, {"label": "최대 풍속 저항", "value": 8, "text": "8", "highlight": true}, {"label": "수동 모드 최고 속도", "value": 16, "text": "16"}]} />
 
 사양 페이지에는 8 m/s 수치에 붙은 각주나 별도의 시험 조건이 없습니다.
 
@@ -53,8 +54,6 @@ DJI Neo는 아주 작고 가벼운 카메라 드론이며, DJI는 최대 풍속 
 - 고도입니다. 예보 풍속은 지상 10 m 기준입니다. 바람은 높이 올라갈수록 강해지는 경우가 많아 지상이 잔잔해도 상공이 잔잔하다는 보장은 없습니다. [고도별 윈드시어와 드론 비행](/ko/guides/wind-shear-by-altitude-and-drone-flight)을 참고하세요.
 - 추위입니다. DJI는 저온에서 배터리 용량이 줄면 풍속 저항이 낮아진다고 안내합니다. 추운 날에는 [기온과 드론 배터리 성능](/ko/guides/temperature-and-drone-battery-performance)을 먼저 읽어 보세요.
 - 적은 배터리 여유입니다. 무풍 조건에서 측정한 비행 시간이 약 18분이므로, 바람을 이겨 내며 비행하면 배터리 소모 비중이 더 커집니다.
-
-<DiagramBars title={"Neo의 속도와 풍속 저항(m/s)"} items={[{"label": "일반 모드 최고 속도", "value": 6, "text": "6"}, {"label": "최대 풍속 저항", "value": 8, "text": "8", "highlight": true}, {"label": "수동 모드 최고 속도", "value": 16, "text": "16"}]} />
 
 ## 이륙 전 확인 순서
 

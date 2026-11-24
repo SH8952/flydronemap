@@ -9,7 +9,6 @@ image: "/guides/images/remote-id-requirements-explained.webp"
 imageCredit: "Jakub Żerdzicki"
 imageCreditUrl: "https://unsplash.com/@jakubzerdzicki?utm_source=FlyDroneMap&utm_medium=referral"
 ---
-
 이 가이드는 미국을 기준으로 합니다. Remote ID는 FAA의 규정이며, 드론을 구입한 날이 아니라 실제로 비행하는 날을 기준으로 그 기체에 적용됩니다. 2021년에 등록해 둔 드론을 오랜만에 꺼내 공원에서 날리는 조종자도 구입 당시 상자에 적혀 있던 내용과 관계없이 지금의 규정을 따라야 합니다.
 
 ## Remote ID가 실제로 방송하는 것
@@ -28,11 +27,11 @@ FAA는 이 정보를 다른 주체가 수신할 수 있다고 설명합니다. F
 
 ## 세 가지 준수 방법
 
+<DiagramCompare title={"Remote ID를 충족하는 방식"} left={{"head": "방송하는 방법", "items": ["표준 Remote ID 드론", "방송 모듈을 장착한 드론"]}} right={{"head": "방송하지 않는 방법", "items": ["FAA가 인정한 식별 구역(FRIA) 안에서만 비행"]}} />
+
 첫 번째는 표준 Remote ID 드론으로, 제작 단계부터 방송 기능이 갖춰진 기체입니다. 두 번째는 방송 모듈(broadcast module)을 장착한 드론으로, 기체에 추가한 별도 장치이거나 소프트웨어 기능일 수 있습니다. 이 방식에서는 조종자가 비행 내내 드론을 눈으로 볼 수 있어야 합니다. 세 번째는 Remote ID 장비 없이 날리는 방법으로, 시야 내 비행(visual line of sight)일 때만, 그리고 FAA가 인정한 식별 구역(FAA-recognized identification area, FRIA) 안에서만 허용됩니다. FRIA는 지역 기반 단체나 교육기관이 신청할 수 있습니다. 작동 방식은 [FRIA 설명 가이드](/ko/guides/fria-explained)에서 확인하세요.
 
 한 가지 차이는 눈여겨볼 만합니다. 방송 모듈은 조종 장치의 실시간 위치가 아니라 이륙 위치를 보고합니다. 따라서 비행 중에 이동하는 조종자는 표준 Remote ID 기체와 같은 방식으로 추적되지 않으며, 모듈이 보내는 데이터를 조종자의 현재 위치로 읽어서는 안 됩니다.
-
-<DiagramCompare title={"Remote ID를 충족하는 방식"} left={{"head": "방송하는 방법", "items": ["표준 Remote ID 드론", "방송 모듈을 장착한 드론"]}} right={{"head": "방송하지 않는 방법", "items": ["FAA가 인정한 식별 구역(FRIA) 안에서만 비행"]}} />
 
 ## 250그램 예외가 적용되는 방식
 
@@ -49,6 +48,8 @@ FAA가 모든 드론을 실시간으로 따라간다고 생각하는 조종자�
 FAA의 Remote ID 페이지는 준수 기한을 2023년 9월 16일로 제시합니다. 이후 FAA는 재량적 단속 정책을 2024년 3월 16일에 끝낸다고 발표했습니다. FAA의 표현에 따르면 그날 이후 요건을 지키지 않는 운용자는 벌금은 물론 드론 조종사 증명의 정지 또는 취소에 직면할 수 있습니다. 규정은 바뀔 수 있으므로 현재의 내용은 FAA 사이트에서 확인하세요.
 
 ## 현장에서 쓰는 점검표
+
+<DiagramFlow title={"비행 전 Remote ID 점검"} steps={[{"label": "기체 유형 확인", "sub": "표준, 방송 모듈, FRIA"}, {"label": "모듈 전원과 설정 점검"}, {"label": "등록 상태와 만료일 확인"}, {"label": "현재 규정을 FAA에 확인"}]} />
 
 - 내 기체가 표준 Remote ID 드론인지, 방송 모듈을 쓰는지, 아니면 FRIA 안에서만 날릴 수 있는지 확인하세요.
 - 모듈을 쓴다면 매 비행 전에 전원과 설정을 점검하고, 드론을 시야에 두어야 한다는 점을 기억하세요.

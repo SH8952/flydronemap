@@ -9,7 +9,6 @@ image: "/guides/images/gps-jamming-and-spoofing-explained-for-drone-pilots.webp"
 imageCredit: "Chris Cordes"
 imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_medium=referral"
 ---
-
 공항 근처, 군사시설 인근, 혹은 경비가 삼엄한 대형 행사장 위에서 갑자기 드론의 GPS가 끊긴다면 대부분의 조종자는 위성 문제나 소프트웨어 오류라고 생각합니다. 하지만 원인이 의도적인 전파 간섭인 경우도 있습니다. GPS 재밍(jamming)과 스푸핑(spoofing)은 Kp지수 상승이나 인근 건물에서 반사되는 멀티패스 오차와 달리 수신기를 겨냥해 일부러 일으키는 문제입니다. 그래서 증상도 다르고, 대처법도 달라야 합니다.
 
 ## 핵심 요약
@@ -22,9 +21,9 @@ imageCreditUrl: "https://unsplash.com/@4x4_touring?utm_source=FlyDroneMap&utm_me
 
 ## 재밍은 신호를 막고, 스푸핑은 신호를 조작한다
 
-항공용으로 작성된 FAA의 GNSS 간섭 자료집(GNSS Interference Resource Guide)은 재밍을 GNSS 신호를 흉내 내지는 않지만 수신기가 신호를 잡고 추적하는 능력을 방해하는 전파 발사로 정의합니다. 결과는 신호 차단입니다. 스푸핑은 수신기가 실제 신호와 함께, 또는 실제 신호 대신 추적할 수 있는 GNSS 유사 신호를 내보내 잘못된 위치와 시각 정보를 줄 수 있는 행위입니다. EASA도 GNSS 중단과 변조에 관한 안전정보 회보(SIB)에서 비슷한 정의를 쓰며, 승무원이 스푸핑을 더 늦게 알아차리기 때문에 재밍보다 안전상 위험이 크다고 덧붙입니다.
-
 <DiagramCompare title={"재밍과 스푸핑의 차이"} left={{"head": "재밍", "items": ["신호를 막음", "수신기가 위성을 잡거나 추적하지 못함", "FAA가 드는 지표: GNSS 장애 메시지"]}} right={{"head": "스푸핑", "items": ["신호를 조작함", "위성 신호를 흉내 낸 가짜 신호로 잘못된 위치를 계산할 수 있음", "FAA가 드는 지표: 항법 시스템 간 불일치, 비정상적인 대지속도, 갑작스러운 위치 변화"]}} />
+
+항공용으로 작성된 FAA의 GNSS 간섭 자료집(GNSS Interference Resource Guide)은 재밍을 GNSS 신호를 흉내 내지는 않지만 수신기가 신호를 잡고 추적하는 능력을 방해하는 전파 발사로 정의합니다. 결과는 신호 차단입니다. 스푸핑은 수신기가 실제 신호와 함께, 또는 실제 신호 대신 추적할 수 있는 GNSS 유사 신호를 내보내 잘못된 위치와 시각 정보를 줄 수 있는 행위입니다. EASA도 GNSS 중단과 변조에 관한 안전정보 회보(SIB)에서 비슷한 정의를 쓰며, 승무원이 스푸핑을 더 늦게 알아차리기 때문에 재밍보다 안전상 위험이 크다고 덧붙입니다.
 
 이 문서들은 유인 항공기를 대상으로 쓰였지만, 드론 수신기에도 같은 물리 원리가 적용됩니다. 다만 드론이 어떻게 반응하는지는 제조사와 모델에 따라 다르므로, 위성 측위를 잃었을 때 기체가 어떻게 동작하는지는 사용 설명서에서 확인하세요.
 
