@@ -148,25 +148,139 @@ export function getGuidesByCategory(
 }
 
 /**
- * Up to `limit` other guides for internal linking at the bottom of an
- * article — same category first (newest-first), then backfilled from other
- * categories if the current one doesn't have enough siblings. Never
- * includes the current slug. Works automatically for every guide, including
- * ones added later (auto-published or manual), since it's derived from the
- * filesystem rather than a hand-maintained list.
+ * 글 하단 "관련 글" 링크 그래프 (2026-11-26 개편).
+ *
+ * 이전에는 "같은 카테고리의 최신 글 6개"만 걸어서, 카테고리마다 가장 최근 글 몇 개만
+ * 링크를 받고 나머지(특히 용어집·규정처럼 글 수가 적은 카테고리의 새 글)는 허브 목록
+ * 한 곳에서만 링크됐다. 검색엔진이 새 글을 늦게 읽는 원인 중 하나가 이 편중이었다.
+ *
+ * 지금은 언어별로 한 번 계산해 두는 그래프다.
+ *  1) 글마다 정확히 `RELATED_LINKS`개(기본 6)를 걸고,
+ *  2) 가장 적게 링크 받은 글부터 "관련도가 가장 높은 글"이 자신의 목록에 넣게 해서
+ *     모든 글이 비슷한 수의 링크를 받게 한다(최신순 편중 제거).
+ *  관련도 = 공통 태그 수(최대 3개 × 4점) + 같은 카테고리(3점) + 글 쌍마다 고정된 작은 변동값.
+ *  변동값은 난수가 아니라 slug 쌍의 해시라 배포마다 같은 결과가 나오고, 글마다 목록이 달라진다.
+ *  각 글의 목록은 관련도 높은 순으로 정렬한다. 본문(mdx)은 전혀 건드리지 않는다.
+ *
+ * 글이 추가돼도 파일 목록에서 그대로 다시 계산되므로 손으로 관리할 목록이 없다.
+ * 개발 서버(development)에서는 글을 바로 반영하려고 캐시하지 않는다.
+ */
+const RELATED_LINKS = 6;
+
+type RelatedGraph = {
+  bySlug: Map<string, GuideMeta>;
+  links: Map<string, string[]>;
+};
+
+const relatedGraphCache = new Map<string, RelatedGraph>();
+
+/** slug 쌍으로 만든 0 이상 1 미만의 고정 값(FNV-1a). 같은 입력 → 항상 같은 값. */
+function pairJitter(from: string, to: string): number {
+  const text = `${from}>${to}`;
+  let hash = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    hash ^= text.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return ((hash >>> 0) % 1000) / 1000;
+}
+
+function relatedScore(from: GuideMeta, to: GuideMeta): number {
+  const toTags = new Set(to.tags ?? []);
+  const shared = (from.tags ?? []).filter((tag) => toTags.has(tag)).length;
+  const sameCategory = from.category && from.category === to.category ? 3 : 0;
+  return Math.min(shared, 3) * 4 + sameCategory + pairJitter(from.slug, to.slug);
+}
+
+function buildRelatedGraph(locale: Locale): RelatedGraph {
+  const metas = [...getAllGuidesMeta(locale)].sort((a, b) =>
+    a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0,
+  );
+  const bySlug = new Map(metas.map((meta) => [meta.slug, meta]));
+  const cap = Math.min(RELATED_LINKS, Math.max(0, metas.length - 1));
+  const links = new Map<string, string[]>(metas.map((meta) => [meta.slug, []]));
+  const inbound = new Map<string, number>(metas.map((meta) => [meta.slug, 0]));
+  const exhausted = new Set<string>();
+
+  while (exhausted.size < metas.length) {
+    // 지금까지 가장 적게 링크 받은 글(동률이면 slug 순).
+    let target: GuideMeta | null = null;
+    for (const meta of metas) {
+      if (exhausted.has(meta.slug)) continue;
+      if (!target || (inbound.get(meta.slug) ?? 0) < (inbound.get(target.slug) ?? 0)) {
+        target = meta;
+      }
+    }
+    if (!target) break;
+
+    // 아직 자리가 남은 글 중 target 과 가장 관련 있는 글이 target 으로 링크를 건다.
+    let source: GuideMeta | null = null;
+    let best = -1;
+    for (const meta of metas) {
+      if (meta.slug === target.slug) continue;
+      const list = links.get(meta.slug) ?? [];
+      if (list.length >= cap || list.includes(target.slug)) continue;
+      const score = relatedScore(meta, target);
+      if (score > best) {
+        best = score;
+        source = meta;
+      }
+    }
+    if (!source) {
+      exhausted.add(target.slug);
+      continue;
+    }
+    links.get(source.slug)?.push(target.slug);
+    inbound.set(target.slug, (inbound.get(target.slug) ?? 0) + 1);
+  }
+
+  // 각 글의 목록은 관련도 높은 순으로.
+  for (const meta of metas) {
+    const list = links.get(meta.slug) ?? [];
+    list.sort((a, b) => {
+      const ta = bySlug.get(a);
+      const tb = bySlug.get(b);
+      if (!ta || !tb) return 0;
+      return relatedScore(meta, tb) - relatedScore(meta, ta);
+    });
+  }
+
+  return { bySlug, links };
+}
+
+function getRelatedGraph(locale: Locale): RelatedGraph {
+  if (process.env.NODE_ENV === "development") return buildRelatedGraph(locale);
+  const cached = relatedGraphCache.get(locale);
+  if (cached) return cached;
+  const built = buildRelatedGraph(locale);
+  relatedGraphCache.set(locale, built);
+  return built;
+}
+
+/**
+ * 글 하단 내부 링크용으로 `limit`개(최대 6개까지 그래프에서, 그 이상은 같은 카테고리 최신순으로 보충)를
+ * 돌려준다. 현재 글 자신은 절대 포함하지 않는다. 그래프에 없는 글(방금 추가돼 계산 전 등)은
+ * 예전 방식(같은 카테고리 → 나머지, 최신순)으로 대신한다.
  */
 export function getRelatedGuides(
   locale: Locale,
   currentSlug: string,
   limit = 3,
 ): GuideMeta[] {
+  const { bySlug, links } = getRelatedGraph(locale);
+  const fromGraph = (links.get(currentSlug) ?? [])
+    .map((slug) => bySlug.get(slug))
+    .filter((guide): guide is GuideMeta => guide !== undefined);
+
+  if (fromGraph.length >= limit) return fromGraph.slice(0, limit);
+
   const all = getAllGuidesMeta(locale).filter((g) => g.slug !== currentSlug);
   const current = getGuideMeta(locale, currentSlug);
-
+  const picked = new Set(fromGraph.map((g) => g.slug));
   const sameCategory = all.filter((g) => g.category === current?.category);
   const rest = all.filter((g) => g.category !== current?.category);
-
-  return [...sameCategory, ...rest].slice(0, limit);
+  const filler = [...sameCategory, ...rest].filter((g) => !picked.has(g.slug));
+  return [...fromGraph, ...filler].slice(0, limit);
 }
 
 /** 목차용 H2 소제목 — rehype-slug가 붙인 id와 일치한다. */
